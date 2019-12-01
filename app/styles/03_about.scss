@@ -1,0 +1,74 @@
+@import '00_mixins.scss';
+@import '00_variables.scss';
+
+.about {
+  display: flex;
+  align-items: center;
+  background-color: $color-about;
+  min-height: 100vh;
+  width: 100%;
+
+  &__container {
+    display: grid;
+    grid-template-areas:
+    "heading     photography"
+    "description photography"
+    "titleWorking titleWorking"
+    "iconsWorking iconsWorking"
+    "titleKnow titleKnow"
+    "iconsKnow iconsKnow"
+    "titleLearn titleLearn"
+    "iconsLearn iconsLearn";
+    grid-template-columns: 1fr 40%;
+    margin-left: 540px;
+    max-width: 800px;
+    max-height: 800px;
+    min-height: 800px;
+    min-width: 600px;
+
+    border: 1px solid #000;
+  }
+
+  &__heading {
+    color: #fff;
+    font-size: 4.5em;
+    grid-area: heading;
+    margin: 0;
+  }
+
+  &__description {
+    font-size: 2em;
+    grid-area: description;
+    margin: 0;
+  }
+
+  &__photo {
+    border: 10px solid #fff;
+    grid-area: photography;
+    width: 100%;
+  }
+}
+
+.technologies {
+
+  &__title {
+    text-transform: uppercase;
+    margin: 0;
+
+    &--working { grid-area: titleWorking; }
+    &--know { grid-area: titleKnow; }
+    &--learn { grid-area: titleLearn; }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    &--working { grid-area: iconsWorking; }
+    &--know { grid-area: iconsKnow; }
+    &--learn { grid-area: iconsLearn; }
+  }
+}
