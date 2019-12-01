@@ -1,0 +1,51 @@
+@import '00_mixins.scss';
+
+.header {
+  display: flex;
+  height: 100%;
+  left: 0;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  &--centered {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.menu {
+  @include flex-center;
+  height: 100%;
+  margin-left: 50px;
+  min-height: 800px;
+
+  &__list {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    overflow: hidden;
+  }
+
+  &__link {
+    display: flex;
+    color: #000;
+    font-size: 6.25em;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+      color: rgb(92, 92, 92);
+    }
+  }
+}
