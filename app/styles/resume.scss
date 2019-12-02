@@ -1,0 +1,67 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.field {
+
+  &--education {
+    grid-area: education;
+  }
+
+  &--experience {
+    grid-area: experience;
+  }
+
+  &--languages {
+    grid-area: languages;
+  }
+
+  &__heading {
+    color: #fff;
+    font-size: 3em;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+  }
+}
+
+.table {
+  border-collapse: collapse;
+  color: $color-resume-white;
+  margin-left: 2em;
+  width: 100%;
+
+  &__title {
+    color: $color-resume-diff;
+    font-size: 2em;
+    margin: 0.4em 0 0.2em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  &__header {
+    display: none;
+  }
+
+  &__body {
+    font-size: 1.5em;
+
+  }
+
+  &__row {
+    display: block;
+    margin-top: 0.3em;
+  }
+
+  &__col1 {
+    vertical-align: top;
+    width: 180px;
+  }
+
+  &__text {
+    margin: 0;
+
+    &--secondary {
+      color: $color-resume-dark;
+    }
+  }
+}

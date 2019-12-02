@@ -1,0 +1,75 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.technologies {
+
+  &__category {
+    align-self: end;
+    color: $color-about-white;
+    font-size: 1.5em;
+    margin: 0;
+    margin-top: 0.5em;
+    text-transform: uppercase;
+
+    &--working { grid-area: titleWorking; }
+    &--know { grid-area: titleKnow; }
+    &--learn { grid-area: titleLearn; }
+  }
+
+  &__list {
+    align-items: start;
+    column-gap: 7px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    &--working { grid-area: iconsWorking; }
+    &--know { grid-area: iconsKnow; }
+    &--learn { grid-area: iconsLearn; }
+  }
+
+  &__item {
+    @include flex-center;
+    flex-direction: column;
+  }
+
+  &__logo {
+    @include flex-center;
+    border: 3px solid $color-about-dark;
+    fill: $color-about-dark;
+    position: relative;
+
+    &:hover {
+      border-color: $color-about-white;
+      fill: $color-about-white
+    }
+  }
+
+  &__name {
+    color: $color-about-dark;
+    font-size: 0.75em;
+    margin-top: 0.3em;
+    text-transform: uppercase;
+    word-break: break-all;
+  }
+
+  &__svg {
+    width: 100%;
+
+    &--faded1,
+    &--faded2 {
+      height: 100%;
+      left: 0;
+      opacity: 0.75;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    &--faded2 {
+      opacity: 0.5;
+    }
+  }
+}
