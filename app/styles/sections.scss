@@ -13,6 +13,9 @@
   &--resume {
     background-color: $color-resume;
   }
+  &--tasktimer {
+    background-color: $color-tasktimer;
+  }
 
   &__container {
     align-items: start;
@@ -47,6 +50,16 @@
       "languages ";
       grid-template-columns: 1fr;
     }
+
+    &--tasktimer {
+      grid-template-areas:
+      "heading      heading      heading     "
+      "description  description  description "
+      ".            . readMore               "
+      "statistics   codeButton   demoButton  "
+      "technologies technologies technologies";
+      grid-template-columns: 1fr 20% 20%;
+    }
   }
 
   &__heading {
@@ -71,10 +84,17 @@
   }
 
   &__description {
-    color: $color-about-white;
     font-size: 2em;
     grid-area: description;
     margin: 0;
+
+    &--about {
+      color: $color-about-white;
+    }
+
+    &--tasktimer {
+      color: $color-tasktimer-white;
+    }
   }
 
   &__photo {
@@ -83,4 +103,27 @@
     grid-area: photography;
     width: 100%;
   }
+
+  &__svg {
+    display: none;
+  }
+
+  &__readMore {
+    grid-area: readMore;
+  }
+
+  &__link {
+
+    &--code {
+      grid-area: codeButton;
+    }
+
+    &--demo {
+      grid-area: demoButton;
+    }
+  }
+}
+
+.stats {
+  grid-area: statistics;
 }
