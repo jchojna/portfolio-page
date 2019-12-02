@@ -1,0 +1,271 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.section {
+  align-items: center;
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
+
+  &--about {
+    background-color: $color-about;
+  }
+  &--resume {
+    background-color: $color-resume;
+  }
+  &--tasktimer {
+    background-color: $color-tasktimer;
+  }
+  &--hydrapp {
+    background-color: $color-hydrapp;
+  }
+  &--archviz {
+    background-color: $color-archviz;
+  }
+  &--quotes {
+    background-color: $color-quotes;
+  }
+  &--other {
+    background-color: $color-other;
+  }
+  &--contact {
+    background-color: $color-contact;
+  }
+
+  &__container {
+    align-items: start;
+    display: grid;
+    margin-left: 540px;
+    //max-height: 800px;
+    max-width: 800px;
+    min-height: 800px;
+    min-width: 600px;
+    width: 100%;
+
+    &--about {
+      column-gap: 20px;
+      grid-template-areas:
+      "heading      photography "
+      "description  photography "
+      "titleWorking titleWorking"
+      "iconsWorking iconsWorking"
+      "titleKnow    titleKnow   "
+      "iconsKnow    iconsKnow   "
+      "titleLearn   titleLearn  "
+      "iconsLearn   iconsLearn  ";
+      grid-template-columns: 1fr 40%;
+      grid-template-rows: auto 1fr;
+    }
+
+    &--resume {
+      grid-template-areas:
+      "heading   "
+      "education "
+      "experience"
+      "languages ";
+      grid-template-columns: 1fr;
+    }
+
+    &--tasktimer,
+    &--hydrapp,
+    &--archviz,
+    &--quotes {
+      column-gap: 20px;
+      grid-template-areas:
+      "heading      heading      heading     "
+      "description  description  description "
+      "readMore     readMore     readMore    "
+      "statistics   codeButton   demoButton  "
+      "technologies technologies technologies";
+      grid-template-columns: 1fr repeat(2, auto);
+      grid-template-rows: auto auto 1fr;
+    }
+
+    &--other {
+      grid-template-areas:
+      "heading    "
+      "description"
+      "readMore   "
+      "otherRepos ";
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, auto) 1fr;
+    }
+
+    &--contact {
+      grid-template-areas:
+      "heading    "
+      "contactForm";
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+    }
+  }
+
+  &__heading {
+    color: #fff;
+    font-size: 4.5em;
+    font-weight: normal;
+    grid-area: heading;
+    line-height: 1.3;
+    margin: 0;
+    padding-top: 5px;
+    position: relative;
+
+    &--contact { font-size: 4em; }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -55px;
+      background-color: #fff;
+      width: 10px;
+      height: 100%;
+    }
+  }
+
+  &__description {
+    font-size: 2em;
+    grid-area: description;
+    margin: 0;
+    margin-top: 1.2em;
+
+    &--about {
+      color: $color-about-white;
+    }
+    &--tasktimer {
+      color: $color-tasktimer-white;
+    }
+    &--hydrapp {
+      color: $color-hydrapp-white;
+    }
+    &--archviz {
+      color: $color-archviz-white;
+    }
+    &--quotes {
+      color: $color-quotes-white;
+    }
+    &--other {
+      color: $color-other-white;
+    }
+  }
+
+  &__photo {
+    border: 10px solid $color-about-white;
+    filter: saturate(0.5);
+    grid-area: photography;
+    width: 100%;
+  }
+
+  &__svg {
+    display: none;
+  }
+
+  &__readMore {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    grid-area: readMore;
+    justify-self: end;
+    padding: 0.2em;
+    text-transform: uppercase;
+
+    &--tasktimer {
+      border-bottom: 3px solid $color-tasktimer-light;
+      color: $color-tasktimer-light;
+    }
+    &--hydrapp {
+      border-bottom: 3px solid $color-hydrapp-light;
+      color: $color-hydrapp-light;
+    }
+    &--archviz {
+      border-bottom: 3px solid $color-archviz-light;
+      color: $color-archviz-light;
+    }
+    &--quotes {
+      border-bottom: 3px solid $color-quotes-light;
+      color: $color-quotes-light;
+    }
+    &--other {
+      border-bottom: 3px solid $color-other-light;
+      color: $color-other-light;
+    }
+  }
+
+  &__link {
+    @include flex-center;
+    align-self: end;
+    border: 3px solid #fff;
+    color: #fff;
+    font-size: 2em;
+    padding: 0.4em 1.3em;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &--code {
+      grid-area: codeButton;
+    }
+
+    &--demo {
+      grid-area: demoButton;
+    }
+
+    &--tasktimer:hover {
+      border-color: $color-tasktimer-shadow;
+      color: $color-tasktimer-shadow;
+    }
+    &--hydrapp:hover {
+      border-color: $color-hydrapp-shadow;
+      color: $color-hydrapp-shadow;
+    }
+    &--archviz:hover {
+      border-color: $color-archviz-shadow;
+      color: $color-archviz-shadow;
+    }
+    &--quotes:hover {
+      border-color: $color-quotes-shadow;
+      color: $color-quotes-shadow;
+    }
+  }
+}
+
+.stats {
+  border-bottom: 3px solid #fff;
+  font-size: 1.5em;
+  grid-area: statistics;
+  text-transform: lowercase;
+
+  &--tasktimer {
+    color: $color-tasktimer-shadow;
+  }
+  &--hydrapp {
+    color: $color-hydrapp-shadow;
+  }
+  &--archviz {
+    color: $color-archviz-shadow;
+  }
+  &--quotes {
+    color: $color-quotes-shadow;
+  }
+
+  &__table {
+    border-collapse: collapse;
+    margin-bottom: 0.6em;
+  }
+
+  &__tableHeader {
+    display: none;
+  }
+
+  &__col {
+    padding-top: 0.3em;
+
+    &--first {
+      width: 150px;
+    }
+    &--second {
+      text-align: right;
+    }
+  }
+}

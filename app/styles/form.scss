@@ -1,0 +1,71 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.form {
+  align-self: stretch;
+  column-gap: 20px;
+  display: grid;
+  grid-area: contactForm;
+  grid-template-areas:
+  "labelTitle   labelName "
+  "inputTitle   inputName "
+  "labelMessage labelEmail"
+  "inputMessage inputEmail"
+  "inputMessage labelPhone"
+  "inputMessage inputPhone"
+  ".            .         "
+  ".            submitForm";
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: repeat(8, 1fr);
+
+  &__label {
+    align-self: end;
+    color: $color-contact-white;
+    font-size: 1.125em;
+    margin-bottom: 1em;
+
+    &--title { grid-area: labelTitle; }
+    &--message { grid-area: labelMessage; }
+    &--name { grid-area: labelName; }
+    &--email { grid-area: labelEmail; }
+    &--phone { grid-area: labelPhone; }
+  }
+
+  &__input {
+    background: none;
+    border: 3px solid $color-contact-light;
+    color: $color-contact-shadow;
+    font-size: 1.25em;
+    padding: 1em;
+
+    &--title { grid-area: inputTitle; }
+    &--message {
+      grid-area: inputMessage;
+      resize: none;
+    }
+    &--name { grid-area: inputName; }
+    &--email { grid-area: inputEmail; }
+    &--phone { grid-area: inputPhone; }
+
+    &:focus {
+      border-color: #fff;
+      background-color: $color-contact-light;
+    }
+  }
+
+  &__submit {
+    background: none;
+    border: 3px solid #fff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 2em;
+    grid-area: submitForm;
+    text-transform: uppercase;
+
+    &:hover {
+      border-color: transparent;
+      color: $color-contact;
+      background: $color-contact-diff;
+    }
+  }
+}

@@ -1,6 +1,10 @@
-@import '00_normalize.scss';
-@import '00_helpers.scss';
+@import 'normalize.scss';
+@import 'helpers.scss';
 
-@import '01_overall.scss';
-@import '02_menu.scss';
-@import '03_about.scss';
+@import 'overall.scss';
+@import 'menu.scss';
+@import 'sections.scss';
+@import 'resume.scss';
+@import 'technologies.scss';
+@import 'other.scss';
+@import 'form.scss';

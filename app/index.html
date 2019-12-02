@@ -55,16 +55,17 @@
         </nav>
       </header>
       <!--| END OF MENU |-->
+
       <!--| ABOUT |-->
-      <article id="about" class="about">
-        <div class="about__container">
-          <h2 class="about__heading">Hello there!</h2>
-          <p class="about__description">
+      <article id="about" class="section section--about">
+        <div class="section__container section__container--about">
+          <h2 class="section__heading">Hello there!</h2>
+          <p class="section__description section__description--about">
             My name is Jakub and I’m an aspiring Frontend Developer and a keen road cycling fan.
           </p>
           <img
             src="assets/img/photo.jpg"
-            class="about__photo"
+            class="section__photo"
             alt="Photo of Jakub Chojna"
           >
           <!--: WORKING KNOWLEDGE :-->
@@ -397,434 +398,1128 @@
         </div>
       </article>
       <!--| END OF ABOUT |-->
+
       <!--| RESUME |-->
-      <article id="resume" class="resume">
-        <h2 class="resume__heading">Jakub Chojna</h2>
-        <!--: EDUCATION :-->
-        <section class="field">
-          <h3 class="field__heading">Education</h3>
-          <table class="table">
-            <thead class="table__header">
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">University</th>
-              </tr>
-            </thead>
-            <tbody class="table__body">
-              <tr>
-                <td>2011 - 2014</td>
-                <td>
-                  Warsaw University of Technology | Faculty of Architecture <br>
-                  Master’s Degree
-                </td>
-              </tr>
-              <tr>
-                <td>2006 - 2010</td>
-                <td>
-                  Warsaw University of Technology | Faculty of Architecture <br>
-                  Bachelor’s Degree
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-        <!--: END OF EDUCATION :-->
-        <!--: PROFESSIONAL EXPERIENCE :-->
-        <section class="field">
-          <h3 class="field__heading">Professional Experience</h3>
-          <!--. ARCHITECTURE .-->
-          <table class="table">
-            <caption class="table__title">Architecture</caption>
-            <thead class="table__header">
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Job</th>
-              </tr>
-            </thead>
-            <tbody class="table__body">
-              <tr>
-                <td>2017 - present</td>
-                <td>
-                  Freelance Architect | self-employed <br>
-                  remote
-                </td>
-              </tr>
-              <tr>
-                <td>2018</td>
-                <td>
-                  Architect / 3d Visualizer | Svet Vmes <br>
-                  Ljubljana, Slovenia
-                </td>
-              </tr>
-              <tr>
-                <td>2015 - 2017</td>
-                <td>
-                  Architect / 3d Visualizer | Mofo Architekci <br>
-                  Warsaw, Poland
-                </td>
-              </tr>
-              <tr>
-                <td>2011 - 2013</td>
-                <td>
-                  Architect | Activum Projektowanie <br>
-                  Warsaw, Poland
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!--. END OF ARCHITECTURE .-->
-          <!-- 3D GRAPHICS -->
-          <table class="table">
-            <caption class="table__title">Architecture</caption>
-            <thead class="table__header">
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Job</th>
-              </tr>
-            </thead>
-            <tbody class="table__body">
-              <tr>
-                <td>2008 - present</td>
-                <td>
-                  Freelance 3d Visualizer | self-employed <br>
-                  remote
-                </td>
-              </tr>
-              <tr>
-                <td>2010 - 2013</td>
-                <td>
-                  Euro Info Group | 3d software tutor <br>
-                  Warsaw, Poland
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!--. END OF 3D GRAPHICS .-->
-          <!--. FRONTEND DEVELOPMENT .-->
-          <table class="table">
-            <caption class="table__title">Frontend Development</caption>
-            <thead class="table__header">
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Job</th>
-              </tr>
-            </thead>
-            <tbody class="table__body">
-              <tr>
-                <td>present</td>
-                <td>
-                  No professional experience yet ...
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!--. END OF FRONTEND DEVELOPMENT .-->
-        </section>
-        <!--: END OF PROFESSIONAL EXPERIENCE :-->
-        <!--: LANGUAGES :-->
-        <section class="field">
-          <h3 class="field__heading">Languages</h3>
-          <table class="table">
-            <thead class="table__header">
-              <tr>
-                <th scope="col">Language</th>
-                <th scope="col">Level</th>
-              </tr>
-            </thead>
-            <tbody class="table__body">
-              <tr>
-                <td>English</td>
-                <td>Proficient</td>
-              </tr>
-              <tr>
-                <td>German</td>
-                <td>Elementary</td>
-              </tr>
-              <tr>
-                <td>Polish</td>
-                <td>Native</td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- LANGUAGES -->
-        </section>
-        <!--: END OF LANGUAGES :-->
+      <article id="resume" class="section section--resume">
+        <div class="section__container section__container--resume">
+          <h2 class="section__heading">Jakub Chojna</h2>
+          <!--: EDUCATION :-->
+          <section class="field field--education">
+            <h3 class="field__heading">Education</h3>
+            <table class="table">
+              <thead class="table__header">
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">University</th>
+                </tr>
+              </thead>
+              <tbody class="table__body">
+                <tr>
+                  <td class="table__col table__col--first">2011 - 2014</td>
+                  <td class="table__col table__col--second">
+                    <p class="table__text">
+                      Warsaw University of Technology | Faculty of Architecture
+                    </p>
+                    <p class="table__text table__text--secondary">
+                      Master’s Degree
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table__col table__col--first">2006 - 2010</td>
+                  <td class="table__col table__col--second">
+                    <p class="table__text">
+                      Warsaw University of Technology | Faculty of Architecture
+                    </p>
+                    <p class="table__text table__text--secondary">
+                      Bachelor’s Degree
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <!--: END OF EDUCATION :-->
+          <!--: PROFESSIONAL EXPERIENCE :-->
+          <section class="field field--experience">
+            <h3 class="field__heading">Professional Experience</h3>
+            <!--. ARCHITECTURE .-->
+            <table class="table">
+              <caption class="table__title">Architecture</caption>
+              <thead class="table__header">
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Job</th>
+                </tr>
+              </thead>
+              <tbody class="table__body">
+                <tr>
+                  <td class="table__col table__col--first">2017 - present</td>
+                  <td class="table__col table__col--second">
+                    <p class="table__text">
+                      Freelance Architect | self-employed
+                    </p>
+                    <p class="table__text table__text--secondary">
+                      Remote
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table__col table__col--first">2018</td>
+                  <td class="table__col table__col--second">
+                    <p class="table__text">
+                      Architect / 3d Visualizer | Svet Vmes
+                    </p>
+                    <p class="table__text table__text--secondary">
+                      Ljubljana, Slovenia
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table__col table__col--first">2015 - 2017</td>
+                  <td class="table__col table__col--second">
+                    <p class="table__text">
+                      Architect / 3d Visualizer | Mofo Architekci
+                    </p>
+                    <p class="table__text table__text--secondary">
+                      Warsaw, Poland
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table__col table__col--first">2011 - 2013</td>
+                  <td class="table__col table__col--second">
+                    <p class="table__text">
+                      Architect | Activum Projektowanie
+                    </p>
+                    <p class="table__text table__text--secondary">
+                      Warsaw, Poland
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!--. END OF ARCHITECTURE .-->
+            <!-- 3D GRAPHICS -->
+            <table class="table">
+              <caption class="table__title">3d Graphics</caption>
+              <thead class="table__header">
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Job</th>
+                </tr>
+              </thead>
+              <tbody class="table__body">
+                <tr>
+                  <td class="table__col table__col--first">2008 - present</td>
+                  <td class="table__col table__col--second">
+                    <p class="table__text">
+                      Freelance 3d Visualizer | self-employed
+                    </p>
+                    <p class="table__text table__text--secondary">
+                      Remote
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table__col table__col--first">2010 - 2013</td>
+                  <td class="table__col table__col--second">
+                    <p class="table__text">
+                      Euro Info Group | 3d software tutor
+                    </p>
+                    <p class="table__text table__text--secondary">
+                      Warsaw, Poland
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!--. END OF 3D GRAPHICS .-->
+            <!--. FRONTEND DEVELOPMENT .-->
+            <table class="table">
+              <caption class="table__title">Frontend Development</caption>
+              <thead class="table__header">
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Job</th>
+                </tr>
+              </thead>
+              <tbody class="table__body">
+                <tr>
+                  <td class="table__col table__col--first">present</td>
+                  <td class="table__col table__col--second">
+                    No professional experience yet ...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!--. END OF FRONTEND DEVELOPMENT .-->
+          </section>
+          <!--: END OF PROFESSIONAL EXPERIENCE :-->
+          <!--: LANGUAGES :-->
+          <section class="field field--languages">
+            <h3 class="field__heading">Languages</h3>
+            <table class="table">
+              <thead class="table__header">
+                <tr>
+                  <th scope="col">Language</th>
+                  <th scope="col">Level</th>
+                </tr>
+              </thead>
+              <tbody class="table__body">
+                <tr>
+                  <td class="table__col table__col--first">English</td>
+                  <td class="table__col table__col--second">Proficient</td>
+                </tr>
+                <tr>
+                  <td class="table__col table__col--first">German</td>
+                  <td class="table__col table__col--second">Elementary</td>
+                </tr>
+                <tr>
+                  <td class="table__col table__col--first">Polish</td>
+                  <td class="table__col table__col--second">Native</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- LANGUAGES -->
+          </section>
+          <!--: END OF LANGUAGES :-->
+        </div>
       </article>
       <!--| END OF RESUME |-->
+
       <!--| TASKTIMER |-->
-      <article class="project project--tasktimer">
-        <h2 class="project__heading">
-          “get things done on time with taskTimer app”
-        </h2>
-        <p class="project__description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        </p>
-        <svg class="project__svg" viewBox="0 0 200 200">
-          <use href="#"></use>
-        </svg>
-        <!--: LINKS / BUTTONS :-->
-        <button class="project__readMore">
-          Read more...
-        </button>
-        <a class="project__link project__link--code">
-          Code
-        </a>
-        <a class="project__link project__link--demo">
-          Demo
-        </a>
-        <!--: END OF LINKS / BUTTONS :-->
-        <!--: STATS :-->
-        <section class="stats">
-          <h3 class="stats__heading">Stats</h3>
-          <table class="stats__table">
-            <thead class="stats__tableHeader">
-              <tr>
-                <th scope="col">category</th>
-                <th scope="col">value</th>
-              </tr>
-            </thead>
-            <tbody class="stats__tableBody">
-              <tr>
-                <td>Last update:</td>
-                <td>VALUE</td>
-              </tr>
-              <tr>
-                <td>Total commits:</td>
-                <td>VALUE</td>
-              </tr>
-              <tr>
-                <td>Hours spent:</td>
-                <td>VALUE</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-        <!--: END OF STATS :-->
-        <!--: TECHNOLOGIES USED :-->
-        <ul class="technologies__list">
-          <!--. HTML .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#html-1"></use>
-              <use href="assets/svg/technologies.svg#html-2"></use>
-              <use href="assets/svg/technologies.svg#html-3"></use>
-            </svg>
-          </li>
-          <!--. CSS .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#css-1"></use>
-              <use href="assets/svg/technologies.svg#css-2"></use>
-              <use href="assets/svg/technologies.svg#css-3"></use>
-            </svg>
-          </li>
-          <!--. JAVASCRIPT .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#javascript-1"></use>
-              <use href="assets/svg/technologies.svg#javascript-2"></use>
-              <use href="assets/svg/technologies.svg#javascript-3"></use>
-            </svg>
-          </li>
-          <!--. SASS .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#sass"></use>
-            </svg>
-          </li>
-          <!--. BEM .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#bem"></use>
-            </svg>
-          </li>
-          <!--. REACT.JS .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#react"></use>
-            </svg>
-          </li>
-          <!--. GIT .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#git"></use>
-            </svg>
-          </li>
-          <!--. PHP .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#php"></use>
-            </svg>
-          </li>
-          <!--. VISUAL STUDIO CODE .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#vscode-1"></use>
-              <use href="assets/svg/technologies.svg#vscode-2"></use>
-              <use href="assets/svg/technologies.svg#vscode-3"></use>
-            </svg>
-          </li>
-          <!--. FIGMA .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#figma-1"></use>
-              <use href="assets/svg/technologies.svg#figma-2"></use>
-              <use href="assets/svg/technologies.svg#figma-3"></use>
-            </svg>
-          </li>
-          <!--. ILLUSTRATOR .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#illustrator"></use>
-            </svg>
-          </li>
-          <!--. PHOTOSHOP .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#photoshop"></use>
-            </svg>
-          </li>
-        </ul>
-        <!--: END OF TECHNOLOGIES USED :-->
+      <article id="tasktimer" class="section section--tasktimer">
+        <div class="section__container section__container--tasktimer">
+          <h2 class="section__heading">
+            “get things done on time with taskTimer app”
+          </h2>
+          <p class="section__description section__description--tasktimer">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+          <svg class="section__svg" viewBox="0 0 200 200">
+            <use href="#"></use>
+          </svg>
+          <!--: LINKS / BUTTONS :-->
+          <button class="section__readMore section__readMore--tasktimer">
+            Read more...
+          </button>
+          <a href="#" class="section__link section__link--tasktimer section__link--code">
+            Code
+          </a>
+          <a href="#" class="section__link section__link--tasktimer section__link--demo">
+            Demo
+          </a>
+          <!--: END OF LINKS / BUTTONS :-->
+          <!--: STATS :-->
+          <section class="stats stats--tasktimer">
+            <h3 class="stats__heading visuallyhidden">Stats</h3>
+            <table class="stats__table">
+              <thead class="stats__tableHeader">
+                <tr>
+                  <th scope="col">category</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              <tbody class="stats__tableBody">
+                <tr>
+                  <td class="stats__col stats__col--first">Last update:</td>
+                  <td class="stats__col stats__col--second">11.03.19</td>
+                </tr>
+                <tr>
+                  <td class="stats__col stats__col--first">Total commits:</td>
+                  <td class="stats__col stats__col--second">245</td>
+                </tr>
+                <tr>
+                  <td class="stats__col stats__col--first">Hours spent:</td>
+                  <td class="stats__col stats__col--second">90</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <!--: END OF STATS :-->
+          <!--: TECHNOLOGIES USED :-->
+          <ul class="technologies__list technologies__list--used">
+            <!--. HTML .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--tasktimer technologies__logo--tasktimerUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--tasktimer technologies__name--tasktimerUsed">html</span>
+            </li>
+            <!--. CSS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--tasktimer technologies__logo--tasktimerUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--tasktimer technologies__name--tasktimerUsed">css</span>
+            </li>
+            <!--. JAVASCRIPT .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--tasktimer technologies__logo--tasktimerUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--tasktimer technologies__name--tasktimerUsed">javascript</span>
+            </li>
+            <!--. SASS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--tasktimer technologies__logo--tasktimerUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#sass"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--tasktimer technologies__name--tasktimerUsed">sass</span>
+            </li>
+            <!--. BEM .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--tasktimer technologies__logo--tasktimerUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#bem"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--tasktimer technologies__name--tasktimerUsed">bem</span>
+            </li>
+            <!--. REACT.JS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--tasktimer technologies__logo--tasktimerUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#react"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--tasktimer technologies__name--tasktimerUsed">react.js</span>
+            </li>
+            <!--. GIT .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--tasktimer technologies__logo--tasktimerUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#git"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--tasktimer technologies__name--tasktimerUsed">git</span>
+            </li>
+            <!--. VISUAL STUDIO CODE .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--tasktimer technologies__logo--tasktimerUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--tasktimer technologies__name--tasktimerUsed">vs code</span>
+            </li>
+            <!--. FIGMA .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--tasktimer technologies__logo--tasktimerUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--tasktimer technologies__name--tasktimerUsed">figma</span>
+            </li>
+            <!--. ILLUSTRATOR .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--tasktimer technologies__logo--tasktimerUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#illustrator"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--tasktimer technologies__name--tasktimerUsed">illustrator</span>
+            </li>
+            <!--. PHP .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--tasktimer">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#php"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--tasktimer">php</span>
+            </li>
+            <!--. PHOTOSHOP .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--tasktimer">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#photoshop"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--tasktimer">photoshop</span>
+            </li>
+          </ul>
+          <!--: END OF TECHNOLOGIES USED :-->
+        </div>
       </article>
       <!--| END OF TASKTIMER |-->
+
       <!--| HYDRAPP |-->
-      <article class="project project--hydrapp">
-        <h2 class="project__heading">
-          “track water consumption with hydrApp”
-        </h2>
-        <p class="project__description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        </p>
-        <svg class="project__svg" viewBox="0 0 200 200">
-          <use href="#"></use>
-        </svg>
-        <!--: LINKS / BUTTONS :-->
-        <button class="project__readMore">
-          Read more...
-        </button>
-        <a class="project__link project__link--code">
-          Code
-        </a>
-        <a class="project__link project__link--demo">
-          Demo
-        </a>
-        <!--: END OF LINKS / BUTTONS :-->
-        <!--: STATS :-->
-        <section class="stats">
-          <h3 class="stats__heading">Stats</h3>
-          <table class="stats__table">
-            <thead class="stats__tableHeader">
-              <tr>
-                <th scope="col">category</th>
-                <th scope="col">value</th>
-              </tr>
-            </thead>
-            <tbody class="stats__tableBody">
-              <tr>
-                <td>Last update:</td>
-                <td>VALUE</td>
-              </tr>
-              <tr>
-                <td>Total commits:</td>
-                <td>VALUE</td>
-              </tr>
-              <tr>
-                <td>Hours spent:</td>
-                <td>VALUE</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-        <!--: END OF STATS :-->
-        <!--: TECHNOLOGIES USED :-->
-        <ul class="technologies__list">
-          <!--. HTML .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#html-1"></use>
-              <use href="assets/svg/technologies.svg#html-2"></use>
-              <use href="assets/svg/technologies.svg#html-3"></use>
-            </svg>
-          </li>
-          <!--. CSS .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#css-1"></use>
-              <use href="assets/svg/technologies.svg#css-2"></use>
-              <use href="assets/svg/technologies.svg#css-3"></use>
-            </svg>
-          </li>
-          <!--. JAVASCRIPT .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#javascript-1"></use>
-              <use href="assets/svg/technologies.svg#javascript-2"></use>
-              <use href="assets/svg/technologies.svg#javascript-3"></use>
-            </svg>
-          </li>
-          <!--. SASS .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#sass"></use>
-            </svg>
-          </li>
-          <!--. BEM .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#bem"></use>
-            </svg>
-          </li>
-          <!--. REACT.JS .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#react"></use>
-            </svg>
-          </li>
-          <!--. GIT .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#git"></use>
-            </svg>
-          </li>
-          <!--. PHP .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#php"></use>
-            </svg>
-          </li>
-          <!--. VISUAL STUDIO CODE .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#vscode-1"></use>
-              <use href="assets/svg/technologies.svg#vscode-2"></use>
-              <use href="assets/svg/technologies.svg#vscode-3"></use>
-            </svg>
-          </li>
-          <!--. FIGMA .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#figma-1"></use>
-              <use href="assets/svg/technologies.svg#figma-2"></use>
-              <use href="assets/svg/technologies.svg#figma-3"></use>
-            </svg>
-          </li>
-          <!--. ILLUSTRATOR .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#illustrator"></use>
-            </svg>
-          </li>
-          <!--. PHOTOSHOP .-->
-          <li class="technologies__item">
-            <svg class="technologies__svg" viewBox="0 0 200 200">
-              <use href="assets/svg/technologies.svg#photoshop"></use>
-            </svg>
-          </li>
-        </ul>
-        <!--: END OF TECHNOLOGIES USED :-->
+      <article id="hydrapp" class="section section--hydrapp">
+        <div class="section__container section__container--hydrapp">
+          <h2 class="section__heading">
+            “track water consumption with hydrApp”
+          </h2>
+          <p class="section__description section__description--hydrapp">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+          <svg class="section__svg" viewBox="0 0 200 200">
+            <use href="#"></use>
+          </svg>
+          <!--: LINKS / BUTTONS :-->
+          <button class="section__readMore section__readMore--hydrapp">
+            Read more...
+          </button>
+          <a href="#" class="section__link section__link--hydrapp section__link--code">
+            Code
+          </a>
+          <a href="#" class="section__link section__link--hydrapp section__link--demo">
+            Demo
+          </a>
+          <!--: END OF LINKS / BUTTONS :-->
+          <!--: STATS :-->
+          <section class="stats stats--hydrapp">
+            <h3 class="stats__heading visuallyhidden">Stats</h3>
+            <table class="stats__table">
+              <thead class="stats__tableHeader">
+                <tr>
+                  <th scope="col">category</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              <tbody class="stats__tableBody">
+                <tr>
+                  <td class="stats__col stats__col--first">Last update:</td>
+                  <td class="stats__col stats__col--second">11.03.19</td>
+                </tr>
+                <tr>
+                  <td class="stats__col stats__col--first">Total commits:</td>
+                  <td class="stats__col stats__col--second">245</td>
+                </tr>
+                <tr>
+                  <td class="stats__col stats__col--first">Hours spent:</td>
+                  <td class="stats__col stats__col--second">90</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <!--: END OF STATS :-->
+          <!--: TECHNOLOGIES USED :-->
+          <ul class="technologies__list technologies__list--used">
+            <!--. HTML .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--hydrapp technologies__logo--hydrappUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--hydrapp technologies__name--hydrappUsed">html</span>
+            </li>
+            <!--. CSS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--hydrapp technologies__logo--hydrappUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--hydrapp technologies__name--hydrappUsed">css</span>
+            </li>
+            <!--. JAVASCRIPT .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--hydrapp technologies__logo--hydrappUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--hydrapp technologies__name--hydrappUsed">javascript</span>
+            </li>
+            <!--. SASS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--hydrapp technologies__logo--hydrappUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#sass"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--hydrapp technologies__name--hydrappUsed">sass</span>
+            </li>
+            <!--. BEM .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--hydrapp technologies__logo--hydrappUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#bem"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--hydrapp technologies__name--hydrappUsed">bem</span>
+            </li>
+            <!--. GIT .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--hydrapp technologies__logo--hydrappUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#git"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--hydrapp technologies__name--hydrappUsed">git</span>
+            </li>
+            <!--. VISUAL STUDIO CODE .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--hydrapp technologies__logo--hydrappUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--hydrapp technologies__name--hydrappUsed">vs code</span>
+            </li>
+            <!--. FIGMA .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--hydrapp technologies__logo--hydrappUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--hydrapp technologies__name--hydrappUsed">figma</span>
+            </li>
+            <!--. ILLUSTRATOR .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--hydrapp technologies__logo--hydrappUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#illustrator"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--hydrapp technologies__name--hydrappUsed">illustrator</span>
+            </li>
+            <!--. REACT.JS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--hydrapp">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#react"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--hydrapp">react.js</span>
+            </li>
+            <!--. PHP .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--hydrapp">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#php"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--hydrapp">php</span>
+            </li>
+            <!--. PHOTOSHOP .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--hydrapp">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#photoshop"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--hydrapp">photoshop</span>
+            </li>
+          </ul>
+          <!--: END OF TECHNOLOGIES USED :-->
+        </div>
       </article>
       <!--| END OF HYDRAPP |-->
+
+      <!--| ARCHVIZ |-->
+      <article id="archviz" class="section section--archviz">
+        <div class="section__container section__container--archviz">
+          <h2 class="section__heading">
+            “personal portfolio with my architectural visulizations”
+          </h2>
+          <p class="section__description section__description--archviz">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+          <svg class="section__svg" viewBox="0 0 200 200">
+            <use href="#"></use>
+          </svg>
+          <!--: LINKS / BUTTONS :-->
+          <button class="section__readMore section__readMore--archviz">
+            Read more...
+          </button>
+          <a href="#" class="section__link section__link--archviz section__link--code">
+            Code
+          </a>
+          <a href="#" class="section__link section__link--archviz section__link--demo">
+            Demo
+          </a>
+          <!--: END OF LINKS / BUTTONS :-->
+          <!--: STATS :-->
+          <section class="stats stats--archviz">
+            <h3 class="stats__heading visuallyhidden">Stats</h3>
+            <table class="stats__table">
+              <thead class="stats__tableHeader">
+                <tr>
+                  <th scope="col">category</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              <tbody class="stats__tableBody">
+                <tr>
+                  <td class="stats__col stats__col--first">Last update:</td>
+                  <td class="stats__col stats__col--second">11.03.19</td>
+                </tr>
+                <tr>
+                  <td class="stats__col stats__col--first">Total commits:</td>
+                  <td class="stats__col stats__col--second">245</td>
+                </tr>
+                <tr>
+                  <td class="stats__col stats__col--first">Hours spent:</td>
+                  <td class="stats__col stats__col--second">90</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <!--: END OF STATS :-->
+          <!--: TECHNOLOGIES USED :-->
+          <ul class="technologies__list technologies__list--used">
+            <!--. HTML .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--archviz technologies__logo--archvizUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--archviz technologies__name--archvizUsed">html</span>
+            </li>
+            <!--. CSS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--archviz technologies__logo--archvizUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--archviz technologies__name--archvizUsed">css</span>
+            </li>
+            <!--. JAVASCRIPT .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--archviz technologies__logo--archvizUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--archviz technologies__name--archvizUsed">javascript</span>
+            </li>
+            <!--. SASS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--archviz technologies__logo--archvizUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#sass"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--archviz technologies__name--archvizUsed">sass</span>
+            </li>
+            <!--. BEM .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--archviz technologies__logo--archvizUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#bem"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--archviz technologies__name--archvizUsed">bem</span>
+            </li>
+            <!--. PHP .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--archviz technologies__logo--archvizUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#php"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--archviz technologies__name--archvizUsed">php</span>
+            </li>
+            <!--. GIT .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--archviz technologies__logo--archvizUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#git"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--archviz technologies__name--archvizUsed">git</span>
+            </li>
+            <!--. VISUAL STUDIO CODE .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--archviz technologies__logo--archvizUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--archviz technologies__name--archvizUsed">vs code</span>
+            </li>
+            <!--. PHOTOSHOP .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--archviz technologies__logo--archvizUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#photoshop"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--archviz technologies__name--archvizUsed">photoshop</span>
+            </li>
+            <!--. REACT.JS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--archviz">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#react"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--archviz">react.js</span>
+            </li>
+            <!--. FIGMA .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--archviz">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--archviz">figma</span>
+            </li>
+            <!--. ILLUSTRATOR .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--archviz">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#illustrator"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--archviz">illustrator</span>
+            </li>
+          </ul>
+          <!--: END OF TECHNOLOGIES USED :-->
+        </div>
+      </article>
+      <!--| END OF ARCHVIZ |-->
+
+      <!--| QUOTES |-->
+      <article id="quotes" class="section section--quotes">
+        <div class="section__container section__container--quotes">
+          <h2 class="section__heading">
+            “collection of useful and funny quotes”
+          </h2>
+          <p class="section__description section__description--quotes">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+          <svg class="section__svg" viewBox="0 0 200 200">
+            <use href="#"></use>
+          </svg>
+          <!--: LINKS / BUTTONS :-->
+          <button class="section__readMore section__readMore--quotes">
+            Read more...
+          </button>
+          <a href="#" class="section__link section__link--quotes section__link--code">
+            Code
+          </a>
+          <a href="#" class="section__link section__link--quotes section__link--demo">
+            Demo
+          </a>
+          <!--: END OF LINKS / BUTTONS :-->
+          <!--: STATS :-->
+          <section class="stats stats--quotes">
+            <h3 class="stats__heading visuallyhidden">Stats</h3>
+            <table class="stats__table">
+              <thead class="stats__tableHeader">
+                <tr>
+                  <th scope="col">category</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              <tbody class="stats__tableBody">
+                <tr>
+                  <td class="stats__col stats__col--first">Last update:</td>
+                  <td class="stats__col stats__col--second">11.03.19</td>
+                </tr>
+                <tr>
+                  <td class="stats__col stats__col--first">Total commits:</td>
+                  <td class="stats__col stats__col--second">245</td>
+                </tr>
+                <tr>
+                  <td class="stats__col stats__col--first">Hours spent:</td>
+                  <td class="stats__col stats__col--second">90</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <!--: END OF STATS :-->
+          <!--: TECHNOLOGIES USED :-->
+          <ul class="technologies__list technologies__list--used">
+            <!--. HTML .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--quotes technologies__logo--quotesUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--quotes technologies__name--quotesUsed">html</span>
+            </li>
+            <!--. CSS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--quotes technologies__logo--quotesUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--quotes technologies__name--quotesUsed">css</span>
+            </li>
+            <!--. JAVASCRIPT .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--quotes technologies__logo--quotesUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--quotes technologies__name--quotesUsed">javascript</span>
+            </li>
+            <!--. SASS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--quotes technologies__logo--quotesUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#sass"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--quotes technologies__name--quotesUsed">sass</span>
+            </li>
+            <!--. BEM .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--quotes technologies__logo--quotesUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#bem"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--quotes technologies__name--quotesUsed">bem</span>
+            </li>
+            <!--. GIT .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--quotes technologies__logo--quotesUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#git"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--quotes technologies__name--quotesUsed">git</span>
+            </li>
+            <!--. VISUAL STUDIO CODE .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--quotes technologies__logo--quotesUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--quotes technologies__name--quotesUsed">vs code</span>
+            </li>
+            <!--. PHOTOSHOP .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--quotes technologies__logo--quotesUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#photoshop"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--quotes technologies__name--quotesUsed">photoshop</span>
+            </li>
+            <!--. REACT.JS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--quotes">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#react"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--quotes">react.js</span>
+            </li>
+            <!--. PHP .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--quotes">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#php"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--quotes">php</span>
+            </li>
+            <!--. FIGMA .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--quotes">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--quotes">figma</span>
+            </li>
+            <!--. ILLUSTRATOR .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--quotes">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#illustrator"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--quotes">illustrator</span>
+            </li>
+          </ul>
+          <!--: END OF TECHNOLOGIES USED :-->
+        </div>
+      </article>
+      <!--| END OF QUOTES |-->
+
+      <!--| OTHER |-->
+      <article id="other" class="section section--other">
+        <div class="section__container section__container--other">
+          <h2 class="section__heading">
+            “other simple training projects ...”
+          </h2>
+          <p class="section__description section__description--other">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+          <svg class="section__svg" viewBox="0 0 200 200">
+            <use href="#"></use>
+          </svg>
+          <button class="section__readMore section__readMore--other">
+            Read more...
+          </button>
+          <!--: OTHER REPOS :-->
+          <div class="otherRepos">
+            <section class="repo">
+              <h3 class="repo__heading">Score Table</h3>
+              <a href="#" class="repo__link repo__link--code">
+                Code
+              </a>
+              <a href="#" class="repo__link repo__link--demo">
+                Demo
+              </a>
+            </section>
+            <section class="repo">
+              <h3 class="repo__heading">Drum Machine</h3>
+              <a href="#" class="repo__link repo__link--code">
+                Code
+              </a>
+              <a href="#" class="repo__link repo__link--demo">
+                Demo
+              </a>
+            </section>
+            <section class="repo">
+              <h3 class="repo__heading">Pomodoro Clock</h3>
+              <a href="#" class="repo__link repo__link--code">
+                Code
+              </a>
+              <a href="#" class="repo__link repo__link--demo">
+                Demo
+              </a>
+            </section>
+            <section class="repo">
+              <h3 class="repo__heading">Simple Note</h3>
+              <a href="#" class="repo__link repo__link--code">
+                Code
+              </a>
+              <a href="#" class="repo__link repo__link--demo">
+                Demo
+              </a>
+            </section>
+            <section class="repo">
+              <h3 class="repo__heading">Calculator</h3>
+              <a href="#" class="repo__link repo__link--code">
+                Code
+              </a>
+              <a href="#" class="repo__link repo__link--demo">
+                Demo
+              </a>
+            </section>
+            <section class="repo">
+              <h3 class="repo__heading">Portfolio Sketch</h3>
+              <a href="#" class="repo__link repo__link--code">
+                Code
+              </a>
+              <a href="#" class="repo__link repo__link--demo">
+                Demo
+              </a>
+            </section>
+          </div>
+          <!--: END OF OTHER REPOS :-->
+        </div>
+      </article>
+      <!--| END OF OTHER |-->
+
+      <!--| CONTACT |-->
+      <article id="contact" class="section section--contact">
+        <div class="section__container section__container--contact">
+          <h2 class="section__heading section__heading--contact">
+            “Feel free to contact me! I’m open for new opportunities”
+          </h2>
+          <svg class="section__svg" viewBox="0 0 200 200">
+            <use href="#"></use>
+          </svg>
+          <!--: CONTACT FORM :-->
+          <form class="form">
+            <!--. TITLE .-->
+            <label for="title" class="form__label form__label--title">
+              Title of your message:
+            </label>
+            <input
+              id="title"
+              name="title"
+              class="form__input form__input--title"
+              placeholder="Title of your message"
+            >
+            <!--. NAME .-->
+            <label for="name" class="form__label form__label--name">
+              Your name:
+            </label>
+            <input
+              id="name"
+              name="name"
+              class="form__input form__input--name"
+              placeholder="Your name"
+            >
+            <!--. EMAIL .-->
+            <label for="email" class="form__label form__label--email">
+              Your e-mail:
+            </label>
+            <input
+              id="email"
+              name="email"
+              class="form__input form__input--email"
+              placeholder="Your e-mail"
+            >
+            <!--. PHONE .-->
+            <label for="phone" class="form__label form__label--phone">
+              Your phone number:
+            </label>
+            <input
+              id="phone"
+              name="phone"
+              class="form__input form__input--phone"
+              placeholder="Your phone number"
+            >
+            <!--. MESSAGE .-->
+            <label for="message" class="form__label form__label--message">
+              Your message:
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              class="form__input form__input--message"
+              placeholder="Your message"
+              spellcheck="false"
+            ></textarea>
+            <!--. SUBMIT BUTTON .-->
+            <button class="form__submit">
+              Send
+            </button>
+          </form>
+          <!--: END OF CONTACT FORM :-->
+        </div>
+      </article>
+      <!--| END OF CONTACT |-->
     </main>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
