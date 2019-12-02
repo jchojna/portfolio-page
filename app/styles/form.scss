@@ -1,0 +1,18 @@
+.form {
+  align-self: stretch;
+  grid-area: contactForm;
+
+  border: 1px solid #000;
+
+  &__field {
+    margin: 0;
+
+  }
+
+  &__label {
+  }
+
+  &__input {
+
+  }
+}

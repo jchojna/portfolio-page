@@ -29,6 +29,9 @@
   &--other {
     background-color: $color-other;
   }
+  &--contact {
+    background-color: $color-contact;
+  }
 
   &__container {
     align-items: start;
@@ -88,6 +91,14 @@
       grid-template-columns: 1fr;
       grid-template-rows: repeat(3, auto) 1fr;
     }
+
+    &--contact {
+      grid-template-areas:
+      "heading    "
+      "contactForm";
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+    }
   }
 
   &__heading {
@@ -99,6 +110,8 @@
     margin: 0;
     padding-top: 5px;
     position: relative;
+
+    &--contact { font-size: 4em; }
 
     &::before {
       content: "";
