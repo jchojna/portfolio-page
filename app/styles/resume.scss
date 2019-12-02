@@ -18,7 +18,7 @@
   &__heading {
     color: #fff;
     font-size: 3em;
-    margin: 0;
+    margin: 0.3em 0;
     padding: 0;
     text-transform: uppercase;
   }
@@ -47,14 +47,16 @@
 
   }
 
-  &__row {
-    display: block;
-    margin-top: 0.3em;
-  }
-
-  &__col1 {
+  &__col {
     vertical-align: top;
-    width: 180px;
+    padding-top: 0.3em;
+
+    &--first {
+      width: 180px;
+    }
+    &--second {
+
+    }
   }
 
   &__text {
