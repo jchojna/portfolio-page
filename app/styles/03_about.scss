@@ -35,7 +35,20 @@
     font-size: 4.5em;
     font-weight: normal;
     grid-area: heading;
-    margin: 10px 0 20px;
+    line-height: 1.3;
+    margin: 0;
+    padding-top: 5px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -55px;
+      background-color: #fff;
+      width: 10px;
+      height: 100%;
+    }
   }
 
   &__description {
@@ -60,7 +73,7 @@
     color: $color-about-white;
     font-size: 1.5em;
     margin: 0;
-    margin-top: 1em;
+    margin-top: 0.5em;
     text-transform: uppercase;
 
     &--working { grid-area: titleWorking; }
