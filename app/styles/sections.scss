@@ -19,7 +19,6 @@
 
   &__container {
     align-items: start;
-    gap: 1em;
     display: grid;
     margin-left: 540px;
     //max-height: 800px;
@@ -29,6 +28,7 @@
     width: 100%;
 
     &--about {
+      gap: 20px;
       grid-template-areas:
       "heading     photography"
       "description photography"
@@ -41,7 +41,7 @@
       grid-template-columns: 1fr 40%;
       grid-template-rows: auto 1fr;
     }
-    
+
     &--resume {
       grid-template-areas:
       "heading   "
@@ -52,13 +52,15 @@
     }
 
     &--tasktimer {
+      column-gap: 20px;
       grid-template-areas:
       "heading      heading      heading     "
       "description  description  description "
-      ".            . readMore               "
+      "readMore     readMore     readMore    "
       "statistics   codeButton   demoButton  "
       "technologies technologies technologies";
-      grid-template-columns: 1fr 20% 20%;
+      grid-template-columns: 1fr repeat(2, auto);
+      grid-template-rows: auto auto 1fr;
     }
   }
 
@@ -87,11 +89,11 @@
     font-size: 2em;
     grid-area: description;
     margin: 0;
+    margin-top: 0.5em;
 
     &--about {
       color: $color-about-white;
     }
-
     &--tasktimer {
       color: $color-tasktimer-white;
     }
@@ -109,10 +111,27 @@
   }
 
   &__readMore {
+    background: none;
+    border: none;
+    border-bottom: 3px solid $color-tasktimer-light;
+    color: $color-tasktimer-light;
+    cursor: pointer;
+    font-size: 1.5em;
     grid-area: readMore;
+    justify-self: end;
+    padding: 0.2em;
+    text-transform: uppercase;
   }
 
   &__link {
+    @include flex-center;
+    align-self: end;
+    border: 3px solid #fff;
+    color: #fff;
+    font-size: 2em;
+    padding: 0.4em 1.3em;
+    text-decoration: none;
+    text-transform: uppercase;
 
     &--code {
       grid-area: codeButton;
@@ -121,9 +140,41 @@
     &--demo {
       grid-area: demoButton;
     }
+
+    &--tasktimer:hover {
+      border-color: $color-tasktimer-shadow;
+      color: $color-tasktimer-shadow;
+    }
   }
 }
 
 .stats {
+  border-bottom: 3px solid #fff;
+  font-size: 1.5em;
   grid-area: statistics;
+  text-transform: lowercase;
+
+  &--tasktimer {
+    color: $color-tasktimer-shadow;
+  }
+
+  &__table {
+    border-collapse: collapse;
+    margin-bottom: 0.6em;
+  }
+
+  &__tableHeader {
+    display: none;
+  }
+
+  &__col {
+    padding-top: 0.3em;
+
+    &--first {
+      width: 150px;
+    }
+    &--second {
+      text-align: right;
+    }
+  }
 }

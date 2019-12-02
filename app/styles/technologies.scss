@@ -28,7 +28,10 @@
     &--working { grid-area: iconsWorking; }
     &--know { grid-area: iconsKnow; }
     &--learn { grid-area: iconsLearn; }
-    &--used { grid-area: technologies; }
+    &--used {
+      grid-area: technologies;
+      margin-top: 2em;
+    }
   }
 
   &__item {
