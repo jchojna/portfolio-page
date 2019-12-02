@@ -1,0 +1,140 @@
+@import '00_mixins.scss';
+@import '00_variables.scss';
+
+.about {
+  align-items: center;
+  background-color: $color-about;
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+
+  &__container {
+    align-items: start;
+    gap: 1em;
+    display: grid;
+    grid-template-areas:
+    "heading     photography"
+    "description photography"
+    "titleWorking titleWorking"
+    "iconsWorking iconsWorking"
+    "titleKnow titleKnow"
+    "iconsKnow iconsKnow"
+    "titleLearn titleLearn"
+    "iconsLearn iconsLearn";
+    grid-template-columns: 1fr 40%;
+    grid-template-rows: auto 1fr auto auto auto auto auto auto;
+    margin-left: 540px;
+    max-height: 800px;
+    max-width: 800px;
+    min-height: 800px;
+    min-width: 600px;
+  }
+
+  &__heading {
+    color: #fff;
+    font-size: 4.5em;
+    font-weight: normal;
+    grid-area: heading;
+    line-height: 1.3;
+    margin: 0;
+    padding-top: 5px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -55px;
+      background-color: #fff;
+      width: 10px;
+      height: 100%;
+    }
+  }
+
+  &__description {
+    color: $color-about-white;
+    font-size: 2em;
+    grid-area: description;
+    margin: 0;
+  }
+
+  &__photo {
+    border: 10px solid $color-about-white;
+    filter: saturate(0.5);
+    grid-area: photography;
+    width: 100%;
+  }
+}
+
+.technologies {
+
+  &__category {
+    align-self: end;
+    color: $color-about-white;
+    font-size: 1.5em;
+    margin: 0;
+    margin-top: 0.5em;
+    text-transform: uppercase;
+
+    &--working { grid-area: titleWorking; }
+    &--know { grid-area: titleKnow; }
+    &--learn { grid-area: titleLearn; }
+  }
+
+  &__list {
+    align-items: start;
+    column-gap: 7px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    &--working { grid-area: iconsWorking; }
+    &--know { grid-area: iconsKnow; }
+    &--learn { grid-area: iconsLearn; }
+  }
+
+  &__item {
+    @include flex-center;
+    flex-direction: column;
+  }
+
+  &__logo {
+    @include flex-center;
+    border: 3px solid $color-about-dark;
+    fill: $color-about-dark;
+    position: relative;
+
+    &:hover {
+      border-color: $color-about-white;
+      fill: $color-about-white
+    }
+  }
+
+  &__name {
+    color: $color-about-dark;
+    font-size: 0.75em;
+    margin-top: 0.3em;
+    text-transform: uppercase;
+    word-break: break-all;
+  }
+
+  &__svg {
+    width: 100%;
+
+    &--faded1,
+    &--faded2 {
+      height: 100%;
+      left: 0;
+      opacity: 0.75;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    &--faded2 {
+      opacity: 0.5;
+    }
+  }
+}

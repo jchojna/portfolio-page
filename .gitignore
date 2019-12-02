@@ -2,7 +2,6 @@
 node_modules
 bower_components
 project
-figma-mockup
 
 # compiled output
 /dist
