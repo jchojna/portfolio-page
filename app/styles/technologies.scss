@@ -74,6 +74,14 @@
       border: 3px solid $color-archviz-shadow;
       fill: $color-archviz-shadow;
     }
+    &--quotes {
+      border: 3px solid $color-quotes-dark;
+      fill: $color-quotes-dark;
+    }
+    &--quotesUsed {
+      border: 3px solid $color-quotes-shadow;
+      fill: $color-quotes-shadow;
+    }
   }
 
   &__name {
@@ -100,6 +108,12 @@
     }
     &--archvizUsed {
       color: $color-archviz-shadow;
+    }
+    &--quotes {
+      color: $color-quotes-dark;
+    }
+    &--quotesUsed {
+      color: $color-quotes-shadow;
     }
   }
 

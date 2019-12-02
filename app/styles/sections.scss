@@ -23,6 +23,9 @@
   &--archviz {
     background-color: $color-archviz;
   }
+  &--quotes {
+    background-color: $color-quotes;
+  }
 
   &__container {
     align-items: start;
@@ -60,7 +63,8 @@
 
     &--tasktimer,
     &--hydrapp,
-    &--archviz {
+    &--archviz,
+    &--quotes {
       column-gap: 20px;
       grid-template-areas:
       "heading      heading      heading     "
@@ -112,6 +116,9 @@
     &--archviz {
       color: $color-archviz-white;
     }
+    &--quotes {
+      color: $color-quotes-white;
+    }
   }
 
   &__photo {
@@ -147,6 +154,10 @@
       border-bottom: 3px solid $color-archviz-light;
       color: $color-archviz-light;
     }
+    &--quotes {
+      border-bottom: 3px solid $color-quotes-light;
+      color: $color-quotes-light;
+    }
   }
 
   &__link {
@@ -179,6 +190,10 @@
       border-color: $color-archviz-shadow;
       color: $color-archviz-shadow;
     }
+    &--quotes:hover {
+      border-color: $color-quotes-shadow;
+      color: $color-quotes-shadow;
+    }
   }
 }
 
@@ -196,6 +211,9 @@
   }
   &--archviz {
     color: $color-archviz-shadow;
+  }
+  &--quotes {
+    color: $color-quotes-shadow;
   }
 
   &__table {
