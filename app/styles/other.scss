@@ -1,0 +1,19 @@
+.otherRepos {
+  align-self: stretch;
+  display: grid;
+  gap: 15px;
+  grid-area: otherRepos;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 1em;
+}
+
+.repo {
+  @include flex-center;
+  background-color: $color-other-dark;
+  color: $color-other-white;
+
+  &__heading {
+    font-weight: normal;
+    font-size: 1.5em;
+  }
+}
