@@ -10,12 +10,15 @@ const sections = [...pageSections].map((section, index) => ({
   menuLink: menuLinks[index]
 }));
 
+const scrollOffset = 400;
+
+//| FUNCTIONS |
 const getCurrentSectionIndex = () => { // add throttling
   const currentOffset = window.pageYOffset;
   return sections.length - 1 - [...sections]
     .map(section => section.offset)
     .reverse()
-    .findIndex(offset => currentOffset >= offset);
+    .findIndex(offset => currentOffset >= offset - scrollOffset);
 }
 
 const handleActiveMenuLink = (index, action) => {
@@ -26,10 +29,11 @@ const handleActiveMenuLink = (index, action) => {
   }
 }
 
-//| FUNCTION CALLS |
+//| FUNCTION CALLS ON PAGE LOAD |
 let currentSectionIndex = getCurrentSectionIndex();
 handleActiveMenuLink(currentSectionIndex, 'set');
 
+//| EVENT HANDLERS|
 const handleMenu = () => {
   const updatedIndex = getCurrentSectionIndex();
   // perform DOM manipulation when index changes
@@ -37,7 +41,7 @@ const handleMenu = () => {
     handleActiveMenuLink(currentSectionIndex, 'unset');
     currentSectionIndex = updatedIndex;
     handleActiveMenuLink(currentSectionIndex, 'set');
-    
+
   } else {
     return;
   }
