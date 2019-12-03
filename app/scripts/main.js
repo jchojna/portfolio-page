@@ -1,9 +1,13 @@
 const pageSections = document.querySelectorAll('.section--js');
+const menuLinks = document.querySelectorAll('.menu__link--js');
 
+//| GLOBAL VARIABLES |
 const sections = [...pageSections].map((section, index) => ({
   index,
   id: section.id,
-  offset: section.offsetTop
+  offset: section.offsetTop,
+  section: pageSections[index],
+  menuLink: menuLinks[index]
 }));
 
 const getCurrentSectionIndex = () => { // add throttling
@@ -14,25 +18,30 @@ const getCurrentSectionIndex = () => { // add throttling
     .findIndex(offset => currentOffset >= offset);
 }
 
+const handleActiveMenuLink = (index, action) => {
+  if (action === 'set') {
+    sections[index].menuLink.classList.add('menu__link--active');
+  } else if (action === 'unset') {
+    sections[index].menuLink.classList.remove('menu__link--active');
+  }
+}
+
+//| FUNCTION CALLS |
 let currentSectionIndex = getCurrentSectionIndex();
+handleActiveMenuLink(currentSectionIndex, 'set');
 
 const handleMenu = () => {
   const updatedIndex = getCurrentSectionIndex();
   // perform DOM manipulation when index changes
   if (updatedIndex !== currentSectionIndex) {
+    handleActiveMenuLink(currentSectionIndex, 'unset');
     currentSectionIndex = updatedIndex;
-
-
-
-
-
-
-
-
-
+    handleActiveMenuLink(currentSectionIndex, 'set');
+    
   } else {
     return;
   }
 }
 
+//| EVENT LISTENERS |
 window.addEventListener('scroll', handleMenu);

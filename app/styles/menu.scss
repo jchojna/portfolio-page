@@ -44,6 +44,10 @@
     text-decoration: none;
     text-transform: uppercase;
 
+    &--active {
+      color: #fff;
+    }
+
     &:hover {
       color: rgb(122, 122, 122);
     }
