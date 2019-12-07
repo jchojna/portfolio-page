@@ -7,7 +7,8 @@ const sections = [...pageSections].map((section, index) => ({
   id: section.id,
   offset: section.offsetTop,
   section: pageSections[index],
-  menuLink: menuLinks[index]
+  menuLink: menuLinks[index],
+  backgroundColor: getComputedStyle(section).backgroundColor
 }));
 
 const scrollOffset = 400;
