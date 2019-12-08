@@ -1,20 +1,5 @@
-const pageSections = document.querySelectorAll('.section--js');
-const menuLinks = document.querySelectorAll('.menu__link--js');
-
-//| GLOBAL VARIABLES |
-const sections = [...pageSections].map((section, index) => ({
-  index,
-  id: section.id,
-  offset: section.offsetTop,
-  section: pageSections[index],
-  menuLink: menuLinks[index],
-  backgroundColor: getComputedStyle(section).backgroundColor
-}));
-
-const scrollOffset = 400;
-
 //| FUNCTIONS |
-const getCurrentSectionIndex = () => { // add throttling
+const getCurrentSectionIndex = (scrollOffset) => { // add throttling
   const currentOffset = window.pageYOffset;
   return sections.length - 1 - [...sections]
     .map(section => section.offset)
@@ -24,27 +9,64 @@ const getCurrentSectionIndex = () => { // add throttling
 
 const handleActiveMenuLink = (index, action) => {
   if (action === 'set') {
-    sections[index].menuLink.classList.add('menu__link--active');
+    menuLinks[index].classList.add('menu__link--active');
   } else if (action === 'unset') {
-    sections[index].menuLink.classList.remove('menu__link--active');
+    menuLinks[index].classList.remove('menu__link--active');
   }
 }
 
+const pageSections = document.querySelectorAll('.section--js');
+const menuLinks = document.querySelectorAll('.menu__link--js');
+
+//| GLOBAL VARIABLES |
+const sections = [...pageSections].map((section, index) => ({
+  index,
+  id: section.id,
+  node: section,
+  offset: section.offsetTop
+}));
+
+const links = [...menuLinks].map((link, index) => ({
+  index,
+  node: link,
+  offset: link.offsetTop,
+  currentSectionIndex: getCurrentSectionIndex(link.offsetTop)
+}));
+
 //| FUNCTION CALLS ON PAGE LOAD |
-let currentSectionIndex = getCurrentSectionIndex();
-handleActiveMenuLink(currentSectionIndex, 'set');
+let currentGlobalSectionIndex = getCurrentSectionIndex(100);
+// assign active menu link
+handleActiveMenuLink(currentGlobalSectionIndex, 'set');
+// assign colors to menu links
+[...menuLinks].forEach(link => {
+  link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
+})
 
 //| EVENT HANDLERS|
 const handleMenu = () => {
-  const updatedIndex = getCurrentSectionIndex();
+  const updatedGlobalSectionIndex = getCurrentSectionIndex(100);
   // perform DOM manipulation when index changes
-  if (updatedIndex !== currentSectionIndex) {
-    handleActiveMenuLink(currentSectionIndex, 'unset');
-    currentSectionIndex = updatedIndex;
-    handleActiveMenuLink(currentSectionIndex, 'set');
+  if (updatedGlobalSectionIndex !== currentGlobalSectionIndex) {
+    handleActiveMenuLink(currentGlobalSectionIndex, 'unset');
+    currentGlobalSectionIndex = updatedGlobalSectionIndex;
+    handleActiveMenuLink(currentGlobalSectionIndex, 'set');
+  } 
 
-  } else {
-    return;
+  for (let i = 0; i < menuLinks.length; i++) {
+    const updatedIndex = getCurrentSectionIndex(links[i].offset);
+    // perform DOM manipulation when index changes
+    if (updatedIndex !== links[i].currentSectionIndex) {
+
+      links[i].currentSectionIndex = updatedIndex;
+      const currentSectionId = sections[updatedIndex].id;
+      menuLinks[i].className = `
+        menu__link menu__link--js menu__link--${currentSectionId}
+        ${i === currentGlobalSectionIndex ? 'menu__link--active' : ''}
+      `;
+
+    } else {
+      continue;
+    }
   }
 }
 
