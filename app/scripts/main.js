@@ -15,10 +15,18 @@ const handleActiveMenuLink = (index, action) => {
   }
 }
 
-const pageSections = document.querySelectorAll('.section--js');
-const menuLinks = document.querySelectorAll('.menu__link--js');
+const handleMenuIndicator = (index) => {
+  const height = menuLinks[index].offsetHeight;
+  const offset = menuLinks[index].offsetTop;
+  menuIndicator.style.height = `${height}px`;
+  menuIndicator.style.top = `${offset}px`;
+}
 
 //| GLOBAL VARIABLES |
+const pageSections = document.querySelectorAll('.section--js');
+const menuLinks = document.querySelectorAll('.menu__link--js');
+const menuIndicator = document.querySelector('.menu__indicator--js');
+
 const sections = [...pageSections].map((section, index) => ({
   index,
   id: section.id,
@@ -34,22 +42,24 @@ const links = [...menuLinks].map((link, index) => ({
 }));
 
 //| FUNCTION CALLS ON PAGE LOAD |
-let currentGlobalSectionIndex = getCurrentSectionIndex(100);
+let currentGlobalSectionIndex = getCurrentSectionIndex(200);
 // assign active menu link
 handleActiveMenuLink(currentGlobalSectionIndex, 'set');
 // assign colors to menu links
 [...menuLinks].forEach(link => {
   link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
-})
+});
+handleMenuIndicator(currentGlobalSectionIndex);
 
 //| EVENT HANDLERS|
 const handleMenu = () => {
-  const updatedGlobalSectionIndex = getCurrentSectionIndex(100);
+  const updatedGlobalSectionIndex = getCurrentSectionIndex(200);
   // perform DOM manipulation when index changes
   if (updatedGlobalSectionIndex !== currentGlobalSectionIndex) {
     handleActiveMenuLink(currentGlobalSectionIndex, 'unset');
     currentGlobalSectionIndex = updatedGlobalSectionIndex;
     handleActiveMenuLink(currentGlobalSectionIndex, 'set');
+    handleMenuIndicator(currentGlobalSectionIndex);
   } 
 
   for (let i = 0; i < menuLinks.length; i++) {
@@ -72,3 +82,5 @@ const handleMenu = () => {
 
 //| EVENT LISTENERS |
 window.addEventListener('scroll', handleMenu);
+
+// update objects on resize

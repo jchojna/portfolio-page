@@ -42,9 +42,9 @@
     line-height: 1;
     margin: 0;
     padding: 0;
+    position: relative;
     text-decoration: none;
     text-transform: uppercase;
-    position: relative;
 
     &--about { color: $color-about-diff; }
     &--resume { color: $color-resume-diff; }
@@ -62,5 +62,14 @@
     &:hover {
       color: #ccc;
     }
+  }
+
+  &__indicator {
+    background-color: #fff;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: top $time-switch;
+    width: 20px;
   }
 }
