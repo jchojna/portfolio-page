@@ -22,6 +22,25 @@ const handleMenuIndicator = (index) => {
   menuIndicator.style.top = `${offset}px`;
 }
 
+const toggleResumeFields = (clickedFieldIndex) => {
+  [...resumeFields].forEach((field, index) => {
+
+    if (clickedFieldIndex === index) {
+
+      const margin = field.style.marginTop;
+      if (margin === 0 || margin === '' || margin === '0px') {
+        field.style.marginTop = `${-1 * field.clientHeight}px`;
+      } else {
+        console.log('test');
+        field.style.marginTop = 0;
+      }
+      
+    } else {
+      field.style.marginTop = `${-1 * field.clientHeight}px`;
+    }
+  });
+}
+
 //| GLOBAL VARIABLES |
 const pageSections = document.querySelectorAll('.section--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
@@ -41,6 +60,9 @@ const links = [...menuLinks].map((link, index) => ({
   currentSectionIndex: getCurrentSectionIndex(link.offsetTop)
 }));
 
+const resumeFields = document.querySelectorAll('.field__container--js');
+const resumeButtons = document.querySelectorAll('.field__button--js');
+
 //| FUNCTION CALLS ON PAGE LOAD |
 let currentGlobalSectionIndex = getCurrentSectionIndex(200);
 // assign active menu link
@@ -50,6 +72,7 @@ handleActiveMenuLink(currentGlobalSectionIndex, 'set');
   link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
 });
 handleMenuIndicator(currentGlobalSectionIndex);
+toggleResumeFields();
 
 //| EVENT HANDLERS|
 const handleMenu = () => {
@@ -82,5 +105,8 @@ const handleMenu = () => {
 
 //| EVENT LISTENERS |
 window.addEventListener('scroll', handleMenu);
-
 // update objects on resize
+
+[...resumeButtons].forEach((button, index) => {
+  button.addEventListener('click', () => toggleResumeFields(index))
+});

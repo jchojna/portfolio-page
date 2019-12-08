@@ -2,6 +2,7 @@
 @import 'mixins.scss';
 
 .field {
+  overflow: hidden;
 
   &--education {
     grid-area: education;
@@ -16,11 +17,28 @@
   }
 
   &__heading {
-    color: #fff;
+    position: relative;
+    background-color: $color-resume;
     font-size: 3em;
-    margin: 0.3em 0;
-    padding: 0;
+    margin: 0;
+    z-index: 1;
+  }
+
+  &__button {
+    @include button;
+    color: #fff;
+    padding: 0.3em 0;
+    text-align: left;
     text-transform: uppercase;
+    width: 100%;
+
+    &:hover {
+      background-color: $color-resume-dark;
+    }
+  }
+
+  &__container {
+    transition: margin-top 0.4s;
   }
 }
 
