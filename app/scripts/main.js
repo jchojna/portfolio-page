@@ -22,21 +22,23 @@ const handleMenuIndicator = (index) => {
   menuIndicator.style.top = `${offset}px`;
 }
 
-const toggleResumeFields = (clickedFieldIndex) => {
-  [...resumeFields].forEach((field, index) => {
+const handleAccordion = (array, clickedIndex) => {
+  array.forEach((item, index) => {
 
-    if (clickedFieldIndex === index) {
+    // transition effect not applied when page loads
+    if (clickedIndex !== undefined) item.classList.add('rollable');
+    // handle clicked element
+    if (clickedIndex === index) {
 
-      const margin = field.style.marginTop;
+      const margin = item.style.marginTop;
       if (margin === 0 || margin === '' || margin === '0px') {
-        field.style.marginTop = `${-1 * field.clientHeight}px`;
+        item.style.marginTop = `${-1 * item.clientHeight}px`;
       } else {
-        console.log('test');
-        field.style.marginTop = 0;
+        item.style.marginTop = 0;
       }
-      
+    // handle other elements
     } else {
-      field.style.marginTop = `${-1 * field.clientHeight}px`;
+      item.style.marginTop = `${-1 * item.clientHeight}px`;
     }
   });
 }
@@ -62,6 +64,8 @@ const links = [...menuLinks].map((link, index) => ({
 
 const resumeFields = document.querySelectorAll('.field__container--js');
 const resumeButtons = document.querySelectorAll('.field__button--js');
+const professionFields = document.querySelectorAll('.table--js-profession');
+const professionButtons = document.querySelectorAll('.profession__button--js');
 
 //| FUNCTION CALLS ON PAGE LOAD |
 let currentGlobalSectionIndex = getCurrentSectionIndex(200);
@@ -72,7 +76,23 @@ handleActiveMenuLink(currentGlobalSectionIndex, 'set');
   link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
 });
 handleMenuIndicator(currentGlobalSectionIndex);
-toggleResumeFields();
+handleAccordion([...professionFields]);
+handleAccordion([...resumeFields]);
+
+//setTimeout(() => handleAccordion([...resumeFields]), 1000);
+
+
+
+
+
+
+
+
+
+
+
+
+//handleAccordion([...resumeFields]);
 
 //| EVENT HANDLERS|
 const handleMenu = () => {
@@ -108,5 +128,8 @@ window.addEventListener('scroll', handleMenu);
 // update objects on resize
 
 [...resumeButtons].forEach((button, index) => {
-  button.addEventListener('click', () => toggleResumeFields(index))
+  button.addEventListener('click', () => handleAccordion([...resumeFields], index));
+});
+[...professionButtons].forEach((button, index) => {
+  button.addEventListener('click', () => handleAccordion([...professionFields], index));
 });

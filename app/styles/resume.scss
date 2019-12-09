@@ -3,9 +3,11 @@
 
 .field {
   overflow: hidden;
+  min-height: 90px;
 
   &--education {
     grid-area: education;
+    margin-top: 10px;
   }
 
   &--experience {
@@ -21,7 +23,7 @@
     background-color: $color-resume;
     font-size: 3em;
     margin: 0;
-    z-index: 1;
+    z-index: 2;
   }
 
   &__button {
@@ -36,25 +38,38 @@
       background-color: $color-resume-dark;
     }
   }
+}
 
-  &__container {
-    transition: margin-top 0.4s;
+.profession {
+  margin-left: 20px;
+  overflow: hidden;
+
+  &__heading {
+    position: relative;
+    background-color: $color-resume;
+    font-size: 2em;
+    margin: 0;
+    z-index: 1;
+  }
+
+  &__button {
+    @include button;
+    color: $color-resume-diff;
+    padding: 0.3em 0;
+    text-align: left;
+    text-transform: uppercase;
+    width: 100%;
+
+    &:hover {
+      background-color: $color-resume-dark;
+    }
   }
 }
 
 .table {
   border-collapse: collapse;
   color: $color-resume-white;
-  margin-left: 2em;
   width: 100%;
-
-  &__title {
-    color: $color-resume-diff;
-    font-size: 2em;
-    margin: 0.4em 0 0.2em;
-    text-align: left;
-    text-transform: uppercase;
-  }
 
   &__header {
     display: none;
@@ -62,7 +77,6 @@
 
   &__body {
     font-size: 1.5em;
-
   }
 
   &__col {
@@ -71,9 +85,6 @@
 
     &--first {
       width: 180px;
-    }
-    &--second {
-
     }
   }
 
@@ -84,4 +95,8 @@
       color: $color-resume-dark;
     }
   }
+}
+
+.rollable {
+  transition: margin-top $time-resume;
 }
