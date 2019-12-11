@@ -12,6 +12,7 @@
     width: 100%;
 
     &--about { fill: $color-about-light; }
+    &--resume { fill: $color-resume-dark; }
     &--hydrapp { fill: $color-hydrapp-dark; }
     &--archviz { fill: $color-archviz-dark; }
     &--quotes { fill: $color-quotes-dark; }
@@ -27,6 +28,7 @@
     height: 100%;
 
     &--about { fill: $color-about-dark; }
+    &--resume { fill: $color-resume-shadow; }
     &--hydrapp { fill: $color-hydrapp-shadow; }
     &--archviz { fill: $color-archviz-shadow; }
     &--quotes { fill: $color-quotes-shadow; }
