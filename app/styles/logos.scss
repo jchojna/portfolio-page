@@ -12,6 +12,7 @@
     width: 100%;
 
     &--about { fill: $color-about-light; }
+    &--hydrapp { fill: $color-hydrapp-dark; }
     &--archviz { fill: $color-archviz-dark; }
     &--contact { fill: $color-contact-dark; }
   }
@@ -24,6 +25,7 @@
     height: 100%;
 
     &--about { fill: $color-about-dark; }
+    &--hydrapp { fill: $color-hydrapp-shadow; }
     &--archviz { fill: $color-archviz-shadow; }
     &--contact { fill: $color-contact-shadow; }
   }
