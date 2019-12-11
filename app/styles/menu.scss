@@ -1,3 +1,4 @@
+@import 'variables.scss';
 @import 'mixins.scss';
 
 .header {
@@ -41,11 +42,34 @@
     line-height: 1;
     margin: 0;
     padding: 0;
+    position: relative;
     text-decoration: none;
     text-transform: uppercase;
 
-    &:hover {
-      color: rgb(122, 122, 122);
+    &--about { color: $color-about-diff; }
+    &--resume { color: $color-resume-diff; }
+    &--tasktimer { color: $color-tasktimer-diff; }
+    &--hydrapp { color: $color-hydrapp-diff; }
+    &--archviz { color: $color-archviz-diff; }
+    &--quotes { color: $color-quotes-diff; }
+    &--other { color: $color-other-diff; }
+    &--contact { color: $color-contact-diff; }
+    
+    &--active {
+      color: #fff;
     }
+
+    &:hover {
+      color: #ccc;
+    }
+  }
+
+  &__indicator {
+    background-color: #fff;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: top $time-switch;
+    width: 20px;
   }
 }

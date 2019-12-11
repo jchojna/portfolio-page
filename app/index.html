@@ -28,36 +28,37 @@
           <h2 class="menu__heading visuallyhidden">Main Menu</h2>
           <ul class="menu__list">
             <li class="menu__item">
-              <a class="menu__link" href="#about">About</a>
+              <a class="menu__link menu__link--js" href="#about">About</a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#resume">Resume</a>
+              <a class="menu__link menu__link--js" href="#resume">Resume</a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#tasktimer">TaskTimer</a>
+              <a class="menu__link menu__link--js" href="#tasktimer">TaskTimer</a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#hydrapp">HydrApp</a>
+              <a class="menu__link menu__link--js" href="#hydrapp">HydrApp</a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#archviz">ArchViz</a>
+              <a class="menu__link menu__link--js" href="#archviz">ArchViz</a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#quotes">Quotes</a>
+              <a class="menu__link menu__link--js" href="#quotes">Quotes</a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#other">Other</a>
+              <a class="menu__link menu__link--js" href="#other">Other</a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#contact">Contact</a>
+              <a class="menu__link menu__link--js" href="#contact">Contact</a>
             </li>
           </ul>
         </nav>
+        <div class="menu__indicator menu__indicator--js"></div>
       </header>
       <!--| END OF MENU |-->
-
+      
       <!--| ABOUT |-->
-      <article id="about" class="section section--about">
+      <article id="about" class="section section--about section--js">
         <div class="section__container section__container--about">
           <h2 class="section__heading">Hello there!</h2>
           <p class="section__description section__description--about">
@@ -400,188 +401,232 @@
       <!--| END OF ABOUT |-->
 
       <!--| RESUME |-->
-      <article id="resume" class="section section--resume">
+      <article id="resume" class="section section--resume section--js">
         <div class="section__container section__container--resume">
           <h2 class="section__heading">Jakub Chojna</h2>
           <!--: EDUCATION :-->
           <section class="field field--education">
-            <h3 class="field__heading">Education</h3>
-            <table class="table">
-              <thead class="table__header">
-                <tr>
-                  <th scope="col">Date</th>
-                  <th scope="col">University</th>
-                </tr>
-              </thead>
-              <tbody class="table__body">
-                <tr>
-                  <td class="table__col table__col--first">2011 - 2014</td>
-                  <td class="table__col table__col--second">
-                    <p class="table__text">
-                      Warsaw University of Technology | Faculty of Architecture
-                    </p>
-                    <p class="table__text table__text--secondary">
-                      Master’s Degree
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="table__col table__col--first">2006 - 2010</td>
-                  <td class="table__col table__col--second">
-                    <p class="table__text">
-                      Warsaw University of Technology | Faculty of Architecture
-                    </p>
-                    <p class="table__text table__text--secondary">
-                      Bachelor’s Degree
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <h3 class="field__heading">
+              <button class="field__button field__button--js">
+                Education
+              </button>
+            </h3>
+            <div class="field__container field__container--js">
+              <table class="table table--education">
+                <thead class="table__header">
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">University</th>
+                  </tr>
+                </thead>
+                <tbody class="table__body">
+                  <tr>
+                    <td class="table__col table__col--first">2011 - 2014</td>
+                    <td class="table__col table__col--second">
+                      <p class="table__text">
+                        Warsaw University of Technology
+                      </p>
+                      <p class="table__text table__text--secondary">
+                        Faculty of Architecture | Master's Degree
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table__col table__col--first">2006 - 2010</td>
+                    <td class="table__col table__col--second">
+                      <p class="table__text">
+                        Warsaw University of Technology
+                      </p>
+                      <p class="table__text table__text--secondary">
+                        Faculty of Architecture | Bachelor's Degree
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
           <!--: END OF EDUCATION :-->
           <!--: PROFESSIONAL EXPERIENCE :-->
           <section class="field field--experience">
-            <h3 class="field__heading">Professional Experience</h3>
-            <!--. ARCHITECTURE .-->
-            <table class="table">
-              <caption class="table__title">Architecture</caption>
-              <thead class="table__header">
-                <tr>
-                  <th scope="col">Date</th>
-                  <th scope="col">Job</th>
-                </tr>
-              </thead>
-              <tbody class="table__body">
-                <tr>
-                  <td class="table__col table__col--first">2017 - present</td>
-                  <td class="table__col table__col--second">
-                    <p class="table__text">
-                      Freelance Architect | self-employed
-                    </p>
-                    <p class="table__text table__text--secondary">
-                      Remote
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="table__col table__col--first">2018</td>
-                  <td class="table__col table__col--second">
-                    <p class="table__text">
-                      Architect / 3d Visualizer | Svet Vmes
-                    </p>
-                    <p class="table__text table__text--secondary">
-                      Ljubljana, Slovenia
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="table__col table__col--first">2015 - 2017</td>
-                  <td class="table__col table__col--second">
-                    <p class="table__text">
-                      Architect / 3d Visualizer | Mofo Architekci
-                    </p>
-                    <p class="table__text table__text--secondary">
-                      Warsaw, Poland
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="table__col table__col--first">2011 - 2013</td>
-                  <td class="table__col table__col--second">
-                    <p class="table__text">
-                      Architect | Activum Projektowanie
-                    </p>
-                    <p class="table__text table__text--secondary">
-                      Warsaw, Poland
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--. END OF ARCHITECTURE .-->
-            <!-- 3D GRAPHICS -->
-            <table class="table">
-              <caption class="table__title">3d Graphics</caption>
-              <thead class="table__header">
-                <tr>
-                  <th scope="col">Date</th>
-                  <th scope="col">Job</th>
-                </tr>
-              </thead>
-              <tbody class="table__body">
-                <tr>
-                  <td class="table__col table__col--first">2008 - present</td>
-                  <td class="table__col table__col--second">
-                    <p class="table__text">
-                      Freelance 3d Visualizer | self-employed
-                    </p>
-                    <p class="table__text table__text--secondary">
-                      Remote
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="table__col table__col--first">2010 - 2013</td>
-                  <td class="table__col table__col--second">
-                    <p class="table__text">
-                      Euro Info Group | 3d software tutor
-                    </p>
-                    <p class="table__text table__text--secondary">
-                      Warsaw, Poland
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--. END OF 3D GRAPHICS .-->
-            <!--. FRONTEND DEVELOPMENT .-->
-            <table class="table">
-              <caption class="table__title">Frontend Development</caption>
-              <thead class="table__header">
-                <tr>
-                  <th scope="col">Date</th>
-                  <th scope="col">Job</th>
-                </tr>
-              </thead>
-              <tbody class="table__body">
-                <tr>
-                  <td class="table__col table__col--first">present</td>
-                  <td class="table__col table__col--second">
-                    No professional experience yet ...
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--. END OF FRONTEND DEVELOPMENT .-->
+            <h3 class="field__heading">
+              <button class="field__button field__button--js">
+                Professional Experience
+              </button>
+            </h3>
+            <div class="field__container field__container--js">
+              <!--. ARCHITECTURE .-->
+              <section class="profession">
+                <h4 class="profession__heading">
+                  <button class="profession__button profession__button--js">
+                    Architecture
+                  </button>
+                </h4>
+                <table class="table table--js-profession">
+                  <caption class="table__caption visuallyhidden">
+                    Architecture
+                  </caption>
+                  <thead class="table__header">
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">Job</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table__body">
+                    <tr>
+                      <td class="table__col table__col--first">2017 - present</td>
+                      <td class="table__col table__col--second">
+                        <p class="table__text">
+                          Freelance Architect | self-employed
+                        </p>
+                        <p class="table__text table__text--secondary">
+                          Remote
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="table__col table__col--first">2018</td>
+                      <td class="table__col table__col--second">
+                        <p class="table__text">
+                          Architect / 3d Visualizer | Svet Vmes
+                        </p>
+                        <p class="table__text table__text--secondary">
+                          Ljubljana, Slovenia
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="table__col table__col--first">2015 - 2017</td>
+                      <td class="table__col table__col--second">
+                        <p class="table__text">
+                          Architect / 3d Visualizer | Mofo Architekci
+                        </p>
+                        <p class="table__text table__text--secondary">
+                          Warsaw, Poland
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="table__col table__col--first">2011 - 2013</td>
+                      <td class="table__col table__col--second">
+                        <p class="table__text">
+                          Architect | Activum Projektowanie
+                        </p>
+                        <p class="table__text table__text--secondary">
+                          Warsaw, Poland
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <!--. END OF ARCHITECTURE .-->
+              <!-- 3D GRAPHICS -->
+              <section class="profession">
+                <h4 class="profession__heading">
+                  <button class="profession__button profession__button--js">
+                    3d Graphics
+                  </button>
+                </h4>
+                <table class="table table--js-profession">
+                  <caption class="table__caption visuallyhidden">
+                    3d Graphics
+                  </caption>
+                  <thead class="table__header">
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">Job</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table__body">
+                    <tr>
+                      <td class="table__col table__col--first">2008 - present</td>
+                      <td class="table__col table__col--second">
+                        <p class="table__text">
+                          Freelance 3d Visualizer | self-employed
+                        </p>
+                        <p class="table__text table__text--secondary">
+                          Remote
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="table__col table__col--first">2010 - 2013</td>
+                      <td class="table__col table__col--second">
+                        <p class="table__text">
+                          Euro Info Group | 3d software tutor
+                        </p>
+                        <p class="table__text table__text--secondary">
+                          Warsaw, Poland
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <!--. END OF 3D GRAPHICS .-->
+              <!--. FRONTEND DEVELOPMENT .-->
+              <section class="profession">
+                <h4 class="profession__heading">
+                  <button class="profession__button profession__button--js">
+                    Frontend Development
+                  </button>
+                </h4>
+                <table class="table table--js-profession">
+                  <caption class="table__caption visuallyhidden">
+                    Frontend Development
+                  </caption>
+                  <thead class="table__header">
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">Job</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table__body">
+                    <tr>
+                      <td class="table__col table__col--first">present</td>
+                      <td class="table__col table__col--second">
+                        No professional experience yet ...
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <!--. END OF FRONTEND DEVELOPMENT .-->
+            </div>
           </section>
           <!--: END OF PROFESSIONAL EXPERIENCE :-->
           <!--: LANGUAGES :-->
           <section class="field field--languages">
-            <h3 class="field__heading">Languages</h3>
-            <table class="table">
-              <thead class="table__header">
-                <tr>
-                  <th scope="col">Language</th>
-                  <th scope="col">Level</th>
-                </tr>
-              </thead>
-              <tbody class="table__body">
-                <tr>
-                  <td class="table__col table__col--first">English</td>
-                  <td class="table__col table__col--second">Proficient</td>
-                </tr>
-                <tr>
-                  <td class="table__col table__col--first">German</td>
-                  <td class="table__col table__col--second">Elementary</td>
-                </tr>
-                <tr>
-                  <td class="table__col table__col--first">Polish</td>
-                  <td class="table__col table__col--second">Native</td>
-                </tr>
-              </tbody>
-            </table>
-            <!-- LANGUAGES -->
+            <h3 class="field__heading">
+              <button class="field__button field__button--js">
+                Languages
+              </button>
+            </h3>
+            <div class="field__container field__container--js">
+              <table class="table">
+                <thead class="table__header">
+                  <tr>
+                    <th scope="col">Language</th>
+                    <th scope="col">Level</th>
+                  </tr>
+                </thead>
+                <tbody class="table__body">
+                  <tr>
+                    <td class="table__col table__col--first">English</td>
+                    <td class="table__col table__col--second">Proficient</td>
+                  </tr>
+                  <tr>
+                    <td class="table__col table__col--first">German</td>
+                    <td class="table__col table__col--second">Elementary</td>
+                  </tr>
+                  <tr>
+                    <td class="table__col table__col--first">Polish</td>
+                    <td class="table__col table__col--second">Native</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
           <!--: END OF LANGUAGES :-->
         </div>
@@ -589,7 +634,7 @@
       <!--| END OF RESUME |-->
 
       <!--| TASKTIMER |-->
-      <article id="tasktimer" class="section section--tasktimer">
+      <article id="tasktimer" class="section section--tasktimer section--js">
         <div class="section__container section__container--tasktimer">
           <h2 class="section__heading">
             “get things done on time with taskTimer app”
@@ -604,10 +649,20 @@
           <button class="section__readMore section__readMore--tasktimer">
             Read more...
           </button>
-          <a href="#" class="section__link section__link--tasktimer section__link--code">
+          <a
+            href="https://github.com/jchojna/task-timer"
+            class="section__link section__link--tasktimer section__link--code"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="TaskTimer app code"
+          >
             Code
           </a>
-          <a href="#" class="section__link section__link--tasktimer section__link--demo">
+          <a
+            href="https://jchojna.github.io/task-timer/"
+            class="section__link section__link--tasktimer section__link--demo"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="TaskTimer app demo"
+          >
             Demo
           </a>
           <!--: END OF LINKS / BUTTONS :-->
@@ -785,7 +840,7 @@
       <!--| END OF TASKTIMER |-->
 
       <!--| HYDRAPP |-->
-      <article id="hydrapp" class="section section--hydrapp">
+      <article id="hydrapp" class="section section--hydrapp section--js">
         <div class="section__container section__container--hydrapp">
           <h2 class="section__heading">
             “track water consumption with hydrApp”
@@ -800,10 +855,20 @@
           <button class="section__readMore section__readMore--hydrapp">
             Read more...
           </button>
-          <a href="#" class="section__link section__link--hydrapp section__link--code">
+          <a
+            href="https://github.com/jchojna/hydrApp"
+            class="section__link section__link--hydrapp section__link--code"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="HydrApp code"
+          >
             Code
           </a>
-          <a href="#" class="section__link section__link--hydrapp section__link--demo">
+          <a
+            href="https://jchojna.github.io/hydrApp/"
+            class="section__link section__link--hydrapp section__link--demo"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="HydrApp demo"
+          >
             Demo
           </a>
           <!--: END OF LINKS / BUTTONS :-->
@@ -981,7 +1046,7 @@
       <!--| END OF HYDRAPP |-->
 
       <!--| ARCHVIZ |-->
-      <article id="archviz" class="section section--archviz">
+      <article id="archviz" class="section section--archviz section--js">
         <div class="section__container section__container--archviz">
           <h2 class="section__heading">
             “personal portfolio with my architectural visulizations”
@@ -996,10 +1061,20 @@
           <button class="section__readMore section__readMore--archviz">
             Read more...
           </button>
-          <a href="#" class="section__link section__link--archviz section__link--code">
+          <a
+            href="https://github.com/jchojna/archviz-website"
+            class="section__link section__link--archviz section__link--code"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="Archviz website code"
+          >
             Code
           </a>
-          <a href="#" class="section__link section__link--archviz section__link--demo">
+          <a
+            href="https://jakubchojna.pl/"
+            class="section__link section__link--archviz section__link--demo"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="Archviz website demo"
+          >
             Demo
           </a>
           <!--: END OF LINKS / BUTTONS :-->
@@ -1177,7 +1252,7 @@
       <!--| END OF ARCHVIZ |-->
 
       <!--| QUOTES |-->
-      <article id="quotes" class="section section--quotes">
+      <article id="quotes" class="section section--quotes section--js">
         <div class="section__container section__container--quotes">
           <h2 class="section__heading">
             “collection of useful and funny quotes”
@@ -1192,10 +1267,20 @@
           <button class="section__readMore section__readMore--quotes">
             Read more...
           </button>
-          <a href="#" class="section__link section__link--quotes section__link--code">
+          <a
+            href="https://github.com/jchojna/homepage-gulp"
+            class="section__link section__link--quotes section__link--code"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="Quotes website code"
+          >
             Code
           </a>
-          <a href="#" class="section__link section__link--quotes section__link--demo">
+          <a
+            href="https://jchojna.github.io/homepage-gulp/"
+            class="section__link section__link--quotes section__link--demo"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="Quotes website demo"
+          >
             Demo
           </a>
           <!--: END OF LINKS / BUTTONS :-->
@@ -1373,7 +1458,7 @@
       <!--| END OF QUOTES |-->
 
       <!--| OTHER |-->
-      <article id="other" class="section section--other">
+      <article id="other" class="section section--other section--js">
         <div class="section__container section__container--other">
           <h2 class="section__heading">
             “other simple training projects ...”
@@ -1391,55 +1476,115 @@
           <div class="otherRepos">
             <section class="repo">
               <h3 class="repo__heading">Score Table</h3>
-              <a href="#" class="repo__link repo__link--code">
+              <a
+                href="https://github.com/jchojna/scoretable"
+                class="repo__link repo__link--code"
+                target="_blank" rel="nofollow noreferrer"
+                aria-label="ScoreTable app code"
+              >
                 Code
               </a>
-              <a href="#" class="repo__link repo__link--demo">
+              <a
+                href="https://jchojna.github.io/scoretable/"
+                class="repo__link repo__link--demo"
+                target="_blank" rel="nofollow noreferrer"
+                aria-label="ScoreTable app demo"
+              >
                 Demo
               </a>
             </section>
             <section class="repo">
               <h3 class="repo__heading">Drum Machine</h3>
-              <a href="#" class="repo__link repo__link--code">
+              <a
+                href="https://github.com/jchojna/drum-machine"
+                class="repo__link repo__link--code"
+                target="_blank" rel="nofollow noreferrer"
+                aria-label="Drum Machine app code"
+              >
                 Code
               </a>
-              <a href="#" class="repo__link repo__link--demo">
+              <a
+                href="https://jchojna.github.io/drum-machine/"
+                class="repo__link repo__link--demo"
+                target="_blank" rel="nofollow noreferrer"
+                aria-label="Drum Machine app demo"
+              >
                 Demo
               </a>
             </section>
             <section class="repo">
               <h3 class="repo__heading">Pomodoro Clock</h3>
-              <a href="#" class="repo__link repo__link--code">
+              <a
+                href="https://github.com/jchojna/pomodoro-clock"
+                class="repo__link repo__link--code"
+                target="_blank" rel="nofollow noreferrer"
+                aria-label="Pomodoro Clock app code"
+              >
                 Code
               </a>
-              <a href="#" class="repo__link repo__link--demo">
+              <a
+                href="https://github.com/jchojna/pomodoro-clock"
+                class="repo__link repo__link--demo"
+                target="_blank" rel="nofollow noreferrer"
+                aria-label="Pomodoro Clock app demo"
+              >
                 Demo
               </a>
             </section>
             <section class="repo">
               <h3 class="repo__heading">Simple Note</h3>
-              <a href="#" class="repo__link repo__link--code">
+              <a
+                href="https://github.com/jchojna/simple-note"
+                class="repo__link repo__link--code"
+                target="_blank" rel="nofollow noreferrer"
+                aria-label="Simple Note code"
+              >
                 Code
               </a>
-              <a href="#" class="repo__link repo__link--demo">
+              <a
+                href="https://jchojna.github.io/simple-note/"
+                class="repo__link repo__link--demo"
+                target="_blank" rel="nofollow noreferrer"
+                aria-label="Simple Note demo"
+              >
                 Demo
               </a>
             </section>
             <section class="repo">
               <h3 class="repo__heading">Calculator</h3>
-              <a href="#" class="repo__link repo__link--code">
+              <a
+                href="https://github.com/jchojna/calculator"
+                class="repo__link repo__link--code"
+                target="_blank" rel="nofollow noreferrer"
+                aria-label="Calculator app code"
+              >
                 Code
               </a>
-              <a href="#" class="repo__link repo__link--demo">
+              <a
+                href="https://github.com/jchojna/calculator"
+                class="repo__link repo__link--demo"
+                target="_blank" rel="nofollow noreferrer"
+                aria-label="Calculator app demo"
+              >
                 Demo
               </a>
             </section>
             <section class="repo">
               <h3 class="repo__heading">Portfolio Sketch</h3>
-              <a href="#" class="repo__link repo__link--code">
+              <a
+                href="https://github.com/jchojna/jchojna.github.io"
+                class="repo__link repo__link--code"
+                target="_blank" rel="nofollow noreferrer"
+                aria-label="Portfolio Sketch code"
+              >
                 Code
               </a>
-              <a href="#" class="repo__link repo__link--demo">
+              <a
+                href="https://jchojna.github.io/"
+                class="repo__link repo__link--demo"
+                target="_blank" rel="nofollow noreferrer"
+                aria-label="Portfolio Sketch demo"
+              >
                 Demo
               </a>
             </section>
@@ -1450,7 +1595,7 @@
       <!--| END OF OTHER |-->
 
       <!--| CONTACT |-->
-      <article id="contact" class="section section--contact">
+      <article id="contact" class="section section--contact section--js">
         <div class="section__container section__container--contact">
           <h2 class="section__heading section__heading--contact">
             “Feel free to contact me! I’m open for new opportunities”

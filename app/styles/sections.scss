@@ -59,6 +59,7 @@
     }
 
     &--resume {
+      align-content: start;
       grid-template-areas:
       "heading   "
       "education "
