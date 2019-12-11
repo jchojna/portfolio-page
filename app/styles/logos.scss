@@ -1,0 +1,51 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.logo {
+  @include flex-center;
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  width: 400px;
+
+  &__base {
+    width: 100%;
+
+    &--about { fill: $color-about-light; }
+    &--resume { fill: $color-resume-dark; }
+    &--tasktimer { fill: $color-tasktimer-dark; }
+    &--hydrapp { fill: $color-hydrapp-dark; }
+    &--archviz { fill: $color-archviz-dark; }
+    &--quotes { fill: $color-quotes-dark; }
+    &--other { fill: $color-other-dark; }
+    &--contact { fill: $color-contact-dark; }
+  }
+
+  &__shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &--about { fill: $color-about-dark; }
+    &--resume { fill: $color-resume-shadow; }
+    &--tasktimerBase { fill: $color-tasktimer-shadow; }
+    &--tasktimerLetter { fill: $color-tasktimer-shadowLetter; }
+    &--hydrapp { fill: $color-hydrapp-shadow; }
+    &--archviz { fill: $color-archviz-shadow; }
+    &--quotes { fill: $color-quotes-shadow; }
+    &--other { fill: $color-other-shadow; }
+    &--contact { fill: $color-contact-shadow; }
+  }
+
+  &__letter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &--tasktimer { fill: $color-tasktimer-letter; }
+  }
+}

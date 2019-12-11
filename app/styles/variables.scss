@@ -6,6 +6,7 @@ $color-about-white: #BBD3E0;
 $color-about-light: #729AB0;
 $color-about: #4F7B94;
 $color-about-dark: #244456;
+$color-about-shadow: #11222c;
 $color-about-diff: #ADA795;
 
 //| RESUME |
@@ -14,6 +15,7 @@ $color-resume-white: #EED5DB;
 $color-resume-light: #C993A0;
 $color-resume: #A7586B;
 $color-resume-dark: rgb(119, 56, 72);
+$color-resume-shadow: rgb(66, 31, 40);
 $color-resume-diff: #244E60;
 //: TIME :
 $time-resume: 0.5s;
@@ -23,8 +25,9 @@ $color-tasktimer-white: #C5D8D9;
 $color-tasktimer-light: #9AB5B6;
 $color-tasktimer: #50787C;
 $color-tasktimer-dark: #305B60;
-$color-tasktimer-shadow: #2E4547;
 $color-tasktimer-letter: #744953;
+$color-tasktimer-shadow: rgb(35, 53, 54);
+$color-tasktimer-shadowLetter: #411e27;
 $color-tasktimer-diff: #4F3D41;
 
 //| HYDRAPP |

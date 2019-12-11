@@ -40,8 +40,6 @@
 
   &__logo {
     @include flex-center;
-    border: 3px solid $color-about-dark;
-    fill: $color-about-dark;
     position: relative;
 
     /* &:hover {
@@ -49,6 +47,10 @@
       fill: $color-about-white
     } */
 
+    &--about {
+      border: 3px solid $color-about-dark;
+      fill: $color-about-dark;
+    }
     &--tasktimer {
       border: 3px solid $color-tasktimer-dark;
       fill: $color-tasktimer-dark;
