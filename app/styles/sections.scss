@@ -156,6 +156,7 @@
     filter: saturate(0.5);
     grid-area: photography;
     width: 100%;
+    z-index: 1;
   }
 
   &__svg {
