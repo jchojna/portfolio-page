@@ -13,6 +13,7 @@
 
     &--about { fill: $color-about-light; }
     &--archviz { fill: $color-archviz-dark; }
+    &--contact { fill: $color-contact-dark; }
   }
 
   &__shadow {
@@ -24,5 +25,6 @@
 
     &--about { fill: $color-about-dark; }
     &--archviz { fill: $color-archviz-shadow; }
+    &--contact { fill: $color-contact-shadow; }
   }
 }
