@@ -12,6 +12,7 @@
     width: 100%;
 
     &--about { fill: $color-about-light; }
+    &--archviz { fill: $color-archviz-dark; }
   }
 
   &__shadow {
@@ -22,5 +23,6 @@
     height: 100%;
 
     &--about { fill: $color-about-dark; }
+    &--archviz { fill: $color-archviz-shadow; }
   }
 }
