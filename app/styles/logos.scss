@@ -14,6 +14,7 @@
     &--about { fill: $color-about-light; }
     &--hydrapp { fill: $color-hydrapp-dark; }
     &--archviz { fill: $color-archviz-dark; }
+    &--quotes { fill: $color-quotes-dark; }
     &--other { fill: $color-other-dark; }
     &--contact { fill: $color-contact-dark; }
   }
@@ -28,6 +29,7 @@
     &--about { fill: $color-about-dark; }
     &--hydrapp { fill: $color-hydrapp-shadow; }
     &--archviz { fill: $color-archviz-shadow; }
+    &--quotes { fill: $color-quotes-shadow; }
     &--other { fill: $color-other-shadow; }
     &--contact { fill: $color-contact-shadow; }
   }
