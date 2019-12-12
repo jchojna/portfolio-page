@@ -2,7 +2,7 @@
 @import 'mixins.scss';
 
 .field {
-  min-height: 90px;
+  min-height: $field-min-height;
   overflow: hidden;
 
   &--education {
@@ -21,30 +21,26 @@
   &__header {
     align-items: center;
     background-color: $color-resume;
-    color: #fff;
     display: flex;
-    height: 100%;
-    min-height: 90px;
+    font-size: 3em;
+    margin: 0;
+    min-height: $field-min-height;
     position: relative;
     z-index: 2;
   }
 
   &__heading {
-    flex-grow: 1;
-    font-size: 3em;
-    height: 100%;
     margin: 0;
-    margin-left: 0.5em;
+    padding: 0.2em 0.5em;
   }
 
   &__button {
     @include button;
-    color: inherit;
-    height: 100%;
-    padding: 0.3em 0;
+    align-items: center;
+    display: flex;
+    color: #fff;
     text-align: left;
     text-transform: uppercase;
-    width: 100%;
   }
 }
 
@@ -57,27 +53,23 @@
     background-color: $color-resume;
     display: flex;
     font-size: 2em;
-    height: 100%;
+    margin: 0;
     position: relative;
     z-index: 1;
   }
 
   &__heading {
     margin: 0;
-    margin-left: 0.5em;
+    padding: 0.2em 0.5em;
   }
 
   &__button {
     @include button;
+    align-items: center;
+    display: flex;
     color: $color-resume-diff;
-    padding: 0.3em 0;
     text-align: left;
     text-transform: uppercase;
-    width: 100%;
-
-    &:hover {
-      background-color: $color-resume-dark;
-    }
   }
 }
 
@@ -114,10 +106,10 @@
 
 .indicator {
   @include flex-center;
-  fill: #fff;
   overflow: hidden;
 
   &--field {
+    fill: #fff;
     height: 50px;
     width: 50px;
   }
