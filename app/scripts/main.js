@@ -22,7 +22,7 @@ const handleMenuIndicator = (index) => {
   menuIndicator.style.top = `${offset}px`;
 }
 
-const handleAccordion = (array, clickedIndex) => {
+const handleAccordion = (array, indicators, clickedIndex) => {
   array.forEach((item, index) => {
 
     // transition effect not applied when page loads
@@ -33,12 +33,15 @@ const handleAccordion = (array, clickedIndex) => {
       const margin = item.style.marginTop;
       if (margin === 0 || margin === '' || margin === '0px') {
         item.style.marginTop = `${-1 * item.clientHeight}px`;
+        indicators[index].classList.remove('indicator__svg--active');
       } else {
         item.style.marginTop = 0;
+        indicators[index].classList.add('indicator__svg--active');
       }
     // handle other elements
     } else {
       item.style.marginTop = `${-1 * item.clientHeight}px`;
+      indicators[index].classList.remove('indicator__svg--active');
     }
   });
 }
@@ -64,8 +67,10 @@ const links = [...menuLinks].map((link, index) => ({
 
 const resumeFields = document.querySelectorAll('.field__container--js');
 const resumeButtons = document.querySelectorAll('.field__button--js');
+const resumeIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-field');
 const professionFields = document.querySelectorAll('.table--js-profession');
 const professionButtons = document.querySelectorAll('.profession__button--js');
+const professionIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-profession');
 
 //| FUNCTION CALLS ON PAGE LOAD |
 let currentGlobalSectionIndex = getCurrentSectionIndex(200);
@@ -76,23 +81,8 @@ handleActiveMenuLink(currentGlobalSectionIndex, 'set');
   link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
 });
 handleMenuIndicator(currentGlobalSectionIndex);
-handleAccordion([...professionFields]);
-handleAccordion([...resumeFields]);
-
-//setTimeout(() => handleAccordion([...resumeFields]), 1000);
-
-
-
-
-
-
-
-
-
-
-
-
-//handleAccordion([...resumeFields]);
+handleAccordion([...professionFields], [...professionIndicatorSvgs]);
+handleAccordion([...resumeFields], [...resumeIndicatorSvgs]);
 
 //| EVENT HANDLERS|
 const handleMenu = () => {
@@ -128,8 +118,8 @@ window.addEventListener('scroll', handleMenu);
 // update objects on resize
 
 [...resumeButtons].forEach((button, index) => {
-  button.addEventListener('click', () => handleAccordion([...resumeFields], index));
+  button.addEventListener('click', () => handleAccordion([...resumeFields], [...resumeIndicatorSvgs], index));
 });
 [...professionButtons].forEach((button, index) => {
-  button.addEventListener('click', () => handleAccordion([...professionFields], index));
+  button.addEventListener('click', () => handleAccordion([...professionFields], [...professionIndicatorSvgs], index));
 });

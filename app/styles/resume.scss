@@ -52,12 +52,19 @@
   margin-left: 20px;
   overflow: hidden;
 
-  &__heading {
+  &__header {
+    align-items: center;
     background-color: $color-resume;
+    display: flex;
     font-size: 2em;
-    margin: 0;
+    height: 100%;
     position: relative;
     z-index: 1;
+  }
+
+  &__heading {
+    margin: 0;
+    margin-left: 0.5em;
   }
 
   &__button {
@@ -106,10 +113,20 @@
 }
 
 .indicator {
+  @include flex-center;
   fill: #fff;
-  height: 50px;
-  width: 50px;
   overflow: hidden;
+
+  &--field {
+    height: 50px;
+    width: 50px;
+  }
+
+  &--profession {
+    fill: $color-resume-diff;
+    height: 30px;
+    width: 30px;
+  }
 
   &__svg {
     width: 100%;
