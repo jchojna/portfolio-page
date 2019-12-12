@@ -2,8 +2,8 @@
 @import 'mixins.scss';
 
 .field {
-  overflow: hidden;
   min-height: 90px;
+  overflow: hidden;
 
   &--education {
     grid-area: education;
@@ -19,12 +19,13 @@
   }
 
   &__header {
-    background-color: $color-resume;
-    display: flex;
     align-items: center;
-    position: relative;
+    background-color: $color-resume;
+    color: #fff;
+    display: flex;
     height: 100%;
     min-height: 90px;
+    position: relative;
     z-index: 2;
   }
 
@@ -33,20 +34,17 @@
     font-size: 3em;
     height: 100%;
     margin: 0;
+    margin-left: 0.5em;
   }
 
   &__button {
     @include button;
-    color: #fff;
+    color: inherit;
     height: 100%;
     padding: 0.3em 0;
     text-align: left;
     text-transform: uppercase;
     width: 100%;
-
-    &:hover {
-      background-color: $color-resume-dark;
-    }
   }
 }
 
@@ -55,10 +53,10 @@
   overflow: hidden;
 
   &__heading {
-    position: relative;
     background-color: $color-resume;
     font-size: 2em;
     margin: 0;
+    position: relative;
     z-index: 1;
   }
 
@@ -90,8 +88,8 @@
   }
 
   &__col {
-    vertical-align: top;
     padding-top: 0.3em;
+    vertical-align: top;
 
     &--first {
       width: 180px;
@@ -108,10 +106,19 @@
 }
 
 .indicator {
-  @include flex-center;
-  background-color: $color-resume-white;
-  width: 3em;
-  height: 3em;
+  fill: #fff;
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
+
+  &__svg {
+    width: 100%;
+    transition: transform 0.3s;
+
+    &--active {
+      transform: scale(5);
+    }
+  }
 }
 
 .rollable {
