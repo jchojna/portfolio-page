@@ -18,17 +18,27 @@
     grid-area: languages;
   }
 
-  &__heading {
-    position: relative;
+  &__header {
     background-color: $color-resume;
-    font-size: 3em;
-    margin: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    min-height: 90px;
     z-index: 2;
+  }
+
+  &__heading {
+    flex-grow: 1;
+    font-size: 3em;
+    height: 100%;
+    margin: 0;
   }
 
   &__button {
     @include button;
     color: #fff;
+    height: 100%;
     padding: 0.3em 0;
     text-align: left;
     text-transform: uppercase;
@@ -95,6 +105,13 @@
       color: $color-resume-dark;
     }
   }
+}
+
+.indicator {
+  @include flex-center;
+  background-color: $color-resume-white;
+  width: 3em;
+  height: 3em;
 }
 
 .rollable {
