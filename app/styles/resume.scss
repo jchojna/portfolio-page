@@ -2,12 +2,18 @@
 @import 'mixins.scss';
 
 .field {
-  min-height: $field-min-height;
   overflow: hidden;
+
+  &--resume {
+    min-height: $field-min-height;
+  }
+
+  &--profession {
+    margin-left: 20px;
+  }
 
   &--education {
     grid-area: education;
-    margin-top: 10px;
   }
 
   &--experience {
@@ -22,54 +28,45 @@
     align-items: center;
     background-color: $color-resume;
     display: flex;
-    font-size: 3em;
     margin: 0;
-    min-height: $field-min-height;
     position: relative;
-    z-index: 2;
+
+    &--resume {
+      font-size: 3em;
+      min-height: $field-min-height;
+      z-index: 2;
+    }
+
+    &--profession {
+      font-size: 2em;
+      z-index: 1;
+    }
   }
 
   &__heading {
     margin: 0;
     padding: 0.2em 0.5em;
+    pointer-events: none;
   }
 
   &__button {
     @include button;
     align-items: center;
     display: flex;
-    color: #fff;
     text-align: left;
     text-transform: uppercase;
-  }
-}
 
-.profession {
-  margin-left: 20px;
-  overflow: hidden;
+    &--resume {
+      color: $color-resume-white;
+    }
 
-  &__header {
-    align-items: center;
-    background-color: $color-resume;
-    display: flex;
-    font-size: 2em;
-    margin: 0;
-    position: relative;
-    z-index: 1;
-  }
+    &--profession {
+      color: $color-resume-dark;
+    }
 
-  &__heading {
-    margin: 0;
-    padding: 0.2em 0.5em;
-  }
-
-  &__button {
-    @include button;
-    align-items: center;
-    display: flex;
-    color: $color-resume-diff;
-    text-align: left;
-    text-transform: uppercase;
+    &--active {
+      color: $color-resume-diff;
+    }
   }
 }
 
@@ -107,25 +104,27 @@
 .indicator {
   @include flex-center;
   overflow: hidden;
+  pointer-events: none;
 
   &--field {
-    fill: #fff;
+    fill: $color-resume-white;
     height: 50px;
     width: 50px;
   }
 
   &--profession {
-    fill: $color-resume-diff;
+    fill: $color-resume-dark;
     height: 30px;
     width: 30px;
   }
 
   &__svg {
-    width: 100%;
     transition: transform 0.3s;
+    width: 100%;
 
     &--active {
       transform: scale(5);
+      fill: $color-resume-diff;
     }
   }
 }

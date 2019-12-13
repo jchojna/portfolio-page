@@ -25,20 +25,33 @@ const handleMenuIndicator = (index) => {
 const handleAccordion = (array, indicators, clickedIndex) => {
   array.forEach((item, index) => {
 
-    // transition effect not applied when page loads
-    if (clickedIndex !== undefined) item.classList.add('rollable');
-    // handle clicked element
-    if (clickedIndex === index) {
+    if (clickedIndex !== null) {
+      
+        const svg = item.parentNode.querySelector('[class*="svg"]');
+        const button = item.parentNode.querySelector('[class*="button"]');
+        const margin = item.style.marginTop;
 
-      const margin = item.style.marginTop;
-      if (margin === 0 || margin === '' || margin === '0px') {
-        item.style.marginTop = `${-1 * item.clientHeight}px`;
-        indicators[index].classList.remove('indicator__svg--active');
-      } else {
-        item.style.marginTop = 0;
-        indicators[index].classList.add('indicator__svg--active');
-      }
-    // handle other elements
+        // handle clicked element
+        if (clickedIndex === index) {
+          // apply transition effect
+          if (!item.classList.contains('rollable')) item.classList.add('rollable');
+          // apply transformations
+          if (margin === 0 || margin === '' || margin === '0px') {
+            item.style.marginTop = `${-1 * item.clientHeight}px`;
+            svg.classList.remove('indicator__svg--active');
+            button.classList.remove('field__button--active');
+          } else {
+            item.style.marginTop = 0;
+            svg.classList.add('indicator__svg--active');
+            button.classList.add('field__button--active');
+          }
+        // handle not clicked elements
+        } else {
+          item.style.marginTop = `${-1 * item.clientHeight}px`;
+          svg.classList.remove('indicator__svg--active');
+          button.classList.remove('field__button--active');
+        }
+    // handle elements on page load
     } else {
       item.style.marginTop = `${-1 * item.clientHeight}px`;
       indicators[index].classList.remove('indicator__svg--active');
@@ -66,10 +79,10 @@ const links = [...menuLinks].map((link, index) => ({
 }));
 
 const resumeFields = document.querySelectorAll('.field__container--js');
-const resumeButtons = document.querySelectorAll('.field__button--js');
+const resumeButtons = document.querySelectorAll('.field__button--js-resume');
 const resumeIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-field');
 const professionFields = document.querySelectorAll('.table--js-profession');
-const professionButtons = document.querySelectorAll('.profession__button--js');
+const professionButtons = document.querySelectorAll('.field__button--js-profession');
 const professionIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-profession');
 
 //| FUNCTION CALLS ON PAGE LOAD |
