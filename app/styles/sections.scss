@@ -18,6 +18,9 @@
   &--tasktimer {
     background-color: $color-tasktimer;
   }
+  &--portfolio {
+    background-color: $color-portfolio;
+  }
   &--hydrapp {
     background-color: $color-hydrapp;
   }
@@ -70,6 +73,7 @@
     }
 
     &--tasktimer,
+    &--portfolio,
     &--hydrapp,
     &--archviz,
     &--quotes {
@@ -138,6 +142,9 @@
     &--tasktimer {
       color: $color-tasktimer-white;
     }
+    &--portfolio {
+      color: $color-portfolio-white;
+    }
     &--hydrapp {
       color: $color-hydrapp-white;
     }
@@ -177,6 +184,10 @@
     &--tasktimer {
       border-bottom: 3px solid $color-tasktimer-light;
       color: $color-tasktimer-light;
+    }
+    &--portfolio {
+      border-bottom: 3px solid $color-portfolio-light;
+      color: $color-portfolio-light;
     }
     &--hydrapp {
       border-bottom: 3px solid $color-hydrapp-light;
@@ -218,6 +229,10 @@
       border-color: $color-tasktimer-shadow;
       color: $color-tasktimer-shadow;
     }
+    &--portfolio:hover {
+      border-color: $color-portfolio-shadow;
+      color: $color-portfolio-shadow;
+    }
     &--hydrapp:hover {
       border-color: $color-hydrapp-shadow;
       color: $color-hydrapp-shadow;
@@ -241,6 +256,9 @@
 
   &--tasktimer {
     color: $color-tasktimer-shadow;
+  }
+  &--portfolio {
+    color: $color-portfolio-shadow;
   }
   &--hydrapp {
     color: $color-hydrapp-shadow;
