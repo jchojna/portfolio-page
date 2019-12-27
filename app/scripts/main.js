@@ -59,10 +59,27 @@ const handleAccordion = (array, indicators, clickedIndex) => {
   });
 }
 
+const navigateToSection = (e) => {
+  const currentSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
+  const targetIndex = e.target === navigationPrevButton
+  ? currentSectionIndex > 0
+    ? currentSectionIndex - 1
+    : 0
+  : currentSectionIndex < pageSections.length - 1
+    ? currentSectionIndex + 1
+    : pageSections.length - 1;
+  
+  window.scrollTo(0, pageSections[targetIndex].offsetTop);
+}
+
 //| GLOBAL VARIABLES |
 const pageSections = document.querySelectorAll('.section--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
 const menuIndicator = document.querySelector('.menu__indicator--js');
+const sectionScrollOffset = 200;
+const navigationMainButton = document.querySelector('.navigation__button--js-main');
+const navigationPrevButton = document.querySelector('.navigation__button--js-prev');
+const navigationNextButton = document.querySelector('.navigation__button--js-next');
 
 const sections = [...pageSections].map((section, index) => ({
   index,
@@ -86,7 +103,7 @@ const professionButtons = document.querySelectorAll('.field__button--js-professi
 const professionIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-profession');
 
 //| FUNCTION CALLS ON PAGE LOAD |
-let currentGlobalSectionIndex = getCurrentSectionIndex(200);
+let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
 // assign active menu link
 handleActiveMenuLink(currentGlobalSectionIndex, 'set');
 // assign colors to menu links
@@ -99,7 +116,7 @@ handleAccordion([...resumeFields], [...resumeIndicatorSvgs]);
 
 //| EVENT HANDLERS|
 const handleMenu = () => {
-  const updatedGlobalSectionIndex = getCurrentSectionIndex(200);
+  const updatedGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
   // perform DOM manipulation when index changes
   if (updatedGlobalSectionIndex !== currentGlobalSectionIndex) {
     handleActiveMenuLink(currentGlobalSectionIndex, 'unset');
@@ -136,3 +153,7 @@ window.addEventListener('scroll', handleMenu);
 [...professionButtons].forEach((button, index) => {
   button.addEventListener('click', () => handleAccordion([...professionFields], [...professionIndicatorSvgs], index));
 });
+
+navigationMainButton.addEventListener('click', () => console.log('main'));
+navigationPrevButton.addEventListener('click', navigateToSection);
+navigationNextButton.addEventListener('click', navigateToSection);
