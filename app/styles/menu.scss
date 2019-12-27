@@ -75,3 +75,44 @@
     width: 20px;
   }
 }
+
+.navigation {
+  bottom: 100px;
+  position: fixed;
+  right: 100px;
+  transform: rotate(45deg) translate3d( 0, 0, 1px);
+
+  &__button {
+    @include button;
+
+    &--main {
+      background-clip: padding-box;
+      background-color: #fff;
+      border: 10px solid transparent;
+      height: $navigation-size;
+      width: $navigation-size;
+      z-index: 1;
+    }
+
+    &--up,
+    &--down {
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &--up {
+      border-left: $navigation-edge;
+      border-top: $navigation-edge;
+      transform: translate($navigation-offset * -1, $navigation-offset * -1);
+    }
+  
+    &--down {
+      border-bottom: $navigation-edge;
+      border-right: $navigation-edge;
+      transform: translate($navigation-offset, $navigation-offset);
+    }
+  }
+}
