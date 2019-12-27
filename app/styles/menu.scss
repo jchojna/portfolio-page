@@ -9,7 +9,7 @@
   position: fixed;
   top: 0;
   width: 540px;
-  z-index: 1;
+  z-index: 3;
 
   &--centered {
     align-items: center;
@@ -91,25 +91,25 @@
       border: 10px solid transparent;
       height: $navigation-size;
       width: $navigation-size;
-      z-index: 1;
     }
 
-    &--up,
-    &--down {
+    &--prev,
+    &--next {
       left: 0;
+      height: 100%;
       position: absolute;
       top: 0;
       width: 100%;
-      height: 100%;
+      z-index: -1;
     }
 
-    &--up {
+    &--prev {
       border-left: $navigation-edge;
       border-top: $navigation-edge;
       transform: translate($navigation-offset * -1, $navigation-offset * -1);
     }
   
-    &--down {
+    &--next {
       border-bottom: $navigation-edge;
       border-right: $navigation-edge;
       transform: translate($navigation-offset, $navigation-offset);
