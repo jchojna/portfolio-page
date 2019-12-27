@@ -80,17 +80,42 @@
   bottom: 100px;
   position: fixed;
   right: 100px;
-  transform: rotate(45deg) translate3d( 0, 0, 1px);
+  transition: transform 0.3s 1s;
+
+  &:hover {
+    transform: rotate(45deg) translate3d( 0, 0, 1px);
+    transition: transform 0.3s;
+  }
+
+  &:hover &__button {
+    transition: transform 0.3s;
+
+    &--prev {
+      transform: translate($navigation-offset * -1, $navigation-offset * -1);
+    }
+  
+    &--next {
+      transform: translate($navigation-offset, $navigation-offset);
+    }
+  }
 
   &__button {
     @include button;
+    transition:
+      border-color 0.3s,
+      background-color 0.3s,
+      transform 0.3s 1s;
 
     &--main {
       background-clip: padding-box;
-      background-color: #fff;
+      background-color: #ccc;
       border: 10px solid transparent;
       height: $navigation-size;
       width: $navigation-size;
+
+      &:hover {
+        background-color: #fff;
+      }
     }
 
     &--prev,
@@ -104,15 +129,25 @@
     }
 
     &--prev {
-      border-left: $navigation-edge;
-      border-top: $navigation-edge;
-      transform: translate($navigation-offset * -1, $navigation-offset * -1);
+      border-left: $navigation-border;
+      border-top: $navigation-border;
+      border-color: #ccc;
     }
   
     &--next {
-      border-bottom: $navigation-edge;
-      border-right: $navigation-edge;
-      transform: translate($navigation-offset, $navigation-offset);
+      border-bottom: $navigation-border;
+      border-right: $navigation-border;
+      border-color: #ccc;
+    }
+
+    &.navigation__button--prev:hover {
+      border-color: #fff;
+      transform: translate($navigation-offset * -1.8, $navigation-offset * -1.8);
+    }
+      
+    &.navigation__button--next:hover {
+      border-color: #fff;
+      transform: translate($navigation-offset * 1.8, $navigation-offset * 1.8);
     }
   }
 }

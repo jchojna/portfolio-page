@@ -1,8 +1,9 @@
 //| MENU |
 $time-switch: 0.4s;
-$navigation-size: 80px;
+$navigation-size: 90px;
 $navigation-offset: 20px;
-$navigation-edge: 10px solid #fff;
+$navigation-border-width: 10px;
+$navigation-border: $navigation-border-width solid #fff;
 
 //| ABOUT |
 $color-about-white: #BBD3E0;
