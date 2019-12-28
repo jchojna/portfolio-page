@@ -1,4 +1,23 @@
 //| FUNCTIONS |
+const handleIntroBox = (e) => {
+
+  introBox.style.top = `${e.clientY}px`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
 const getCurrentSectionIndex = (scrollOffset) => { // add throttling
   const currentOffset = window.pageYOffset;
   return sections.length - 1 - [...sections]
@@ -16,10 +35,12 @@ const handleActiveMenuLink = (index, action) => {
 }
 
 const handleMenuIndicator = (index) => {
-  const height = menuLinks[index].offsetHeight;
-  const offset = menuLinks[index].offsetTop;
-  menuIndicator.style.height = `${height}px`;
-  menuIndicator.style.top = `${offset}px`;
+  if (!isIntroMode) {
+    const height = menuLinks[index].offsetHeight;
+    const offset = menuLinks[index].offsetTop;
+    menuIndicator.style.height = `${height}px`;
+    menuIndicator.style.top = `${offset}px`;
+  }
 }
 
 const handleNavigation = (e) => {
@@ -116,6 +137,11 @@ const navigateToSection = (e) => {
 }
 
 //| GLOBAL VARIABLES |
+//: INTRO :
+const isIntroMode = true;
+const introBox = document.querySelector('.intro__box--js');
+
+//: MENU AND NAVIGATION :
 const pageSections = document.querySelectorAll('.section--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
 const menuIndicator = document.querySelector('.menu__indicator--js');
@@ -151,11 +177,11 @@ const professionIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-p
 //| FUNCTION CALLS ON PAGE LOAD |
 let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
 // assign active menu link
-handleActiveMenuLink(currentGlobalSectionIndex, 'set');
+//handleActiveMenuLink(currentGlobalSectionIndex, 'set');
 // assign colors to menu links
-[...menuLinks].forEach(link => {
+/* [...menuLinks].forEach(link => {
   link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
-});
+}); */
 handleNavigation();
 handleMenuIndicator(currentGlobalSectionIndex);
 handleAccordion([...professionFields], [...professionIndicatorSvgs]);
@@ -164,34 +190,40 @@ handleAccordion([...resumeFields], [...resumeIndicatorSvgs]);
 //| EVENT HANDLERS |
 
 const handleMenu = () => {
-  const updatedGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
-  // perform DOM manipulation when index changes
-  if (updatedGlobalSectionIndex !== currentGlobalSectionIndex) {
-    handleActiveMenuLink(currentGlobalSectionIndex, 'unset');
-    currentGlobalSectionIndex = updatedGlobalSectionIndex;
-    handleActiveMenuLink(currentGlobalSectionIndex, 'set');
-    handleMenuIndicator(currentGlobalSectionIndex);
-  } 
-
-  for (let i = 0; i < menuLinks.length; i++) {
-    const updatedIndex = getCurrentSectionIndex(links[i].offset);
+  if (!isIntroMode) {
+    const updatedGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
     // perform DOM manipulation when index changes
-    if (updatedIndex !== links[i].currentSectionIndex) {
-
-      links[i].currentSectionIndex = updatedIndex;
-      const currentSectionId = sections[updatedIndex].id;
-      menuLinks[i].className = `
-        menu__link menu__link--js menu__link--${currentSectionId}
-        ${i === currentGlobalSectionIndex ? 'menu__link--active' : ''}
-      `;
-
-    } else {
-      continue;
+    if (updatedGlobalSectionIndex !== currentGlobalSectionIndex) {
+      handleActiveMenuLink(currentGlobalSectionIndex, 'unset');
+      currentGlobalSectionIndex = updatedGlobalSectionIndex;
+      handleActiveMenuLink(currentGlobalSectionIndex, 'set');
+      handleMenuIndicator(currentGlobalSectionIndex);
+    } 
+  
+    for (let i = 0; i < menuLinks.length; i++) {
+      const updatedIndex = getCurrentSectionIndex(links[i].offset);
+      // perform DOM manipulation when index changes
+      if (updatedIndex !== links[i].currentSectionIndex) {
+  
+        links[i].currentSectionIndex = updatedIndex;
+        const currentSectionId = sections[updatedIndex].id;
+        menuLinks[i].className = `
+          menu__link menu__link--js menu__link--${currentSectionId}
+          ${i === currentGlobalSectionIndex ? 'menu__link--active' : ''}
+        `;
+  
+      } else {
+        continue;
+      }
     }
   }
 }
 
 //| EVENT LISTENERS |
+
+//: INTRO :
+window.addEventListener('mousemove', handleIntroBox);
+//: MENU AND NAVIGATION :
 window.addEventListener('scroll', handleMenu);
 window.addEventListener('scroll', handleNavigation);
 // update objects on resize

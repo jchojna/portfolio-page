@@ -9,7 +9,13 @@
   position: fixed;
   top: 0;
   width: 540px;
-  z-index: 3;
+  z-index: 4;
+
+  &--intro {
+    left: initial;
+    right: 50%;
+    justify-content: flex-end;
+  }
 
   &--centered {
     align-items: center;

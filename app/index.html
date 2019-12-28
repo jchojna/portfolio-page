@@ -18,63 +18,72 @@
     <!--[if IE]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
+    <!--| HEADER |-->
+    <header class="header header--intro">
+      <h1 class="header__heading visuallyhidden">
+        Jakub Chojna - Frontent Portfolio
+      </h1>
+      <!--: MAIN MENU :-->
+      <nav class="menu">
+        <h2 class="menu__heading visuallyhidden">Main Menu</h2>
+        <ul class="menu__list">
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#about">About</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#resume">Resume</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#tasktimer">TaskTimer</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#portfolio">Portfolio</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#hydrapp">HydrApp</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#archviz">ArchViz</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#quotes">Quotes</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#other">Other</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="menu__indicator menu__indicator--js"></div>
+      <!--: END OF MAIN MENU :-->
+      <!--: NAVIGATION :-->
+      <nav class="navigation navigation--js">
+        <h2 class="navigation__heading visuallyhidden">Navigation</h2>
+        <button class="navigation__button navigation__button--prev navigation__button--js-prev">
+          <div class="navigation__icon navigation__icon--prev"></div>
+        </button>
+        <button class="navigation__button navigation__button--next navigation__button--js-next">
+          <div class="navigation__icon navigation__icon--next"></div>
+        </button>
+        <button class="navigation__button navigation__button--main navigation__button--js-main">
+          <div class="navigation__icon navigation__icon--main"></div>
+        </button>
+      </nav>
+      <!--: END OF NAVIGATION :-->
+    </header>
+    <!--| END OF HEADER |-->
+
+    <!--| INTRO |-->
+    <div class="intro">
+      <div class="intro__box intro__box--js"></div>
+    </div>
+    <!--| END OF INTRO |-->
+
+    <!--| MAIN CONTENT |-->
     <main class="pageContainer">
-      <!--| MENU |-->
-      <header class="header">
-        <h1 class="header__heading visuallyhidden">
-          Jakub Chojna - Frontent Portfolio
-        </h1>
-        <!--: MAIN MENU :-->
-        <nav class="menu">
-          <h2 class="menu__heading visuallyhidden">Main Menu</h2>
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#about">About</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#resume">Resume</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#tasktimer">TaskTimer</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#portfolio">Portfolio</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#hydrapp">HydrApp</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#archviz">ArchViz</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#quotes">Quotes</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#other">Other</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </nav>
-        <div class="menu__indicator menu__indicator--js"></div>
-        <!--: END OF MAIN MENU :-->
-        <!--: NAVIGATION :-->
-        <nav class="navigation navigation--js">
-          <h2 class="navigation__heading visuallyhidden">Navigation</h2>
-          <button class="navigation__button navigation__button--prev navigation__button--js-prev">
-            <div class="navigation__icon navigation__icon--prev"></div>
-          </button>
-          <button class="navigation__button navigation__button--next navigation__button--js-next">
-            <div class="navigation__icon navigation__icon--next"></div>
-          </button>
-          <button class="navigation__button navigation__button--main navigation__button--js-main">
-            <div class="navigation__icon navigation__icon--main"></div>
-          </button>
-        </nav>
-        <!--: END OF NAVIGATION :-->
-      </header>
-      <!--| END OF MENU |-->
       
       <!--| ABOUT |-->
       <article id="about" class="section section--about section--js">
@@ -83,6 +92,22 @@
           <p class="section__description section__description--about">
             My name is Jakub and I’m an aspiring Frontend Developer and a keen road cycling fan.
           </p>
+          <a
+            href="https://github.com/jchojna"
+            class="section__link section__link--github section__link--about"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="Github profile"
+          >
+            Github Profile
+          </a>
+          <a
+            href="https://www.codewars.com/users/jchojna/"
+            class="section__link section__link--codewars section__link--about"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="Codewars profile"
+          >
+            CodeWars
+          </a>
           <img
             src="assets/img/photo.jpg"
             class="section__photo"
@@ -2008,6 +2033,7 @@
       </article>
       <!--| END OF CONTACT |-->
     </main>
+    <!--| END OF MAIN CONTENT |-->
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
