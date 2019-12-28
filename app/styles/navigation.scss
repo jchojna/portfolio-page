@@ -35,57 +35,57 @@
     width: $navigation-size-button;
 
     &--about {
-      border-color: $color-about-dark;
+      border-color: $color-about-diff;
       &:hover {
-        border-color: $color-about-white;
+        border-color: $color-about-diff-dark;
       }
     }
     &--resume {
-      border-color: $color-resume-dark;
+      border-color: $color-resume-diff;
       &:hover {
-        border-color: $color-resume-white;
+        border-color: $color-resume-diff-dark;
       }
     }
     &--tasktimer {
-      border-color: $color-tasktimer-dark;
+      border-color: $color-tasktimer-diff;
       &:hover {
-        border-color: $color-tasktimer-white;
+        border-color: $color-tasktimer-diff-dark;
       }
     }
     &--portfolio {
-      border-color: $color-portfolio-dark;
+      border-color: $color-portfolio-diff;
       &:hover {
-        border-color: $color-portfolio-white;
+        border-color: $color-portfolio-diff-dark;
       }
     }
     &--hydrapp {
-      border-color: $color-hydrapp-dark;
+      border-color: $color-hydrapp-diff;
       &:hover {
-        border-color: $color-hydrapp-white;
+        border-color: $color-hydrapp-diff-dark;
       }
     }
     &--archviz {
-      border-color: $color-archviz-dark;
+      border-color: $color-archviz-diff;
       &:hover {
-        border-color: $color-archviz-white;
+        border-color: $color-archviz-diff-dark;
       }
     }
     &--quotes {
-      border-color: $color-quotes-dark;
+      border-color: $color-quotes-diff;
       &:hover {
-        border-color: $color-quotes-white;
+        border-color: $color-quotes-diff-dark;
       }
     }
     &--other {
-      border-color: $color-other-dark;
+      border-color: $color-other-diff;
       &:hover {
-        border-color: $color-other-white;
+        border-color: $color-other-diff-dark;
       }
     }
     &--contact {
-      border-color: $color-contact-dark;
+      border-color: $color-contact-diff;
       &:hover {
-        border-color: $color-contact-white;
+        border-color: $color-contact-diff-dark;
       }
     }
 

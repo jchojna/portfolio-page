@@ -19,6 +19,7 @@ $color-about: #4F7B94;
 $color-about-dark: #244456;
 $color-about-shadow: #11222c;
 $color-about-diff: #ADA795;
+$color-about-diff-dark: rgb(139, 131, 108);
 
 //| RESUME |
 //: COLORS :
@@ -28,6 +29,7 @@ $color-resume: #A7586B;
 $color-resume-dark: rgb(119, 56, 72);
 $color-resume-shadow: rgb(66, 31, 40);
 $color-resume-diff: #244E60;
+$color-resume-diff-dark: rgb(26, 63, 78);
 //: TIME :
 $time-resume: 0.5s;
 //: SIZE :
@@ -42,6 +44,7 @@ $color-tasktimer-letter: #744953;
 $color-tasktimer-shadow: rgb(35, 53, 54);
 $color-tasktimer-shadowLetter: #411e27;
 $color-tasktimer-diff: #4F3D41;
+$color-tasktimer-diff-dark: rgb(63, 47, 50);
 
 //| PORTFOLIO |
 $color-portfolio-white: rgb(235, 184, 177);
@@ -50,6 +53,7 @@ $color-portfolio: rgb(163, 67, 55);
 $color-portfolio-dark: rgb(129, 51, 41);
 $color-portfolio-shadow: rgb(83, 36, 30);
 $color-portfolio-diff: rgb(67, 76, 88);
+$color-portfolio-diff-dark: rgb(50, 59, 70);
 
 //| HYDRAPP |
 $color-hydrapp-white: #D5F0F5;
@@ -58,6 +62,7 @@ $color-hydrapp: #63BFD3;
 $color-hydrapp-dark: #3B99AE;
 $color-hydrapp-shadow: #2B5862;
 $color-hydrapp-diff: #64574F;
+$color-hydrapp-diff-dark: rgb(82, 70, 62);
 
 //| ARCHVIZ |
 $color-archviz-white: #EEE7D6;
@@ -66,6 +71,7 @@ $color-archviz: #D2A239;
 $color-archviz-dark: #B98922;
 $color-archviz-shadow: #715822;
 $color-archviz-diff: #4C4864;
+$color-archviz-diff-dark: rgb(62, 58, 85);
 
 //| QUOTES |
 $color-quotes-white: #E7EBBF;
@@ -74,6 +80,7 @@ $color-quotes: #B9C52F;
 $color-quotes-dark: #A4AE32;
 $color-quotes-shadow: #5B620F;
 $color-quotes-diff: #5C5663;
+$color-quotes-diff-dark: rgb(74, 68, 80);
 
 //| OTHER |
 $color-other-white: #D8D2EA;
@@ -82,6 +89,7 @@ $color-other: #7868A6;
 $color-other-dark: #6B5F8D;
 $color-other-shadow: #4C4560;
 $color-other-diff: #BBAA11;
+$color-other-diff-dark: rgb(138, 125, 6);
 
 //| CONTACT |
 $color-contact-white: #D7E8CD;
@@ -90,3 +98,4 @@ $color-contact: #7DAD60;
 $color-contact-dark: #6E9457;
 $color-contact-shadow: #4C663C;
 $color-contact-diff: #635451;
+$color-contact-diff-dark: #50423f;

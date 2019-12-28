@@ -46,23 +46,47 @@
     position: relative;
     text-decoration: none;
     text-transform: uppercase;
+    transition: color 0.3s;
 
-    &--about { color: $color-about-diff; }
-    &--resume { color: $color-resume-diff; }
-    &--tasktimer { color: $color-tasktimer-diff; }
-    &--portfolio { color: $color-portfolio-diff; }
-    &--hydrapp { color: $color-hydrapp-diff; }
-    &--archviz { color: $color-archviz-diff; }
-    &--quotes { color: $color-quotes-diff; }
-    &--other { color: $color-other-diff; }
-    &--contact { color: $color-contact-diff; }
-    
+    &--about {
+      color: $color-about-diff;
+      &:hover { color: $color-about-diff-dark; }
+    }
+    &--resume {
+      color: $color-resume-diff;
+      &:hover { color: $color-resume-diff-dark; }
+    }
+    &--tasktimer {
+      color: $color-tasktimer-diff;
+      &:hover { color: $color-tasktimer-diff-dark; }
+    }
+    &--portfolio {
+      color: $color-portfolio-diff;
+      &:hover { color: $color-portfolio-diff-dark; }
+    }
+    &--hydrapp {
+      color: $color-hydrapp-diff;
+      &:hover { color: $color-hydrapp-diff-dark; }
+    }
+    &--archviz {
+      color: $color-archviz-diff;
+      &:hover { color: $color-archviz-diff-dark; }
+    }
+    &--quotes {
+      color: $color-quotes-diff;
+      &:hover { color: $color-quotes-diff-dark; }
+    }
+    &--other {
+      color: $color-other-diff;
+      &:hover { color: $color-other-diff-dark; }
+    }
+    &--contact {
+      color: $color-contact-diff;
+      &:hover { color: $color-contact-diff-dark; }
+    }
     &--active {
       color: #fff;
-    }
-
-    &:hover {
-      color: #ccc;
+      &:hover { color: #fff; }
     }
   }
 
