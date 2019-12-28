@@ -1,4 +1,23 @@
 //| FUNCTIONS |
+const handleIntroBox = (e) => {
+
+  introBox.style.top = `${e.clientY}px`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
 const getCurrentSectionIndex = (scrollOffset) => { // add throttling
   const currentOffset = window.pageYOffset;
   return sections.length - 1 - [...sections]
@@ -16,37 +35,121 @@ const handleActiveMenuLink = (index, action) => {
 }
 
 const handleMenuIndicator = (index) => {
-  const height = menuLinks[index].offsetHeight;
-  const offset = menuLinks[index].offsetTop;
-  menuIndicator.style.height = `${height}px`;
-  menuIndicator.style.top = `${offset}px`;
+  if (!isIntroMode) {
+    const height = menuLinks[index].offsetHeight;
+    const offset = menuLinks[index].offsetTop;
+    menuIndicator.style.height = `${height}px`;
+    menuIndicator.style.top = `${offset}px`;
+  }
 }
 
-const handleAccordion = (array, clickedIndex) => {
+const handleNavigation = (e) => {
+  const updatedNavigationIndex = getCurrentSectionIndex(navigation.offsetTop);
+  const lastElementIndex = sections.length - 1;
+
+  const toggleVisibility = (index, action) => {
+
+    if (index === 0 || index === lastElementIndex) {
+      if (action === 'hide') {
+        index === 0
+        ? navigationPrevButton.classList.add('navigation__button--hidden')
+        : navigationNextButton.classList.add('navigation__button--hidden');
+      } else if (action === 'show') {
+        index === 0
+        ? navigationPrevButton.classList.remove('navigation__button--hidden')
+        : navigationNextButton.classList.remove('navigation__button--hidden');
+      }
+    }
+  }
+
+  if (e) {
+    // change navigation elements class names when index changes
+    if (updatedNavigationIndex !== currentNavigationIndex) {
+      for (let child of navigation.children) {
+        child.classList.remove(`navigation__button--${sections[currentNavigationIndex].id}`);
+        toggleVisibility(currentNavigationIndex, 'show');
+      }
+      currentNavigationIndex = updatedNavigationIndex;
+      for (let child of navigation.children) {
+        child.classList.add(`navigation__button--${sections[currentNavigationIndex].id}`);
+        toggleVisibility(currentNavigationIndex, 'hide');
+      }
+    }
+
+  // assign class names on page load
+  } else {
+
+    for (let child of navigation.children) {
+      child.classList.add(`navigation__button--${sections[currentNavigationIndex].id}`);
+      toggleVisibility(currentNavigationIndex, 'hide');
+    }
+  }
+}
+
+const handleAccordion = (array, indicators, clickedIndex) => {
   array.forEach((item, index) => {
 
-    // transition effect not applied when page loads
-    if (clickedIndex !== undefined) item.classList.add('rollable');
-    // handle clicked element
-    if (clickedIndex === index) {
+    if (clickedIndex !== null) {
+      
+        const svg = item.parentNode.querySelector('[class*="svg"]');
+        const button = item.parentNode.querySelector('[class*="button"]');
+        const margin = item.style.marginTop;
 
-      const margin = item.style.marginTop;
-      if (margin === 0 || margin === '' || margin === '0px') {
-        item.style.marginTop = `${-1 * item.clientHeight}px`;
-      } else {
-        item.style.marginTop = 0;
-      }
-    // handle other elements
+        // handle clicked element
+        if (clickedIndex === index) {
+          // apply transition effect
+          if (!item.classList.contains('rollable')) item.classList.add('rollable');
+          // apply transformations
+          if (margin === 0 || margin === '' || margin === '0px') {
+            item.style.marginTop = `${-1 * item.clientHeight}px`;
+            svg.classList.remove('indicator__svg--active');
+            button.classList.remove('field__button--active');
+          } else {
+            item.style.marginTop = 0;
+            svg.classList.add('indicator__svg--active');
+            button.classList.add('field__button--active');
+          }
+        // handle not clicked elements
+        } else {
+          item.style.marginTop = `${-1 * item.clientHeight}px`;
+          svg.classList.remove('indicator__svg--active');
+          button.classList.remove('field__button--active');
+        }
+    // handle elements on page load
     } else {
       item.style.marginTop = `${-1 * item.clientHeight}px`;
+      indicators[index].classList.remove('indicator__svg--active');
     }
   });
 }
 
+const navigateToSection = (e) => {
+  const currentSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
+  const targetIndex = e.target === navigationPrevButton
+  ? currentSectionIndex > 0
+    ? currentSectionIndex - 1
+    : 0
+  : currentSectionIndex < pageSections.length - 1
+    ? currentSectionIndex + 1
+    : pageSections.length - 1;
+  
+  window.scrollTo(0, pageSections[targetIndex].offsetTop);
+}
+
 //| GLOBAL VARIABLES |
+//: INTRO :
+const isIntroMode = true;
+const introBox = document.querySelector('.intro__box--js');
+
+//: MENU AND NAVIGATION :
 const pageSections = document.querySelectorAll('.section--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
 const menuIndicator = document.querySelector('.menu__indicator--js');
+const sectionScrollOffset = 200;
+const navigation = document.querySelector('.navigation--js');
+const navigationMainButton = document.querySelector('.navigation__button--js-main');
+const navigationPrevButton = document.querySelector('.navigation__button--js-prev');
+const navigationNextButton = document.querySelector('.navigation__button--js-next');
 
 const sections = [...pageSections].map((section, index) => ({
   index,
@@ -62,74 +165,76 @@ const links = [...menuLinks].map((link, index) => ({
   currentSectionIndex: getCurrentSectionIndex(link.offsetTop)
 }));
 
+let currentNavigationIndex = getCurrentSectionIndex(navigation.offsetTop);
+
 const resumeFields = document.querySelectorAll('.field__container--js');
-const resumeButtons = document.querySelectorAll('.field__button--js');
+const resumeButtons = document.querySelectorAll('.field__button--js-resume');
+const resumeIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-field');
 const professionFields = document.querySelectorAll('.table--js-profession');
-const professionButtons = document.querySelectorAll('.profession__button--js');
+const professionButtons = document.querySelectorAll('.field__button--js-profession');
+const professionIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-profession');
 
 //| FUNCTION CALLS ON PAGE LOAD |
-let currentGlobalSectionIndex = getCurrentSectionIndex(200);
+let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
 // assign active menu link
-handleActiveMenuLink(currentGlobalSectionIndex, 'set');
+//handleActiveMenuLink(currentGlobalSectionIndex, 'set');
 // assign colors to menu links
-[...menuLinks].forEach(link => {
+/* [...menuLinks].forEach(link => {
   link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
-});
+}); */
+handleNavigation();
 handleMenuIndicator(currentGlobalSectionIndex);
-handleAccordion([...professionFields]);
-handleAccordion([...resumeFields]);
+handleAccordion([...professionFields], [...professionIndicatorSvgs]);
+handleAccordion([...resumeFields], [...resumeIndicatorSvgs]);
 
-//setTimeout(() => handleAccordion([...resumeFields]), 1000);
+//| EVENT HANDLERS |
 
-
-
-
-
-
-
-
-
-
-
-
-//handleAccordion([...resumeFields]);
-
-//| EVENT HANDLERS|
 const handleMenu = () => {
-  const updatedGlobalSectionIndex = getCurrentSectionIndex(200);
-  // perform DOM manipulation when index changes
-  if (updatedGlobalSectionIndex !== currentGlobalSectionIndex) {
-    handleActiveMenuLink(currentGlobalSectionIndex, 'unset');
-    currentGlobalSectionIndex = updatedGlobalSectionIndex;
-    handleActiveMenuLink(currentGlobalSectionIndex, 'set');
-    handleMenuIndicator(currentGlobalSectionIndex);
-  } 
-
-  for (let i = 0; i < menuLinks.length; i++) {
-    const updatedIndex = getCurrentSectionIndex(links[i].offset);
+  if (!isIntroMode) {
+    const updatedGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
     // perform DOM manipulation when index changes
-    if (updatedIndex !== links[i].currentSectionIndex) {
-
-      links[i].currentSectionIndex = updatedIndex;
-      const currentSectionId = sections[updatedIndex].id;
-      menuLinks[i].className = `
-        menu__link menu__link--js menu__link--${currentSectionId}
-        ${i === currentGlobalSectionIndex ? 'menu__link--active' : ''}
-      `;
-
-    } else {
-      continue;
+    if (updatedGlobalSectionIndex !== currentGlobalSectionIndex) {
+      handleActiveMenuLink(currentGlobalSectionIndex, 'unset');
+      currentGlobalSectionIndex = updatedGlobalSectionIndex;
+      handleActiveMenuLink(currentGlobalSectionIndex, 'set');
+      handleMenuIndicator(currentGlobalSectionIndex);
+    } 
+  
+    for (let i = 0; i < menuLinks.length; i++) {
+      const updatedIndex = getCurrentSectionIndex(links[i].offset);
+      // perform DOM manipulation when index changes
+      if (updatedIndex !== links[i].currentSectionIndex) {
+  
+        links[i].currentSectionIndex = updatedIndex;
+        const currentSectionId = sections[updatedIndex].id;
+        menuLinks[i].className = `
+          menu__link menu__link--js menu__link--${currentSectionId}
+          ${i === currentGlobalSectionIndex ? 'menu__link--active' : ''}
+        `;
+  
+      } else {
+        continue;
+      }
     }
   }
 }
 
 //| EVENT LISTENERS |
+
+//: INTRO :
+window.addEventListener('mousemove', handleIntroBox);
+//: MENU AND NAVIGATION :
 window.addEventListener('scroll', handleMenu);
+window.addEventListener('scroll', handleNavigation);
 // update objects on resize
 
 [...resumeButtons].forEach((button, index) => {
-  button.addEventListener('click', () => handleAccordion([...resumeFields], index));
+  button.addEventListener('click', () => handleAccordion([...resumeFields], [...resumeIndicatorSvgs], index));
 });
 [...professionButtons].forEach((button, index) => {
-  button.addEventListener('click', () => handleAccordion([...professionFields], index));
+  button.addEventListener('click', () => handleAccordion([...professionFields], [...professionIndicatorSvgs], index));
 });
+
+navigationMainButton.addEventListener('click', () => console.log('main'));
+navigationPrevButton.addEventListener('click', navigateToSection);
+navigationNextButton.addEventListener('click', navigateToSection);

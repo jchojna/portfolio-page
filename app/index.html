@@ -18,44 +18,72 @@
     <!--[if IE]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
+    <!--| HEADER |-->
+    <header class="header header--intro">
+      <h1 class="header__heading visuallyhidden">
+        Jakub Chojna - Frontent Portfolio
+      </h1>
+      <!--: MAIN MENU :-->
+      <nav class="menu">
+        <h2 class="menu__heading visuallyhidden">Main Menu</h2>
+        <ul class="menu__list">
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#about">About</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#resume">Resume</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#tasktimer">TaskTimer</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#portfolio">Portfolio</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#hydrapp">HydrApp</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#archviz">ArchViz</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#quotes">Quotes</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#other">Other</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--js" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="menu__indicator menu__indicator--js"></div>
+      <!--: END OF MAIN MENU :-->
+      <!--: NAVIGATION :-->
+      <nav class="navigation navigation--js">
+        <h2 class="navigation__heading visuallyhidden">Navigation</h2>
+        <button class="navigation__button navigation__button--prev navigation__button--js-prev">
+          <div class="navigation__icon navigation__icon--prev"></div>
+        </button>
+        <button class="navigation__button navigation__button--next navigation__button--js-next">
+          <div class="navigation__icon navigation__icon--next"></div>
+        </button>
+        <button class="navigation__button navigation__button--main navigation__button--js-main">
+          <div class="navigation__icon navigation__icon--main"></div>
+        </button>
+      </nav>
+      <!--: END OF NAVIGATION :-->
+    </header>
+    <!--| END OF HEADER |-->
+
+    <!--| INTRO |-->
+    <div class="intro">
+      <div class="intro__box intro__box--js"></div>
+    </div>
+    <!--| END OF INTRO |-->
+
+    <!--| MAIN CONTENT |-->
     <main class="pageContainer">
-      <!--| MENU |-->
-      <header class="header">
-        <h1 class="header__heading visuallyhidden">
-          Jakub Chojna - Frontent Portfolio
-        </h1>
-        <nav class="menu">
-          <h2 class="menu__heading visuallyhidden">Main Menu</h2>
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#about">About</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#resume">Resume</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#tasktimer">TaskTimer</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#hydrapp">HydrApp</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#archviz">ArchViz</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#quotes">Quotes</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#other">Other</a>
-            </li>
-            <li class="menu__item">
-              <a class="menu__link menu__link--js" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </nav>
-        <div class="menu__indicator menu__indicator--js"></div>
-      </header>
-      <!--| END OF MENU |-->
       
       <!--| ABOUT |-->
       <article id="about" class="section section--about section--js">
@@ -64,6 +92,22 @@
           <p class="section__description section__description--about">
             My name is Jakub and I’m an aspiring Frontend Developer and a keen road cycling fan.
           </p>
+          <a
+            href="https://github.com/jchojna"
+            class="section__link section__link--github section__link--about"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="Github profile"
+          >
+            Github Profile
+          </a>
+          <a
+            href="https://www.codewars.com/users/jchojna/"
+            class="section__link section__link--codewars section__link--about"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="Codewars profile"
+          >
+            CodeWars
+          </a>
           <img
             src="assets/img/photo.jpg"
             class="section__photo"
@@ -424,62 +468,33 @@
             </svg>
           </div>
           <!--: END OF LOGO :-->
-          <!--: EDUCATION :-->
-          <section class="field field--education">
-            <h3 class="field__heading">
-              <button class="field__button field__button--js">
-                Education
-              </button>
-            </h3>
-            <div class="field__container field__container--js">
-              <table class="table table--education">
-                <thead class="table__header">
-                  <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">University</th>
-                  </tr>
-                </thead>
-                <tbody class="table__body">
-                  <tr>
-                    <td class="table__col table__col--first">2011 - 2014</td>
-                    <td class="table__col table__col--second">
-                      <p class="table__text">
-                        Warsaw University of Technology
-                      </p>
-                      <p class="table__text table__text--secondary">
-                        Faculty of Architecture | Master's Degree
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="table__col table__col--first">2006 - 2010</td>
-                    <td class="table__col table__col--second">
-                      <p class="table__text">
-                        Warsaw University of Technology
-                      </p>
-                      <p class="table__text table__text--secondary">
-                        Faculty of Architecture | Bachelor's Degree
-                      </p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-          <!--: END OF EDUCATION :-->
           <!--: PROFESSIONAL EXPERIENCE :-->
-          <section class="field field--experience">
-            <h3 class="field__heading">
-              <button class="field__button field__button--js">
-                Professional Experience
+          <section class="field field--resume field--experience">
+            <h3 class="field__header field__header--resume">
+              <button class="field__button field__button--resume field__button--js-resume">
+                <span class="indicator indicator--field">
+                  <svg class="indicator__svg indicator__svg--js-field" viewBox="0 0 100 100">
+                    <use href="assets/svg/icons.svg#plus"></use>
+                  </svg>
+                </span>
+                <span class="field__heading">
+                  Professional Experience
+                </span>
               </button>
             </h3>
             <div class="field__container field__container--js">
               <!--. ARCHITECTURE .-->
-              <section class="profession">
-                <h4 class="profession__heading">
-                  <button class="profession__button profession__button--js">
-                    Architecture
+              <section class="field field--profession">
+                <h4 class="field__header field__header--profession">
+                  <button class="field__button field__button--profession field__button--js-profession">
+                    <span class="indicator indicator--profession">
+                      <svg class="indicator__svg indicator__svg--js-profession" viewBox="0 0 100 100">
+                        <use href="assets/svg/icons.svg#plus"></use>
+                      </svg>
+                    </span>
+                    <span class="field__heading">
+                      Architecture
+                    </span>
                   </button>
                 </h4>
                 <table class="table table--js-profession">
@@ -542,10 +557,17 @@
               </section>
               <!--. END OF ARCHITECTURE .-->
               <!-- 3D GRAPHICS -->
-              <section class="profession">
-                <h4 class="profession__heading">
-                  <button class="profession__button profession__button--js">
-                    3d Graphics
+              <section class="field field--profession">
+                <h4 class="field__header field__header--profession">
+                  <button class="field__button field__button--profession field__button--js-profession">
+                    <span class="indicator indicator--profession">
+                      <svg class="indicator__svg indicator__svg--js-profession" viewBox="0 0 100 100">
+                        <use href="assets/svg/icons.svg#plus"></use>
+                      </svg>
+                    </span>
+                    <span class="field__heading">
+                      3d Graphics
+                    </span>
                   </button>
                 </h4>
                 <table class="table table--js-profession">
@@ -586,10 +608,17 @@
               </section>
               <!--. END OF 3D GRAPHICS .-->
               <!--. FRONTEND DEVELOPMENT .-->
-              <section class="profession">
-                <h4 class="profession__heading">
-                  <button class="profession__button profession__button--js">
-                    Frontend Development
+              <section class="field field--profession">
+                <h4 class="field__header field__header--profession">
+                  <button class="field__button field__button--profession field__button--js-profession">
+                    <span class="indicator indicator--profession">
+                      <svg class="indicator__svg indicator__svg--js-profession" viewBox="0 0 100 100">
+                        <use href="assets/svg/icons.svg#plus"></use>
+                      </svg>
+                    </span>
+                    <span class="field__heading">
+                      Frontend Development
+                    </span>
                   </button>
                 </h4>
                 <table class="table table--js-profession">
@@ -616,11 +645,68 @@
             </div>
           </section>
           <!--: END OF PROFESSIONAL EXPERIENCE :-->
+          <!--: EDUCATION :-->
+          <section class="field field--resume field--education">
+            <h3 class="field__header field__header--resume">
+              <button class="field__button field__button--resume field__button--js-resume">
+                <span class="indicator indicator--field">
+                  <svg class="indicator__svg indicator__svg--js-field" viewBox="0 0 100 100">
+                    <use href="assets/svg/icons.svg#plus"></use>
+                  </svg>
+                </span>
+                <span class="field__heading">
+                  Education
+                </span>
+              </button>
+            </h3>
+            <div class="field__container field__container--js">
+              <table class="table table--education">
+                <thead class="table__header">
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">University</th>
+                  </tr>
+                </thead>
+                <tbody class="table__body">
+                  <tr>
+                    <td class="table__col table__col--first">2011 - 2014</td>
+                    <td class="table__col table__col--second">
+                      <p class="table__text">
+                        Warsaw University of Technology
+                      </p>
+                      <p class="table__text table__text--secondary">
+                        Faculty of Architecture | Master's Degree
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table__col table__col--first">2006 - 2010</td>
+                    <td class="table__col table__col--second">
+                      <p class="table__text">
+                        Warsaw University of Technology
+                      </p>
+                      <p class="table__text table__text--secondary">
+                        Faculty of Architecture | Bachelor's Degree
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!--: END OF EDUCATION :-->
           <!--: LANGUAGES :-->
-          <section class="field field--languages">
-            <h3 class="field__heading">
-              <button class="field__button field__button--js">
-                Languages
+          <section class="field field--resume field--languages">
+            <h3 class="field__header field__header--resume">
+              <button class="field__button field__button--resume field__button--js-resume">
+                <span class="indicator indicator--field">
+                  <svg class="indicator__svg indicator__svg--js-field" viewBox="0 0 100 100">
+                    <use href="assets/svg/icons.svg#plus"></use>
+                  </svg>
+                </span>
+                <span class="field__heading">
+                  Languages
+                </span>
               </button>
             </h3>
             <div class="field__container field__container--js">
@@ -871,6 +957,219 @@
         </div>
       </article>
       <!--| END OF TASKTIMER |-->
+
+      <!--| PORTFOLIO |-->
+      <article id="portfolio" class="section section--portfolio section--js">
+        <div class="section__container section__container--portfolio">
+          <h2 class="section__heading">
+            “this portfolio website...”
+          </h2>
+          <p class="section__description section__description--portfolio">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+          <!--: LOGO :-->
+          <div class="logo logo--portfolio">
+            <svg class="logo__base logo__base--portfolio" viewBox="0 0 512 512">
+              <use href="assets/svg/logos.svg#portfolio-base"></use>
+            </svg>
+            <svg class="logo__shadow logo__shadow--portfolio" viewBox="0 0 512 512">
+              <use href="assets/svg/logos.svg#portfolio-shadow"></use>
+            </svg>
+          </div>
+          <!--: END OF LOGO :-->
+          <!--: LINKS / BUTTONS :-->
+          <button class="section__readMore section__readMore--portfolio">
+            Read more...
+          </button>
+          <a
+            href="https://github.com/jchojna/portfolio-page"
+            class="section__link section__link--portfolio section__link--code"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="Portfolio page code"
+          >
+            Code
+          </a>
+          <a
+            href="https://jchojna.github.io/portfolio-page/"
+            class="section__link section__link--portfolio section__link--demo"
+            target="_blank" rel="nofollow noreferrer"
+            aria-label="Portfolio page demo"
+          >
+            Demo
+          </a>
+          <!--: END OF LINKS / BUTTONS :-->
+          <!--: STATS :-->
+          <section class="stats stats--portfolio">
+            <h3 class="stats__heading visuallyhidden">Stats</h3>
+            <table class="stats__table">
+              <thead class="stats__tableHeader">
+                <tr>
+                  <th scope="col">category</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              <tbody class="stats__tableBody">
+                <tr>
+                  <td class="stats__col stats__col--first">Last update:</td>
+                  <td class="stats__col stats__col--second">11.03.19</td>
+                </tr>
+                <tr>
+                  <td class="stats__col stats__col--first">Total commits:</td>
+                  <td class="stats__col stats__col--second">245</td>
+                </tr>
+                <tr>
+                  <td class="stats__col stats__col--first">Hours spent:</td>
+                  <td class="stats__col stats__col--second">90</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <!--: END OF STATS :-->
+          <!--: TECHNOLOGIES USED :-->
+          <ul class="technologies__list technologies__list--used">
+            <!--. HTML .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--portfolio technologies__logo--portfolioUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#html-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--portfolio technologies__name--portfolioUsed">html</span>
+            </li>
+            <!--. CSS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--portfolio technologies__logo--portfolioUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#css-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--portfolio technologies__name--portfolioUsed">css</span>
+            </li>
+            <!--. JAVASCRIPT .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--portfolio technologies__logo--portfolioUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#javascript-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--portfolio technologies__name--portfolioUsed">javascript</span>
+            </li>
+            <!--. SASS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--portfolio technologies__logo--portfolioUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#sass"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--portfolio technologies__name--portfolioUsed">sass</span>
+            </li>
+            <!--. BEM .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--portfolio technologies__logo--portfolioUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#bem"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--portfolio technologies__name--portfolioUsed">bem</span>
+            </li>
+            <!--. PHP .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--portfolio technologies__logo--portfolioUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#php"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--portfolio technologies__name--portfolioUsed">php</span>
+            </li>
+            <!--. GIT .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--portfolio technologies__logo--portfolioUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#git"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--portfolio technologies__name--portfolioUsed">git</span>
+            </li>
+            <!--. VISUAL STUDIO CODE .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--portfolio technologies__logo--portfolioUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#vscode-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--portfolio technologies__name--portfolioUsed">vs code</span>
+            </li>
+            <!--. FIGMA .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--portfolio technologies__logo--portfolioUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-1"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-2"></use>
+                </svg>
+                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#figma-3"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--portfolio technologies__name--portfolioUsed">figma</span>
+            </li>
+            <!--. ILLUSTRATOR .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--portfolio technologies__logo--portfolioUsed">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#illustrator"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--portfolio technologies__name--portfolioUsed">illustrator</span>
+            </li>
+            <!--. REACT.JS .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--portfolio">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#react"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--portfolio">react.js</span>
+            </li>
+            <!--. PHOTOSHOP .-->
+            <li class="technologies__item">
+              <div class="technologies__logo technologies__logo--portfolio">
+                <svg class="technologies__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/technologies.svg#photoshop"></use>
+                </svg>
+              </div>
+              <span class="technologies__name technologies__name--portfolio">photoshop</span>
+            </li>
+          </ul>
+          <!--: END OF TECHNOLOGIES USED :-->
+        </div>
+      </article>
+      <!--| END OF PORTFOLIO |-->
 
       <!--| HYDRAPP |-->
       <article id="hydrapp" class="section section--hydrapp section--js">
@@ -1734,6 +2033,7 @@
       </article>
       <!--| END OF CONTACT |-->
     </main>
+    <!--| END OF MAIN CONTENT |-->
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

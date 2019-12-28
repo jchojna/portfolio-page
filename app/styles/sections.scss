@@ -1,6 +1,14 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
+.pageContainer {
+  display: none;
+
+  &--visible {
+    display: block;
+  }
+}
+
 .section {
   align-items: center;
   box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
@@ -17,6 +25,9 @@
   }
   &--tasktimer {
     background-color: $color-tasktimer;
+  }
+  &--portfolio {
+    background-color: $color-portfolio;
   }
   &--hydrapp {
     background-color: $color-hydrapp;
@@ -47,29 +58,31 @@
     &--about {
       column-gap: 20px;
       grid-template-areas:
-      "heading      photography "
-      "description  photography "
-      "titleWorking titleWorking"
-      "iconsWorking iconsWorking"
-      "titleKnow    titleKnow   "
-      "iconsKnow    iconsKnow   "
-      "titleLearn   titleLearn  "
-      "iconsLearn   iconsLearn  ";
-      grid-template-columns: 1fr 40%;
-      grid-template-rows: auto 1fr;
+      "heading      heading      photography "
+      "description  description  photography "
+      "github       codewars     photography "
+      "titleWorking titleWorking titleWorking"
+      "iconsWorking iconsWorking iconsWorking"
+      "titleKnow    titleKnow    titleKnow   "
+      "iconsKnow    iconsKnow    iconsKnow   "
+      "titleLearn   titleLearn   titleLearn  "
+      "iconsLearn   iconsLearn   iconsLearn  ";
+      grid-template-columns: auto 1fr 40%;
+      grid-template-rows: auto auto auto 1fr;
     }
 
     &--resume {
       align-content: start;
       grid-template-areas:
       "heading   "
-      "education "
       "experience"
+      "education "
       "languages ";
       grid-template-columns: 1fr;
     }
 
     &--tasktimer,
+    &--portfolio,
     &--hydrapp,
     &--archviz,
     &--quotes {
@@ -110,6 +123,7 @@
     grid-area: heading;
     line-height: 1.3;
     margin: 0;
+    margin-bottom: 0.5em;
     padding-top: 5px;
     position: relative;
 
@@ -130,13 +144,15 @@
     font-size: 2em;
     grid-area: description;
     margin: 0;
-    margin-top: 1.2em;
 
     &--about {
       color: $color-about-white;
     }
     &--tasktimer {
       color: $color-tasktimer-white;
+    }
+    &--portfolio {
+      color: $color-portfolio-white;
     }
     &--hydrapp {
       color: $color-hydrapp-white;
@@ -178,6 +194,10 @@
       border-bottom: 3px solid $color-tasktimer-light;
       color: $color-tasktimer-light;
     }
+    &--portfolio {
+      border-bottom: 3px solid $color-portfolio-light;
+      color: $color-portfolio-light;
+    }
     &--hydrapp {
       border-bottom: 3px solid $color-hydrapp-light;
       color: $color-hydrapp-light;
@@ -214,9 +234,28 @@
       grid-area: demoButton;
     }
 
+    &--github,
+    &--codewars {
+      font-size: 1.5em;
+      grid-area: github;
+      justify-self: start;
+    }
+    
+    &--codewars {
+      grid-area: codewars;
+    }
+
+    &--about:hover {
+      border-color: $color-about-shadow;
+      color: $color-about-shadow;
+    }
     &--tasktimer:hover {
       border-color: $color-tasktimer-shadow;
       color: $color-tasktimer-shadow;
+    }
+    &--portfolio:hover {
+      border-color: $color-portfolio-shadow;
+      color: $color-portfolio-shadow;
     }
     &--hydrapp:hover {
       border-color: $color-hydrapp-shadow;
@@ -241,6 +280,9 @@
 
   &--tasktimer {
     color: $color-tasktimer-shadow;
+  }
+  &--portfolio {
+    color: $color-portfolio-shadow;
   }
   &--hydrapp {
     color: $color-hydrapp-shadow;

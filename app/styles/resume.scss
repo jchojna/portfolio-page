@@ -3,11 +3,17 @@
 
 .field {
   overflow: hidden;
-  min-height: 90px;
+
+  &--resume {
+    min-height: $field-min-height;
+  }
+
+  &--profession {
+    margin-left: 20px;
+  }
 
   &--education {
     grid-area: education;
-    margin-top: 10px;
   }
 
   &--experience {
@@ -18,50 +24,48 @@
     grid-area: languages;
   }
 
-  &__heading {
-    position: relative;
+  &__header {
+    align-items: center;
     background-color: $color-resume;
-    font-size: 3em;
+    display: flex;
     margin: 0;
-    z-index: 2;
-  }
+    position: relative;
 
-  &__button {
-    @include button;
-    color: #fff;
-    padding: 0.3em 0;
-    text-align: left;
-    text-transform: uppercase;
-    width: 100%;
+    &--resume {
+      font-size: 3em;
+      min-height: $field-min-height;
+      z-index: 2;
+    }
 
-    &:hover {
-      background-color: $color-resume-dark;
+    &--profession {
+      font-size: 2em;
+      z-index: 1;
     }
   }
-}
-
-.profession {
-  margin-left: 20px;
-  overflow: hidden;
 
   &__heading {
-    position: relative;
-    background-color: $color-resume;
-    font-size: 2em;
     margin: 0;
-    z-index: 1;
+    padding: 0.2em 0.5em;
+    pointer-events: none;
   }
 
   &__button {
     @include button;
-    color: $color-resume-diff;
-    padding: 0.3em 0;
+    align-items: center;
+    display: flex;
     text-align: left;
     text-transform: uppercase;
-    width: 100%;
 
-    &:hover {
-      background-color: $color-resume-dark;
+    &--resume {
+      color: $color-resume-white;
+    }
+
+    &--profession {
+      color: $color-resume-dark;
+    }
+
+    &--active {
+      color: $color-resume-diff;
     }
   }
 }
@@ -80,8 +84,8 @@
   }
 
   &__col {
-    vertical-align: top;
     padding-top: 0.3em;
+    vertical-align: top;
 
     &--first {
       width: 180px;
@@ -93,6 +97,34 @@
 
     &--secondary {
       color: $color-resume-dark;
+    }
+  }
+}
+
+.indicator {
+  @include flex-center;
+  overflow: hidden;
+  pointer-events: none;
+
+  &--field {
+    fill: $color-resume-white;
+    height: 50px;
+    width: 50px;
+  }
+
+  &--profession {
+    fill: $color-resume-dark;
+    height: 30px;
+    width: 30px;
+  }
+
+  &__svg {
+    transition: transform 0.3s;
+    width: 100%;
+
+    &--active {
+      transform: scale(5);
+      fill: $color-resume-diff;
     }
   }
 }
