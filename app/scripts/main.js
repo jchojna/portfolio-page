@@ -22,16 +22,45 @@ const handleMenuIndicator = (index) => {
   menuIndicator.style.top = `${offset}px`;
 }
 
-const handleNavigation = () => {
+const handleNavigation = (e) => {
   const updatedNavigationIndex = getCurrentSectionIndex(navigation.offsetTop);
-  // change navigation elements class names when index changes
-  if (updatedNavigationIndex !== currentNavigationIndex) {
-    for (let child of navigation.children) {
-      child.classList.remove(`navigation__button--${sections[currentNavigationIndex].id}`);
+  const lastElementIndex = sections.length - 1;
+
+  const toggleVisibility = (index, action) => {
+
+    if (index === 0 || index === lastElementIndex) {
+      if (action === 'hide') {
+        index === 0
+        ? navigationPrevButton.classList.add('navigation__button--hidden')
+        : navigationNextButton.classList.add('navigation__button--hidden');
+      } else if (action === 'show') {
+        index === 0
+        ? navigationPrevButton.classList.remove('navigation__button--hidden')
+        : navigationNextButton.classList.remove('navigation__button--hidden');
+      }
     }
-    currentNavigationIndex = updatedNavigationIndex;
+  }
+
+  if (e) {
+    // change navigation elements class names when index changes
+    if (updatedNavigationIndex !== currentNavigationIndex) {
+      for (let child of navigation.children) {
+        child.classList.remove(`navigation__button--${sections[currentNavigationIndex].id}`);
+        toggleVisibility(currentNavigationIndex, 'show');
+      }
+      currentNavigationIndex = updatedNavigationIndex;
+      for (let child of navigation.children) {
+        child.classList.add(`navigation__button--${sections[currentNavigationIndex].id}`);
+        toggleVisibility(currentNavigationIndex, 'hide');
+      }
+    }
+
+  // assign class names on page load
+  } else {
+
     for (let child of navigation.children) {
       child.classList.add(`navigation__button--${sections[currentNavigationIndex].id}`);
+      toggleVisibility(currentNavigationIndex, 'hide');
     }
   }
 }
@@ -127,9 +156,7 @@ handleActiveMenuLink(currentGlobalSectionIndex, 'set');
 [...menuLinks].forEach(link => {
   link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
 });
-for (let child of navigation.children) {
-  child.classList.add(`navigation__button--${sections[currentNavigationIndex].id}`);
-}
+handleNavigation();
 handleMenuIndicator(currentGlobalSectionIndex);
 handleAccordion([...professionFields], [...professionIndicatorSvgs]);
 handleAccordion([...resumeFields], [...resumeIndicatorSvgs]);
