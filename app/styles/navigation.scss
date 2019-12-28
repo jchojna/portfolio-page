@@ -1,0 +1,89 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* &--about { color: $color-about-diff; }
+&--resume { color: $color-resume-diff; }
+&--tasktimer { color: $color-tasktimer-diff; }
+&--portfolio { color: $color-portfolio-diff; }
+&--hydrapp { color: $color-hydrapp-diff; }
+&--archviz { color: $color-archviz-diff; }
+&--quotes { color: $color-quotes-diff; }
+&--other { color: $color-other-diff; }
+&--contact { color: $color-contact-diff; } */
+
+.navigation {
+  bottom: 100px;
+  position: fixed;
+  right: 100px;
+
+  &:hover &__button {
+    transition: transform $navigation-time $navigation-time-rotate;
+
+    &--prev {
+      transform: translateY($navigation-offset * -2);
+    }
+  
+    &--main {
+      transform: translateY($navigation-offset * -1);
+    }
+  }
+
+  &:hover &__icon {
+    transform: rotate(45deg) translate3d( 0, 0, 1px);
+    transition: border-color $navigation-time, transform $navigation-time;
+  }
+
+  &__button {
+    @include button;
+    @include flex-center;
+    border-color: #666;
+    height: $navigation-size-button;
+    padding: $navigation-padding;
+    transition:
+      border-color $navigation-time,
+      transform $navigation-time $navigation-time-delay;
+    width: $navigation-size-button;
+
+    &:hover {
+      border-color: #fff;
+    }
+
+    &--prev,
+    &--next {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: -1;
+    }
+  }
+
+  &__icon {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    pointer-events: none;
+    transition:
+      border-color $navigation-time,
+      transform $navigation-time $navigation-time-delay + $navigation-time-rotate;
+    height: $navigation-size-arrows;
+    width: $navigation-size-arrows;
+
+    &--main {
+      border-width: $navigation-size-main / 2;
+      height: $navigation-size-main;
+      width: $navigation-size-main;
+    }
+
+    &--prev {
+      border-left-width: $navigation-border-arrow;
+      border-top-width: $navigation-border-arrow;
+    }
+  
+    &--next {
+      border-bottom-width: $navigation-border-arrow;
+      border-right-width: $navigation-border-arrow;
+    }
+  }
+}

@@ -22,6 +22,31 @@ const handleMenuIndicator = (index) => {
   menuIndicator.style.top = `${offset}px`;
 }
 
+const handleNavigation = () => {
+  
+  for (let child of navigation.children) {
+
+    if (child === navigationMainButton) {
+      console.log('main');
+    } else {
+      console.log('not');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+}
+
 const handleAccordion = (array, indicators, clickedIndex) => {
   array.forEach((item, index) => {
 
@@ -77,6 +102,7 @@ const pageSections = document.querySelectorAll('.section--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
 const menuIndicator = document.querySelector('.menu__indicator--js');
 const sectionScrollOffset = 200;
+const navigation = document.querySelector('.navigation--js');
 const navigationMainButton = document.querySelector('.navigation__button--js-main');
 const navigationPrevButton = document.querySelector('.navigation__button--js-prev');
 const navigationNextButton = document.querySelector('.navigation__button--js-next');
@@ -114,7 +140,8 @@ handleMenuIndicator(currentGlobalSectionIndex);
 handleAccordion([...professionFields], [...professionIndicatorSvgs]);
 handleAccordion([...resumeFields], [...resumeIndicatorSvgs]);
 
-//| EVENT HANDLERS|
+//| EVENT HANDLERS |
+
 const handleMenu = () => {
   const updatedGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
   // perform DOM manipulation when index changes
@@ -145,6 +172,7 @@ const handleMenu = () => {
 
 //| EVENT LISTENERS |
 window.addEventListener('scroll', handleMenu);
+window.addEventListener('scroll', handleNavigation);
 // update objects on resize
 
 [...resumeButtons].forEach((button, index) => {

@@ -1,9 +1,16 @@
 //| MENU |
 $time-switch: 0.4s;
-$navigation-size: 90px;
-$navigation-offset: 20px;
-$navigation-border-width: 10px;
-$navigation-border: $navigation-border-width solid #fff;
+
+//| NAVIGATION |
+$navigation-border-arrow: 10px;
+$navigation-offset: 70px;
+$navigation-padding: 20px;
+$navigation-size-arrows: 90px;
+$navigation-size-main: $navigation-size-arrows - ($navigation-border-arrow * 2) + 2px;
+$navigation-size-button: $navigation-size-arrows + ($navigation-padding * 2);
+$navigation-time: 0.3s;
+$navigation-time-delay: 1s;
+$navigation-time-rotate: 0.2s;
 
 //| ABOUT |
 $color-about-white: #BBD3E0;
