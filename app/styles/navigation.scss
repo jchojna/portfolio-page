@@ -23,6 +23,20 @@
     transition: border-color $navigation-time, transform $navigation-time;
   }
 
+  &:hover &__icon--main {
+    border-width: $navigation-size-main / 2;
+    height: $navigation-size-main;
+    width: $navigation-size-main;
+    transition:
+      border-color $navigation-time,
+      border-width $navigation-time $navigation-time-rotate,
+      height $navigation-time $navigation-time-rotate,
+      transform $navigation-time,
+      width $navigation-time $navigation-time-rotate;
+  }
+
+
+
   &__button {
     @include button;
     @include flex-center;
@@ -116,9 +130,13 @@
     width: $navigation-size-arrows;
 
     &--main {
-      border-width: $navigation-size-main / 2;
-      height: $navigation-size-main;
-      width: $navigation-size-main;
+      border-width: $navigation-size-arrows / 2;
+      transition:
+        border-color $navigation-time $navigation-time-delay,
+        border-width $navigation-time $navigation-time-delay,
+        height $navigation-time $navigation-time-delay,
+        transform $navigation-time $navigation-time-delay + $navigation-time-rotate,
+        width $navigation-time $navigation-time-delay;
     }
 
     &--prev {
