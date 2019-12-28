@@ -1,16 +1,6 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
-/* &--about { color: $color-about-diff; }
-&--resume { color: $color-resume-diff; }
-&--tasktimer { color: $color-tasktimer-diff; }
-&--portfolio { color: $color-portfolio-diff; }
-&--hydrapp { color: $color-hydrapp-diff; }
-&--archviz { color: $color-archviz-diff; }
-&--quotes { color: $color-quotes-diff; }
-&--other { color: $color-other-diff; }
-&--contact { color: $color-contact-diff; } */
-
 .navigation {
   bottom: 100px;
   position: fixed;
@@ -36,7 +26,7 @@
   &__button {
     @include button;
     @include flex-center;
-    border-color: #666;
+    border-color: #fff;
     height: $navigation-size-button;
     padding: $navigation-padding;
     transition:
@@ -44,8 +34,59 @@
       transform $navigation-time $navigation-time-delay;
     width: $navigation-size-button;
 
-    &:hover {
-      border-color: #fff;
+    &--about {
+      border-color: $color-about-dark;
+      &:hover {
+        border-color: $color-about-white;
+      }
+    }
+    &--resume {
+      border-color: $color-resume-dark;
+      &:hover {
+        border-color: $color-resume-white;
+      }
+    }
+    &--tasktimer {
+      border-color: $color-tasktimer-dark;
+      &:hover {
+        border-color: $color-tasktimer-white;
+      }
+    }
+    &--portfolio {
+      border-color: $color-portfolio-dark;
+      &:hover {
+        border-color: $color-portfolio-white;
+      }
+    }
+    &--hydrapp {
+      border-color: $color-hydrapp-dark;
+      &:hover {
+        border-color: $color-hydrapp-white;
+      }
+    }
+    &--archviz {
+      border-color: $color-archviz-dark;
+      &:hover {
+        border-color: $color-archviz-white;
+      }
+    }
+    &--quotes {
+      border-color: $color-quotes-dark;
+      &:hover {
+        border-color: $color-quotes-white;
+      }
+    }
+    &--other {
+      border-color: $color-other-dark;
+      &:hover {
+        border-color: $color-other-white;
+      }
+    }
+    &--contact {
+      border-color: $color-contact-dark;
+      &:hover {
+        border-color: $color-contact-white;
+      }
     }
 
     &--prev,

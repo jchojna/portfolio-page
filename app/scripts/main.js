@@ -23,27 +23,16 @@ const handleMenuIndicator = (index) => {
 }
 
 const handleNavigation = () => {
-  
-  for (let child of navigation.children) {
-
-    if (child === navigationMainButton) {
-      console.log('main');
-    } else {
-      console.log('not');
+  const updatedNavigationIndex = getCurrentSectionIndex(navigation.offsetTop);
+  // change navigation elements class names when index changes
+  if (updatedNavigationIndex !== currentNavigationIndex) {
+    for (let child of navigation.children) {
+      child.classList.remove(`navigation__button--${sections[currentNavigationIndex].id}`);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
+    currentNavigationIndex = updatedNavigationIndex;
+    for (let child of navigation.children) {
+      child.classList.add(`navigation__button--${sections[currentNavigationIndex].id}`);
+    }
   }
 }
 
@@ -121,6 +110,8 @@ const links = [...menuLinks].map((link, index) => ({
   currentSectionIndex: getCurrentSectionIndex(link.offsetTop)
 }));
 
+let currentNavigationIndex = getCurrentSectionIndex(navigation.offsetTop);
+
 const resumeFields = document.querySelectorAll('.field__container--js');
 const resumeButtons = document.querySelectorAll('.field__button--js-resume');
 const resumeIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-field');
@@ -136,6 +127,9 @@ handleActiveMenuLink(currentGlobalSectionIndex, 'set');
 [...menuLinks].forEach(link => {
   link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
 });
+for (let child of navigation.children) {
+  child.classList.add(`navigation__button--${sections[currentNavigationIndex].id}`);
+}
 handleMenuIndicator(currentGlobalSectionIndex);
 handleAccordion([...professionFields], [...professionIndicatorSvgs]);
 handleAccordion([...resumeFields], [...resumeIndicatorSvgs]);
