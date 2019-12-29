@@ -6,17 +6,19 @@ const handleIntroMenu = (e) => {
 
     if (action === 'activate') {
       menuLinks[index].classList.add(`menu__link--intro-${introLinkId}`);
-      introBox.classList.add(`intro__box--${introLinkId}`);
+      introBox.classList.add(`menu__introBox--${introLinkId}`);
     } else if (action === 'deactivate') {
       menuLinks[index].classList.remove(`menu__link--intro-${introLinkId}`);
-      introBox.classList.remove(`intro__box--${introLinkId}`);
+      introBox.classList.remove(`menu__introBox--${introLinkId}`);
     }
   }
+
+  const viewportOffset = window.pageYOffset;
   
   // handle intro menu on mouse event
   if (e) {
     // get link index based on cursor position
-    const currentLinkIndex = getCurrentLinkIndex(e.clientY);
+    const currentLinkIndex = getCurrentLinkIndex(e.clientY + viewportOffset);
 
     if (currentLinkIndex !== lastIntroLink) {
       // set intro box position based on current link index
@@ -33,12 +35,16 @@ const handleIntroMenu = (e) => {
     const startYPosition = links[lastIntroLink].offset;
     const startLinkId = sections[lastIntroLink].id;
     menuLinks[lastIntroLink].classList.add(`menu__link--intro-${startLinkId}`);
-    introBox.classList.add(`intro__box--${startLinkId}`);
+    introBox.classList.add(`menu__introBox--${startLinkId}`);
     introBox.style.height = `${linkHeight}px`;
     introBox.style.width = `${linkHeight}px`;
     introBox.style.top = `${startYPosition}px`;
   }
 }
+
+
+
+
 
 const getCurrentLinkIndex = (cursorYPosition) => {  // ! TO REFACTOR
   return links.length - 1 - [...links]
@@ -169,7 +175,7 @@ const navigateToSection = (e) => {
 //: INTRO :
 let isIntroMode = true;
 let lastIntroLink = 0;
-const introBox = document.querySelector('.intro__box--js');
+const introBox = document.querySelector('.menu__introBox--js');
 
 //: MENU AND NAVIGATION :
 const pageSections = document.querySelectorAll('.section--js');
