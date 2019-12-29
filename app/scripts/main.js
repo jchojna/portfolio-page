@@ -143,6 +143,7 @@ const introBox = document.querySelector('.intro__box--js');
 
 //: MENU AND NAVIGATION :
 const pageSections = document.querySelectorAll('.section--js');
+const menuList = document.querySelector('.menu__list--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
 const menuIndicator = document.querySelector('.menu__indicator--js');
 const sectionScrollOffset = 200;
@@ -222,7 +223,7 @@ const handleMenu = () => {
 //| EVENT LISTENERS |
 
 //: INTRO :
-window.addEventListener('mousemove', handleIntroBox);
+menuList.addEventListener('mousemove', handleIntroBox);
 //: MENU AND NAVIGATION :
 window.addEventListener('scroll', handleMenu);
 window.addEventListener('scroll', handleNavigation);

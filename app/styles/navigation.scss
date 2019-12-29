@@ -6,6 +6,10 @@
   position: fixed;
   right: 100px;
 
+  &--hidden {
+    display: none;
+  }
+
   &:hover &__button {
     transition: transform $navigation-time $navigation-time-rotate;
 

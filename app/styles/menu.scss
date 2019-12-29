@@ -6,28 +6,29 @@
   height: 100%;
   left: 0;
   min-height: 100vh;
+  pointer-events: none;
   position: fixed;
   top: 0;
-  width: 540px;
+  width: 100%;
   z-index: 4;
 
-  &--intro {
-    left: initial;
-    right: 50%;
-    justify-content: flex-end;
-  }
-
-  &--centered {
+  /* &--centered {
     align-items: center;
     justify-content: center;
-  }
+  } */
 }
 
 .menu {
-  @include flex-center;
+  align-items: center;
+  display: flex;
   height: 100%;
-  margin-left: 50px;
   min-height: 800px;
+  pointer-events: all;
+  width: 500px;
+
+  &--intro {
+    margin-left: calc(50vw - 500px);
+  }
 
   &__list {
     align-items: flex-end;
@@ -36,16 +37,19 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
+    width: 100%;
   }
 
   &__item {
     overflow: hidden;
+    width: 100%;
   }
 
   &__link {
     display: flex;
     color: #000;
-    font-size: 6.25em;
+    font-size: 5.5em;
+    justify-content: flex-end;
     line-height: 1;
     margin: 0;
     padding: 0;
