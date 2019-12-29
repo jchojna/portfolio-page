@@ -58,15 +58,15 @@
     text-transform: uppercase;
     transition: color 0.3s;
 
-    &--introAbout:hover     { color: $color-about; }
-    &--introResume:hover    { color: $color-resume; }
-    &--introTasktimer:hover { color: $color-tasktimer; }
-    &--introPortfolio:hover { color: $color-portfolio; }
-    &--introHydrapp:hover   { color: $color-hydrapp; }
-    &--introArchviz:hover   { color: $color-archviz; }
-    &--introQuotes:hover    { color: $color-quotes; }
-    &--introOther:hover     { color: $color-other; }
-    &--introContact:hover   { color: $color-contact; }
+    &--intro-about     { color: $color-about; }
+    &--intro-resume    { color: $color-resume; }
+    &--intro-tasktimer { color: $color-tasktimer; }
+    &--intro-portfolio { color: $color-portfolio; }
+    &--intro-hydrapp   { color: $color-hydrapp; }
+    &--intro-archviz   { color: $color-archviz; }
+    &--intro-quotes    { color: $color-quotes; }
+    &--intro-other     { color: $color-other; }
+    &--intro-contact   { color: $color-contact; }
 
     &--about {
       color: $color-about-diff;

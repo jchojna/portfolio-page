@@ -1,16 +1,31 @@
 //| FUNCTIONS |
 const handleIntroBox = (e) => {
 
-  if (e) {
-    //introBox.style.top = `${e.clientY}px`;
+  const toggleLink = (index, action) => {
+    const introLinkId = sections[index].id;
 
+    if (action === 'activate') {
+      menuLinks[index].classList.add(`menu__link--intro-${introLinkId}`);
+    } else if (action === 'deactivate') {
+      menuLinks[index].classList.remove(`menu__link--intro-${introLinkId}`);
+    }
+  }
+
+  if (e) {
     // get link index based on cursor position
     const currentLinkIndex = getCurrentLinkIndex(e.clientY);
-    console.log(currentLinkIndex);
 
-    // set intro box position based on current link index
+    if (currentLinkIndex !== lastIntroLink) {
+      // set intro box position based on current link index
+      const currentYPosition = links[currentLinkIndex].offset;
+      introBox.style.top = `${currentYPosition}px`;
+      // set color of last hovered menu link
+      toggleLink(lastIntroLink, 'deactivate');
+      lastIntroLink = currentLinkIndex;
+      toggleLink(lastIntroLink, 'activate');
 
-    // set color of intro box based on current link index
+      // set color of intro box based on current link index
+    }
 
 
 
@@ -28,8 +43,10 @@ const handleIntroBox = (e) => {
 
   // set up intro box on page load
   } else {
-    const linkHeight = links[0].height;
-    const startYPosition = links[0].offset;
+    const linkHeight = links[lastIntroLink].height;
+    const startYPosition = links[lastIntroLink].offset;
+    const startLinkId = sections[lastIntroLink].id;
+    menuLinks[lastIntroLink].classList.add(`menu__link--intro-${startLinkId}`);
     introBox.style.height = `${linkHeight}px`;
     introBox.style.width = `${linkHeight}px`;
     introBox.style.top = `${startYPosition}px`;
@@ -163,7 +180,8 @@ const navigateToSection = (e) => {
 
 //| GLOBAL VARIABLES |
 //: INTRO :
-const isIntroMode = true;
+let isIntroMode = true;
+let lastIntroLink = 0;
 const introBox = document.querySelector('.intro__box--js');
 
 //: MENU AND NAVIGATION :
