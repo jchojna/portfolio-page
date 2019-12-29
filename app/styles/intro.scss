@@ -16,6 +16,8 @@
     background-color: #000;
     width: 100px;
     height: 100px;
+
+    transition: background-color $intro-link-change, top $intro-link-change;
     
     &--about     { background-color: $color-about; }
     &--resume    { background-color: $color-resume; }
