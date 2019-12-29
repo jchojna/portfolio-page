@@ -1,16 +1,19 @@
 //| FUNCTIONS |
-const handleIntroBox = (e) => {
+const handleIntroMenu = (e) => {
 
   const toggleLink = (index, action) => {
     const introLinkId = sections[index].id;
 
     if (action === 'activate') {
       menuLinks[index].classList.add(`menu__link--intro-${introLinkId}`);
+      introBox.classList.add(`intro__box--${introLinkId}`);
     } else if (action === 'deactivate') {
       menuLinks[index].classList.remove(`menu__link--intro-${introLinkId}`);
+      introBox.classList.remove(`intro__box--${introLinkId}`);
     }
   }
-
+  
+  // handle intro menu on mouse event
   if (e) {
     // get link index based on cursor position
     const currentLinkIndex = getCurrentLinkIndex(e.clientY);
@@ -19,34 +22,18 @@ const handleIntroBox = (e) => {
       // set intro box position based on current link index
       const currentYPosition = links[currentLinkIndex].offset;
       introBox.style.top = `${currentYPosition}px`;
-      // set color of last hovered menu link
+      // set color of last hovered menu item
       toggleLink(lastIntroLink, 'deactivate');
       lastIntroLink = currentLinkIndex;
       toggleLink(lastIntroLink, 'activate');
-
-      // set color of intro box based on current link index
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // set up intro box on page load
+  // handle intro menu on page load
   } else {
     const linkHeight = links[lastIntroLink].height;
     const startYPosition = links[lastIntroLink].offset;
     const startLinkId = sections[lastIntroLink].id;
     menuLinks[lastIntroLink].classList.add(`menu__link--intro-${startLinkId}`);
+    introBox.classList.add(`intro__box--${startLinkId}`);
     introBox.style.height = `${linkHeight}px`;
     introBox.style.width = `${linkHeight}px`;
     introBox.style.top = `${startYPosition}px`;
@@ -227,7 +214,7 @@ let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
 /* [...menuLinks].forEach(link => {
   link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
 }); */
-handleIntroBox();
+handleIntroMenu();
 handleNavigation();
 handleMenuIndicator(currentGlobalSectionIndex);
 handleAccordion([...professionFields], [...professionIndicatorSvgs]);
@@ -268,7 +255,7 @@ const handleMenu = () => {
 //| EVENT LISTENERS |
 
 //: INTRO :
-menuList.addEventListener('mousemove', handleIntroBox);
+menuList.addEventListener('mousemove', handleIntroMenu);
 //: MENU AND NAVIGATION :
 window.addEventListener('scroll', handleMenu);
 window.addEventListener('scroll', handleNavigation);
