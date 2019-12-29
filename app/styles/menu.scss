@@ -58,6 +58,16 @@
     text-transform: uppercase;
     transition: color 0.3s;
 
+    &--introAbout:hover     { color: $color-about; }
+    &--introResume:hover    { color: $color-resume; }
+    &--introTasktimer:hover { color: $color-tasktimer; }
+    &--introPortfolio:hover { color: $color-portfolio; }
+    &--introHydrapp:hover   { color: $color-hydrapp; }
+    &--introArchviz:hover   { color: $color-archviz; }
+    &--introQuotes:hover    { color: $color-quotes; }
+    &--introOther:hover     { color: $color-other; }
+    &--introContact:hover   { color: $color-contact; }
+
     &--about {
       color: $color-about-diff;
       &:hover { color: $color-about-diff-dark; }
