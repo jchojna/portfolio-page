@@ -16,5 +16,17 @@
     background-color: #000;
     width: 100px;
     height: 100px;
+
+    transition: background-color $intro-link-change, top $intro-link-change;
+    
+    &--about     { background-color: $color-about; }
+    &--resume    { background-color: $color-resume; }
+    &--tasktimer { background-color: $color-tasktimer; }
+    &--portfolio { background-color: $color-portfolio; }
+    &--hydrapp   { background-color: $color-hydrapp; }
+    &--archviz   { background-color: $color-archviz; }
+    &--quotes    { background-color: $color-quotes; }
+    &--other     { background-color: $color-other; }
+    &--contact   { background-color: $color-contact; }
   }
 }

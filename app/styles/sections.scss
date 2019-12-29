@@ -2,10 +2,9 @@
 @import 'mixins.scss';
 
 .pageContainer {
-  display: none;
 
-  &--visible {
-    display: block;
+  &--hidden {
+    display: none;
   }
 }
 

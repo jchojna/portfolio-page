@@ -1,24 +1,53 @@
 //| FUNCTIONS |
-const handleIntroBox = (e) => {
+const handleIntroMenu = (e) => {
 
-  introBox.style.top = `${e.clientY}px`;
+  const toggleLink = (index, action) => {
+    const introLinkId = sections[index].id;
 
+    if (action === 'activate') {
+      menuLinks[index].classList.add(`menu__link--intro-${introLinkId}`);
+      introBox.classList.add(`intro__box--${introLinkId}`);
+    } else if (action === 'deactivate') {
+      menuLinks[index].classList.remove(`menu__link--intro-${introLinkId}`);
+      introBox.classList.remove(`intro__box--${introLinkId}`);
+    }
+  }
+  
+  // handle intro menu on mouse event
+  if (e) {
+    // get link index based on cursor position
+    const currentLinkIndex = getCurrentLinkIndex(e.clientY);
 
-
-
-
-
-
-
-
-
-
-
-
-
+    if (currentLinkIndex !== lastIntroLink) {
+      // set intro box position based on current link index
+      const currentYPosition = links[currentLinkIndex].offset;
+      introBox.style.top = `${currentYPosition}px`;
+      // set color of last hovered menu item
+      toggleLink(lastIntroLink, 'deactivate');
+      lastIntroLink = currentLinkIndex;
+      toggleLink(lastIntroLink, 'activate');
+    }
+  // handle intro menu on page load
+  } else {
+    const linkHeight = links[lastIntroLink].height;
+    const startYPosition = links[lastIntroLink].offset;
+    const startLinkId = sections[lastIntroLink].id;
+    menuLinks[lastIntroLink].classList.add(`menu__link--intro-${startLinkId}`);
+    introBox.classList.add(`intro__box--${startLinkId}`);
+    introBox.style.height = `${linkHeight}px`;
+    introBox.style.width = `${linkHeight}px`;
+    introBox.style.top = `${startYPosition}px`;
+  }
 }
 
-const getCurrentSectionIndex = (scrollOffset) => { // add throttling
+const getCurrentLinkIndex = (cursorYPosition) => {  // ! TO REFACTOR
+  return links.length - 1 - [...links]
+    .map(link => link.offset)
+    .reverse()
+    .findIndex(offset => cursorYPosition >= offset)
+}
+
+const getCurrentSectionIndex = (scrollOffset) => { // add throttling  // ! TO REFACTOR
   const currentOffset = window.pageYOffset;
   return sections.length - 1 - [...sections]
     .map(section => section.offset)
@@ -138,11 +167,13 @@ const navigateToSection = (e) => {
 
 //| GLOBAL VARIABLES |
 //: INTRO :
-const isIntroMode = true;
+let isIntroMode = true;
+let lastIntroLink = 0;
 const introBox = document.querySelector('.intro__box--js');
 
 //: MENU AND NAVIGATION :
 const pageSections = document.querySelectorAll('.section--js');
+const menuList = document.querySelector('.menu__list--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
 const menuIndicator = document.querySelector('.menu__indicator--js');
 const sectionScrollOffset = 200;
@@ -162,6 +193,7 @@ const links = [...menuLinks].map((link, index) => ({
   index,
   node: link,
   offset: link.offsetTop,
+  height: link.clientHeight,
   currentSectionIndex: getCurrentSectionIndex(link.offsetTop)
 }));
 
@@ -182,6 +214,7 @@ let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
 /* [...menuLinks].forEach(link => {
   link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
 }); */
+handleIntroMenu();
 handleNavigation();
 handleMenuIndicator(currentGlobalSectionIndex);
 handleAccordion([...professionFields], [...professionIndicatorSvgs]);
@@ -222,7 +255,7 @@ const handleMenu = () => {
 //| EVENT LISTENERS |
 
 //: INTRO :
-window.addEventListener('mousemove', handleIntroBox);
+menuList.addEventListener('mousemove', handleIntroMenu);
 //: MENU AND NAVIGATION :
 window.addEventListener('scroll', handleMenu);
 window.addEventListener('scroll', handleNavigation);
