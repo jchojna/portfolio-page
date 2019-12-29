@@ -1,7 +1,16 @@
 //| FUNCTIONS |
 const handleIntroBox = (e) => {
 
-  introBox.style.top = `${e.clientY}px`;
+  if (e) {
+    //introBox.style.top = `${e.clientY}px`;
+
+    // get link index based on cursor position
+    const currentLinkIndex = getCurrentLinkIndex(e.clientY);
+    console.log(currentLinkIndex);
+
+    // set intro box position based on current link index
+
+    // set color of intro box based on current link index
 
 
 
@@ -16,9 +25,25 @@ const handleIntroBox = (e) => {
 
 
 
+
+  // set up intro box on page load
+  } else {
+    const linkHeight = links[0].height;
+    const startYPosition = links[0].offset;
+    introBox.style.height = `${linkHeight}px`;
+    introBox.style.width = `${linkHeight}px`;
+    introBox.style.top = `${startYPosition}px`;
+  }
 }
 
-const getCurrentSectionIndex = (scrollOffset) => { // add throttling
+const getCurrentLinkIndex = (cursorYPosition) => {  // ! TO REFACTOR
+  return links.length - 1 - [...links]
+    .map(link => link.offset)
+    .reverse()
+    .findIndex(offset => cursorYPosition >= offset)
+}
+
+const getCurrentSectionIndex = (scrollOffset) => { // add throttling  // ! TO REFACTOR
   const currentOffset = window.pageYOffset;
   return sections.length - 1 - [...sections]
     .map(section => section.offset)
@@ -163,6 +188,7 @@ const links = [...menuLinks].map((link, index) => ({
   index,
   node: link,
   offset: link.offsetTop,
+  height: link.clientHeight,
   currentSectionIndex: getCurrentSectionIndex(link.offsetTop)
 }));
 
@@ -183,6 +209,7 @@ let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
 /* [...menuLinks].forEach(link => {
   link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
 }); */
+handleIntroBox();
 handleNavigation();
 handleMenuIndicator(currentGlobalSectionIndex);
 handleAccordion([...professionFields], [...professionIndicatorSvgs]);
