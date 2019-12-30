@@ -7,56 +7,128 @@
   height: 100%;
   left: 0;
   min-height: 100vh;
+  overflow: auto;
   padding: 50px 0;
   pointer-events: none;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 4;
 
   &--intro {
-    background-color: #aaa;
+    pointer-events: all;
     position: relative;
+  }
+
+  &__indicator {
+    background-color: #fff;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: top $time-switch;
+    width: 20px;
+  }
+
+  &__introBox {
+    position: absolute;
+    background-color: #000;
+    width: 100px;
+    height: 100px;
+    right: 10px;
+
+    transition: background-color $intro-link-change, top $intro-link-change;
+    
+    &--about     { background-color: $color-about; }
+    &--resume    { background-color: $color-resume; }
+    &--tasktimer { background-color: $color-tasktimer; }
+    &--portfolio { background-color: $color-portfolio; }
+    &--hydrapp   { background-color: $color-hydrapp; }
+    &--archviz   { background-color: $color-archviz; }
+    &--quotes    { background-color: $color-quotes; }
+    &--other     { background-color: $color-other; }
+    &--contact   { background-color: $color-contact; }
+  }
+
+  &__background {
+    background-color: #ccc;
+    height: 100%;
+    position: absolute;
+    transition: height 1s;
+    width: 100%;
+    z-index: -1;
+
+    &--upper {
+      left: 0;
+      top: 0;
+    }
+    
+    &--bottom {
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  /*
+  .%%...%%..%%%%%%..%%%%%...%%%%%%...%%%%..
+  .%%%.%%%..%%......%%..%%....%%....%%..%%.
+  .%%.%.%%..%%%%....%%..%%....%%....%%%%%%.
+  .%%...%%..%%......%%..%%....%%....%%..%%.
+  .%%...%%..%%%%%%..%%%%%...%%%%%%..%%..%%.
+  */
+
+  @media only screen and (min-width: 1200px) {
+
+    & {
+
+      &__introBox {
+        left: calc(50% + 20px);
+        right: initial;
+      }
+    }
   }
 }
 
 .menu {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  min-height: 800px;
-  pointer-events: all;
-  width: 500px;
-
-  &--intro {
-    margin-left: calc(50vw - 500px);
-  }
+  width: 100%;
 
   &__list {
-    align-items: flex-end;
-    display: flex;
-    flex-direction: column;
     list-style-type: none;
     margin: 0;
     padding: 0;
     width: 100%;
+
+    &--intro {
+      width: calc(100% - 70px);
+    }
+
+    /* &--contentMode {
+      background-color: #555;
+      position: absolute;
+    } */
   }
 
   &__item {
-    overflow: hidden;
-    width: 100%;
     transition: top 1s;
+    width: 100%;
+    //pointer-events: all;
+    //background-color: #555;
+
+    
+    &--content {
+      position: fixed;
+      right: 70px;
+    }
   }
 
   &__link {
-    display: flex;
     color: #000;
-    font-size: 5.5em;
-    justify-content: flex-end;
+    display: block;
+    font-size: 3em;
     line-height: 1;
     margin: 0;
     padding: 0;
     position: relative;
+    text-align: right;
     text-decoration: none;
     text-transform: uppercase;
     transition: color 0.3s;
@@ -113,65 +185,28 @@
     }
   }
 
-  &__indicator {
-    background-color: #fff;
-    left: 0;
-    position: fixed;
-    top: 0;
-    transition: top $time-switch;
-    width: 20px;
-  }
 
-  &__introBox {
-    position: absolute;
-    left: calc(50% + 20px);
-    background-color: #000;
-    width: 100px;
-    height: 100px;
 
-    transition: background-color $intro-link-change, top $intro-link-change;
-    
-    &--about     { background-color: $color-about; }
-    &--resume    { background-color: $color-resume; }
-    &--tasktimer { background-color: $color-tasktimer; }
-    &--portfolio { background-color: $color-portfolio; }
-    &--hydrapp   { background-color: $color-hydrapp; }
-    &--archviz   { background-color: $color-archviz; }
-    &--quotes    { background-color: $color-quotes; }
-    &--other     { background-color: $color-other; }
-    &--contact   { background-color: $color-contact; }
-  }
+  /*
+  .%%...%%..%%%%%%..%%%%%...%%%%%%...%%%%..
+  .%%%.%%%..%%......%%..%%....%%....%%..%%.
+  .%%.%.%%..%%%%....%%..%%....%%....%%%%%%.
+  .%%...%%..%%......%%..%%....%%....%%..%%.
+  .%%...%%..%%%%%%..%%%%%...%%%%%%..%%..%%.
+  */
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (min-width: 1200px) {
 
     & {
-      align-items: flex-start;
-      margin-left: 0;
-      min-height: initial;
+      width: 500px;
 
       &--intro {
-        width: calc(100% - 70px);
-      }
-
-      &__list {
-
-      }
-
-      &__item {
-
-        &--contentMode {
-          position: fixed;
-          width: calc(100% - 70px);
-        }
+        width: 1000px;
+        margin-left: calc(50vw - 500px);
       }
       
       &__link {
-        font-size: 3em;
-      }
-
-      &__introBox {
-        left: initial;
-        right: 10px;
+        font-size: 5.5em;
       }
     }
   }
