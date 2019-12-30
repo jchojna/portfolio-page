@@ -68,7 +68,7 @@ const handleMenuItems = (activeIndex) => {
   const clickedItemOffset = links[activeIndex].offset;
   const upperBackgroundHeight = clickedItemOffset + clickedItemHeight;
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
-  const timeoutInterval = 500;
+  const timeoutInterval = 200;
   
   pageContainer.style.top = `${links[activeIndex].offset}px`;
   menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
@@ -95,20 +95,16 @@ const handleMenuItems = (activeIndex) => {
         item.style.top = `${currentItemOffset + downwardsOffset}px`;
       }
     });
-
-
+    introBox.classList.add('pageHeader__introBox--content');
+    introBox.style.top = 0;
+    // hide menu background
     menuUpperBackground.style.height = `${clickedItemHeight}px`;
-    menuBottomBackground.style.height = 0;
-
-    
+    menuBottomBackground.style.height = 0;  
     // show main content of the page
     pageHeader.classList.remove('pageHeader--intro');
     pageContainer.classList.remove('pageContainer--hidden');
 
   }, timeoutInterval);
-
-
-
 
   console.log(activeIndex);
 
