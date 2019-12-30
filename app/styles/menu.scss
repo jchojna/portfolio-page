@@ -1,7 +1,7 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
-.header {
+.pageHeader {
   align-items: center;
   display: flex;
   height: 100%;
@@ -45,6 +45,7 @@
   &__item {
     overflow: hidden;
     width: 100%;
+    transition: top 1s;
   }
 
   &__link {
@@ -154,6 +155,14 @@
 
       &__list {
 
+      }
+
+      &__item {
+
+        &--contentMode {
+          position: fixed;
+          width: calc(100% - 70px);
+        }
       }
       
       &__link {

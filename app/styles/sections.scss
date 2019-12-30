@@ -2,6 +2,13 @@
 @import 'mixins.scss';
 
 .pageContainer {
+  /* position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column; */
 
   &--hidden {
     display: none;

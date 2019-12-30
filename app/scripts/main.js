@@ -60,8 +60,60 @@ const handleIntroMenu = (e) => {
   }
 }
 
+// handle menu items on mobile devices
+const handleMenuItems = (activeIndex) => {
+
+  const windowHeight = window.innerHeight;
+  const clickedItemHeight = links[activeIndex].height;
+  const clickedItemOffset = links[activeIndex].offset;
+  const timeoutInterval = 500;
+
+  // change menu items to absolutely positioned elements
+  [...menuItems].forEach((item, itemIndex) => {
+    const currentItemOffset = links[itemIndex].offset;
+    
+    item.classList.add('menu__item--contentMode');
+    item.style.top = `${links[itemIndex].offset}px`;
+
+    // set timeouts for translating menu items
+    // clear timeouts
+    const timeoutId = setTimeout(() => {
+      // translate menu items
+      if (itemIndex <= activeIndex) {
+        item.style.top = `${currentItemOffset - clickedItemOffset}px`;
+
+      } else {
+        item.style.top = `${currentItemOffset + (window.innerHeight - clickedItemOffset - clickedItemHeight)}px`;
+
+      }
+      // show main content of the page
+      //pageHeader.classList.remove('pageHeader--intro');
+      //pageContainer.classList.remove('pageContainer--hidden');
+
+    }, timeoutInterval);
 
 
+
+
+    console.log(activeIndex);
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 const getCurrentLinkIndex = (cursorYPosition) => {  // ! TO REFACTOR
@@ -139,6 +191,19 @@ const handleNavigation = (e) => {
   }
 }
 
+const navigateToSection = (e) => {
+  const currentSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
+  const targetIndex = e.target === navigationPrevButton
+  ? currentSectionIndex > 0
+    ? currentSectionIndex - 1
+    : 0
+  : currentSectionIndex < pageSections.length - 1
+    ? currentSectionIndex + 1
+    : pageSections.length - 1;
+  
+  window.scrollTo(0, pageSections[targetIndex].offsetTop);
+}
+
 const handleAccordion = (array, indicators, clickedIndex) => {
   array.forEach((item, index) => {
 
@@ -176,28 +241,20 @@ const handleAccordion = (array, indicators, clickedIndex) => {
   });
 }
 
-const navigateToSection = (e) => {
-  const currentSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
-  const targetIndex = e.target === navigationPrevButton
-  ? currentSectionIndex > 0
-    ? currentSectionIndex - 1
-    : 0
-  : currentSectionIndex < pageSections.length - 1
-    ? currentSectionIndex + 1
-    : pageSections.length - 1;
-  
-  window.scrollTo(0, pageSections[targetIndex].offsetTop);
-}
-
-//| GLOBAL VARIABLES |
-//: INTRO :
+//| GLOBAL VARIABLES |//
+//: INTRO ://
 let isIntroMode = true;
 let lastLinkIndex = 0;
 const introBox = document.querySelector('.menu__introBox--js');
 
-//: MENU AND NAVIGATION :
+//: MAIN CONTENT ://
+const pageContainer = document.querySelector('.pageContainer--js');
 const pageSections = document.querySelectorAll('.section--js');
+
+//: MENU AND NAVIGATION ://
+const pageHeader = document.querySelector('.pageHeader--js');
 const menuList = document.querySelector('.menu__list--js');
+const menuItems = document.querySelectorAll('.menu__item--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
 const menuIndicator = document.querySelector('.menu__indicator--js');
 const sectionScrollOffset = 200;
@@ -205,6 +262,13 @@ const navigation = document.querySelector('.navigation--js');
 const navigationMainButton = document.querySelector('.navigation__button--js-main');
 const navigationPrevButton = document.querySelector('.navigation__button--js-prev');
 const navigationNextButton = document.querySelector('.navigation__button--js-next');
+
+const resumeFields = document.querySelectorAll('.field__container--js');
+const resumeButtons = document.querySelectorAll('.field__button--js-resume');
+const resumeIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-field');
+const professionFields = document.querySelectorAll('.table--js-profession');
+const professionButtons = document.querySelectorAll('.field__button--js-profession');
+const professionIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-profession');
 
 const sections = [...pageSections].map((section, index) => ({
   index,
@@ -223,14 +287,7 @@ const links = [...menuLinks].map((link, index) => ({
 
 let currentNavigationIndex = getCurrentSectionIndex(navigation.offsetTop);
 
-const resumeFields = document.querySelectorAll('.field__container--js');
-const resumeButtons = document.querySelectorAll('.field__button--js-resume');
-const resumeIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-field');
-const professionFields = document.querySelectorAll('.table--js-profession');
-const professionButtons = document.querySelectorAll('.field__button--js-profession');
-const professionIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-profession');
-
-//| FUNCTION CALLS ON PAGE LOAD |
+//| FUNCTION CALLS ON PAGE LOAD |//
 let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
 // assign active menu link
 //handleActiveMenuLink(currentGlobalSectionIndex, 'set');
@@ -244,7 +301,7 @@ handleMenuIndicator(currentGlobalSectionIndex);
 handleAccordion([...professionFields], [...professionIndicatorSvgs]);
 handleAccordion([...resumeFields], [...resumeIndicatorSvgs]);
 
-//| EVENT HANDLERS |
+//| EVENT HANDLERS |//
 
 const handleMenu = () => {
   if (!isIntroMode) {
@@ -276,23 +333,34 @@ const handleMenu = () => {
   }
 }
 
-//| EVENT LISTENERS |
+//| EVENT LISTENERS |//
+
+//: UPDATE GLOBAL OBJECTS ://
 window.addEventListener('resize', updateLinks);
-//: INTRO :
+// ! update serctions on resize
+
+//: INTRO ://
 menuList.addEventListener('mousemove', handleIntroMenu);
 window.addEventListener('resize', handleIntroMenu);
-//: MENU AND NAVIGATION :
+
+//: MENU AND NAVIGATION ://
 window.addEventListener('scroll', handleMenu);
 window.addEventListener('scroll', handleNavigation);
-// ! update objects on resize
 
-[...resumeButtons].forEach((button, index) => {
-  button.addEventListener('click', () => handleAccordion([...resumeFields], [...resumeIndicatorSvgs], index));
-});
-[...professionButtons].forEach((button, index) => {
-  button.addEventListener('click', () => handleAccordion([...professionFields], [...professionIndicatorSvgs], index));
+[...menuLinks].forEach((link, index) => {
+  link.addEventListener('click', () => handleMenuItems(index));
 });
 
 navigationMainButton.addEventListener('click', () => console.log('main'));
 navigationPrevButton.addEventListener('click', navigateToSection);
 navigationNextButton.addEventListener('click', navigateToSection);
+
+//: RESUME ://
+[...resumeButtons].forEach((button, index) => {
+  button.addEventListener('click', () =>
+  handleAccordion([...resumeFields], [...resumeIndicatorSvgs], index));
+});
+[...professionButtons].forEach((button, index) => {
+  button.addEventListener('click', () =>
+  handleAccordion([...professionFields], [...professionIndicatorSvgs], index));
+});
