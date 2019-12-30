@@ -1,4 +1,13 @@
 //| FUNCTIONS |
+
+const updateLinks = () => {
+  //[...links].forEach(link => link.offset = link.offsetTop);
+  [...links].forEach(link => {
+    link.offset = link.node.offsetTop;
+    link.height = link.node.clientHeight;
+  });
+}
+
 const handleIntroMenu = (e) => {
 
   const toggleLink = (index, action) => {
@@ -16,25 +25,34 @@ const handleIntroMenu = (e) => {
   const viewportOffset = window.pageYOffset;
   
   // handle intro menu on mouse event
-  if (e) {
+  if (e && e.type === 'mousemove') {
     // get link index based on cursor position
     const currentLinkIndex = getCurrentLinkIndex(e.clientY + viewportOffset);
 
-    if (currentLinkIndex !== lastIntroLink) {
+    if (currentLinkIndex !== lastLinkIndex) {
       // set intro box position based on current link index
       const currentYPosition = links[currentLinkIndex].offset;
       introBox.style.top = `${currentYPosition}px`;
       // set color of last hovered menu item
-      toggleLink(lastIntroLink, 'deactivate');
-      lastIntroLink = currentLinkIndex;
-      toggleLink(lastIntroLink, 'activate');
+      toggleLink(lastLinkIndex, 'deactivate');
+      lastLinkIndex = currentLinkIndex;
+      toggleLink(lastLinkIndex, 'activate');
     }
+
+  // handle intro menu on window resize
+  } else if (e && e.type === 'resize') {
+    const currentYPosition = links[lastLinkIndex].offset;
+    const linkHeight = links[lastLinkIndex].height;
+    introBox.style.top = `${currentYPosition}px`;
+    introBox.style.height = `${linkHeight}px`;
+    introBox.style.width = `${linkHeight}px`;
+
   // handle intro menu on page load
   } else {
-    const linkHeight = links[lastIntroLink].height;
-    const startYPosition = links[lastIntroLink].offset;
-    const startLinkId = sections[lastIntroLink].id;
-    menuLinks[lastIntroLink].classList.add(`menu__link--intro-${startLinkId}`);
+    const linkHeight = links[lastLinkIndex].height;
+    const startYPosition = links[lastLinkIndex].offset;
+    const startLinkId = sections[lastLinkIndex].id;
+    menuLinks[lastLinkIndex].classList.add(`menu__link--intro-${startLinkId}`);
     introBox.classList.add(`menu__introBox--${startLinkId}`);
     introBox.style.height = `${linkHeight}px`;
     introBox.style.width = `${linkHeight}px`;
@@ -174,7 +192,7 @@ const navigateToSection = (e) => {
 //| GLOBAL VARIABLES |
 //: INTRO :
 let isIntroMode = true;
-let lastIntroLink = 0;
+let lastLinkIndex = 0;
 const introBox = document.querySelector('.menu__introBox--js');
 
 //: MENU AND NAVIGATION :
@@ -259,13 +277,14 @@ const handleMenu = () => {
 }
 
 //| EVENT LISTENERS |
-
+window.addEventListener('resize', updateLinks);
 //: INTRO :
 menuList.addEventListener('mousemove', handleIntroMenu);
+window.addEventListener('resize', handleIntroMenu);
 //: MENU AND NAVIGATION :
 window.addEventListener('scroll', handleMenu);
 window.addEventListener('scroll', handleNavigation);
-// update objects on resize
+// ! update objects on resize
 
 [...resumeButtons].forEach((button, index) => {
   button.addEventListener('click', () => handleAccordion([...resumeFields], [...resumeIndicatorSvgs], index));
