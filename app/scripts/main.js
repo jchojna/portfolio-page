@@ -60,8 +60,8 @@ const handleIntroMenu = (e) => {
   }
 }
 
-// handle menu items on mobile devices
-const handleMenuItems = (activeIndex) => {
+//| handle menu items on mobile devices |//
+const handleMenuClick = (activeIndex) => {
 
   const windowHeight = window.innerHeight;
   const clickedItemHeight = links[activeIndex].height;
@@ -74,19 +74,19 @@ const handleMenuItems = (activeIndex) => {
   menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
   menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
 
-  // change menu items to absolutely positioned elements
+  //: change menu items to absolutely positioned elements ://
   [...menuItems].forEach((item, itemIndex) => {
     item.classList.add('menu__item--content');
     item.style.top = `${links[itemIndex].offset}px`;
   });
 
-  // set timeout for translating menu items
-  // clear timeouts
-  const timeoutId = setTimeout(() => {
-
+  //: set timeout for translating menu items ://
+  // clear timeouts ...
+  const menuFirstTimeoutId = setTimeout(() => {
+    //. variables .//
     const upwardsOffset = clickedItemOffset;
     const downwardsOffset = windowHeight - clickedItemOffset - clickedItemHeight;
-
+    //. set position of menu items .//
     [...menuItems].forEach((item, itemIndex) => {
       const currentItemOffset = links[itemIndex].offset;
       if (itemIndex <= activeIndex) {
@@ -95,18 +95,29 @@ const handleMenuItems = (activeIndex) => {
         item.style.top = `${currentItemOffset + downwardsOffset}px`;
       }
     });
+    //. set position of introBox .//
     introBox.classList.add('pageHeader__introBox--content');
     introBox.style.top = 0;
-    // hide menu background
+    //. hide menu background .//
     menuUpperBackground.style.height = `${clickedItemHeight}px`;
     menuBottomBackground.style.height = 0;  
-    // show main content of the page
+    //. show main content of the page .//
     pageHeader.classList.remove('pageHeader--intro');
     pageContainer.classList.remove('pageContainer--hidden');
+    //. show burger button .//
+    burgerButton.classList.add('burgerButton--visible');
 
   }, timeoutInterval);
+  //: end of timeout ://
+}
 
-  console.log(activeIndex);
+//| BURGER BUTTON HANDLER |//
+const handleBurgerButton = () => {
+
+
+
+
+
 
 
 
@@ -124,7 +135,6 @@ const handleMenuItems = (activeIndex) => {
 
 
 }
-
 
 const getCurrentLinkIndex = (cursorYPosition) => {  // ! TO REFACTOR
   return links.length - 1 - [...links]
@@ -266,6 +276,7 @@ const pageHeader = document.querySelector('.pageHeader--js');
 const menuIndicator = document.querySelector('.pageHeader__indicator--js');
 const menuUpperBackground = document.querySelector('.pageHeader__background--js-upper');
 const menuBottomBackground = document.querySelector('.pageHeader__background--js-bottom');
+const burgerButton = document.querySelector('.burgerButton--js');
 
 const menuList = document.querySelector('.menu__list--js');
 const menuItems = document.querySelectorAll('.menu__item--js');
@@ -361,7 +372,7 @@ window.addEventListener('scroll', handleMenu);
 window.addEventListener('scroll', handleNavigation);
 
 [...menuLinks].forEach((link, index) => {
-  link.addEventListener('click', () => handleMenuItems(index));
+  link.addEventListener('click', () => handleMenuClick(index));
 });
 
 navigationMainButton.addEventListener('click', () => console.log('main'));
