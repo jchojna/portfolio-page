@@ -2,11 +2,12 @@
 @import 'mixins.scss';
 
 .pageContainer {  
+  display: none;
   overflow: hidden;
   width: 100%;
   
-  &--hidden {
-    display: none;
+  &--visible {
+    display: block;
   }
 }
 

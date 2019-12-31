@@ -8,10 +8,9 @@ const updateLinks = () => {
   });
 }
 
-//| HANDLE MENU IN INTRO MODE |//
+//| HANDLE MENU IN INTRO MODE                                               |//
 const handleIntroMenu = (e) => {
-
-  //: CHANGE ACTIVE LINK ON HOVER ://
+  //: CHANGE ACTIVE LINK ON HOVER                                      ://
   const toggleLink = (index, action) => {
     const introLinkId = sections[index].id;
 
@@ -23,25 +22,24 @@ const handleIntroMenu = (e) => {
       introBox.classList.remove(`pageHeader__introBox--${introLinkId}`);
     }
   }
-
   const viewportOffset = window.pageYOffset;
   
-  //: handle intro menu on mouse event ://
+  //: handle intro menu on mouse event                                 ://
   if (e && e.type === 'mousemove') {
-    //. get link index based on cursor position .//
+    //. get link index based on cursor position                   .//
     const currentLinkIndex = getCurrentLinkIndex(e.clientY + viewportOffset);
 
     if (currentLinkIndex !== lastLinkIndex) {
-      //. set intro box position based on current link index .//
+      //. set intro box position based on current link index      .//
       const currentYPosition = links[currentLinkIndex].offset;
       introBox.style.top = `${currentYPosition}px`;
-      //. set color of last hovered menu item .//
+      //. set color of last hovered menu item                     .//
       toggleLink(lastLinkIndex, 'deactivate');
       lastLinkIndex = currentLinkIndex;
       toggleLink(lastLinkIndex, 'activate');
     }
 
-  //: handle intro menu on window resize ://
+  //: handle intro menu on window resize                               ://
   } else if (e && e.type === 'resize') {
     const currentYPosition = links[lastLinkIndex].offset;
     const linkHeight = links[lastLinkIndex].height;
@@ -49,7 +47,7 @@ const handleIntroMenu = (e) => {
     introBox.style.height = `${linkHeight}px`;
     introBox.style.width = `${linkHeight}px`;
 
-  //: handle intro menu on page load ://
+  //: handle intro menu on page load                                   ://
   } else {
     const linkHeight = links[lastLinkIndex].height;
     const startYPosition = links[lastLinkIndex].offset;
@@ -61,10 +59,9 @@ const handleIntroMenu = (e) => {
     introBox.style.top = `${startYPosition}px`;
   }
 }
-
-//| handle menu items on mobile devices |//
+//| end of HANDLE MENU IN INTRO MODE                                        |//
+//| HANDLE MENU ITEMS ON MOBILE DEVICES                                     |//
 const handleMenuClick = (activeIndex) => {
-
   //: variables ://
   const windowHeight = window.innerHeight;
   const clickedItemHeight = links[activeIndex].height;
@@ -73,26 +70,26 @@ const handleMenuClick = (activeIndex) => {
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
   const timeoutInterval = 200;
   
-  //: calculate sizes and offsets of some elements ://
+  //: calculate sizes and offsets of some elements                     ://
   pageContainer.style.top = `${links[activeIndex].offset}px`;
   menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
   menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
   burgerButton.style.height = `${clickedItemHeight}px`;
   burgerButton.style.width = `${clickedItemHeight}px`;
 
-  //: change menu items to absolutely positioned elements ://
+  //: change menu items to absolutely positioned elements              ://
   [...menuItems].forEach((item, itemIndex) => {
-    item.classList.add('menu__item--content');
+    item.classList.remove('menu__item--intro');
     item.style.top = `${links[itemIndex].offset}px`;
   });
 
-  //: set timeout for translating menu items ://
-  // clear timeouts ...
-  const menuFirstTimeoutId = setTimeout(() => {
-    //. variables .//
+  //: set timeout for translating menu items                           ://
+  clearTimeout(menuTimeoutId);
+  menuTimeoutId = setTimeout(() => {
+    //. variables                                                 .//
     const upwardsOffset = clickedItemOffset;
     const downwardsOffset = windowHeight - clickedItemOffset - clickedItemHeight;
-    //. set position of menu items .//
+    //. set position of menu items                                .//
     [...menuItems].forEach((item, itemIndex) => {
       const currentItemOffset = links[itemIndex].offset;
       if (itemIndex <= activeIndex) {
@@ -101,74 +98,58 @@ const handleMenuClick = (activeIndex) => {
         item.style.top = `${currentItemOffset + downwardsOffset}px`;
       }
     });
-    //. set position of introBox .//
-    introBox.classList.add('pageHeader__introBox--content');
+    //. set position of introBox                                  .//
+    introBox.classList.remove('pageHeader__introBox--intro');
     introBox.style.top = 0;
-    //. hide menu background .//
+    //. hide menu background                                      .//
     menuUpperBackground.style.height = `${clickedItemHeight}px`;
     menuBottomBackground.style.height = 0;
-    //. show main content of the page .//
+    //. show main content of the page                             .//
     pageHeader.classList.remove('pageHeader--intro');
-    pageContainer.classList.remove('pageContainer--hidden');
-    //. show burger button .//
+    pageContainer.classList.add('pageContainer--visible');
+    //. show burger button                                        .//
     burgerButton.classList.add('burgerButton--visible');
 
   }, timeoutInterval);
-  //: end of timeout ://
+  //: end of timeout                                                   ://
 }
-
-//| BURGER BUTTON HANDLER |//
+//| end of HANDLE MENU ITEMS ON MOBILE DEVICES                              |//
+//| BURGER BUTTON HANDLER                                                   |//
 const handleBurgerButton = () => {
-  lastLinkIndex
-
-  //: variables ://
+  //: variables                                                        ://
   const windowHeight = window.innerHeight;
   const activeItemHeight = links[lastLinkIndex].height;
   const activeItemOffset = links[lastLinkIndex].offset;
   const upperBackgroundHeight = activeItemHeight + activeItemOffset;
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
   const timeoutInterval = 600;
-
-  //: hide burger button ://
+  //: hide burger button                                               ://
   burgerButton.classList.remove('burgerButton--visible');
-
-  //: set position of menu items ://
+  //: set position of menu items                                       ://
   [...menuItems].forEach((item, itemIndex) => {
     const currentItemOffset = links[itemIndex].offset;
     item.style.top = `${currentItemOffset}px`;
   });
-
-  //: show menu background ://
+  //: show menu background                                             ://
   menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
   menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
+  //: set position of introBox ://
+  introBox.style.top = `${activeItemOffset}px`;
+  //: set timeout for translating menu items                           ://
+  clearTimeout(menuTimeoutId);
+  menuTimeoutId = setTimeout(() => {
+    //. change introBox transition time                           .//
+    introBox.classList.add('pageHeader__introBox--intro');
+    //. change menu items to static elements                      .//
+    [...menuItems].forEach(item => item.classList.add('menu__item--intro'));
+    //. hide main content of the page                             .//
+    pageHeader.classList.add('pageHeader--intro');
+    pageContainer.classList.remove('pageContainer--visible');
 
-  //. set position of introBox .//
-  /* introBox.style.top = `${activeItemOffset}px`;
-
-
-
-
-
-  introBox.classList.remove('pageHeader__introBox--content'); */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }, timeoutInterval);
+  //: end of timeout                                                   ://
 }
+//| end of BURGER BUTTON HANDLER                                            |//
 
 const getCurrentLinkIndex = (cursorYPosition) => {  // ! TO REFACTOR
   return links.length - 1 - [...links]
@@ -300,6 +281,9 @@ const handleAccordion = (array, indicators, clickedIndex) => {
 let isIntroMode = true;
 let lastLinkIndex = 0;
 const introBox = document.querySelector('.pageHeader__introBox--js');
+
+//: INTERVALS ://
+let menuTimeoutId = null;
 
 //: MAIN CONTENT ://
 const pageContainer = document.querySelector('.pageContainer--js');

@@ -35,10 +35,10 @@
     width: 100px;
     height: 100px;
     right: 0;
-    transition: background-color $intro-link-change, top $intro-link-change;
+    transition: top $menu-items-translate;
 
-    &--content {
-      transition: top $menu-items-translate;
+    &--intro {
+      transition: background-color $intro-link-change, top $intro-link-change;
     }
     
     &--about     { background-color: $color-about; }
@@ -111,15 +111,15 @@
   }
 
   &__item {
+    position: fixed;
+    right: 60px;
     transition: top $menu-items-translate;
     width: 100%;
     //pointer-events: all;
     //background-color: #555;
-
     
-    &--content {
-      position: fixed;
-      right: 60px;
+    &--intro {
+      position: static;
     }
   }
 
