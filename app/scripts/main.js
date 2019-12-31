@@ -106,7 +106,7 @@ const handleMenuClick = (activeIndex) => {
     introBox.style.top = 0;
     //. hide menu background .//
     menuUpperBackground.style.height = `${clickedItemHeight}px`;
-    menuBottomBackground.style.height = 0;  
+    menuBottomBackground.style.height = 0;
     //. show main content of the page .//
     pageHeader.classList.remove('pageHeader--intro');
     pageContainer.classList.remove('pageContainer--hidden');
@@ -119,10 +119,37 @@ const handleMenuClick = (activeIndex) => {
 
 //| BURGER BUTTON HANDLER |//
 const handleBurgerButton = () => {
+  lastLinkIndex
 
-  //. hide burger button .//
+  //: variables ://
+  const windowHeight = window.innerHeight;
+  const activeItemHeight = links[lastLinkIndex].height;
+  const activeItemOffset = links[lastLinkIndex].offset;
+  const upperBackgroundHeight = activeItemHeight + activeItemOffset;
+  const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
+  const timeoutInterval = 600;
+
+  //: hide burger button ://
   burgerButton.classList.remove('burgerButton--visible');
 
+  //: set position of menu items ://
+  [...menuItems].forEach((item, itemIndex) => {
+    const currentItemOffset = links[itemIndex].offset;
+    item.style.top = `${currentItemOffset}px`;
+  });
+
+  //: show menu background ://
+  menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
+  menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
+
+  //. set position of introBox .//
+  /* introBox.style.top = `${activeItemOffset}px`;
+
+
+
+
+
+  introBox.classList.remove('pageHeader__introBox--content'); */
 
 
 
