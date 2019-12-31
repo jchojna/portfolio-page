@@ -214,3 +214,24 @@
     }
   }
 }
+
+.burgerButton {
+  @include button;
+  @include flex-center;
+  height: 50px;
+  pointer-events: all;
+  position: fixed;
+  right: 0;
+  top: 0;
+  visibility: hidden;
+  width: 50px;
+
+  &--visible {
+    visibility: visible;
+  }
+
+  &__svg {
+    fill: #fff;
+    width: 100%;
+  }
+}
