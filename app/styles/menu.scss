@@ -225,13 +225,14 @@
   position: fixed;
   right: 0;
   top: 0;
-  transition: opacity 0.3s, visibility 0s;
-  transition-delay: $menu-items-translate;
+  transition: opacity 0.3s, visibility 0s 0.3s;
   visibility: hidden;
   width: 50px;
 
   &--visible {
     opacity: 1;
+    transition: opacity 0.3s, visibility 0s;
+    transition-delay: $menu-items-translate;
     visibility: visible;
   }
 
