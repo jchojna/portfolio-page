@@ -8,6 +8,8 @@
   top: 50px;
   width: 400px;
 
+  display: none;
+
   &__base {
     width: 100%;
 
@@ -49,5 +51,12 @@
     height: 100%;
 
     &--tasktimer { fill: $color-tasktimer-letter; }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      display: block;
+    }
   }
 }

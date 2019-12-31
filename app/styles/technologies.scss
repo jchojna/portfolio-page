@@ -7,19 +7,26 @@
     align-self: end;
     color: $color-about-white;
     font-size: 1.5em;
-    margin: 1em 0 0.5em;
+    margin: 0.5em 0 0.5em;
     text-transform: uppercase;
 
     &--working { grid-area: titleWorking; }
     &--know { grid-area: titleKnow; }
     &--learn { grid-area: titleLearn; }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        margin: 1em 0 0.5em;
+      }
+    }
   }
 
   &__list {
     align-items: start;
-    column-gap: 7px;
+    column-gap: 10px;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -30,6 +37,13 @@
     &--used {
       grid-area: technologies;
       margin-top: 2em;
+    }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        grid-template-columns: repeat(12, 1fr);
+      }
     }
   }
 
@@ -95,8 +109,8 @@
 
   &__name {
     color: $color-about-dark;
-    font-size: 0.75em;
-    margin-top: 0.3em;
+    font-size: 0.55em;
+    margin: 0.2em 0;
     text-transform: uppercase;
     word-break: break-all;
 
@@ -129,6 +143,13 @@
     }
     &--quotesUsed {
       color: $color-quotes-shadow;
+    }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        font-size: 0.75em;
+      }
     }
   }
 
