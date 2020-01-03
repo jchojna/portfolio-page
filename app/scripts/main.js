@@ -64,8 +64,8 @@ const handleIntroMenu = (e) => {
 const handleMenuClick = (activeIndex) => {
   //: variables ://
   const windowHeight = window.innerHeight;
-  const clickedItemHeight = links[activeIndex].height;
-  const clickedItemOffset = links[activeIndex].offset;
+  const clickedItemHeight = items[activeIndex].height;
+  const clickedItemOffset = items[activeIndex].offset;
   const clickedElementId = sections[activeIndex].id;
   const clickedLink = document.querySelectorAll('.menu__link--js')[activeIndex];
   const clickedLinkWidth = clickedLink.clientWidth;
@@ -83,9 +83,9 @@ const handleMenuClick = (activeIndex) => {
   //: change menu items to absolutely positioned elements              ://
   [...menuItems].forEach((item, itemIndex) => {
     item.classList.remove('menu__item--intro');
-    item.style.top = `${links[itemIndex].offset - 5}px`;
+    item.style.top = `${items[itemIndex].offset}px`;
   });
-
+  //: set menu item's width                                            ://
   menuLinks[activeIndex].style.width = `${clickedLinkWidth}px`;
 
   //: set timeout for translating menu items                           ://
@@ -103,17 +103,15 @@ const handleMenuClick = (activeIndex) => {
         item.style.top = `${currentItemOffset + downwardsOffset}px`;
       }
     });
-    //. change color of clicked menu item                         .//
-    menuItems[activeIndex].classList.add(`menu__item--${clickedElementId}`);
     //. translate link name to the right side                     .//
     menuLinks[activeIndex].style.width = '100%';
     //. set position of introBox                                  .//
     introBox.classList.remove('pageHeader__introBox--intro');
     introBox.style.top = 0;
-    //. hide menu background                                      .//
-    //menuUpperBackground.style.height = `${clickedItemHeight}px`;
-    menuUpperBackground.style.height = 0;
+    //. handle menu background                                    .//
+    menuUpperBackground.style.height = `${clickedItemHeight}px`;
     menuBottomBackground.style.height = 0;
+    menuUpperBackground.classList.add(`pageHeader__background--${clickedElementId}`);
     //. show main content of the page                             .//
     pageHeader.classList.remove('pageHeader--intro');
     pageContainer.classList.add('pageContainer--visible');
@@ -328,6 +326,14 @@ const sections = [...pageSections].map((section, index) => ({
   id: section.id,
   node: section,
   offset: section.offsetTop
+}));
+
+const items = [...menuItems].map((item, index) => ({
+  index,
+  node: item,
+  offset: item.offsetTop,
+  height: item.clientHeight,
+  currentSectionIndex: getCurrentSectionIndex(item.offsetTop)
 }));
 
 const links = [...menuLinks].map((link, index) => ({
