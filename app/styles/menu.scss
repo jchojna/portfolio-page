@@ -32,9 +32,12 @@
   &__introBox {
     position: absolute;
     left: 0;
-    transition: top $menu-items-translate;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity $menu-items-translate, top $menu-items-translate;
 
     &--intro {
+      opacity: 1;
       transition: background-color $intro-link-change, top $intro-link-change;
     }
     
@@ -50,7 +53,7 @@
   }
 
   &__background {
-    background-color: #ccc;
+    background-color: $intro-background-color;
     height: 100%;
     position: absolute;
     transition: height $menu-items-translate;
@@ -97,10 +100,6 @@
     padding: 0;
     width: 100%;
 
-    &--intro {
-      //width: calc(100% - 60px);
-    }
-
     /* &--contentMode {
       background-color: #555;
       position: absolute;
@@ -108,19 +107,33 @@
   }
 
   &__item {
-    background-color: #ccc;
+    background-color: $intro-background-color;
+    display: flex;
     left: 0;
     overflow: hidden;
-    padding-left: 60px;
+    padding: 5px 10px;
     position: fixed;
-    transition: top $menu-items-translate;
+    transition:
+      background-color $menu-items-translate,
+      top $menu-items-translate;
     width: 100%;
-    //pointer-events: all;
+    //pointer-events: all;    // ! make possible to enable menu by clicking link name
     
     &--intro {
       background: none;
+      padding: 0 10px;
       position: static;
     }
+
+    &--about     { background-color: $color-about-diff; }
+    &--resume    { background-color: $color-resume-diff; }
+    &--tasktimer { background-color: $color-tasktimer-diff; }
+    &--portfolio { background-color: $color-portfolio-diff; }
+    &--hydrapp   { background-color: $color-hydrapp-diff; }
+    &--archviz   { background-color: $color-archviz-diff; }
+    &--quotes    { background-color: $color-quotes-diff; }
+    &--other     { background-color: $color-other-diff; }
+    &--contact   { background-color: $color-contact-diff; }
   }
 
   &__link {
@@ -130,11 +143,12 @@
     line-height: 1;
     margin: 0;
     padding: 0;
+    padding-left: 60px;
     position: relative;
-    text-align: left;
+    text-align: right;
     text-decoration: none;
     text-transform: uppercase;
-    transition: color 0.3s;
+    transition: color 0.3s, width 0.3s $menu-items-translate;
 
     &--intro-about     { color: $color-about; }
     &--intro-resume    { color: $color-resume; }
@@ -145,8 +159,6 @@
     &--intro-quotes    { color: $color-quotes; }
     &--intro-other     { color: $color-other; }
     &--intro-contact   { color: $color-contact; }
-
-    $--active
 
     &--about {
       color: $color-about-diff;
@@ -184,9 +196,14 @@
       color: $color-contact-diff;
       &:hover { color: $color-contact-diff-dark; }
     }
-    &--active {
+
+    &--active-lg {
       color: #fff;
       &:hover { color: #fff; }
+    }
+    &--active-sm {
+      width: 100%;
+
     }
   }
 
@@ -221,6 +238,7 @@
 .burgerButton {
   @include button;
   @include flex-center;
+  fill:#fff;
   height: $burger-button-size;
   opacity: 0;
   pointer-events: all;
@@ -238,18 +256,17 @@
     visibility: visible;
   }
 
-  &__svg {
-    fill:#fff;
-    width: 100%;
+  &--about     { fill: $color-about; }
+  &--resume    { fill: $color-resume; }
+  &--tasktimer { fill: $color-tasktimer; }
+  &--portfolio { fill: $color-portfolio; }
+  &--hydrapp   { fill: $color-hydrapp; }
+  &--archviz   { fill: $color-archviz; }
+  &--quotes    { fill: $color-quotes; }
+  &--other     { fill: $color-other; }
+  &--contact   { fill: $color-contact; }
 
-    &--about     { fill: $color-about; }
-    &--resume    { fill: $color-resume; }
-    &--tasktimer { fill: $color-tasktimer; }
-    &--portfolio { fill: $color-portfolio; }
-    &--hydrapp   { fill: $color-hydrapp; }
-    &--archviz   { fill: $color-archviz; }
-    &--quotes    { fill: $color-quotes; }
-    &--other     { fill: $color-other; }
-    &--contact   { fill: $color-contact; }
+  &__svg {
+    width: 100%;
   }
 }

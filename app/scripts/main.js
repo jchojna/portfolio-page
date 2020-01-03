@@ -66,6 +66,9 @@ const handleMenuClick = (activeIndex) => {
   const windowHeight = window.innerHeight;
   const clickedItemHeight = links[activeIndex].height;
   const clickedItemOffset = links[activeIndex].offset;
+  const clickedElementId = sections[activeIndex].id;
+  const clickedLink = document.querySelectorAll('.menu__link--js')[activeIndex];
+  const clickedLinkWidth = clickedLink.clientWidth;
   const upperBackgroundHeight = clickedItemOffset + clickedItemHeight;
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
   const timeoutInterval = 200;
@@ -80,8 +83,10 @@ const handleMenuClick = (activeIndex) => {
   //: change menu items to absolutely positioned elements              ://
   [...menuItems].forEach((item, itemIndex) => {
     item.classList.remove('menu__item--intro');
-    item.style.top = `${links[itemIndex].offset}px`;
+    item.style.top = `${links[itemIndex].offset - 5}px`;
   });
+
+  menuLinks[activeIndex].style.width = `${clickedLinkWidth}px`;
 
   //: set timeout for translating menu items                           ://
   clearTimeout(menuTimeoutId);
@@ -98,17 +103,23 @@ const handleMenuClick = (activeIndex) => {
         item.style.top = `${currentItemOffset + downwardsOffset}px`;
       }
     });
+    //. change color of clicked menu item                         .//
+    menuItems[activeIndex].classList.add(`menu__item--${clickedElementId}`);
+    //. translate link name to the right side                     .//
+    menuLinks[activeIndex].style.width = '100%';
     //. set position of introBox                                  .//
     introBox.classList.remove('pageHeader__introBox--intro');
     introBox.style.top = 0;
     //. hide menu background                                      .//
-    menuUpperBackground.style.height = `${clickedItemHeight}px`;
+    //menuUpperBackground.style.height = `${clickedItemHeight}px`;
+    menuUpperBackground.style.height = 0;
     menuBottomBackground.style.height = 0;
     //. show main content of the page                             .//
     pageHeader.classList.remove('pageHeader--intro');
     pageContainer.classList.add('pageContainer--visible');
     //. show burger button                                        .//
     burgerButton.classList.add('burgerButton--visible');
+    burgerButton.classList.add(`burgerButton--${clickedElementId}`);
 
   }, timeoutInterval);
   //: end of timeout                                                   ://
@@ -407,6 +418,3 @@ burgerButton.addEventListener('click', handleBurgerButton);
   button.addEventListener('click', () =>
   handleAccordion([...professionFields], [...professionIndicatorSvgs], index));
 });
-
-
-window.addEventListener('click', (e) => console.log(e.target));
