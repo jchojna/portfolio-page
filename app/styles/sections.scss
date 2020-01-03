@@ -62,18 +62,21 @@
     width: 100%;
 
     &--about {
-      column-gap: 20px;
+      column-gap: 10px;
       grid-template-areas:
-      "heading      photography     "
+      ".  photography "
+      "heading       heading    "
       "description  description "
-      "github       codewars "
-      "titleWorking titleWorking"
-      "iconsWorking iconsWorking"
+      //"github       codewars    "
+      ". github                  "
+      ". codewars            "
+      "titleWorking titleWorking "
+      "iconsWorking iconsWorking "
       "titleKnow    titleKnow   "
       "iconsKnow    iconsKnow   "
       "titleLearn   titleLearn  "
       "iconsLearn   iconsLearn  ";
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 2fr;
     }
 
     &--resume {
@@ -150,32 +153,39 @@
   //: end of SECTION'S CONTAINER                                       ://
   //: SECTION'S HEADING                                                ://
   &__heading {
+    border-left: 8px solid #fff;
     color: #fff;
-    font-size: 3.5em;
+    font-size: 15vw;
     font-weight: normal;
     grid-area: heading;
     line-height: 1.3;
     margin: 0;
     margin-bottom: 0.5em;
+    margin-top: -10vw;
+    padding-left: 10px;
     padding-top: 5px;
     position: relative;
+    z-index: 1;
 
     &--contact { font-size: 4em; }
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -55px;
-      background-color: #fff;
-      width: 10px;
-      height: 100%;
-    }
     
     @media only screen and (min-width: $media-lg) {
 
       & {
+        border-left: none;
         font-size: 4.5em;
+        margin-top: 0;
+        padding-left: 0;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -55px;
+          background-color: #fff;
+          width: 10px;
+          height: 100%;
+        }
       }
     }
   }
@@ -216,16 +226,15 @@
   }
 
   &__photo {
-    border: 4px solid $color-about-white;
     filter: saturate(0.5);
     grid-area: photography;
+    margin: -10px -10px 0 0;
     width: 100%;
-    z-index: 1;
 
     @media only screen and (min-width: $media-lg) {
 
       & {
-        border-width: 10px;
+        border: 10px solid $color-about-white;
       }
     }
   }

@@ -407,3 +407,6 @@ burgerButton.addEventListener('click', handleBurgerButton);
   button.addEventListener('click', () =>
   handleAccordion([...professionFields], [...professionIndicatorSvgs], index));
 });
+
+
+window.addEventListener('click', (e) => console.log(e.target));

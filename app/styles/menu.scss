@@ -31,10 +31,7 @@
 
   &__introBox {
     position: absolute;
-    background-color: #000;
-    width: 100px;
-    height: 100px;
-    right: 0;
+    left: 0;
     transition: top $menu-items-translate;
 
     &--intro {
@@ -101,7 +98,7 @@
     width: 100%;
 
     &--intro {
-      width: calc(100% - 60px);
+      //width: calc(100% - 60px);
     }
 
     /* &--contentMode {
@@ -111,14 +108,17 @@
   }
 
   &__item {
+    background-color: #ccc;
+    left: 0;
+    overflow: hidden;
+    padding-left: 60px;
     position: fixed;
-    right: 60px;
     transition: top $menu-items-translate;
     width: 100%;
     //pointer-events: all;
-    //background-color: #555;
     
     &--intro {
+      background: none;
       position: static;
     }
   }
@@ -131,7 +131,7 @@
     margin: 0;
     padding: 0;
     position: relative;
-    text-align: right;
+    text-align: left;
     text-decoration: none;
     text-transform: uppercase;
     transition: color 0.3s;
@@ -145,6 +145,8 @@
     &--intro-quotes    { color: $color-quotes; }
     &--intro-other     { color: $color-other; }
     &--intro-contact   { color: $color-contact; }
+
+    $--active
 
     &--about {
       color: $color-about-diff;
@@ -219,15 +221,15 @@
 .burgerButton {
   @include button;
   @include flex-center;
-  height: 50px;
+  height: $burger-button-size;
   opacity: 0;
   pointer-events: all;
   position: fixed;
-  right: 0;
+  left: 0;
   top: 0;
   transition: opacity 0.3s, visibility 0s 0.3s;
   visibility: hidden;
-  width: 50px;
+  width: $burger-button-size;
 
   &--visible {
     opacity: 1;
@@ -237,7 +239,17 @@
   }
 
   &__svg {
-    fill: #fff;
+    fill:#fff;
     width: 100%;
+
+    &--about     { fill: $color-about; }
+    &--resume    { fill: $color-resume; }
+    &--tasktimer { fill: $color-tasktimer; }
+    &--portfolio { fill: $color-portfolio; }
+    &--hydrapp   { fill: $color-hydrapp; }
+    &--archviz   { fill: $color-archviz; }
+    &--quotes    { fill: $color-quotes; }
+    &--other     { fill: $color-other; }
+    &--contact   { fill: $color-contact; }
   }
 }
