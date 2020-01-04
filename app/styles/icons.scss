@@ -1,18 +1,22 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
-.technologies {
+.icons {
 
-  &__category {
+  &--working { grid-area: working; }
+  &--knowing { grid-area: knowing; }
+  &--learning { grid-area: learning; }
+
+  &__heading {
     align-self: end;
     color: $color-about-white;
     font-size: 1.5em;
     margin: 0.5em 0 0.5em;
     text-transform: uppercase;
 
-    &--working { grid-area: titleWorking; }
-    &--know { grid-area: titleKnow; }
-    &--learn { grid-area: titleLearn; }
+    &--working { grid-area: working; }
+    &--knowing { grid-area: knowing; }
+    &--learning { grid-area: learning; }
 
     @media only screen and (min-width: $media-lg) {
 
@@ -31,9 +35,9 @@
     margin: 0;
     padding: 0;
 
-    &--working { grid-area: iconsWorking; }
-    &--know { grid-area: iconsKnow; }
-    &--learn { grid-area: iconsLearn; }
+    &--working { grid-area: working; }
+    &--knowing { grid-area: knowing; }
+    &--learning { grid-area: learning; }
     &--used {
       grid-area: technologies;
       margin-top: 2em;

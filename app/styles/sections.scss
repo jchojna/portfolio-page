@@ -63,19 +63,12 @@
     &--about {
       column-gap: 10px;
       grid-template-areas:
-      "heading       heading    "
-      ".  photography "
-      "description  description "
-      //"github       codewars    "
-      ". github                  "
-      ". codewars            "
-      "titleWorking titleWorking "
-      "iconsWorking iconsWorking "
-      "titleKnow    titleKnow   "
-      "iconsKnow    iconsKnow   "
-      "titleLearn   titleLearn  "
-      "iconsLearn   iconsLearn  ";
-      grid-template-columns: 1fr 2fr;
+      "heading  heading    "
+      ".        photography"
+      ".        description"
+      "working  working    "
+      "knowing  knowing    "
+      "learning learning   ";
     }
 
     &--resume {
@@ -159,7 +152,6 @@
     grid-area: heading;
     line-height: 1;
     margin: 0;
-    margin-bottom: 0.5em;
     padding: 25px 0 25px 20px;
     position: relative;
     //z-index: 1;
@@ -201,8 +193,6 @@
       color: $color-contact-diff;
       font-size: 4em;
     }
-
-    &--contact { }
     
     @media only screen and (min-width: $media-lg) {
 
@@ -226,9 +216,11 @@
   }
 
   &__description {
-    font-size: 1.8em;
+    font-size: 1.5em;
     grid-area: description;
-    margin: 0;
+    line-height: 1.4;
+    margin: 20px 0 40px;
+    padding-right: 10px;
 
     &--about {
       color: $color-about-white;
@@ -263,7 +255,7 @@
   &__photo {
     background: $color-about-white;
     grid-area: photography;
-    margin: -10px -10px 0 0;
+    margin-top: -50px;
     width: 100%;
 
     @media only screen and (min-width: $media-lg) {

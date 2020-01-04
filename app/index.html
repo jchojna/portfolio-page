@@ -81,7 +81,7 @@
       </button>
       <!--: END OF BURGER BUTTON :-->
       <!--: NAVIGATION :-->
-      <nav class="navigation navigation--js">
+      <nav class="navigation navigation--js"> <!-- ! NO DIVS IN BUTTONS -->
         <h2 class="navigation__heading visuallyhidden">Navigation</h2>
         <button class="navigation__button navigation__button--prev navigation__button--js-prev">
           <div class="navigation__icon navigation__icon--prev"></div>
@@ -97,17 +97,19 @@
     </header>
     <!--| END OF HEADER |-->
 
-    <!--| MAIN CONTENT |-->
+    <!--| MAIN CONTENT                                                     |-->
     <main class="pageContainer pageContainer--js">
       
-      <!--| ABOUT |-->
+      <!--| ABOUT                                                          |-->
       <article id="about" class="section section--about section--js">
         <div class="section__container section__container--about">
-          <h2 class="section__heading section__heading--about">Hello there!</h2>
+          <h2 class="section__heading section__heading--about">
+            Hello<br>there!
+          </h2>
           <p class="section__description section__description--about">
-            My name is Jakub and I’m an aspiring Frontend Developer and a keen road cycling fan.
+            My name is Jakub and I’m an aspiring Frontend Developer, an Architect, a 3d Visualizer and a keen road cycling fan.
           </p>
-          <a
+          <!-- <a
             href="https://github.com/jchojna"
             class="section__link section__link--github section__link--about"
             target="_blank" rel="nofollow noreferrer"
@@ -122,13 +124,13 @@
             aria-label="Codewars profile"
           >
             CodeWars
-          </a>
+          </a> -->
           <img
             src="assets/img/photo.png"
             class="section__photo"
             alt="Photo of Jakub Chojna"
           >
-          <!--: LOGO :-->
+          <!--: LOGO                                                  :-->
           <div class="logo logo--about">
             <svg class="logo__base logo__base--about" viewBox="0 0 512 512">
               <use href="assets/svg/logos.svg#about-base"></use>
@@ -137,337 +139,343 @@
               <use href="assets/svg/logos.svg#about-shadow"></use>
             </svg>
           </div>
-          <!--: END OF LOGO :-->
-          <!--: WORKING KNOWLEDGE :-->
-          <p class="technologies__category technologies__category--working">
-            Working knowledge:
-          </p>
-          <ul class="technologies__list technologies__list--working">
-            <!--. HTML .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#html-1"></use>
-                </svg>
-                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#html-2"></use>
-                </svg>
-                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#html-3"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">html</span>
-            </li>
-            <!--. CSS .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#css-1"></use>
-                </svg>
-                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#css-2"></use>
-                </svg>
-                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#css-3"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">css</span>
-            </li>
-            <!--. JAVASCRIPT .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#javascript-1"></use>
-                </svg>
-                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#javascript-2"></use>
-                </svg>
-                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#javascript-3"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">javascript</span>
-            </li>
-            <!--. SASS .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#sass"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">sass</span>
-            </li>
-            <!--. BEM .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#bem"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">bem</span>
-            </li>
-            <!--. REACT.JS .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#react"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">react.js</span>
-            </li>
-            <!--. GIT .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#git"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">git</span>
-            </li>
-            <!--. VISUAL STUDIO CODE .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#vscode-1"></use>
-                </svg>
-                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#vscode-2"></use>
-                </svg>
-                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#vscode-3"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">vs code</span>
-            </li>
-            <!--. FIGMA .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#figma-1"></use>
-                </svg>
-                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#figma-2"></use>
-                </svg>
-                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#figma-3"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">figma</span>
-            </li>
-            <!--. ILLUSTRATOR .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#illustrator"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">illustrator</span>
-            </li>
-            <!--. PHOTOSHOP .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#photoshop"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">photoshop</span>
-            </li>
-          </ul>
-          <!--: END OF WORKING KNOWLEDGE :-->
-          <!--: KNOW SOMETHING ABOUT .-->
-          <p class="technologies__category technologies__category--know">
-            Know something about:
-          </p>
-          <ul class="technologies__list technologies__list--know">
-            <!--. REDUX .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#redux"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">redux</span>
-            </li>
-            <!--. NPM .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#npm"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">npm</span>
-            </li>
-            <!--. FETCH API / AJAX .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#ajax"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">api / ajax</span>
-            </li>
-            <!--. GULP .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#gulp"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">gulp</span>
-            </li>
-            <!--. JEST .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#jest"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">jest</span>
-            </li>
-            <!--. BOOTSTRAP .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#bootstrap"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">bootstrap</span>
-            </li>
-            <!--. WORDPRESS .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#wordpress"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">wordpress</span>
-            </li>
-          </ul>
-          <!--: END OF KNOW SOMETHING ABOUT :-->
-          <!--: WANT TO LEARN :-->
-          <p class="technologies__category technologies__category--learn">
-            Want to learn:
-          </p>
-          <ul class="technologies__list technologies__list--learn">
-            <!--. NODE.JS .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#nodejs"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">node.js</span>
-            </li>
-            <!--. TYPESCRIPT .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#typescript"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">typescript</span>
-            </li>
-            <!--. GATSBY .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#gatsby"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">gatsby</span>
-            </li>
-            <!--. ELECTRON .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#electron"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">electron</span>
-            </li>
-            <!--. D3.JS .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#d3js-1"></use>
-                </svg>
-                <svg class="technologies__svg technologies__svg--faded1" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#d3js-2"></use>
-                </svg>
-                <svg class="technologies__svg technologies__svg--faded2" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#d3js-3"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">d3.js</span>
-            </li>
-            <!--. PT.JS .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#p5js"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">p5.js</span>
-            </li>
-            <!--. THREE.JS .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#threejs"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">three.js</span>
-            </li>
-            <!--. GRAPHQL.-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#graphql"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">graphql</span>
-            </li>
-            <!--. EMOTION .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#emotion"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">emotion</span>
-            </li>
-            <!--. WEBSOCKET .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#websocket"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">websocket</span>
-            </li>
-            <!--. ENZYME .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#enzyme"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">enzyme</span>
-            </li>
-            <!--. NEXT.JS .-->
-            <li class="technologies__item">
-              <div class="technologies__logo technologies__logo--about">
-                <svg class="technologies__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/technologies.svg#nextjs"></use>
-                </svg>
-              </div>
-              <span class="technologies__name">next.js</span>
-            </li>
-          </ul>
-          <!--: END OF WANT TO LEARN :-->
+          <!--: END OF LOGO                                           :-->
+          <!--: WORKING KNOWLEDGE                                     :-->
+          <section class="icons icons--working">
+            <h3 class="icons__heading icons__heading--working">
+              Working knowledge
+            </h3>
+            <ul class="icons__list icons__list--working">
+              <!--. HTML                                         .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#html-1"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#html-2"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#html-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">html</span>
+              </li>
+              <!--. CSS                                          .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#css-1"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#css-2"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#css-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">css</span>
+              </li>
+              <!--. JAVASCRIPT                                   .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#javascript-1"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#javascript-2"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#javascript-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">javascript</span>
+              </li>
+              <!--. SASS                                         .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#sass"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">sass</span>
+              </li>
+              <!--. BEM                                          .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#bem"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">bem</span>
+              </li>
+              <!--. REACT.JS                                     .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#react"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">react.js</span>
+              </li>
+              <!--. GIT                                          .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#git"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">git</span>
+              </li>
+              <!--. VISUAL STUDIO CODE                           .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#vscode-1"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#vscode-2"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#vscode-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">vs code</span>
+              </li>
+              <!--. FIGMA                                        .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#figma-1"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#figma-2"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#figma-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">figma</span>
+              </li>
+              <!--. ILLUSTRATOR                                  .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#illustrator"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">illustrator</span>
+              </li>
+              <!--. PHOTOSHOP                                    .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#photoshop"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">photoshop</span>
+              </li>
+            </ul>
+          </section>
+          <!--: END OF WORKING KNOWLEDGE                              :-->
+          <!--: KNOW SOMETHING ABOUT                                  :-->
+          <section class="icons icons--knowing">
+            <h3 class="icons__heading icons__heading--knowing">
+              Know something about
+            </h3>
+            <ul class="icons__list icons__list--knowing">
+              <!--. REDUX                                        .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#redux"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">redux</span>
+              </li>
+              <!--. NPM                                          .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#npm"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">npm</span>
+              </li>
+              <!--. FETCH API / AJAX                             .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#ajax"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">api / ajax</span>
+              </li>
+              <!--. GULP                                         .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#gulp"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">gulp</span>
+              </li>
+              <!--. JEST                                         .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#jest"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">jest</span>
+              </li>
+              <!--. BOOTSTRAP                                    .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#bootstrap"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">bootstrap</span>
+              </li>
+              <!--. WORDPRESS                                    .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#wordpress"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">wordpress</span>
+              </li>
+            </ul>
+          </section>
+          <!--: END OF KNOW SOMETHING ABOUT                           :-->
+          <!--: WANT TO LEARN                                         :-->
+          <section class="icons icons--learning">
+            <h3 class="icons__heading icons__heading--learning">
+              Want to learn
+            </h3>
+            <ul class="icons__list icons__list--learning">
+              <!--. NODE.JS                                      .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#nodejs"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">node.js</span>
+              </li>
+              <!--. TYPESCRIPT                                   .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#typescript"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">typescript</span>
+              </li>
+              <!--. GATSBY                                       .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#gatsby"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">gatsby</span>
+              </li>
+              <!--. ELECTRON                                     .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#electron"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">electron</span>
+              </li>
+              <!--. D3.JS                                        .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#d3js-1"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#d3js-2"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#d3js-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">d3.js</span>
+              </li>
+              <!--. PT.JS                                        .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#p5js"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">p5.js</span>
+              </li>
+              <!--. THREE.JS                                     .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#threejs"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">three.js</span>
+              </li>
+              <!--. GRAPHQL                                      .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#graphql"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">graphql</span>
+              </li>
+              <!--. EMOTION                                      .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#emotion"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">emotion</span>
+              </li>
+              <!--. WEBSOCKET                                    .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#websocket"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">websocket</span>
+              </li>
+              <!--. ENZYME                                       .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#enzyme"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">enzyme</span>
+              </li>
+              <!--. NEXT.JS                                      .-->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#nextjs"></use>
+                  </svg>
+                </div>
+                <span class="icons__name">next.js</span>
+              </li>
+            </ul>
+          </section>
+          <!--: END OF WANT TO LEARN                                  :-->
         </div>
       </article>
-      <!--| END OF ABOUT |-->
+      <!--| END OF ABOUT                                                   |-->
 
       <!--| RESUME |-->
       <article id="resume" class="section section--resume section--js">
