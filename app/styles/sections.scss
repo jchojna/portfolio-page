@@ -15,6 +15,7 @@
   align-items: center;
   display: flex;
   min-height: 100vh;
+  padding-bottom: 40px;
   position: relative;
   width: 100%;
 
@@ -61,7 +62,6 @@
     width: 100%;
 
     &--about {
-      column-gap: 10px;
       grid-template-areas:
       "heading  heading    "
       ".        photography"
@@ -70,6 +70,7 @@
       "working  working    "
       "knowing  knowing    "
       "learning learning   ";
+      grid-template-columns: 60px 1fr;
     }
 
     &--resume {
@@ -220,8 +221,8 @@
     font-size: 1.5em;
     grid-area: description;
     line-height: 1.4;
-    margin: 20px 0 40px;
-    padding-right: 10px;
+    margin: 20px 0;
+    padding-right: $offset-right-sm;
 
     &--about {
       color: $color-about-white;
@@ -325,17 +326,6 @@
 
     &--demo {
       grid-area: demoButton;
-    }
-
-    &--github,
-    &--codewars {
-      font-size: 1.2em;
-      grid-area: github;
-      justify-self: start;
-    }
-    
-    &--codewars {
-      grid-area: codewars;
     }
 
     &--about:hover {

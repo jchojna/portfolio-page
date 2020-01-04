@@ -11,13 +11,47 @@
   &__heading {
     align-self: end;
     color: $color-about-white;
-    font-size: 1.5em;
-    margin: 0.5em 0 0.5em;
+    font-size: 30px;
+    line-height: 1;
+    margin: 20px 0;
+    padding-left: 30px;
+    position: relative;
     text-transform: uppercase;
 
-    &--working { grid-area: working; }
-    &--knowing { grid-area: knowing; }
-    &--learning { grid-area: learning; }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 100px;
+    }
+
+
+    &--about {
+      color: $color-about-diff;
+      &::before { background-color: $color-about-diff; }
+    }
+    &--tasktimer {
+      color: $color-tasktimer-diff;
+      &::before { background-color: $color-tasktimer-diff; }
+    }
+    &--portfolio {
+      color: $color-portfolio-diff;
+      &::before { background-color: $color-portfolio-diff; }
+    }
+    &--hydrapp {
+      color: $color-hydrapp-diff;
+      &::before { background-color: $color-hydrapp-diff; }
+    }
+    &--archviz {
+      color: $color-archviz-diff;
+      &::before { background-color: $color-archviz-diff; }
+    }
+    &--quotes {
+      color: $color-quotes-diff;
+      &::before { background-color: $color-quotes-diff; }
+    }
 
     @media only screen and (min-width: $media-lg) {
 
@@ -31,14 +65,11 @@
     align-items: start;
     column-gap: 10px;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0 $offset-right-sm 0 $offset-left-sm;
 
-    &--working { grid-area: working; }
-    &--knowing { grid-area: knowing; }
-    &--learning { grid-area: learning; }
     &--used {
       grid-area: technologies;
       margin-top: 2em;
@@ -59,6 +90,7 @@
 
   &__logo {
     @include flex-center;
+    border: 2px solid transparent;
     position: relative;
 
     /* &:hover {
@@ -67,88 +99,68 @@
     } */
 
     &--about {
-      border: 3px solid $color-about-dark;
-      fill: $color-about-dark;
+      border-color: $color-about-light;
+      fill: $color-about-white;
     }
     &--tasktimer {
-      border: 3px solid $color-tasktimer-dark;
+      border-color: $color-tasktimer-dark;
       fill: $color-tasktimer-dark;
     }
     &--tasktimerUsed {
-      border: 3px solid $color-tasktimer-white;
+      border-color: $color-tasktimer-white;
       fill: $color-tasktimer-white;
     }
     &--portfolio {
-      border: 3px solid $color-portfolio-dark;
+      border-color: $color-portfolio-dark;
       fill: $color-portfolio-dark;
     }
     &--portfolioUsed {
-      border: 3px solid $color-portfolio-white;
+      border-color: $color-portfolio-white;
       fill: $color-portfolio-white;
     }
     &--hydrapp {
-      border: 3px solid $color-hydrapp-dark;
+      border-color: $color-hydrapp-dark;
       fill: $color-hydrapp-dark;
     }
     &--hydrappUsed {
-      border: 3px solid $color-hydrapp-shadow;
+      border-color: $color-hydrapp-shadow;
       fill: $color-hydrapp-shadow;
     }
     &--archviz {
-      border: 3px solid $color-archviz-dark;
+      border-color: $color-archviz-dark;
       fill: $color-archviz-dark;
     }
     &--archvizUsed {
-      border: 3px solid $color-archviz-shadow;
+      border-color: $color-archviz-shadow;
       fill: $color-archviz-shadow;
     }
     &--quotes {
-      border: 3px solid $color-quotes-dark;
+      border-color: $color-quotes-dark;
       fill: $color-quotes-dark;
     }
     &--quotesUsed {
-      border: 3px solid $color-quotes-shadow;
+      border-color: $color-quotes-shadow;
       fill: $color-quotes-shadow;
     }
   }
 
   &__name {
-    color: $color-about-dark;
-    font-size: 0.55em;
-    margin: 0.2em 0;
+    font-size: 11px;
+    margin: 2px 0 7px;
     text-transform: uppercase;
     word-break: break-all;
 
-    &--tasktimer {
-      color: $color-tasktimer-dark;
-    }
-    &--tasktimerUsed {
-      color: $color-tasktimer-white;
-    }
-    &--portfolio {
-      color: $color-portfolio-dark;
-    }
-    &--portfolioUsed {
-      color: $color-portfolio-white;
-    }
-    &--hydrapp {
-      color: $color-hydrapp-dark;
-    }
-    &--hydrappUsed {
-      color: $color-hydrapp-shadow;
-    }
-    &--archviz {
-      color: $color-archviz-dark;
-    }
-    &--archvizUsed {
-      color: $color-archviz-shadow;
-    }
-    &--quotes {
-      color: $color-quotes-dark;
-    }
-    &--quotesUsed {
-      color: $color-quotes-shadow;
-    }
+    &--about         { color: $color-about-white; }
+    &--tasktimer     { color: $color-tasktimer-dark; }
+    &--tasktimerUsed { color: $color-tasktimer-white; }
+    &--portfolio     { color: $color-portfolio-dark; }
+    &--portfolioUsed { color: $color-portfolio-white; }
+    &--hydrapp       { color: $color-hydrapp-dark; }
+    &--hydrappUsed   { color: $color-hydrapp-shadow; }
+    &--archviz       { color: $color-archviz-dark; }
+    &--archvizUsed   { color: $color-archviz-shadow; }
+    &--quotes        { color: $color-quotes-dark; }
+    &--quotesUsed    { color: $color-quotes-shadow; }
 
     @media only screen and (min-width: $media-lg) {
 
