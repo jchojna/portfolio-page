@@ -15,13 +15,12 @@
   align-items: center;
   display: flex;
   min-height: 100vh;
-  padding: 10px;
   position: relative;
   width: 100%;
 
   &--about {
     background-color: $color-about;
-    padding-top: 60px;
+    padding-top: 50px;
   }
   &--resume {
     background-color: $color-resume;
@@ -64,8 +63,8 @@
     &--about {
       column-gap: 10px;
       grid-template-areas:
-      ".  photography "
       "heading       heading    "
+      ".  photography "
       "description  description "
       //"github       codewars    "
       ". github                  "
@@ -155,19 +154,55 @@
   &__heading {
     border-left: 8px solid #fff;
     color: #fff;
-    font-size: 15vw;
+    font-size: 4.5em;
     font-weight: normal;
     grid-area: heading;
-    line-height: 1.3;
+    line-height: 1;
     margin: 0;
     margin-bottom: 0.5em;
-    margin-top: -10vw;
-    padding-left: 10px;
-    padding-top: 5px;
+    padding: 25px 0 25px 20px;
     position: relative;
-    z-index: 1;
+    //z-index: 1;
+    
+    &--about     {
+      border-color: $color-about-diff;
+      color: $color-about-diff;
+    }
+    &--resume    {
+      border-color: $color-resume-diff;
+      color: $color-resume-diff;
+    }
+    &--tasktimer {
+      border-color: $color-tasktimer-diff;
+      color: $color-tasktimer-diff;
+    }
+    &--portfolio {
+      border-color: $color-portfolio-diff;
+      color: $color-portfolio-diff;
+    }
+    &--hydrapp   {
+      border-color: $color-hydrapp-diff;
+      color: $color-hydrapp-diff;
+    }
+    &--archviz   {
+      border-color: $color-archviz-diff;
+      color: $color-archviz-diff;
+    }
+    &--quotes    {
+      border-color: $color-quotes-diff;
+      color: $color-quotes-diff;
+    }
+    &--other     {
+      border-color: $color-other-diff;
+      color: $color-other-diff;
+    }
+    &--contact   {
+      border-color: $color-contact-diff;
+      color: $color-contact-diff;
+      font-size: 4em;
+    }
 
-    &--contact { font-size: 4em; }
+    &--contact { }
     
     @media only screen and (min-width: $media-lg) {
 
@@ -226,7 +261,7 @@
   }
 
   &__photo {
-    filter: saturate(0.5);
+    background: $color-about-white;
     grid-area: photography;
     margin: -10px -10px 0 0;
     width: 100%;
