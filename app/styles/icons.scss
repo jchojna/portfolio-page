@@ -3,6 +3,7 @@
 
 .icons {
 
+  &--profiles { grid-area: profiles; }
   &--working { grid-area: working; }
   &--knowing { grid-area: knowing; }
   &--learning { grid-area: learning; }
