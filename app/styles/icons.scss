@@ -1,0 +1,190 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.icons {
+
+  &--profiles { grid-area: profiles; }
+  &--working { grid-area: working; }
+  &--knowing { grid-area: knowing; }
+  &--learning { grid-area: learning; }
+
+  &__heading {
+    align-self: end;
+    color: $color-about-white;
+    font-size: 30px;
+    line-height: 1;
+    margin: 20px 0;
+    padding-left: 30px;
+    position: relative;
+    text-transform: uppercase;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 100px;
+    }
+
+
+    &--about {
+      color: $color-about-diff;
+      &::before { background-color: $color-about-diff; }
+    }
+    &--tasktimer {
+      color: $color-tasktimer-diff;
+      &::before { background-color: $color-tasktimer-diff; }
+    }
+    &--portfolio {
+      color: $color-portfolio-diff;
+      &::before { background-color: $color-portfolio-diff; }
+    }
+    &--hydrapp {
+      color: $color-hydrapp-diff;
+      &::before { background-color: $color-hydrapp-diff; }
+    }
+    &--archviz {
+      color: $color-archviz-diff;
+      &::before { background-color: $color-archviz-diff; }
+    }
+    &--quotes {
+      color: $color-quotes-diff;
+      &::before { background-color: $color-quotes-diff; }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        margin: 1em 0 0.5em;
+      }
+    }
+  }
+
+  &__list {
+    align-items: start;
+    column-gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    list-style-type: none;
+    margin: 0;
+    padding: 0 $offset-right-sm 0 $offset-left-sm;
+
+    &--used {
+      grid-area: technologies;
+      margin-top: 2em;
+    }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        grid-template-columns: repeat(12, 1fr);
+      }
+    }
+  }
+
+  &__item {
+    @include flex-center;
+    flex-direction: column;
+  }
+
+  &__logo {
+    @include flex-center;
+    border: 2px solid transparent;
+    position: relative;
+
+    /* &:hover {
+      border-color: $color-about-white;
+      fill: $color-about-white
+    } */
+
+    &--about {
+      border-color: $color-about-light;
+      fill: $color-about-white;
+    }
+    &--tasktimer {
+      border-color: $color-tasktimer-dark;
+      fill: $color-tasktimer-dark;
+    }
+    &--tasktimerUsed {
+      border-color: $color-tasktimer-white;
+      fill: $color-tasktimer-white;
+    }
+    &--portfolio {
+      border-color: $color-portfolio-dark;
+      fill: $color-portfolio-dark;
+    }
+    &--portfolioUsed {
+      border-color: $color-portfolio-white;
+      fill: $color-portfolio-white;
+    }
+    &--hydrapp {
+      border-color: $color-hydrapp-dark;
+      fill: $color-hydrapp-dark;
+    }
+    &--hydrappUsed {
+      border-color: $color-hydrapp-shadow;
+      fill: $color-hydrapp-shadow;
+    }
+    &--archviz {
+      border-color: $color-archviz-dark;
+      fill: $color-archviz-dark;
+    }
+    &--archvizUsed {
+      border-color: $color-archviz-shadow;
+      fill: $color-archviz-shadow;
+    }
+    &--quotes {
+      border-color: $color-quotes-dark;
+      fill: $color-quotes-dark;
+    }
+    &--quotesUsed {
+      border-color: $color-quotes-shadow;
+      fill: $color-quotes-shadow;
+    }
+  }
+
+  &__name {
+    font-size: 11px;
+    margin: 2px 0 7px;
+    text-transform: uppercase;
+    word-break: break-all;
+
+    &--about         { color: $color-about-white; }
+    &--tasktimer     { color: $color-tasktimer-dark; }
+    &--tasktimerUsed { color: $color-tasktimer-white; }
+    &--portfolio     { color: $color-portfolio-dark; }
+    &--portfolioUsed { color: $color-portfolio-white; }
+    &--hydrapp       { color: $color-hydrapp-dark; }
+    &--hydrappUsed   { color: $color-hydrapp-shadow; }
+    &--archviz       { color: $color-archviz-dark; }
+    &--archvizUsed   { color: $color-archviz-shadow; }
+    &--quotes        { color: $color-quotes-dark; }
+    &--quotesUsed    { color: $color-quotes-shadow; }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        font-size: 0.75em;
+      }
+    }
+  }
+
+  &__svg {
+    width: 100%;
+
+    &--faded1,
+    &--faded2 {
+      height: 100%;
+      left: 0;
+      opacity: 0.75;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    &--faded2 {
+      opacity: 0.5;
+    }
+  }
+}

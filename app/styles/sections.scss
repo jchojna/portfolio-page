@@ -10,17 +10,18 @@
     display: block;
   }
 }
-
+//| SECTION                                                                 |//
 .section {
   align-items: center;
-  box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
   display: flex;
   min-height: 100vh;
-  width: 100%;
+  padding-bottom: 40px;
   position: relative;
+  width: 100%;
 
   &--about {
     background-color: $color-about;
+    padding-top: 50px;
   }
   &--resume {
     background-color: $color-resume;
@@ -47,30 +48,29 @@
     background-color: $color-contact;
   }
 
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
+      padding: 0;
+    }
+  }
+  //: SECTION'S CONTAINER                                              ://
   &__container {
     align-items: start;
     display: grid;
-    margin-left: 540px;
-    //max-height: 800px;
-    max-width: 800px;
-    min-height: 800px;
-    min-width: 600px;
     width: 100%;
 
     &--about {
-      column-gap: 20px;
       grid-template-areas:
-      "heading      heading      photography "
-      "description  description  photography "
-      "github       codewars     photography "
-      "titleWorking titleWorking titleWorking"
-      "iconsWorking iconsWorking iconsWorking"
-      "titleKnow    titleKnow    titleKnow   "
-      "iconsKnow    iconsKnow    iconsKnow   "
-      "titleLearn   titleLearn   titleLearn  "
-      "iconsLearn   iconsLearn   iconsLearn  ";
-      grid-template-columns: auto 1fr 40%;
-      grid-template-rows: auto auto auto 1fr;
+      "heading  heading    "
+      ".        photography"
+      ".        description"
+      "profiles profiles   "
+      "working  working    "
+      "knowing  knowing    "
+      "learning learning   ";
+      grid-template-columns: 60px 1fr;
     }
 
     &--resume {
@@ -116,36 +116,113 @@
       grid-template-columns: 1fr;
       grid-template-rows: auto 1fr;
     }
-  }
 
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        margin-left: 540px;
+        //max-height: 800px;
+        max-width: 800px;
+        min-height: 800px;
+        min-width: 600px;
+
+        &--about {
+          column-gap: 20px;
+          grid-template-areas:
+          "heading      heading      photography "
+          "description  description  photography "
+          "github       codewars     photography "
+          "titleWorking titleWorking titleWorking"
+          "iconsWorking iconsWorking iconsWorking"
+          "titleKnow    titleKnow    titleKnow   "
+          "iconsKnow    iconsKnow    iconsKnow   "
+          "titleLearn   titleLearn   titleLearn  "
+          "iconsLearn   iconsLearn   iconsLearn  ";
+          grid-template-columns: auto 1fr 40%;
+          grid-template-rows: auto auto auto 1fr;
+        }
+      }
+    }
+  }
+  //: end of SECTION'S CONTAINER                                       ://
+  //: SECTION'S HEADING                                                ://
   &__heading {
+    border-left: 8px solid #fff;
     color: #fff;
     font-size: 4.5em;
     font-weight: normal;
     grid-area: heading;
-    line-height: 1.3;
+    line-height: 1;
     margin: 0;
-    margin-bottom: 0.5em;
-    padding-top: 5px;
+    padding: 25px 0 25px 20px;
     position: relative;
+    //z-index: 1;
+    
+    &--about     {
+      border-color: $color-about-diff;
+      color: $color-about-diff;
+    }
+    &--resume    {
+      border-color: $color-resume-diff;
+      color: $color-resume-diff;
+    }
+    &--tasktimer {
+      border-color: $color-tasktimer-diff;
+      color: $color-tasktimer-diff;
+    }
+    &--portfolio {
+      border-color: $color-portfolio-diff;
+      color: $color-portfolio-diff;
+    }
+    &--hydrapp   {
+      border-color: $color-hydrapp-diff;
+      color: $color-hydrapp-diff;
+    }
+    &--archviz   {
+      border-color: $color-archviz-diff;
+      color: $color-archviz-diff;
+    }
+    &--quotes    {
+      border-color: $color-quotes-diff;
+      color: $color-quotes-diff;
+    }
+    &--other     {
+      border-color: $color-other-diff;
+      color: $color-other-diff;
+    }
+    &--contact   {
+      border-color: $color-contact-diff;
+      color: $color-contact-diff;
+      font-size: 4em;
+    }
+    
+    @media only screen and (min-width: $media-lg) {
 
-    &--contact { font-size: 4em; }
+      & {
+        border-left: none;
+        font-size: 4.5em;
+        margin-top: 0;
+        padding-left: 0;
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -55px;
-      background-color: #fff;
-      width: 10px;
-      height: 100%;
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -55px;
+          background-color: #fff;
+          width: 10px;
+          height: 100%;
+        }
+      }
     }
   }
 
   &__description {
-    font-size: 2em;
+    font-size: 1.5em;
     grid-area: description;
-    margin: 0;
+    line-height: 1.4;
+    margin: 20px 0;
+    padding-right: $offset-right-sm;
 
     &--about {
       color: $color-about-white;
@@ -168,14 +245,27 @@
     &--other {
       color: $color-other-white;
     }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        font-size: 2em;
+      }
+    }
   }
 
   &__photo {
-    border: 10px solid $color-about-white;
-    filter: saturate(0.5);
+    background: $color-about-white;
     grid-area: photography;
+    margin-top: -50px;
     width: 100%;
-    z-index: 1;
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        border: 10px solid $color-about-white;
+      }
+    }
   }
 
   &__svg {
@@ -224,9 +314,11 @@
     border: 3px solid #fff;
     color: #fff;
     font-size: 2em;
-    padding: 0.4em 1.3em;
+    min-width: 50px;
+    padding: 0.3em 0.5em;
     text-decoration: none;
     text-transform: uppercase;
+    width: 100%;
 
     &--code {
       grid-area: codeButton;
@@ -234,17 +326,6 @@
 
     &--demo {
       grid-area: demoButton;
-    }
-
-    &--github,
-    &--codewars {
-      font-size: 1.5em;
-      grid-area: github;
-      justify-self: start;
-    }
-    
-    &--codewars {
-      grid-area: codewars;
     }
 
     &--about:hover {
@@ -271,9 +352,22 @@
       border-color: $color-quotes-shadow;
       color: $color-quotes-shadow;
     }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        padding: 0.4em 1.3em;
+
+        &--github,
+        &--codewars {
+          font-size: 1.5em;
+        }
+      }
+    }
   }
 }
-
+//| end of SECTION                                                          |//
+//| SECTION'S STATS                                                         |//
 .stats {
   border-bottom: 3px solid #fff;
   font-size: 1.5em;
@@ -316,3 +410,4 @@
     }
   }
 }
+//| end of SECTION'S STATS                                                  |//

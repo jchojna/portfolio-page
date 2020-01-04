@@ -3,11 +3,12 @@
 
 .navigation {
   bottom: 100px;
+  display: none;
   position: fixed;
   right: 100px;
 
-  &--hidden {
-    display: none;
+  &--visible {
+    display: block;
   }
 
   &:hover &__button {
