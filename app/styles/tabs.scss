@@ -1,3 +1,6 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
 .tab {
   overflow: hidden;
 
@@ -35,11 +38,6 @@
       font-size: 40px;
       min-height: $field-min-height;
       z-index: 2;
-    }
-
-    &--profession {
-      font-size: 30px;
-      z-index: 1;
     }
   }
 
@@ -100,25 +98,24 @@
     align-items: center;
     display: flex;
     height: 40px;
-    overflow: hidden;
     line-height: 1;
+    margin: 0;
+    padding: 0;
     padding-left: 60px;
     position: relative;
     text-align: left;
     text-transform: uppercase;
+    transition: $tab-header-time $tab-header-time;
     width: 100%;
 
     &--resume {
       color: $color-resume-white;
     }
 
-    /* &--active {
-      color: $color-resume-diff;
-    } */
-
     &--unrolled {
       color: inherit;
       padding-left: 30px;
+      transition: $tab-header-time;
     }
   }
 }
@@ -148,7 +145,7 @@
     @include button;
     align-items: center;
     display: flex;
-    overflow: hidden;
+    //overflow: hidden;
     padding-left: 30px;
     position: relative;
     text-align: left;
@@ -157,6 +154,11 @@
 
     &--resume {
       color: $color-resume-dark;
+    }
+
+    &--unrolled {
+      color: inherit;
+      padding-left: 30px;
     }
   }
 }

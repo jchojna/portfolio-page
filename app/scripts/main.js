@@ -269,39 +269,39 @@ const navigateToSection = (e) => {
 const handleAccordion = (tabs, clickedIndex) => {
   tabs.forEach((tab, index) => {
     const content = tab.querySelector('[class*="content"]');
+    const button = tab.querySelector('[class*="button"]');
     const mark = tab.querySelector('[class*="mark"]');
 
     //: when specific tab is being clicked                             ://
     if (clickedIndex !== undefined) {
+      const subtab = /subtab/.test(button.className);
       //. handle clicked tab                                      .//
       if (clickedIndex === index) {
       
-        const button = tab.querySelector('[class*="button"]');
         const translation = content.style.marginTop;
-        console.log('translation', translation);
 
           // apply transition effect
           if (!content.classList.contains('rollable')) content.classList.add('rollable');
           // apply transformations
           if (translation === 0 || translation === '' || translation === '0px') {
             content.style.marginTop = `${-1 * content.clientHeight}px`;
-            //svg.classList.remove('indicator__svg--active');
-            //button.classList.remove('field__button--active');
+            button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
+            mark.classList.remove('mark--unrolled');
           } else {
             content.style.marginTop = 0;
-            //svg.classList.add('indicator__svg--active');
-            //button.classList.add('field__button--active');
+            button.classList.add(`${subtab ? 'sub' : ''}tab__button--unrolled`);
+            mark.classList.add('mark--unrolled');
           }
         //. handle not clicked elements                           .//
         } else {
           content.style.marginTop = `${-1 * content.clientHeight}px`;
-          //svg.classList.remove('indicator__svg--active');
-          //button.classList.remove('field__button--active');
+          button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
+          mark.classList.remove('mark--unrolled');
         }
     //: handle elements on page load                                   ://
     } else {
       content.style.marginTop = `${-1 * content.clientHeight}px`;
-      //marks[index].classList.remove('indicator__svg--active');
+      mark.classList.remove('mark--unrolled');
     }
   });
 }

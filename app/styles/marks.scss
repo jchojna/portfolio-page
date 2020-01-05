@@ -1,10 +1,35 @@
-.mark {
+@import 'variables.scss';
+@import 'mixins.scss';
 
+.mark {
   background-color: #fff;
   height: 40px;
   position: absolute;
   top: 0;
   left: 0;
+  transition:
+    background-color $tab-header-time,
+    height $tab-header-time,
+    width $tab-header-time $tab-header-time;
   width: 40px;
   z-index: 2;
+
+  &--resume { background-color: $color-resume-white; }
+  &--other { background-color: $color-other-white; }
+  &--contact { background-color: $color-contact-white; }
+
+  &--unrolled {
+    background-color: #000;
+    height: 100px;
+    transition:
+      background-color $tab-header-time,
+      height $tab-header-time $tab-header-time,
+      width $tab-header-time;
+    width: 10px;
+  }
+  
+  &--unrolled.mark--resume { background-color: $color-resume-diff; }
+  &--unrolled.mark--other { background-color: $color-other-diff; }
+  &--unrolled.mark--contact { background-color: $color-contact-diff; }
 }
+
