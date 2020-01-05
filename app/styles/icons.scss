@@ -2,84 +2,23 @@
 @import 'mixins.scss';
 
 .icons {
+  align-items: start;
+  column-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style-type: none;
+  margin: 0;
+  padding: 0 $offset-right-sm 0 $offset-left-sm;
 
-  &--profiles { grid-area: profiles; }
-  &--working { grid-area: working; }
-  &--knowing { grid-area: knowing; }
-  &--learning { grid-area: learning; }
-
-  &__heading {
-    align-self: end;
-    color: $color-about-white;
-    font-size: 30px;
-    line-height: 1;
-    margin: 20px 0;
-    padding-left: 30px;
-    position: relative;
-    text-transform: uppercase;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 10px;
-      height: 100px;
-    }
-
-
-    &--about {
-      color: $color-about-diff;
-      &::before { background-color: $color-about-diff; }
-    }
-    &--tasktimer {
-      color: $color-tasktimer-diff;
-      &::before { background-color: $color-tasktimer-diff; }
-    }
-    &--portfolio {
-      color: $color-portfolio-diff;
-      &::before { background-color: $color-portfolio-diff; }
-    }
-    &--hydrapp {
-      color: $color-hydrapp-diff;
-      &::before { background-color: $color-hydrapp-diff; }
-    }
-    &--archviz {
-      color: $color-archviz-diff;
-      &::before { background-color: $color-archviz-diff; }
-    }
-    &--quotes {
-      color: $color-quotes-diff;
-      &::before { background-color: $color-quotes-diff; }
-    }
-
-    @media only screen and (min-width: $media-lg) {
-
-      & {
-        margin: 1em 0 0.5em;
-      }
-    }
+  &--used {
+    grid-area: technologies;
+    margin-top: 2em;
   }
 
-  &__list {
-    align-items: start;
-    column-gap: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    list-style-type: none;
-    margin: 0;
-    padding: 0 $offset-right-sm 0 $offset-left-sm;
+  @media only screen and (min-width: $media-lg) {
 
-    &--used {
-      grid-area: technologies;
-      margin-top: 2em;
-    }
-
-    @media only screen and (min-width: $media-lg) {
-
-      & {
-        grid-template-columns: repeat(12, 1fr);
-      }
+    & {
+      grid-template-columns: repeat(12, 1fr);
     }
   }
 

@@ -76,11 +76,12 @@
     &--resume {
       align-content: start;
       grid-template-areas:
-      "heading   "
-      "experience"
-      "education "
-      "languages ";
-      grid-template-columns: 1fr;
+      "heading    heading   "
+      ".          logo      "
+      "experience experience"
+      "education  education "
+      "languages  languages ";
+      grid-template-columns: 60px 1fr;
     }
 
     &--tasktimer,

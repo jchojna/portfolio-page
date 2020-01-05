@@ -118,6 +118,9 @@ const handleMenuClick = (activeIndex) => {
     //. show burger button                                        .//
     burgerButton.classList.add('burgerButton--visible');
     burgerButton.classList.add(`burgerButton--${clickedElementId}`);
+    //. handle resume's accordions when content is displayed      .//
+    handleAccordion([...professionFields], [...professionIndicatorSvgs]);
+    handleAccordion([...resumeFields], [...resumeIndicatorSvgs]);
 
   }, timeoutInterval);
   //: end of timeout                                                   ://
@@ -280,6 +283,7 @@ const handleAccordion = (array, indicators, clickedIndex) => {
     // handle elements on page load
     } else {
       item.style.marginTop = `${-1 * item.clientHeight}px`;
+      console.log('test');
       indicators[index].classList.remove('indicator__svg--active');
     }
   });
@@ -357,8 +361,6 @@ let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
 handleIntroMenu();
 handleNavigation();
 handleMenuIndicator(currentGlobalSectionIndex);
-handleAccordion([...professionFields], [...professionIndicatorSvgs]);
-handleAccordion([...resumeFields], [...resumeIndicatorSvgs]);
 
 //| EVENT HANDLERS |//
 
