@@ -119,8 +119,8 @@ const handleMenuClick = (activeIndex) => {
     burgerButton.classList.add('burgerButton--visible');
     burgerButton.classList.add(`burgerButton--${clickedElementId}`);
     //. handle resume's accordions when content is displayed      .//
-    handleAccordion([...professionFields], [...professionIndicatorSvgs]);
-    handleAccordion([...resumeFields], [...resumeIndicatorSvgs]);
+    handleAccordion([...resumeSubtabs], [...professionIndicatorSvgs]);
+    handleAccordion([...resumeTabs], [...resumeIndicatorSvgs]);
 
   }, timeoutInterval);
   //: end of timeout                                                   ://
@@ -318,11 +318,11 @@ const navigationMainButton = document.querySelector('.navigation__button--js-mai
 const navigationPrevButton = document.querySelector('.navigation__button--js-prev');
 const navigationNextButton = document.querySelector('.navigation__button--js-next');
 
-const resumeFields = document.querySelectorAll('.field__container--js');
-const resumeButtons = document.querySelectorAll('.field__button--js-resume');
+const resumeTabs = document.querySelectorAll('.tab__container--js');
+const resumeButtons = document.querySelectorAll('.tab__button--js-resume');
 const resumeIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-field');
-const professionFields = document.querySelectorAll('.table--js-profession');
-const professionButtons = document.querySelectorAll('.field__button--js-profession');
+const resumeSubtabs = document.querySelectorAll('.table--js-profession');
+const resumeSubButtons = document.querySelectorAll('.subtab__button--js-resume');
 const professionIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-profession');
 
 const sections = [...pageSections].map((section, index) => ({
@@ -420,9 +420,9 @@ burgerButton.addEventListener('click', handleBurgerButton);
 //: RESUME ://
 [...resumeButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
-  handleAccordion([...resumeFields], [...resumeIndicatorSvgs], index));
+  handleAccordion([...resumeTabs], [...resumeIndicatorSvgs], index));
 });
-[...professionButtons].forEach((button, index) => {
+[...resumeSubButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
-  handleAccordion([...professionFields], [...professionIndicatorSvgs], index));
+  handleAccordion([...resumeSubtabs], [...professionIndicatorSvgs], index));
 });

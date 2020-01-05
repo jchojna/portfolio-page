@@ -1,55 +1,6 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
-.field {
-
-  &__header {
-    align-items: center;
-    background-color: $color-resume;
-    display: flex;
-    margin: 0;
-    position: relative;
-
-    &--resume {
-      font-size: 40px;
-      line-height: 1;
-      min-height: $field-min-height;
-      z-index: 2;
-    }
-
-    &--profession {
-      font-size: 2em;
-      z-index: 1;
-    }
-  }
-
-  &__heading {
-    margin: 0;
-    //padding: 0.2em 0.5em;
-    pointer-events: none;
-  }
-
-  &__button {
-    @include button;
-    align-items: center;
-    display: flex;
-    text-align: left;
-    text-transform: uppercase;
-
-    &--resume {
-      color: $color-resume-white;
-    }
-
-    &--profession {
-      color: $color-resume-dark;
-    }
-
-    &--active {
-      color: $color-resume-diff;
-    }
-  }
-}
-
 .table {
   border-collapse: collapse;
   color: $color-resume-white;
