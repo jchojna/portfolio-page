@@ -119,8 +119,8 @@ const handleMenuClick = (activeIndex) => {
     burgerButton.classList.add('burgerButton--visible');
     burgerButton.classList.add(`burgerButton--${clickedElementId}`);
     //. handle resume's accordions when content is displayed      .//
-    handleAccordion([...resumeSubtabs], [...professionIndicatorSvgs]);
-    handleAccordion([...resumeTabs], [...resumeIndicatorSvgs]);
+    //handleAccordion([...resumeSubtabs], [...resumeSubmarks]);
+    handleAccordion([...resumeTabs]);
 
   }, timeoutInterval);
   //: end of timeout                                                   ://
@@ -251,43 +251,77 @@ const navigateToSection = (e) => {
   window.scrollTo(0, pageSections[targetIndex].offsetTop);
 }
 
-const handleAccordion = (array, indicators, clickedIndex) => {
-  array.forEach((item, index) => {
 
-    if (clickedIndex !== null) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+//| RESUME'S ACCORDION HANDLER                                              |//
+const handleAccordion = (tabs, clickedIndex) => {
+  tabs.forEach((tab, index) => {
+    const content = tab.querySelector('[class*="content"]');
+    const mark = tab.querySelector('[class*="mark"]');
+
+    //: when specific tab is being clicked                             ://
+    if (clickedIndex !== undefined) {
+      //. handle clicked tab                                      .//
+      if (clickedIndex === index) {
       
-        const svg = item.parentNode.querySelector('[class*="svg"]');
-        const button = item.parentNode.querySelector('[class*="button"]');
-        const margin = item.style.marginTop;
+        const button = tab.querySelector('[class*="button"]');
+        const translation = content.style.marginTop;
+        console.log('translation', translation);
 
-        // handle clicked element
-        if (clickedIndex === index) {
           // apply transition effect
-          if (!item.classList.contains('rollable')) item.classList.add('rollable');
+          if (!content.classList.contains('rollable')) content.classList.add('rollable');
           // apply transformations
-          if (margin === 0 || margin === '' || margin === '0px') {
-            item.style.marginTop = `${-1 * item.clientHeight}px`;
-            svg.classList.remove('indicator__svg--active');
-            button.classList.remove('field__button--active');
+          if (translation === 0 || translation === '' || translation === '0px') {
+            content.style.marginTop = `${-1 * content.clientHeight}px`;
+            //svg.classList.remove('indicator__svg--active');
+            //button.classList.remove('field__button--active');
           } else {
-            item.style.marginTop = 0;
-            svg.classList.add('indicator__svg--active');
-            button.classList.add('field__button--active');
+            content.style.marginTop = 0;
+            //svg.classList.add('indicator__svg--active');
+            //button.classList.add('field__button--active');
           }
-        // handle not clicked elements
+        //. handle not clicked elements                           .//
         } else {
-          item.style.marginTop = `${-1 * item.clientHeight}px`;
-          svg.classList.remove('indicator__svg--active');
-          button.classList.remove('field__button--active');
+          content.style.marginTop = `${-1 * content.clientHeight}px`;
+          //svg.classList.remove('indicator__svg--active');
+          //button.classList.remove('field__button--active');
         }
-    // handle elements on page load
+    //: handle elements on page load                                   ://
     } else {
-      item.style.marginTop = `${-1 * item.clientHeight}px`;
-      console.log('test');
-      indicators[index].classList.remove('indicator__svg--active');
+      content.style.marginTop = `${-1 * content.clientHeight}px`;
+      //marks[index].classList.remove('indicator__svg--active');
     }
   });
 }
+//| end of RESUME'S ACCORDION HANDLER                                       |//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //| GLOBAL VARIABLES |//
 //: INTRO ://
@@ -318,12 +352,10 @@ const navigationMainButton = document.querySelector('.navigation__button--js-mai
 const navigationPrevButton = document.querySelector('.navigation__button--js-prev');
 const navigationNextButton = document.querySelector('.navigation__button--js-next');
 
-const resumeTabs = document.querySelectorAll('.tab__container--js');
+const resumeTabs = document.querySelectorAll('.tab--js-resume');
 const resumeButtons = document.querySelectorAll('.tab__button--js-resume');
-const resumeIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-field');
-const resumeSubtabs = document.querySelectorAll('.table--js-profession');
+const resumeSubtabs = document.querySelectorAll('.subtab--js-resume');
 const resumeSubButtons = document.querySelectorAll('.subtab__button--js-resume');
-const professionIndicatorSvgs = document.querySelectorAll('.indicator__svg--js-profession');
 
 const sections = [...pageSections].map((section, index) => ({
   index,
@@ -420,9 +452,9 @@ burgerButton.addEventListener('click', handleBurgerButton);
 //: RESUME ://
 [...resumeButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
-  handleAccordion([...resumeTabs], [...resumeIndicatorSvgs], index));
+  handleAccordion([...resumeTabs], index));
 });
-[...resumeSubButtons].forEach((button, index) => {
+/* [...resumeSubButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...resumeSubtabs], [...professionIndicatorSvgs], index));
-});
+}); */
