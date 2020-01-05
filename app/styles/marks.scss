@@ -2,7 +2,6 @@
 @import 'mixins.scss';
 
 .mark {
-  background-color: #fff;
   height: 40px;
   position: absolute;
   top: 0;
@@ -14,12 +13,12 @@
   width: 40px;
   z-index: 2;
 
-  &--resume { background-color: $color-resume-white; }
-  &--other { background-color: $color-other-white; }
-  &--contact { background-color: $color-contact-white; }
+  &--small {
+    height: 30px;
+    width: 30px;
+  }
 
   &--unrolled {
-    background-color: #000;
     height: 100px;
     transition:
       background-color $tab-header-time,
@@ -27,7 +26,15 @@
       width $tab-header-time;
     width: 10px;
   }
+
+  &--resume { background-color: $color-resume-white; }
+  &--other { background-color: $color-other-white; }
+  &--contact { background-color: $color-contact-white; }
   
+  &--small.mark--resume { background-color: $color-resume-dark; }
+  &--small.mark--other { background-color: $color-other-dark; }
+  &--small.mark--contact { background-color: $color-contact-dark; }
+
   &--unrolled.mark--resume { background-color: $color-resume-diff; }
   &--unrolled.mark--other { background-color: $color-other-diff; }
   &--unrolled.mark--contact { background-color: $color-contact-diff; }

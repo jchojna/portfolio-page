@@ -119,7 +119,7 @@ const handleMenuClick = (activeIndex) => {
     burgerButton.classList.add('burgerButton--visible');
     burgerButton.classList.add(`burgerButton--${clickedElementId}`);
     //. handle resume's accordions when content is displayed      .//
-    //handleAccordion([...resumeSubtabs], [...resumeSubmarks]);
+    handleAccordion([...resumeSubtabs]);
     handleAccordion([...resumeTabs]);
 
   }, timeoutInterval);
@@ -454,7 +454,7 @@ burgerButton.addEventListener('click', handleBurgerButton);
   button.addEventListener('click', () =>
   handleAccordion([...resumeTabs], index));
 });
-/* [...resumeSubButtons].forEach((button, index) => {
+[...resumeSubButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
-  handleAccordion([...resumeSubtabs], [...professionIndicatorSvgs], index));
-}); */
+  handleAccordion([...resumeSubtabs], index));
+});
