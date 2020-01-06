@@ -135,6 +135,12 @@ const handleMenuClick = (activeIndex) => {
     [...sections].forEach((section, index) => {
       section.offset = pageSections[index].offsetTop;
     });
+    //. scroll to desired position                                .//
+    window.scrollTo({
+      left: 0,
+      top: sections[activeIndex].offset,
+      behavior: 'auto'
+    });    
 
   }, timeoutInterval);
   //: end of timeout                                                   ://

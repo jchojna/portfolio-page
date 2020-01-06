@@ -1,3 +1,6 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -22,8 +25,14 @@
 
 html {
   box-sizing: border-box;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   touch-action: manipulation;
+
+  @media only screen and (min-width: $media-lg) {
+    & {
+      scroll-behavior: smooth;
+    }
+  }
 }
 
 *,
