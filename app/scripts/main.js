@@ -60,9 +60,18 @@ const handleIntroMenu = (e) => {
   }
 }
 //| end of HANDLE MENU IN INTRO MODE                                        |//
+
+
+
+
+
+
+
+
 //| HANDLE MENU ITEMS ON MOBILE DEVICES                                     |//
 const handleMenuClick = (activeIndex) => {
-  //: variables ://
+  //: variables                                                        ://
+  const pageSections = document.querySelectorAll('.section--js');
   const windowHeight = window.innerHeight;
   const clickedItemHeight = items[activeIndex].height;
   const clickedItemOffset = items[activeIndex].offset;
@@ -85,6 +94,7 @@ const handleMenuClick = (activeIndex) => {
     item.classList.remove('menu__item--intro');
     item.style.top = `${items[itemIndex].offset}px`;
   });
+
   //: set menu item's width                                            ://
   menuLinks[activeIndex].style.width = `${clickedLinkWidth}px`;
 
@@ -121,11 +131,30 @@ const handleMenuClick = (activeIndex) => {
     //. handle resume's accordions when content is displayed      .//
     handleAccordion([...resumeSubtabs]);
     handleAccordion([...resumeTabs]);
+    //. set each section's offset from the top                    .//
+    [...sections].forEach((section, index) => {
+      section.offset = pageSections[index].offsetTop;
+    });
 
   }, timeoutInterval);
   //: end of timeout                                                   ://
 }
 //| end of HANDLE MENU ITEMS ON MOBILE DEVICES                              |//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //| BURGER BUTTON HANDLER                                                   |//
 const handleBurgerButton = () => {
   //: variables                                                        ://
@@ -251,20 +280,6 @@ const navigateToSection = (e) => {
   window.scrollTo(0, pageSections[targetIndex].offsetTop);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //| RESUME'S ACCORDION HANDLER                                              |//
 const handleAccordion = (tabs, clickedIndex) => {
   tabs.forEach((tab, index) => {
@@ -306,22 +321,6 @@ const handleAccordion = (tabs, clickedIndex) => {
   });
 }
 //| end of RESUME'S ACCORDION HANDLER                                       |//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //| GLOBAL VARIABLES |//
 //: INTRO ://
