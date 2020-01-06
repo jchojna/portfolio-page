@@ -152,7 +152,13 @@
     text-transform: uppercase;
     transition:
       color 0.3s,
-      width 0.5s $menu-items-translate;
+      width 0.5s;
+
+    &--intro {
+      transition:
+        color 0.3s,
+        width 0.5s $menu-items-translate;
+    }
 
     &--intro-about     { color: $color-about; }
     &--intro-resume    { color: $color-resume; }

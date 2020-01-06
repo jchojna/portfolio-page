@@ -97,7 +97,7 @@ const handleMenuClick = (activeIndex) => {
 
   //: set menu item's width                                            ://
   menuLinks[activeIndex].style.width = `${clickedLinkWidth}px`;
-
+  links[activeIndex].width = clickedLinkWidth;
   //: set timeout for translating menu items                           ://
   clearTimeout(menuTimeoutId);
   menuTimeoutId = setTimeout(() => {
@@ -115,6 +115,7 @@ const handleMenuClick = (activeIndex) => {
     });
     //. translate link name to the right side                     .//
     menuLinks[activeIndex].style.width = '100%';
+    menuLinks[activeIndex].classList.add('menu__link--intro');
     //. set position of introBox                                  .//
     introBox.classList.remove('pageHeader__introBox--intro');
     introBox.style.top = 0;
@@ -172,6 +173,9 @@ const handleBurgerButton = () => {
   menuUpperBackground.classList.remove('pageHeader__background--intro');
   //: set position of introBox ://
   introBox.style.top = `${activeItemOffset}px`;
+  //: set menu item's width                                            ://
+  menuLinks[lastLinkIndex].classList.remove('menu__link--intro');
+  menuLinks[lastLinkIndex].style.width = `${links[lastLinkIndex].width}px`;
   //: set timeout for translating menu items                           ://
   clearTimeout(menuTimeoutId);
   menuTimeoutId = setTimeout(() => {
