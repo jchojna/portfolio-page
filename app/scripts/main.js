@@ -122,6 +122,7 @@ const handleMenuClick = (activeIndex) => {
     menuUpperBackground.style.height = `${clickedItemHeight}px`;
     menuBottomBackground.style.height = 0;
     menuUpperBackground.classList.add(`pageHeader__background--${clickedElementId}`);
+    menuUpperBackground.classList.add('pageHeader__background--intro');
     //. show main content of the page                             .//
     pageHeader.classList.remove('pageHeader--intro');
     pageContainer.classList.add('pageContainer--visible');
@@ -140,26 +141,12 @@ const handleMenuClick = (activeIndex) => {
       left: 0,
       top: sections[activeIndex].offset,
       behavior: 'auto'
-    });    
+    });
 
   }, timeoutInterval);
   //: end of timeout                                                   ://
 }
 //| end of HANDLE MENU ITEMS ON MOBILE DEVICES                              |//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //| BURGER BUTTON HANDLER                                                   |//
 const handleBurgerButton = () => {
@@ -167,6 +154,7 @@ const handleBurgerButton = () => {
   const windowHeight = window.innerHeight;
   const activeItemHeight = links[lastLinkIndex].height;
   const activeItemOffset = links[lastLinkIndex].offset;
+  const lastElementId = sections[lastLinkIndex].id;
   const upperBackgroundHeight = activeItemHeight + activeItemOffset;
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
   const timeoutInterval = 600;
@@ -180,6 +168,8 @@ const handleBurgerButton = () => {
   //: show menu background                                             ://
   menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
   menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
+  menuUpperBackground.classList.remove(`pageHeader__background--${lastElementId}`);
+  menuUpperBackground.classList.remove('pageHeader__background--intro');
   //: set position of introBox ://
   introBox.style.top = `${activeItemOffset}px`;
   //: set timeout for translating menu items                           ://
@@ -197,6 +187,17 @@ const handleBurgerButton = () => {
   //: end of timeout                                                   ://
 }
 //| end of BURGER BUTTON HANDLER                                            |//
+
+
+
+
+
+
+
+
+
+
+
 
 const getCurrentLinkIndex = (cursorYPosition) => {  // ! TO REFACTOR
   return links.length - 1 - [...links]

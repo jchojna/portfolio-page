@@ -57,7 +57,7 @@
     height: 100%;
     position: absolute;
     transition:
-      background-color 0.3s $menu-items-translate,
+      background-color 0.3s,
       height $menu-items-translate;
     width: 100%;
     z-index: -1;
@@ -70,6 +70,12 @@
     &--bottom {
       bottom: 0;
       left: 0;
+    }
+
+    &--intro {
+      transition:
+        background-color 0.3s $menu-items-translate,
+        height $menu-items-translate;
     }
 
     &--about     { background-color: $color-about-diff; }
