@@ -3,17 +3,20 @@
 
 .logo {
   @include flex-center;
-  position: absolute;
-  right: 50px;
-  top: 50px;
-  width: 400px;
+  position: relative;
 
-  display: none;
+  &--about {
+    display: none;
+  }
+
+  &--resume {
+    grid-area: logo;
+  }
 
   &__base {
     width: 100%;
 
-    &--about { fill: $color-about-light; }
+    &--about {fill: $color-about-light; }
     &--resume { fill: $color-resume-dark; }
     &--tasktimer { fill: $color-tasktimer-dark; }
     &--portfolio { fill: $color-portfolio-dark; }
@@ -57,6 +60,10 @@
 
     & {
       display: block;
+      position: absolute;
+      right: 50px;
+      top: 50px;
+      width: 400px;
     }
   }
 }

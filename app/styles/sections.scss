@@ -12,7 +12,7 @@
 }
 //| SECTION                                                                 |//
 .section {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   min-height: 100vh;
   padding-bottom: 40px;
@@ -21,7 +21,6 @@
 
   &--about {
     background-color: $color-about;
-    padding-top: 50px;
   }
   &--resume {
     background-color: $color-resume;
@@ -51,6 +50,7 @@
   @media only screen and (min-width: $media-lg) {
 
     & {
+      align-items: center;
       box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
       padding: 0;
     }
@@ -76,11 +76,12 @@
     &--resume {
       align-content: start;
       grid-template-areas:
-      "heading   "
-      "experience"
-      "education "
-      "languages ";
-      grid-template-columns: 1fr;
+      "heading    heading   "
+      ".          logo      "
+      "experience experience"
+      "education  education "
+      "languages  languages ";
+      grid-template-columns: 60px 1fr;
     }
 
     &--tasktimer,
@@ -154,7 +155,7 @@
     grid-area: heading;
     line-height: 1;
     margin: 0;
-    padding: 25px 0 25px 20px;
+    padding: 75px 0 25px 20px;
     position: relative;
     //z-index: 1;
     

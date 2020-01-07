@@ -1,3 +1,6 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -22,7 +25,14 @@
 
 html {
   box-sizing: border-box;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  touch-action: manipulation;
+
+  @media only screen and (min-width: $media-lg) {
+    & {
+      scroll-behavior: smooth;
+    }
+  }
 }
 
 *,
@@ -38,4 +48,10 @@ body {
   font-weight: normal;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }

@@ -1,0 +1,199 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.tab,
+.subtab {
+  overflow: hidden;
+
+  &--profiles { grid-area: profiles; }
+  &--working { grid-area: working; }
+  &--knowing { grid-area: knowing; }
+  &--learning { grid-area: learning; }
+
+  &--resume {
+    min-height: $field-min-height;
+    color: $color-resume-diff;
+  }
+
+  &--education {
+    grid-area: education;
+  }
+
+  &--experience {
+    grid-area: experience;
+  }
+
+  &--languages {
+    grid-area: languages;
+  }
+
+  &__header {
+    align-items: center;
+    background-color: $color-resume;
+    display: flex;
+    line-height: 1;
+    margin: 0;
+    position: relative;
+
+    &--resume {
+      font-size: 40px;
+      min-height: $field-min-height;
+      z-index: 2;
+    }
+  }
+
+  &__heading {
+    align-self: end;
+    color: $color-about-white;
+    font-size: 30px;
+    line-height: 1;
+    margin: 20px 0;
+    padding-left: 30px;
+    position: relative;
+    text-transform: uppercase;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 100px;
+    }
+
+    &--about {
+      color: $color-about-diff;
+      &::before { background-color: $color-about-diff; }
+    }
+    &--tasktimer {
+      color: $color-tasktimer-diff;
+      &::before { background-color: $color-tasktimer-diff; }
+    }
+    &--portfolio {
+      color: $color-portfolio-diff;
+      &::before { background-color: $color-portfolio-diff; }
+    }
+    &--hydrapp {
+      color: $color-hydrapp-diff;
+      &::before { background-color: $color-hydrapp-diff; }
+    }
+    &--archviz {
+      color: $color-archviz-diff;
+      &::before { background-color: $color-archviz-diff; }
+    }
+    &--quotes {
+      color: $color-quotes-diff;
+      &::before { background-color: $color-quotes-diff; }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        margin: 1em 0 0.5em;
+      }
+    }
+  }
+
+  &__button {
+    @include button;
+    align-items: center;
+    display: flex;
+    height: 40px;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    padding-left: 60px;
+    position: relative;
+    text-align: left;
+    text-transform: uppercase;
+    transition: $tab-header-time $tab-header-time;
+    width: 100%;
+
+    &--resume {
+      color: $color-resume-white;
+    }
+
+    &--unrolled {
+      color: inherit;
+      padding-left: 30px;
+      transition: $tab-header-time;
+    }
+  }
+}
+
+.subtab {
+
+  &--resume {
+    margin-left: 30px;
+    min-height: 60px;
+  }
+
+  &__header {
+
+    &--resume {
+      font-size: 30px;
+      min-height: 60px;
+      z-index: 1;
+    }
+  }
+
+  &__button {
+    height: 30px;
+    padding-left: 50px;
+
+    &--resume {
+      color: $color-resume-dark;
+    }
+
+    &--unrolled {
+      color: inherit;
+      padding-left: 30px;
+    }
+  }
+}
+
+.content {
+
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    padding: 0 0 20px 30px;
+
+    &--resume {
+      color: $color-resume-white;
+    }
+  }
+
+  &__title {
+    border-left: 10px solid $color-resume-dark;
+    color: $color-resume-dark;
+    font-size: 30px;
+    margin: 0;
+    padding: 0 0 10px 20px;
+  }
+  
+  &__description {
+    font-size: 1em;
+    line-height: 1.4;
+    margin: 0;
+    padding-left: 30px;
+
+    &--primary,
+    &--secondary {
+      border-left: 10px solid $color-resume-dark;
+      padding-left: 20px;
+    }
+
+    &--additional {
+      color: $color-resume-dark;
+    }
+  }
+}
+
+.rollable {
+  transition: margin-top $time-resume;
+}
