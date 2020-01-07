@@ -161,14 +161,36 @@
   }
 
   &__item {
+    padding: 0 0 20px 30px;
+
+    &--resume {
+      color: $color-resume-white;
+    }
   }
 
-  &__date {
+  &__title {
+    border-left: 10px solid $color-resume-dark;
+    color: $color-resume-dark;
+    font-size: 30px;
     margin: 0;
+    padding: 0 0 10px 20px;
   }
   
   &__description {
+    font-size: 1em;
+    line-height: 1.4;
     margin: 0;
+    padding-left: 30px;
+
+    &--primary,
+    &--secondary {
+      border-left: 10px solid $color-resume-dark;
+      padding-left: 20px;
+    }
+
+    &--additional {
+      color: $color-resume-dark;
+    }
   }
 }
 
