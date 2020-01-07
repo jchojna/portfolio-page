@@ -89,15 +89,16 @@
     &--hydrapp,
     &--archviz,
     &--quotes {
-      column-gap: 20px;
+      //column-gap: 20px;
       grid-template-areas:
-      "heading      heading      heading     "
-      "description  description  description "
-      "readMore     readMore     readMore    "
-      "statistics   codeButton   demoButton  "
-      "technologies technologies technologies";
-      grid-template-columns: 1fr repeat(2, auto);
-      grid-template-rows: auto auto 1fr;
+      "heading      heading     heading    "
+      ".            logo        logo       "
+      ".            description description"
+      ".            readMore    readMore   "
+      "icons        icons       icons      "
+      ".            stats       stats      "
+      ".            codeButton  demoButton ";
+      grid-template-columns: $offset-left-sm repeat(2, 1fr);
     }
 
     &--other {
@@ -141,6 +142,22 @@
           "iconsLearn   iconsLearn   iconsLearn  ";
           grid-template-columns: auto 1fr 40%;
           grid-template-rows: auto auto auto 1fr;
+        }
+
+        &--tasktimer,
+        &--portfolio,
+        &--hydrapp,
+        &--archviz,
+        &--quotes {
+          column-gap: 20px;
+          grid-template-areas:
+          "heading      heading      heading     "
+          "description  description  description "
+          "readMore     readMore     readMore    "
+          "statistics   codeButton   demoButton  "
+          "technologies technologies technologies";
+          grid-template-columns: 1fr repeat(2, auto);
+          grid-template-rows: auto auto 1fr;
         }
       }
     }
@@ -370,9 +387,9 @@
 //| end of SECTION                                                          |//
 //| SECTION'S STATS                                                         |//
 .stats {
-  border-bottom: 3px solid #fff;
+  border-top: 3px solid #fff;
   font-size: 1.5em;
-  grid-area: statistics;
+  grid-area: stats;
   text-transform: lowercase;
 
   &--tasktimer {

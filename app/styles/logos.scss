@@ -3,14 +3,11 @@
 
 .logo {
   @include flex-center;
+  grid-area: logo;
   position: relative;
 
   &--about {
     display: none;
-  }
-
-  &--resume {
-    grid-area: logo;
   }
 
   &__base {
