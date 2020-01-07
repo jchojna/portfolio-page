@@ -59,6 +59,7 @@
   &__container {
     align-items: start;
     display: grid;
+    margin-right: $offset-right-sm;
     width: 100%;
 
     &--about {
@@ -89,7 +90,6 @@
     &--hydrapp,
     &--archviz,
     &--quotes {
-      //column-gap: 20px;
       grid-template-areas:
       "heading      heading     heading    "
       ".            logo        logo       "
@@ -167,15 +167,21 @@
   &__heading {
     border-left: 8px solid #fff;
     color: #fff;
-    font-size: 4.5em;
+    font-size: 50px;
     font-weight: normal;
     grid-area: heading;
-    line-height: 1;
+    line-height: 1.2;
     margin: 0;
     padding: 75px 0 25px 20px;
     position: relative;
+    width: 100%;
     //z-index: 1;
-    
+
+    &--large {
+      font-size: 72px;
+      line-height: 1;
+    }
+
     &--about     {
       border-color: $color-about-diff;
       color: $color-about-diff;
@@ -236,11 +242,17 @@
   }
 
   &__description {
-    font-size: 1.5em;
+    font-family: 'Antonio Regular';
+    font-size: 1.2em;
     grid-area: description;
-    line-height: 1.4;
-    margin: 20px 0;
-    padding-right: $offset-right-sm;
+    line-height: 1.5;
+    margin: 50px 0 0;
+
+    &--large {
+      font-family: 'Antonio Bold';
+      font-size: 1.5em;
+      margin: 20px 0;
+    }
 
     &--about {
       color: $color-about-white;
@@ -294,7 +306,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.5em;
+    font-size: 1.2em;
     grid-area: readMore;
     justify-self: end;
     padding: 0.2em;
@@ -329,46 +341,71 @@
   &__link {
     @include flex-center;
     align-self: end;
-    border: 3px solid #fff;
+    border: 3px solid transparent;
     color: #fff;
     font-size: 2em;
     min-width: 50px;
     padding: 0.3em 0.5em;
     text-decoration: none;
     text-transform: uppercase;
-    width: 100%;
 
     &--code {
       grid-area: codeButton;
+      margin-right: 5px;
     }
 
     &--demo {
       grid-area: demoButton;
+      margin-left: 5px;
     }
 
-    &--about:hover {
-      border-color: $color-about-shadow;
-      color: $color-about-shadow;
+    &--about {
+      border-color: $color-about-white;
+      color: $color-about-white;
+      &:hover {
+        border-color: $color-about-shadow;
+        color: $color-about-shadow;
+      }
     }
-    &--tasktimer:hover {
-      border-color: $color-tasktimer-shadow;
-      color: $color-tasktimer-shadow;
+    &--tasktimer {
+      border-color: $color-tasktimer-white;
+      color: $color-tasktimer-white;
+      &:hover {
+        border-color: $color-tasktimer-shadow;
+        color: $color-tasktimer-shadow;
+      }
     }
-    &--portfolio:hover {
-      border-color: $color-portfolio-shadow;
-      color: $color-portfolio-shadow;
+    &--portfolio {
+      border-color: $color-portfolio-white;
+      color: $color-portfolio-white;
+      &:hover {
+        border-color: $color-portfolio-shadow;
+        color: $color-portfolio-shadow;
+      }
     }
-    &--hydrapp:hover {
-      border-color: $color-hydrapp-shadow;
-      color: $color-hydrapp-shadow;
+    &--hydrapp {
+      border-color: $color-hydrapp-white;
+      color: $color-hydrapp-white;
+      &:hover {
+        border-color: $color-hydrapp-shadow;
+        color: $color-hydrapp-shadow;
+      }
     }
-    &--archviz:hover {
-      border-color: $color-archviz-shadow;
-      color: $color-archviz-shadow;
+    &--archviz {
+      border-color: $color-archviz-white;
+      color: $color-archviz-white;
+      &:hover {
+        border-color: $color-archviz-shadow;
+        color: $color-archviz-shadow;
+      }
     }
-    &--quotes:hover {
-      border-color: $color-quotes-shadow;
-      color: $color-quotes-shadow;
+    &--quotes {
+      border-color: $color-quotes-white;
+      color: $color-quotes-white;
+      &:hover {
+        border-color: $color-quotes-shadow;
+        color: $color-quotes-shadow;
+      }
     }
 
     @media only screen and (min-width: $media-lg) {
@@ -387,25 +424,33 @@
 //| end of SECTION                                                          |//
 //| SECTION'S STATS                                                         |//
 .stats {
-  border-top: 3px solid #fff;
-  font-size: 1.5em;
+  border-top: 3px solid transparent;
+  font-family: 'Antonio Regular';
+  font-size: 1.3em;
   grid-area: stats;
+  margin: 30px 0 20px;
+  padding-top: 10px;
   text-transform: lowercase;
 
   &--tasktimer {
-    color: $color-tasktimer-shadow;
+    border-color: $color-tasktimer-light;
+    color: $color-tasktimer-light;
   }
   &--portfolio {
-    color: $color-portfolio-shadow;
+    border-color: $color-portfolio-light;
+    color: $color-portfolio-light;
   }
   &--hydrapp {
-    color: $color-hydrapp-shadow;
+    border-color: $color-hydrapp-light;
+    color: $color-hydrapp-light;
   }
   &--archviz {
-    color: $color-archviz-shadow;
+    border-color: $color-archviz-light;
+    color: $color-archviz-light;
   }
   &--quotes {
-    color: $color-quotes-shadow;
+    border-color: $color-quotes-light;
+    color: $color-quotes-light;
   }
 
   &__table {
@@ -419,10 +464,8 @@
 
   &__col {
     padding-top: 0.3em;
+    width: 100%;
 
-    &--first {
-      width: 150px;
-    }
     &--second {
       text-align: right;
     }

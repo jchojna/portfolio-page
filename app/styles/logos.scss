@@ -5,6 +5,8 @@
   @include flex-center;
   grid-area: logo;
   position: relative;
+  transform: scale(1.1);
+  transform-origin: top left;
 
   &--about {
     display: none;
