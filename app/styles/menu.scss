@@ -249,7 +249,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  transition: visibility 0s $menu-items-translate;
+  transition: visibility 0s;
   visibility: hidden;
   width: $burger-button-size;
 

@@ -171,7 +171,7 @@ const handleBurgerButton = () => {
   menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
   menuUpperBackground.classList.remove(`pageHeader__background--${lastElementId}`);
   menuUpperBackground.classList.remove('pageHeader__background--intro');
-  //: set position of introBox ://
+  //: set position of introBox                                         ://
   introBox.style.top = `${activeItemOffset}px`;
   //: set menu item's width                                            ://
   menuLinks[lastLinkIndex].classList.remove('menu__link--intro');
@@ -186,6 +186,8 @@ const handleBurgerButton = () => {
     //. hide main content of the page                             .//
     pageHeader.classList.add('pageHeader--intro');
     pageContainer.classList.remove('pageContainer--visible');
+    //. handle burger button's color                              .//
+    burgerButton.classList.remove(`burgerButton--${lastElementId}`);
 
   }, timeoutInterval);
   //: end of timeout                                                   ://
@@ -294,7 +296,7 @@ const navigateToSection = (e) => {
 //| RESUME'S ACCORDION HANDLER                                              |//
 const handleAccordion = (tabs, clickedIndex) => {
   tabs.forEach((tab, index) => {
-    const content = tab.querySelector('[class*="content"]');
+    const content = tab.querySelector('[class*=content]');
     const button = tab.querySelector('[class*="button"]');
     const mark = tab.querySelector('[class*="mark"]');
 
@@ -305,6 +307,7 @@ const handleAccordion = (tabs, clickedIndex) => {
       if (clickedIndex === index) {
       
         const translation = content.style.marginTop;
+        console.log('content.clientHeight', content.clientHeight);
 
           // apply transition effect
           if (!content.classList.contains('rollable')) content.classList.add('rollable');

@@ -152,6 +152,26 @@
   }
 }
 
+.content {
+
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+  }
+
+  &__date {
+    margin: 0;
+  }
+  
+  &__description {
+    margin: 0;
+  }
+}
+
 .rollable {
   transition: margin-top $time-resume;
 }
