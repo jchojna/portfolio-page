@@ -91,13 +91,13 @@
     &--archviz,
     &--quotes {
       grid-template-areas:
-      "heading      heading     heading    "
-      ".            logo        logo       "
-      ".            description description"
-      ".            readMore    readMore   "
-      "icons        icons       icons      "
-      ".            stats       stats      "
-      ".            codeButton  demoButton ";
+      "heading      heading      heading     "
+      ".            logo         logo        "
+      ".            description  description "
+      ".            readMore     readMore    "
+      "technologies technologies technologies"
+      "stats        stats        stats       "
+      ".            codeButton   demoButton  ";
       grid-template-columns: $offset-left-sm repeat(2, 1fr);
     }
 
@@ -424,41 +424,26 @@
 //| end of SECTION                                                          |//
 //| SECTION'S STATS                                                         |//
 .stats {
-  border-top: 3px solid transparent;
-  font-family: 'Antonio Regular';
-  font-size: 1.3em;
-  grid-area: stats;
-  margin: 30px 0 20px;
-  padding-top: 10px;
-  text-transform: lowercase;
-
+  border-collapse: collapse;
+  margin-left: $offset-left-sm;
+  
   &--tasktimer {
-    border-color: $color-tasktimer-light;
     color: $color-tasktimer-light;
   }
   &--portfolio {
-    border-color: $color-portfolio-light;
     color: $color-portfolio-light;
   }
   &--hydrapp {
-    border-color: $color-hydrapp-light;
     color: $color-hydrapp-light;
   }
   &--archviz {
-    border-color: $color-archviz-light;
     color: $color-archviz-light;
   }
   &--quotes {
-    border-color: $color-quotes-light;
     color: $color-quotes-light;
   }
 
-  &__table {
-    border-collapse: collapse;
-    margin-bottom: 0.6em;
-  }
-
-  &__tableHeader {
+  &__header {
     display: none;
   }
 

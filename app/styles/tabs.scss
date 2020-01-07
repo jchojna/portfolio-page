@@ -27,6 +27,19 @@
     grid-area: languages;
   }
 
+  &--technologies {
+    grid-area: technologies;
+  }
+  
+  &--stats {
+    font-family: 'Antonio Regular';
+    grid-area: stats;
+    font-size: 1.3em;
+    grid-area: stats;
+    margin-bottom: 20px;
+    text-transform: lowercase;
+  }
+
   &__header {
     align-items: center;
     background-color: $color-resume;

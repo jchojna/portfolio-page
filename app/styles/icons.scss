@@ -10,10 +10,9 @@
   margin: 0;
   padding-left: $offset-left-sm;
 
-  &--used {
-    grid-area: icons;
+  /* &--used {
     margin-top: 2em;
-  }
+  } */
 
   @media only screen and (min-width: $media-lg) {
 
