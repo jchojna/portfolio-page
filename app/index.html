@@ -2035,12 +2035,9 @@
           </div>
           <!--: END OF LOGO                                           :-->
           <!--: CONTACT FORM                                          :-->
-          <form class="form">
+          <form class="form" autocomplete="false">
             <!--. NAME                                           .-->
             <div class="form__tab form__tab--name">
-              <label for="name" class="form__label form__label--name">
-                Name
-              </label>
               <input
                 id="name"
                 name="name"
@@ -2048,12 +2045,13 @@
                 placeholder="Your name:"
                 spellcheck="false"
               >
+              <div class="mark mark--contact"></div>
+              <label for="name" class="form__label form__label--name">
+                Name
+              </label>
             </div>
             <!--. EMAIL                                          .-->
             <div class="form__tab form__tab--email">
-              <label for="email" class="form__label form__label--email">
-                E-mail
-              </label>
               <input
                 id="email"
                 name="email"
@@ -2061,12 +2059,13 @@
                 placeholder="Your e-mail:"
                 spellcheck="false"
               >
+              <div class="mark mark--contact"></div>
+              <label for="email" class="form__label form__label--email">
+                E-mail
+              </label>
             </div>
             <!--. PHONE                                          .-->
             <div class="form__tab form__tab--phone">
-              <label for="phone" class="form__label form__label--phone">
-                Phone
-              </label>
               <input
                 id="phone"
                 name="phone"
@@ -2074,12 +2073,13 @@
                 placeholder="Your phone number:"
                 spellcheck="false"
               >
+              <div class="mark mark--contact"></div>
+              <label for="phone" class="form__label form__label--phone">
+                Phone
+              </label>
             </div>
             <!--. TITLE                                          .-->
             <div class="form__tab form__tab--title">
-              <label for="title" class="form__label form__label--title">
-                Title
-              </label>
               <input
                 id="title"
                 name="title"
@@ -2087,19 +2087,25 @@
                 placeholder="Title of your message:"
                 spellcheck="false"
               >
+              <div class="mark mark--contact"></div>
+              <label for="title" class="form__label form__label--title">
+                Title
+              </label>
             </div>
             <!--. MESSAGE                                        .-->
             <div class="form__tab form__tab--message">
-              <label for="message" class="form__label form__label--message">
-                Message
-              </label>
               <textarea
                 id="message"
                 name="message"
                 class="form__input form__input--message"
                 placeholder="Type in your message:"
+                autocomplete="off"
                 spellcheck="false"
               ></textarea>
+              <div class="mark mark--contact"></div>
+              <label for="message" class="form__label form__label--message">
+                Message
+              </label>
             </div>
             <!--. SUBMIT BUTTON                                  .-->
             <button class="form__submit">

@@ -13,8 +13,11 @@
   "submit ";
 
   &__tab {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-areas:
+    "label"
+    "input";
+    margin: 20px 0;
     position: relative;
     width: 100%;
 
@@ -29,8 +32,12 @@
     color: $color-contact-dark;
     text-transform: uppercase;
     font-size: 40px;
+    grid-area: label;
     line-height: 1;
-    margin: 20px 0 20px 60px;
+    margin: 0 $offset-right-sm 0 $offset-left-sm;
+    transition:
+      color $tab-header-time $tab-header-time,
+      margin-left $tab-header-time $tab-header-time ease-out;
   }
 
   &__input {
@@ -38,28 +45,55 @@
     border: 3px solid $color-contact-light;
     color: $color-contact-white;
     font-size: 1.25em;
-    margin-left: $offset-left-sm;
+    grid-area: input;
+    margin: 20px $offset-right-sm 0 $offset-left-sm;
     min-width: 50px;
-    padding: 1em 0.5em;
+    outline: none;
+    padding: 0.8em 0.5em;
 
     &--message {
+      min-height: 200px;
       resize: none;
+    }
+
+    &::placeholder {
+      color: $color-contact-light;
+      font-family: 'Antonio Regular';
     }
 
     &:focus {
       border-color: $color-contact-white;
       background-color: $color-contact-dark;
     }
+    
+    &:focus + .mark {
+      background-color: $color-contact-diff;
+      height: 100px;
+      transition:
+        background-color $tab-header-time,
+        height $tab-header-time $tab-header-time ease-out,
+        width $tab-header-time ease-in;
+      width: 10px;
+    }
+    
+    &:focus ~ .form__label {
+      color: $color-contact-diff;
+      margin-left: 30px;
+      transition:
+        color $tab-header-time,
+        margin-left $tab-header-time ease-in;
+    }
   }
 
   &__submit {
     background: none;
-    border: 3px solid #fff;
-    color: #fff;
+    border: 3px solid $color-contact-white;
+    color: $color-contact-white;
     cursor: pointer;
-    font-size: 2em;
+    font-size: 30px;
     grid-area: submit;
-    min-width: 50px;
+    margin: 30px $offset-right-sm 0 $offset-left-sm;
+    padding: 0.3em;
     text-transform: uppercase;
 
     &:hover {
