@@ -1,46 +1,42 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
+//| TAB AND SUBTABS                                                         |//
 .tab,
 .subtab {
   overflow: hidden;
-
+  //: ABOUT                                                            ://
   &--profiles { grid-area: profiles; }
   &--working { grid-area: working; }
   &--knowing { grid-area: knowing; }
   &--learning { grid-area: learning; }
-
+  //: RESUME                                                           ://
   &--resume {
     min-height: $field-min-height;
     color: $color-resume-diff;
   }
-
   &--education {
     grid-area: education;
   }
-
   &--experience {
     grid-area: experience;
   }
-
   &--languages {
     grid-area: languages;
   }
-
+  //: PROJECT                                                          ://
+  &--description {
+    grid-area: description;
+    margin-top: 20px;
+  }
   &--technologies {
     grid-area: technologies;
   }
-  
   &--stats {
     font-family: 'Antonio Regular';
     font-size: 1.3em;
     grid-area: stats;
     text-transform: lowercase;
-  }
-
-  &--description {
-    grid-area: description;
-    margin-top: 20px;
   }
 
   &__header {

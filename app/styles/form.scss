@@ -2,70 +2,123 @@
 @import 'mixins.scss';
 
 .form {
-  align-self: stretch;
-  column-gap: 20px;
   display: grid;
-  grid-area: contactForm;
+  grid-area: form;
   grid-template-areas:
-  "labelTitle   labelName "
-  "inputTitle   inputName "
-  "labelMessage labelEmail"
-  "inputMessage inputEmail"
-  "inputMessage labelPhone"
-  "inputMessage inputPhone"
-  ".            .         "
-  ".            submitForm";
-  grid-template-columns: 3fr 2fr;
-  grid-template-rows: repeat(8, 1fr);
+  "name   "
+  "email  "
+  "phone  "
+  "title  "
+  "message"
+  "submit ";
+
+  &__tab {
+    display: grid;
+    grid-template-areas:
+    "label"
+    "input";
+    margin: 20px 0;
+    position: relative;
+    width: 100%;
+
+    &--name    { grid-area: name; }
+    &--email   { grid-area: email; }
+    &--phone   { grid-area: phone; }
+    &--title   { grid-area: title; }
+    &--message { grid-area: message; }
+  }
 
   &__label {
-    align-self: end;
-    color: $color-contact-white;
-    font-size: 1.125em;
-    margin-bottom: 1em;
-
-    &--title { grid-area: labelTitle; }
-    &--message { grid-area: labelMessage; }
-    &--name { grid-area: labelName; }
-    &--email { grid-area: labelEmail; }
-    &--phone { grid-area: labelPhone; }
+    color: $color-contact-dark;
+    text-transform: uppercase;
+    font-size: 40px;
+    grid-area: label;
+    line-height: 1;
+    margin: 0 $offset-right-sm 0 $offset-left-sm;
+    transition:
+      color $tab-header-time $tab-header-time,
+      margin-left $tab-header-time $tab-header-time ease-out;
   }
 
   &__input {
     background: none;
     border: 3px solid $color-contact-light;
-    color: $color-contact-shadow;
+    color: $color-contact-white;
     font-size: 1.25em;
-    padding: 1em;
+    grid-area: input;
+    margin: 20px $offset-right-sm 0 $offset-left-sm;
+    min-width: 50px;
+    outline: none;
+    padding: 0.8em 0.5em;
 
-    &--title { grid-area: inputTitle; }
     &--message {
-      grid-area: inputMessage;
+      min-height: 200px;
       resize: none;
     }
-    &--name { grid-area: inputName; }
-    &--email { grid-area: inputEmail; }
-    &--phone { grid-area: inputPhone; }
+
+    &::placeholder {
+      color: $color-contact-light;
+      font-family: 'Antonio Regular';
+    }
 
     &:focus {
-      border-color: #fff;
-      background-color: $color-contact-light;
+      border-color: $color-contact-white;
+      background-color: $color-contact-dark;
+    }
+    
+    &:focus + .mark {
+      background-color: $color-contact-diff;
+      height: 100px;
+      transition:
+        background-color $tab-header-time,
+        height $tab-header-time $tab-header-time ease-out,
+        width $tab-header-time ease-in;
+      width: 10px;
+    }
+    
+    &:focus ~ .form__label {
+      color: $color-contact-diff;
+      margin-left: 30px;
+      transition:
+        color $tab-header-time,
+        margin-left $tab-header-time ease-in;
     }
   }
 
   &__submit {
     background: none;
-    border: 3px solid #fff;
-    color: #fff;
+    border: 3px solid $color-contact-white;
+    color: $color-contact-white;
     cursor: pointer;
-    font-size: 2em;
-    grid-area: submitForm;
+    font-size: 30px;
+    grid-area: submit;
+    margin: 30px $offset-right-sm 0 $offset-left-sm;
+    padding: 0.3em;
     text-transform: uppercase;
 
     &:hover {
       border-color: transparent;
       color: $color-contact;
       background: $color-contact-diff;
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      align-self: stretch;
+      column-gap: 20px;
+      grid-template-areas:
+      "labelTitle   labelName "
+      "inputTitle   inputName "
+      "labelMessage labelEmail"
+      "inputMessage inputEmail"
+      "inputMessage labelPhone"
+      "inputMessage inputPhone"
+      ".            .         "
+      ".            submitForm";
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: repeat(8, 1fr);
     }
   }
 }

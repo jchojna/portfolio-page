@@ -2016,14 +2016,15 @@
         </div>
       </article>
       <!--| END OF OTHER                                                   |-->
-
-      <!--| CONTACT |-->
+      <!--| CONTACT                                                        |-->
       <article id="contact" class="section section--contact section--js">
         <div class="section__container section__container--contact">
           <h2 class="section__heading section__heading--contact">
-            “Feel free to contact me! I’m open for new opportunities”
+            “Feel free to contact me! I’m open for new
+            <span class="breakable">opportunities</span>
+            ”
           </h2>
-          <!--: LOGO :-->
+          <!--: LOGO                                                  :-->
           <div class="logo logo--contact">
             <svg class="logo__base logo__base--contact" viewBox="0 0 512 512">
               <use href="assets/svg/logos.svg#contact-base"></use>
@@ -2032,71 +2033,91 @@
               <use href="assets/svg/logos.svg#contact-shadow"></use>
             </svg>
           </div>
-          <!--: END OF LOGO :-->
-          <!--: CONTACT FORM :-->
-          <form class="form">
-            <!--. TITLE .-->
-            <label for="title" class="form__label form__label--title">
-              Title of your message:
-            </label>
-            <input
-              id="title"
-              name="title"
-              class="form__input form__input--title"
-              placeholder="Title of your message"
-            >
-            <!--. NAME .-->
-            <label for="name" class="form__label form__label--name">
-              Your name:
-            </label>
-            <input
-              id="name"
-              name="name"
-              class="form__input form__input--name"
-              placeholder="Your name"
-            >
-            <!--. EMAIL .-->
-            <label for="email" class="form__label form__label--email">
-              Your e-mail:
-            </label>
-            <input
-              id="email"
-              name="email"
-              class="form__input form__input--email"
-              placeholder="Your e-mail"
-            >
-            <!--. PHONE .-->
-            <label for="phone" class="form__label form__label--phone">
-              Your phone number:
-            </label>
-            <input
-              id="phone"
-              name="phone"
-              class="form__input form__input--phone"
-              placeholder="Your phone number"
-            >
-            <!--. MESSAGE .-->
-            <label for="message" class="form__label form__label--message">
-              Your message:
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              class="form__input form__input--message"
-              placeholder="Your message"
-              spellcheck="false"
-            ></textarea>
-            <!--. SUBMIT BUTTON .-->
+          <!--: END OF LOGO                                           :-->
+          <!--: CONTACT FORM                                          :-->
+          <form class="form" autocomplete="false">
+            <!--. NAME                                           .-->
+            <div class="form__tab form__tab--name">
+              <input
+                id="name"
+                name="name"
+                class="form__input form__input--name"
+                placeholder="Your name:"
+                spellcheck="false"
+              >
+              <div class="mark mark--contact"></div>
+              <label for="name" class="form__label form__label--name">
+                Name
+              </label>
+            </div>
+            <!--. EMAIL                                          .-->
+            <div class="form__tab form__tab--email">
+              <input
+                id="email"
+                name="email"
+                class="form__input form__input--email"
+                placeholder="Your e-mail:"
+                spellcheck="false"
+              >
+              <div class="mark mark--contact"></div>
+              <label for="email" class="form__label form__label--email">
+                E-mail
+              </label>
+            </div>
+            <!--. PHONE                                          .-->
+            <div class="form__tab form__tab--phone">
+              <input
+                id="phone"
+                name="phone"
+                class="form__input form__input--phone"
+                placeholder="Your phone number:"
+                spellcheck="false"
+              >
+              <div class="mark mark--contact"></div>
+              <label for="phone" class="form__label form__label--phone">
+                Phone
+              </label>
+            </div>
+            <!--. TITLE                                          .-->
+            <div class="form__tab form__tab--title">
+              <input
+                id="title"
+                name="title"
+                class="form__input form__input--title"
+                placeholder="Title of your message:"
+                spellcheck="false"
+              >
+              <div class="mark mark--contact"></div>
+              <label for="title" class="form__label form__label--title">
+                Title
+              </label>
+            </div>
+            <!--. MESSAGE                                        .-->
+            <div class="form__tab form__tab--message">
+              <textarea
+                id="message"
+                name="message"
+                class="form__input form__input--message"
+                placeholder="Type in your message:"
+                autocomplete="off"
+                spellcheck="false"
+              ></textarea>
+              <div class="mark mark--contact"></div>
+              <label for="message" class="form__label form__label--message">
+                Message
+              </label>
+            </div>
+            <!--. SUBMIT BUTTON                                  .-->
             <button class="form__submit">
               Send
             </button>
           </form>
-          <!--: END OF CONTACT FORM :-->
+          <!--: END OF CONTACT FORM                                   :-->
         </div>
       </article>
-      <!--| END OF CONTACT |-->
+      <!--| END OF CONTACT                                                 |-->
     </main>
-    <!--| END OF MAIN CONTENT |-->
+    <!--| END OF MAIN CONTENT                                              |-->
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
