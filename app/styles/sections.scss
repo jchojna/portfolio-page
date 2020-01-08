@@ -63,25 +63,23 @@
 
     &--about {
       grid-template-areas:
-      "heading  heading    "
-      ".        photography"
-      ".        description"
-      "profiles profiles   "
-      "working  working    "
-      "knowing  knowing    "
-      "learning learning   ";
-      grid-template-columns: 60px 1fr;
+      "heading    "
+      "photography"
+      "description"
+      "profiles   "
+      "working    "
+      "knowing    "
+      "learning   ";
     }
 
     &--resume {
       align-content: start;
       grid-template-areas:
-      "heading    heading   "
-      ".          logo      "
-      "experience experience"
-      "education  education "
-      "languages  languages ";
-      grid-template-columns: 60px 1fr;
+      "heading   "
+      "logo      "
+      "experience"
+      "education "
+      "languages ";
     }
 
     &--tasktimer,
@@ -90,13 +88,12 @@
     &--archviz,
     &--quotes {
       grid-template-areas:
-      "heading      heading      "
-      ".            logo         "
-      "description  description  "
-      "technologies technologies "
-      "stats        stats        "
-      "repoLinks    repoLinks    ";
-      grid-template-columns: $offset-left-sm 1fr;
+      "heading     "
+      "logo        "
+      "description "
+      "technologies"
+      "stats       "
+      "repoLinks   ";
     }
 
     &--other {
@@ -249,6 +246,7 @@
   }
 
   &__description {
+    color: $color-about-white;
     font-family: 'Antonio Regular';
     font-size: 1.2em;
     grid-area: description;
@@ -261,28 +259,6 @@
       margin: 20px 0;
     }
 
-    &--about {
-      color: $color-about-white;
-    }
-    &--tasktimer {
-      color: $color-tasktimer-white;
-    }
-    &--portfolio {
-      color: $color-portfolio-white;
-    }
-    &--hydrapp {
-      color: $color-hydrapp-white;
-    }
-    &--archviz {
-      color: $color-archviz-white;
-    }
-    &--quotes {
-      color: $color-quotes-white;
-    }
-    &--other {
-      color: $color-other-white;
-    }
-
     @media only screen and (min-width: $media-lg) {
 
       & {
@@ -293,8 +269,10 @@
 
   &__photo {
     background: $color-about-white;
+    background-clip: content-box;
     grid-area: photography;
     margin-top: -50px;
+    padding-left: $offset-left-sm;
     width: 100%;
 
     @media only screen and (min-width: $media-lg) {

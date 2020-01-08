@@ -4,7 +4,7 @@
 .logo {
   @include flex-center;
   grid-area: logo;
-  margin-right: $offset-right-sm;
+  margin-left: $offset-left-sm;
   position: relative;
   transform-origin: center left;
 
