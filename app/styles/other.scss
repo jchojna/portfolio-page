@@ -4,9 +4,7 @@
 .otherRepos {
   align-self: stretch;
   display: grid;
-  gap: 15px;
   grid-area: otherRepos;
-  grid-template-columns: repeat(3, 1fr);
   margin-top: 1em;
 }
 

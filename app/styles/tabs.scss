@@ -48,16 +48,20 @@
 
   &__header {
     align-items: center;
-    background-color: $color-resume;
     display: flex;
+    font-size: 40px;
     line-height: 1;
     margin: 0;
+    min-height: $field-min-height;
     position: relative;
+    z-index: 2;
 
     &--resume {
-      font-size: 40px;
-      min-height: $field-min-height;
-      z-index: 2;
+      background-color: $color-resume;
+    }
+    
+    &--other {
+      background-color: $color-other;
     }
   }
 
@@ -168,6 +172,10 @@
 
     &--resume {
       color: $color-resume-dark;
+    }
+    
+    &--other {
+      color: $color-other-shadow;
     }
 
     &--unrolled {
