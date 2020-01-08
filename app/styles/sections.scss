@@ -107,10 +107,9 @@
 
     &--contact {
       grid-template-areas:
-      "heading    "
-      "contactForm";
-      grid-template-columns: 1fr;
-      grid-template-rows: auto 1fr;
+      "heading"
+      "logo   "
+      "form   ";
     }
 
     @media only screen and (min-width: $media-lg) {
@@ -162,6 +161,14 @@
           "otherRepos ";
           grid-template-columns: 1fr;
           grid-template-rows: repeat(3, auto) 1fr;
+        }
+
+        &--contact {
+          grid-template-areas:
+          "heading    "
+          "contactForm";
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 1fr;
         }
       }
     }
@@ -221,7 +228,6 @@
     &--contact {
       border-color: $color-contact-diff;
       color: $color-contact-diff;
-      font-size: 4em;
     }
     
     @media only screen and (min-width: $media-lg) {
@@ -330,7 +336,7 @@
     border-color: $color-other-shadow;
     border-width: 2px;
     font-size: 1.5em;
-    margin: 0.5em $offset-right-sm 0 $offset-left-sm;
+    margin: 0.5em $offset-right-sm 0.5em $offset-left-sm;
   }
 
   &__link {

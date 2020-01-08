@@ -2,21 +2,20 @@
 @import 'mixins.scss';
 
 .form {
-  align-self: stretch;
-  column-gap: 20px;
   display: grid;
-  grid-area: contactForm;
+  grid-area: form;
   grid-template-areas:
-  "labelTitle   labelName "
-  "inputTitle   inputName "
-  "labelMessage labelEmail"
-  "inputMessage inputEmail"
-  "inputMessage labelPhone"
-  "inputMessage inputPhone"
-  ".            .         "
-  ".            submitForm";
-  grid-template-columns: 3fr 2fr;
-  grid-template-rows: repeat(8, 1fr);
+  "labelName   "
+  "inputName   "
+  "labelEmail  "
+  "inputEmail  "
+  "labelPhone  "
+  "inputPhone  "
+  "labelTitle  "
+  "inputTitle  "
+  "labelMessage"
+  "inputMessage"
+  "submitForm  ";
 
   &__label {
     align-self: end;
@@ -66,6 +65,25 @@
       border-color: transparent;
       color: $color-contact;
       background: $color-contact-diff;
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      align-self: stretch;
+      column-gap: 20px;
+      grid-template-areas:
+      "labelTitle   labelName "
+      "inputTitle   inputName "
+      "labelMessage labelEmail"
+      "inputMessage inputEmail"
+      "inputMessage labelPhone"
+      "inputMessage inputPhone"
+      ".            .         "
+      ".            submitForm";
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: repeat(8, 1fr);
     }
   }
 }
