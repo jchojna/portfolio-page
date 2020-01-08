@@ -186,11 +186,11 @@
       line-height: 1;
     }
 
-    &--about     {
+    &--about {
       border-color: $color-about-diff;
       color: $color-about-diff;
     }
-    &--resume    {
+    &--resume {
       border-color: $color-resume-diff;
       color: $color-resume-diff;
     }
@@ -202,23 +202,23 @@
       border-color: $color-portfolio-diff;
       color: $color-portfolio-diff;
     }
-    &--hydrapp   {
+    &--hydrapp {
       border-color: $color-hydrapp-diff;
       color: $color-hydrapp-diff;
     }
-    &--archviz   {
+    &--archviz {
       border-color: $color-archviz-diff;
       color: $color-archviz-diff;
     }
-    &--quotes    {
+    &--quotes {
       border-color: $color-quotes-diff;
       color: $color-quotes-diff;
     }
-    &--other     {
+    &--other {
       border-color: $color-other-diff;
       color: $color-other-diff;
     }
-    &--contact   {
+    &--contact {
       border-color: $color-contact-diff;
       color: $color-contact-diff;
       font-size: 4em;
@@ -241,28 +241,6 @@
           width: 10px;
           height: 100%;
         }
-      }
-    }
-  }
-
-  &__description {
-    color: $color-about-white;
-    font-family: 'Antonio Regular';
-    font-size: 1.2em;
-    grid-area: description;
-    line-height: 1.5;
-    margin: 50px $offset-right-sm 0 0;
-
-    &--large {
-      font-family: 'Antonio Bold';
-      font-size: 1.5em;
-      margin: 20px 0;
-    }
-
-    @media only screen and (min-width: $media-lg) {
-
-      & {
-        font-size: 2em;
       }
     }
   }

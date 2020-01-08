@@ -40,7 +40,7 @@
 
   &--description {
     grid-area: description;
-    margin-top: 50px;
+    margin-top: 20px;
   }
 
   &__header {
@@ -124,19 +124,16 @@
     line-height: 1.4;
     margin: 0 $offset-right-sm 0 $offset-left-sm;
 
-    &--large {
-      font-family: 'Antonio Bold';
-      font-size: 1.5em;
-      margin: 20px 0;
-    }
-
     &--small {
       font-family: 'Antonio Bold';
       font-size: 1em;
     }
 
     &--about {
+      font-family: 'Antonio Bold';
+      font-size: 1.5em;
       color: $color-about-white;
+      margin-bottom: 20px;
     }
     &--tasktimer {
       color: $color-tasktimer-white;

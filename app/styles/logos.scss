@@ -6,18 +6,14 @@
   grid-area: logo;
   margin-left: $offset-left-sm;
   position: relative;
-  transform-origin: center left;
+  transform-origin: bottom left;
 
   &--about {
     display: none;
   }
 
   &--tasktimer {
-    transform: scale(1.3);
-  }
-
-  &--archviz {
-    transform: scale(1.2);
+    margin-right: -50px;
   }
 
   &__base {
