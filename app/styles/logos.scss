@@ -3,14 +3,21 @@
 
 .logo {
   @include flex-center;
+  grid-area: logo;
+  margin-right: $offset-right-sm;
   position: relative;
+  transform-origin: center left;
 
   &--about {
     display: none;
   }
 
-  &--resume {
-    grid-area: logo;
+  &--tasktimer {
+    transform: scale(1.3);
+  }
+
+  &--archviz {
+    transform: scale(1.2);
   }
 
   &__base {

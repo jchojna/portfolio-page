@@ -7,13 +7,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   list-style-type: none;
-  margin: 0;
-  padding: 0 $offset-right-sm 0 $offset-left-sm;
-
-  &--used {
-    grid-area: technologies;
-    margin-top: 2em;
-  }
+  margin: 0 $offset-right-sm 0 $offset-left-sm;
+  padding: 0;
 
   @media only screen and (min-width: $media-lg) {
 
@@ -42,42 +37,22 @@
       fill: $color-about-white;
     }
     &--tasktimer {
-      border-color: $color-tasktimer-dark;
-      fill: $color-tasktimer-dark;
-    }
-    &--tasktimerUsed {
-      border-color: $color-tasktimer-white;
-      fill: $color-tasktimer-white;
+      border-color: $color-tasktimer-shadow;
+      fill: $color-tasktimer-shadow;
     }
     &--portfolio {
-      border-color: $color-portfolio-dark;
-      fill: $color-portfolio-dark;
-    }
-    &--portfolioUsed {
-      border-color: $color-portfolio-white;
-      fill: $color-portfolio-white;
+      border-color: $color-portfolio-shadow;
+      fill: $color-portfolio-shadow;
     }
     &--hydrapp {
-      border-color: $color-hydrapp-dark;
-      fill: $color-hydrapp-dark;
-    }
-    &--hydrappUsed {
       border-color: $color-hydrapp-shadow;
       fill: $color-hydrapp-shadow;
     }
     &--archviz {
-      border-color: $color-archviz-dark;
-      fill: $color-archviz-dark;
-    }
-    &--archvizUsed {
       border-color: $color-archviz-shadow;
       fill: $color-archviz-shadow;
     }
     &--quotes {
-      border-color: $color-quotes-dark;
-      fill: $color-quotes-dark;
-    }
-    &--quotesUsed {
       border-color: $color-quotes-shadow;
       fill: $color-quotes-shadow;
     }
@@ -90,16 +65,11 @@
     word-break: break-all;
 
     &--about         { color: $color-about-white; }
-    &--tasktimer     { color: $color-tasktimer-dark; }
-    &--tasktimerUsed { color: $color-tasktimer-white; }
-    &--portfolio     { color: $color-portfolio-dark; }
-    &--portfolioUsed { color: $color-portfolio-white; }
-    &--hydrapp       { color: $color-hydrapp-dark; }
-    &--hydrappUsed   { color: $color-hydrapp-shadow; }
-    &--archviz       { color: $color-archviz-dark; }
-    &--archvizUsed   { color: $color-archviz-shadow; }
-    &--quotes        { color: $color-quotes-dark; }
-    &--quotesUsed    { color: $color-quotes-shadow; }
+    &--tasktimer     { color: $color-tasktimer-shadow; }
+    &--portfolio     { color: $color-portfolio-shadow; }
+    &--hydrapp       { color: $color-hydrapp-shadow; }
+    &--archviz       { color: $color-archviz-shadow; }
+    &--quotes        { color: $color-quotes-shadow; }
 
     @media only screen and (min-width: $media-lg) {
 
