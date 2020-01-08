@@ -15,7 +15,7 @@
   align-items: flex-start;
   display: flex;
   min-height: 100vh;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
   position: relative;
   width: 100%;
 
@@ -59,7 +59,6 @@
   &__container {
     align-items: start;
     display: grid;
-    margin-right: $offset-right-sm;
     width: 100%;
 
     &--about {
@@ -91,14 +90,14 @@
     &--archviz,
     &--quotes {
       grid-template-areas:
-      "heading      heading      heading     "
-      ".            logo         logo        "
-      ".            description  description "
-      ".            readMore     readMore    "
-      "technologies technologies technologies"
-      "stats        stats        stats       "
-      ".            codeButton   demoButton  ";
-      grid-template-columns: $offset-left-sm repeat(2, 1fr);
+      "heading      heading      "
+      ".            logo         "
+      ".            description  "
+      ".            readMore     "
+      "technologies technologies "
+      "stats        stats        "
+      "repoLinks    repoLinks    ";
+      grid-template-columns: $offset-left-sm 1fr;
     }
 
     &--other {
@@ -171,7 +170,7 @@
     font-weight: normal;
     grid-area: heading;
     line-height: 1.2;
-    margin: 0;
+    margin: 0 $offset-right-sm 0 0;
     padding: 75px 0 25px 20px;
     position: relative;
     width: 100%;
@@ -246,7 +245,7 @@
     font-size: 1.2em;
     grid-area: description;
     line-height: 1.5;
-    margin: 50px 0 0;
+    margin: 50px $offset-right-sm 0 0;
 
     &--large {
       font-family: 'Antonio Bold';
@@ -309,6 +308,7 @@
     font-size: 1.2em;
     grid-area: readMore;
     justify-self: end;
+    margin-right: $offset-right-sm;
     padding: 0.2em;
     text-transform: uppercase;
 
@@ -337,95 +337,12 @@
       color: $color-other-light;
     }
   }
-
-  &__link {
-    @include flex-center;
-    align-self: end;
-    border: 3px solid transparent;
-    color: #fff;
-    font-size: 2em;
-    min-width: 50px;
-    padding: 0.3em 0.5em;
-    text-decoration: none;
-    text-transform: uppercase;
-
-    &--code {
-      grid-area: codeButton;
-      margin-right: 5px;
-    }
-
-    &--demo {
-      grid-area: demoButton;
-      margin-left: 5px;
-    }
-
-    &--about {
-      border-color: $color-about-white;
-      color: $color-about-white;
-      &:hover {
-        border-color: $color-about-shadow;
-        color: $color-about-shadow;
-      }
-    }
-    &--tasktimer {
-      border-color: $color-tasktimer-white;
-      color: $color-tasktimer-white;
-      &:hover {
-        border-color: $color-tasktimer-shadow;
-        color: $color-tasktimer-shadow;
-      }
-    }
-    &--portfolio {
-      border-color: $color-portfolio-white;
-      color: $color-portfolio-white;
-      &:hover {
-        border-color: $color-portfolio-shadow;
-        color: $color-portfolio-shadow;
-      }
-    }
-    &--hydrapp {
-      border-color: $color-hydrapp-white;
-      color: $color-hydrapp-white;
-      &:hover {
-        border-color: $color-hydrapp-shadow;
-        color: $color-hydrapp-shadow;
-      }
-    }
-    &--archviz {
-      border-color: $color-archviz-white;
-      color: $color-archviz-white;
-      &:hover {
-        border-color: $color-archviz-shadow;
-        color: $color-archviz-shadow;
-      }
-    }
-    &--quotes {
-      border-color: $color-quotes-white;
-      color: $color-quotes-white;
-      &:hover {
-        border-color: $color-quotes-shadow;
-        color: $color-quotes-shadow;
-      }
-    }
-
-    @media only screen and (min-width: $media-lg) {
-
-      & {
-        padding: 0.4em 1.3em;
-
-        &--github,
-        &--codewars {
-          font-size: 1.5em;
-        }
-      }
-    }
-  }
 }
 //| end of SECTION                                                          |//
 //| SECTION'S STATS                                                         |//
 .stats {
   border-collapse: collapse;
-  margin-left: $offset-left-sm;
+  margin: 0 $offset-right-sm 0 $offset-left-sm;
   
   &--tasktimer {
     color: $color-tasktimer-light;
@@ -457,3 +374,92 @@
   }
 }
 //| end of SECTION'S STATS                                                  |//
+//| CODE AND DEMO LINKS                                                     |//
+.repoLinks {
+  border-top: 3px solid transparent;
+  column-gap: 10px;
+  display: grid;
+  font-size: 2em;
+  grid-area: repoLinks;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 30px $offset-right-sm 0;
+  padding-top: 30px;
+
+  &--about     { border-color: $color-about-white; }
+  &--tasktimer { border-color: $color-tasktimer-white; }
+  &--portfolio { border-color: $color-portfolio-white; }
+  &--hydrapp   { border-color: $color-hydrapp-white; }
+  &--archviz   { border-color: $color-archviz-white; }
+  &--quotes    { border-color: $color-quotes-white; }
+
+  &__link {
+    @include flex-center;
+    border: 3px solid transparent;
+    min-width: 50px;
+    padding: 0.3em 0.5em;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &--about {
+      border-color: inherit;
+      color: $color-about-white;
+      &:hover {
+        border-color: $color-about-shadow;
+        color: $color-about-shadow;
+      }
+    }
+    &--tasktimer {
+      border-color: inherit;
+      color: $color-tasktimer-white;
+      &:hover {
+        border-color: $color-tasktimer-shadow;
+        color: $color-tasktimer-shadow;
+      }
+    }
+    &--portfolio {
+      border-color: inherit;
+      color: $color-portfolio-white;
+      &:hover {
+        border-color: $color-portfolio-shadow;
+        color: $color-portfolio-shadow;
+      }
+    }
+    &--hydrapp {
+      border-color: inherit;
+      color: $color-hydrapp-white;
+      &:hover {
+        border-color: $color-hydrapp-shadow;
+        color: $color-hydrapp-shadow;
+      }
+    }
+    &--archviz {
+      border-color: inherit;
+      color: $color-archviz-white;
+      &:hover {
+        border-color: $color-archviz-shadow;
+        color: $color-archviz-shadow;
+      }
+    }
+    &--quotes {
+      border-color: inherit;
+      color: $color-quotes-white;
+      &:hover {
+        border-color: $color-quotes-shadow;
+        color: $color-quotes-shadow;
+      }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        padding: 0.4em 1.3em;
+
+        &--github,
+        &--codewars {
+          font-size: 1.5em;
+        }
+      }
+    }
+  }
+}
+//| end of CODE AND DEMO LINKS                                              |//
