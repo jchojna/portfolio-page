@@ -308,6 +308,13 @@
   &__svg {
     display: none;
   }
+
+  &__otherRepos {
+    align-self: stretch;
+    display: grid;
+    grid-area: otherRepos;
+    margin-top: 1em;
+  }
 }
 //| end of SECTION                                                          |//
 //| SECTION'S STATS                                                         |//
@@ -363,6 +370,11 @@
   &--archviz   { border-color: $color-archviz-diff; }
   &--quotes    { border-color: $color-quotes-diff; }
 
+  &--other {
+    border: none;
+    margin: 0 $offset-right-sm 0 $offset-left-sm;
+  }
+
   &__link {
     @include flex-center;
     border: 3px solid transparent;
@@ -417,6 +429,14 @@
       &:hover {
         border-color: $color-quotes-shadow;
         color: $color-quotes-shadow;
+      }
+    }
+    &--other {
+      border-color: inherit;
+      color: $color-other-white;
+      &:hover {
+        border-color: $color-other-shadow;
+        color: $color-other-shadow;
       }
     }
 
