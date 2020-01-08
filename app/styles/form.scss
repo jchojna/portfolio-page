@@ -5,50 +5,50 @@
   display: grid;
   grid-area: form;
   grid-template-areas:
-  "labelName   "
-  "inputName   "
-  "labelEmail  "
-  "inputEmail  "
-  "labelPhone  "
-  "inputPhone  "
-  "labelTitle  "
-  "inputTitle  "
-  "labelMessage"
-  "inputMessage"
-  "submitForm  ";
+  "name   "
+  "email  "
+  "phone  "
+  "title  "
+  "message"
+  "submit ";
+
+  &__tab {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+
+    &--name    { grid-area: name; }
+    &--email   { grid-area: email; }
+    &--phone   { grid-area: phone; }
+    &--title   { grid-area: title; }
+    &--message { grid-area: message; }
+  }
 
   &__label {
-    align-self: end;
-    color: $color-contact-white;
-    font-size: 1.125em;
-    margin-bottom: 1em;
-
-    &--title { grid-area: labelTitle; }
-    &--message { grid-area: labelMessage; }
-    &--name { grid-area: labelName; }
-    &--email { grid-area: labelEmail; }
-    &--phone { grid-area: labelPhone; }
+    color: $color-contact-dark;
+    text-transform: uppercase;
+    font-size: 40px;
+    line-height: 1;
+    margin: 20px 0 20px 60px;
   }
 
   &__input {
     background: none;
     border: 3px solid $color-contact-light;
-    color: $color-contact-shadow;
+    color: $color-contact-white;
     font-size: 1.25em;
-    padding: 1em;
+    margin-left: $offset-left-sm;
+    min-width: 50px;
+    padding: 1em 0.5em;
 
-    &--title { grid-area: inputTitle; }
     &--message {
-      grid-area: inputMessage;
       resize: none;
     }
-    &--name { grid-area: inputName; }
-    &--email { grid-area: inputEmail; }
-    &--phone { grid-area: inputPhone; }
 
     &:focus {
-      border-color: #fff;
-      background-color: $color-contact-light;
+      border-color: $color-contact-white;
+      background-color: $color-contact-dark;
     }
   }
 
@@ -58,7 +58,8 @@
     color: #fff;
     cursor: pointer;
     font-size: 2em;
-    grid-area: submitForm;
+    grid-area: submit;
+    min-width: 50px;
     text-transform: uppercase;
 
     &:hover {

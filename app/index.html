@@ -2020,7 +2020,9 @@
       <article id="contact" class="section section--contact section--js">
         <div class="section__container section__container--contact">
           <h2 class="section__heading section__heading--contact">
-            “Feel free to contact me! I’m open for new opportunities”
+            “Feel free to contact me! I’m open for new
+            <span class="breakable">opportunities</span>
+            ”
           </h2>
           <!--: LOGO                                                  :-->
           <div class="logo logo--contact">
@@ -2035,56 +2037,70 @@
           <!--: CONTACT FORM                                          :-->
           <form class="form">
             <!--. NAME                                           .-->
-            <label for="name" class="form__label form__label--name">
-              Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              class="form__input form__input--name"
-              placeholder="Your name:"
-            >
+            <div class="form__tab form__tab--name">
+              <label for="name" class="form__label form__label--name">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                class="form__input form__input--name"
+                placeholder="Your name:"
+                spellcheck="false"
+              >
+            </div>
             <!--. EMAIL                                          .-->
-            <label for="email" class="form__label form__label--email">
-              E-mail
-            </label>
-            <input
-              id="email"
-              name="email"
-              class="form__input form__input--email"
-              placeholder="Your e-mail:"
-            >
+            <div class="form__tab form__tab--email">
+              <label for="email" class="form__label form__label--email">
+                E-mail
+              </label>
+              <input
+                id="email"
+                name="email"
+                class="form__input form__input--email"
+                placeholder="Your e-mail:"
+                spellcheck="false"
+              >
+            </div>
             <!--. PHONE                                          .-->
-            <label for="phone" class="form__label form__label--phone">
-              Phone
-            </label>
-            <input
-              id="phone"
-              name="phone"
-              class="form__input form__input--phone"
-              placeholder="Your phone number:"
-            >
+            <div class="form__tab form__tab--phone">
+              <label for="phone" class="form__label form__label--phone">
+                Phone
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                class="form__input form__input--phone"
+                placeholder="Your phone number:"
+                spellcheck="false"
+              >
+            </div>
             <!--. TITLE                                          .-->
-            <label for="title" class="form__label form__label--title">
-              Title
-            </label>
-            <input
-              id="title"
-              name="title"
-              class="form__input form__input--title"
-              placeholder="Title of your message:"
-            >
+            <div class="form__tab form__tab--title">
+              <label for="title" class="form__label form__label--title">
+                Title
+              </label>
+              <input
+                id="title"
+                name="title"
+                class="form__input form__input--title"
+                placeholder="Title of your message:"
+                spellcheck="false"
+              >
+            </div>
             <!--. MESSAGE                                        .-->
-            <label for="message" class="form__label form__label--message">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              class="form__input form__input--message"
-              placeholder="Type in your message:"
-              spellcheck="false"
-            ></textarea>
+            <div class="form__tab form__tab--message">
+              <label for="message" class="form__label form__label--message">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                class="form__input form__input--message"
+                placeholder="Type in your message:"
+                spellcheck="false"
+              ></textarea>
+            </div>
             <!--. SUBMIT BUTTON                                  .-->
             <button class="form__submit">
               Send

@@ -55,3 +55,7 @@ a {
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
+
+.breakable {
+  word-break: break-all;
+}
