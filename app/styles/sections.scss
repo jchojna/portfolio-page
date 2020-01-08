@@ -63,25 +63,23 @@
 
     &--about {
       grid-template-areas:
-      "heading  heading    "
-      ".        photography"
-      ".        description"
-      "profiles profiles   "
-      "working  working    "
-      "knowing  knowing    "
-      "learning learning   ";
-      grid-template-columns: 60px 1fr;
+      "heading    "
+      "photography"
+      "description"
+      "profiles   "
+      "working    "
+      "knowing    "
+      "learning   ";
     }
 
     &--resume {
       align-content: start;
       grid-template-areas:
-      "heading    heading   "
-      ".          logo      "
-      "experience experience"
-      "education  education "
-      "languages  languages ";
-      grid-template-columns: 60px 1fr;
+      "heading   "
+      "logo      "
+      "experience"
+      "education "
+      "languages ";
     }
 
     &--tasktimer,
@@ -90,24 +88,21 @@
     &--archviz,
     &--quotes {
       grid-template-areas:
-      "heading      heading      "
-      ".            logo         "
-      "description  description  "
-      ".            readMore     "
-      "technologies technologies "
-      "stats        stats        "
-      "repoLinks    repoLinks    ";
-      grid-template-columns: $offset-left-sm 1fr;
+      "heading     "
+      "logo        "
+      "description "
+      "technologies"
+      "stats       "
+      "repoLinks   ";
     }
 
     &--other {
       grid-template-areas:
       "heading    "
+      "logo       "
       "description"
-      "readMore   "
       "otherRepos ";
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(3, auto) 1fr;
     }
 
     &--contact {
@@ -158,6 +153,16 @@
           grid-template-columns: 1fr repeat(2, auto);
           grid-template-rows: auto auto 1fr;
         }
+
+        &--other {
+          grid-template-areas:
+          "heading    "
+          "description"
+          "readMore   "
+          "otherRepos ";
+          grid-template-columns: 1fr;
+          grid-template-rows: repeat(3, auto) 1fr;
+        }
       }
     }
   }
@@ -181,11 +186,11 @@
       line-height: 1;
     }
 
-    &--about     {
+    &--about {
       border-color: $color-about-diff;
       color: $color-about-diff;
     }
-    &--resume    {
+    &--resume {
       border-color: $color-resume-diff;
       color: $color-resume-diff;
     }
@@ -197,23 +202,23 @@
       border-color: $color-portfolio-diff;
       color: $color-portfolio-diff;
     }
-    &--hydrapp   {
+    &--hydrapp {
       border-color: $color-hydrapp-diff;
       color: $color-hydrapp-diff;
     }
-    &--archviz   {
+    &--archviz {
       border-color: $color-archviz-diff;
       color: $color-archviz-diff;
     }
-    &--quotes    {
+    &--quotes {
       border-color: $color-quotes-diff;
       color: $color-quotes-diff;
     }
-    &--other     {
+    &--other {
       border-color: $color-other-diff;
       color: $color-other-diff;
     }
-    &--contact   {
+    &--contact {
       border-color: $color-contact-diff;
       color: $color-contact-diff;
       font-size: 4em;
@@ -240,53 +245,12 @@
     }
   }
 
-  &__description {
-    font-family: 'Antonio Regular';
-    font-size: 1.2em;
-    grid-area: description;
-    line-height: 1.5;
-    margin: 50px $offset-right-sm 0 0;
-
-    &--large {
-      font-family: 'Antonio Bold';
-      font-size: 1.5em;
-      margin: 20px 0;
-    }
-
-    &--about {
-      color: $color-about-white;
-    }
-    &--tasktimer {
-      color: $color-tasktimer-white;
-    }
-    &--portfolio {
-      color: $color-portfolio-white;
-    }
-    &--hydrapp {
-      color: $color-hydrapp-white;
-    }
-    &--archviz {
-      color: $color-archviz-white;
-    }
-    &--quotes {
-      color: $color-quotes-white;
-    }
-    &--other {
-      color: $color-other-white;
-    }
-
-    @media only screen and (min-width: $media-lg) {
-
-      & {
-        font-size: 2em;
-      }
-    }
-  }
-
   &__photo {
     background: $color-about-white;
+    background-clip: content-box;
     grid-area: photography;
     margin-top: -50px;
+    padding-left: $offset-left-sm;
     width: 100%;
 
     @media only screen and (min-width: $media-lg) {
@@ -300,6 +264,13 @@
   &__svg {
     display: none;
   }
+
+  &__otherRepos {
+    align-self: stretch;
+    display: grid;
+    grid-area: otherRepos;
+    margin-top: 1em;
+  }
 }
 //| end of SECTION                                                          |//
 //| SECTION'S STATS                                                         |//
@@ -308,19 +279,19 @@
   margin: 0 $offset-right-sm 0 $offset-left-sm;
   
   &--tasktimer {
-    color: $color-tasktimer-light;
+    color: $color-tasktimer-shadow;
   }
   &--portfolio {
-    color: $color-portfolio-light;
+    color: $color-portfolio-shadow;
   }
   &--hydrapp {
-    color: $color-hydrapp-light;
+    color: $color-hydrapp-shadow;
   }
   &--archviz {
-    color: $color-archviz-light;
+    color: $color-archviz-shadow;
   }
   &--quotes {
-    color: $color-quotes-light;
+    color: $color-quotes-shadow;
   }
 
   &__header {
@@ -345,8 +316,8 @@
   font-size: 2em;
   grid-area: repoLinks;
   grid-template-columns: repeat(2, 1fr);
-  margin: 30px $offset-right-sm 0;
-  padding-top: 30px;
+  margin: 0.5em $offset-right-sm 0;
+  padding-top: 1em;
 
   &--about     { border-color: $color-about-diff; }
   &--tasktimer { border-color: $color-tasktimer-diff; }
@@ -354,6 +325,13 @@
   &--hydrapp   { border-color: $color-hydrapp-diff; }
   &--archviz   { border-color: $color-archviz-diff; }
   &--quotes    { border-color: $color-quotes-diff; }
+
+  &--other {
+    border-color: $color-other-shadow;
+    border-width: 2px;
+    font-size: 1.5em;
+    margin: 0.5em $offset-right-sm 0 $offset-left-sm;
+  }
 
   &__link {
     @include flex-center;
@@ -409,6 +387,15 @@
       &:hover {
         border-color: $color-quotes-shadow;
         color: $color-quotes-shadow;
+      }
+    }
+    &--other {
+      border-color: $color-other-white;
+      border-width: 2px;
+      color: $color-other-white;
+      &:hover {
+        border-color: $color-other-shadow;
+        color: $color-other-shadow;
       }
     }
 

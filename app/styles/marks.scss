@@ -28,8 +28,8 @@
   }
 
   &--resume { background-color: $color-resume-dark; }
-  &--other { background-color: $color-other-white; }
-  &--contact { background-color: $color-contact-white; }
+  &--other { background-color: $color-other-shadow; }
+  &--contact { background-color: $color-contact-dark; }
   
   &--small.mark--resume { background-color: $color-resume-dark; }
   &--small.mark--other { background-color: $color-other-dark; }
