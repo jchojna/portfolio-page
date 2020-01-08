@@ -92,7 +92,7 @@
       grid-template-areas:
       "heading      heading      "
       ".            logo         "
-      ".            description  "
+      "description  description  "
       ".            readMore     "
       "technologies technologies "
       "stats        stats        "
@@ -174,7 +174,7 @@
     padding: 75px 0 25px 20px;
     position: relative;
     width: 100%;
-    //z-index: 1;
+    z-index: 1;
 
     &--large {
       font-size: 72px;
@@ -299,43 +299,6 @@
 
   &__svg {
     display: none;
-  }
-
-  &__readMore {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2em;
-    grid-area: readMore;
-    justify-self: end;
-    margin-right: $offset-right-sm;
-    padding: 0.2em;
-    text-transform: uppercase;
-
-    &--tasktimer {
-      border-bottom: 3px solid $color-tasktimer-light;
-      color: $color-tasktimer-light;
-    }
-    &--portfolio {
-      border-bottom: 3px solid $color-portfolio-light;
-      color: $color-portfolio-light;
-    }
-    &--hydrapp {
-      border-bottom: 3px solid $color-hydrapp-light;
-      color: $color-hydrapp-light;
-    }
-    &--archviz {
-      border-bottom: 3px solid $color-archviz-light;
-      color: $color-archviz-light;
-    }
-    &--quotes {
-      border-bottom: 3px solid $color-quotes-light;
-      color: $color-quotes-light;
-    }
-    &--other {
-      border-bottom: 3px solid $color-other-light;
-      color: $color-other-light;
-    }
   }
 }
 //| end of SECTION                                                          |//

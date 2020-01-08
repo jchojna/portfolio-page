@@ -38,6 +38,14 @@
     text-transform: lowercase;
   }
 
+  &--description {
+    font-family: 'Antonio Regular';
+    font-size: 1.2em;
+    grid-area: description;
+    line-height: 1.5;
+    margin-top: 50px;
+  }
+
   &__header {
     align-items: center;
     background-color: $color-resume;
@@ -61,6 +69,7 @@
     padding-left: 30px;
     position: relative;
     text-transform: uppercase;
+    z-index: 1;
 
     &::before {
       content: "";
@@ -104,6 +113,38 @@
     }
   }
 
+  &__description {
+    margin: 20px $offset-right-sm 0 $offset-left-sm;
+
+    &--large {
+      font-family: 'Antonio Bold';
+      font-size: 1.5em;
+      margin: 20px 0;
+    }
+
+    &--about {
+      color: $color-about-white;
+    }
+    &--tasktimer {
+      color: $color-tasktimer-white;
+    }
+    &--portfolio {
+      color: $color-portfolio-white;
+    }
+    &--hydrapp {
+      color: $color-hydrapp-white;
+    }
+    &--archviz {
+      color: $color-archviz-white;
+    }
+    &--quotes {
+      color: $color-quotes-white;
+    }
+    &--other {
+      color: $color-other-white;
+    }
+  }
+
   &__button {
     @include button;
     align-items: center;
@@ -131,6 +172,42 @@
       transition:
         color $tab-header-time,
         padding-left $tab-header-time ease-in;
+    }
+  }
+
+  &__readMore {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 10px $offset-right-sm 10px $offset-left-sm;
+    padding: 0.2em 0;
+    text-transform: uppercase;
+
+    &--tasktimer {
+      border-color: $color-tasktimer-light;
+      color: $color-tasktimer-light;
+    }
+    &--portfolio {
+      border-color: $color-portfolio-light;
+      color: $color-portfolio-light;
+    }
+    &--hydrapp {
+      border-color: $color-hydrapp-light;
+      color: $color-hydrapp-light;
+    }
+    &--archviz {
+      border-color: $color-archviz-light;
+      color: $color-archviz-light;
+    }
+    &--quotes {
+      border-color: $color-quotes-light;
+      color: $color-quotes-light;
+    }
+    &--other {
+      border-color: $color-other-light;
+      color: $color-other-light;
     }
   }
 }
