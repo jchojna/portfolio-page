@@ -164,7 +164,7 @@
   //: end of SECTION'S CONTAINER                                       ://
   //: SECTION'S HEADING                                                ://
   &__heading {
-    border-left: 8px solid #fff;
+    border-left: 8px solid transparent;
     color: #fff;
     font-size: 50px;
     font-weight: normal;
@@ -385,12 +385,12 @@
   margin: 30px $offset-right-sm 0;
   padding-top: 30px;
 
-  &--about     { border-color: $color-about-white; }
-  &--tasktimer { border-color: $color-tasktimer-white; }
-  &--portfolio { border-color: $color-portfolio-white; }
-  &--hydrapp   { border-color: $color-hydrapp-white; }
-  &--archviz   { border-color: $color-archviz-white; }
-  &--quotes    { border-color: $color-quotes-white; }
+  &--about     { border-color: $color-about-diff; }
+  &--tasktimer { border-color: $color-tasktimer-diff; }
+  &--portfolio { border-color: $color-portfolio-diff; }
+  &--hydrapp   { border-color: $color-hydrapp-diff; }
+  &--archviz   { border-color: $color-archviz-diff; }
+  &--quotes    { border-color: $color-quotes-diff; }
 
   &__link {
     @include flex-center;
@@ -402,7 +402,7 @@
 
     &--about {
       border-color: inherit;
-      color: $color-about-white;
+      color: $color-about-diff;
       &:hover {
         border-color: $color-about-shadow;
         color: $color-about-shadow;
@@ -410,7 +410,7 @@
     }
     &--tasktimer {
       border-color: inherit;
-      color: $color-tasktimer-white;
+      color: $color-tasktimer-diff;
       &:hover {
         border-color: $color-tasktimer-shadow;
         color: $color-tasktimer-shadow;
@@ -418,7 +418,7 @@
     }
     &--portfolio {
       border-color: inherit;
-      color: $color-portfolio-white;
+      color: $color-portfolio-diff;
       &:hover {
         border-color: $color-portfolio-shadow;
         color: $color-portfolio-shadow;
@@ -426,7 +426,7 @@
     }
     &--hydrapp {
       border-color: inherit;
-      color: $color-hydrapp-white;
+      color: $color-hydrapp-diff;
       &:hover {
         border-color: $color-hydrapp-shadow;
         color: $color-hydrapp-shadow;
@@ -434,7 +434,7 @@
     }
     &--archviz {
       border-color: inherit;
-      color: $color-archviz-white;
+      color: $color-archviz-diff;
       &:hover {
         border-color: $color-archviz-shadow;
         color: $color-archviz-shadow;
@@ -442,7 +442,7 @@
     }
     &--quotes {
       border-color: inherit;
-      color: $color-quotes-white;
+      color: $color-quotes-diff;
       &:hover {
         border-color: $color-quotes-shadow;
         color: $color-quotes-shadow;

@@ -7,9 +7,9 @@
   top: 0;
   left: 0;
   transition:
-    background-color $tab-header-time,
-    height $tab-header-time,
-    width $tab-header-time $tab-header-time;
+    background-color $tab-header-time $tab-header-time,
+    height $tab-header-time ease-in,
+    width $tab-header-time $tab-header-time ease-out;
   width: 40px;
   z-index: 2;
 
@@ -22,12 +22,12 @@
     height: 100px;
     transition:
       background-color $tab-header-time,
-      height $tab-header-time $tab-header-time,
-      width $tab-header-time;
+      height $tab-header-time $tab-header-time ease-out,
+      width $tab-header-time ease-in;
     width: 10px;
   }
 
-  &--resume { background-color: $color-resume-white; }
+  &--resume { background-color: $color-resume-dark; }
   &--other { background-color: $color-other-white; }
   &--contact { background-color: $color-contact-white; }
   

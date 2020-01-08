@@ -4,9 +4,10 @@
 .logo {
   @include flex-center;
   grid-area: logo;
+  margin-right: $offset-right-sm;
   position: relative;
-  transform: scale(1.1);
-  transform-origin: top left;
+  //transform: scale(1.1);
+  //transform-origin: top left;
 
   &--about {
     display: none;

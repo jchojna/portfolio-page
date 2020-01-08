@@ -55,7 +55,6 @@
 
   &__heading {
     align-self: end;
-    color: $color-about-white;
     font-size: 30px;
     line-height: 1;
     margin: 20px 0;
@@ -117,17 +116,21 @@
     position: relative;
     text-align: left;
     text-transform: uppercase;
-    transition: $tab-header-time $tab-header-time;
+    transition:
+      color $tab-header-time $tab-header-time,
+      padding-left $tab-header-time $tab-header-time ease-out;
     width: 100%;
 
     &--resume {
-      color: $color-resume-white;
+      color: $color-resume-dark;
     }
 
     &--unrolled {
       color: inherit;
       padding-left: 30px;
-      transition: $tab-header-time;
+      transition:
+        color $tab-header-time,
+        padding-left $tab-header-time ease-in;
     }
   }
 }
