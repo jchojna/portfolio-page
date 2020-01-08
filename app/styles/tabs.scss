@@ -39,10 +39,7 @@
   }
 
   &--description {
-    font-family: 'Antonio Regular';
-    font-size: 1.2em;
     grid-area: description;
-    line-height: 1.5;
     margin-top: 50px;
   }
 
@@ -122,12 +119,20 @@
   }
 
   &__description {
-    margin: 20px $offset-right-sm 0 $offset-left-sm;
+    font-family: 'Antonio Regular';
+    font-size: 1.2em;
+    line-height: 1.4;
+    margin: 0 $offset-right-sm 0 $offset-left-sm;
 
     &--large {
       font-family: 'Antonio Bold';
       font-size: 1.5em;
       margin: 20px 0;
+    }
+
+    &--small {
+      font-family: 'Antonio Bold';
+      font-size: 1em;
     }
 
     &--about {
@@ -150,6 +155,10 @@
     }
     &--other {
       color: $color-other-white;
+
+      &.tab__description--small {
+        color: $color-other-shadow;
+      }
     }
   }
 

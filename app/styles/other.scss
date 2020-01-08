@@ -1,13 +1,6 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
-.otherRepos {
-  align-self: stretch;
-  display: grid;
-  grid-area: otherRepos;
-  margin-top: 1em;
-}
-
 .repo {
   @include flex-center;
   background-color: $color-other-dark;

@@ -323,19 +323,19 @@
   margin: 0 $offset-right-sm 0 $offset-left-sm;
   
   &--tasktimer {
-    color: $color-tasktimer-light;
+    color: $color-tasktimer-shadow;
   }
   &--portfolio {
-    color: $color-portfolio-light;
+    color: $color-portfolio-shadow;
   }
   &--hydrapp {
-    color: $color-hydrapp-light;
+    color: $color-hydrapp-shadow;
   }
   &--archviz {
-    color: $color-archviz-light;
+    color: $color-archviz-shadow;
   }
   &--quotes {
-    color: $color-quotes-light;
+    color: $color-quotes-shadow;
   }
 
   &__header {
@@ -360,8 +360,8 @@
   font-size: 2em;
   grid-area: repoLinks;
   grid-template-columns: repeat(2, 1fr);
-  margin: 30px $offset-right-sm 0;
-  padding-top: 30px;
+  margin: 0.5em $offset-right-sm 0;
+  padding-top: 1em;
 
   &--about     { border-color: $color-about-diff; }
   &--tasktimer { border-color: $color-tasktimer-diff; }
@@ -371,8 +371,10 @@
   &--quotes    { border-color: $color-quotes-diff; }
 
   &--other {
-    border: none;
-    margin: 0 $offset-right-sm 0 $offset-left-sm;
+    border-color: $color-other-shadow;
+    border-width: 2px;
+    font-size: 1.5em;
+    margin: 0.5em $offset-right-sm 0 $offset-left-sm;
   }
 
   &__link {
@@ -432,7 +434,8 @@
       }
     }
     &--other {
-      border-color: inherit;
+      border-color: $color-other-white;
+      border-width: 2px;
       color: $color-other-white;
       &:hover {
         border-color: $color-other-shadow;
