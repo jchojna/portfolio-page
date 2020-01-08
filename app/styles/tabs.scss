@@ -104,6 +104,10 @@
       color: $color-quotes-diff;
       &::before { background-color: $color-quotes-diff; }
     }
+    &--other {
+      color: $color-other-diff;
+      &::before { background-color: $color-other-diff; }
+    }
 
     @media only screen and (min-width: $media-lg) {
 
