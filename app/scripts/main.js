@@ -61,13 +61,6 @@ const handleIntroMenu = (e) => {
 }
 //| end of HANDLE MENU IN INTRO MODE                                        |//
 
-
-
-
-
-
-
-
 //| HANDLE MENU ITEMS ON MOBILE DEVICES                                     |//
 const handleMenuClick = (activeIndex) => {
   //: variables                                                        ://
@@ -193,17 +186,6 @@ const handleBurgerButton = () => {
   //: end of timeout                                                   ://
 }
 //| end of BURGER BUTTON HANDLER                                            |//
-
-
-
-
-
-
-
-
-
-
-
 
 const getCurrentLinkIndex = (cursorYPosition) => {  // ! TO REFACTOR
   return links.length - 1 - [...links]
@@ -336,6 +318,37 @@ const handleAccordion = (tabs, clickedIndex) => {
 }
 //| end of RESUME'S ACCORDION HANDLER                                       |//
 
+//| FETCH GITHUB API                                                         |//
+const handleRepo = (repos) => {
+  const statsCreated = document.querySelectorAll('.stats__value--js-created');
+  const statsUpdated = document.querySelectorAll('.stats__value--js-updated');
+  const statsCommits = document.querySelectorAll('.stats__value--js-commits');
+  const reposIds = [
+    'task-timer',
+    'portfolio-page',
+    'hydrApp',
+    'archviz-website',
+    'homepage-gulp'];
+  //: FORMAT FETCHED DATES                                             ://
+  const getFormattedDate = (date) => date.slice(0,10).split('-').reverse().join('-');
+  //: FILTER SPECIFIC REPOS                                            ://
+  const reposFiltered = [...reposIds].map(id =>
+    [...repos].filter(repo => repo.name === id)[0]);
+  //: ASSIGN FETCHED DATA TO EACH REPOS                                ://
+  for (let i = 0; i < reposFiltered.length; i++) {
+    const createdTime = getFormattedDate(reposFiltered[i].created_at);
+    const updatedTime = getFormattedDate(reposFiltered[i].updated_at);
+    //. ASSIGN DATES                                              .//
+    statsCreated[i].innerHTML = createdTime;
+    statsUpdated[i].innerHTML = updatedTime;
+    //. ASSIGN NUMBER OF TOTAL COMMITS                            .//
+    fetch(reposFiltered[i].contributors_url)
+    .then(resp => resp.json())
+    .then(resp => statsCommits[i].innerHTML = resp[0].contributions);
+  }    
+}
+//| end of FETCH GITHUB API                                                  |//
+
 //| GLOBAL VARIABLES |//
 //: INTRO ://
 let isIntroMode = true;
@@ -406,6 +419,10 @@ let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
 handleIntroMenu();
 handleNavigation();
 handleMenuIndicator(currentGlobalSectionIndex);
+
+fetch('https://api.github.com/users/jchojna/repos')
+  .then(resp => resp.json())
+  .then(resp => handleRepo(resp));
 
 //| EVENT HANDLERS |//
 

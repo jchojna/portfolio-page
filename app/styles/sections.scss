@@ -57,6 +57,7 @@
   }
   //: SECTION'S CONTAINER                                              ://
   &__container {
+    align-content: start;
     align-items: start;
     display: grid;
     width: 100%;
@@ -73,7 +74,6 @@
     }
 
     &--resume {
-      align-content: start;
       grid-template-areas:
       "heading   "
       "logo      "
@@ -102,7 +102,6 @@
       "logo       "
       "description"
       "otherRepos ";
-      grid-template-columns: 1fr;
     }
 
     &--contact {
@@ -282,6 +281,7 @@
 //| SECTION'S STATS                                                         |//
 .stats {
   border-collapse: collapse;
+  display: flex;
   margin: 0 $offset-right-sm 0 $offset-left-sm;
   
   &--tasktimer {
@@ -304,13 +304,22 @@
     display: none;
   }
 
-  &__col {
-    padding-top: 0.3em;
+  &__body {
     width: 100%;
+  }
 
-    &--second {
-      text-align: right;
-    }
+  &__row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__category,
+  &__value {
+    padding-top: 0.3em;
+  }
+
+  &__value {
+    text-align: right;
   }
 }
 //| end of SECTION'S STATS                                                  |//
