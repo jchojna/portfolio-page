@@ -22,11 +22,24 @@ const handleIntroMenu = (e) => {
       introBox.classList.remove(`pageHeader__introBox--${introLinkId}`);
     }
   }
-  const viewportOffset = window.pageYOffset;
-  
+  //: SET INTROBOX AND MENU BACKGROUND                                 ://
+  const setGraphic = () => {
+    const currentYPosition = links[lastLinkIndex].offset;
+    const linkHeight = links[lastLinkIndex].height;
+    const upperBackgroundHeight = currentYPosition + linkHeight;
+    const bottomBackgroundHeight = window.innerHeight > upperBackgroundHeight
+    ? window.innerHeight - upperBackgroundHeight : 0;
+
+    introBox.style.top = `${currentYPosition}px`;
+    introBox.style.height = `${linkHeight}px`;
+    introBox.style.width = `${linkHeight}px`;
+    menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
+    menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
+  }
   //: handle intro menu on mouse event                                 ://
   if (e && e.type === 'mousemove') {
     //. get link index based on cursor position                   .//
+    const viewportOffset = window.pageYOffset;
     const currentLinkIndex = getCurrentLinkIndex(e.clientY + viewportOffset);
 
     if (currentLinkIndex !== lastLinkIndex) {
@@ -39,25 +52,34 @@ const handleIntroMenu = (e) => {
       toggleLink(lastLinkIndex, 'activate');
     }
 
+
+
+
+
+
+
+
+
+
   //: handle intro menu on window resize                               ://
   } else if (e && e.type === 'resize') {
-    const currentYPosition = links[lastLinkIndex].offset;
-    const linkHeight = links[lastLinkIndex].height;
-    introBox.style.top = `${currentYPosition}px`;
-    introBox.style.height = `${linkHeight}px`;
-    introBox.style.width = `${linkHeight}px`;
+    setGraphic();
 
   //: handle intro menu on page load                                   ://
   } else {
-    const linkHeight = links[lastLinkIndex].height;
-    const startYPosition = links[lastLinkIndex].offset;
+    setGraphic();
     const startLinkId = sections[lastLinkIndex].id;
     menuLinks[lastLinkIndex].classList.add(`menu__link--intro-${startLinkId}`);
     introBox.classList.add(`pageHeader__introBox--${startLinkId}`);
-    introBox.style.height = `${linkHeight}px`;
-    introBox.style.width = `${linkHeight}px`;
-    introBox.style.top = `${startYPosition}px`;
   }
+
+
+
+
+
+
+
+
 }
 //| end of HANDLE MENU IN INTRO MODE                                        |//
 
@@ -117,6 +139,8 @@ const handleMenuClick = (activeIndex) => {
     menuBottomBackground.style.height = 0;
     menuUpperBackground.classList.add(`pageHeader__background--${clickedElementId}`);
     menuUpperBackground.classList.add('pageHeader__background--intro');
+    menuUpperBackground.classList.add('pageHeader__background--animated');
+    menuBottomBackground.classList.add('pageHeader__background--animated');
     //. show main content of the page                             .//
     pageHeader.classList.remove('pageHeader--intro');
     pageContainer.classList.add('pageContainer--visible');
@@ -182,6 +206,9 @@ const handleBurgerButton = () => {
     pageContainer.classList.remove('pageContainer--visible');
     //. handle burger button's color                              .//
     burgerButton.classList.remove(`burgerButton--${lastElementId}`);
+
+    menuUpperBackground.classList.remove('pageHeader__background--animated');
+    menuBottomBackground.classList.remove('pageHeader__background--animated');
 
   }, timeoutInterval);
   //: end of timeout                                                   ://
@@ -417,9 +444,9 @@ handleIntroMenu();
 handleNavigation();
 handleMenuIndicator(currentGlobalSectionIndex);
 
-fetch('https://api.github.com/users/jchojna/repos')
+/* fetch('https://api.github.com/users/jchojna/repos')
   .then(resp => resp.json())
-  .then(resp => handleRepo(resp));
+  .then(resp => handleRepo(resp)); */
 // ! project id must fit repo id
 //| EVENT HANDLERS                                                          |//
 const handleMenu = () => {
