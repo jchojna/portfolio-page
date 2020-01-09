@@ -61,13 +61,6 @@ const handleIntroMenu = (e) => {
 }
 //| end of HANDLE MENU IN INTRO MODE                                        |//
 
-
-
-
-
-
-
-
 //| HANDLE MENU ITEMS ON MOBILE DEVICES                                     |//
 const handleMenuClick = (activeIndex) => {
   //: variables                                                        ://
@@ -193,17 +186,6 @@ const handleBurgerButton = () => {
   //: end of timeout                                                   ://
 }
 //| end of BURGER BUTTON HANDLER                                            |//
-
-
-
-
-
-
-
-
-
-
-
 
 const getCurrentLinkIndex = (cursorYPosition) => {  // ! TO REFACTOR
   return links.length - 1 - [...links]
@@ -336,6 +318,104 @@ const handleAccordion = (tabs, clickedIndex) => {
 }
 //| end of RESUME'S ACCORDION HANDLER                                       |//
 
+//| FETCH REPOS API                                                         |//
+
+const handleRepo = (repos) => {
+  const statsUpdates = document.querySelectorAll('.stats__value--js-update');
+  const reposIds = [
+    'task-timer',
+    'portfolio-page',
+    'hydrApp',
+    'archviz-website',
+    'homepage-gulp'];
+
+  const reposFiltered = [...reposIds].map(id =>
+    [...repos].filter(repo => repo.name === id)[0]);
+
+  [...statsUpdates].forEach((stat, index) => {
+    const updateTime = reposFiltered[index].updated_at
+      .slice(0,10)
+      .split('-')
+      .reverse()
+      .join('-');
+    stat.innerHTML = updateTime;
+  });
+
+
+
+  console.log(reposFiltered);
+
+
+
+
+
+
+
+
+
+  /* for (const repo of repos) {
+    if (repo.description === null) {
+      repo.description = "No description 😟";
+    }
+    const updateTime = repo.updated_at.slice(0,10).split("-").reverse().join("-");
+    const repoProjects = document.querySelector('.projects__repos--js');
+    const { name, description, homepage, html_url, commits } = repo;
+    var totalCommits; */
+
+    /* fetch(repo.contributors_url)
+      .then(resp => resp.json())
+      .then(resp => totalCommits = resp.contributions); */
+    
+    //console.log(totalCommits);
+
+    /* repoProjects.innerHTML += `
+    <section class="repo">
+      <header class="repo__header">
+        <img src="assets/svg/github-icon.svg" alt="github icon" class="repo__icon">
+        <h3 class="repo__heading repo__heading--js">
+          ${name}
+        </h3>
+        <p class="repo__description">
+          ${description}
+        </p>
+        <p class="repo__update">
+          last update: ${updateTime}
+        </p>
+        <p class="repo__commits">
+          last update: ${commits}
+        </p>
+      </header>
+      <nav class="repo__navigation">
+        <ul class="repo__list">
+        ${ homepage ?
+          `
+            <li class="repo__item">
+              <a href="${homepage}" class="repo__link" target="_blank rel="nofollow noreferrer" title="go to project's demo">
+                <svg class="repo__svg">
+                  <use href="assets/svg/sprite-map.svg#link-demo">
+                </svg>
+                <span class="repo__label">Demo</span>
+              </a>
+            </li>
+          `
+          : ''
+        }
+          <li class="repo__item">
+            <a href="${html_url}" class="repo__link" target="_blank rel="nofollow noreferrer" title="go to project's code">
+              <svg class="repo__svg">
+                <use href="assets/svg/sprite-map.svg#link-github">
+              </svg>
+              <span class="repo__label">Github</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+    ` */
+}
+
+//| end of FETCH REPOS API                                                  |//
+
 //| GLOBAL VARIABLES |//
 //: INTRO ://
 let isIntroMode = true;
@@ -406,6 +486,10 @@ let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
 handleIntroMenu();
 handleNavigation();
 handleMenuIndicator(currentGlobalSectionIndex);
+
+fetch('https://api.github.com/users/jchojna/repos')
+  .then(resp => resp.json())
+  .then(resp => handleRepo(resp));
 
 //| EVENT HANDLERS |//
 
