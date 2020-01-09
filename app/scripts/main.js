@@ -1,13 +1,23 @@
 //| FUNCTIONS |
 
-const updateLinks = () => {
-  //[...links].forEach(link => link.offset = link.offsetTop);
+const updateMenuElements = () => {
   [...links].forEach(link => {
     link.offset = link.node.offsetTop;
     link.height = link.node.clientHeight;
   });
+  [...items].forEach(item => {
+    item.offset = item.node.offsetTop;
+    item.height = item.node.clientHeight;
+  });
 }
 
+/*
+.%%%%%%..%%..%%..%%%%%%..%%%%%....%%%%...........%%...%%...%%%%...%%%%%...%%%%%%.
+...%%....%%%.%%....%%....%%..%%..%%..%%..........%%%.%%%..%%..%%..%%..%%..%%.....
+...%%....%%.%%%....%%....%%%%%...%%..%%..........%%.%.%%..%%..%%..%%..%%..%%%%...
+...%%....%%..%%....%%....%%..%%..%%..%%..........%%...%%..%%..%%..%%..%%..%%.....
+.%%%%%%..%%..%%....%%....%%..%%...%%%%...........%%...%%...%%%%...%%%%%...%%%%%%.
+*/
 //| HANDLE MENU IN INTRO MODE                                               |//
 const handleIntroMenu = (e) => {
   //: CHANGE ACTIVE LINK ON HOVER                                      ://
@@ -53,18 +63,25 @@ const handleIntroMenu = (e) => {
     }
   //: handle intro menu on window resize                               ://
   } else if (e && e.type === 'resize') {
-    setGraphic();
+    if (isIntroMode) setGraphic();
 
   //: handle intro menu on page load                                   ://
   } else {
-    setGraphic();
+    if (isIntroMode) setGraphic();
+
     const startLinkId = sections[lastLinkIndex].id;
     menuLinks[lastLinkIndex].classList.add(`menu__link--intro-${startLinkId}`);
     introBox.classList.add(`pageHeader__introBox--${startLinkId}`);
   }
 }
 //| end of HANDLE MENU IN INTRO MODE                                        |//
-
+/*
+.%%...%%..%%%%%%..%%..%%..%%..%%...........%%%%...%%......%%%%%%...%%%%...%%..%%.
+.%%%.%%%..%%......%%%.%%..%%..%%..........%%..%%..%%........%%....%%..%%..%%.%%..
+.%%.%.%%..%%%%....%%.%%%..%%..%%..........%%......%%........%%....%%......%%%%...
+.%%...%%..%%......%%..%%..%%..%%..........%%..%%..%%........%%....%%..%%..%%.%%..
+.%%...%%..%%%%%%..%%..%%...%%%%............%%%%...%%%%%%..%%%%%%...%%%%...%%..%%.
+*/
 //| HANDLE MENU ITEMS ON MOBILE DEVICES                                     |//
 const handleMenuClick = (activeIndex) => {
   //: variables                                                        ://
@@ -72,6 +89,7 @@ const handleMenuClick = (activeIndex) => {
   const windowHeight = window.innerHeight;
   const clickedItemHeight = items[activeIndex].height;
   const clickedItemOffset = items[activeIndex].offset;
+  console.log('clickedItemOffset', clickedItemOffset);
   const clickedElementId = sections[activeIndex].id;
   const clickedLink = document.querySelectorAll('.menu__link--js')[activeIndex];
   const clickedLinkWidth = clickedLink.clientWidth;
@@ -102,6 +120,7 @@ const handleMenuClick = (activeIndex) => {
     //. variables                                                 .//
     const upwardsOffset = clickedItemOffset;
     const downwardsOffset = windowHeight - clickedItemOffset - clickedItemHeight;
+    isIntroMode = false;
     //. set position of menu items                                .//
     [...menuItems].forEach((item, itemIndex) => {
       const currentItemOffset = links[itemIndex].offset;
@@ -145,12 +164,19 @@ const handleMenuClick = (activeIndex) => {
       top: sections[activeIndex].offset,
       behavior: 'auto'
     });
+    window.addEventListener('scroll', handleMobileHeader);
 
   }, timeoutInterval);
   //: end of timeout                                                   ://
 }
 //| end of HANDLE MENU ITEMS ON MOBILE DEVICES                              |//
-
+/*
+.%%%%%...%%..%%..%%%%%....%%%%...%%%%%%..%%%%%..
+.%%..%%..%%..%%..%%..%%..%%......%%......%%..%%.
+.%%%%%...%%..%%..%%%%%...%%.%%%..%%%%....%%%%%..
+.%%..%%..%%..%%..%%..%%..%%..%%..%%......%%..%%.
+.%%%%%....%%%%...%%..%%...%%%%...%%%%%%..%%..%%.
+*/
 //| BURGER BUTTON HANDLER                                                   |//
 const handleBurgerButton = () => {
   //: variables                                                        ://
@@ -182,6 +208,7 @@ const handleBurgerButton = () => {
   //: set timeout for translating menu items                           ://
   clearTimeout(menuTimeoutId);
   menuTimeoutId = setTimeout(() => {
+    isIntroMode = true;
     //. change menu items to static elements                      .//
     [...menuItems].forEach(item => item.classList.add('menu__item--intro'));
     //. change introBox transition time                           .//
@@ -194,11 +221,64 @@ const handleBurgerButton = () => {
 
     menuUpperBackground.classList.remove('pageHeader__background--animated');
     menuBottomBackground.classList.remove('pageHeader__background--animated');
+    
+    window.removeEventListener('scroll', handleMobileHeader);
 
   }, timeoutInterval);
   //: end of timeout                                                   ://
 }
 //| end of BURGER BUTTON HANDLER                                            |//
+/*
+.%%..%%..%%%%%%...%%%%...%%%%%...%%%%%%..%%%%%..
+.%%..%%..%%......%%..%%..%%..%%..%%......%%..%%.
+.%%%%%%..%%%%....%%%%%%..%%..%%..%%%%....%%%%%..
+.%%..%%..%%......%%..%%..%%..%%..%%......%%..%%.
+.%%..%%..%%%%%%..%%..%%..%%%%%...%%%%%%..%%..%%.
+*/
+//| HANDLE MOBILE HEADER CHANGE                                             |//
+const handleMobileHeader = () => {
+
+  const deactivate = () => {
+
+  }
+
+  const activate = () => {
+
+  }
+
+  const updatedGlobalSectionIndex = getCurrentSectionIndex(0);
+  // when index changes
+  if (updatedGlobalSectionIndex !== currentGlobalSectionIndex) {
+    deactivate(currentGlobalSectionIndex);
+    currentGlobalSectionIndex = updatedGlobalSectionIndex;
+    activate(currentGlobalSectionIndex);
+  } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+//| end of HANDLE MOBILE HEADER CHANGE                                      |//
 
 const getCurrentLinkIndex = (cursorYPosition) => {  // ! TO REFACTOR
   return links.length - 1 - [...links]
@@ -436,6 +516,7 @@ handleMenuIndicator(currentGlobalSectionIndex);
 //| EVENT HANDLERS                                                          |//
 const handleMenu = () => {
   if (!isIntroMode) {
+    console.log('test');
     const updatedGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
     // perform DOM manipulation when index changes
     if (updatedGlobalSectionIndex !== currentGlobalSectionIndex) {
@@ -465,14 +546,14 @@ const handleMenu = () => {
 }
 //| EVENT LISTENERS                                                         |//
 //: UPDATE GLOBAL OBJECTS                                              ://
-window.addEventListener('resize', updateLinks);
-// ! update serctions on resize
+window.addEventListener('resize', updateMenuElements);
+// ! update sections on resize
 //: INTRO                                                              ://
 menuList.addEventListener('mousemove', handleIntroMenu);
 window.addEventListener('resize', handleIntroMenu);
 //: MENU AND NAVIGATION                                                ://
-window.addEventListener('scroll', handleMenu);
-window.addEventListener('scroll', handleNavigation);
+//window.addEventListener('scroll', handleMenu);
+//window.addEventListener('scroll', handleNavigation);
 
 [...menuLinks].forEach((link, index) => {
   link.addEventListener('click', () => handleMenuClick(index));
