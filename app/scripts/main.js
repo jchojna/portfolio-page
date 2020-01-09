@@ -321,29 +321,31 @@ const handleAccordion = (tabs, clickedIndex) => {
 //| FETCH REPOS API                                                         |//
 
 const handleRepo = (repos) => {
-  const statsUpdates = document.querySelectorAll('.stats__value--js-update');
+  const statsCreated = document.querySelectorAll('.stats__value--js-created');
+  const statsUpdated = document.querySelectorAll('.stats__value--js-updated');
   const reposIds = [
     'task-timer',
     'portfolio-page',
     'hydrApp',
     'archviz-website',
     'homepage-gulp'];
-
+  
+  const getFormattedDate = (date) => date.slice(0,10).split('-').reverse().join('-');
+    
   const reposFiltered = [...reposIds].map(id =>
     [...repos].filter(repo => repo.name === id)[0]);
 
-  [...statsUpdates].forEach((stat, index) => {
-    const updateTime = reposFiltered[index].updated_at
-      .slice(0,10)
-      .split('-')
-      .reverse()
-      .join('-');
-    stat.innerHTML = updateTime;
-  });
+  for (let i = 0; i < reposFiltered.length; i++) {
+    const createdTime = getFormattedDate(reposFiltered[i].created_at);
+    const updatedTime = getFormattedDate(reposFiltered[i].updated_at);
+
+    statsCreated[i].innerHTML = createdTime;
+    statsUpdated[i].innerHTML = updatedTime;
+  }
 
 
 
-  console.log(reposFiltered);
+  console.log(reposFiltered[0]);
 
 
 
