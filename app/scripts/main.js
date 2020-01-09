@@ -423,6 +423,7 @@ handleMenuIndicator(currentGlobalSectionIndex);
 fetch('https://api.github.com/users/jchojna/repos')
   .then(resp => resp.json())
   .then(resp => handleRepo(resp));
+// ! project id must fit repo id
 
 //| EVENT HANDLERS |//
 

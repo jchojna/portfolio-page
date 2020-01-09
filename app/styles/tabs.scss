@@ -12,7 +12,7 @@
   &--learning { grid-area: learning; }
   //: RESUME                                                           ://
   &--resume {
-    min-height: $field-min-height;
+    min-height: $header-min-height;
     color: $color-resume-diff;
   }
   &--education {
@@ -40,12 +40,12 @@
   }
 
   &__header {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
-    font-size: 40px;
+    font-size: 30px;
     line-height: 1;
     margin: 0;
-    min-height: $field-min-height;
+    min-height: $header-min-height;
     position: relative;
     z-index: 2;
 
@@ -74,7 +74,7 @@
       top: 0;
       left: 0;
       width: 10px;
-      height: 100px;
+      height: 110px;
     }
 
     &--about {
@@ -159,11 +159,11 @@
     @include button;
     align-items: center;
     display: flex;
-    height: 40px;
+    height: 30px;
     line-height: 1;
     margin: 0;
     padding: 0;
-    padding-left: 60px;
+    padding-left: 50px;
     position: relative;
     text-align: left;
     text-transform: uppercase;
@@ -230,21 +230,17 @@
 
   &--resume {
     margin-left: 30px;
-    min-height: 60px;
   }
 
   &__header {
 
     &--resume {
       font-size: 30px;
-      min-height: 60px;
       z-index: 1;
     }
   }
 
   &__button {
-    height: 30px;
-    padding-left: 50px;
 
     &--resume {
       color: $color-resume-dark;
@@ -252,7 +248,6 @@
 
     &--unrolled {
       color: inherit;
-      padding-left: 30px;
     }
   }
 }
@@ -276,7 +271,7 @@
   &__title {
     border-left: 10px solid $color-resume-dark;
     color: $color-resume-dark;
-    font-size: 30px;
+    font-size: 25px;
     margin: 0;
     padding: 0 0 10px 20px;
   }
