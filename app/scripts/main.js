@@ -27,8 +27,8 @@ const handleIntroMenu = (e) => {
     const currentYPosition = links[lastLinkIndex].offset;
     const linkHeight = links[lastLinkIndex].height;
     const upperBackgroundHeight = currentYPosition + linkHeight;
-    const bottomBackgroundHeight = window.innerHeight > upperBackgroundHeight
-    ? window.innerHeight - upperBackgroundHeight : 0;
+    const bottomBackgroundHeight = pageHeader.clientHeight > upperBackgroundHeight
+    ? pageHeader.clientHeight - upperBackgroundHeight : 0;
 
     introBox.style.top = `${currentYPosition}px`;
     introBox.style.height = `${linkHeight}px`;
@@ -51,16 +51,6 @@ const handleIntroMenu = (e) => {
       lastLinkIndex = currentLinkIndex;
       toggleLink(lastLinkIndex, 'activate');
     }
-
-
-
-
-
-
-
-
-
-
   //: handle intro menu on window resize                               ://
   } else if (e && e.type === 'resize') {
     setGraphic();
@@ -72,14 +62,6 @@ const handleIntroMenu = (e) => {
     menuLinks[lastLinkIndex].classList.add(`menu__link--intro-${startLinkId}`);
     introBox.classList.add(`pageHeader__introBox--${startLinkId}`);
   }
-
-
-
-
-
-
-
-
 }
 //| end of HANDLE MENU IN INTRO MODE                                        |//
 
@@ -113,6 +95,7 @@ const handleMenuClick = (activeIndex) => {
   //: set menu item's width                                            ://
   menuLinks[activeIndex].style.width = `${clickedLinkWidth}px`;
   links[activeIndex].width = clickedLinkWidth;
+
   //: set timeout for translating menu items                           ://
   clearTimeout(menuTimeoutId);
   menuTimeoutId = setTimeout(() => {
@@ -133,6 +116,7 @@ const handleMenuClick = (activeIndex) => {
     menuLinks[activeIndex].classList.add('menu__link--intro');
     //. set position of introBox                                  .//
     introBox.classList.remove('pageHeader__introBox--intro');
+    introBox.classList.remove('pageHeader__introBox--visible');
     introBox.style.top = 0;
     //. handle menu background                                    .//
     menuUpperBackground.style.height = `${clickedItemHeight}px`;
@@ -191,16 +175,17 @@ const handleBurgerButton = () => {
   menuUpperBackground.classList.remove('pageHeader__background--intro');
   //: set position of introBox                                         ://
   introBox.style.top = `${activeItemOffset}px`;
+  introBox.classList.add('pageHeader__introBox--visible');
   //: set menu item's width                                            ://
   menuLinks[lastLinkIndex].classList.remove('menu__link--intro');
   menuLinks[lastLinkIndex].style.width = `${links[lastLinkIndex].width}px`;
   //: set timeout for translating menu items                           ://
   clearTimeout(menuTimeoutId);
   menuTimeoutId = setTimeout(() => {
-    //. change introBox transition time                           .//
-    introBox.classList.add('pageHeader__introBox--intro');
     //. change menu items to static elements                      .//
     [...menuItems].forEach(item => item.classList.add('menu__item--intro'));
+    //. change introBox transition time                           .//
+    introBox.classList.add('pageHeader__introBox--intro');
     //. hide main content of the page                             .//
     pageHeader.classList.add('pageHeader--intro');
     pageContainer.classList.remove('pageContainer--visible');
