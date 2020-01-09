@@ -38,6 +38,10 @@
     grid-area: stats;
     text-transform: lowercase;
   }
+  //: RESUME                                                           ://
+  &--other {
+    color: $color-other-diff;
+  }
 
   &__header {
     align-items: flex-start;
@@ -253,6 +257,7 @@
 }
 
 .content {
+  padding-bottom: 20px;
 
   &__list {
     list-style-type: none;

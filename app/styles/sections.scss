@@ -270,11 +270,9 @@
     display: none;
   }
 
-  &__otherRepos {
-    align-self: stretch;
-    display: grid;
+  &__repos {
+    margin-top: 30px;
     grid-area: otherRepos;
-    margin-top: 1em;
   }
 }
 //| end of SECTION                                                          |//
@@ -345,7 +343,7 @@
     border-color: $color-other-shadow;
     border-width: 2px;
     font-size: 1.5em;
-    margin: 0.5em $offset-right-sm 0.5em $offset-left-sm;
+    margin: 0.5em $offset-right-sm 0 $offset-left-sm;
   }
 
   &__link {

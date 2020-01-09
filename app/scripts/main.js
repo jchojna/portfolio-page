@@ -126,6 +126,7 @@ const handleMenuClick = (activeIndex) => {
     //. handle resume's accordions when content is displayed      .//
     handleAccordion([...resumeSubtabs]);
     handleAccordion([...resumeTabs]);
+    handleAccordion([...otherProjectsTabs]);
     //. set each section's offset from the top                    .//
     [...sections].forEach((section, index) => {
       section.offset = pageSections[index].offsetTop;
@@ -287,38 +288,35 @@ const handleAccordion = (tabs, clickedIndex) => {
       const subtab = /subtab/.test(button.className);
       //. handle clicked tab                                      .//
       if (clickedIndex === index) {
-      
         const translation = content.style.marginTop;
-        console.log('content.clientHeight', content.clientHeight);
-
-          // apply transition effect
-          if (!content.classList.contains('rollable')) content.classList.add('rollable');
-          // apply transformations
-          if (translation === 0 || translation === '' || translation === '0px') {
-            content.style.marginTop = `${-1 * content.clientHeight}px`;
-            button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
-            mark.classList.remove('mark--unrolled');
-          } else {
-            content.style.marginTop = 0;
-            button.classList.add(`${subtab ? 'sub' : ''}tab__button--unrolled`);
-            mark.classList.add('mark--unrolled');
-          }
-        //. handle not clicked elements                           .//
-        } else {
-          content.style.marginTop = `${-1 * content.clientHeight}px`;
+        //. apply transition effect                               .//
+        if (!content.classList.contains('rollable')) content.classList.add('rollable');
+        //. apply transformations                                 .//
+        if (translation === 0 || translation === '' || translation === '0px') {
+          content.style.marginTop = `${-1 * content.clientHeight - 2}px`;
           button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.remove('mark--unrolled');
+        } else {
+          content.style.marginTop = 0;
+          button.classList.add(`${subtab ? 'sub' : ''}tab__button--unrolled`);
+          mark.classList.add('mark--unrolled');
         }
+      //. handle not clicked elements                             .//
+      } else {
+        content.style.marginTop = `${-1 * content.clientHeight - 2}px`;
+        button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
+        mark.classList.remove('mark--unrolled');
+      }
     //: handle elements on page load                                   ://
     } else {
-      content.style.marginTop = `${-1 * content.clientHeight}px`;
+      content.style.marginTop = `${-1 * content.clientHeight - 2}px`;
       mark.classList.remove('mark--unrolled');
     }
   });
 }
 //| end of RESUME'S ACCORDION HANDLER                                       |//
 
-//| FETCH GITHUB API                                                         |//
+//| FETCH GITHUB API                                                        |//
 const handleRepo = (repos) => {
   const statsCreated = document.querySelectorAll('.stats__value--js-created');
   const statsUpdated = document.querySelectorAll('.stats__value--js-updated');
@@ -347,22 +345,19 @@ const handleRepo = (repos) => {
     .then(resp => statsCommits[i].innerHTML = resp[0].contributions);
   }    
 }
-//| end of FETCH GITHUB API                                                  |//
+//| end of FETCH GITHUB API                                                 |//
 
-//| GLOBAL VARIABLES |//
-//: INTRO ://
+//| GLOBAL VARIABLES                                                        |//
+//: INTRO                                                              ://
 let isIntroMode = true;
 let lastLinkIndex = 0;
 const introBox = document.querySelector('.pageHeader__introBox--js');
-
-//: INTERVALS ://
+//: INTERVALS                                                          ://
 let menuTimeoutId = null;
-
-//: MAIN CONTENT ://
+//: MAIN CONTENT                                                       ://
 const pageContainer = document.querySelector('.pageContainer--js');
 const pageSections = document.querySelectorAll('.section--js');
-
-//: MENU AND NAVIGATION ://
+//: MENU AND NAVIGATION                                                ://
 const pageHeader = document.querySelector('.pageHeader--js');
 const menuIndicator = document.querySelector('.pageHeader__indicator--js');
 const menuUpperBackground = document.querySelector('.pageHeader__background--js-upper');
@@ -382,6 +377,8 @@ const resumeTabs = document.querySelectorAll('.tab--js-resume');
 const resumeButtons = document.querySelectorAll('.tab__button--js-resume');
 const resumeSubtabs = document.querySelectorAll('.subtab--js-resume');
 const resumeSubButtons = document.querySelectorAll('.subtab__button--js-resume');
+const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
+const otherProjectsButtons = document.querySelectorAll('.tab__button--js-other');
 
 const sections = [...pageSections].map((section, index) => ({
   index,
@@ -408,7 +405,7 @@ const links = [...menuLinks].map((link, index) => ({
 
 let currentNavigationIndex = getCurrentSectionIndex(navigation.offsetTop);
 
-//| FUNCTION CALLS ON PAGE LOAD |//
+//| FUNCTION CALLS ON PAGE LOAD                                             |//
 let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
 // assign active menu link
 //handleActiveMenuLink(currentGlobalSectionIndex, 'set');
@@ -424,9 +421,7 @@ fetch('https://api.github.com/users/jchojna/repos')
   .then(resp => resp.json())
   .then(resp => handleRepo(resp));
 // ! project id must fit repo id
-
-//| EVENT HANDLERS |//
-
+//| EVENT HANDLERS                                                          |//
 const handleMenu = () => {
   if (!isIntroMode) {
     const updatedGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
@@ -456,18 +451,14 @@ const handleMenu = () => {
     }
   }
 }
-
-//| EVENT LISTENERS |//
-
-//: UPDATE GLOBAL OBJECTS ://
+//| EVENT LISTENERS                                                         |//
+//: UPDATE GLOBAL OBJECTS                                              ://
 window.addEventListener('resize', updateLinks);
 // ! update serctions on resize
-
-//: INTRO ://
+//: INTRO                                                              ://
 menuList.addEventListener('mousemove', handleIntroMenu);
 window.addEventListener('resize', handleIntroMenu);
-
-//: MENU AND NAVIGATION ://
+//: MENU AND NAVIGATION                                                ://
 window.addEventListener('scroll', handleMenu);
 window.addEventListener('scroll', handleNavigation);
 
@@ -479,8 +470,7 @@ navigationPrevButton.addEventListener('click', navigateToSection);
 navigationNextButton.addEventListener('click', navigateToSection);
 navigationMainButton.addEventListener('click', () => console.log('main'));
 burgerButton.addEventListener('click', handleBurgerButton);
-
-//: RESUME ://
+//: RESUME                                                             ://
 [...resumeButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...resumeTabs], index));
@@ -488,4 +478,9 @@ burgerButton.addEventListener('click', handleBurgerButton);
 [...resumeSubButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...resumeSubtabs], index));
+});
+//: OTHER PROJECTS                                                     ://
+[...otherProjectsButtons].forEach((button, index) => {
+  button.addEventListener('click', () =>
+  handleAccordion([...otherProjectsTabs], index));
 });
