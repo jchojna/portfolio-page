@@ -318,105 +318,36 @@ const handleAccordion = (tabs, clickedIndex) => {
 }
 //| end of RESUME'S ACCORDION HANDLER                                       |//
 
-//| FETCH REPOS API                                                         |//
-
+//| FETCH GITHUB API                                                         |//
 const handleRepo = (repos) => {
   const statsCreated = document.querySelectorAll('.stats__value--js-created');
   const statsUpdated = document.querySelectorAll('.stats__value--js-updated');
+  const statsCommits = document.querySelectorAll('.stats__value--js-commits');
   const reposIds = [
     'task-timer',
     'portfolio-page',
     'hydrApp',
     'archviz-website',
     'homepage-gulp'];
-  
+  //: FORMAT FETCHED DATES                                             ://
   const getFormattedDate = (date) => date.slice(0,10).split('-').reverse().join('-');
-    
+  //: FILTER SPECIFIC REPOS                                            ://
   const reposFiltered = [...reposIds].map(id =>
     [...repos].filter(repo => repo.name === id)[0]);
-
+  //: ASSIGN FETCHED DATA TO EACH REPOS                                ://
   for (let i = 0; i < reposFiltered.length; i++) {
     const createdTime = getFormattedDate(reposFiltered[i].created_at);
     const updatedTime = getFormattedDate(reposFiltered[i].updated_at);
-
+    //. ASSIGN DATES                                              .//
     statsCreated[i].innerHTML = createdTime;
     statsUpdated[i].innerHTML = updatedTime;
-  }
-
-
-
-  console.log(reposFiltered[0]);
-
-
-
-
-
-
-
-
-
-  /* for (const repo of repos) {
-    if (repo.description === null) {
-      repo.description = "No description 😟";
-    }
-    const updateTime = repo.updated_at.slice(0,10).split("-").reverse().join("-");
-    const repoProjects = document.querySelector('.projects__repos--js');
-    const { name, description, homepage, html_url, commits } = repo;
-    var totalCommits; */
-
-    /* fetch(repo.contributors_url)
-      .then(resp => resp.json())
-      .then(resp => totalCommits = resp.contributions); */
-    
-    //console.log(totalCommits);
-
-    /* repoProjects.innerHTML += `
-    <section class="repo">
-      <header class="repo__header">
-        <img src="assets/svg/github-icon.svg" alt="github icon" class="repo__icon">
-        <h3 class="repo__heading repo__heading--js">
-          ${name}
-        </h3>
-        <p class="repo__description">
-          ${description}
-        </p>
-        <p class="repo__update">
-          last update: ${updateTime}
-        </p>
-        <p class="repo__commits">
-          last update: ${commits}
-        </p>
-      </header>
-      <nav class="repo__navigation">
-        <ul class="repo__list">
-        ${ homepage ?
-          `
-            <li class="repo__item">
-              <a href="${homepage}" class="repo__link" target="_blank rel="nofollow noreferrer" title="go to project's demo">
-                <svg class="repo__svg">
-                  <use href="assets/svg/sprite-map.svg#link-demo">
-                </svg>
-                <span class="repo__label">Demo</span>
-              </a>
-            </li>
-          `
-          : ''
-        }
-          <li class="repo__item">
-            <a href="${html_url}" class="repo__link" target="_blank rel="nofollow noreferrer" title="go to project's code">
-              <svg class="repo__svg">
-                <use href="assets/svg/sprite-map.svg#link-github">
-              </svg>
-              <span class="repo__label">Github</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </section>
-    ` */
+    //. ASSIGN NUMBER OF TOTAL COMMITS                            .//
+    fetch(reposFiltered[i].contributors_url)
+    .then(resp => resp.json())
+    .then(resp => statsCommits[i].innerHTML = resp[0].contributions);
+  }    
 }
-
-//| end of FETCH REPOS API                                                  |//
+//| end of FETCH GITHUB API                                                  |//
 
 //| GLOBAL VARIABLES |//
 //: INTRO ://
