@@ -36,14 +36,13 @@ const handleIntroMenu = (e) => {
     const currentYOffset = items[lastMenuItemIndex].offset;
     const itemHeight = items[lastMenuItemIndex].height;
     const upperBackgroundHeight = currentYOffset + itemHeight;
-    const bottomBackgroundHeight = pageHeader.clientHeight > upperBackgroundHeight
-    ? pageHeader.clientHeight - upperBackgroundHeight : 0;
+    const bottomBackgroundHeight = window.innerHeight - upperBackgroundHeight;
 
     introBox.style.top = `${currentYOffset - window.pageYOffset}px`;
     introBox.style.height = `${itemHeight}px`;
     introBox.style.width = `${itemHeight}px`;
-    menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
-    menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
+    menuUpperBackground.style.height = `${upperBackgroundHeight - window.pageYOffset}px`;
+    menuBottomBackground.style.height = `${bottomBackgroundHeight + window.pageYOffset}px`;
   }
   //: handle intro menu on mouse event                                 ://
   if (e && e.type === 'mousemove') {
@@ -138,12 +137,11 @@ const handleMenuClick = (activeIndex) => {
     introBox.classList.remove('pageHeader__introBox--visible');
     introBox.style.top = 0;
     //. handle menu background                                    .//
-    //menuUpperBackground.style.height = `${clickedItemHeight}px`;
-    //menuBottomBackground.style.height = 0;
-    //menuUpperBackground.classList.add(`pageHeader__background--${clickedElementId}`);
-    //menuUpperBackground.classList.add('pageHeader__background--intro');
-    //menuUpperBackground.classList.add('pageHeader__background--animated');
-    //menuBottomBackground.classList.add('pageHeader__background--animated');
+    menuUpperBackground.style.height = `${clickedItemHeight}px`;
+    menuBottomBackground.style.height = 0;
+    menuUpperBackground.classList.add(`pageHeader__background--${clickedElementId}`);
+    menuUpperBackground.classList.add('pageHeader__background--animate');
+    menuBottomBackground.classList.add('pageHeader__background--animate');
     //. show main content of the page                             .//
     //pageHeader.classList.remove('pageHeader--intro');
     //pageContainer.classList.add('pageContainer--visible');

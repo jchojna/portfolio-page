@@ -52,9 +52,7 @@
     &--visible {
       opacity: 1;
     }
-    /* &--intro {
-      transition: top $intro-link-change;
-    } */
+
     &--about     { background-color: $color-about; }
     &--resume    { background-color: $color-resume; }
     &--tasktimer { background-color: $color-tasktimer; }
@@ -69,13 +67,14 @@
   &__background {
     background-color: $intro-background-color;
     height: 100%;
-    position: absolute;
+    position: fixed;
     width: 100%;
     z-index: -1;
+    transition: background-color 0.3s;
 
-    &--animated {
+    &--animate {
       transition:
-        background-color 0.3s,
+        background-color 0.3s $menu-items-translate,
         height $menu-items-translate;
     }
 
@@ -85,12 +84,11 @@
     }
     
     &--bottom {
-      background-color: #bbb;
       bottom: 0;
       left: 0;
     }
 
-    &--intro {
+    &--lg {
       transition:
         background-color 0.3s $menu-items-translate,
         height $menu-items-translate;
