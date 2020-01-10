@@ -35,19 +35,26 @@
   }
 
   &__introBox {
-    position: absolute;
+    position: fixed;
     left: 0;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s $menu-items-translate, top $menu-items-translate;
+    transition: opacity 0.3s;
+
+    &--quickMove {
+      transition: opacity 0.3s $menu-items-translate, top $intro-link-change;
+    }
+    
+    &--slowMove {
+      transition: opacity 0.3s $menu-items-translate, top $menu-items-translate;
+    }
 
     &--visible {
       opacity: 1;
-      transition: opacity 0.3s, top $menu-items-translate;
     }
-    &--intro {
+    /* &--intro {
       transition: top $intro-link-change;
-    }
+    } */
     &--about     { background-color: $color-about; }
     &--resume    { background-color: $color-resume; }
     &--tasktimer { background-color: $color-tasktimer; }
@@ -121,7 +128,12 @@
 }
 
 .menu {
+  display: none;
   width: 100%;
+
+  &--visible {
+    display: block;
+  }
 
   &__list {
     list-style-type: none;
@@ -132,14 +144,10 @@
 
   &__item {
     align-items: center;
-    display: flex;
-    left: 0;
-    right: 0;
     height: $menu-item-height;
-    margin: 0;
+    margin: 5px 0;
     overflow: hidden;
     //padding-right: 10px;
-    position: fixed;
     transition:
       background-color $menu-items-translate,
       top $menu-items-translate;
@@ -147,16 +155,11 @@
 
     //border: 1px solid #000;
     //pointer-events: all;    // ! make possible to enable menu by clicking link name
-    
-    &--intro {
-      margin: 5px 0;
-      position: static;
-    }
   }
 
   &__link {
     display: flex;
-    justify-content: flex-end;
+    //justify-content: flex-end;
     fill: #444;
     height: $menu-item-height;
     padding-left: 55px;
@@ -224,6 +227,7 @@
 
   &__svg {
     height: $menu-item-height;
+    pointer-events: none;
   }
 
   /*
@@ -255,8 +259,15 @@
   visibility: hidden;
   left: 0;
   padding-left: 55px;
-  position: absolute;
+  pointer-events: none;
+  position: fixed;
   top: 0;
+
+  &--animated {
+    transition:
+      background-color $menu-items-translate,
+      top $menu-items-translate;
+  }
 
   &--visible {
     visibility: visible;

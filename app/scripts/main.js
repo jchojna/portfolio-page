@@ -10,6 +10,18 @@ const updateMenuItems = () => {
   });
 }
 
+//: CHANGE ACTIVE LINK ON HOVER                                      ://
+const toggleLink = (index, action) => {
+  const introLinkId = sections[index].id;
+
+  if (action === 'activate') {
+    menuLinks[index].classList.add(`menu__link--intro-${introLinkId}`);
+    introBox.classList.add(`pageHeader__introBox--${introLinkId}`);
+  } else if (action === 'deactivate') {
+    menuLinks[index].classList.remove(`menu__link--intro-${introLinkId}`);
+    introBox.classList.remove(`pageHeader__introBox--${introLinkId}`);
+  }
+}
 /*
 .%%%%%%..%%..%%..%%%%%%..%%%%%....%%%%...........%%...%%...%%%%...%%%%%...%%%%%%.
 ...%%....%%%.%%....%%....%%..%%..%%..%%..........%%%.%%%..%%..%%..%%..%%..%%.....
@@ -19,18 +31,6 @@ const updateMenuItems = () => {
 */
 //| HANDLE MENU IN INTRO MODE                                               |//
 const handleIntroMenu = (e) => {
-  //: CHANGE ACTIVE LINK ON HOVER                                      ://
-  const toggleLink = (index, action) => {
-    const introLinkId = sections[index].id;
-
-    if (action === 'activate') {
-      menuLinks[index].classList.add(`menu__link--intro-${introLinkId}`);
-      introBox.classList.add(`pageHeader__introBox--${introLinkId}`);
-    } else if (action === 'deactivate') {
-      menuLinks[index].classList.remove(`menu__link--intro-${introLinkId}`);
-      introBox.classList.remove(`pageHeader__introBox--${introLinkId}`);
-    }
-  }
   //: SET INTROBOX AND MENU BACKGROUND                                 ://
   const setGraphicElements = () => {
     const currentYOffset = items[lastMenuItemIndex].offset;
@@ -39,7 +39,7 @@ const handleIntroMenu = (e) => {
     const bottomBackgroundHeight = pageHeader.clientHeight > upperBackgroundHeight
     ? pageHeader.clientHeight - upperBackgroundHeight : 0;
 
-    introBox.style.top = `${currentYOffset}px`;
+    introBox.style.top = `${currentYOffset - window.pageYOffset}px`;
     introBox.style.height = `${itemHeight}px`;
     introBox.style.width = `${itemHeight}px`;
     menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
@@ -61,15 +61,13 @@ const handleIntroMenu = (e) => {
       toggleLink(lastLinkIndex, 'activate');
     }
   //: handle intro menu on window resize                               ://
-  } else if (e && e.type === 'resize') {
+  } else if (e && (e.type === 'resize' || e.type === 'scroll')) {
     if (isIntroMode) setGraphicElements();
 
   //: handle intro menu on page load                                   ://
   } else {
     if (isIntroMode) setGraphicElements();
-    const startLinkId = sections[lastMenuItemIndex].id;
-    menuLinks[lastMenuItemIndex].classList.add(`menu__link--intro-${startLinkId}`);
-    introBox.classList.add(`pageHeader__introBox--${startLinkId}`);
+    toggleLink(lastMenuItemIndex, 'activate');
   }
 }
 //| end of HANDLE MENU IN INTRO MODE                                        |//
@@ -89,89 +87,99 @@ const handleMenuClick = (activeIndex) => {
   const clickedItemOffset = items[activeIndex].offset;
   const clickedElementId = sections[activeIndex].id;
   const clickedLink = document.querySelectorAll('.menu__link--js')[activeIndex];
-  const clickedLinkWidth = clickedLink.clientWidth;
+  //const clickedLinkWidth = clickedLink.clientWidth;
   const upperBackgroundHeight = clickedItemOffset + clickedItemHeight;
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
   const timeoutInterval = 200;
-  
-  //: update last active menu item index                               ://
+
+  toggleLink(lastMenuItemIndex, 'deactivate');
   lastMenuItemIndex = activeIndex;
-  
-  //: calculate sizes and offsets of some elements                     ://
-  //pageContainer.style.top = `${items[activeIndex].offset}px`;
-  menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
-  menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
-  burgerButton.style.height = `${clickedItemHeight}px`;
-  burgerButton.style.width = `${clickedItemHeight}px`;
+  handleIntroMenu();
 
-
-  //: change menu items to absolutely positioned elements              ://
-  /* [...menuItems].forEach((item, itemIndex) => {
-    item.classList.remove('menu__item--intro');
-    item.style.top = `${items[itemIndex].offset}px`;
-  }); */
+  introBox.classList.add('pageHeader__introBox--quickMove');
   
   //: set exact absolute position of each menu label                   ://
   [...menuLabels].forEach((label, index) =>
-    label.style.top = `${items[index].offset}px`);
+    label.style.top = `${items[index].offset - window.pageYOffset}px`);
 
-    //: set menu item's width                                            ://
-  menuLinks[activeIndex].style.width = `${clickedLinkWidth}px`;
-  items[activeIndex].width = clickedLinkWidth;
+  //: set menu item's width                                            ://
+  //menuLinks[activeIndex].style.width = `${clickedLinkWidth}px`;
+  //items[activeIndex].width = clickedLinkWidth;
+
 
   //: set timeout for translating menu items                           ://
   clearTimeout(menuTimeoutId);
-  /* menuTimeoutId = setTimeout(() => {
+  menuTimeoutId = setTimeout(() => {
     //. variables                                                 .//
     const upwardsOffset = clickedItemOffset;
     const downwardsOffset = windowHeight - clickedItemOffset - clickedItemHeight;
+
     isIntroMode = false;
-    //. set position of menu items                                .//
-    [...menuItems].forEach((item, itemIndex) => {
-      const currentItemOffset = items[itemIndex].offset;
-      if (itemIndex <= activeIndex) {
-        item.style.top = `${currentItemOffset - upwardsOffset}px`;
+    mainMenu.classList.remove('menu--visible');
+
+    //. show menu labels                                          .//
+
+    //. set position of menu labels                               .//
+    [...menuLabels].forEach((label, index) => {
+      label.classList.add('label--visible');
+      label.classList.add('label--animated');
+      const currentItemOffset = items[index].offset;
+      if (index <= activeIndex) {
+        label.style.top = `${currentItemOffset - upwardsOffset}px`;
       } else {
-        item.style.top = `${currentItemOffset + downwardsOffset}px`;
+        label.style.top = `${currentItemOffset + downwardsOffset}px`;
       }
     });
     //. translate link name to the right side                     .//
-    menuLinks[activeIndex].style.width = '100%';
-    menuLinks[activeIndex].classList.add('menu__link--intro');
+    //menuLinks[activeIndex].style.width = '100%';
+    //menuLinks[activeIndex].classList.add('menu__link--intro');
     //. set position of introBox                                  .//
-    introBox.classList.remove('pageHeader__introBox--intro');
+    introBox.classList.add('pageHeader__introBox--slowMove');
     introBox.classList.remove('pageHeader__introBox--visible');
     introBox.style.top = 0;
     //. handle menu background                                    .//
-    menuUpperBackground.style.height = `${clickedItemHeight}px`;
-    menuBottomBackground.style.height = 0;
-    menuUpperBackground.classList.add(`pageHeader__background--${clickedElementId}`);
-    menuUpperBackground.classList.add('pageHeader__background--intro');
-    menuUpperBackground.classList.add('pageHeader__background--animated');
-    menuBottomBackground.classList.add('pageHeader__background--animated');
+    //menuUpperBackground.style.height = `${clickedItemHeight}px`;
+    //menuBottomBackground.style.height = 0;
+    //menuUpperBackground.classList.add(`pageHeader__background--${clickedElementId}`);
+    //menuUpperBackground.classList.add('pageHeader__background--intro');
+    //menuUpperBackground.classList.add('pageHeader__background--animated');
+    //menuBottomBackground.classList.add('pageHeader__background--animated');
     //. show main content of the page                             .//
-    pageHeader.classList.remove('pageHeader--intro');
-    pageContainer.classList.add('pageContainer--visible');
+    //pageHeader.classList.remove('pageHeader--intro');
+    //pageContainer.classList.add('pageContainer--visible');
     //. show burger button                                        .//
-    burgerButton.classList.add('burgerButton--visible');
-    burgerButton.classList.add(`burgerButton--${clickedElementId}`);
+    //burgerButton.classList.add('burgerButton--visible');
+    //burgerButton.classList.add(`burgerButton--${clickedElementId}`);
     //. handle resume's accordions when content is displayed      .//
-    handleAccordion([...resumeSubtabs]);
-    handleAccordion([...resumeTabs]);
-    handleAccordion([...otherProjectsTabs]);
+    //handleAccordion([...resumeSubtabs]);
+    //handleAccordion([...resumeTabs]);
+    //handleAccordion([...otherProjectsTabs]);
     //. set each section's offset from the top                    .//
-    [...sections].forEach((section, index) => {
+    /* [...sections].forEach((section, index) => {
       section.offset = pageSections[index].offsetTop;
-    });
+    }); */
     //. scroll to desired position                                .//
-    window.scrollTo({
+    /* window.scrollTo({
       left: 0,
       top: sections[activeIndex].offset,
       behavior: 'auto'
-    });
-    window.addEventListener('scroll', handleMobileHeader);
+    }); */
+    //window.addEventListener('scroll', handleMobileHeader);
 
-  }, timeoutInterval); */
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }, timeoutInterval);
   //: end of timeout                                                   ://
 }
 //| end of HANDLE MENU ITEMS ON MOBILE DEVICES                              |//
@@ -468,6 +476,7 @@ const menuUpperBackground = document.querySelector('.pageHeader__background--js-
 const menuBottomBackground = document.querySelector('.pageHeader__background--js-bottom');
 const burgerButton = document.querySelector('.burgerButton--js');
 
+const mainMenu = document.querySelector('.menu--js');
 //const menuList = document.querySelector('.menu__list--js');
 const menuItems = document.querySelectorAll('.menu__item--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
@@ -566,6 +575,7 @@ handleIntroMenu();
 //: MENU AND NAVIGATION                                                ://
 window.addEventListener('resize', updateMenuItems);
 window.addEventListener('resize', handleIntroMenu);
+window.addEventListener('scroll', handleIntroMenu);
 //window.addEventListener('scroll', handleMenu);
 //window.addEventListener('scroll', handleNavigation);
 
