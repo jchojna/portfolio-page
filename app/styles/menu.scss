@@ -20,11 +20,6 @@
     position: relative;
   }
 
-  &__labels {
-    list-style-type: none;
-    padding: 0;
-  }
-
   &__indicator {
     background-color: #fff;
     left: 0;
@@ -39,14 +34,14 @@
     left: 0;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s;
-
-    &--quickMove {
-      transition: opacity 0.3s $menu-items-translate, top $intro-link-change;
-    }
+    transition: opacity 0.3s, top $intro-link-change;
     
-    &--slowMove {
-      transition: opacity 0.3s $menu-items-translate, top $menu-items-translate;
+    &--mobileHeader {
+      transition: opacity 0.3s, top $menu-items-translate;
+    }
+
+    &--onResize {
+      transition: none;
     }
 
     &--visible {
@@ -72,9 +67,9 @@
     z-index: -1;
     transition: background-color 0.3s;
 
-    &--animate {
+    &--animated {
       transition:
-        background-color 0.3s $menu-items-translate,
+        background-color 0.3s,
         height $menu-items-translate;
     }
 
@@ -84,14 +79,9 @@
     }
     
     &--bottom {
+      background-color: #aaa;
       bottom: 0;
       left: 0;
-    }
-
-    &--lg {
-      transition:
-        background-color 0.3s $menu-items-translate,
-        height $menu-items-translate;
     }
 
     &--about     { background-color: $color-about-diff; }
@@ -130,7 +120,7 @@
   width: 100%;
 
   &--visible {
-    display: block;
+    display: flex;
   }
 
   &__list {
@@ -143,33 +133,40 @@
   &__item {
     align-items: center;
     height: $menu-item-height;
+    display: flex;
     margin: 5px 0;
     overflow: hidden;
-    //padding-right: 10px;
-    transition:
-      background-color $menu-items-translate,
-      top $menu-items-translate;
+    padding-right: 10px;
+    visibility: hidden;
     width: 100%;
 
     //border: 1px solid #000;
     //pointer-events: all;    // ! make possible to enable menu by clicking link name
+
+    &--mobileHeader {
+      margin: 0;
+      position: fixed;
+      left: 0;
+    }
+
+    &--animated {
+      transition:
+        background-color $menu-items-translate,
+        top $menu-items-translate;
+    }
+
+    &--visible {
+      visibility: visible;
+    }
   }
 
   &__link {
     display: flex;
-    //justify-content: flex-end;
+    justify-content: flex-end;
     fill: #444;
     height: $menu-item-height;
     padding-left: 55px;
-    transition:
-      fill 0.3s,
-      width 0.5s;
-
-    &--intro {
-      transition:
-        fill 0.3s,
-        width 0.5s $menu-items-translate;
-    }
+    transition: fill 0.3s, width 0.3s;
 
     &--intro-about     { fill: $color-about; }
     &--intro-resume    { fill: $color-resume; }
@@ -250,29 +247,6 @@
         font-size: 5.5em;
       }
     }
-  }
-}
-
-.label {
-  visibility: hidden;
-  left: 0;
-  padding-left: 55px;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-
-  &--animated {
-    transition:
-      background-color $menu-items-translate,
-      top $menu-items-translate;
-  }
-
-  &--visible {
-    visibility: visible;
-  }
-
-  &__svg {
-    height: $menu-item-height;
   }
 }
 
