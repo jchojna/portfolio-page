@@ -257,10 +257,8 @@ const handleBurgerButton = () => {
       //. hide main content of the page                             .//
       pageHeader.classList.add('pageHeader--intro');
       pageContainer.classList.remove('pageContainer--visible');
-      [...menuItems].forEach((item, index) => {
-        item.classList.remove('menu__item--mobileHeader');
-        item.classList.remove('menu__item--animated');
-      });
+      [...menuItems].forEach(item => item.classList.remove('menu__item--animated'));
+      introBox.classList.remove('pageHeader__introBox--mobileHeader');
       //. handle backgrounds                             .//
       menuUpperBackground.classList.remove('pageHeader__background--animated');
       menuBottomBackground.classList.remove('pageHeader__background--animated');
