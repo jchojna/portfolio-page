@@ -44,128 +44,141 @@ const handleIntroBox = (e) => {
 }
 //| HANDLE MENU IN INTRO MODE                                               |//
 const handleIntroMenu = (e) => {
-  //: handle intro menu on mouse event                                 ://
-  if (e && e.type === 'mousemove') {
-    //. get link index based on cursor position                   .//
-    /*
-    const viewportOffset = window.pageYOffset;
-    const currentItemIndex = getCurrentItemIndex(e.clientY + viewportOffset);
+  //: handle intro menu on mouse event                                      ://
+  if (e && e.type === 'mousemove' && window.innerWidth >= mediaTablet) {    
+    const viewOffset = pageHeader.scrollTop;
+    const currentItemIndex = getCurrentItemIndex(e.clientY + viewOffset);
 
-    if (currentItemIndex !== lastMenuItemIndex) {
-      //. set intro box position based on current link index      .//
-      const currentYPosition = items[currentItemIndex].offset;
-      introBox.style.top = `${currentYPosition}px`;
-      //. set color of last hovered menu item                     .//
-      handleColorChange(lastLinkIndex, 'deactivate');
+    if (currentItemIndex !== lastMenuItemIndex && currentItemIndex < items.length) {
+      introBox.style.top = `${items[currentItemIndex].offset}px`;
+      handleColorChange(lastMenuItemIndex, 'deactivate');
       lastMenuItemIndex = currentItemIndex;
-      handleColorChange(lastLinkIndex, 'activate');
+      handleColorChange(lastMenuItemIndex, 'activate');
     }
-    */
-  //: handle intro menu on page load                                   ://
   } else {
+    //: handle intro menu on page load                                      ://
     handleIntroBox();
     handleColorChange(lastMenuItemIndex, 'activate');
   }
 }
 //| end of HANDLE MENU IN INTRO MODE                                        |//
-/*
-.%%...%%..%%%%%%..%%..%%..%%..%%...........%%%%...%%......%%%%%%...%%%%...%%..%%.
-.%%%.%%%..%%......%%%.%%..%%..%%..........%%..%%..%%........%%....%%..%%..%%.%%..
-.%%.%.%%..%%%%....%%.%%%..%%..%%..........%%......%%........%%....%%......%%%%...
-.%%...%%..%%......%%..%%..%%..%%..........%%..%%..%%........%%....%%..%%..%%.%%..
-.%%...%%..%%%%%%..%%..%%...%%%%............%%%%...%%%%%%..%%%%%%...%%%%...%%..%%.
-*/
 //| HANDLE MENU ITEMS ON MOBILE DEVICES                                     |//
 const handleMenuItemClick = (activeIndex) => {
-  //: variables                                                        ://
-  const windowHeight = window.innerHeight;
-  const clickedItemHeight = items[activeIndex].height;
-  const clickedItemOffset = items[activeIndex].offset;
-  const clickedElementId = sections[activeIndex].id;
-  const viewOffset = pageHeader.scrollTop;
-  const upperBackgroundHeight = clickedItemHeight + clickedItemOffset - viewOffset;
-  const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
 
-  //: change items colors and set introbox position                    ://
-  handleColorChange(lastMenuItemIndex, 'deactivate');
-  lastMenuItemIndex = activeIndex; // ! what if both are the same
-  handleColorChange(lastMenuItemIndex, 'activate');
-  handleIntroBox();
-  //: remove introBox resize and scroll events                         ://
-  pageHeader.removeEventListener('resize', handleIntroBox);
-  pageHeader.removeEventListener('scroll', handleIntroBox);
-  //: change menu items to be in a fixed position                      ://
-  [...menuItems].forEach((item, index) => {
-    item.classList.add('menu__item--mobileHeader');
-    item.style.top = `${items[index].offset - viewOffset}px`;
-  });
-  //: set initial link width as style property in order to be animated ://
-  const linkWidth = menuLinks[activeIndex].clientWidth;
-  menuLinks[activeIndex].style.width = `${linkWidth}px`;
-  items[activeIndex].width = linkWidth;
-  //: set backgrounds startings heights                                ://
-  menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
-  menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
-  //:                                                                  ://
-  //: add first timeout                                                ://
-  clearTimeout(menuFirstTimeoutId);
-  clearTimeout(menuSecondTimeoutId);
-  menuFirstTimeoutId = setTimeout(() => {
-    //. variables                                                 .//
-    const upwardsOffset = clickedItemOffset;
-    const downwardsOffset = windowHeight - clickedItemOffset - clickedItemHeight;
-    //. set translated position of menu items                     .//
+  /*
+   ######  ##     ##
+  ##    ## ###   ###
+  ##       #### ####
+   ######  ## ### ##
+        ## ##     ##
+  ##    ## ##     ##
+   ######  ##     ##
+  */
+  if (window.innerWidth < mediaTablet) {
+    
+    //: variables                                                           ://
+    const windowHeight = window.innerHeight;
+    const clickedItemHeight = items[activeIndex].height;
+    const clickedItemOffset = items[activeIndex].offset;
+    const clickedElementId = sections[activeIndex].id;
+    const viewOffset = pageHeader.scrollTop;
+    const upperBackgroundHeight = clickedItemHeight + clickedItemOffset - viewOffset;
+    const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
+  
+    //: change items colors and set introbox position                       ://
+    handleColorChange(lastMenuItemIndex, 'deactivate');
+    lastMenuItemIndex = activeIndex; // ! what if both are the same
+    handleColorChange(lastMenuItemIndex, 'activate');
+    handleIntroBox();
+    //: remove introBox resize and scroll events                            ://
+    pageHeader.removeEventListener('resize', handleIntroBox);
+    pageHeader.removeEventListener('scroll', handleIntroBox);
+    //: change menu items to be in a fixed position                         ://
     [...menuItems].forEach((item, index) => {
-      const currentItemOffset = items[index].offset;
-      item.style.top = index <= activeIndex // ! refactor
-      ? `${currentItemOffset - upwardsOffset}px`
-      : `${currentItemOffset + downwardsOffset}px`;
-      item.classList.add('menu__item--animated');
+      item.classList.add('menu__item--mobileHeader');
+      item.style.top = `${items[index].offset - viewOffset}px`;
     });
-    //. set position of introBox                                  .//
-    introBox.classList.add('pageHeader__introBox--mobileHeader');
-    introBox.style.top = 0;
-    //. handle menu background                                    .//
-    menuUpperBackground.style.height = `${clickedItemHeight}px`;
-    menuBottomBackground.style.height = 0;
-    menuUpperBackground.classList.add('pageHeader__background--animated');
-    menuBottomBackground.classList.add('pageHeader__background--animated');
-    //. remove pointer events from pageHeader                     .//
-    pageHeader.classList.remove('pageHeader--intro');
-    //. scroll pageContainer to desired position                  .//
-    updateSectionsOffsets();
-    window.scrollTo({
-      left: 0,
-      top: sections[activeIndex].offset,
-      behavior: 'auto'
-    });
-    //. add event handling mobile header appearance               .//
-    window.addEventListener('scroll', handleMobileHeader);
-    //.                                                           .//
-    //. add second timeout                                        .//
-    menuSecondTimeoutId = setTimeout(() => {
-      //. handle menu items                                       .//
+    //: set initial link width as style property in order to be animated    ://
+    const linkWidth = menuLinks[activeIndex].clientWidth;
+    menuLinks[activeIndex].style.width = `${linkWidth}px`;
+    items[activeIndex].width = linkWidth;
+    //: set backgrounds startings heights                                   ://
+    menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
+    menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
+    //:                                                                     ://
+    //: add first timeout                                                   ://
+    clearTimeout(menuFirstTimeoutId);
+    clearTimeout(menuSecondTimeoutId);
+    menuFirstTimeoutId = setTimeout(() => {
+      //. variables                                                         .//
+      const upwardsOffset = clickedItemOffset;
+      const downwardsOffset = windowHeight - clickedItemOffset - clickedItemHeight;
+      //. set translated position of menu items                             .//
       [...menuItems].forEach((item, index) => {
-        const sectionId = sections[index].id;
-        if (index !== activeIndex) {
-          item.classList.remove('menu__item--visible');
-          item.classList.add('menu__item--minimized');
-          item.style.top = 0;
-          items[index].width = menuLinks[index].clientWidth;
-          menuLinks[index].classList.add(`menu__link--intro-${sectionId}`);
-        }
-        item.classList.remove('menu__item--animated');
-        menuLinks[index].style.width = '100%';
+        const currentItemOffset = items[index].offset;
+        item.style.top = index <= activeIndex // ! refactor
+        ? `${currentItemOffset - upwardsOffset}px`
+        : `${currentItemOffset + downwardsOffset}px`;
+        item.classList.add('menu__item--animated');
       });
-      //. handle introBox and menu background                     .//
-      introBox.classList.remove('pageHeader__introBox--visible');
-      menuUpperBackground.classList.add(`pageHeader__background--${clickedElementId}`);
-      //. show burger button                                      .//
-      burgerButton.classList.add('burgerButton--visible');
-      burgerButton.classList.add(`burgerButton--${clickedElementId}`);
-    }, secondTimeoutInterval);
-  }, firstTimeoutInterval);
-  //: end of timeout                                                   ://
+      //. set position of introBox                                          .//
+      introBox.classList.add('pageHeader__introBox--mobileHeader');
+      introBox.style.top = 0;
+      //. handle menu background                                            .//
+      menuUpperBackground.style.height = `${clickedItemHeight}px`;
+      menuBottomBackground.style.height = 0;
+      menuUpperBackground.classList.add('pageHeader__background--animated');
+      menuBottomBackground.classList.add('pageHeader__background--animated');
+      //. remove pointer events from pageHeader                             .//
+      pageHeader.classList.remove('pageHeader--intro');
+      //. scroll pageContainer to desired position                          .//
+      updateSectionsOffsets();
+      window.scrollTo({
+        left: 0,
+        top: sections[activeIndex].offset,
+        behavior: 'auto'
+      });
+      //. add event handling mobile header appearance                       .//
+      window.addEventListener('scroll', handleMobileHeader);
+      //.                                                                   .//
+      //. add second timeout                                                .//
+      menuSecondTimeoutId = setTimeout(() => {
+        //. handle menu items                                               .//
+        [...menuItems].forEach((item, index) => {
+          const sectionId = sections[index].id;
+          if (index !== activeIndex) {
+            item.classList.remove('menu__item--visible');
+            item.classList.add('menu__item--minimized');
+            item.style.top = 0;
+            items[index].width = menuLinks[index].clientWidth;
+            menuLinks[index].classList.add(`menu__link--intro-${sectionId}`);
+          }
+          item.classList.remove('menu__item--animated');
+          menuLinks[index].style.width = '100%';
+        });
+        //. handle introBox and menu background                             .//
+        introBox.classList.remove('pageHeader__introBox--visible');
+        menuUpperBackground.classList.add(`pageHeader__background--${clickedElementId}`);
+        //. show burger button                                              .//
+        burgerButton.classList.add('burgerButton--visible');
+        burgerButton.classList.add(`burgerButton--${clickedElementId}`);
+      }, secondTimeoutInterval);
+    }, firstTimeoutInterval);
+    //: end of timeout                                                      ://
+
+  /*
+  ##        ######
+  ##       ##    ##
+  ##       ##
+  ##       ##   ####
+  ##       ##    ##
+  ##       ##    ##
+  ########  ######
+  */
+  } else if (window.innerWidth >= mediaDesktop) {
+
+    
+  }
 }
 //| end of HANDLE MENU ITEMS ON MOBILE DEVICES                              |//
 /*
@@ -177,7 +190,7 @@ const handleMenuItemClick = (activeIndex) => {
 */
 //| BURGER BUTTON HANDLER                                                   |//
 const handleBurgerButton = () => {
-  //: variables                                                        ://
+  //: variables                                                             ://
   const windowHeight = window.innerHeight;
   const activeItemHeight = items[lastMenuItemIndex].height;
   const activeItemOffset = items[lastMenuItemIndex].offset;
@@ -187,9 +200,9 @@ const handleBurgerButton = () => {
   const upwardsOffset = activeItemOffset;
   const downwardsOffset = windowHeight - activeItemOffset - activeItemHeight;
 
-  //: hide burger button                                               ://
+  //: hide burger button                                                    ://
   burgerButton.classList.remove('burgerButton--visible');
-  //: set starting position of menu items                              ://
+  //: set starting position of menu items                                   ://
   [...menuItems].forEach((item, index) => {
     const currentItemOffset = items[index].offset;
     const currentId = sections[index].id;
@@ -199,10 +212,6 @@ const handleBurgerButton = () => {
     ? `${currentItemOffset - upwardsOffset}px`
     : `${currentItemOffset + downwardsOffset}px`;
 
-
-    console.log('currentItemOffset', currentItemOffset);
-
-
     menuLinks[index].style.width = `${items[index].width}px`;
     item.classList.remove('menu__item--minimized');
 
@@ -210,52 +219,52 @@ const handleBurgerButton = () => {
     ? menuLinks[index].classList.remove(`menu__link--intro-${currentId}`)
     : false;
   });
-  //: set appearance of introBox and background                        ://
+  //: set appearance of introBox and background                             ://
   introBox.classList.add('pageHeader__introBox--visible');
   menuUpperBackground.classList.remove(`pageHeader__background--${activeId}`);
 
-  //:                                                                  ://
-  //: add first timeout                                                ://
+  //:                                                                       ://
+  //: add first timeout                                                     ://
   clearTimeout(menuFirstTimeoutId);
   clearTimeout(menuSecondTimeoutId);
   menuFirstTimeoutId = setTimeout(() => {
-    //. set menu items default position                           .//
+    //. set menu items default position                                     .//
     [...menuItems].forEach((item, index) => {
       item.style.top = `${items[index].offset}px`;
       item.classList.add('menu__item--animated');
     });
-    //. set introBox and menu backgrounds appearance              .//
+    //. set introBox and menu backgrounds appearance                        .//
     introBox.style.top = `${activeItemOffset}px`;
     menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
     menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
-    //. handle burger button's color                              .//
+    //. handle burger button's color                                        .//
     burgerButton.classList.remove(`burgerButton--${activeId}`);
-    //. remove event handling mobile header appearance            .//
+    //. remove event handling mobile header appearance                      .//
     window.removeEventListener('scroll', handleMobileHeader);
 
-    //.                                                           .//
-    //. add second timeout                                        .//
+    //.                                                                     .//
+    //. add second timeout                                                  .//
     menuSecondTimeoutId = setTimeout(() => {
       window.scrollTo(0,0);
-      //. add pointer events to pageHeader                        .//
+      //. add pointer events to pageHeader                                  .//
       pageHeader.classList.add('pageHeader--intro');
-      //. handle menu items                                       .//
+      //. handle menu items                                                 .//
       [...menuItems].forEach(item => {
         item.classList.remove('menu__item--mobileHeader');
         item.classList.remove('menu__item--animated');
       });
-      //. handle introBox and backgrounds                         .//
+      //. handle introBox and backgrounds                                   .//
       introBox.classList.remove('pageHeader__introBox--mobileHeader');
       menuUpperBackground.classList.remove('pageHeader__background--animated');
       menuBottomBackground.classList.remove('pageHeader__background--animated');
       menuUpperBackground.style.height = '100%';
       menuBottomBackground.style.height = '100%';
-      //. remove events                                           .//
+      //. remove events                                                     .//
       pageHeader.addEventListener('resize', handleIntroBox);
       pageHeader.addEventListener('scroll', handleIntroBox);
     }, secondTimeoutInterval);
   }, firstTimeoutInterval);
-  //: end of timeout                                                   ://
+  //: end of timeout                                                        ://
 }
 //| end of BURGER BUTTON HANDLER                                            |//
 /*
@@ -504,6 +513,8 @@ const handleRepo = (repos) => {
 //| GLOBAL VARIABLES                                                        |//
 //: INTRO                                                              ://
 //let isIntroMode = true;
+const mediaTablet = 768;
+const mediaDesktop = 1200;
 let lastMenuItemIndex = 0;
 //: INTERVALS                                                          ://
 let menuFirstTimeoutId = null;
@@ -518,7 +529,7 @@ const menuUpperBackground = document.querySelector('.pageHeader__background--js-
 const menuBottomBackground = document.querySelector('.pageHeader__background--js-bottom');
 const burgerButton = document.querySelector('.burgerButton--js');
 
-//const menuList = document.querySelector('.menu__list--js');
+const menu = document.querySelector('.menu--js');
 const menuItems = document.querySelectorAll('.menu__item--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
 const menuLabels = document.querySelectorAll('.label--js');
@@ -610,9 +621,8 @@ handleAccordion([...otherProjectsTabs]);
   }
 } */
 //| EVENT LISTENERS                                                         |//
-//: INTRO                                                              ://
-//menuList.addEventListener('mousemove', handleIntroMenu);
 //: MENU AND NAVIGATION                                                ://
+menu.addEventListener('mousemove', handleIntroMenu);
 window.addEventListener('resize', updateSectionsOffsets);
 pageHeader.addEventListener('resize', handleIntroBox);
 pageHeader.addEventListener('scroll', handleIntroBox);
