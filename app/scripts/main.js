@@ -142,9 +142,6 @@ const handleMenuClick = (activeIndex) => {
     menuBottomBackground.classList.add('pageHeader__background--animated');
     //. show main content of the page                             .//
     pageHeader.classList.remove('pageHeader--intro');
-    //. show burger button                                        .//
-    burgerButton.classList.add('burgerButton--visible');
-    burgerButton.classList.add(`burgerButton--${clickedElementId}`);
     //. handle resume's accordions when content is displayed      .//
     handleAccordion([...resumeSubtabs]);
     handleAccordion([...resumeTabs]);
@@ -175,6 +172,9 @@ const handleMenuClick = (activeIndex) => {
       });
       introBox.classList.remove('pageHeader__introBox--visible');
       menuUpperBackground.classList.add(`pageHeader__background--${clickedElementId}`);
+      //. show burger button                                        .//
+      burgerButton.classList.add('burgerButton--visible');
+      burgerButton.classList.add(`burgerButton--${clickedElementId}`);
 
     }, secondTimeoutInterval);
   }, firstTimeoutInterval);

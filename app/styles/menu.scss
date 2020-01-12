@@ -2,7 +2,6 @@
 @import 'mixins.scss';
 
 .pageHeader {
-  align-items: center;
   align-items: flex-start;
   display: flex;
   height: 100%;
@@ -14,7 +13,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 4;
+  z-index: 3;
 
   &--intro {
     pointer-events: all;
@@ -30,14 +29,14 @@
   }
 
   &__introBox {
-    position: fixed;
     left: 0;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s, top $intro-link-change;
+    position: fixed;
+    transition: opacity $menu-first-timeout, top $menu-first-timeout;
     
     &--mobileHeader {
-      transition: opacity 0.3s, top $menu-items-translate;
+      transition: opacity $menu-first-timeout, top $menu-second-timeout;
     }
 
     &--onResize {
@@ -63,14 +62,14 @@
     background-color: $intro-background-color;
     height: 100%;
     position: fixed;
+    transition: background-color $menu-first-timeout;
     width: 100%;
     z-index: -1;
-    transition: background-color 0.3s;
 
     &--animated {
       transition:
-        background-color 0.3s,
-        height $menu-items-translate;
+        background-color $menu-first-timeout,
+        height $menu-second-timeout;
     }
 
     &--upper {
@@ -79,7 +78,6 @@
     }
     
     &--bottom {
-      background-color: #aaa;
       bottom: 0;
       left: 0;
     }
@@ -116,12 +114,7 @@
 }
 
 .menu {
-  display: none;
   width: 100%;
-
-  &--visible {
-    display: flex;
-  }
 
   &__list {
     list-style-type: none;
@@ -132,27 +125,24 @@
 
   &__item {
     align-items: center;
-    height: $menu-item-height;
     display: flex;
+    height: $menu-item-height;
     margin: 5px 0;
     overflow: hidden;
     padding-right: 10px;
     visibility: hidden;
     width: 100%;
 
-    //border: 1px solid #000;
     //pointer-events: all;    // ! make possible to enable menu by clicking link name
 
     &--mobileHeader {
+      left: 0;
       margin: 0;
       position: fixed;
-      left: 0;
     }
 
     &--animated {
-      transition:
-        background-color $menu-items-translate,
-        top $menu-items-translate;
+      transition: top $menu-second-timeout;
     }
 
     &--visible {
@@ -162,11 +152,11 @@
 
   &__link {
     display: flex;
-    justify-content: flex-end;
-    fill: #444;
+    fill: $intro-link-color;
     height: $menu-item-height;
+    justify-content: flex-end;
     padding-left: 55px;
-    transition: fill 0.3s, width 0.3s;
+    transition: fill $menu-first-timeout, width $menu-first-timeout;
 
     &--intro-about     { fill: $color-about; }
     &--intro-resume    { fill: $color-resume; }
@@ -254,18 +244,16 @@
 .burgerButton {
   @include button;
   @include flex-center;
-  fill:#fff;
-  height: $burger-button-size;
+  height: $menu-item-height;
+  left: 0;
   pointer-events: all;
   position: fixed;
-  left: 0;
   top: 0;
   transition: visibility 0s;
   visibility: hidden;
   width: $burger-button-size;
 
   &--visible {
-    transition: visibility 0s $menu-items-translate;
     visibility: visible;
   }
 
