@@ -1,9 +1,9 @@
 //| UPDATE MENU ITEMS OFFSETS                                               |//
-const updateMenuItemsOffsets = () => {
+/* const updateMenuItemsOffsets = () => {
   [...items].forEach(item => {
     item.offset = item.node.offsetTop;
   });
-}
+} */
 //| UPDATE SECTIONS OFFSETS                                                 |//
 const updateSectionsOffsets = () => {
   [...sections].forEach((section, index) => {
@@ -198,6 +198,11 @@ const handleBurgerButton = () => {
     item.style.top = index <= lastMenuItemIndex // ! refactor
     ? `${currentItemOffset - upwardsOffset}px`
     : `${currentItemOffset + downwardsOffset}px`;
+
+
+    console.log('currentItemOffset', currentItemOffset);
+
+
     menuLinks[index].style.width = `${items[index].width}px`;
     item.classList.remove('menu__item--minimized');
 
@@ -605,14 +610,10 @@ handleAccordion([...otherProjectsTabs]);
   }
 } */
 //| EVENT LISTENERS                                                         |//
-//: UPDATE GLOBAL OBJECTS                                              ://
-// ! update sections on resize
 //: INTRO                                                              ://
 //menuList.addEventListener('mousemove', handleIntroMenu);
 //: MENU AND NAVIGATION                                                ://
-window.addEventListener('resize', updateMenuItemsOffsets);
 window.addEventListener('resize', updateSectionsOffsets);
-//window.addEventListener('resize', handleGraphicElements);
 pageHeader.addEventListener('resize', handleIntroBox);
 pageHeader.addEventListener('scroll', handleIntroBox);
 
