@@ -3,9 +3,9 @@
 
 .icons {
   align-items: start;
-  column-gap: 10px;
+  column-gap: 6px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   list-style-type: none;
   margin: 0 $offset-right-sm 0 $offset-left-sm;
   padding: 0;
@@ -59,8 +59,9 @@
   }
 
   &__name {
-    font-size: 11px;
-    margin: 2px 0 7px;
+    font-family: 'Antonio Regular';
+    font-size: 10px;
+    margin: 2px 0 4px;
     text-transform: uppercase;
     word-break: break-all;
 

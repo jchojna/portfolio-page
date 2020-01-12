@@ -2,22 +2,21 @@
 @import 'mixins.scss';
 
 .pageHeader {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   height: 100%;
   left: 0;
   min-height: 100vh;
   overflow: auto;
-  padding: 50px 0;
+  padding: 100px 0;
   pointer-events: none;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 4;
+  z-index: 3;
 
   &--intro {
     pointer-events: all;
-    position: relative;
   }
 
   &__indicator {
@@ -30,17 +29,24 @@
   }
 
   &__introBox {
-    position: absolute;
     left: 0;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s $menu-items-translate, top $menu-items-translate;
-
-    &--intro {
-      opacity: 1;
-      transition: top $intro-link-change;
-    }
+    position: fixed;
+    transition: opacity $menu-first-timeout, top $menu-first-timeout;
     
+    &--mobileHeader {
+      transition: opacity $menu-first-timeout, top $menu-second-timeout;
+    }
+
+    &--onResize {
+      transition: none;
+    }
+
+    &--visible {
+      opacity: 1;
+    }
+
     &--about     { background-color: $color-about; }
     &--resume    { background-color: $color-resume; }
     &--tasktimer { background-color: $color-tasktimer; }
@@ -55,12 +61,16 @@
   &__background {
     background-color: $intro-background-color;
     height: 100%;
-    position: absolute;
-    transition:
-      background-color 0.3s,
-      height $menu-items-translate;
+    position: fixed;
+    transition: background-color $menu-first-timeout;
     width: 100%;
     z-index: -1;
+
+    &--animated {
+      transition:
+        background-color $menu-first-timeout,
+        height $menu-second-timeout;
+    }
 
     &--upper {
       left: 0;
@@ -70,12 +80,6 @@
     &--bottom {
       bottom: 0;
       left: 0;
-    }
-
-    &--intro {
-      transition:
-        background-color 0.3s $menu-items-translate,
-        height $menu-items-translate;
     }
 
     &--about     { background-color: $color-about-diff; }
@@ -120,100 +124,102 @@
   }
 
   &__item {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
-    left: 0;
-    right: 0;
-    height: 50px;
+    height: $menu-item-height;
+    margin: 5px 0;
     overflow: hidden;
-    padding: 0 10px;
-    position: fixed;
-    transition:
-      background-color $menu-items-translate,
-      top $menu-items-translate;
+    padding-right: 10px;
+    visibility: hidden;
     width: 100%;
+    transition: height 0.3s;
+
     //pointer-events: all;    // ! make possible to enable menu by clicking link name
-    
-    &--intro {
-      position: static;
+
+    &--mobileHeader {
+      left: 0;
+      margin: 0;
+      position: fixed;
+    }
+
+    &--minimized {
+      height: 0;
+      transition: height 0.3s, visibility 0s 0.3s;
+    }
+
+    &--animated {
+      transition: top $menu-second-timeout;
+    }
+
+    &--visible {
+      visibility: visible;
     }
   }
 
   &__link {
-    color: #000;
-    display: block;
-    font-size: 48px;
-    line-height: 1;
-    margin: 0;
-    padding: 0;
-    padding-left: 60px;
-    position: relative;
-    text-align: right;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition:
-      color 0.3s,
-      width 0.5s;
+    display: flex;
+    fill: $intro-link-color;
+    height: $menu-item-height;
+    justify-content: flex-end;
+    padding-left: 55px;
+    transition: fill $menu-first-timeout, width $menu-first-timeout;
 
-    &--intro {
-      transition:
-        color 0.3s,
-        width 0.5s $menu-items-translate;
-    }
-
-    &--intro-about     { color: $color-about; }
-    &--intro-resume    { color: $color-resume; }
-    &--intro-tasktimer { color: $color-tasktimer; }
-    &--intro-portfolio { color: $color-portfolio; }
-    &--intro-hydrapp   { color: $color-hydrapp; }
-    &--intro-archviz   { color: $color-archviz; }
-    &--intro-quotes    { color: $color-quotes; }
-    &--intro-other     { color: $color-other; }
-    &--intro-contact   { color: $color-contact; }
+    &--intro-about     { fill: $color-about; }
+    &--intro-resume    { fill: $color-resume; }
+    &--intro-tasktimer { fill: $color-tasktimer; }
+    &--intro-portfolio { fill: $color-portfolio; }
+    &--intro-hydrapp   { fill: $color-hydrapp; }
+    &--intro-archviz   { fill: $color-archviz; }
+    &--intro-quotes    { fill: $color-quotes; }
+    &--intro-other     { fill: $color-other; }
+    &--intro-contact   { fill: $color-contact; }
 
     &--about {
-      color: $color-about-diff;
-      &:hover { color: $color-about-diff-dark; }
+      fill: $color-about-diff;
+      &:hover { fill: $color-about-diff-dark; }
     }
     &--resume {
-      color: $color-resume-diff;
-      &:hover { color: $color-resume-diff-dark; }
+      fill: $color-resume-diff;
+      &:hover { fill: $color-resume-diff-dark; }
     }
     &--tasktimer {
-      color: $color-tasktimer-diff;
-      &:hover { color: $color-tasktimer-diff-dark; }
+      fill: $color-tasktimer-diff;
+      &:hover { fill: $color-tasktimer-diff-dark; }
     }
     &--portfolio {
-      color: $color-portfolio-diff;
-      &:hover { color: $color-portfolio-diff-dark; }
+      fill: $color-portfolio-diff;
+      &:hover { fill: $color-portfolio-diff-dark; }
     }
     &--hydrapp {
-      color: $color-hydrapp-diff;
-      &:hover { color: $color-hydrapp-diff-dark; }
+      fill: $color-hydrapp-diff;
+      &:hover { fill: $color-hydrapp-diff-dark; }
     }
     &--archviz {
-      color: $color-archviz-diff;
-      &:hover { color: $color-archviz-diff-dark; }
+      fill: $color-archviz-diff;
+      &:hover { fill: $color-archviz-diff-dark; }
     }
     &--quotes {
-      color: $color-quotes-diff;
-      &:hover { color: $color-quotes-diff-dark; }
+      fill: $color-quotes-diff;
+      &:hover { fill: $color-quotes-diff-dark; }
     }
     &--other {
-      color: $color-other-diff;
-      &:hover { color: $color-other-diff-dark; }
+      fill: $color-other-diff;
+      &:hover { fill: $color-other-diff-dark; }
     }
     &--contact {
-      color: $color-contact-diff;
-      &:hover { color: $color-contact-diff-dark; }
+      fill: $color-contact-diff;
+      &:hover { fill: $color-contact-diff-dark; }
     }
     &--active {
-      color: #fff;
-      &:hover { color: #fff; }
+      fill: #fff;
+      &:hover { fill: #fff; }
     }
   }
 
-
+  &__svg {
+    height: $menu-item-height;
+    pointer-events: none;
+  }
 
   /*
   .%%...%%..%%%%%%..%%%%%...%%%%%%...%%%%..
@@ -244,18 +250,16 @@
 .burgerButton {
   @include button;
   @include flex-center;
-  fill:#fff;
-  height: $burger-button-size;
+  height: $menu-item-height;
+  left: 0;
   pointer-events: all;
   position: fixed;
-  left: 0;
   top: 0;
   transition: visibility 0s;
   visibility: hidden;
-  width: $burger-button-size;
+  width: $menu-item-height;
 
   &--visible {
-    transition: visibility 0s $menu-items-translate;
     visibility: visible;
   }
 

@@ -2,9 +2,11 @@
 @import 'mixins.scss';
 
 .pageContainer {  
-  display: none;
+  //display: none;
+  display: block;
   overflow: hidden;
   width: 100%;
+  position: relative;
   
   &--visible {
     display: block;
@@ -15,7 +17,7 @@
   align-items: flex-start;
   display: flex;
   min-height: 100vh;
-  padding-bottom: 60px;
+  padding-bottom: 50px;
   position: relative;
   width: 100%;
 
@@ -270,11 +272,9 @@
     display: none;
   }
 
-  &__otherRepos {
-    align-self: stretch;
-    display: grid;
+  &__repos {
+    margin-top: 30px;
     grid-area: otherRepos;
-    margin-top: 1em;
   }
 }
 //| end of SECTION                                                          |//
@@ -345,7 +345,7 @@
     border-color: $color-other-shadow;
     border-width: 2px;
     font-size: 1.5em;
-    margin: 0.5em $offset-right-sm 0.5em $offset-left-sm;
+    margin: 0.5em $offset-right-sm 0 $offset-left-sm;
   }
 
   &__link {
