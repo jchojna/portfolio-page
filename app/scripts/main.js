@@ -253,21 +253,36 @@ const handleBurgerButton = () => {
 //| HANDLE MOBILE HEADER CHANGE                                             |//
 const handleMobileHeader = () => {
 
-  const deactivate = () => {
+  const handleHeader = (index, action) => {
+    const currentId = sections[index].id;
 
+    if (action === 'activate') {
+      menuUpperBackground.classList.remove(`pageHeader__background--${currentId}`);
+
+    } else if (action === 'deactivate') {
+      menuUpperBackground.classList.add(`pageHeader__background--${currentId}`);
+
+    }
   }
 
-  const activate = () => {
-
-  }
-
-  const updatedGlobalSectionIndex = getCurrentSectionIndex(0);
-  // when index changes
-  if (updatedGlobalSectionIndex !== currentGlobalSectionIndex) {
-    deactivate(currentGlobalSectionIndex);
-    currentGlobalSectionIndex = updatedGlobalSectionIndex;
-    activate(currentGlobalSectionIndex);
+  const newActiveSectionIndex = getCurrentSectionIndex(0);
+  //: when index changes                                               ://
+  if (newActiveSectionIndex !== lastMenuItemIndex) {
+    handleHeader(lastMenuItemIndex, 'activate');
+    lastMenuItemIndex = newActiveSectionIndex;
+    handleHeader(lastMenuItemIndex, 'deactivate');
   } 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
