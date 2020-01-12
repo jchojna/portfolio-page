@@ -146,11 +146,14 @@ const handleMenuItemClick = (activeIndex) => {
     menuSecondTimeoutId = setTimeout(() => {
       //. handle menu items                                       .//
       [...menuItems].forEach((item, index) => {
+        const sectionId = sections[index].id;
         if (index !== activeIndex) {
-          item.classList.remove('menu__item--visible');
+          // ! turn on
+          //item.classList.remove('menu__item--visible');
           item.classList.remove('menu__item--animated');
           item.style.top = 0;
           items[index].width = menuLinks[index].clientWidth;
+          menuLinks[index].classList.add(`menu__link--intro-${sectionId}`);
         }
         menuLinks[index].style.width = '100%';
       });
@@ -189,11 +192,17 @@ const handleBurgerButton = () => {
   //: set starting position of menu items                              ://
   [...menuItems].forEach((item, index) => {
     const currentItemOffset = items[index].offset;
+    const currentId = sections[index].id;
+
     item.classList.add('menu__item--visible');
     item.style.top = index <= lastMenuItemIndex // ! refactor
     ? `${currentItemOffset - upwardsOffset}px`
     : `${currentItemOffset + downwardsOffset}px`;
     menuLinks[index].style.width = `${items[index].width}px`;
+
+    index !== lastMenuItemIndex
+    ? menuLinks[index].classList.remove(`menu__link--intro-${currentId}`)
+    : false;
   });
   //: set appearance of introBox and background                        ://
   introBox.classList.add('pageHeader__introBox--visible');
