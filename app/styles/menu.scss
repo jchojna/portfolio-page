@@ -124,7 +124,7 @@
   }
 
   &__item {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     height: $menu-item-height;
     margin: 5px 0;
@@ -132,6 +132,7 @@
     padding-right: 10px;
     visibility: hidden;
     width: 100%;
+    transition: height 0.3s;
 
     //pointer-events: all;    // ! make possible to enable menu by clicking link name
 
@@ -139,6 +140,11 @@
       left: 0;
       margin: 0;
       position: fixed;
+    }
+
+    &--minimized {
+      height: 0;
+      transition: height 0.3s, visibility 0s 0.3s;
     }
 
     &--animated {
@@ -251,7 +257,7 @@
   top: 0;
   transition: visibility 0s;
   visibility: hidden;
-  width: $burger-button-size;
+  width: $menu-item-height;
 
   &--visible {
     visibility: visible;

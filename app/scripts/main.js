@@ -148,8 +148,8 @@ const handleMenuItemClick = (activeIndex) => {
       [...menuItems].forEach((item, index) => {
         const sectionId = sections[index].id;
         if (index !== activeIndex) {
-          // ! turn on
           item.classList.remove('menu__item--visible');
+          item.classList.add('menu__item--minimized');
           item.style.top = 0;
           items[index].width = menuLinks[index].clientWidth;
           menuLinks[index].classList.add(`menu__link--intro-${sectionId}`);
@@ -199,6 +199,7 @@ const handleBurgerButton = () => {
     ? `${currentItemOffset - upwardsOffset}px`
     : `${currentItemOffset + downwardsOffset}px`;
     menuLinks[index].style.width = `${items[index].width}px`;
+    item.classList.remove('menu__item--minimized');
 
     index !== lastMenuItemIndex
     ? menuLinks[index].classList.remove(`menu__link--intro-${currentId}`)
@@ -266,16 +267,20 @@ const handleMobileHeader = () => {
     const currentId = sections[index].id;
 
     if (action === 'activate') {
-      menuUpperBackground.classList.remove(`pageHeader__background--${currentId}`);
-      burgerButton.classList.remove(`burgerButton--${currentId}`);
-      introBox.classList.remove(`pageHeader__introBox--${currentId}`);
       menuItems[index].classList.remove('menu__item--visible');
+      menuItems[index].classList.add('menu__item--minimized');
+
+      introBox.classList.remove(`pageHeader__introBox--${currentId}`);
+      burgerButton.classList.remove(`burgerButton--${currentId}`);
+      menuUpperBackground.classList.remove(`pageHeader__background--${currentId}`);
 
     } else if (action === 'deactivate') {
-      menuUpperBackground.classList.add(`pageHeader__background--${currentId}`);
-      burgerButton.classList.add(`burgerButton--${currentId}`);
-      introBox.classList.add(`pageHeader__introBox--${currentId}`);
       menuItems[index].classList.add('menu__item--visible');
+      menuItems[index].classList.remove('menu__item--minimized');
+
+      introBox.classList.add(`pageHeader__introBox--${currentId}`);
+      burgerButton.classList.add(`burgerButton--${currentId}`);
+      menuUpperBackground.classList.add(`pageHeader__background--${currentId}`);
 
     }
   }
