@@ -2,7 +2,8 @@
 @import 'mixins.scss';
 
 .pageContainer {  
-  display: none;
+  //display: none;
+  display: block;
   overflow: hidden;
   width: 100%;
   position: relative;
