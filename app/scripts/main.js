@@ -258,9 +258,11 @@ const handleMobileHeader = () => {
 
     if (action === 'activate') {
       menuUpperBackground.classList.remove(`pageHeader__background--${currentId}`);
+      burgerButton.classList.remove(`burgerButton--${currentId}`);
 
     } else if (action === 'deactivate') {
       menuUpperBackground.classList.add(`pageHeader__background--${currentId}`);
+      burgerButton.classList.add(`burgerButton--${currentId}`);
 
     }
   }
