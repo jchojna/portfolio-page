@@ -1,15 +1,20 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
-.pageContainer {  
-  //display: none;
-  display: block;
+.pageContainer {
   overflow: hidden;
   width: 100%;
   position: relative;
   
-  &--visible {
-    display: block;
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      /* display: none;
+
+      &--visible {
+        display: block;
+      } */
+    }
   }
 }
 //| SECTION                                                                 |//
@@ -125,17 +130,14 @@
         &--about {
           column-gap: 20px;
           grid-template-areas:
-          "heading      heading      photography "
-          "description  description  photography "
-          "github       codewars     photography "
-          "titleWorking titleWorking titleWorking"
-          "iconsWorking iconsWorking iconsWorking"
-          "titleKnow    titleKnow    titleKnow   "
-          "iconsKnow    iconsKnow    iconsKnow   "
-          "titleLearn   titleLearn   titleLearn  "
-          "iconsLearn   iconsLearn   iconsLearn  ";
-          grid-template-columns: auto 1fr 40%;
-          grid-template-rows: auto auto auto 1fr;
+          "heading     photography"
+          "description photography"
+          "profiles    photography"
+          "working     working    "
+          "knowing     knowing    "
+          "learning    learning   ";
+          grid-template-columns: 1fr 50%;
+          grid-template-rows: auto 1fr;
         }
 
         &--tasktimer,
@@ -186,7 +188,7 @@
     margin: 0 $offset-right-sm 0 0;
     padding: 75px 0 25px 20px;
     position: relative;
-    width: 100%;
+    width: 60%;
     z-index: 1;
 
     &--large {
@@ -234,19 +236,24 @@
     @media only screen and (min-width: $media-lg) {
 
       & {
-        border-left: none;
-        font-size: 4.5em;
-        margin-top: 0;
-        padding-left: 0;
-
-        &::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: -55px;
-          background-color: #fff;
-          width: 10px;
-          height: 100%;
+        border-left-width: 10px;
+        margin: 0;
+        margin-left: -55px;
+        min-width: 380px;
+        padding: 25px 0 25px 45px;
+        width: 100%;
+        
+        &--about,
+        &--resume,
+        &--tasktimer,
+        &--portfolio,
+        &--hydrapp,
+        &--archviz,
+        &--quotes,
+        &--other,
+        &--contact {
+          border-color: #fff;
+          color: #fff;
         }
       }
     }
@@ -259,11 +266,14 @@
     margin-top: -50px;
     padding-left: $offset-left-sm;
     width: 100%;
+    z-index: 1;
 
     @media only screen and (min-width: $media-lg) {
 
       & {
-        border: 10px solid $color-about-white;
+        border: 3px solid $color-about-light;
+        margin: 0;
+        padding: 3px;
       }
     }
   }

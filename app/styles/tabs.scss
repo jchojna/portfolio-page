@@ -5,6 +5,7 @@
 .tab,
 .subtab {
   overflow: hidden;
+  position: relative;
   //: ABOUT                                                            ://
   &--profiles { grid-area: profiles; }
   &--working { grid-area: working; }
@@ -41,6 +42,18 @@
   //: RESUME                                                           ://
   &--other {
     color: $color-other-diff;
+  }
+
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      &--description {
+        @include flex-center;
+        align-self: stretch;
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+    }
   }
 
   &__header {
@@ -114,6 +127,16 @@
 
       & {
         margin: 1em 0 0.5em;
+        padding: 0;
+        
+        &--aboutMe,
+        &--profiles {
+          display: none;
+        }
+
+        &::before {
+          display: none;
+        }
       }
     }
   }
@@ -155,6 +178,14 @@
 
       &.tab__description--small {
         color: $color-other-shadow;
+      }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        margin: 0;
+        line-height: 1.6;
       }
     }
   }

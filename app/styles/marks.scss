@@ -27,6 +27,7 @@
     width: 10px;
   }
 
+  &--about { background-color: $color-about-diff; }
   &--resume { background-color: $color-resume-dark; }
   &--other { background-color: $color-other-shadow; }
   &--contact { background-color: $color-contact-dark; }

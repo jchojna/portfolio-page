@@ -177,6 +177,38 @@ const handleMenuItemClick = (activeIndex) => {
   */
   } else if (window.innerWidth >= mediaDesktop) {
 
+    menu.classList.remove('menu--intro');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
   }
 }
@@ -295,10 +327,8 @@ const handleMobileHeader = () => {
       introBox.classList.add(`pageHeader__introBox--${currentId}`);
       burgerButton.classList.add(`burgerButton--${currentId}`);
       menuUpperBackground.classList.add(`pageHeader__background--${currentId}`);
-
     }
   }
-
   const newActiveSectionIndex = getCurrentSectionIndex(0);
   //: when index changes                                               ://
   if (newActiveSectionIndex !== lastMenuItemIndex) {
@@ -306,41 +336,6 @@ const handleMobileHeader = () => {
     lastMenuItemIndex = newActiveSectionIndex;
     handleHeader(lastMenuItemIndex, 'deactivate');
   } 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 //| end of HANDLE MOBILE HEADER CHANGE                                      |//
 
