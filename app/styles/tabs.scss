@@ -13,8 +13,8 @@
   &--learning { grid-area: learning; }
   //: RESUME                                                           ://
   &--resume {
-    min-height: $header-min-height;
     color: $color-resume-diff;
+    min-height: $tabHeading-size-sm + $tabGap;
   }
   &--education {
     grid-area: education;
@@ -28,7 +28,6 @@
   //: PROJECT                                                          ://
   &--description {
     grid-area: description;
-    margin-top: 20px;
   }
   &--technologies {
     grid-area: technologies;
@@ -47,6 +46,11 @@
   @media only screen and (min-width: $media-lg) {
 
     & {
+
+      &--resume {
+        min-height: $tabHeading-size-lg + $tabGap;
+      }
+
       &--description {
         @include flex-center;
         align-self: stretch;
@@ -59,10 +63,10 @@
   &__header {
     align-items: flex-start;
     display: flex;
-    font-size: 30px;
+    font-size: $tabHeading-size-sm;
     line-height: 1;
     margin: 0;
-    min-height: $header-min-height;
+    min-height: $tabHeading-size-sm + $tabGap;
     position: relative;
     z-index: 2;
 
@@ -73,14 +77,22 @@
     &--other {
       background-color: $color-other;
     }
+
+    @media only screen and (min-width: $media-lg) {
+  
+      & {
+        font-size: $tabHeading-size-lg;
+        min-height: $tabHeading-size-lg + $tabGap;
+      }
+    }
   }
 
   &__heading {
     align-self: end;
-    font-size: 30px;
+    font-size: $tabHeading-size-sm;
     line-height: 1;
     margin: 20px 0;
-    padding-left: 30px;
+    padding-left: $tabHeading-size-sm;
     position: relative;
     text-transform: uppercase;
     z-index: 1;
@@ -90,7 +102,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 10px;
+      width:  $separator-width;
       height: 110px;
     }
 
@@ -194,11 +206,11 @@
     @include button;
     align-items: center;
     display: flex;
-    height: 30px;
+    height: $tabHeading-size-sm;
     line-height: 1;
     margin: 0;
     padding: 0;
-    padding-left: 50px;
+    padding-left: $tabHeading-size-sm + $tabGap;
     position: relative;
     text-align: left;
     text-transform: uppercase;
@@ -217,10 +229,22 @@
 
     &--unrolled {
       color: inherit;
-      padding-left: 30px;
+      padding-left: $tabHeading-size-sm;
       transition:
         color $tab-header-time,
         padding-left $tab-header-time ease-in;
+    }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        height: $tabHeading-size-lg;
+        padding-left: $tabHeading-size-lg + $tabGap;
+
+        &--unrolled {
+          padding-left: $separator-width + $tabGap;
+        }
+      }
     }
   }
 
@@ -264,13 +288,13 @@
 .subtab {
 
   &--resume {
-    margin-left: 30px;
+    margin-left: $separator-width + $tabGap;
   }
 
   &__header {
 
     &--resume {
-      font-size: 30px;
+      font-size: $tabHeading-size-sm;
       z-index: 1;
     }
   }
@@ -285,6 +309,15 @@
       color: inherit;
     }
   }
+
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      &__header--resume {
+        font-size: $tabHeading-size-lg;
+      }
+    }
+  }
 }
 
 .content {
@@ -297,7 +330,11 @@
   }
 
   &__item {
-    padding: 0 0 20px 30px;
+    align-items: center;
+    display: grid;
+    justify-content: flex-start;
+    justify-items: flex-start;
+    padding: 0 0 20px $separator-width + $tabGap;
 
     &--resume {
       color: $color-resume-white;
@@ -305,27 +342,61 @@
   }
 
   &__title {
-    border-left: 10px solid $color-resume-dark;
+    border-left: $separator-width solid $color-resume-dark;
     color: $color-resume-dark;
     font-size: 25px;
     margin: 0;
-    padding: 0 0 10px 20px;
+    padding: 0 0 10px $tabGap;
   }
   
   &__description {
     font-size: 1em;
     line-height: 1.4;
     margin: 0;
-    padding-left: 30px;
+    padding-left: $tabHeading-size-sm;
 
     &--primary,
     &--secondary {
-      border-left: 10px solid $color-resume-dark;
-      padding-left: 20px;
+      border-left: $separator-width solid $color-resume-dark;
+      padding-left: $tabGap;
     }
 
     &--additional {
       color: $color-resume-dark;
+      padding-left: $separator-width + $tabGap;
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+
+      &__item {
+        grid-template-columns: 150px repeat(3, auto);
+
+      }
+
+      &__title {
+        border: none;
+        padding: 0;
+      }
+  
+      &__description {
+        display: flex;
+        align-items: center;
+        border-width: 20px;
+        padding-left: $separator-width;
+        height: 20px;
+        margin-left: 20px;
+
+        &--primary {
+          border: none;
+        }
+
+        &--additional {
+          border-left: 20px solid $color-resume-dark;
+        }
+      }
     }
   }
 }

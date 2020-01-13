@@ -27,6 +27,11 @@ $navigation-time-rotate: 0.2s;
 $offset-left-sm: 50px;
 $offset-right-sm: 10px;
 
+$tabHeading-size-sm: 30px;
+$tabHeading-size-lg: 50px;
+$tabGap: 20px;
+$separator-width: 10px;
+
 //| TIME                                                                    |//
 $tab-header-time: 0.3s;
 
@@ -50,8 +55,6 @@ $color-resume-diff: #244E60;
 $color-resume-diff-dark: rgb(26, 63, 78);
 //: TIME :
 $time-resume: 0.5s;
-//: SIZE :
-$header-min-height: 60px;
 
 //| TASKTIMER |
 $color-tasktimer-white: #C5D8D9;

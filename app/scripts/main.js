@@ -634,16 +634,16 @@ pageHeader.addEventListener('scroll', handleIntroBox);
 //navigationMainButton.addEventListener('click', () => console.log('main'));
 burgerButton.addEventListener('click', handleBurgerButton);
 //: RESUME                                                             ://
-/* [...resumeButtons].forEach((button, index) => {
+[...resumeButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...resumeTabs], index));
-}); */
-/* [...resumeSubButtons].forEach((button, index) => {
+});
+[...resumeSubButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...resumeSubtabs], index));
-}); */
+});
 //: OTHER PROJECTS                                                     ://
-/* [...otherProjectsButtons].forEach((button, index) => {
+[...otherProjectsButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...otherProjectsTabs], index));
-}); */
+});

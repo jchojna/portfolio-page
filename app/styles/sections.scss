@@ -236,9 +236,9 @@
     @media only screen and (min-width: $media-lg) {
 
       & {
-        border-left-width: 10px;
+        border-left-width: $separator-width;
         margin: 0;
-        margin-left: -55px;
+        margin: 0 0 20px -55px;
         min-width: 380px;
         padding: 25px 0 25px 45px;
         width: 100%;
@@ -266,7 +266,7 @@
     margin-top: -50px;
     padding-left: $offset-left-sm;
     width: 100%;
-    z-index: 1;
+    z-index: 4;
 
     @media only screen and (min-width: $media-lg) {
 
