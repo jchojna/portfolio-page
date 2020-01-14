@@ -31,8 +31,12 @@ $tabHeader-size-sm: 30px;
 $tabHeader-size-lg: 40px;
 $tabHeading-size-sm: 30px;
 $tabHeading-size-lg: 25px;
+$otherHeading-size-sm: 30px;
+$otherHeading-size-lg: 30px;
 $tabGap: 20px;
-$separator-width: 10px;
+
+$separator-width-thick: 10px;
+$separator-width-thin: 5px;
 
 //| TIME                                                                    |//
 $tab-header-time: 0.3s;

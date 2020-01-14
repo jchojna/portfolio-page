@@ -53,7 +53,7 @@
   //: RESUME                                                           ://
   &--other {
     color: $color-other-diff;
-    min-height: $tabHeader-size-sm;
+    min-height: $otherHeading-size-sm;
   }
 
   @media only screen and (min-width: $media-lg) {
@@ -74,6 +74,34 @@
 
       &--other {
         margin: 0;
+        min-height: $otherHeading-size-lg;
+
+        &:hover {
+          
+          & .mark {
+            background-color: $color-other-diff;
+            height: 100px;
+            transition:
+              background-color $tab-header-time,
+              height $tab-header-time $tab-header-time ease-out,
+              width $tab-header-time ease-in;
+            width: $separator-width-thick;
+          }
+
+          & .tab__button--other {
+            color: $color-other-diff;
+            padding-left: $otherHeading-size-lg;
+            transition:
+              color $tab-header-time,
+              padding-left $tab-header-time;
+          }
+
+          & .tab__description--other {
+            color: $color-other-white;
+            transition:
+              color $tab-header-time;
+          }
+        }
       }
     }
   }
@@ -94,6 +122,8 @@
     
     &--other {
       background-color: $color-other;
+      font-size: $otherHeading-size-sm;
+      min-height: $otherHeading-size-sm;
     }
 
     @media only screen and (min-width: $media-lg) {
@@ -103,8 +133,8 @@
         min-height: $tabHeader-size-lg;
 
         &--other {
-          font-size: $tabHeader-size-sm;
-          min-height: $tabHeading-size-sm;
+          font-size: $otherHeading-size-lg;
+          min-height: $otherHeading-size-lg;
         }
       }
     }
@@ -126,7 +156,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      width:  $separator-width;
+      width:  $separator-width-thick;
       height: 110px;
     }
 
@@ -177,7 +207,7 @@
         &::before {
           height: 70px;
           left: -20px;
-          width: 5px;
+          width: $separator-width-thin;
         }
       }
     }
@@ -239,6 +269,7 @@
     height: $tabHeader-size-sm;
     line-height: 1;
     margin: 0;
+    margin-bottom: 10px;
     padding: 0;
     padding-left: $tabHeader-size-sm + $tabGap;
     position: relative;
@@ -255,6 +286,7 @@
     
     &--other {
       color: $color-other-shadow;
+      height: $otherHeading-size-sm;
     }
 
     &--unrolled {
@@ -272,13 +304,12 @@
         padding-left: $tabHeader-size-lg + $tabGap;
 
         &--other {
-          height: $tabHeading-size-lg;
-          margin: 0;
-          padding-left: $tabHeading-size-lg + $tabGap;
+          height: $otherHeading-size-lg;
+          padding-left: $otherHeading-size-lg + $tabGap;
         }
 
         &--unrolled {
-          padding-left: $separator-width + $tabGap;
+          padding-left: $separator-width-thick + $tabGap;
         }
       }
     }
@@ -327,7 +358,7 @@
   min-height: $tabHeader-size-sm + $tabGap;
 
   &--resume {
-    margin-left: $separator-width + $tabGap;
+    margin-left: $separator-width-thick + $tabGap;
     margin-top: 0;
   }
 
@@ -384,7 +415,7 @@
     display: grid;
     justify-content: flex-start;
     justify-items: flex-start;
-    padding: 0 0 20px $separator-width + $tabGap;
+    padding: 0 0 20px $separator-width-thick + $tabGap;
 
     &--resume {
       color: $color-resume-white;
@@ -392,7 +423,7 @@
   }
 
   &__title {
-    border-left: $separator-width solid $color-resume-dark;
+    border-left: $separator-width-thick solid $color-resume-dark;
     color: $color-resume-dark;
     font-size: 25px;
     margin: 0;
@@ -407,19 +438,23 @@
 
     &--primary,
     &--secondary {
-      border-left: $separator-width solid $color-resume-dark;
+      border-left: $separator-width-thick solid $color-resume-dark;
       padding-left: $tabGap;
     }
 
     &--additional {
       color: $color-resume-dark;
-      padding-left: $separator-width + $tabGap;
+      padding-left: $separator-width-thick + $tabGap;
     }
   }
 
   @media only screen and (min-width: $media-lg) {
 
     & {
+
+      &--other {
+        padding-left: 30px;
+      }
 
       &__item {
         column-gap: 25px;

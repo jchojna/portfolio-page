@@ -13,6 +13,15 @@
   width: $tabHeader-size-sm;
   z-index: 2;
 
+  &--about { background-color: $color-about-diff; }
+  &--resume { background-color: $color-resume-dark; }
+  &--other {
+    background-color: $color-other-shadow;
+    height: $otherHeading-size-sm;
+    width: $otherHeading-size-sm;
+  }
+  &--contact { background-color: $color-contact-dark; }
+
   &--unrolled {
     height: 90px;
     transition:
@@ -21,11 +30,6 @@
       width $tab-header-time ease-in;
     width: 10px;
   }
-
-  &--about { background-color: $color-about-diff; }
-  &--resume { background-color: $color-resume-dark; }
-  &--other { background-color: $color-other-shadow; }
-  &--contact { background-color: $color-contact-dark; }
   
   &--small.mark--resume { background-color: $color-resume-dark; }
   &--small.mark--other { background-color: $color-other-dark; }
@@ -42,14 +46,13 @@
       width: $tabHeader-size-lg;
       
       &--other {
-        height: $tabHeader-size-sm;
-        width: $tabHeader-size-sm;
-
+        height: $otherHeading-size-lg;
+        width: $otherHeading-size-lg;
       }
 
       &--unrolled {
         height: 120px;
-        width: $separator-width;
+        width: $separator-width-thick;
       }
     }
   }
