@@ -29,8 +29,16 @@
     grid-area: languages;
   }
   //: PROJECT                                                          ://
-  &--description {
+  &--description,
+  &--features {
+    display: flex;
+    flex-direction: column;
     grid-area: description;
+    overflow: initial;
+    z-index: 3;
+  }
+  &--features {
+    grid-area: features;
   }
   &--technologies {
     grid-area: technologies;
@@ -39,6 +47,7 @@
     font-family: 'Antonio Regular';
     font-size: 1.3em;
     grid-area: stats;
+    overflow: initial;
     text-transform: lowercase;
   }
   //: RESUME                                                           ://
@@ -56,10 +65,11 @@
       }
 
       &--description {
-        @include flex-center;
-        align-self: stretch;
-        flex-direction: column;
-        margin-bottom: 20px;
+        padding-right: 20px;
+      }
+      
+      &--features {
+        padding-right: 20px;
       }
     }
   }
@@ -143,7 +153,6 @@
     @media only screen and (min-width: $media-lg) {
 
       & {
-        margin: 1em 0 0.5em;
         padding: 0;
         font-size: $tabHeading-size-lg;
 
@@ -157,7 +166,9 @@
         }
 
         &::before {
-          display: none;
+          height: 70px;
+          left: -20px;
+          width: 5px;
         }
       }
     }
@@ -165,7 +176,7 @@
 
   &__description {
     font-family: 'Antonio Regular';
-    font-size: 1.2em;
+    font-size: 18px;
     line-height: 1.4;
     margin: 0 $offset-right-sm 0 $offset-left-sm;
 
@@ -259,11 +270,13 @@
   }
 
   &__readMore {
+    align-self: flex-end;
     background: none;
     border: none;
     border-bottom: 2px solid transparent;
     cursor: pointer;
     font-size: 1em;
+    grid-area: readMore;
     margin: 10px $offset-right-sm 10px $offset-left-sm;
     padding: 0.2em 0;
     text-transform: uppercase;
