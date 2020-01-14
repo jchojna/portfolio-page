@@ -432,12 +432,19 @@
         color: $color-other-shadow;
       }
     }
+  }
+  
 
-    @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-lg) {
 
-      & {
+    & {
+      border-top: none;
+      margin: 0;
+      padding-top: 0;
+
+      &__link {
         padding: 0.4em 1.3em;
-
+  
         &--github,
         &--codewars {
           font-size: 1.5em;

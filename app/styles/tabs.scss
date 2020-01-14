@@ -6,6 +6,9 @@
 .subtab {
   overflow: hidden;
   position: relative;
+  margin-top: 20px;
+
+  //border: 3px solid red;  
   //: ABOUT                                                            ://
   &--profiles { grid-area: profiles; }
   &--working { grid-area: working; }
@@ -14,13 +17,13 @@
   //: RESUME                                                           ://
   &--resume {
     color: $color-resume-diff;
-    min-height: $tabHeader-size-sm + $tabGap;
-  }
-  &--education {
-    grid-area: education;
+    min-height: $tabHeader-size-sm;
   }
   &--experience {
     grid-area: experience;
+  }
+  &--education {
+    grid-area: education;
   }
   &--languages {
     grid-area: languages;
@@ -41,6 +44,7 @@
   //: RESUME                                                           ://
   &--other {
     color: $color-other-diff;
+    min-height: $tabHeader-size-sm;
   }
 
   @media only screen and (min-width: $media-lg) {
@@ -66,7 +70,7 @@
     font-size: $tabHeader-size-sm;
     line-height: 1;
     margin: 0;
-    min-height: $tabHeader-size-sm + $tabGap;
+    min-height: $tabHeader-size-sm;
     position: relative;
     z-index: 2;
 
@@ -82,7 +86,7 @@
   
       & {
         font-size: $tabHeader-size-lg;
-        min-height: $tabHeader-size-lg + $tabGap;
+        min-height: $tabHeader-size-lg;
       }
     }
   }
@@ -91,7 +95,8 @@
     align-self: end;
     font-size: $tabHeading-size-sm;
     line-height: 1;
-    margin: 20px 0;
+    margin: 0;
+    margin-bottom: 20px;
     padding-left: $tabHeading-size-sm;
     position: relative;
     text-transform: uppercase;
@@ -291,12 +296,18 @@
 }
 
 .subtab {
+  min-height: $tabHeader-size-sm + $tabGap;
 
   &--resume {
     margin-left: $separator-width + $tabGap;
+    margin-top: 0;
   }
 
   &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: $tabHeader-size-sm + $tabGap;
 
     &--resume {
       font-size: $tabHeader-size-sm;
@@ -318,20 +329,26 @@
   @media only screen and (min-width: $media-lg) {
 
     & {
-      &__header--resume {
-        font-size: $tabHeader-size-lg;
+      min-height: $tabHeader-size-lg + $tabGap;
+
+      &__header {
+        min-height: $tabHeader-size-lg + $tabGap;
+
+        &--resume {
+          font-size: $tabHeader-size-lg;
+        }
       }
     }
   }
 }
 
 .content {
-  padding-bottom: 20px;
 
   &__list {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    padding-top: 20px;
   }
 
   &__item {
