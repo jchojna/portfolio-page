@@ -68,18 +68,8 @@
     align-items: start;
     display: grid;
     width: 100%;
-    $marginTop: calc(100vh - 500px);
 
     border: 1px solid #000;
-
-    /* @if($marginTop > 0px) {
-      margin-top: $marginTop;
-      border: 1px solid red;
-    } @else {
-      margin-top: 0;
-      border: 1px solid red;
-
-    } */
 
     &--about {
       grid-template-areas:
@@ -167,11 +157,11 @@
         &--quotes {
           column-gap: 20px;
           grid-template-areas:
-          "heading      heading           "
+          "heading      heading       "
           "description  description   "
-          "stats     repoLinks         "
-          "technologies   technologies     ";
-          grid-template-columns: 1fr repeat(2, auto);
+          "stats     repoLinks        "
+          "technologies   technologies";
+          grid-template-columns: 1fr auto;
           grid-template-rows: auto auto 1fr;
         }
 
