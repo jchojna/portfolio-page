@@ -2,7 +2,7 @@
 @import 'mixins.scss';
 
 .mark {
-  height: $tabHeading-size-sm;
+  height: $tabHeader-size-sm;
   position: absolute;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
     background-color $tab-header-time $tab-header-time,
     height $tab-header-time ease-in,
     width $tab-header-time $tab-header-time ease-out;
-  width: $tabHeading-size-sm;
+  width: $tabHeader-size-sm;
   z-index: 2;
 
   &--unrolled {
@@ -38,8 +38,8 @@
   @media only screen and (min-width: $media-lg) {
 
     & {
-      height: $tabHeading-size-lg;
-      width: $tabHeading-size-lg;
+      height: $tabHeader-size-lg;
+      width: $tabHeader-size-lg;
 
       &--unrolled {
         height: 120px;

@@ -14,7 +14,7 @@
   //: RESUME                                                           ://
   &--resume {
     color: $color-resume-diff;
-    min-height: $tabHeading-size-sm + $tabGap;
+    min-height: $tabHeader-size-sm + $tabGap;
   }
   &--education {
     grid-area: education;
@@ -48,7 +48,7 @@
     & {
 
       &--resume {
-        min-height: $tabHeading-size-lg + $tabGap;
+        min-height: $tabHeader-size-lg + $tabGap;
       }
 
       &--description {
@@ -63,10 +63,10 @@
   &__header {
     align-items: flex-start;
     display: flex;
-    font-size: $tabHeading-size-sm;
+    font-size: $tabHeader-size-sm;
     line-height: 1;
     margin: 0;
-    min-height: $tabHeading-size-sm + $tabGap;
+    min-height: $tabHeader-size-sm + $tabGap;
     position: relative;
     z-index: 2;
 
@@ -81,8 +81,8 @@
     @media only screen and (min-width: $media-lg) {
   
       & {
-        font-size: $tabHeading-size-lg;
-        min-height: $tabHeading-size-lg + $tabGap;
+        font-size: $tabHeader-size-lg;
+        min-height: $tabHeader-size-lg + $tabGap;
       }
     }
   }
@@ -140,6 +140,7 @@
       & {
         margin: 1em 0 0.5em;
         padding: 0;
+        font-size: $tabHeading-size-lg;
         
         &--aboutMe,
         &--profiles {
@@ -206,11 +207,11 @@
     @include button;
     align-items: center;
     display: flex;
-    height: $tabHeading-size-sm;
+    height: $tabHeader-size-sm;
     line-height: 1;
     margin: 0;
     padding: 0;
-    padding-left: $tabHeading-size-sm + $tabGap;
+    padding-left: $tabHeader-size-sm + $tabGap;
     position: relative;
     text-align: left;
     text-transform: uppercase;
@@ -229,7 +230,7 @@
 
     &--unrolled {
       color: inherit;
-      padding-left: $tabHeading-size-sm;
+      padding-left: $tabHeader-size-sm;
       transition:
         color $tab-header-time,
         padding-left $tab-header-time ease-in;
@@ -238,8 +239,8 @@
     @media only screen and (min-width: $media-lg) {
 
       & {
-        height: $tabHeading-size-lg;
-        padding-left: $tabHeading-size-lg + $tabGap;
+        height: $tabHeader-size-lg;
+        padding-left: $tabHeader-size-lg + $tabGap;
 
         &--unrolled {
           padding-left: $separator-width + $tabGap;
@@ -294,7 +295,7 @@
   &__header {
 
     &--resume {
-      font-size: $tabHeading-size-sm;
+      font-size: $tabHeader-size-sm;
       z-index: 1;
     }
   }
@@ -314,7 +315,7 @@
 
     & {
       &__header--resume {
-        font-size: $tabHeading-size-lg;
+        font-size: $tabHeader-size-lg;
       }
     }
   }
@@ -353,7 +354,7 @@
     font-size: 1em;
     line-height: 1.4;
     margin: 0;
-    padding-left: $tabHeading-size-sm;
+    padding-left: $tabHeader-size-sm;
 
     &--primary,
     &--secondary {
@@ -372,8 +373,8 @@
     & {
 
       &__item {
-        grid-template-columns: 150px repeat(3, auto);
-
+        grid-template-columns: 150px repeat(2, auto);
+        padding-bottom: 5px;
       }
 
       &__title {
@@ -382,19 +383,25 @@
       }
   
       &__description {
-        display: flex;
         align-items: center;
         border-width: 20px;
-        padding-left: $separator-width;
+        display: flex;
+        font-size: 20px;
         height: 20px;
         margin-left: 20px;
+        padding-left: $separator-width;
 
         &--primary {
           border: none;
         }
 
         &--additional {
-          border-left: 20px solid $color-resume-dark;
+          grid-column-start: 2;
+        }
+
+        &--fullWidth {
+          grid-column: 1 / 4;
+          width: 100%;
         }
       }
     }

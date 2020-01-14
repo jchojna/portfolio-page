@@ -59,7 +59,7 @@
     & {
       align-items: center;
       box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
-      padding: 0;
+      padding: 100px 0;
     }
   }
   //: SECTION'S CONTAINER                                              ://
@@ -68,6 +68,18 @@
     align-items: start;
     display: grid;
     width: 100%;
+    $marginTop: calc(100vh - 500px);
+
+    border: 1px solid #000;
+
+    /* @if($marginTop > 0px) {
+      margin-top: $marginTop;
+      border: 1px solid red;
+    } @else {
+      margin-top: 0;
+      border: 1px solid red;
+
+    } */
 
     &--about {
       grid-template-areas:
@@ -140,6 +152,14 @@
           grid-template-rows: auto 1fr;
         }
 
+        &--resume {
+          grid-template-areas:
+          "heading   "
+          "experience"
+          "education "
+          "languages ";
+        }
+
         &--tasktimer,
         &--portfolio,
         &--hydrapp,
@@ -147,11 +167,10 @@
         &--quotes {
           column-gap: 20px;
           grid-template-areas:
-          "heading      heading      heading     "
-          "description  description  description "
-          "readMore     readMore     readMore    "
-          "statistics   codeButton   demoButton  "
-          "technologies technologies technologies";
+          "heading      heading           "
+          "description  description   "
+          "stats     repoLinks         "
+          "technologies   technologies     ";
           grid-template-columns: 1fr repeat(2, auto);
           grid-template-rows: auto auto 1fr;
         }
@@ -243,7 +262,7 @@
         padding: 25px 0 25px 45px;
         width: 100%;
         
-        &--about,
+        /* &--about,
         &--resume,
         &--tasktimer,
         &--portfolio,
@@ -254,7 +273,7 @@
         &--contact {
           border-color: #fff;
           color: #fff;
-        }
+        } */
       }
     }
   }
