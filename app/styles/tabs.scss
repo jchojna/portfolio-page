@@ -394,8 +394,9 @@
     & {
 
       &__item {
-        grid-template-columns: 150px repeat(2, auto);
-        padding-bottom: 5px;
+        column-gap: 25px;
+        grid-template-columns: 180px repeat(2, minmax(auto, 1fr));
+        padding-bottom: 0;
       }
 
       &__title {
@@ -405,19 +406,31 @@
   
       &__description {
         align-items: center;
-        border-width: 20px;
         display: flex;
-        font-size: 20px;
-        height: 20px;
-        margin-left: 20px;
-        padding-left: $separator-width;
+        font-size: 16px;
+        padding-left: 0;
+        position: relative;
 
-        &--primary {
+        &--primary,
+        &--secondary {
           border: none;
+          font-size: 25px;
+        }
+
+        &--secondary::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: -25px;
+          background-color: $color-resume-dark;
+          width: $tabGap;
+          height: $tabGap;
+          z-index: 0;
         }
 
         &--additional {
-          grid-column-start: 2;
+          grid-column: 2 / 4;
         }
 
         &--fullWidth {
