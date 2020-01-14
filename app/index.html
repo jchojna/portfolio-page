@@ -821,9 +821,32 @@
             <h3 class="tab__heading tab__heading--tasktimer">
               Features
             </h3>
-            <p class="tab__description tab__description--tasktimer">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lor
-            </p>
+            <ul class="features features--tasktimer">
+              <li class="features__item">
+                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
+              </li>
+              <li class="features__item">
+                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
+              </li>
+              <li class="features__item">
+                Lazy loading for grid images and gallery pictures (recursive function)
+              </li>
+              <li class="features__item">
+                Responsive slider gallery of images
+              </li>
+              <li class="features__item">
+                Two display modes in gallery view (image and svg placeholder modes)
+              </li>
+              <li class="features__item">
+                Fully functional contact form with checkbox verification and backend validation
+              </li>
+              <li class="features__item">
+                Simple accordions in about section
+              </li>
+              <li class="features__item">
+                Page preloader for the main page
+              </li>
+            </ul>
             <button class="tab__readMore tab__readMore--tasktimer">
               Read more
             </button>
@@ -1016,6 +1039,16 @@
           <h2 class="section__heading section__heading--portfolio">
             “this portfolio website...”
           </h2>
+          <!--: LOGO                                                       :-->
+          <div class="logo logo--portfolio">
+            <svg class="logo__base logo__base--portfolio" viewBox="0 0 512 512">
+              <use href="assets/svg/logos.svg#portfolio-base"></use>
+            </svg>
+            <svg class="logo__shadow logo__shadow--portfolio" viewBox="0 0 512 512">
+              <use href="assets/svg/logos.svg#portfolio-shadow"></use>
+            </svg>
+          </div>
+          <!--: END OF LOGO                                                :-->
           <!--: PROJECT DESCRIPTION                                        :-->
           <section class="tab tab--description">
             <h3 class="tab__heading tab__heading--portfolio">
@@ -1029,16 +1062,42 @@
             </button>
           </section>
           <!--: end of PROJECT DESCRIPTION                                 :-->
-          <!--: LOGO                                                       :-->
-          <div class="logo logo--portfolio">
-            <svg class="logo__base logo__base--portfolio" viewBox="0 0 512 512">
-              <use href="assets/svg/logos.svg#portfolio-base"></use>
-            </svg>
-            <svg class="logo__shadow logo__shadow--portfolio" viewBox="0 0 512 512">
-              <use href="assets/svg/logos.svg#portfolio-shadow"></use>
-            </svg>
-          </div>
-          <!--: END OF LOGO                                                :-->
+          <!--: PROJECT FEATURES                                           :-->
+          <section class="tab tab--features">
+            <h3 class="tab__heading tab__heading--portfolio">
+              Features
+            </h3>
+            <ul class="features features--portfolio">
+              <li class="features__item">
+                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
+              </li>
+              <li class="features__item">
+                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
+              </li>
+              <li class="features__item">
+                Lazy loading for grid images and gallery pictures (recursive function)
+              </li>
+              <li class="features__item">
+                Responsive slider gallery of images
+              </li>
+              <li class="features__item">
+                Two display modes in gallery view (image and svg placeholder modes)
+              </li>
+              <li class="features__item">
+                Fully functional contact form with checkbox verification and backend validation
+              </li>
+              <li class="features__item">
+                Simple accordions in about section
+              </li>
+              <li class="features__item">
+                Page preloader for the main page
+              </li>
+            </ul>
+            <button class="tab__readMore tab__readMore--portfolio">
+              Read more
+            </button>
+          </section>
+          <!--: end of PROJECT FEATURES                                    :-->
           <!--: PROJECT LINKS                                              :-->
           <div class="repoLinks repoLinks--portfolio">
             <a
@@ -1226,6 +1285,16 @@
           <h2 class="section__heading section__heading--hydrapp">
             “track water consumption with hydrApp”
           </h2>
+          <!--: LOGO                                                       :-->
+          <div class="logo logo--hydrapp">
+            <svg class="logo__base logo__base--hydrapp" viewBox="0 0 512 612">
+              <use href="assets/svg/logos.svg#hydrapp-base"></use>
+            </svg>
+            <svg class="logo__shadow logo__shadow--hydrapp" viewBox="0 0 512 612">
+              <use href="assets/svg/logos.svg#hydrapp-shadow"></use>
+            </svg>
+          </div>
+          <!--: END OF LOGO                                                :-->
           <!--: PROJECT DESCRIPTION                                        :-->
           <section class="tab tab--description">
             <h3 class="tab__heading tab__heading--hydrapp">
@@ -1239,16 +1308,42 @@
             </button>
           </section>
           <!--: end of PROJECT DESCRIPTION                                 :-->
-          <!--: LOGO                                                       :-->
-          <div class="logo logo--hydrapp">
-            <svg class="logo__base logo__base--hydrapp" viewBox="0 0 512 612">
-              <use href="assets/svg/logos.svg#hydrapp-base"></use>
-            </svg>
-            <svg class="logo__shadow logo__shadow--hydrapp" viewBox="0 0 512 612">
-              <use href="assets/svg/logos.svg#hydrapp-shadow"></use>
-            </svg>
-          </div>
-          <!--: END OF LOGO                                                :-->
+          <!--: PROJECT FEATURES                                           :-->
+          <section class="tab tab--features">
+            <h3 class="tab__heading tab__heading--hydrapp">
+              Features
+            </h3>
+            <ul class="features features--hydrapp">
+              <li class="features__item">
+                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
+              </li>
+              <li class="features__item">
+                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
+              </li>
+              <li class="features__item">
+                Lazy loading for grid images and gallery pictures (recursive function)
+              </li>
+              <li class="features__item">
+                Responsive slider gallery of images
+              </li>
+              <li class="features__item">
+                Two display modes in gallery view (image and svg placeholder modes)
+              </li>
+              <li class="features__item">
+                Fully functional contact form with checkbox verification and backend validation
+              </li>
+              <li class="features__item">
+                Simple accordions in about section
+              </li>
+              <li class="features__item">
+                Page preloader for the main page
+              </li>
+            </ul>
+            <button class="tab__readMore tab__readMore--hydrapp">
+              Read more
+            </button>
+          </section>
+          <!--: end of PROJECT FEATURES                                    :-->
           <!--: PROJECT LINKS                                              :-->
           <div class="repoLinks repoLinks--hydrapp">
             <a
@@ -1427,19 +1522,6 @@
           <h2 class="section__heading section__heading--archviz">
             “personal portfolio with my architectural visulizations”
           </h2>
-          <!--: PROJECT DESCRIPTION                                        :-->
-          <section class="tab tab--description">
-            <h3 class="tab__heading tab__heading--archviz">
-              About Project
-            </h3>
-            <p class="tab__description tab__description--archviz">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
-            <button class="tab__readMore tab__readMore--archviz">
-              Read more
-            </button>
-          </section>
-          <!--: end of PROJECT DESCRIPTION                                 :-->
           <!--: LOGO                                                       :-->
           <div class="logo logo--archviz">
             <svg class="logo__base logo__base--archviz" viewBox="0 0 512 512">
@@ -1450,6 +1532,55 @@
             </svg>
           </div>
           <!--: END OF LOGO                                                :-->
+          <!--: PROJECT DESCRIPTION                                        :-->
+          <section class="tab tab--description">
+            <h3 class="tab__heading tab__heading--archviz">
+              About Project
+            </h3>
+            <p class="tab__description tab__description--archviz">
+              The main idea for this project was to compromise a large amount of high quality pictures with page load performance. Because of that I decided to create svg placeholders for every image as a starting content and load the raster images regarding their actual visibility on the screen and using lazy loading functionality. In this project I decided not to use any external libraries and write all the functions by myself (exception: throttle function from Underscore.js). All the visualization used on this website were created by me, while I have been working as an architectural visualizer.
+            </p>
+            <button class="tab__readMore tab__readMore--archviz">
+              Read more
+            </button>
+          </section>
+          <!--: end of PROJECT DESCRIPTION                                 :-->
+          <!--: PROJECT FEATURES                                           :-->
+          <section class="tab tab--features">
+            <h3 class="tab__heading tab__heading--archviz">
+              Features
+            </h3>
+            <ul class="features features--archviz">
+              <li class="features__item">
+                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
+              </li>
+              <li class="features__item">
+                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
+              </li>
+              <li class="features__item">
+                Lazy loading for grid images and gallery pictures (recursive function)
+              </li>
+              <li class="features__item">
+                Responsive slider gallery of images
+              </li>
+              <li class="features__item">
+                Two display modes in gallery view (image and svg placeholder modes)
+              </li>
+              <li class="features__item">
+                Fully functional contact form with checkbox verification and backend validation
+              </li>
+              <li class="features__item">
+                Simple accordions in about section
+              </li>
+              <li class="features__item">
+                Page preloader for the main page
+              </li>
+            </ul>
+            <button class="tab__readMore tab__readMore--archviz">
+              Read more
+            </button>
+          </section>
+          <!--: end of PROJECT FEATURES                                    :-->
           <!--: PROJECT LINKS                                              :-->
           <div class="repoLinks repoLinks--archviz">
             <a
@@ -1622,6 +1753,16 @@
           <h2 class="section__heading section__heading--quotes">
             “collection of useful and funny quotes”
           </h2>
+          <!--: LOGO                                                       :-->
+          <div class="logo logo--quotes">
+            <svg class="logo__base logo__base--quotes" viewBox="0 0 512 512">
+              <use href="assets/svg/logos.svg#quotes-base"></use>
+            </svg>
+            <svg class="logo__shadow logo__shadow--quotes" viewBox="0 0 512 512">
+              <use href="assets/svg/logos.svg#quotes-shadow"></use>
+            </svg>
+          </div>
+          <!--: end of LOGO                                                :-->
           <!--: PROJECT DESCRIPTION                                        :-->
           <section class="tab tab--description">
             <h3 class="tab__heading tab__heading--quotes">
@@ -1635,16 +1776,42 @@
             </button>
           </section>
           <!--: end of PROJECT DESCRIPTION                                 :-->
-          <!--: LOGO                                                       :-->
-          <div class="logo logo--quotes">
-            <svg class="logo__base logo__base--quotes" viewBox="0 0 512 512">
-              <use href="assets/svg/logos.svg#quotes-base"></use>
-            </svg>
-            <svg class="logo__shadow logo__shadow--quotes" viewBox="0 0 512 512">
-              <use href="assets/svg/logos.svg#quotes-shadow"></use>
-            </svg>
-          </div>
-          <!--: end of LOGO                                                :-->
+          <!--: PROJECT FEATURES                                           :-->
+          <section class="tab tab--features">
+            <h3 class="tab__heading tab__heading--quotes">
+              Features
+            </h3>
+            <ul class="features features--quotes">
+              <li class="features__item">
+                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
+              </li>
+              <li class="features__item">
+                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
+              </li>
+              <li class="features__item">
+                Lazy loading for grid images and gallery pictures (recursive function)
+              </li>
+              <li class="features__item">
+                Responsive slider gallery of images
+              </li>
+              <li class="features__item">
+                Two display modes in gallery view (image and svg placeholder modes)
+              </li>
+              <li class="features__item">
+                Fully functional contact form with checkbox verification and backend validation
+              </li>
+              <li class="features__item">
+                Simple accordions in about section
+              </li>
+              <li class="features__item">
+                Page preloader for the main page
+              </li>
+            </ul>
+            <button class="tab__readMore tab__readMore--quotes">
+              Read more
+            </button>
+          </section>
+          <!--: end of PROJECT FEATURES                                    :-->
           <!--: PROJECT LINKS                                              :-->
           <div class="repoLinks repoLinks--quotes">
             <a
