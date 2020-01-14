@@ -577,7 +577,9 @@ handleIntroMenu();
 //: handle page's accordions                                           ://
 handleAccordion([...resumeSubtabs]);
 handleAccordion([...resumeTabs]);
-handleAccordion([...otherProjectsTabs]);
+if (window.innerWidth < mediaDesktop) {
+  handleAccordion([...otherProjectsTabs]);
+}
 
 
 /* fetch('https://api.github.com/users/jchojna/repos')
@@ -643,7 +645,9 @@ burgerButton.addEventListener('click', handleBurgerButton);
   handleAccordion([...resumeSubtabs], index));
 });
 //: OTHER PROJECTS                                                     ://
-[...otherProjectsButtons].forEach((button, index) => {
-  button.addEventListener('click', () =>
-  handleAccordion([...otherProjectsTabs], index));
-});
+if (window.innerWidth < mediaDesktop) {
+  [...otherProjectsButtons].forEach((button, index) => {
+    button.addEventListener('click', () =>
+    handleAccordion([...otherProjectsTabs], index));
+  });
+}

@@ -167,10 +167,8 @@
           grid-template-areas:
           "heading    "
           "description"
-          "readMore   "
           "otherRepos ";
-          grid-template-columns: 1fr;
-          grid-template-rows: repeat(3, auto) 1fr;
+          grid-template-rows: repeat(2, auto) 1fr;
         }
 
         &--contact {
@@ -183,8 +181,8 @@
       }
     }
   }
-  //: end of SECTION'S CONTAINER                                       ://
-  //: SECTION'S HEADING                                                ://
+  //: end of SECTION'S CONTAINER                                            ://
+  //: SECTION'S HEADING                                                     ://
   &__heading {
     border-left: 8px solid transparent;
     color: #fff;
@@ -279,6 +277,15 @@
   &__repos {
     margin-top: 30px;
     grid-area: otherRepos;
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        display: grid;
+        gap: $tabGap;
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
   }
 }
 //| end of SECTION                                                          |//

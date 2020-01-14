@@ -40,6 +40,12 @@
     & {
       height: $tabHeader-size-lg;
       width: $tabHeader-size-lg;
+      
+      &--other {
+        height: $tabHeader-size-sm;
+        width: $tabHeader-size-sm;
+
+      }
 
       &--unrolled {
         height: 120px;

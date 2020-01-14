@@ -71,6 +71,10 @@
       &--features {
         padding-right: 20px;
       }
+
+      &--other {
+        margin: 0;
+      }
     }
   }
 
@@ -97,6 +101,11 @@
       & {
         font-size: $tabHeader-size-lg;
         min-height: $tabHeader-size-lg;
+
+        &--other {
+          font-size: $tabHeader-size-sm;
+          min-height: $tabHeading-size-sm;
+        }
       }
     }
   }
@@ -261,6 +270,12 @@
       & {
         height: $tabHeader-size-lg;
         padding-left: $tabHeader-size-lg + $tabGap;
+
+        &--other {
+          height: $tabHeading-size-lg;
+          margin: 0;
+          padding-left: $tabHeading-size-lg + $tabGap;
+        }
 
         &--unrolled {
           padding-left: $separator-width + $tabGap;
