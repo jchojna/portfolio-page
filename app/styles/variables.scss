@@ -10,7 +10,7 @@ $time-switch: 0.4s;
 $menu-first-timeout: 0.3s;
 $menu-second-timeout: 0.6s;
 $menu-item-height: 50px;
-$menu-item-height-lg: 90px;
+$menu-item-height-lg: 80px; // 90
 
 //| NAVIGATION |
 $navigation-border-arrow: 10px;
@@ -26,6 +26,9 @@ $navigation-time-rotate: 0.2s;
 //| LAYOUT                                                                  |//
 $offset-left-sm: 50px;
 $offset-right-sm: 10px;
+$offset-top-bottom-lg: 100px;
+
+$container-size: 800px;
 
 $tabHeader-size-sm: 30px;
 $tabHeader-size-lg: 40px;

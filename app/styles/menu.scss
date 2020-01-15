@@ -8,7 +8,7 @@
   left: 0;
   min-height: 100vh;
   overflow: auto;
-  padding: 100px 0;
+  padding: $offset-top-bottom-lg 0;
   pointer-events: none;
   position: fixed;
   top: 0;
@@ -16,18 +16,7 @@
   z-index: 5;
 
   &--intro {
-    pointer-events: all;
-  }
-
-  @media only screen and (min-width: $media-lg) {
-
-    & {
-      width: 500px;
-
-      &--intro {
-        margin-left: calc(50vw - 500px);
-      }
-    }
+    //pointer-events: all;
   }
   //: PAGE INDICATOR                                                        ://
   &__indicator {
@@ -77,6 +66,8 @@
   }
   //: PAGE BACKGROUND                                                       ://
   &__background {
+    display: none;
+
     background-color: $intro-background-color;
     height: 100%;
     position: fixed;
@@ -116,16 +107,65 @@
     }
   }
 }
-
+/*
+##     ## ######## ##    ## ##     ##
+###   ### ##       ###   ## ##     ##
+#### #### ##       ####  ## ##     ##
+## ### ## ######   ## ## ## ##     ##
+##     ## ##       ##  #### ##     ##
+##     ## ##       ##   ### ##     ##
+##     ## ######## ##    ##  #######
+*/
 //| MAIN MENU                                                               |//
 .menu {
   width: 100%;
+
+  @media only screen and (min-width: $media-lg) {
+    display: flex;
+    align-items: center;
+    min-height: $container-size;
+    width: 450px;
+    height: 100%;
+
+
+
+
+
+
+
+
+
+
+
+
+  }
   //: MENU LIST                                                             ://
   &__list {
     list-style-type: none;
     margin: 0;
     padding: 0;
     width: 100%;
+
+    @media only screen and (min-width: $media-lg) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    //margin-left: calc(50vw - 500px);
   }
   //: MENU ITEMS                                                            ://
   &__item {
@@ -139,7 +179,7 @@
     width: 100%;
     transition: height 0.3s;
 
-    //pointer-events: all;    // ! make possible to enable menu by clicking link name
+    pointer-events: all;    // ! make possible to enable menu by clicking link name
 
     &--mobileHeader {
       left: 0;
