@@ -7,9 +7,9 @@
   top: 0;
   left: 0;
   transition:
-    background-color $tab-header-time $tab-header-time,
-    height $tab-header-time ease-in,
-    width $tab-header-time $tab-header-time ease-out;
+    background-color $tabHeader-time $tabHeader-time,
+    height $tabHeader-time ease-in,
+    width $tabHeader-time $tabHeader-time ease-out;
   width: $tabHeader-size-sm;
   z-index: 2;
 
@@ -25,10 +25,10 @@
   &--unrolled {
     height: 90px;
     transition:
-      background-color $tab-header-time,
-      height $tab-header-time $tab-header-time ease-out,
-      width $tab-header-time ease-in;
-    width: 10px;
+      background-color $tabHeader-time,
+      height $tabHeader-time $tabHeader-time ease-out,
+      width $tabHeader-time ease-in;
+    width: $separator-width-thick;
   }
   
   &--small.mark--resume { background-color: $color-resume-dark; }
@@ -48,6 +48,11 @@
       &--other {
         height: $otherHeading-size-lg;
         width: $otherHeading-size-lg;
+      }
+      
+      &--contact {
+        height: $tabHeading-size-lg;
+        width: $tabHeading-size-lg;
       }
 
       &--unrolled {

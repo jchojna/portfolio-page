@@ -82,9 +82,9 @@
             background-color: $color-other-diff;
             height: 100px;
             transition:
-              background-color $tab-header-time,
-              height $tab-header-time $tab-header-time ease-out,
-              width $tab-header-time ease-in;
+              background-color $tabHeader-time,
+              height $tabHeader-time $tabHeader-time ease-out,
+              width $tabHeader-time ease-in;
             width: $separator-width-thick;
           }
 
@@ -92,14 +92,14 @@
             color: $color-other-diff;
             padding-left: $otherHeading-size-lg;
             transition:
-              color $tab-header-time,
-              padding-left $tab-header-time;
+              color $tabHeader-time,
+              padding-left $tabHeader-time;
           }
 
           & .tab__description--other {
             color: $color-other-white;
             transition:
-              color $tab-header-time;
+              color $tabHeader-time;
           }
         }
       }
@@ -276,8 +276,8 @@
     text-align: left;
     text-transform: uppercase;
     transition:
-      color $tab-header-time $tab-header-time,
-      padding-left $tab-header-time $tab-header-time ease-out;
+      color $tabHeader-time $tabHeader-time,
+      padding-left $tabHeader-time $tabHeader-time ease-out;
     width: 100%;
 
     &--resume {
@@ -293,8 +293,8 @@
       color: inherit;
       padding-left: $tabHeader-size-sm;
       transition:
-        color $tab-header-time,
-        padding-left $tab-header-time ease-in;
+        color $tabHeader-time,
+        padding-left $tabHeader-time ease-in;
     }
 
     @media only screen and (min-width: $media-lg) {
