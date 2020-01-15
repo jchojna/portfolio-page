@@ -1,9 +1,9 @@
 //| UPDATE MENU ITEMS OFFSETS                                               |//
-/* const updateMenuItemsOffsets = () => {
+const updateMenuItemsOffsets = () => {
   [...items].forEach(item => {
     item.offset = item.node.offsetTop;
   });
-} */
+}
 //| UPDATE SECTIONS OFFSETS                                                 |//
 const updateSectionsOffsets = () => {
   [...sections].forEach((section, index) => {
@@ -37,8 +37,9 @@ const handleIntroBox = (e) => {
   const currentYOffset = items[lastMenuItemIndex].offset;
   const itemHeight = items[lastMenuItemIndex].height;
   const viewOffset = pageHeader.scrollTop;
+  const menuOffset = menu.offsetTop;
   //: assign size and position                                         ://
-  introBox.style.top = `${currentYOffset - viewOffset}px`;
+  introBox.style.top = `${currentYOffset - viewOffset + menuOffset}px`;
   introBox.style.height = `${itemHeight}px`;
   introBox.style.width = `${itemHeight}px`;
 }
@@ -47,10 +48,11 @@ const handleIntroMenu = (e) => {
   //: handle intro menu on mouse event                                      ://
   if (e && e.type === 'mousemove' && window.innerWidth >= mediaTablet) {    
     const viewOffset = pageHeader.scrollTop;
-    const currentItemIndex = getCurrentItemIndex(e.clientY + viewOffset);
+    const menuOffset = menu.offsetTop;
+    const currentItemIndex = getCurrentItemIndex(e.clientY - menuOffset + viewOffset);
 
     if (currentItemIndex !== lastMenuItemIndex && currentItemIndex < items.length) {
-      introBox.style.top = `${items[currentItemIndex].offset}px`;
+      introBox.style.top = `${items[currentItemIndex].offset + menuOffset}px`;
       handleColorChange(lastMenuItemIndex, 'deactivate');
       lastMenuItemIndex = currentItemIndex;
       handleColorChange(lastMenuItemIndex, 'activate');
@@ -78,11 +80,12 @@ const handleMenuItemClick = (activeIndex) => {
     
     //: variables                                                           ://
     const windowHeight = window.innerHeight;
+    const menuOffset = menu.offsetTop;
     const clickedItemHeight = items[activeIndex].height;
-    const clickedItemOffset = items[activeIndex].offset;
+    const clickedItemOffset = items[activeIndex].offset + menuOffset;
     const clickedElementId = sections[activeIndex].id;
     const viewOffset = pageHeader.scrollTop;
-    const upperBackgroundHeight = clickedItemHeight + clickedItemOffset - viewOffset;
+    const upperBackgroundHeight = clickedItemHeight + clickedItemOffset + menuOffset - viewOffset;
     const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
   
     //: change items colors and set introbox position                       ://
@@ -96,7 +99,7 @@ const handleMenuItemClick = (activeIndex) => {
     //: change menu items to be in a fixed position                         ://
     [...menuItems].forEach((item, index) => {
       item.classList.add('menu__item--mobileHeader');
-      item.style.top = `${items[index].offset - viewOffset}px`;
+      item.style.top = `${items[index].offset - viewOffset + menuOffset}px`;
     });
     //: set initial link width as style property in order to be animated    ://
     const linkWidth = menuLinks[activeIndex].clientWidth;
@@ -115,7 +118,7 @@ const handleMenuItemClick = (activeIndex) => {
       const downwardsOffset = windowHeight - clickedItemOffset - clickedItemHeight;
       //. set translated position of menu items                             .//
       [...menuItems].forEach((item, index) => {
-        const currentItemOffset = items[index].offset;
+        const currentItemOffset = items[index].offset + menuOffset;
         item.style.top = index <= activeIndex // ! refactor
         ? `${currentItemOffset - upwardsOffset}px`
         : `${currentItemOffset + downwardsOffset}px`;
@@ -224,8 +227,9 @@ const handleMenuItemClick = (activeIndex) => {
 const handleBurgerButton = () => {
   //: variables                                                             ://
   const windowHeight = window.innerHeight;
+  const menuOffset = menu.offsetTop;
   const activeItemHeight = items[lastMenuItemIndex].height;
-  const activeItemOffset = items[lastMenuItemIndex].offset;
+  const activeItemOffset = items[lastMenuItemIndex].offset + menuOffset;
   const activeId = sections[lastMenuItemIndex].id;
   const upperBackgroundHeight = activeItemHeight + activeItemOffset;
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
@@ -236,7 +240,7 @@ const handleBurgerButton = () => {
   burgerButton.classList.remove('burgerButton--visible');
   //: set starting position of menu items                                   ://
   [...menuItems].forEach((item, index) => {
-    const currentItemOffset = items[index].offset;
+    const currentItemOffset = items[index].offset + menuOffset;
     const currentId = sections[index].id;
 
     item.classList.add('menu__item--visible');
@@ -262,7 +266,7 @@ const handleBurgerButton = () => {
   menuFirstTimeoutId = setTimeout(() => {
     //. set menu items default position                                     .//
     [...menuItems].forEach((item, index) => {
-      item.style.top = `${items[index].offset}px`;
+      item.style.top = `${items[index].offset + menuOffset}px`;
       item.classList.add('menu__item--animated');
     });
     //. set introBox and menu backgrounds appearance                        .//

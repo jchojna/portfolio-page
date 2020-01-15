@@ -9,10 +9,10 @@
   @media only screen and (min-width: $media-lg) {
 
     & {
-      //display: none;
+      visibility: hidden;
 
       &--visible {
-        display: block;
+        visibility: visible;
       }
     }
   }
