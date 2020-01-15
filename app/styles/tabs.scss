@@ -5,6 +5,10 @@
 .tab,
 .subtab {
   overflow: hidden;
+  position: relative;
+  margin-top: 20px;
+
+  //border: 3px solid red;  
   //: ABOUT                                                            ://
   &--profiles { grid-area: profiles; }
   &--working { grid-area: working; }
@@ -12,22 +16,29 @@
   &--learning { grid-area: learning; }
   //: RESUME                                                           ://
   &--resume {
-    min-height: $header-min-height;
     color: $color-resume-diff;
-  }
-  &--education {
-    grid-area: education;
+    min-height: $tabHeader-size-sm;
   }
   &--experience {
     grid-area: experience;
+  }
+  &--education {
+    grid-area: education;
   }
   &--languages {
     grid-area: languages;
   }
   //: PROJECT                                                          ://
-  &--description {
+  &--description,
+  &--features {
+    display: flex;
+    flex-direction: column;
     grid-area: description;
-    margin-top: 20px;
+    overflow: initial;
+    z-index: 3;
+  }
+  &--features {
+    grid-area: features;
   }
   &--technologies {
     grid-area: technologies;
@@ -36,20 +47,72 @@
     font-family: 'Antonio Regular';
     font-size: 1.3em;
     grid-area: stats;
+    overflow: initial;
     text-transform: lowercase;
   }
   //: RESUME                                                           ://
   &--other {
     color: $color-other-diff;
+    min-height: $otherHeading-size-sm;
+  }
+
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+
+      &--resume {
+        min-height: $tabHeader-size-lg + $tabGap;
+      }
+
+      &--description {
+        padding-right: 20px;
+      }
+      
+      &--features {
+        padding-right: 20px;
+      }
+
+      &--other {
+        margin: 0;
+        min-height: $otherHeading-size-lg;
+
+        &:hover {
+          
+          & .mark {
+            background-color: $color-other-diff;
+            height: 100px;
+            transition:
+              background-color $tabHeader-time,
+              height $tabHeader-time $tabHeader-time ease-out,
+              width $tabHeader-time ease-in;
+            width: $separator-width-thick;
+          }
+
+          & .tab__button--other {
+            color: $color-other-diff;
+            padding-left: $otherHeading-size-lg;
+            transition:
+              color $tabHeader-time,
+              padding-left $tabHeader-time;
+          }
+
+          & .tab__description--other {
+            color: $color-other-white;
+            transition:
+              color $tabHeader-time;
+          }
+        }
+      }
+    }
   }
 
   &__header {
     align-items: flex-start;
     display: flex;
-    font-size: 30px;
+    font-size: $tabHeader-size-sm;
     line-height: 1;
     margin: 0;
-    min-height: $header-min-height;
+    min-height: $tabHeader-size-sm;
     position: relative;
     z-index: 2;
 
@@ -59,15 +122,31 @@
     
     &--other {
       background-color: $color-other;
+      font-size: $otherHeading-size-sm;
+      min-height: $otherHeading-size-sm;
+    }
+
+    @media only screen and (min-width: $media-lg) {
+  
+      & {
+        font-size: $tabHeader-size-lg;
+        min-height: $tabHeader-size-lg;
+
+        &--other {
+          font-size: $otherHeading-size-lg;
+          min-height: $otherHeading-size-lg;
+        }
+      }
     }
   }
 
   &__heading {
     align-self: end;
-    font-size: 30px;
+    font-size: $tabHeading-size-sm;
     line-height: 1;
-    margin: 20px 0;
-    padding-left: 30px;
+    margin: 0;
+    margin-bottom: 20px;
+    padding-left: $tabHeading-size-sm;
     position: relative;
     text-transform: uppercase;
     z-index: 1;
@@ -77,7 +156,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 10px;
+      width:  $separator-width-thick;
       height: 110px;
     }
 
@@ -113,14 +192,30 @@
     @media only screen and (min-width: $media-lg) {
 
       & {
-        margin: 1em 0 0.5em;
+        padding: 0;
+        font-size: $tabHeading-size-lg;
+
+        &--technologies {
+          display: none;
+        }
+        
+        &--aboutMe,
+        &--profiles {
+          display: none;
+        }
+
+        &::before {
+          height: 70px;
+          left: -20px;
+          width: $separator-width-thin;
+        }
       }
     }
   }
 
   &__description {
     font-family: 'Antonio Regular';
-    font-size: 1.2em;
+    font-size: 18px;
     line-height: 1.4;
     margin: 0 $offset-right-sm 0 $offset-left-sm;
 
@@ -157,23 +252,32 @@
         color: $color-other-shadow;
       }
     }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        margin: 0;
+        line-height: 1.6;
+      }
+    }
   }
 
   &__button {
     @include button;
     align-items: center;
     display: flex;
-    height: 30px;
+    height: $tabHeader-size-sm;
     line-height: 1;
     margin: 0;
+    margin-bottom: 10px;
     padding: 0;
-    padding-left: 50px;
+    padding-left: $tabHeader-size-sm + $tabGap;
     position: relative;
     text-align: left;
     text-transform: uppercase;
     transition:
-      color $tab-header-time $tab-header-time,
-      padding-left $tab-header-time $tab-header-time ease-out;
+      color $tabHeader-time $tabHeader-time,
+      padding-left $tabHeader-time $tabHeader-time ease-out;
     width: 100%;
 
     &--resume {
@@ -182,23 +286,43 @@
     
     &--other {
       color: $color-other-shadow;
+      height: $otherHeading-size-sm;
     }
 
     &--unrolled {
       color: inherit;
-      padding-left: 30px;
+      padding-left: $tabHeader-size-sm;
       transition:
-        color $tab-header-time,
-        padding-left $tab-header-time ease-in;
+        color $tabHeader-time,
+        padding-left $tabHeader-time ease-in;
+    }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        height: $tabHeader-size-lg;
+        padding-left: $tabHeader-size-lg + $tabGap;
+
+        &--other {
+          height: $otherHeading-size-lg;
+          padding-left: $otherHeading-size-lg + $tabGap;
+        }
+
+        &--unrolled {
+          padding-left: $separator-width-thick + $tabGap;
+        }
+      }
     }
   }
 
   &__readMore {
+    align-self: flex-end;
     background: none;
     border: none;
     border-bottom: 2px solid transparent;
     cursor: pointer;
     font-size: 1em;
+    grid-area: readMore;
     margin: 10px $offset-right-sm 10px $offset-left-sm;
     padding: 0.2em 0;
     text-transform: uppercase;
@@ -231,15 +355,21 @@
 }
 
 .subtab {
+  min-height: $tabHeader-size-sm + $tabGap;
 
   &--resume {
-    margin-left: 30px;
+    margin-left: $separator-width-thick + $tabGap;
+    margin-top: 0;
   }
 
   &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: $tabHeader-size-sm + $tabGap;
 
     &--resume {
-      font-size: 30px;
+      font-size: $tabHeader-size-sm;
       z-index: 1;
     }
   }
@@ -254,19 +384,38 @@
       color: inherit;
     }
   }
+
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      min-height: $tabHeader-size-lg + $tabGap;
+
+      &__header {
+        min-height: $tabHeader-size-lg + $tabGap;
+
+        &--resume {
+          font-size: $tabHeader-size-lg;
+        }
+      }
+    }
+  }
 }
 
 .content {
-  padding-bottom: 20px;
 
   &__list {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    padding-top: 20px;
   }
 
   &__item {
-    padding: 0 0 20px 30px;
+    align-items: center;
+    display: grid;
+    justify-content: flex-start;
+    justify-items: flex-start;
+    padding: 0 0 20px $separator-width-thick + $tabGap;
 
     &--resume {
       color: $color-resume-white;
@@ -274,27 +423,84 @@
   }
 
   &__title {
-    border-left: 10px solid $color-resume-dark;
+    border-left: $separator-width-thick solid $color-resume-dark;
     color: $color-resume-dark;
     font-size: 25px;
     margin: 0;
-    padding: 0 0 10px 20px;
+    padding: 0 0 10px $tabGap;
   }
   
   &__description {
     font-size: 1em;
     line-height: 1.4;
     margin: 0;
-    padding-left: 30px;
+    padding-left: $tabHeader-size-sm;
 
     &--primary,
     &--secondary {
-      border-left: 10px solid $color-resume-dark;
-      padding-left: 20px;
+      border-left: $separator-width-thick solid $color-resume-dark;
+      padding-left: $tabGap;
     }
 
     &--additional {
       color: $color-resume-dark;
+      padding-left: $separator-width-thick + $tabGap;
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+
+      &--other {
+        padding-left: 30px;
+      }
+
+      &__item {
+        column-gap: 25px;
+        grid-template-columns: 180px repeat(2, minmax(auto, 1fr));
+        padding-bottom: 0;
+      }
+
+      &__title {
+        border: none;
+        padding: 0;
+      }
+  
+      &__description {
+        align-items: center;
+        display: flex;
+        font-size: 16px;
+        padding-left: 0;
+        position: relative;
+
+        &--primary,
+        &--secondary {
+          border: none;
+          font-size: 25px;
+        }
+
+        &--secondary::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: -25px;
+          background-color: $color-resume-dark;
+          width: $tabGap;
+          height: $tabGap;
+          z-index: 0;
+        }
+
+        &--additional {
+          grid-column: 2 / 4;
+        }
+
+        &--fullWidth {
+          grid-column: 1 / 4;
+          width: 100%;
+        }
+      }
     }
   }
 }

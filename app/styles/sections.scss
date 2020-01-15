@@ -1,15 +1,20 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
-.pageContainer {  
-  //display: none;
-  display: block;
+.pageContainer {
   overflow: hidden;
   width: 100%;
   position: relative;
   
-  &--visible {
-    display: block;
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      /* display: none;
+
+      &--visible {
+        display: block;
+      } */
+    }
   }
 }
 //| SECTION                                                                 |//
@@ -54,7 +59,7 @@
     & {
       align-items: center;
       box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
-      padding: 0;
+      padding: 100px 0;
     }
   }
   //: SECTION'S CONTAINER                                              ://
@@ -93,6 +98,7 @@
       "heading     "
       "logo        "
       "description "
+      "features    "
       "technologies"
       "stats       "
       "repoLinks   ";
@@ -117,7 +123,6 @@
 
       & {
         margin-left: 540px;
-        //max-height: 800px;
         max-width: 800px;
         min-height: 800px;
         min-width: 600px;
@@ -125,17 +130,22 @@
         &--about {
           column-gap: 20px;
           grid-template-areas:
-          "heading      heading      photography "
-          "description  description  photography "
-          "github       codewars     photography "
-          "titleWorking titleWorking titleWorking"
-          "iconsWorking iconsWorking iconsWorking"
-          "titleKnow    titleKnow    titleKnow   "
-          "iconsKnow    iconsKnow    iconsKnow   "
-          "titleLearn   titleLearn   titleLearn  "
-          "iconsLearn   iconsLearn   iconsLearn  ";
-          grid-template-columns: auto 1fr 40%;
-          grid-template-rows: auto auto auto 1fr;
+          "heading     photography"
+          "description photography"
+          "profiles    photography"
+          "working     working    "
+          "knowing     knowing    "
+          "learning    learning   ";
+          grid-template-columns: 1fr 50%;
+          grid-template-rows: auto 1fr;
+        }
+
+        &--resume {
+          grid-template-areas:
+          "heading   "
+          "experience"
+          "education "
+          "languages ";
         }
 
         &--tasktimer,
@@ -143,39 +153,37 @@
         &--hydrapp,
         &--archviz,
         &--quotes {
-          column-gap: 20px;
+          column-gap: 30px;
           grid-template-areas:
-          "heading      heading      heading     "
-          "description  description  description "
-          "readMore     readMore     readMore    "
-          "statistics   codeButton   demoButton  "
-          "technologies technologies technologies";
-          grid-template-columns: 1fr repeat(2, auto);
-          grid-template-rows: auto auto 1fr;
+          "heading      heading     "
+          "description  features    "
+          "stats        repoLinks   "
+          "technologies technologies";
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto 1fr auto auto;
         }
 
         &--other {
           grid-template-areas:
           "heading    "
           "description"
-          "readMore   "
           "otherRepos ";
-          grid-template-columns: 1fr;
-          grid-template-rows: repeat(3, auto) 1fr;
+          grid-template-rows: repeat(2, auto) 1fr;
         }
 
         &--contact {
+          align-content: stretch;
+          align-items: center;
           grid-template-areas:
-          "heading    "
-          "contactForm";
-          grid-template-columns: 1fr;
+          "heading"
+          "form   ";
           grid-template-rows: auto 1fr;
         }
       }
     }
   }
-  //: end of SECTION'S CONTAINER                                       ://
-  //: SECTION'S HEADING                                                ://
+  //: end of SECTION'S CONTAINER                                            ://
+  //: SECTION'S HEADING                                                     ://
   &__heading {
     border-left: 8px solid transparent;
     color: #fff;
@@ -187,7 +195,7 @@
     padding: 75px 0 25px 20px;
     position: relative;
     width: 100%;
-    z-index: 1;
+    z-index: 4;
 
     &--large {
       font-size: 72px;
@@ -197,6 +205,7 @@
     &--about {
       border-color: $color-about-diff;
       color: $color-about-diff;
+      width: 60%;
     }
     &--resume {
       border-color: $color-resume-diff;
@@ -234,20 +243,12 @@
     @media only screen and (min-width: $media-lg) {
 
       & {
-        border-left: none;
-        font-size: 4.5em;
-        margin-top: 0;
-        padding-left: 0;
-
-        &::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: -55px;
-          background-color: #fff;
-          width: 10px;
-          height: 100%;
-        }
+        border-left-width: $separator-width-thick;
+        margin: 0;
+        margin: 0 0 20px -55px;
+        min-width: 380px;
+        padding: 25px 0 25px 45px;
+        width: 100%;
       }
     }
   }
@@ -259,11 +260,14 @@
     margin-top: -50px;
     padding-left: $offset-left-sm;
     width: 100%;
+    z-index: 4;
 
     @media only screen and (min-width: $media-lg) {
 
       & {
-        border: 10px solid $color-about-white;
+        border: 3px solid $color-about-light;
+        margin: 0;
+        padding: 3px;
       }
     }
   }
@@ -275,29 +279,45 @@
   &__repos {
     margin-top: 30px;
     grid-area: otherRepos;
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        display: grid;
+        gap: $tabGap;
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
   }
 }
 //| end of SECTION                                                          |//
 //| SECTION'S STATS                                                         |//
 .stats {
   border-collapse: collapse;
+  border-bottom: 3px solid transparent;
   display: flex;
   margin: 0 $offset-right-sm 0 $offset-left-sm;
+  padding-bottom: 10px;
   
   &--tasktimer {
     color: $color-tasktimer-shadow;
+    border-color: $color-tasktimer-shadow;
   }
   &--portfolio {
     color: $color-portfolio-shadow;
+    border-color: $color-portfolio-shadow;
   }
   &--hydrapp {
     color: $color-hydrapp-shadow;
+    border-color: $color-hydrapp-shadow;
   }
   &--archviz {
     color: $color-archviz-shadow;
+    border-color: $color-archviz-shadow;
   }
   &--quotes {
     color: $color-quotes-shadow;
+    border-color: $color-quotes-shadow;
   }
 
   &__header {
@@ -321,18 +341,24 @@
   &__value {
     text-align: right;
   }
+
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      margin: 0;
+    }
+  }
 }
 //| end of SECTION'S STATS                                                  |//
 //| CODE AND DEMO LINKS                                                     |//
 .repoLinks {
-  border-top: 3px solid transparent;
+  align-self: end;
   column-gap: 10px;
   display: grid;
   font-size: 2em;
   grid-area: repoLinks;
   grid-template-columns: repeat(2, 1fr);
-  margin: 0.5em $offset-right-sm 0;
-  padding-top: 1em;
+  margin: 0.5em $offset-right-sm 0 $offset-left-sm;
 
   &--about     { border-color: $color-about-diff; }
   &--tasktimer { border-color: $color-tasktimer-diff; }
@@ -342,8 +368,6 @@
   &--quotes    { border-color: $color-quotes-diff; }
 
   &--other {
-    border-color: $color-other-shadow;
-    border-width: 2px;
     font-size: 1.5em;
     margin: 0.5em $offset-right-sm 0 $offset-left-sm;
   }
@@ -409,21 +433,17 @@
       border-width: 2px;
       color: $color-other-white;
       &:hover {
-        border-color: $color-other-shadow;
-        color: $color-other-shadow;
+        border-color: $color-other-diff;
+        color: $color-other-diff;
       }
     }
+  }
+  
+  @media only screen and (min-width: $media-lg) {
 
-    @media only screen and (min-width: $media-lg) {
-
-      & {
-        padding: 0.4em 1.3em;
-
-        &--github,
-        &--codewars {
-          font-size: 1.5em;
-        }
-      }
+    & {
+      margin: 0;
+      margin-top: 15px;
     }
   }
 }

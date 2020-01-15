@@ -10,6 +10,7 @@ $time-switch: 0.4s;
 $menu-first-timeout: 0.3s;
 $menu-second-timeout: 0.6s;
 $menu-item-height: 50px;
+$menu-item-height-lg: 90px;
 
 //| NAVIGATION |
 $navigation-border-arrow: 10px;
@@ -26,8 +27,19 @@ $navigation-time-rotate: 0.2s;
 $offset-left-sm: 50px;
 $offset-right-sm: 10px;
 
+$tabHeader-size-sm: 30px;
+$tabHeader-size-lg: 40px;
+$tabHeading-size-sm: 30px;
+$tabHeading-size-lg: 25px;
+$otherHeading-size-sm: 30px;
+$otherHeading-size-lg: 30px;
+$tabGap: 20px;
+
+$separator-width-thick: 10px;
+$separator-width-thin: 5px;
+
 //| TIME                                                                    |//
-$tab-header-time: 0.3s;
+$tabHeader-time: 0.2s;
 
 //| ABOUT |
 $color-about-white: #BBD3E0;
@@ -49,8 +61,6 @@ $color-resume-diff: #244E60;
 $color-resume-diff-dark: rgb(26, 63, 78);
 //: TIME :
 $time-resume: 0.5s;
-//: SIZE :
-$header-min-height: 60px;
 
 //| TASKTIMER |
 $color-tasktimer-white: #C5D8D9;
