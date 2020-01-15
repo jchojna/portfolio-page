@@ -1,6 +1,6 @@
 @import 'variables.scss';
 @import 'mixins.scss';
-
+//| PAGE HEADER                                                             |//
 .pageHeader {
   align-items: flex-start;
   display: flex;
@@ -13,14 +13,23 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 3;
-
-  display: none;
+  z-index: 5;
 
   &--intro {
     pointer-events: all;
   }
 
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      width: 500px;
+
+      &--intro {
+        margin-left: calc(50vw - 500px);
+      }
+    }
+  }
+  //: PAGE INDICATOR                                                        ://
   &__indicator {
     background-color: #fff;
     left: 0;
@@ -29,7 +38,7 @@
     transition: top $time-switch;
     width: 20px;
   }
-
+  //: PAGE INTROBOX                                                         ://
   &__introBox {
     left: 0;
     opacity: 0;
@@ -58,8 +67,15 @@
     &--quotes    { background-color: $color-quotes; }
     &--other     { background-color: $color-other; }
     &--contact   { background-color: $color-contact; }
-  }
 
+    @media only screen and (min-width: $media-lg) {
+  
+      left: calc(50% + 20px);
+      position: absolute;
+      right: initial;
+    }
+  }
+  //: PAGE BACKGROUND                                                       ://
   &__background {
     background-color: $intro-background-color;
     height: 100%;
@@ -93,40 +109,25 @@
     &--quotes    { background-color: $color-quotes-diff; }
     &--other     { background-color: $color-other-diff; }
     &--contact   { background-color: $color-contact-diff; }
-  }
 
-  /*
-  .%%...%%..%%%%%%..%%%%%...%%%%%%...%%%%..
-  .%%%.%%%..%%......%%..%%....%%....%%..%%.
-  .%%.%.%%..%%%%....%%..%%....%%....%%%%%%.
-  .%%...%%..%%......%%..%%....%%....%%..%%.
-  .%%...%%..%%%%%%..%%%%%...%%%%%%..%%..%%.
-  */
+    @media only screen and (min-width: $media-lg) {
 
-  @media only screen and (min-width: $media-lg) {
-
-    & {
       justify-content: flex-start;
-
-      &__introBox {
-        left: calc(50% + 20px);
-        position: absolute;
-        right: initial;
-      }
     }
   }
 }
 
+//| MAIN MENU                                                               |//
 .menu {
   width: 100%;
-
+  //: MENU LIST                                                             ://
   &__list {
     list-style-type: none;
     margin: 0;
     padding: 0;
     width: 100%;
   }
-
+  //: MENU ITEMS                                                            ://
   &__item {
     align-items: flex-start;
     display: flex;
@@ -158,8 +159,15 @@
     &--visible {
       visibility: visible;
     }
-  }
 
+    @media only screen and (min-width: $media-lg) {
+      height: $menu-item-height-lg;
+      justify-content: flex-end;
+      padding: 0;
+      width: 100%;
+    }
+  }
+  //: MENU LINKS                                                            ://
   &__link {
     display: flex;
     fill: $intro-link-color;
@@ -218,51 +226,25 @@
       fill: #fff;
       &:hover { fill: #fff; }
     }
-  }
 
+    @media only screen and (min-width: $media-lg) {
+      height: $menu-item-height-lg;
+      padding: 0;
+    }
+  }
+  //: MENU SVG                                                              ://
   &__svg {
     height: $menu-item-height;
     pointer-events: none;
-  }
 
-  /*
-  .%%...%%..%%%%%%..%%%%%...%%%%%%...%%%%..
-  .%%%.%%%..%%......%%..%%....%%....%%..%%.
-  .%%.%.%%..%%%%....%%..%%....%%....%%%%%%.
-  .%%...%%..%%......%%..%%....%%....%%..%%.
-  .%%...%%..%%%%%%..%%%%%...%%%%%%..%%..%%.
-  */
-
-  @media only screen and (min-width: $media-lg) {
-
-    & {
-      width: 500px;
-      border: 1px solid #000;
-
-      &--intro {
-        margin-left: calc(50vw - 500px);
-      }
-      
-      &__item {
-        height: $menu-item-height-lg;
-        justify-content: flex-end;
-        padding: 0;
-        width: 100%;
-      }
-      
-      &__link {
-        height: $menu-item-height-lg;
-        padding: 0;
-      }
-
-      &__svg {
-        height: $menu-item-height-lg;
-      }
+    @media only screen and (min-width: $media-lg) {
+  
+      height: $menu-item-height-lg;
     }
   }
 }
 
-//| BURGER BUTTON |//
+//| BURGER BUTTON                                                           |//
 .burgerButton {
   @include button;
   @include flex-center;
@@ -289,6 +271,7 @@
   &--other     { fill: $color-other; }
   &--contact   { fill: $color-contact; }
 
+  //: BURGER BUTTON SVG                                                     ://
   &__svg {
     width: 100%;
   }

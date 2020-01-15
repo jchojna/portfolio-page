@@ -1,6 +1,6 @@
 @import 'variables.scss';
 @import 'mixins.scss';
-
+//| PAGE CONTAINER                                                          |//
 .pageContainer {
   overflow: hidden;
   width: 100%;
@@ -9,11 +9,11 @@
   @media only screen and (min-width: $media-lg) {
 
     & {
-      /* display: none;
+      display: none;
 
       &--visible {
         display: block;
-      } */
+      }
     }
   }
 }
@@ -62,7 +62,7 @@
       padding: 100px 0;
     }
   }
-  //: SECTION'S CONTAINER                                              ://
+  //: SECTION CONTAINER                                                     ://
   &__container {
     align-content: start;
     align-items: start;
@@ -182,8 +182,8 @@
       }
     }
   }
-  //: end of SECTION'S CONTAINER                                            ://
-  //: SECTION'S HEADING                                                     ://
+  //: end of SECTION CONTAINER                                              ://
+  //: SECTION HEADING                                                       ://
   &__heading {
     border-left: 8px solid transparent;
     color: #fff;
@@ -252,7 +252,8 @@
       }
     }
   }
-
+  //: end of SECTION HEADING                                                ://
+  //: SECTION PHOTO & SVG                                                   ://
   &__photo {
     background: $color-about-white;
     background-clip: content-box;
@@ -275,7 +276,8 @@
   &__svg {
     display: none;
   }
-
+  //: end of SECTION PHOTO & SVG                                            ://
+  //: SECTION REPOS                                                         ://
   &__repos {
     margin-top: 30px;
     grid-area: otherRepos;
@@ -289,9 +291,9 @@
       }
     }
   }
+  //: end of SECTION REPOS                                                  ://
 }
-//| end of SECTION                                                          |//
-//| SECTION'S STATS                                                         |//
+//| SECTION STATS                                                           |//
 .stats {
   border-collapse: collapse;
   border-bottom: 3px solid transparent;
@@ -349,7 +351,7 @@
     }
   }
 }
-//| end of SECTION'S STATS                                                  |//
+//| end of SECTION STATS                                                    |//
 //| CODE AND DEMO LINKS                                                     |//
 .repoLinks {
   align-self: end;
