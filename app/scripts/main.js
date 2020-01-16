@@ -16,22 +16,22 @@ const handleColorChange = (index, action) => {
 
   if (action === 'activate') {
     menuLinks[index].classList.add(`menu__link--intro-${introLinkId}`);
-    introBox.classList.add(`pageHeader__introBox--${introLinkId}`);
+    introBox.classList.add(`visuals__introBox--${introLinkId}`);
   } else if (action === 'deactivate') {
     menuLinks[index].classList.remove(`menu__link--intro-${introLinkId}`);
-    introBox.classList.remove(`pageHeader__introBox--${introLinkId}`);
+    introBox.classList.remove(`visuals__introBox--${introLinkId}`);
   }
 }
 //| HANDLE INTROBOX                                                         |//
 const handleIntroBox = (e) => {
   //: disable transition effect on resize                              ://
   if (e && (e.type === 'resize' || e.type === 'scroll')) {
-    !introBox.classList.contains('pageHeader__introBox--onResize')
-    ? introBox.classList.add('pageHeader__introBox--onResize')
+    !introBox.classList.contains('visuals__introBox--onResize')
+    ? introBox.classList.add('visuals__introBox--onResize')
     : false;
   } else {
-    introBox.classList.contains('pageHeader__introBox--onResize')
-    ? introBox.classList.remove('pageHeader__introBox--onResize')
+    introBox.classList.contains('visuals__introBox--onResize')
+    ? introBox.classList.remove('visuals__introBox--onResize')
     : false;
   }
   const currentYOffset = items[lastMenuItemIndex].offset;
@@ -126,13 +126,13 @@ const handleMenuItemClick = (activeIndex) => {
         item.classList.add('menu__item--animated');
       });
       //. set position of introBox                                          .//
-      introBox.classList.add('pageHeader__introBox--content');
+      introBox.classList.add('visuals__introBox--content');
       introBox.style.top = 0;
       //. handle menu background                                            .//
       menuUpperBackground.style.height = `${clickedItemHeight}px`;
       menuBottomBackground.style.height = 0;
-      menuUpperBackground.classList.add('pageHeader__background--animated');
-      menuBottomBackground.classList.add('pageHeader__background--animated');
+      menuUpperBackground.classList.add('visuals__background--animated');
+      menuBottomBackground.classList.add('visuals__background--animated');
       //. remove pointer events from pageHeader                             .//
       pageHeader.classList.remove('pageHeader--intro');
       //. scroll pageContainer to desired position                          .//
@@ -161,8 +161,8 @@ const handleMenuItemClick = (activeIndex) => {
           menuLinks[index].style.width = '100%';
         });
         //. handle introBox and menu background                             .//
-        introBox.classList.remove('pageHeader__introBox--visible');
-        menuUpperBackground.classList.add(`pageHeader__background--${clickedElementId}`);
+        introBox.classList.remove('visuals__introBox--visible');
+        menuUpperBackground.classList.add(`visuals__background--${clickedElementId}`);
         //. show burger button                                              .//
         burgerButton.classList.add('burgerButton--visible');
         burgerButton.classList.add(`burgerButton--${clickedElementId}`);
@@ -182,7 +182,7 @@ const handleMenuItemClick = (activeIndex) => {
   //| HANDLE MENU ITEMS ON LARGE SCREEN DEVICES                             |//
   } else if (window.innerWidth >= mediaDesktop) {
 
-    introBox.classList.add('pageHeader__introBox--content');
+    introBox.classList.add('visuals__introBox--content');
     introBox.style.height = '100%';
     introBox.style.top = 0;
     introBox.style.width = '100%';
@@ -212,7 +212,7 @@ const handleMenuItemClick = (activeIndex) => {
 
       introBox.style.left = 0;
 
-      introBox.classList.remove('pageHeader__introBox--visible');
+      //introBox.classList.remove('visuals__introBox--visible');
 
       //menuBottomBackground.classList.add('pageHeader__background--animated');
       //menuBottomBackground.style.width = 0;
@@ -300,8 +300,8 @@ const handleBurgerButton = () => {
     : false;
   });
   //: set appearance of introBox and background                             ://
-  introBox.classList.add('pageHeader__introBox--visible');
-  menuUpperBackground.classList.remove(`pageHeader__background--${activeId}`);
+  introBox.classList.add('visuals__introBox--visible');
+  menuUpperBackground.classList.remove(`visuals__background--${activeId}`);
 
   //:                                                                       ://
   //: add first timeout                                                     ://
@@ -334,9 +334,9 @@ const handleBurgerButton = () => {
         item.classList.remove('menu__item--animated');
       });
       //. handle introBox and backgrounds                                   .//
-      introBox.classList.remove('pageHeader__introBox--content');
-      menuUpperBackground.classList.remove('pageHeader__background--animated');
-      menuBottomBackground.classList.remove('pageHeader__background--animated');
+      introBox.classList.remove('visuals__introBox--content');
+      menuUpperBackground.classList.remove('visuals__background--animated');
+      menuBottomBackground.classList.remove('visuals__background--animated');
       menuUpperBackground.style.height = '100%';
       menuBottomBackground.style.height = '100%';
       //. remove events                                                     .//
@@ -364,17 +364,17 @@ const handleMobileHeader = () => {
       menuItems[index].classList.remove('menu__item--visible');
       menuItems[index].classList.add('menu__item--minimized');
 
-      introBox.classList.remove(`pageHeader__introBox--${currentId}`);
+      introBox.classList.remove(`visuals__introBox--${currentId}`);
       burgerButton.classList.remove(`burgerButton--${currentId}`);
-      menuUpperBackground.classList.remove(`pageHeader__background--${currentId}`);
+      menuUpperBackground.classList.remove(`visuals__background--${currentId}`);
 
     } else if (action === 'deactivate') {
       menuItems[index].classList.add('menu__item--visible');
       menuItems[index].classList.remove('menu__item--minimized');
 
-      introBox.classList.add(`pageHeader__introBox--${currentId}`);
+      introBox.classList.add(`visuals__introBox--${currentId}`);
       burgerButton.classList.add(`burgerButton--${currentId}`);
-      menuUpperBackground.classList.add(`pageHeader__background--${currentId}`);
+      menuUpperBackground.classList.add(`visuals__background--${currentId}`);
     }
   }
   const newActiveSectionIndex = getCurrentSectionIndex(0);
@@ -570,10 +570,10 @@ const menuLgFirstTimeoutInterval = 500;
 const menuLgSsecondTimeoutInterval = 500;
 //: MENU AND NAVIGATION                                                ://
 const pageHeader = document.querySelector('.pageHeader--js');
-const introBox = document.querySelector('.pageHeader__introBox--js');
+const introBox = document.querySelector('.visuals__introBox--js');
 //const menuIndicator = document.querySelector('.pageHeader__indicator--js');
-const menuUpperBackground = document.querySelector('.pageHeader__background--js-upper');
-const menuBottomBackground = document.querySelector('.pageHeader__background--js-bottom');
+const menuUpperBackground = document.querySelector('.visuals__background--js-upper');
+const menuBottomBackground = document.querySelector('.visuals__background--js-bottom');
 const burgerButton = document.querySelector('.burgerButton--js');
 
 const menu = document.querySelector('.menu--js');
