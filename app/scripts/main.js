@@ -37,9 +37,8 @@ const handleIntroBox = (e) => {
   const currentYOffset = items[lastMenuItemIndex].offset;
   const itemHeight = items[lastMenuItemIndex].height;
   const viewOffset = pageHeader.scrollTop;
-  const menuOffset = menu.offsetTop;
   //: assign size and position                                         ://
-  introBox.style.top = `${currentYOffset - viewOffset + menuOffset}px`;
+  introBox.style.top = `${currentYOffset - viewOffset}px`;
   introBox.style.height = `${itemHeight}px`;
   introBox.style.width = `${itemHeight}px`;
 }
@@ -49,11 +48,10 @@ const handleIntroMenu = (e) => {
   //: handle intro menu on mouse event                                      ://
   if (e && e.type === 'mousemove' && window.innerWidth >= mediaTablet) {    
     const viewOffset = pageHeader.scrollTop;
-    const menuOffset = menu.offsetTop;
-    const currentItemIndex = getCurrentItemIndex(e.clientY - menuOffset + viewOffset);
+    const currentItemIndex = getCurrentItemIndex(e.clientY - viewOffset);
 
     if (currentItemIndex !== lastMenuItemIndex && currentItemIndex < items.length) {
-      introBox.style.top = `${items[currentItemIndex].offset + menuOffset}px`;
+      introBox.style.top = `${items[currentItemIndex].offset}px`;
       handleColorChange(lastMenuItemIndex, 'deactivate');
       lastMenuItemIndex = currentItemIndex;
       handleColorChange(lastMenuItemIndex, 'activate');
@@ -82,12 +80,11 @@ const handleMenuItemClick = (activeIndex) => {
     
     //: variables                                                           ://
     const windowHeight = window.innerHeight;
-    const menuOffset = menu.offsetTop;
     const clickedItemHeight = items[activeIndex].height;
-    const clickedItemOffset = items[activeIndex].offset + menuOffset;
+    const clickedItemOffset = items[activeIndex].offset;
     const clickedElementId = sections[activeIndex].id;
     const viewOffset = pageHeader.scrollTop;
-    const upperBackgroundHeight = clickedItemHeight + clickedItemOffset + menuOffset - viewOffset;
+    const upperBackgroundHeight = clickedItemHeight + clickedItemOffset - viewOffset;
     const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
   
     //: change items colors and set introbox position                       ://
@@ -101,7 +98,7 @@ const handleMenuItemClick = (activeIndex) => {
     //: change menu items to be in a fixed position                         ://
     [...menuItems].forEach((item, index) => {
       item.classList.add('menu__item--mobileHeader');
-      item.style.top = `${items[index].offset - viewOffset + menuOffset}px`;
+      item.style.top = `${items[index].offset - viewOffset}px`;
     });
     //: set initial link width as style property in order to be animated    ://
     const linkWidth = menuLinks[activeIndex].clientWidth;
@@ -120,7 +117,7 @@ const handleMenuItemClick = (activeIndex) => {
       const downwardsOffset = windowHeight - clickedItemOffset - clickedItemHeight;
       //. set translated position of menu items                             .//
       [...menuItems].forEach((item, index) => {
-        const currentItemOffset = items[index].offset + menuOffset;
+        const currentItemOffset = items[index].offset;
         item.style.top = index <= activeIndex // ! refactor
         ? `${currentItemOffset - upwardsOffset}px`
         : `${currentItemOffset + downwardsOffset}px`;
@@ -282,9 +279,8 @@ const handleMenuItemClick = (activeIndex) => {
 const handleBurgerButton = () => {
   //: variables                                                             ://
   const windowHeight = window.innerHeight;
-  const menuOffset = menu.offsetTop;
   const activeItemHeight = items[lastMenuItemIndex].height;
-  const activeItemOffset = items[lastMenuItemIndex].offset + menuOffset;
+  const activeItemOffset = items[lastMenuItemIndex].offset;
   const activeId = sections[lastMenuItemIndex].id;
   const upperBackgroundHeight = activeItemHeight + activeItemOffset;
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
@@ -295,7 +291,7 @@ const handleBurgerButton = () => {
   burgerButton.classList.remove('burgerButton--visible');
   //: set starting position of menu items                                   ://
   [...menuItems].forEach((item, index) => {
-    const currentItemOffset = items[index].offset + menuOffset;
+    const currentItemOffset = items[index].offset;
     const currentId = sections[index].id;
 
     item.classList.add('menu__item--visible');
@@ -321,7 +317,7 @@ const handleBurgerButton = () => {
   menuSmFirstTimeoutId = setTimeout(() => {
     //. set menu items default position                                     .//
     [...menuItems].forEach((item, index) => {
-      item.style.top = `${items[index].offset + menuOffset}px`;
+      item.style.top = `${items[index].offset}px`;
       item.classList.add('menu__item--animated');
     });
     //. set introBox and menu backgrounds appearance                        .//
@@ -419,8 +415,7 @@ const handleDesktopMenu = (e) => {
   }
   //: handle all menu items appearance                                      ://
   for (let i = 0; i < items.length; i++) {
-    const menuOffset = menu.offsetTop;
-    const localItemIndex = getCurrentSectionIndex(items[i].offset + menuOffset);
+    const localItemIndex = getCurrentSectionIndex(items[i].offset);
     console.log(localItemIndex);
 
 
@@ -478,8 +473,7 @@ const handleActiveMenuLink = (index, action) => {
 }
 
 const handleMenuIndicator = (index) => {
-  const menuOffset = menu.offsetTop;
-  const offset = items[index].offset + menuOffset;
+  const offset = items[index].offset;
   menuIndicator.style.top = `${offset}px`;
 }
 
@@ -663,9 +657,9 @@ const sections = [...pageSections].map((section, index) => ({
 const items = [...menuItems].map((item, index) => ({
   index,
   node: item,
-  offset: item.offsetTop,
+  offset: item.offsetTop + menu.offsetTop,
   height: item.clientHeight,
-  currentSectionIndex: getCurrentSectionIndex(item.offsetTop)
+  currentSectionIndex: getCurrentSectionIndex(item.offsetTop + menu.offsetTop)
 }));
 
 //let currentNavigationIndex = getCurrentSectionIndex(navigation.offsetTop);
