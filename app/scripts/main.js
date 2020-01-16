@@ -64,7 +64,7 @@ const handleIntroMenu = (e) => {
   }
 }
 //| end of HANDLE MENU IN INTRO MODE                                        |//
-//| HANDLE MENU ITEMS ON MOBILE DEVICES                                     |//
+//| HANDLE MENU ITEMS                                                       |//
 const handleMenuItemClick = (activeIndex) => {
 
   /*
@@ -76,6 +76,7 @@ const handleMenuItemClick = (activeIndex) => {
   ##    ## ##     ##
    ######  ##     ##
   */
+  //| HANDLE MENU ITEMS ON MOBILE DEVICES                                   |//
   if (window.innerWidth < mediaTablet) {
     
     //: variables                                                           ://
@@ -110,9 +111,9 @@ const handleMenuItemClick = (activeIndex) => {
     menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
     //:                                                                     ://
     //: add first timeout                                                   ://
-    clearTimeout(menuFirstTimeoutId);
-    clearTimeout(menuSecondTimeoutId);
-    menuFirstTimeoutId = setTimeout(() => {
+    clearTimeout(menuSmFirstTimeoutId);
+    clearTimeout(menuSmSecondTimeoutId);
+    menuSmFirstTimeoutId = setTimeout(() => {
       //. variables                                                         .//
       const upwardsOffset = clickedItemOffset;
       const downwardsOffset = windowHeight - clickedItemOffset - clickedItemHeight;
@@ -125,7 +126,7 @@ const handleMenuItemClick = (activeIndex) => {
         item.classList.add('menu__item--animated');
       });
       //. set position of introBox                                          .//
-      introBox.classList.add('pageHeader__introBox--mobileHeader');
+      introBox.classList.add('pageHeader__introBox--smContent');
       introBox.style.top = 0;
       //. handle menu background                                            .//
       menuUpperBackground.style.height = `${clickedItemHeight}px`;
@@ -145,7 +146,7 @@ const handleMenuItemClick = (activeIndex) => {
       window.addEventListener('scroll', handleMobileHeader);
       //.                                                                   .//
       //. add second timeout                                                .//
-      menuSecondTimeoutId = setTimeout(() => {
+      menuSmSecondTimeoutId = setTimeout(() => {
         //. handle menu items                                               .//
         [...menuItems].forEach((item, index) => {
           const sectionId = sections[index].id;
@@ -165,8 +166,8 @@ const handleMenuItemClick = (activeIndex) => {
         //. show burger button                                              .//
         burgerButton.classList.add('burgerButton--visible');
         burgerButton.classList.add(`burgerButton--${clickedElementId}`);
-      }, secondTimeoutInterval);
-    }, firstTimeoutInterval);
+      }, menuSmSecondTimeoutInterval);
+    }, menuSmFirstTimeoutInterval);
     //: end of timeout                                                      ://
 
   /*
@@ -178,9 +179,15 @@ const handleMenuItemClick = (activeIndex) => {
   ##       ##    ##
   ########  ######
   */
+  //| HANDLE MENU ITEMS ON LARGE SCREEN DEVICES                             |//
   } else if (window.innerWidth >= mediaDesktop) {
 
-    menu.classList.remove('menu--intro');
+    introBox.classList.add('pageHeader__introBox--lgContent');
+    introBox.style.height = '100%';
+    introBox.style.top = 0;
+    introBox.style.width = '100%';
+
+    menu.removeEventListener('mousemove', handleIntroMenu);
 
 
 
@@ -188,8 +195,16 @@ const handleMenuItemClick = (activeIndex) => {
 
 
 
+    //:                                                                     ://
+    //: set first timeout                                                   ://
+    clearTimeout(menuLgFirstTimeoutId);
+    menuLgFirstTimeoutId = setTimeout(() => {
+      //: translate menu to the left of the screen                          ://
+      menu.classList.remove('menu--intro');
 
-
+      introBox.style.left = 0;
+      
+    }, menuLgFirstTimeoutInterval);
 
 
 
@@ -261,9 +276,9 @@ const handleBurgerButton = () => {
 
   //:                                                                       ://
   //: add first timeout                                                     ://
-  clearTimeout(menuFirstTimeoutId);
-  clearTimeout(menuSecondTimeoutId);
-  menuFirstTimeoutId = setTimeout(() => {
+  clearTimeout(menuSmFirstTimeoutId);
+  clearTimeout(menuSmSecondTimeoutId);
+  menuSmFirstTimeoutId = setTimeout(() => {
     //. set menu items default position                                     .//
     [...menuItems].forEach((item, index) => {
       item.style.top = `${items[index].offset + menuOffset}px`;
@@ -280,7 +295,7 @@ const handleBurgerButton = () => {
 
     //.                                                                     .//
     //. add second timeout                                                  .//
-    menuSecondTimeoutId = setTimeout(() => {
+    menuSmSecondTimeoutId = setTimeout(() => {
       window.scrollTo(0,0);
       //. add pointer events to pageHeader                                  .//
       pageHeader.classList.add('pageHeader--intro');
@@ -290,7 +305,7 @@ const handleBurgerButton = () => {
         item.classList.remove('menu__item--animated');
       });
       //. handle introBox and backgrounds                                   .//
-      introBox.classList.remove('pageHeader__introBox--mobileHeader');
+      introBox.classList.remove('pageHeader__introBox--smContent');
       menuUpperBackground.classList.remove('pageHeader__background--animated');
       menuBottomBackground.classList.remove('pageHeader__background--animated');
       menuUpperBackground.style.height = '100%';
@@ -298,8 +313,8 @@ const handleBurgerButton = () => {
       //. remove events                                                     .//
       pageHeader.addEventListener('resize', handleIntroBox);
       pageHeader.addEventListener('scroll', handleIntroBox);
-    }, secondTimeoutInterval);
-  }, firstTimeoutInterval);
+    }, menuSmSecondTimeoutInterval);
+  }, menuSmFirstTimeoutInterval);
   //: end of timeout                                                        ://
 }
 //| end of BURGER BUTTON HANDLER                                            |//
@@ -516,10 +531,14 @@ const mediaTablet = 768;
 const mediaDesktop = 1200;
 let lastMenuItemIndex = 0;
 //: INTERVALS                                                          ://
-let menuFirstTimeoutId = null;
-let menuSecondTimeoutId = null;
-const firstTimeoutInterval = 300;
-const secondTimeoutInterval = 600;
+let menuSmFirstTimeoutId = null;
+let menuSmSecondTimeoutId = null;
+let menuLgFirstTimeoutId = null;
+let menuLgSecondTimeoutId = null;
+const menuSmFirstTimeoutInterval = 300;
+const menuSmSecondTimeoutInterval = 600;
+const menuLgFirstTimeoutInterval = 500;
+const menuLgSsecondTimeoutInterval = 500;
 //: MENU AND NAVIGATION                                                ://
 const pageHeader = document.querySelector('.pageHeader--js');
 const introBox = document.querySelector('.pageHeader__introBox--js');

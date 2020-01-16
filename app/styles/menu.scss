@@ -32,10 +32,19 @@
     opacity: 0;
     pointer-events: none;
     position: fixed;
-    transition: opacity $menu-first-timeout, top $menu-first-timeout;
+    transition: opacity $menu-sm-first-timeout, top $menu-sm-first-timeout;
+    z-index: -1;
     
-    &--mobileHeader {
-      transition: opacity $menu-first-timeout, top $menu-second-timeout;
+    &--smContent {
+      transition: opacity $menu-sm-first-timeout, top $menu-sm-second-timeout;
+    }
+
+    &--lgContent {
+      transition:
+        height $menu-lg-first-timeout,
+        left $menu-lg-first-timeout,
+        top $menu-lg-first-timeout,
+        width $menu-lg-first-timeout;
     }
 
     &--onResize {
@@ -67,14 +76,14 @@
     background-color: $intro-background-color;
     height: 100%;
     position: fixed;
-    transition: background-color $menu-first-timeout;
+    transition: background-color $menu-sm-first-timeout;
     width: 100%;
     z-index: -1;
 
     &--animated {
       transition:
-        background-color $menu-first-timeout,
-        height $menu-second-timeout;
+        background-color $menu-sm-first-timeout,
+        height $menu-sm-second-timeout;
     }
 
     &--upper {
@@ -167,7 +176,7 @@
     }
 
     &--animated {
-      transition: top $menu-second-timeout;
+      transition: top $menu-sm-second-timeout;
     }
 
     &--visible {
@@ -188,7 +197,7 @@
     height: $menu-item-height;
     justify-content: flex-end;
     padding-left: 55px;
-    transition: fill $menu-first-timeout, width $menu-first-timeout;
+    transition: fill $menu-sm-first-timeout, width $menu-sm-first-timeout;
 
     &--intro-about     { fill: $color-about; }
     &--intro-resume    { fill: $color-resume; }
