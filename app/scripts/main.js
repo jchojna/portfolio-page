@@ -126,7 +126,7 @@ const handleMenuItemClick = (activeIndex) => {
         item.classList.add('menu__item--animated');
       });
       //. set position of introBox                                          .//
-      introBox.classList.add('pageHeader__introBox--smContent');
+      introBox.classList.add('pageHeader__introBox--content');
       introBox.style.top = 0;
       //. handle menu background                                            .//
       menuUpperBackground.style.height = `${clickedItemHeight}px`;
@@ -182,12 +182,20 @@ const handleMenuItemClick = (activeIndex) => {
   //| HANDLE MENU ITEMS ON LARGE SCREEN DEVICES                             |//
   } else if (window.innerWidth >= mediaDesktop) {
 
-    introBox.classList.add('pageHeader__introBox--lgContent');
+    introBox.classList.add('pageHeader__introBox--content');
     introBox.style.height = '100%';
     introBox.style.top = 0;
     introBox.style.width = '100%';
 
+    //menuUpperBackground.classList.add('pageHeader__background--hidden');
+
     menu.removeEventListener('mousemove', handleIntroMenu);
+
+
+
+
+
+
 
 
 
@@ -203,8 +211,29 @@ const handleMenuItemClick = (activeIndex) => {
       menu.classList.remove('menu--intro');
 
       introBox.style.left = 0;
+
+      introBox.classList.remove('pageHeader__introBox--visible');
+
+      //menuBottomBackground.classList.add('pageHeader__background--animated');
+      //menuBottomBackground.style.width = 0;
+
+      pageContainer.classList.add('pageContainer--visible');
+
+      //.                                                                   .//
+      //. set second timeout                                                .//
+      menuLgSecondTimeoutId = setTimeout(() => {
+
+
+        
+      }, menuLgSsecondTimeoutInterval);
       
     }, menuLgFirstTimeoutInterval);
+
+
+
+
+
+
 
 
 
@@ -305,7 +334,7 @@ const handleBurgerButton = () => {
         item.classList.remove('menu__item--animated');
       });
       //. handle introBox and backgrounds                                   .//
-      introBox.classList.remove('pageHeader__introBox--smContent');
+      introBox.classList.remove('pageHeader__introBox--content');
       menuUpperBackground.classList.remove('pageHeader__background--animated');
       menuBottomBackground.classList.remove('pageHeader__background--animated');
       menuUpperBackground.style.height = '100%';

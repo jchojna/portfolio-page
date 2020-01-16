@@ -13,7 +13,7 @@
   top: 0;
   width: 100%;
   z-index: 5;
-
+  
   @media only screen and (min-width: $media-lg) {
     pointer-events: none;
   }
@@ -35,16 +35,8 @@
     transition: opacity $menu-sm-first-timeout, top $menu-sm-first-timeout;
     z-index: -1;
     
-    &--smContent {
+    &--content {
       transition: opacity $menu-sm-first-timeout, top $menu-sm-second-timeout;
-    }
-
-    &--lgContent {
-      transition:
-        height $menu-lg-first-timeout,
-        left $menu-lg-first-timeout,
-        top $menu-lg-first-timeout,
-        width $menu-lg-first-timeout;
     }
 
     &--onResize {
@@ -66,9 +58,19 @@
     &--contact   { background-color: $color-contact; }
 
     @media only screen and (min-width: $media-lg) {
-  
-      left: calc(50% + 20px);
-      right: initial;
+
+      & {
+        left: calc(50% + 20px);
+        right: initial;
+
+        &--content {
+          transition:
+            height $menu-lg-first-timeout,
+            left $menu-lg-first-timeout,
+            top $menu-lg-first-timeout,
+            width $menu-lg-first-timeout;
+        }
+      }
     }
   }
   //: PAGE BACKGROUND                                                       ://
@@ -96,6 +98,10 @@
       left: 0;
     }
 
+    /* &--hidden {
+      display: none;
+    } */
+
     &--about     { background-color: $color-about-diff; }
     &--resume    { background-color: $color-resume-diff; }
     &--tasktimer { background-color: $color-tasktimer-diff; }
@@ -108,7 +114,9 @@
 
     @media only screen and (min-width: $media-lg) {
 
-      justify-content: flex-start;
+      & {
+        display: none;
+      }
     }
   }
 }
