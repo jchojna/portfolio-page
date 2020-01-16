@@ -38,9 +38,9 @@
       left: 0;
     }
 
-    /* &--hidden {
+    &--hidden {
       display: none;
-    } */
+    }
 
     &--about     { background-color: $color-about-diff; }
     &--resume    { background-color: $color-resume-diff; }
@@ -55,7 +55,7 @@
     @media only screen and (min-width: $media-lg) {
 
       & {
-        display: none;
+        //display: none;
       }
     }
   }
@@ -93,7 +93,7 @@
     @media only screen and (min-width: $media-lg) {
 
       & {
-        left: calc(50% + 20px);
+        left: calc(50% + 10px);
         right: initial;
 
         &--content {
@@ -105,14 +105,5 @@
         }
       }
     }
-  }
-  //| PAGE INDICATOR                                                        |//
-  &__indicator {
-    background-color: #fff;
-    left: 0;
-    position: fixed;
-    top: 0;
-    transition: top $time-switch;
-    width: 20px;
   }
 }

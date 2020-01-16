@@ -15,7 +15,27 @@
   z-index: 6;
   
   @media only screen and (min-width: $media-lg) {
-    pointer-events: none;
+
+    & {
+      box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
+      pointer-events: none;
+
+      //: PAGE INDICATOR                                                    ://
+      &__indicator {
+        background-color: #fff;
+        left: 0;
+        height: $menu-item-height-lg;
+        position: fixed;
+        top: -$menu-item-height-lg;
+        transition: top $time-switch;
+        width: $menu-item-height-lg;
+
+        &--narrowed {
+          width: 20px;
+          transition: top $time-switch, width $menu-lg-second-timeout;
+        }
+      }
+    }
   }
 }
 /*
