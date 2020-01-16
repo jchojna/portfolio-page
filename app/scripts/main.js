@@ -416,25 +416,18 @@ const handleDesktopMenu = (e) => {
   //: handle all menu items appearance                                      ://
   for (let i = 0; i < items.length; i++) {
     const localItemIndex = getCurrentSectionIndex(items[i].offset);
-    console.log(localItemIndex);
-
-
-
-
     
-    // perform DOM manipulation when index changes
-    /* if (updatedIndex !== links[i].currentSectionIndex) {
+    if (localItemIndex !== items[i].currentSectionIndex) {
 
-      links[i].currentSectionIndex = updatedIndex;
-      const currentSectionId = sections[updatedIndex].id;
-      menuLinks[i].className = `
-        menu__link menu__link--js menu__link--${currentSectionId}
-        ${i === currentGlobalSectionIndex ? 'menu__link--active' : ''}
-      `;
+      let currentId = sections[items[i].currentSectionIndex].id; // ! to refactor
+      menuLinks[i].classList.remove(`menu__link--${currentId}`);
+      items[i].currentSectionIndex = localItemIndex;
+      currentId = sections[items[i].currentSectionIndex].id;
+      menuLinks[i].classList.add(`menu__link--${currentId}`);
 
     } else {
       continue;
-    } */
+    }
   }
 }
 //| end of HANDLE DESKTOP MENU WHEN CONTENT DISPLAYED                       |//

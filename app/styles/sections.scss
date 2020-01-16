@@ -5,6 +5,7 @@
   overflow: hidden;
   width: 100%;
   position: relative;
+  scroll-behavior: smooth;
   
   @media only screen and (min-width: $media-lg) {
 
