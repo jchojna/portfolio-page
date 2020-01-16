@@ -4,6 +4,11 @@ const updateMenuItemsOffsets = () => {
     item.offset = item.node.offsetTop;
   });
 }
+const updateItemsIds = () => {
+  [...items].forEach(item => {
+    item.currentSectionIndex = getCurrentSectionIndex(item.offset);
+  });
+}
 //| UPDATE SECTIONS OFFSETS                                                 |//
 const updateSectionsOffsets = () => {
   [...sections].forEach((section, index) => {
@@ -185,17 +190,35 @@ const handleMenuItemClick = (activeIndex) => {
     introBox.style.top = 0;
     introBox.style.width = '100%';
 
-
-
+    handleMenuOnClick(lastMenuItemIndex, 'deactivate');
     lastMenuItemIndex = activeIndex; // ! what if both are the same
+    handleMenuOnClick(lastMenuItemIndex, 'activate');
     updateSectionsOffsets();
-    handleActiveMenuLink(lastMenuItemIndex, 'activate');
     handleMenuIndicator(lastMenuItemIndex);
     //: remove events                                                       ://
     menu.removeEventListener('mousemove', handleIntroMenu);
+    pageContainer.removeEventListener('scroll', handleMenuOnScroll);
+    scrollEventFlag = false;
     //: add events                                                          ://
-    pageContainer.addEventListener('scroll', handleDesktopMenu);
+
     //window.addEventListener('scroll', handleNavigation);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -230,8 +253,11 @@ const handleMenuItemClick = (activeIndex) => {
 
 
 
+
+        pageContainer.classList.add('pageContainer--smooth');
         menuUpperBackground.classList.add('visuals__background--hidden');
         menuBottomBackground.classList.add('visuals__background--hidden');
+
         
       }, menuLgSsecondTimeoutInterval);
       
@@ -354,13 +380,6 @@ const handleBurgerButton = () => {
   //: end of timeout                                                        ://
 }
 //| end of BURGER BUTTON HANDLER                                            |//
-/*
-.%%..%%..%%%%%%...%%%%...%%%%%...%%%%%%..%%%%%..
-.%%..%%..%%......%%..%%..%%..%%..%%......%%..%%.
-.%%%%%%..%%%%....%%%%%%..%%..%%..%%%%....%%%%%..
-.%%..%%..%%......%%..%%..%%..%%..%%......%%..%%.
-.%%..%%..%%%%%%..%%..%%..%%%%%...%%%%%%..%%..%%.
-*/
 //| HANDLE MOBILE HEADER CHANGE                                             |//
 const handleMobileHeader = () => {
 
@@ -394,50 +413,69 @@ const handleMobileHeader = () => {
 }
 //| end of HANDLE MOBILE HEADER CHANGE                                      |//
 /*
-##     ## ######## ##    ## ##     ##    ##        ######
-###   ### ##       ###   ## ##     ##    ##       ##    ##
-#### #### ##       ####  ## ##     ##    ##       ##
-## ### ## ######   ## ## ## ##     ##    ##       ##   ####
-##     ## ##       ##  #### ##     ##    ##       ##    ##
-##     ## ##       ##   ### ##     ##    ##       ##    ##
-##     ## ######## ##    ##  #######     ########  ######
+########  ########  ######  ##    ## ########  #######  ########
+##     ## ##       ##    ## ##   ##     ##    ##     ## ##     ##
+##     ## ##       ##       ##  ##      ##    ##     ## ##     ##
+##     ## ######    ######  #####       ##    ##     ## ########
+##     ## ##             ## ##  ##      ##    ##     ## ##
+##     ## ##       ##    ## ##   ##     ##    ##     ## ##
+########  ########  ######  ##    ##    ##     #######  ##
 */
-//| HANDLE DESKTOP MENU WHEN CONTENT DISPLAYED                              |//
-const handleDesktopMenu = (e) => {
-  
+//| HANDLE MENU ITEMS ON SCROLL EVENT                                       |//
+const handleMenuOnScroll = () => {
+  //: handle indicator and active menu item on section change               ://
   const newMenuItemIndex = getCurrentSectionIndex(0);
-  //: handle indicator and active menu item appearance                      ://
   if (newMenuItemIndex !== lastMenuItemIndex) {
-    handleActiveMenuLink(lastMenuItemIndex, 'deactivate');
+    menuLinks[lastMenuItemIndex].classList.remove('menu__link--active');
     lastMenuItemIndex = newMenuItemIndex;
-    handleActiveMenuLink(lastMenuItemIndex, 'activate');
+    menuLinks[lastMenuItemIndex].classList.add('menu__link--active');
     handleMenuIndicator(lastMenuItemIndex);
   }
-  //: handle all menu items appearance                                      ://
-  for (let i = 0; i < items.length; i++) {
-    const localItemIndex = getCurrentSectionIndex(items[i].offset);
+  //: handle all menu items appearance on local id change                   ://
+
+  [...menuLinks].forEach((link, index) => {
+    const singleItemOffset = items[index].offset;
+    const currentSingleItemIndex = items[index].currentSectionIndex;
+    const newSingleItemIndex = getCurrentSectionIndex(singleItemOffset);
     
-    if (localItemIndex !== items[i].currentSectionIndex) {
-
-      let currentId = sections[items[i].currentSectionIndex].id; // ! to refactor
-      menuLinks[i].classList.remove(`menu__link--${currentId}`);
-      items[i].currentSectionIndex = localItemIndex;
-      currentId = sections[items[i].currentSectionIndex].id;
-      menuLinks[i].classList.add(`menu__link--${currentId}`);
-
-    } else {
-      continue;
+    if (newSingleItemIndex !== currentSingleItemIndex) {
+      const currentId = sections[currentSingleItemIndex].id;
+      const newId = sections[newSingleItemIndex].id;
+      link.classList.remove(`menu__link--${currentId}`);
+      items[index].currentSectionIndex = newSingleItemIndex;
+      link.classList.add(`menu__link--${newId}`);
     }
+  });
+}
+//| end of HANDLE MENU ITEMS ON SCROLL EVENT                                |//
+//| HANDLE MENU ITEMS ON CLICK EVENT                                        |//
+const handleMenuOnClick = (activeIndex, action) => {
+
+  if (action === 'activate') {
+    const currentId = sections[activeIndex].id;
+
+    [...menuLinks].forEach((link, linkIndex) => {
+      link.classList.add(`menu__link--${currentId}`);
+      items[linkIndex].currentSectionIndex = activeIndex;
+      if (linkIndex === activeIndex) link.classList.add('menu__link--active');
+    });
+
+  } else if (action === 'deactivate') {
+
+    [...menuLinks].forEach((link, linkIndex) => {
+      const currentId = sections[items[linkIndex].currentSectionIndex].id;
+      link.classList.remove(`menu__link--${currentId}`);
+      if (linkIndex === activeIndex) link.classList.remove('menu__link--active');
+    });
   }
 }
-//| end of HANDLE DESKTOP MENU WHEN CONTENT DISPLAYED                       |//
-
-/* const getCurrentLinkIndex = (cursorYPosition) => {  // ! TO REFACTOR
-  return links.length - 1 - [...links]
-    .map(link => link.offset)
-    .reverse()
-    .findIndex(offset => cursorYPosition >= offset)
-} */
+//| end of HANDLE MENU ITEMS ON CLICK EVENT                                 |//
+//| HANDLE MENU INDICATOR                                                   |//
+const handleMenuIndicator = (index) => {
+  const offset = items[index].offset;
+  menuIndicator.style.top = `${offset}px`;
+}
+//| end of HANDLE MENU INDICATOR                                            |//
 
 const getCurrentItemIndex = (cursorYPosition) => {  // ! TO REFACTOR
   return items.length - 1 - [...items]
@@ -455,19 +493,6 @@ const getCurrentSectionIndex = (scrollOffset) => {  // ! TO REFACTOR
     .map(section => section.offset)
     .reverse()
     .findIndex(offset => currentOffset >= offset - scrollOffset);
-}
-
-const handleActiveMenuLink = (index, action) => {
-  if (action === 'activate') {
-    menuLinks[index].classList.add('menu__link--active');
-  } else if (action === 'deactivate') {
-    menuLinks[index].classList.remove('menu__link--active');
-  }
-}
-
-const handleMenuIndicator = (index) => {
-  const offset = items[index].offset;
-  menuIndicator.style.top = `${offset}px`;
 }
 
 const handleNavigation = (e) => {
@@ -600,6 +625,7 @@ const handleRepo = (repos) => {
 //| GLOBAL VARIABLES                                                        |//
 //: INTRO                                                              ://
 //let isIntroMode = true;
+let scrollEventFlag = false;
 const mediaTablet = 768;
 const mediaDesktop = 1200;
 let lastMenuItemIndex = 0;
@@ -690,6 +716,13 @@ menu.addEventListener('mousemove', handleIntroMenu);
 window.addEventListener('resize', updateSectionsOffsets);
 pageHeader.addEventListener('resize', handleIntroBox);
 pageHeader.addEventListener('scroll', handleIntroBox);
+
+pageContainer.addEventListener('wheel', () => {
+  if (!scrollEventFlag) {
+    pageContainer.addEventListener('scroll', handleMenuOnScroll);
+    scrollEventFlag = true;
+  }
+});
 
 
 [...menuLinks].forEach((link, index) => {
