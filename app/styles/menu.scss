@@ -1,6 +1,6 @@
 @import 'variables.scss';
 @import 'mixins.scss';
-
+//| PAGE HEADER                                                             |//
 .pageHeader {
   align-items: flex-start;
   display: flex;
@@ -8,137 +8,87 @@
   left: 0;
   min-height: 100vh;
   overflow: auto;
-  padding: 100px 0;
-  pointer-events: none;
+  padding: $offset-top-bottom-lg 0;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 3;
-
-  display: none;
-
-  &--intro {
-    pointer-events: all;
-  }
-
-  &__indicator {
-    background-color: #fff;
-    left: 0;
-    position: fixed;
-    top: 0;
-    transition: top $time-switch;
-    width: 20px;
-  }
-
-  &__introBox {
-    left: 0;
-    opacity: 0;
-    pointer-events: none;
-    position: fixed;
-    transition: opacity $menu-first-timeout, top $menu-first-timeout;
-    
-    &--mobileHeader {
-      transition: opacity $menu-first-timeout, top $menu-second-timeout;
-    }
-
-    &--onResize {
-      transition: none;
-    }
-
-    &--visible {
-      opacity: 1;
-    }
-
-    &--about     { background-color: $color-about; }
-    &--resume    { background-color: $color-resume; }
-    &--tasktimer { background-color: $color-tasktimer; }
-    &--portfolio { background-color: $color-portfolio; }
-    &--hydrapp   { background-color: $color-hydrapp; }
-    &--archviz   { background-color: $color-archviz; }
-    &--quotes    { background-color: $color-quotes; }
-    &--other     { background-color: $color-other; }
-    &--contact   { background-color: $color-contact; }
-  }
-
-  &__background {
-    background-color: $intro-background-color;
-    height: 100%;
-    position: fixed;
-    transition: background-color $menu-first-timeout;
-    width: 100%;
-    z-index: -1;
-
-    &--animated {
-      transition:
-        background-color $menu-first-timeout,
-        height $menu-second-timeout;
-    }
-
-    &--upper {
-      left: 0;
-      top: 0;
-    }
-    
-    &--bottom {
-      bottom: 0;
-      left: 0;
-    }
-
-    &--about     { background-color: $color-about-diff; }
-    &--resume    { background-color: $color-resume-diff; }
-    &--tasktimer { background-color: $color-tasktimer-diff; }
-    &--portfolio { background-color: $color-portfolio-diff; }
-    &--hydrapp   { background-color: $color-hydrapp-diff; }
-    &--archviz   { background-color: $color-archviz-diff; }
-    &--quotes    { background-color: $color-quotes-diff; }
-    &--other     { background-color: $color-other-diff; }
-    &--contact   { background-color: $color-contact-diff; }
-  }
-
-  /*
-  .%%...%%..%%%%%%..%%%%%...%%%%%%...%%%%..
-  .%%%.%%%..%%......%%..%%....%%....%%..%%.
-  .%%.%.%%..%%%%....%%..%%....%%....%%%%%%.
-  .%%...%%..%%......%%..%%....%%....%%..%%.
-  .%%...%%..%%%%%%..%%%%%...%%%%%%..%%..%%.
-  */
-
+  z-index: 6;
+  
   @media only screen and (min-width: $media-lg) {
 
     & {
-      justify-content: flex-start;
+      box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
+      pointer-events: none;
 
-      &__introBox {
-        left: calc(50% + 20px);
-        position: absolute;
-        right: initial;
+      //: PAGE INDICATOR                                                    ://
+      &__indicator {
+        background-color: #fff;
+        left: 0;
+        height: $menu-item-height-lg;
+        position: fixed;
+        top: -$menu-item-height-lg;
+        transition: top $time-switch;
+        width: $menu-item-height-lg;
+
+        &--narrowed {
+          width: 20px;
+          transition: top $time-switch, width $menu-lg-second-timeout;
+        }
       }
     }
   }
 }
-
+/*
+##     ## ######## ##    ## ##     ##
+###   ### ##       ###   ## ##     ##
+#### #### ##       ####  ## ##     ##
+## ### ## ######   ## ## ## ##     ##
+##     ## ##       ##  #### ##     ##
+##     ## ##       ##   ### ##     ##
+##     ## ######## ##    ##  #######
+*/
+//| MAIN MENU                                                               |//
 .menu {
   width: 100%;
+  position: relative;
 
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      min-height: $container-size;
+      width: $menu-width;
+      transition: transform 0.5s;
+  
+      &--intro {
+        $left-offset: calc(50vw - #{$menu-width});
+        transform: translateX($left-offset);
+      }
+    }
+  }
+  //: MENU LIST                                                             ://
   &__list {
+    display: grid;
     list-style-type: none;
     margin: 0;
     padding: 0;
+    row-gap: 10px;
     width: 100%;
   }
-
+  //: MENU ITEMS                                                            ://
   &__item {
     align-items: flex-start;
     display: flex;
     height: $menu-item-height;
-    margin: 5px 0;
     overflow: hidden;
     padding-right: 10px;
     visibility: hidden;
     width: 100%;
     transition: height 0.3s;
 
-    //pointer-events: all;    // ! make possible to enable menu by clicking link name
+    pointer-events: all;    // ! make possible to enable menu by clicking link name
 
     &--mobileHeader {
       left: 0;
@@ -152,21 +102,28 @@
     }
 
     &--animated {
-      transition: top $menu-second-timeout;
+      transition: top $menu-sm-second-timeout;
     }
 
     &--visible {
       visibility: visible;
     }
-  }
 
+    @media only screen and (min-width: $media-lg) {
+      height: $menu-item-height-lg;
+      justify-content: flex-end;
+      padding: 0;
+      width: 100%;
+    }
+  }
+  //: MENU LINKS                                                            ://
   &__link {
     display: flex;
     fill: $intro-link-color;
     height: $menu-item-height;
     justify-content: flex-end;
     padding-left: 55px;
-    transition: fill $menu-first-timeout, width $menu-first-timeout;
+    transition: fill $menu-sm-first-timeout, width $menu-sm-first-timeout;
 
     &--intro-about     { fill: $color-about; }
     &--intro-resume    { fill: $color-resume; }
@@ -218,51 +175,26 @@
       fill: #fff;
       &:hover { fill: #fff; }
     }
-  }
 
+    @media only screen and (min-width: $media-lg) {
+      height: $menu-item-height-lg;
+      padding: 0;
+      width: 100%;
+    }
+  }
+  //: MENU SVG                                                              ://
   &__svg {
     height: $menu-item-height;
     pointer-events: none;
-  }
 
-  /*
-  .%%...%%..%%%%%%..%%%%%...%%%%%%...%%%%..
-  .%%%.%%%..%%......%%..%%....%%....%%..%%.
-  .%%.%.%%..%%%%....%%..%%....%%....%%%%%%.
-  .%%...%%..%%......%%..%%....%%....%%..%%.
-  .%%...%%..%%%%%%..%%%%%...%%%%%%..%%..%%.
-  */
-
-  @media only screen and (min-width: $media-lg) {
-
-    & {
-      width: 500px;
-      border: 1px solid #000;
-
-      &--intro {
-        margin-left: calc(50vw - 500px);
-      }
-      
-      &__item {
-        height: $menu-item-height-lg;
-        justify-content: flex-end;
-        padding: 0;
-        width: 100%;
-      }
-      
-      &__link {
-        height: $menu-item-height-lg;
-        padding: 0;
-      }
-
-      &__svg {
-        height: $menu-item-height-lg;
-      }
+    @media only screen and (min-width: $media-lg) {
+  
+      height: $menu-item-height-lg;
     }
   }
 }
 
-//| BURGER BUTTON |//
+//| BURGER BUTTON                                                           |//
 .burgerButton {
   @include button;
   @include flex-center;
@@ -289,6 +221,7 @@
   &--other     { fill: $color-other; }
   &--contact   { fill: $color-contact; }
 
+  //: BURGER BUTTON SVG                                                     ://
   &__svg {
     width: 100%;
   }

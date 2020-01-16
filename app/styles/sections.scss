@@ -1,6 +1,6 @@
 @import 'variables.scss';
 @import 'mixins.scss';
-
+//| PAGE CONTAINER                                                          |//
 .pageContainer {
   overflow: hidden;
   width: 100%;
@@ -9,11 +9,23 @@
   @media only screen and (min-width: $media-lg) {
 
     & {
-      /* display: none;
+      overflow: auto;
+      position: fixed;
+      top: 0;
+      left: 100vw;
+      width: 100%;
+      height: 100%;
+      visibility: hidden;
+      transition: left $menu-lg-second-timeout;
 
       &--visible {
-        display: block;
-      } */
+        left: 0;
+        visibility: visible;
+      }
+
+      &--smooth {
+        scroll-behavior: smooth;
+      }
     }
   }
 }
@@ -58,13 +70,11 @@
 
     & {
       align-items: center;
-      box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
-      padding: 100px 0;
+      padding: $offset-top-bottom-lg 0;
     }
   }
-  //: SECTION'S CONTAINER                                              ://
+  //: SECTION CONTAINER                                                     ://
   &__container {
-    align-content: start;
     align-items: start;
     display: grid;
     width: 100%;
@@ -123,8 +133,8 @@
 
       & {
         margin-left: 540px;
-        max-width: 800px;
-        min-height: 800px;
+        max-width: $container-size;
+        min-height: $container-size;
         min-width: 600px;
 
         &--about {
@@ -136,8 +146,8 @@
           "working     working    "
           "knowing     knowing    "
           "learning    learning   ";
-          grid-template-columns: 1fr 50%;
-          grid-template-rows: auto 1fr;
+          grid-template-columns: 1fr 48%;
+          grid-template-rows: repeat(6, auto);
         }
 
         &--resume {
@@ -182,8 +192,8 @@
       }
     }
   }
-  //: end of SECTION'S CONTAINER                                            ://
-  //: SECTION'S HEADING                                                     ://
+  //: end of SECTION CONTAINER                                              ://
+  //: SECTION HEADING                                                       ://
   &__heading {
     border-left: 8px solid transparent;
     color: #fff;
@@ -245,14 +255,15 @@
       & {
         border-left-width: $separator-width-thick;
         margin: 0;
-        margin: 0 0 20px -55px;
+        margin: 0 0 0 -50px;
         min-width: 380px;
-        padding: 25px 0 25px 45px;
+        padding: 25px 0 25px 40px;
         width: 100%;
       }
     }
   }
-
+  //: end of SECTION HEADING                                                ://
+  //: SECTION PHOTO & SVG                                                   ://
   &__photo {
     background: $color-about-white;
     background-clip: content-box;
@@ -275,7 +286,8 @@
   &__svg {
     display: none;
   }
-
+  //: end of SECTION PHOTO & SVG                                            ://
+  //: SECTION REPOS                                                         ://
   &__repos {
     margin-top: 30px;
     grid-area: otherRepos;
@@ -289,9 +301,9 @@
       }
     }
   }
+  //: end of SECTION REPOS                                                  ://
 }
-//| end of SECTION                                                          |//
-//| SECTION'S STATS                                                         |//
+//| SECTION STATS                                                           |//
 .stats {
   border-collapse: collapse;
   border-bottom: 3px solid transparent;
@@ -349,7 +361,7 @@
     }
   }
 }
-//| end of SECTION'S STATS                                                  |//
+//| end of SECTION STATS                                                    |//
 //| CODE AND DEMO LINKS                                                     |//
 .repoLinks {
   align-self: end;
