@@ -91,7 +91,15 @@ const handleMenuItemClick = (activeIndex) => {
     const viewOffset = pageHeader.scrollTop;
     const upperBackgroundHeight = clickedItemHeight + clickedItemOffset - viewOffset;
     const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
-  
+    /*
+       ##
+     ####
+       ##
+       ##
+       ##
+       ##
+     ######
+    */
     //: change items colors and set introbox position                       ://
     handleColorChange(lastMenuItemIndex, 'deactivate');
     lastMenuItemIndex = activeIndex; // ! what if both are the same
@@ -113,6 +121,15 @@ const handleMenuItemClick = (activeIndex) => {
     menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
     menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
     //:                                                                     ://
+    /*
+     #######
+    ##     ##
+           ##
+     #######
+    ##
+    ##
+    #########
+    */
     //: add first timeout                                                   ://
     clearTimeout(menuSmFirstTimeoutId);
     clearTimeout(menuSmSecondTimeoutId);
@@ -148,6 +165,15 @@ const handleMenuItemClick = (activeIndex) => {
       //. add event handling mobile header appearance                       .//
       window.addEventListener('scroll', handleMobileHeader);
       //.                                                                   .//
+      /*
+       #######
+      ##     ##
+             ##
+       #######
+             ##
+      ##     ##
+       #######
+      */
       //. add second timeout                                                .//
       menuSmSecondTimeoutId = setTimeout(() => {
         //. handle menu items                                               .//
@@ -184,12 +210,21 @@ const handleMenuItemClick = (activeIndex) => {
   */
   //| HANDLE MENU ITEMS ON LARGE SCREEN DEVICES                             |//
   } else if (window.innerWidth >= mediaDesktop) {
-
+    /*
+       ##
+     ####
+       ##
+       ##
+       ##
+       ##
+     ######
+    */
+    //: handle introBox                                                     ://
     introBox.classList.add('visuals__introBox--content');
     introBox.style.height = '100%';
     introBox.style.top = 0;
     introBox.style.width = '100%';
-
+    //: handle menu items and indicator                                     ://
     handleMenuOnClick(lastMenuItemIndex, 'deactivate');
     lastMenuItemIndex = activeIndex; // ! what if both are the same
     handleMenuOnClick(lastMenuItemIndex, 'activate');
@@ -200,17 +235,6 @@ const handleMenuItemClick = (activeIndex) => {
     pageContainer.removeEventListener('scroll', handleMenuOnScroll);
     scrollEventFlag = false;
     //: add events                                                          ://
-
-    //window.addEventListener('scroll', handleNavigation);
-
-
-
-
-
-
-
-
-
 
 
 
@@ -230,76 +254,79 @@ const handleMenuItemClick = (activeIndex) => {
 
 
     //:                                                                     ://
+    /*
+     #######
+    ##     ##
+           ##
+     #######
+    ##
+    ##
+    #########
+    */
     //: set first timeout                                                   ://
     clearTimeout(menuLgFirstTimeoutId);
     menuLgFirstTimeoutId = setTimeout(() => {
-      //: translate menu to the left of the screen                          ://
+      //: translate menu and content to the left of the screen              ://
       menu.classList.remove('menu--intro');
-
-      introBox.style.left = 0;
-
-      menuIndicator.classList.add('pageHeader__indicator--narrowed');
-
-      //introBox.classList.remove('visuals__introBox--visible');
-
-      //menuBottomBackground.classList.add('pageHeader__background--animated');
-      //menuBottomBackground.style.width = 0;
-
       pageContainer.classList.add('pageContainer--visible');
+      //: move introBox to the left and make indicator thiner               ://
+      introBox.style.left = 0;
+      menuIndicator.classList.add('pageHeader__indicator--narrowed');
+      //: handle navigation                                                   ://
+      navigation.classList.add('navigation--visible');
+      window.addEventListener('scroll', handleNavigation);
+
+
+
+
+
+
+
+
 
       //.                                                                   .//
+      /*
+       #######
+      ##     ##
+             ##
+       #######
+             ##
+      ##     ##
+       #######
+      */
       //. set second timeout                                                .//
       menuLgSecondTimeoutId = setTimeout(() => {
-
-
-
 
         pageContainer.classList.add('pageContainer--smooth');
         menuUpperBackground.classList.add('visuals__background--hidden');
         menuBottomBackground.classList.add('visuals__background--hidden');
+        introBox.classList.remove('visuals__introBox--visible');
+
+
+
+
+
+
+
+
+
+        
+
 
         
       }, menuLgSsecondTimeoutInterval);
-      
-    }, menuLgFirstTimeoutInterval);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    }, menuLgFirstTimeoutInterval);   
   }
 }
 //| end of HANDLE MENU ITEMS ON MOBILE DEVICES                              |//
 /*
-.%%%%%...%%..%%..%%%%%....%%%%...%%%%%%..%%%%%..
-.%%..%%..%%..%%..%%..%%..%%......%%......%%..%%.
-.%%%%%...%%..%%..%%%%%...%%.%%%..%%%%....%%%%%..
-.%%..%%..%%..%%..%%..%%..%%..%%..%%......%%..%%.
-.%%%%%....%%%%...%%..%%...%%%%...%%%%%%..%%..%%.
+########  ##     ## ########   ######   ######## ########
+##     ## ##     ## ##     ## ##    ##  ##       ##     ##
+##     ## ##     ## ##     ## ##        ##       ##     ##
+########  ##     ## ########  ##   #### ######   ########
+##     ## ##     ## ##   ##   ##    ##  ##       ##   ##
+##     ## ##     ## ##    ##  ##    ##  ##       ##    ##
+########   #######  ##     ##  ######   ######## ##     ##
 */
 //| BURGER BUTTON HANDLER                                                   |//
 const handleBurgerButton = () => {
@@ -312,7 +339,15 @@ const handleBurgerButton = () => {
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
   const upwardsOffset = activeItemOffset;
   const downwardsOffset = windowHeight - activeItemOffset - activeItemHeight;
-
+  /*
+     ##
+   ####
+     ##
+     ##
+     ##
+     ##
+   ######
+  */
   //: hide burger button                                                    ://
   burgerButton.classList.remove('burgerButton--visible');
   //: set starting position of menu items                                   ://
@@ -337,6 +372,15 @@ const handleBurgerButton = () => {
   menuUpperBackground.classList.remove(`visuals__background--${activeId}`);
 
   //:                                                                       ://
+  /*
+   #######
+  ##     ##
+         ##
+   #######
+  ##
+  ##
+  #########
+  */
   //: add first timeout                                                     ://
   clearTimeout(menuSmFirstTimeoutId);
   clearTimeout(menuSmSecondTimeoutId);
@@ -356,6 +400,15 @@ const handleBurgerButton = () => {
     window.removeEventListener('scroll', handleMobileHeader);
 
     //.                                                                     .//
+    /*
+     #######
+    ##     ##
+           ##
+     #######
+           ##
+    ##     ##
+     #######
+    */
     //. add second timeout                                                  .//
     menuSmSecondTimeoutId = setTimeout(() => {
       window.scrollTo(0,0);
@@ -623,13 +676,13 @@ const handleRepo = (repos) => {
 //| end of FETCH GITHUB API                                                 |//
 
 //| GLOBAL VARIABLES                                                        |//
-//: INTRO                                                              ://
+//: INTRO                                                                   ://
 //let isIntroMode = true;
 let scrollEventFlag = false;
 const mediaTablet = 768;
 const mediaDesktop = 1200;
 let lastMenuItemIndex = 0;
-//: INTERVALS                                                          ://
+//: INTERVALS                                                               ://
 let menuSmFirstTimeoutId = null;
 let menuSmSecondTimeoutId = null;
 let menuLgFirstTimeoutId = null;
@@ -638,7 +691,7 @@ const menuSmFirstTimeoutInterval = 300;
 const menuSmSecondTimeoutInterval = 600;
 const menuLgFirstTimeoutInterval = 500;
 const menuLgSsecondTimeoutInterval = 500;
-//: MENU AND NAVIGATION                                                ://
+//: MENU AND NAVIGATION                                                     ://
 const pageHeader = document.querySelector('.pageHeader--js');
 const introBox = document.querySelector('.visuals__introBox--js');
 const menuIndicator = document.querySelector('.pageHeader__indicator--js');
@@ -651,12 +704,14 @@ const menuItems = document.querySelectorAll('.menu__item--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
 const menuLabels = document.querySelectorAll('.label--js');
 //const sectionScrollOffset = 200;
-//const navigation = document.querySelector('.navigation--js');
-//const navigationMainButton = document.querySelector('.navigation__button--js-main');
-//const navigationPrevButton = document.querySelector('.navigation__button--js-prev');
-//const navigationNextButton = document.querySelector('.navigation__button--js-next');
 
-//: MAIN CONTENT                                                       ://
+//: NAVIGATION                                                              ://
+const navigation = document.querySelector('.navigation--js');
+const navigationMainButton = document.querySelector('.navigation__button--js-main');
+const navigationPrevButton = document.querySelector('.navigation__button--js-prev');
+const navigationNextButton = document.querySelector('.navigation__button--js-next');
+
+//: MAIN CONTENT                                                            ://
 const pageContainer = document.querySelector('.pageContainer--js');
 const pageSections = document.querySelectorAll('.section--js');
 const resumeTabs = document.querySelectorAll('.tab--js-resume');
@@ -729,9 +784,9 @@ pageContainer.addEventListener('wheel', () => {
   link.addEventListener('click', () => handleMenuItemClick(index));
 });
 
-//navigationPrevButton.addEventListener('click', navigateToSection);
-//navigationNextButton.addEventListener('click', navigateToSection);
-//navigationMainButton.addEventListener('click', () => console.log('main'));
+navigationPrevButton.addEventListener('click', navigateToSection);
+navigationNextButton.addEventListener('click', navigateToSection);
+navigationMainButton.addEventListener('click', () => console.log('main'));
 burgerButton.addEventListener('click', handleBurgerButton);
 //: RESUME                                                             ://
 [...resumeButtons].forEach((button, index) => {
