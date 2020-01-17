@@ -273,13 +273,6 @@ const handleMenuItemClick = (activeIndex) => {
 
 
 
-
-
-
-
-
-
-
     //:                                                                     ://
     /*
      #######
@@ -516,7 +509,6 @@ const handleMenuOnScroll = () => {
     handleMenuIndicator(lastMenuItemIndex);
   }
   //: handle all menu items appearance on local id change                   ://
-
   [...menuLinks].forEach((link, index) => {
     const singleItemOffset = items[index].offset;
     const currentSingleItemIndex = items[index].currentSectionIndex;
@@ -534,18 +526,16 @@ const handleMenuOnScroll = () => {
 //| end of HANDLE MENU ITEMS ON SCROLL EVENT                                |//
 //| HANDLE MENU ITEMS ON CLICK EVENT                                        |//
 const handleMenuOnClick = (activeIndex, action) => {
-
+  //: add new appearance                                                    ://
   if (action === 'activate') {
     const currentId = sections[activeIndex].id;
-
     [...menuLinks].forEach((link, linkIndex) => {
       link.classList.add(`menu__link--${currentId}`);
       items[linkIndex].currentSectionIndex = activeIndex;
       if (linkIndex === activeIndex) link.classList.add('menu__link--active');
     });
-
+  //: remove current appearance                                                    ://
   } else if (action === 'deactivate') {
-
     [...menuLinks].forEach((link, linkIndex) => {
       const currentId = sections[items[linkIndex].currentSectionIndex].id;
       link.classList.remove(`menu__link--${currentId}`);
@@ -572,7 +562,6 @@ const handleMenuIndicator = (index) => {
 //| HANDLE PREVIOUS AND NEXT BUTTON VISIBILITY                              |//
 const handlePrevNextButtonsVisibility = (index, action) => {
   const lastElementIndex = sections.length - 1;
-
   if (index === 0 || index === lastElementIndex) {
     if (action === 'hide') {
       index === 0
@@ -585,40 +574,39 @@ const handlePrevNextButtonsVisibility = (index, action) => {
     }
   }
 }
+//| end of HANDLE PREVIOUS AND NEXT BUTTON VISIBILITY                       |//
 //| HANDLE NAVIGATION ON SCROLL EVENT                                       |//
-const handleNavOnScroll = (e) => {
-
+const handleNavOnScroll = () => {
   const updatedNavigationIndex = getCurrentNavigationIndex();
   //: change navigation elements class names when index changes             ://
   if (updatedNavigationIndex !== currentNavigationIndex) {
-    console.log('scroll');
-    console.log('currentNavigationIndex', currentNavigationIndex);
-
     const currentId = sections[currentNavigationIndex].id;
     const nextId = sections[updatedNavigationIndex].id;
-
+    //: remove current appearance                                           ://
     for (let child of navigation.children) {
       child.classList.remove(`navigation__button--${currentId}`);
       handlePrevNextButtonsVisibility(currentNavigationIndex, 'show');
     }
-
-
+    //: update navigation index                                             ://
     currentNavigationIndex = updatedNavigationIndex;
-
+    //: add new appearance                                                  ://
     for (let child of navigation.children) {
       child.classList.add(`navigation__button--${nextId}`);
       handlePrevNextButtonsVisibility(currentNavigationIndex, 'hide');
     }
   }
 }
+//| end of HANDLE NAVIGATION ON SCROLL EVENT                                |//
 //| HANDLE NAVIGATION ON CLICK EVENT                                        |//
 const handleNavOnClick = (index, action) => {
   const currentId = sections[index].id;
+  //: remove current appearance                                             ://
   if (action === 'activate') {
     for (let child of navigation.children) {
       child.classList.add(`navigation__button--${currentId}`);
       handlePrevNextButtonsVisibility(index, 'hide');
     }
+  //: add new appearance                                                    ://
   } else if (action === 'deactivate') {
     for (let child of navigation.children) {
       child.classList.remove(`navigation__button--${currentId}`);
@@ -626,6 +614,7 @@ const handleNavOnClick = (index, action) => {
     }
   }
 }
+//| end of HANDLE NAVIGATION ON CLICK EVENT                                 |//
 //| HANDLE JUMPING TO ANOTHER SECTION USING NAVIGATION                      |//
 const navigateToSection = (e) => {
   //: activate scroll events                                                |//
@@ -634,9 +623,9 @@ const navigateToSection = (e) => {
   scrollEventFlag = true;
   //: get target index                                                      |//
   const targetIndex = e.target === navigationPrevButton
-  ? currentNavigationIndex > 0
-    ? --currentNavigationIndex
-    : 0
+    //. previous button clicked                                             .//
+  ? currentNavigationIndex > 0 ? --currentNavigationIndex : 0
+    //. next     button clicked                                             .//
   : lastMenuItemIndex < pageSections.length - 1
     ? ++lastMenuItemIndex
     : pageSections.length - 1;
@@ -644,6 +633,7 @@ const navigateToSection = (e) => {
   const sectionOffset = sections[targetIndex].offset;
   pageContainer.scrollTo(0, sectionOffset);
 }
+//| end of HANDLE JUMPING TO ANOTHER SECTION USING NAVIGATION               |//
 //| RESUME'S ACCORDION HANDLER                                              |//
 const handleAccordion = (tabs, clickedIndex) => {
   tabs.forEach((tab, index) => {
@@ -716,7 +706,6 @@ const handleRepo = (repos) => {
 
 //| GLOBAL VARIABLES                                                        |//
 //: INTRO                                                                   ://
-//let isIntroMode = true;
 let scrollEventFlag = false;
 const mediaTablet = 768;
 const mediaDesktop = 1200;
