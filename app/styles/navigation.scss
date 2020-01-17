@@ -58,10 +58,13 @@
       border-color: #fff;
       height: $navigation-size-button;
       padding: $navigation-padding;
-      transition:
-        border-color $navigation-time,
-        transform $navigation-time $navigation-time-delay;
       width: $navigation-size-button;
+
+      &--animated {
+        transition:
+          border-color $navigation-time,
+          transform $navigation-time $navigation-time-delay;
+      }
   
       &--about {
         border-color: $color-about-diff;

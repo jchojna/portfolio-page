@@ -15,6 +15,29 @@ const updateSectionsOffsets = () => {
     section.offset = pageSections[index].offsetTop;
   });
 }
+
+const getCurrentItemIndex = (cursorYPosition) => {  // ! TO REFACTOR
+  return items.length - 1 - [...items]
+    .map(item => item.offset)
+    .reverse()
+    .findIndex(offset => cursorYPosition >= offset)
+}
+
+const getCurrentSectionIndex = (scrollOffset) => {  // ! TO REFACTOR
+  const currentOffset = window.innerWidth >= mediaDesktop
+  ? pageContainer.scrollTop
+  : window.pageYOffset;
+
+  return sections.length - 1 - [...sections]
+    .map(section => section.offset)
+    .reverse()
+    .findIndex(offset => currentOffset >= offset - scrollOffset);
+}
+
+const getCurrentNavigationIndex = () => {
+  const navigationOffset = navigation.offsetTop + navigation.clientHeight / 2;
+  return getCurrentSectionIndex(navigationOffset);
+}
 //| CHANGE ACTIVE LINK ON HOVER                                             |//
 const handleColorChange = (index, action) => {
   const introLinkId = sections[index].id;
@@ -233,10 +256,14 @@ const handleMenuItemClick = (activeIndex) => {
     //: remove events                                                       ://
     menu.removeEventListener('mousemove', handleIntroMenu);
     pageContainer.removeEventListener('scroll', handleMenuOnScroll);
+    pageContainer.removeEventListener('scroll', handleNavOnScroll);
     scrollEventFlag = false;
-    //: add events                                                          ://
-
-
+    //: handle navigation appearance                                        ://
+    if (currentNavigationIndex !== null) {
+      handleNavOnClick(currentNavigationIndex, 'deactivate');
+    }
+    currentNavigationIndex = activeIndex;
+    handleNavOnClick(currentNavigationIndex, 'activate');
 
 
 
@@ -274,7 +301,10 @@ const handleMenuItemClick = (activeIndex) => {
       menuIndicator.classList.add('pageHeader__indicator--narrowed');
       //: handle navigation                                                   ://
       navigation.classList.add('navigation--visible');
-      window.addEventListener('scroll', handleNavigation);
+      navigationPrevButton.addEventListener('click', navigateToSection);
+      navigationNextButton.addEventListener('click', navigateToSection);
+      navigationMainButton.addEventListener('click', () => console.log('main'));
+
 
 
 
@@ -296,16 +326,17 @@ const handleMenuItemClick = (activeIndex) => {
       */
       //. set second timeout                                                .//
       menuLgSecondTimeoutId = setTimeout(() => {
-
+        
         pageContainer.classList.add('pageContainer--smooth');
         menuUpperBackground.classList.add('visuals__background--hidden');
         menuBottomBackground.classList.add('visuals__background--hidden');
         introBox.classList.remove('visuals__introBox--visible');
+        //. add navigation buttons transition effects                       .//
+        [...navigation.children].forEach(child =>
+          child.classList.add('navigation__button--animated'));
 
 
-
-
-
+        
 
 
 
@@ -529,81 +560,98 @@ const handleMenuIndicator = (index) => {
   menuIndicator.style.top = `${offset}px`;
 }
 //| end of HANDLE MENU INDICATOR                                            |//
-
-const getCurrentItemIndex = (cursorYPosition) => {  // ! TO REFACTOR
-  return items.length - 1 - [...items]
-    .map(item => item.offset)
-    .reverse()
-    .findIndex(offset => cursorYPosition >= offset)
-}
-
-const getCurrentSectionIndex = (scrollOffset) => {  // ! TO REFACTOR
-  const currentOffset = window.innerWidth >= mediaDesktop
-  ? pageContainer.scrollTop
-  : window.pageYOffset;
-
-  return sections.length - 1 - [...sections]
-    .map(section => section.offset)
-    .reverse()
-    .findIndex(offset => currentOffset >= offset - scrollOffset);
-}
-
-const handleNavigation = (e) => {
-  const updatedNavigationIndex = getCurrentSectionIndex(navigation.offsetTop);
+/*
+##    ##    ###    ##     ##
+###   ##   ## ##   ##     ##
+####  ##  ##   ##  ##     ##
+## ## ## ##     ## ##     ##
+##  #### #########  ##   ##
+##   ### ##     ##   ## ##
+##    ## ##     ##    ###
+*/
+//| HANDLE PREVIOUS AND NEXT BUTTON VISIBILITY                              |//
+const handlePrevNextButtonsVisibility = (index, action) => {
   const lastElementIndex = sections.length - 1;
 
-  const toggleVisibility = (index, action) => {
-
-    if (index === 0 || index === lastElementIndex) {
-      if (action === 'hide') {
-        index === 0
-        ? navigationPrevButton.classList.add('navigation__button--hidden')
-        : navigationNextButton.classList.add('navigation__button--hidden');
-      } else if (action === 'show') {
-        index === 0
-        ? navigationPrevButton.classList.remove('navigation__button--hidden')
-        : navigationNextButton.classList.remove('navigation__button--hidden');
-      }
+  if (index === 0 || index === lastElementIndex) {
+    if (action === 'hide') {
+      index === 0
+      ? navigationPrevButton.classList.add('navigation__button--hidden')
+      : navigationNextButton.classList.add('navigation__button--hidden');
+    } else if (action === 'show') {
+      index === 0
+      ? navigationPrevButton.classList.remove('navigation__button--hidden')
+      : navigationNextButton.classList.remove('navigation__button--hidden');
     }
   }
+}
+//| HANDLE NAVIGATION ON SCROLL EVENT                                       |//
+const handleNavOnScroll = (e) => {
 
-  if (e) {
-    // change navigation elements class names when index changes
-    if (updatedNavigationIndex !== currentNavigationIndex) {
-      for (let child of navigation.children) {
-        child.classList.remove(`navigation__button--${sections[currentNavigationIndex].id}`);
-        toggleVisibility(currentNavigationIndex, 'show');
-      }
-      currentNavigationIndex = updatedNavigationIndex;
-      for (let child of navigation.children) {
-        child.classList.add(`navigation__button--${sections[currentNavigationIndex].id}`);
-        toggleVisibility(currentNavigationIndex, 'hide');
-      }
-    }
+  const updatedNavigationIndex = getCurrentNavigationIndex();
+  //: change navigation elements class names when index changes             ://
+  if (updatedNavigationIndex !== currentNavigationIndex) {
+    console.log('scroll');
+    console.log('currentNavigationIndex', currentNavigationIndex);
 
-  // assign class names on page load
-  } else {
+    const currentId = sections[currentNavigationIndex].id;
+    const nextId = sections[updatedNavigationIndex].id;
 
     for (let child of navigation.children) {
-      child.classList.add(`navigation__button--${sections[currentNavigationIndex].id}`);
-      toggleVisibility(currentNavigationIndex, 'hide');
+      child.classList.remove(`navigation__button--${currentId}`);
+      handlePrevNextButtonsVisibility(currentNavigationIndex, 'show');
+    }
+
+
+    currentNavigationIndex = updatedNavigationIndex;
+
+    console.log('updatedNavigationIndex', updatedNavigationIndex);
+
+    for (let child of navigation.children) {
+      child.classList.add(`navigation__button--${nextId}`);
+      handlePrevNextButtonsVisibility(currentNavigationIndex, 'hide');
     }
   }
 }
-
-const navigateToSection = (e) => {
-  const currentSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
-  const targetIndex = e.target === navigationPrevButton
-  ? currentSectionIndex > 0
-    ? currentSectionIndex - 1
-    : 0
-  : currentSectionIndex < pageSections.length - 1
-    ? currentSectionIndex + 1
-    : pageSections.length - 1;
-  
-  window.scrollTo(0, pageSections[targetIndex].offsetTop);
+//| HANDLE NAVIGATION ON CLICK EVENT                                        |//
+const handleNavOnClick = (index, action) => {
+  const currentId = sections[index].id;
+  if (action === 'activate') {
+    for (let child of navigation.children) {
+      child.classList.add(`navigation__button--${currentId}`);
+      handlePrevNextButtonsVisibility(currentNavigationIndex, 'hide');
+    }
+  } else if (action === 'deactivate') {
+    for (let child of navigation.children) {
+      child.classList.remove(`navigation__button--${currentId}`);
+      handlePrevNextButtonsVisibility(currentNavigationIndex, 'show');
+    }
+  }
 }
+//| HANDLE JUMPING TO ANOTHER SECTION USING NAVIGATION                      |//
+const navigateToSection = (e) => {
+  const targetIndex = e.target === navigationPrevButton
+  ? lastMenuItemIndex > 0
+    ? --lastMenuItemIndex
+    : 0
+  : lastMenuItemIndex < pageSections.length - 1
+    ? ++lastMenuItemIndex
+    : pageSections.length - 1;
 
+
+
+
+
+
+
+
+
+
+
+  
+  const sectionOffset = sections[targetIndex].offset;
+  pageContainer.scrollTo(0, sectionOffset);
+}
 //| RESUME'S ACCORDION HANDLER                                              |//
 const handleAccordion = (tabs, clickedIndex) => {
   tabs.forEach((tab, index) => {
@@ -643,7 +691,6 @@ const handleAccordion = (tabs, clickedIndex) => {
   });
 }
 //| end of RESUME'S ACCORDION HANDLER                                       |//
-
 //| FETCH GITHUB API                                                        |//
 const handleRepo = (repos) => {
   const statsCreated = document.querySelectorAll('.stats__value--js-created');
@@ -710,6 +757,7 @@ const navigation = document.querySelector('.navigation--js');
 const navigationMainButton = document.querySelector('.navigation__button--js-main');
 const navigationPrevButton = document.querySelector('.navigation__button--js-prev');
 const navigationNextButton = document.querySelector('.navigation__button--js-next');
+let currentNavigationIndex = null;
 
 //: MAIN CONTENT                                                            ://
 const pageContainer = document.querySelector('.pageContainer--js');
@@ -736,7 +784,6 @@ const items = [...menuItems].map((item, index) => ({
   currentSectionIndex: getCurrentSectionIndex(item.offsetTop + menu.offsetTop)
 }));
 
-//let currentNavigationIndex = getCurrentSectionIndex(navigation.offsetTop);
 
 //| FUNCTION CALLS ON PAGE LOAD                                             |//
 //let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
@@ -748,8 +795,6 @@ const items = [...menuItems].map((item, index) => ({
 }); */
 
 handleIntroMenu();
-//handleNavigation();
-//handleMenuIndicator(currentGlobalSectionIndex);
 
 //: handle page's accordions                                           ://
 handleAccordion([...resumeSubtabs]);
@@ -775,6 +820,7 @@ pageHeader.addEventListener('scroll', handleIntroBox);
 pageContainer.addEventListener('wheel', () => {
   if (!scrollEventFlag) {
     pageContainer.addEventListener('scroll', handleMenuOnScroll);
+    pageContainer.addEventListener('scroll', handleNavOnScroll);
     scrollEventFlag = true;
   }
 });
@@ -783,10 +829,6 @@ pageContainer.addEventListener('wheel', () => {
 [...menuLinks].forEach((link, index) => {
   link.addEventListener('click', () => handleMenuItemClick(index));
 });
-
-navigationPrevButton.addEventListener('click', navigateToSection);
-navigationNextButton.addEventListener('click', navigateToSection);
-navigationMainButton.addEventListener('click', () => console.log('main'));
 burgerButton.addEventListener('click', handleBurgerButton);
 //: RESUME                                                             ://
 [...resumeButtons].forEach((button, index) => {
