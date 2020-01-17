@@ -605,8 +605,6 @@ const handleNavOnScroll = (e) => {
 
     currentNavigationIndex = updatedNavigationIndex;
 
-    console.log('updatedNavigationIndex', updatedNavigationIndex);
-
     for (let child of navigation.children) {
       child.classList.add(`navigation__button--${nextId}`);
       handlePrevNextButtonsVisibility(currentNavigationIndex, 'hide');
@@ -619,36 +617,30 @@ const handleNavOnClick = (index, action) => {
   if (action === 'activate') {
     for (let child of navigation.children) {
       child.classList.add(`navigation__button--${currentId}`);
-      handlePrevNextButtonsVisibility(currentNavigationIndex, 'hide');
+      handlePrevNextButtonsVisibility(index, 'hide');
     }
   } else if (action === 'deactivate') {
     for (let child of navigation.children) {
       child.classList.remove(`navigation__button--${currentId}`);
-      handlePrevNextButtonsVisibility(currentNavigationIndex, 'show');
+      handlePrevNextButtonsVisibility(index, 'show');
     }
   }
 }
 //| HANDLE JUMPING TO ANOTHER SECTION USING NAVIGATION                      |//
 const navigateToSection = (e) => {
+  //: activate scroll events                                                |//
+  pageContainer.addEventListener('scroll', handleMenuOnScroll);
+  pageContainer.addEventListener('scroll', handleNavOnScroll);
+  scrollEventFlag = true;
+  //: get target index                                                      |//
   const targetIndex = e.target === navigationPrevButton
-  ? lastMenuItemIndex > 0
-    ? --lastMenuItemIndex
+  ? currentNavigationIndex > 0
+    ? --currentNavigationIndex
     : 0
   : lastMenuItemIndex < pageSections.length - 1
     ? ++lastMenuItemIndex
     : pageSections.length - 1;
-
-
-
-
-
-
-
-
-
-
-
-  
+  //: scroll to target index                                                |//
   const sectionOffset = sections[targetIndex].offset;
   pageContainer.scrollTo(0, sectionOffset);
 }
