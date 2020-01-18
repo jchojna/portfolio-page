@@ -1,12 +1,7 @@
 //| UPDATE MENU ITEMS OFFSETS                                               |//
 const updateMenuItemsOffsets = () => {
   [...items].forEach(item => {
-    item.offset = item.node.offsetTop;
-  });
-}
-const updateItemsIds = () => {
-  [...items].forEach(item => {
-    item.currentSectionIndex = getCurrentSectionIndex(item.offset);
+    item.offset = item.node.offsetTop + menu.offsetTop;
   });
 }
 //| UPDATE SECTIONS OFFSETS                                                 |//
@@ -921,6 +916,7 @@ if (window.innerWidth < mediaDesktop) {
 //| EVENT LISTENERS                                                         |//
 //: MENU AND NAVIGATION                                                ://
 window.addEventListener('resize', updateSectionsOffsets);
+window.addEventListener('resize', updateMenuItemsOffsets);
 pageHeader.addEventListener('resize', handleIntroBox);
 pageHeader.addEventListener('scroll', handleIntroBox);
 
