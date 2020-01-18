@@ -20,7 +20,7 @@ $navigation-border-arrow: 10px;
 $navigation-offset: 70px;
 $navigation-padding: 20px;
 $navigation-size-arrows: 90px;
-$navigation-size-main: $navigation-size-arrows - ($navigation-border-arrow * 2) + 2px;
+$navigation-size-back: $navigation-size-arrows - ($navigation-border-arrow * 2) + 2px;
 $navigation-size-button: $navigation-size-arrows + ($navigation-padding * 2);
 $navigation-time: 0.3s;
 $navigation-time-delay: 1s;

@@ -30,7 +30,7 @@
         transform: translateY($navigation-offset * -2);
       }
     
-      &--main {
+      &--back {
         transform: translateY($navigation-offset * -1);
       }
     }
@@ -40,10 +40,10 @@
       transition: border-color $navigation-time, transform $navigation-time;
     }
   
-    &:hover &__icon--main {
-      border-width: $navigation-size-main / 2;
-      height: $navigation-size-main;
-      width: $navigation-size-main;
+    &:hover &__icon--back {
+      border-width: $navigation-size-back / 2;
+      height: $navigation-size-back;
+      width: $navigation-size-back;
       transition:
         border-color $navigation-time,
         border-width $navigation-time $navigation-time-rotate,
@@ -147,7 +147,7 @@
       height: $navigation-size-arrows;
       width: $navigation-size-arrows;
   
-      &--main {
+      &--back {
         border-width: $navigation-size-arrows / 2;
         transition:
           border-color $navigation-time,

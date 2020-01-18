@@ -63,12 +63,9 @@ const handleIntroBox = (e) => {
     : false;
   }
   const currentYOffset = items[lastMenuItemIndex].offset;
-  const itemHeight = items[lastMenuItemIndex].height;
   const viewOffset = pageHeader.scrollTop;
   //: assign size and position                                         ://
   introBox.style.top = `${currentYOffset - viewOffset}px`;
-  introBox.style.height = `${itemHeight}px`;
-  introBox.style.width = `${itemHeight}px`;
 }
 //| end of HANDLE INTROBOX                                                  |//
 //| HANDLE MENU IN INTRO MODE                                               |//
@@ -243,15 +240,11 @@ const handleMenuItemClick = (activeIndex) => {
      ######
     */
     //: handle introBox                                                     ://
+    introBox.style.top = '';
     introBox.classList.add('visuals__introBox--content');
-    introBox.style.height = '100%';
-    introBox.style.top = 0;
-    introBox.style.width = '100%';
-    //: handle menu items and indicator                                     ://
-    handleMenuOnClick(lastMenuItemIndex, 'deactivate');
-    lastMenuItemIndex = activeIndex; // ! what if both are the same
-    handleMenuOnClick(lastMenuItemIndex, 'activate');
-    updateSectionsOffsets();
+    introBox.classList.add('visuals__introBox--halfWindow');
+    //: handle menu indicator                                               ://
+    menuIndicator.classList.add('pageHeader__indicator--animated');
     handleMenuIndicator(lastMenuItemIndex);
     //: remove events                                                       ://
     menu.removeEventListener('mousemove', handleIntroMenu);
@@ -259,19 +252,12 @@ const handleMenuItemClick = (activeIndex) => {
     pageContainer.removeEventListener('scroll', handleNavOnScroll);
     scrollEventFlag = false;
     //: handle navigation appearance                                        ://
+    updateSectionsOffsets();
     if (currentNavigationIndex !== null) {
       handleNavOnClick(currentNavigationIndex, 'deactivate');
     }
     currentNavigationIndex = activeIndex;
     handleNavOnClick(currentNavigationIndex, 'activate');
-
-
-
-
-
-
-
-
 
     //:                                                                     ://
     /*
@@ -286,26 +272,22 @@ const handleMenuItemClick = (activeIndex) => {
     //: set first timeout                                                   ://
     clearTimeout(menuLgFirstTimeoutId);
     menuLgFirstTimeoutId = setTimeout(() => {
+      //: handle menu items and indicator                                     ://
+      handleMenuOnClick(lastMenuItemIndex, 'deactivate');
+      lastMenuItemIndex = activeIndex; // ! what if both are the same
+      handleMenuOnClick(lastMenuItemIndex, 'activate');
       //: translate menu and content to the left of the screen              ://
       menu.classList.remove('menu--intro');
       pageContainer.classList.add('pageContainer--visible');
       //: move introBox to the left and make indicator thiner               ://
-      introBox.style.left = 0;
+      introBox.classList.remove('visuals__introBox--centered');
+      introBox.classList.add('visuals__introBox--fullWidth');
       menuIndicator.classList.add('pageHeader__indicator--narrowed');
       //: handle navigation                                                   ://
       navigation.classList.add('navigation--visible');
       navigationPrevButton.addEventListener('click', navigateToSection);
       navigationNextButton.addEventListener('click', navigateToSection);
-      navigationMainButton.addEventListener('click', () => console.log('main'));
-
-
-
-
-
-
-
-
-
+      navigationBackButton.addEventListener('click', handleBackButton);
 
       //.                                                                   .//
       /*
@@ -327,18 +309,8 @@ const handleMenuItemClick = (activeIndex) => {
         //. add navigation buttons transition effects                       .//
         [...navigation.children].forEach(child =>
           child.classList.add('navigation__button--animated'));
-
-
-        
-
-
-
-
-        
-
-
-        
-      }, menuLgSsecondTimeoutInterval);
+          
+      }, menuLgSecondTimeoutInterval);
     }, menuLgFirstTimeoutInterval);   
   }
 }
@@ -532,14 +504,20 @@ const handleMenuOnClick = (activeIndex, action) => {
     [...menuLinks].forEach((link, linkIndex) => {
       link.classList.add(`menu__link--${currentId}`);
       items[linkIndex].currentSectionIndex = activeIndex;
-      if (linkIndex === activeIndex) link.classList.add('menu__link--active');
+      if (linkIndex === activeIndex) {
+        link.classList.add('menu__link--active');
+        link.classList.remove(`menu__link--intro-${currentId}`);
+      }
     });
   //: remove current appearance                                                    ://
   } else if (action === 'deactivate') {
     [...menuLinks].forEach((link, linkIndex) => {
       const currentId = sections[items[linkIndex].currentSectionIndex].id;
       link.classList.remove(`menu__link--${currentId}`);
-      if (linkIndex === activeIndex) link.classList.remove('menu__link--active');
+      if (linkIndex === activeIndex) {
+        link.classList.remove('menu__link--active');
+        link.classList.remove(`menu__link--intro-${currentId}`);
+      }
     });
   }
 }
@@ -550,6 +528,122 @@ const handleMenuIndicator = (index) => {
   menuIndicator.style.top = `${offset}px`;
 }
 //| end of HANDLE MENU INDICATOR                                            |//
+/*
+########     ###     ######  ##    ##
+##     ##   ## ##   ##    ## ##   ##
+##     ##  ##   ##  ##       ##  ##
+########  ##     ## ##       #####
+##     ## ######### ##       ##  ##
+##     ## ##     ## ##    ## ##   ##
+########  ##     ##  ######  ##    ##
+*/
+//| HANDLE BACK TO INTRO BUTTON                                             |//
+const handleBackButton = () => {
+  const currentId = sections[lastMenuItemIndex].id;
+  /*
+     ##
+   ####
+     ##
+     ##
+     ##
+     ##
+   ######
+  */
+  //: handle intro background                                               ://
+  menuUpperBackground.classList.remove('visuals__background--hidden');
+  menuBottomBackground.classList.remove('visuals__background--hidden');
+  //: handle menu indicator                                                 ://
+  menuIndicator.classList.remove('pageHeader__indicator--narrowed');
+  menuIndicator.classList.add('pageHeader__indicator--centered');
+  //: handle introBox                                                       ://
+  introBox.classList.add('visuals__introBox--centered');
+  introBox.classList.remove('visuals__introBox--fullWindow');
+  introBox.classList.add('visuals__introBox--visible');
+  introBox.classList.add(`visuals__introBox--${currentId}`);
+  //: translate menu and content back to the right of the screen            ://
+  menu.classList.add('menu--intro');
+  pageContainer.classList.remove('pageContainer--visible');
+  pageContainer.classList.remove('pageContainer--smooth');
+  //: deactivate each menu item                                             ://
+  [...menuItems].forEach(item => item.classList.add('menu__item--inactive'));
+  //: handle navigation                                                     ://
+  navigation.classList.remove('navigation--visible');
+  navigationPrevButton.removeEventListener('click', navigateToSection);
+  navigationNextButton.removeEventListener('click', navigateToSection);
+  navigationBackButton.removeEventListener('click', handleBackButton);
+  //: remove navigation buttons transition effects                          ://
+  [...navigation.children].forEach(child =>
+    child.classList.remove('navigation__button--animated'));
+  //: change colors of menu items to default                                ://
+  handleMenuOnClick(lastMenuItemIndex, 'deactivate');
+  menuLinks[lastMenuItemIndex].classList.add(`menu__link--intro-${currentId}`);
+  //:                                                                       ://
+  /*
+   #######
+  ##     ##
+         ##
+   #######
+  ##
+  ##
+  #########
+  */
+  //: add first timeout                                                     ://
+  clearTimeout(menuLgFirstTimeoutId);
+  clearTimeout(menuLgSecondTimeoutId);
+  menuLgFirstTimeoutId = setTimeout(() => {
+    
+    //. handle introBox                                                     .//
+    introBox.style.top = `${items[lastMenuItemIndex].offset}px`;
+    introBox.classList.remove('visuals__introBox--halfWindow');
+
+
+
+
+
+
+
+
+
+
+    //.                                                                     .//
+    /*
+     #######
+    ##     ##
+           ##
+     #######
+           ##
+    ##     ##
+     #######
+    */
+    //: add second timeout                                                  ://
+    menuLgSecondTimeoutId = setTimeout(() => {
+      
+      introBox.classList.remove('visuals__introBox--content');
+      //. handle menu indicator                                             .//
+      menuIndicator.classList.remove('pageHeader__indicator--animated');
+      menuIndicator.classList.remove('pageHeader__indicator--centered');
+      menuIndicator.style.top = '';
+      
+      
+      
+      //. handle event                                                      .//
+      //menu.classList.remove('menu--inactive');
+      menu.addEventListener('mousemove', handleIntroMenu);
+      //. activate each menu item                                           .//
+      [...menuItems].forEach(item => item.classList.remove('menu__item--inactive'));
+
+
+
+
+
+
+
+
+    }, menuLgSecondTimeoutInterval);
+  }, menuLgFirstTimeoutInterval);
+  //: end of timeout                                                        ://
+}
+//| end of HANDLE BACK TO INTRO BUTTON                                      |//
 /*
 ##    ##    ###    ##     ##
 ###   ##   ## ##   ##     ##
@@ -718,7 +812,7 @@ let menuLgSecondTimeoutId = null;
 const menuSmFirstTimeoutInterval = 300;
 const menuSmSecondTimeoutInterval = 600;
 const menuLgFirstTimeoutInterval = 500;
-const menuLgSsecondTimeoutInterval = 500;
+const menuLgSecondTimeoutInterval = 500;
 //: MENU AND NAVIGATION                                                     ://
 const pageHeader = document.querySelector('.pageHeader--js');
 const introBox = document.querySelector('.visuals__introBox--js');
@@ -735,7 +829,7 @@ const menuLabels = document.querySelectorAll('.label--js');
 
 //: NAVIGATION                                                              ://
 const navigation = document.querySelector('.navigation--js');
-const navigationMainButton = document.querySelector('.navigation__button--js-main');
+const navigationBackButton = document.querySelector('.navigation__button--js-back');
 const navigationPrevButton = document.querySelector('.navigation__button--js-prev');
 const navigationNextButton = document.querySelector('.navigation__button--js-next');
 let currentNavigationIndex = null;
