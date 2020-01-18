@@ -631,6 +631,110 @@ const handleRepo = (repos) => {
   }    
 }
 //| end of FETCH GITHUB API                                                 |//
+//| HANDLE EXPANDABLE CONTENT                                               |//
+const handleExpandableContent = (contents) => {
+
+  const getChildren = (content) => {
+    if (content.children.length === 0) {
+      return content.innerHTML;
+    } else {
+      let array = [];
+      [...content.children].forEach(child => array = [...array, {
+        html: getChildren(child)
+      }]);
+      return array;
+    }
+  }
+  //: clone content data to array of objects and empty node                 ://
+  [...contents].forEach((content, index) => {
+    contentData = [...contentData, {
+      fullHeight: content.clientHeight,
+      children: getChildren(content),
+      childrenLength: [...content.children].length
+    }];
+    content.innerHTML = '';
+  });
+  console.log('contentData', contentData);
+
+
+
+  
+  //: perform operations                                                    ://
+  [...contents].forEach((content, index) => {
+    //: check if content fits available space                               ://
+    contentData[index].availableHeight = content.clientHeight;
+    const {
+      fullHeight,
+      html,
+      children,
+      childrenLength,
+      availableHeight } = contentData[index];
+
+    if (availableHeight >= fullHeight) {
+      content.innerHTML = html;
+    } else {
+      //: show read more button                                             ://
+      readMoreButtons[index].classList.add('tab__readMore--visible');
+      contentData[index].availableHeight = content.clientHeight;
+      //: perform action on plain text                                      ://
+
+
+
+      const reduceContent = (content) => {
+        if (content.children.length === 0) {
+
+          const contentArray = content.html.split(' ').filter(elem => elem !== '');
+          console.log('contentArray', contentArray);
+
+
+
+
+
+
+
+
+
+
+        } else {
+          [...content.children].forEach(child => reduceContent(child));
+        }
+      }
+
+      reduceContent(contentData[index]);
+
+
+
+
+      /* if (childrenLength === 0) {
+        const contentArray = html.split(' ').filter(elem => elem !== '');
+
+        for (let i = 0; i < contentArray.length; i++) {
+          contentArray.pop();
+          content.innerHTML = `${contentArray.join(' ')} ...`;
+          if (content.clientHeight <= contentData[index].availableHeight) {
+            break;
+          }
+        }
+      //: repeat                                                            ://
+      } else {
+        console.log(index, children);
+        //handleExpandableContent(children);
+
+
+
+      } */
+
+
+
+
+
+
+
+
+    }
+  });
+}
+//| end of HANDLE EXPANDABLE CONTENT                                        |//
 
 //| GLOBAL VARIABLES                                                        |//
 //: INTRO                                                                   ://
@@ -681,6 +785,8 @@ const resumeSubButtons = document.querySelectorAll('.subtab__button--js-resume')
 const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
 const otherProjectsButtons = document.querySelectorAll('.tab__button--js-other');
 
+const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
+
 const sections = [...pageSections].map((section, index) => ({
   index,
   id: section.id,
@@ -696,6 +802,9 @@ const items = [...menuItems].map((item, index) => ({
   currentSectionIndex: getCurrentSectionIndex(item.offsetTop + menu.offsetTop)
 }));
 
+let contentData = [];
+const expandableContent = document.querySelectorAll('.js-expandable');
+
 //| FUNCTION CALLS ON PAGE LOAD                                             |//
 handleIntroMenu();
 //: handle page's accordions                                                ://
@@ -704,6 +813,11 @@ handleAccordion([...resumeTabs]);
 if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
+//: collapse expandable content on page load                                ://
+window.onload = () => {
+  handleExpandableContent(expandableContent);
+};
+
 //: fetch github api                                                        ://
 /* fetch('https://api.github.com/users/jchojna/repos')
   .then(resp => resp.json())

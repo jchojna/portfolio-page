@@ -32,8 +32,11 @@
     display: flex;
     flex-direction: column;
     grid-area: description;
+    height: 100%;
     overflow: initial;
     z-index: 3;
+
+    border: 1px solid #000;
   }
   &--features {
     grid-area: features;
@@ -57,6 +60,7 @@
   @media only screen and (min-width: $media-lg) {
 
     & {
+      margin-top: 0;
 
       &--resume {
         min-height: $tabHeader-size-lg + $tabGap;
@@ -214,8 +218,11 @@
   &__description {
     font-family: 'Antonio Regular';
     font-size: 18px;
+    height: 100%;
     line-height: 1.4;
     margin: 0 $offset-right-sm 0 $offset-left-sm;
+
+    border: 1px solid #000;
 
     &--small {
       font-family: 'Antonio Bold';
@@ -319,11 +326,16 @@
     border: none;
     border-bottom: 2px solid transparent;
     cursor: pointer;
+    display: none;
     font-size: 1em;
     grid-area: readMore;
     margin: 10px $offset-right-sm 10px $offset-left-sm;
     padding: 0.2em 0;
     text-transform: uppercase;
+
+    &--visible {
+      display: block;
+    }
 
     &--tasktimer {
       border-color: $color-tasktimer-light;
@@ -348,6 +360,14 @@
     &--other {
       border-color: $color-other-light;
       color: $color-other-light;
+    }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        margin: 0;
+        margin-top: 10px;
+      }
     }
   }
 }

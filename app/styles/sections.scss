@@ -164,7 +164,7 @@
         &--hydrapp,
         &--archviz,
         &--quotes {
-          column-gap: 30px;
+          gap: 20px;
           grid-template-areas:
           "heading      heading     "
           "description  features    "
