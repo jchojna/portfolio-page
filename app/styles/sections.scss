@@ -16,11 +16,12 @@
       width: 100%;
       height: 100%;
       visibility: hidden;
-      transition: left $menu-lg-second-timeout;
+      transition: left $menu-lg-second-timeout, visibility 0s $menu-lg-second-timeout;
 
       &--visible {
         left: 0;
         visibility: visible;
+        transition: left $menu-lg-second-timeout, visibility 0s;
       }
 
       &--smooth {

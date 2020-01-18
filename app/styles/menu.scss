@@ -26,13 +26,24 @@
         left: 0;
         height: $menu-item-height-lg;
         position: fixed;
+        right: calc(100vw - #{$menu-item-height-lg});
         top: -$menu-item-height-lg;
-        transition: top $time-switch;
-        width: $menu-item-height-lg;
+        z-index: -1;
+
+        &--animated {
+          transition:
+            left $menu-lg-second-timeout 0.3s,
+            right $menu-lg-second-timeout,
+            top $time-switch;
+        }
 
         &--narrowed {
-          width: 20px;
-          transition: top $time-switch, width $menu-lg-second-timeout;
+          right: calc(100vw - (#{$menu-item-height-lg} / 3));
+        }
+
+        &--centered {
+          left: calc(50vw + 10px);
+          right: calc(50vw - 10px);
         }
       }
     }
@@ -84,11 +95,14 @@
     height: $menu-item-height;
     overflow: hidden;
     padding-right: 10px;
+    pointer-events: all;    // ! make possible to enable menu by clicking link name
     visibility: hidden;
     width: 100%;
     transition: height 0.3s;
 
-    pointer-events: all;    // ! make possible to enable menu by clicking link name
+    &--inactive {
+      pointer-events: none;
+    }
 
     &--mobileHeader {
       left: 0;
