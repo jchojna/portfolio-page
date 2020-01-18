@@ -10,15 +10,15 @@ const updateSectionsOffsets = () => {
     section.offset = pageSections[index].offsetTop;
   });
 }
-
-const getCurrentItemIndex = (cursorYPosition) => {  // ! TO REFACTOR
+//| GET CURRENT ITEM INDEX                                                  |//
+const getCurrentItemIndex = (cursorYPosition) => {
   return items.length - 1 - [...items]
     .map(item => item.offset)
     .reverse()
     .findIndex(offset => cursorYPosition >= offset)
 }
-
-const getCurrentSectionIndex = (scrollOffset) => {  // ! TO REFACTOR
+//| GET CURRENT SECTION INDEX                                               |//
+const getCurrentSectionIndex = (scrollOffset) => {
   const currentOffset = window.innerWidth >= mediaDesktop
   ? pageContainer.scrollTop
   : window.pageYOffset;
@@ -28,7 +28,7 @@ const getCurrentSectionIndex = (scrollOffset) => {  // ! TO REFACTOR
     .reverse()
     .findIndex(offset => currentOffset >= offset - scrollOffset);
 }
-
+//| GET CURRENT NAVIGATION INDEX                                            |//
 const getCurrentNavigationIndex = () => {
   const navigationOffset = navigation.offsetTop + navigation.clientHeight / 2;
   return getCurrentSectionIndex(navigationOffset);
@@ -96,21 +96,11 @@ const handleMenuItemChange = (index) => {
 //| end of HANDLE MENU ITEMS SINGLE CHANGE                                  |//
 //| HANDLE MENU ITEMS                                                       |//
 const handleMenuItemClick = (e) => {
-
   const activeIndex = e.target.index;
+  updateSectionsOffsets();
   isMenuTransformMode = true;
-  /*
-   ######  ##     ##
-  ##    ## ###   ###
-  ##       #### ####
-   ######  ## ### ##
-        ## ##     ##
-  ##    ## ##     ##
-   ######  ##     ##
-  */
   //| HANDLE MENU ITEMS ON MOBILE DEVICES                                   |//
   if (window.innerWidth < mediaTablet) {
-    
     //. variables                                                           .//
     const windowHeight = window.innerHeight;
     const clickedItemHeight = items[activeIndex].height;
@@ -119,15 +109,6 @@ const handleMenuItemClick = (e) => {
     const viewOffset = pageHeader.scrollTop;
     const upperBackgroundHeight = clickedItemHeight + clickedItemOffset - viewOffset;
     const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
-    /*
-       ##
-     ####
-       ##
-       ##
-       ##
-       ##
-     ######
-    */
     //. change items colors and set introbox position                       .//
     handleColorChange(lastMenuItemIndex, 'deactivate');
     lastMenuItemIndex = activeIndex; // ! what if both are the same
@@ -149,15 +130,6 @@ const handleMenuItemClick = (e) => {
     menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
     menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
     //:                                                                     ://
-    /*
-     #######
-    ##     ##
-           ##
-     #######
-    ##
-    ##
-    #########
-    */
     //: add first timeout                                                   ://
     clearTimeout(menuSmFirstTimeoutId);
     clearTimeout(menuSmSecondTimeoutId);
@@ -184,7 +156,6 @@ const handleMenuItemClick = (e) => {
       //. remove pointer events from pageHeader                             .//
       pageHeader.classList.remove('pageHeader--intro');
       //. scroll pageContainer to desired position                          .//
-      updateSectionsOffsets();
       window.scrollTo({
         left: 0,
         top: sections[activeIndex].offset,
@@ -193,15 +164,6 @@ const handleMenuItemClick = (e) => {
       //. add event handling mobile header appearance                       .//
       window.addEventListener('scroll', handleMobileHeader);
       //:                                                                   ://
-      /*
-       #######
-      ##     ##
-             ##
-       #######
-             ##
-      ##     ##
-       #######
-      */
       //: add second timeout                                                ://
       menuSmSecondTimeoutId = setTimeout(() => {
         //. handle menu items                                               .//
@@ -226,44 +188,26 @@ const handleMenuItemClick = (e) => {
         isMenuTransformMode = false;
       }, menuSmSecondTimeoutInterval);
     }, menuSmFirstTimeoutInterval);
-    //: end of timeout                                                      ://
-
-  /*
-  ##        ######
-  ##       ##    ##
-  ##       ##
-  ##       ##   ####
-  ##       ##    ##
-  ##       ##    ##
-  ########  ######
-  */
+    //: end of timeouts                                                     ://
+  //| end of HANDLE MENU ITEMS ON MOBILE DEVICES                            ///
   //| HANDLE MENU ITEMS ON LARGE SCREEN DEVICES                             |//
   } else if (window.innerWidth >= mediaDesktop && !isBackToIntroMode) {
-    /*
-       ##
-     ####
-       ##
-       ##
-       ##
-       ##
-     ######
-    */
     //. handle introBox                                                     .//
-    introBox.style.top = `${items[activeIndex].offset}px`;
     introBox.style.top = 0;
     introBox.classList.add('visuals__introBox--content');
     introBox.classList.add('visuals__introBox--halfWindow');
     //. handle menu indicator                                               .//
     menuIndicator.classList.add('pageHeader__indicator--animated');
+    //. handle menu items change only when content is visible               .//
     if (!isIntroMode) handleMenuItemChange(activeIndex);
+    //. handle color of menu items and introBox on click                    .//
     handleColorChange(lastMenuItemIndex, 'deactivate');
     handleColorChange(activeIndex, 'activate');
-    //. remove events                                                       .//
+    //. remove scroll events                                                .//
     pageContainer.removeEventListener('scroll', handleMenuOnScroll);
     pageContainer.removeEventListener('scroll', handleNavOnScroll);
     scrollEventFlag = false;
     //. handle navigation appearance                                        .//
-    updateSectionsOffsets();
     if (currentNavigationIndex !== null) {
       handleNavOnClick(currentNavigationIndex, 'deactivate');
     }
@@ -271,28 +215,11 @@ const handleMenuItemClick = (e) => {
     handleNavOnClick(currentNavigationIndex, 'activate');
 
     //:                                                                     ://
-    /*
-     #######
-    ##     ##
-           ##
-     #######
-    ##
-    ##
-    #########
-    */
     //: set first timeout                                                   ://
     clearTimeout(menuLgFirstTimeoutId);
     menuLgFirstTimeoutId = setTimeout(() => {
-      //. handle menu items and indicator                                   .//
+      //. handle menu items change only when intro mode is active           .//
       if (isIntroMode) handleMenuItemChange(activeIndex);
-
-
-
-
-
-
-
-
       //. translate menu and content to the left of the screen              .//
       menu.classList.remove('menu--intro');
       pageContainer.classList.add('pageContainer--visible');
@@ -307,45 +234,27 @@ const handleMenuItemClick = (e) => {
       navigationBackButton.addEventListener('click', handleBackButton);
 
       //:                                                                   ://
-      /*
-       #######
-      ##     ##
-             ##
-       #######
-             ##
-      ##     ##
-       #######
-      */
       //: set second timeout                                                ://
       menuLgSecondTimeoutId = setTimeout(() => {
-        
+        //. add smooth scrolling to page container                          .//
         pageContainer.classList.add('pageContainer--smooth');
+        //. hide menu backgrounds                                           .//
         menuUpperBackground.classList.add('visuals__background--hidden');
         menuBottomBackground.classList.add('visuals__background--hidden');
+        //. hide introBox                                                   .//
         introBox.classList.remove('visuals__introBox--visible');
-        //. add navigation buttons transition effects                       .//
+        //. add transition effects to navigation buttons                    .//
         [...navigation.children].forEach(child =>
           child.classList.add('navigation__button--animated'));
-
-        
+        //. handle global flags                                             .//
         isIntroMode = false;
         isMenuTransformMode = true;
-          
       }, menuLgSecondTimeoutInterval);
     }, menuLgFirstTimeoutInterval);   
     //: end of timeout                                                      ://
   }
 }
 //| end of HANDLE MENU ITEMS ON MOBILE DEVICES                              |//
-/*
-########  ##     ## ########   ######   ######## ########
-##     ## ##     ## ##     ## ##    ##  ##       ##     ##
-##     ## ##     ## ##     ## ##        ##       ##     ##
-########  ##     ## ########  ##   #### ######   ########
-##     ## ##     ## ##   ##   ##    ##  ##       ##   ##
-##     ## ##     ## ##    ##  ##    ##  ##       ##    ##
-########   #######  ##     ##  ######   ######## ##     ##
-*/
 //| BURGER BUTTON HANDLER                                                   |//
 const handleBurgerButton = () => {
   //. variables                                                             .//
@@ -357,15 +266,7 @@ const handleBurgerButton = () => {
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
   const upwardsOffset = activeItemOffset;
   const downwardsOffset = windowHeight - activeItemOffset - activeItemHeight;
-  /*
-     ##
-   ####
-     ##
-     ##
-     ##
-     ##
-   ######
-  */
+
   isMenuTransformMode = true;
   //. hide burger button                                                    .//
   burgerButton.classList.remove('burgerButton--visible');
@@ -391,15 +292,6 @@ const handleBurgerButton = () => {
   menuUpperBackground.classList.remove(`visuals__background--${activeId}`);
 
   //:                                                                       ://
-  /*
-   #######
-  ##     ##
-         ##
-   #######
-  ##
-  ##
-  #########
-  */
   //: add first timeout                                                     ://
   clearTimeout(menuSmFirstTimeoutId);
   clearTimeout(menuSmSecondTimeoutId);
@@ -419,15 +311,6 @@ const handleBurgerButton = () => {
     window.removeEventListener('scroll', handleMobileHeader);
 
     //:                                                                     ://
-    /*
-     #######
-    ##     ##
-           ##
-     #######
-           ##
-    ##     ##
-     #######
-    */
     //: add second timeout                                                  ://
     menuSmSecondTimeoutId = setTimeout(() => {
       window.scrollTo(0,0);
@@ -486,15 +369,6 @@ const handleMobileHeader = () => {
   } 
 }
 //| end of HANDLE MOBILE HEADER CHANGE                                      |//
-/*
-########  ########  ######  ##    ## ########  #######  ########
-##     ## ##       ##    ## ##   ##     ##    ##     ## ##     ##
-##     ## ##       ##       ##  ##      ##    ##     ## ##     ##
-##     ## ######    ######  #####       ##    ##     ## ########
-##     ## ##             ## ##  ##      ##    ##     ## ##
-##     ## ##       ##    ## ##   ##     ##    ##     ## ##
-########  ########  ######  ##    ##    ##     #######  ##
-*/
 //| HANDLE MENU ITEMS ON SCROLL EVENT                                       |//
 const handleMenuOnScroll = () => {
   //: handle indicator and active menu item on section change               ://
@@ -502,7 +376,7 @@ const handleMenuOnScroll = () => {
   if (newMenuItemIndex !== lastMenuItemIndex) {
     menuLinks[lastMenuItemIndex].classList.remove('menu__link--active');
     introBox.classList.remove(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
-    //: index change                                                        ://
+    //. index change                                                        .//
     lastMenuItemIndex = newMenuItemIndex;
     menuLinks[lastMenuItemIndex].classList.add('menu__link--active');
     introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
@@ -556,29 +430,11 @@ const handleMenuIndicator = (index) => {
   menuIndicator.style.top = `${offset}px`;
 }
 //| end of HANDLE MENU INDICATOR                                            |//
-/*
-########     ###     ######  ##    ##
-##     ##   ## ##   ##    ## ##   ##
-##     ##  ##   ##  ##       ##  ##
-########  ##     ## ##       #####
-##     ## ######### ##       ##  ##
-##     ## ##     ## ##    ## ##   ##
-########  ##     ##  ######  ##    ##
-*/
 //| HANDLE BACK TO INTRO BUTTON                                             |//
 const handleBackButton = () => {
   const currentId = sections[lastMenuItemIndex].id;
   isBackToIntroMode = true;
   isMenuTransformMode = true;
-  /*
-     ##
-   ####
-     ##
-     ##
-     ##
-     ##
-   ######
-  */
   //. handle intro background                                               .//
   menuUpperBackground.classList.remove('visuals__background--hidden');
   menuBottomBackground.classList.remove('visuals__background--hidden');
@@ -599,85 +455,38 @@ const handleBackButton = () => {
   navigationPrevButton.removeEventListener('click', navigateToSection);
   navigationNextButton.removeEventListener('click', navigateToSection);
   navigationBackButton.removeEventListener('click', handleBackButton);
-  //. remove navigation buttons transition effects                          .//
+  //. remove transition effects from navigation buttons                     .//
   [...navigation.children].forEach(child =>
     child.classList.remove('navigation__button--animated'));
   //. change colors of menu items to default                                .//
   handleMenuOnClick(lastMenuItemIndex, 'deactivate');
   menuLinks[lastMenuItemIndex].classList.add(`menu__link--intro-${currentId}`);
   //:                                                                       ://
-  /*
-   #######
-  ##     ##
-         ##
-   #######
-  ##
-  ##
-  #########
-  */
   //: add first timeout                                                     ://
   clearTimeout(menuLgFirstTimeoutId);
   clearTimeout(menuLgSecondTimeoutId);
   menuLgFirstTimeoutId = setTimeout(() => {
-    
     //. handle introBox                                                     .//
     introBox.style.top = `${items[lastMenuItemIndex].offset}px`;
     introBox.classList.remove('visuals__introBox--halfWindow');
-
-
-
-
-
-
-
-
-
-
     //:                                                                     ://
-    /*
-     #######
-    ##     ##
-           ##
-     #######
-           ##
-    ##     ##
-     #######
-    */
     //: add second timeout                                                  ://
     menuLgSecondTimeoutId = setTimeout(() => {
-      
+      //. handle introBox                                                   .//
       introBox.classList.remove('visuals__introBox--content');
       //. handle menu indicator                                             .//
       menuIndicator.classList.remove('pageHeader__indicator--animated');
       menuIndicator.classList.remove('pageHeader__indicator--centered');
       menuIndicator.style.top = '';
-      
-      
-      
-      //. handle event                                                      .//
-
-
-
+      //. handle global flags                                               .//
       isIntroMode = true;
       isBackToIntroMode = false;
       isMenuTransformMode = false;
-
-
-
     }, menuLgSecondTimeoutInterval);
   }, menuLgFirstTimeoutInterval);
   //: end of timeout                                                        ://
 }
 //| end of HANDLE BACK TO INTRO BUTTON                                      |//
-/*
-##    ##    ###    ##     ##
-###   ##   ## ##   ##     ##
-####  ##  ##   ##  ##     ##
-## ## ## ##     ## ##     ##
-##  #### #########  ##   ##
-##   ### ##     ##   ## ##
-##    ## ##     ##    ###
-*/
 //| HANDLE PREVIOUS AND NEXT BUTTON VISIBILITY                              |//
 const handlePrevNextButtonsVisibility = (index, action) => {
   const lastElementIndex = sections.length - 1;
@@ -887,31 +696,19 @@ const items = [...menuItems].map((item, index) => ({
   currentSectionIndex: getCurrentSectionIndex(item.offsetTop + menu.offsetTop)
 }));
 
-
 //| FUNCTION CALLS ON PAGE LOAD                                             |//
-//let currentGlobalSectionIndex = getCurrentSectionIndex(sectionScrollOffset);
-// assign active menu link
-//handleActiveMenuLink(currentGlobalSectionIndex, 'set');
-// assign colors to menu links
-/* [...menuLinks].forEach(link => {
-  link.classList.add(`menu__link--${sections[currentGlobalSectionIndex].id}`)
-}); */
-
 handleIntroMenu();
-
-//: handle page's accordions                                           ://
+//: handle page's accordions                                                ://
 handleAccordion([...resumeSubtabs]);
 handleAccordion([...resumeTabs]);
 if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
-
-
+//: fetch github api                                                        ://
 /* fetch('https://api.github.com/users/jchojna/repos')
   .then(resp => resp.json())
   .then(resp => handleRepo(resp)); */
 // ! project id must fit repo id
-//| EVENT HANDLERS                                                          |//
 
 //| EVENT LISTENERS                                                         |//
 //: MENU AND NAVIGATION                                                ://
