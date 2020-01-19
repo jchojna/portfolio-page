@@ -634,103 +634,91 @@ const handleRepo = (repos) => {
 //| HANDLE EXPANDABLE CONTENT                                               |//
 const handleExpandableContent = (contents) => {
 
-  const getChildren = (content) => {
-    if (content.children.length === 0) {
-      return content.innerHTML;
+  //: recursive function handling reduced content creation                  ://
+  //: it can handle both plain text and nested elements like lists          ://
+  const reduceContent = (data, container, maxHeight, parentContainer) => {
+    
+    if (data.children.length === 0) {
+    
+      const dataArray = data.html.split(' ').filter(elem => elem !== '');
+
+      for (let i = 0; i < dataArray.length; i++) {
+        dataArray.pop();
+        container.innerHTML = `${dataArray.join(' ')} ...`;
+        if (parentContainer.clientHeight <= maxHeight) {
+          break;
+        }
+      }
+
     } else {
-      let array = [];
-      [...content.children].forEach(child => array = [...array, {
-        html: getChildren(child)
-      }]);
-      return array;
+
+      const listArray = data.children.map(child => child.html);
+
+      for (let i = 0; i < container.children.length; i++) {
+        container.children[i].innerHTML = listArray[i];
+
+        if (parentContainer.clientHeight > maxHeight) {
+
+          reduceContent(data.children[i], container.children[i], maxHeight, parentContainer);
+          while (container.children.length - 1 > i) {
+            container.removeChild(container.lastElementChild);
+          }
+          break;
+        }
+      }
+    }
+  }
+
+  const getChildren = (content) => {
+    let array = [];
+    [...content.children].forEach(child => array = [...array, {
+      html: child.innerHTML,
+      children: getChildren(child)
+    }]);
+    return array;
+  }
+
+  const emptyContent = (content) => {
+    if (content.children.length === 0) {
+      content.textContent = '';
+    } else {
+      [...content.children].forEach(child => emptyContent(child));
     }
   }
   //: clone content data to array of objects and empty node                 ://
   [...contents].forEach((content, index) => {
     contentData = [...contentData, {
       fullHeight: content.clientHeight,
-      children: getChildren(content),
-      childrenLength: [...content.children].length
+      html: content.innerHTML,
+      children: getChildren(content)
     }];
-    content.innerHTML = '';
+    emptyContent(content);
   });
-  console.log('contentData', contentData);
-
-
-
   
-  //: perform operations                                                    ://
+  //: add data from contentData to empty content                            ://
   [...contents].forEach((content, index) => {
-    //: check if content fits available space                               ://
-    contentData[index].availableHeight = content.clientHeight;
-    const {
-      fullHeight,
-      html,
-      children,
-      childrenLength,
-      availableHeight } = contentData[index];
+    //. check if content fits available space                               .//
+    const currentContentData = contentData[index];
+    content.parentNode.style.height = '100%';
+    currentContentData.availableHeight = content.clientHeight;
 
+    const { availableHeight, fullHeight, html } = currentContentData;
+    console.log(index);
+    console.log('fullHeight', fullHeight);
+    console.log('availableHeight', availableHeight);
+
+    //. put all content back to its place                                   .//
     if (availableHeight >= fullHeight) {
       content.innerHTML = html;
     } else {
-      //: show read more button                                             ://
+      //. show read more button                                             .//
       readMoreButtons[index].classList.add('tab__readMore--visible');
       contentData[index].availableHeight = content.clientHeight;
-      //: perform action on plain text                                      ://
+      const { availableHeight } = currentContentData;
+      
 
-
-
-      const reduceContent = (content) => {
-        if (content.children.length === 0) {
-
-          const contentArray = content.html.split(' ').filter(elem => elem !== '');
-          console.log('contentArray', contentArray);
-
-
-
-
-
-
-
-
-
-
-        } else {
-          [...content.children].forEach(child => reduceContent(child));
-        }
-      }
-
-      reduceContent(contentData[index]);
-
-
-
-
-      /* if (childrenLength === 0) {
-        const contentArray = html.split(' ').filter(elem => elem !== '');
-
-        for (let i = 0; i < contentArray.length; i++) {
-          contentArray.pop();
-          content.innerHTML = `${contentArray.join(' ')} ...`;
-          if (content.clientHeight <= contentData[index].availableHeight) {
-            break;
-          }
-        }
-      //: repeat                                                            ://
-      } else {
-        console.log(index, children);
-        //handleExpandableContent(children);
-
-
-
-      } */
-
-
-
-
-
-
-
-
+      //. reduce content                                                    .//
+      reduceContent(currentContentData, content, availableHeight, content);
     }
   });
 }

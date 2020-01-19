@@ -32,11 +32,8 @@
     display: flex;
     flex-direction: column;
     grid-area: description;
-    height: 100%;
     overflow: initial;
     z-index: 3;
-
-    border: 1px solid #000;
   }
   &--features {
     grid-area: features;
@@ -221,8 +218,6 @@
     height: 100%;
     line-height: 1.4;
     margin: 0 $offset-right-sm 0 $offset-left-sm;
-
-    border: 1px solid #000;
 
     &--small {
       font-family: 'Antonio Bold';
