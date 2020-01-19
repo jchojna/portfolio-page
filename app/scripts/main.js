@@ -636,30 +636,34 @@ const handleExpandableContent = (contents) => {
 
   //: recursive function handling reduced content creation                  ://
   //: it can handle both plain text and nested elements like lists          ://
-  const reduceContent = (data, container, maxHeight, parentContainer) => {
-    
+  //: data - content to be reduced                                          ://
+  //: container - node which got empty in order to receive reduced content  ://
+  //: available - available space to contain reduced content                ://
+  //: parent - root container to obtain current content height at the time  ://
+  const reduceContent = (data, container, available, parent) => {
+    //. if cloned content does not contain any children nodes               .//
     if (data.children.length === 0) {
-    
-      const dataArray = data.html.split(' ').filter(elem => elem !== '');
-
-      for (let i = 0; i < dataArray.length; i++) {
-        dataArray.pop();
-        container.innerHTML = `${dataArray.join(' ')} ...`;
-        if (parentContainer.clientHeight <= maxHeight) {
-          break;
-        }
+      //. create array of particular words                                  .//
+      const wordsArray = data.html.split(' ').filter(elem => elem !== '');
+      //. remove words starting from the end until content fits space       .//
+      for (let i = 0; i < wordsArray.length; i++) {
+        wordsArray.pop();
+        container.innerHTML = `${wordsArray.join(' ')} ...`;
+        if (parent.clientHeight <= available) break;
       }
-
+    //. if cloned content contains children nodes                           .//
     } else {
-
-      const listArray = data.children.map(child => child.html);
-
+      //. create array of each node's html content                          .//
+      const nodesArray = data.children.map(child => child.html);
+      //. add consectuive nodes content until it extends available space    .//
       for (let i = 0; i < container.children.length; i++) {
-        container.children[i].innerHTML = listArray[i];
-
-        if (parentContainer.clientHeight > maxHeight) {
-
-          reduceContent(data.children[i], container.children[i], maxHeight, parentContainer);
+        const dataNode = data.children[i];
+        const containerNode = container.children[i];
+        containerNode.innerHTML = nodesArray[i];
+        if (parent.clientHeight > available) {
+          //. repeat the operations on particular nodes                     .//
+          reduceContent(dataNode, containerNode, available, parent);
+          //. remove unnecessary empty nodes outside available space        .//
           while (container.children.length - 1 > i) {
             container.removeChild(container.lastElementChild);
           }
@@ -668,7 +672,7 @@ const handleExpandableContent = (contents) => {
       }
     }
   }
-
+  //: aquire html and children of every children node and its own children  ://
   const getChildren = (content) => {
     let array = [];
     [...content.children].forEach(child => array = [...array, {
@@ -677,7 +681,7 @@ const handleExpandableContent = (contents) => {
     }]);
     return array;
   }
-
+  //: empty content of every node, including the nested ones                ://
   const emptyContent = (content) => {
     if (content.children.length === 0) {
       content.textContent = '';
@@ -685,8 +689,8 @@ const handleExpandableContent = (contents) => {
       [...content.children].forEach(child => emptyContent(child));
     }
   }
-  //: clone content data to array of objects and empty node                 ://
-  [...contents].forEach((content, index) => {
+  //: clone content data to an array of objects and empty node              ://
+  [...contents].forEach(content => {
     contentData = [...contentData, {
       fullHeight: content.clientHeight,
       html: content.innerHTML,
@@ -694,30 +698,22 @@ const handleExpandableContent = (contents) => {
     }];
     emptyContent(content);
   });
-  
-  //: add data from contentData to empty content                            ://
+  //: add data from content database to empty content                       ://
   [...contents].forEach((content, index) => {
-    //. check if content fits available space                               .//
     const currentContentData = contentData[index];
+    //. get available space for reduced content                             .//
     content.parentNode.style.height = '100%';
     currentContentData.availableHeight = content.clientHeight;
-
     const { availableHeight, fullHeight, html } = currentContentData;
-    console.log(index);
-    console.log('fullHeight', fullHeight);
-    console.log('availableHeight', availableHeight);
-
-    //. put all content back to its place                                   .//
+    //. check if content fits available space                               .//
     if (availableHeight >= fullHeight) {
       content.innerHTML = html;
     } else {
-      //. show read more button                                             .//
+      //. show read more button and update available space                  .//
       readMoreButtons[index].classList.add('tab__readMore--visible');
       contentData[index].availableHeight = content.clientHeight;
       const { availableHeight } = currentContentData;
-      
-
-      //. reduce content                                                    .//
+      //. reduce content using recursive function                           .//
       reduceContent(currentContentData, content, availableHeight, content);
     }
   });
