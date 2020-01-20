@@ -1,5 +1,36 @@
-.contentHidden {
-  display: none;
+.wrapper {
+  position: relative;
+  transition: height 1s;
+  border: 1px solid #000;
+  overflow: hidden;
+}
+
+.expandableHidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  visibility: hidden;
+  transition: visibility 0s;
+}
+
+.expandableVisible {
+  visibility: visible;
+  transition: visibility 0s 1s;
+}
+
+.expandedHidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  visibility: hidden;
+  transition: visibility 0s 1s;
+}
+
+.expandedVisible {
+  visibility: visible;
+  transition: visibility 0s;
 }
 
 .dots {

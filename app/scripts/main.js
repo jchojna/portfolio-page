@@ -700,10 +700,21 @@ const handleExpandableContent = (contents) => {
     content.style.height = '100%';
     contentData = [...contentData, {
       fullHeight: content.clientHeight,
-      parentFullHeight: content.parentNode.clientHeight,
       html: content.innerHTML,
       children: getChildren(content)
     }];
+    //. copy original content node and hide it                              .//
+    const wrapper = document.createElement('div');
+    wrapper.className = 'wrapper';
+    const contentCopy = content.cloneNode(true);
+    contentCopy.classList.remove('js-expandable');
+    contentCopy.classList.add('js-expanded');
+    contentCopy.classList.add('expandedHidden');
+    content.classList.add('expandableVisible');
+    //. wrap content and content copy inside a wrapper                      .//
+    content.parentNode.insertBefore(wrapper, content);
+    wrapper.append(content, contentCopy);
+    //. empty content of original content node                              .//
     emptyContent(content);
   });
   //: add data from content database to empty content                       ://
@@ -712,7 +723,6 @@ const handleExpandableContent = (contents) => {
     //. get available space for reduced content                             .//
     content.parentNode.style.height = '100%';
     contentData[index].availableHeight = content.clientHeight;
-    contentData[index].parentAvailableHeight = content.parentNode.clientHeight;
     const { availableHeight, fullHeight, html } = currentContentData;
     //. check if content fits available space                               .//
     if (availableHeight >= fullHeight) {
@@ -722,10 +732,10 @@ const handleExpandableContent = (contents) => {
       //. show read more button and update available space                  .//
       readMoreButtons[index].classList.add('tab__readMore--visible');
       contentData[index].availableHeight = content.clientHeight;
-      contentData[index].parentAvailableHeight = content.parentNode.clientHeight;
       const { availableHeight } = currentContentData;
       //. reduce content using recursive function                           .//
       reduceContent(currentContentData, content, availableHeight, content);
+      content.parentNode.style.height = `${availableHeight}px`;
     }
   });
 }
@@ -733,35 +743,47 @@ const handleExpandableContent = (contents) => {
 //| HANDLE 'READ MORE' BUTTONS                                              |//
 const handleReadMore = (e) => {
   const { index, parentNode } = e.target;
+  const wrapper = parentNode.querySelector('.wrapper');
   const expandableNode = parentNode.querySelector('.js-expandable');
+  const expandedNode = document.querySelectorAll('.js-expanded')[index];
   const currentContentData = contentData[index];
   const { availableHeight } = currentContentData;
 
+  expandableNode.classList.add('expandable');
+  expandedNode.classList.add('expanded');
+
   //: expand tab                                                            ://
-  if (parentNode.classList.contains('collapsed')) {
+  if (wrapper.classList.contains('collapsed')) {
 
     //: reduce content using recursive function                             ://
-    parentNode.style.height = '';
-    //parentNode.style.height = `${contentData[index].parentFullHeight}px`;
+    wrapper.style.height = `${contentData[index].fullHeight}px`;
 
-    expandableNode.innerHTML = contentData[index].html;
+    expandableNode.classList.add('expandableHidden');
+    expandableNode.classList.remove('expandableVisible');
+    expandedNode.classList.remove('expandedHidden');
+    expandedNode.classList.add('expandedVisible');
+
     //: change buttons label                                                ://
     e.target.innerHTML = 'Show Less';
     //: remove 'collapsed' class flag                                       ://
-    parentNode.classList.remove('collapsed');
+    wrapper.classList.remove('collapsed');
 
   //: collapse tab                                                          ://
   } else {
-    //parentNode.style.height = `${contentData[index].parentHeight}px`;
     
-    //expandableNode.style.height = '';
-    //parentNode.style.height = `${contentData[index].parentAvailableHeight}px`;
-    reduceContent(currentContentData, expandableNode, availableHeight, expandableNode);
+    expandableNode.style.height = '';
+    wrapper.style.height = `${contentData[index].availableHeight}px`;
 
+    expandableNode.classList.remove('expandableHidden');
+    expandableNode.classList.add('expandableVisible');
+    expandedNode.classList.add('expandedHidden');
+    expandedNode.classList.remove('expandedVisible');
+
+    reduceContent(currentContentData, expandableNode, availableHeight, expandableNode);
     //: change buttons label                                                ://
     e.target.innerHTML = 'Read More';
     //: remove 'collapsed' class flag                                       ://
-    parentNode.classList.add('collapsed');
+    wrapper.classList.add('collapsed');
   }
 }
 //| end of HANDLE 'READ MORE' BUTTONS                                       |//
