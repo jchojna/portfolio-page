@@ -697,7 +697,6 @@ const handleExpandableContent = (contents) => {
   }
   //: clone content data to an array of objects and empty node              ://
   [...contents].forEach(content => {
-    content.style.height = '100%';
     contentData = [...contentData, {
       fullHeight: content.clientHeight,
       html: content.innerHTML,
@@ -721,7 +720,7 @@ const handleExpandableContent = (contents) => {
   [...contents].forEach((content, index) => {
     const currentContentData = contentData[index];
     //. get available space for reduced content                             .//
-    content.parentNode.style.height = '100%';
+    content.style.height = '100%';
     contentData[index].availableHeight = content.clientHeight;
     const { availableHeight, fullHeight, html } = currentContentData;
     //. check if content fits available space                               .//
@@ -749,36 +748,26 @@ const handleReadMore = (e) => {
   const currentContentData = contentData[index];
   const { availableHeight } = currentContentData;
 
-  expandableNode.classList.add('expandable');
-  expandedNode.classList.add('expanded');
-
   //: expand tab                                                            ://
   if (wrapper.classList.contains('collapsed')) {
-
     //: reduce content using recursive function                             ://
     wrapper.style.height = `${contentData[index].fullHeight}px`;
-
     expandableNode.classList.add('expandableHidden');
     expandableNode.classList.remove('expandableVisible');
     expandedNode.classList.remove('expandedHidden');
     expandedNode.classList.add('expandedVisible');
-
     //: change buttons label                                                ://
     e.target.innerHTML = 'Show Less';
     //: remove 'collapsed' class flag                                       ://
     wrapper.classList.remove('collapsed');
-
   //: collapse tab                                                          ://
-  } else {
-    
+  } else {    
     expandableNode.style.height = '';
     wrapper.style.height = `${contentData[index].availableHeight}px`;
-
     expandableNode.classList.remove('expandableHidden');
     expandableNode.classList.add('expandableVisible');
     expandedNode.classList.add('expandedHidden');
     expandedNode.classList.remove('expandedVisible');
-
     reduceContent(currentContentData, expandableNode, availableHeight, expandableNode);
     //: change buttons label                                                ://
     e.target.innerHTML = 'Read More';

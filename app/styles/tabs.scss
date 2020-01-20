@@ -35,9 +35,6 @@
     height: 100%;
     overflow: initial;
     z-index: 3;
-    transition: height 1s;
-
-    border: 1px solid #000;
   }
   &--features {
     grid-area: features;
@@ -221,8 +218,6 @@
     font-size: 18px;
     line-height: 1.4;
     margin: 0 $offset-right-sm 0 $offset-left-sm;
-
-    border: 1px solid #000;
 
     &--small {
       font-family: 'Antonio Bold';
