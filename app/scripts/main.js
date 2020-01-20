@@ -716,6 +716,7 @@ const handleExpandableContent = (contents) => {
     //. empty content of original content node                              .//
     emptyContent(content);
   });
+  console.log(contentData);
   //: add data from content database to empty content                       ://
   [...contents].forEach((content, index) => {
     const currentContentData = contentData[index];
