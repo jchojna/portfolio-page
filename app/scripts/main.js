@@ -742,6 +742,8 @@ const handleReadMore = (e) => {
 
     //: reduce content using recursive function                             ://
     parentNode.style.height = '';
+    //parentNode.style.height = `${contentData[index].parentFullHeight}px`;
+
     expandableNode.innerHTML = contentData[index].html;
     //: change buttons label                                                ://
     e.target.innerHTML = 'Show Less';
@@ -750,7 +752,12 @@ const handleReadMore = (e) => {
 
   //: collapse tab                                                          ://
   } else {
+    //parentNode.style.height = `${contentData[index].parentHeight}px`;
+    
+    //expandableNode.style.height = '';
+    //parentNode.style.height = `${contentData[index].parentAvailableHeight}px`;
     reduceContent(currentContentData, expandableNode, availableHeight, expandableNode);
+
     //: change buttons label                                                ://
     e.target.innerHTML = 'Read More';
     //: remove 'collapsed' class flag                                       ://
