@@ -10,6 +10,11 @@
   margin: 0 $offset-right-sm 0 $offset-left-sm;
   padding: 0;
 
+  &--contact {
+    grid-template-columns: repeat(6, 1fr);
+    margin: 0 $offset-right-sm;
+  }
+
   @media only screen and (min-width: $media-lg) {
 
     & {
@@ -18,7 +23,6 @@
 
       &--profiles {
         grid-template-columns: repeat(6, 1fr);
-
       }
     }
   }
@@ -61,6 +65,21 @@
     &--quotes {
       border-color: $color-quotes-shadow;
       fill: $color-quotes-shadow;
+    }
+    &--contact {
+      border-color: $color-contact-shadow;
+      fill: $color-contact-shadow;
+    }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+
+        &--contact {
+          border-color: $color-contact-dark;
+          fill: $color-contact-dark;
+        }
+      }
     }
   }
 

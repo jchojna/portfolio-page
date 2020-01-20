@@ -65,6 +65,7 @@
   }
   &--contact {
     background-color: $color-contact;
+    padding-bottom: 20px;
   }
 
   @media only screen and (min-width: $media-lg) {
@@ -127,7 +128,9 @@
       grid-template-areas:
       "heading"
       "logo   "
-      "form   ";
+      "form   "
+      "social "
+      "footer ";
     }
 
     @media only screen and (min-width: $media-lg) {
@@ -187,7 +190,9 @@
           align-items: center;
           grid-template-areas:
           "heading"
-          "form   ";
+          "form   "
+          "social "
+          "footer ";
           grid-template-rows: auto 1fr;
         }
       }
@@ -461,3 +466,30 @@
   }
 }
 //| end of CODE AND DEMO LINKS                                              |//
+//| PAGE FOOTER                                                             |//
+.footer {
+  border-top: 2px solid $color-contact-shadow;
+  color: $color-contact-shadow;
+  font-size: 14px;
+  grid-area: footer;
+  margin: $offset-right-sm;
+  margin-bottom: 0;
+  padding-top: $offset-right-sm;
+  text-align: center;
+
+  &__text {
+    margin: 0;
+  }
+  
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      border-color: $color-contact-dark;
+      color: $color-contact-dark;
+      margin: 0;
+      margin-top: $offset-right-sm;
+      text-align: left;
+    }
+  }
+}
+//| end of PAGE FOOTER                                                      |//
