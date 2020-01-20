@@ -716,7 +716,6 @@ const handleExpandableContent = (contents) => {
     //. empty content of original content node                              .//
     emptyContent(content);
   });
-  console.log(contentData);
   //: add data from content database to empty content                       ://
   [...contents].forEach((content, index) => {
     const currentContentData = contentData[index];
@@ -777,8 +776,40 @@ const handleReadMore = (e) => {
   }
 }
 //| end of HANDLE 'READ MORE' BUTTONS                                       |//
-
-
+//| HANDLE JUMPING TO NEXT SECTION ON SCROLL                                |//
+const handleFastScroll = (e) => {
+  //: function resetting timeout and scroll accumulator                     |//
+  const reset = () => {
+    clearTimeout(scrollTimeoutId);
+    scrollTimeoutId = null;
+    scrollTotal = 0;
+  }
+  const goToNextSection = () => {
+    if (lastMenuItemIndex < pageSections.length - 1) {      
+      ++lastMenuItemIndex;
+      const nextsectionOffset = sections[lastMenuItemIndex].offset;
+      pageContainer.scrollTo(0, nextsectionOffset);
+    }
+  }
+  //: when scrolling down                                                   |//
+  if (e.deltaY > 0) {
+    scrollTotal += 1;
+    if (scrollTimeoutId === null) {
+      scrollTimeoutId = setTimeout(() => {
+        if (scrollTotal >= 3) {
+          goToNextSection();
+          reset();
+        } else {
+          reset();
+        }
+      }, 100);
+    }
+  //: when scrolling up                                                     |//
+  } else {
+    reset();
+  }
+}
+//| end of HANDLE JUMPING TO NEXT SECTION ON SCROLL                         |//
 
 //| GLOBAL VARIABLES                                                        |//
 //: INTRO                                                                   ://
@@ -789,6 +820,8 @@ let scrollEventFlag = false;
 const mediaTablet = 768;
 const mediaDesktop = 1200;
 let lastMenuItemIndex = 0;
+let scrollTimeoutId = null;
+let scrollTotal = 0;
 //: INTERVALS                                                               ://
 let menuSmFirstTimeoutId = null;
 let menuSmSecondTimeoutId = null;
@@ -882,14 +915,14 @@ pageContainer.addEventListener('wheel', () => {
     scrollEventFlag = true;
   }
 });
-
 [...menuLinks].forEach((link, index) => {
   link.index = index;
   link.addEventListener('click', handleMenuItemClick);
   link.addEventListener('mousemove', handleIntroMenu);
 });
-
 burgerButton.addEventListener('click', handleBurgerButton);
+//: SECTIONS                                                                ://
+pageContainer.addEventListener('wheel', handleFastScroll);
 //: RESUME                                                                  ://
 [...resumeButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
@@ -911,6 +944,3 @@ if (window.innerWidth < mediaDesktop) {
   button.index = index;
   button.addEventListener('click', handleReadMore);
 });
-
-
-let breakpoint = false;
