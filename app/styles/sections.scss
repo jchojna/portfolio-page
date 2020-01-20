@@ -463,3 +463,16 @@
   }
 }
 //| end of CODE AND DEMO LINKS                                              |//
+//| PAGE FOOTER                                                             |//
+.footer {
+  bottom: 0;
+  margin: 15px;
+  color: $color-contact-shadow;
+  position: absolute;
+  right: 0;
+
+  &__text {
+    margin: 0;
+  }
+}
+//| end of PAGE FOOTER                                                      |//
