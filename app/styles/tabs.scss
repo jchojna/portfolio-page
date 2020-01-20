@@ -34,6 +34,9 @@
     grid-area: description;
     overflow: initial;
     z-index: 3;
+    transition: height 1s;
+
+    border: 1px solid #000;
   }
   &--features {
     grid-area: features;
@@ -215,9 +218,11 @@
   &__description {
     font-family: 'Antonio Regular';
     font-size: 18px;
-    height: 100%;
     line-height: 1.4;
     margin: 0 $offset-right-sm 0 $offset-left-sm;
+    overflow: hidden;
+
+    border: 1px solid #000;
 
     &--small {
       font-family: 'Antonio Bold';

@@ -631,9 +631,7 @@ const handleRepo = (repos) => {
   }    
 }
 //| end of FETCH GITHUB API                                                 |//
-//| HANDLE EXPANDABLE CONTENT                                               |//
-const handleExpandableContent = (contents) => {
-
+//| REDUCE CONTENT - RECURSIVE FUNCTION                                     |//
   //: recursive function handling reduced content creation                  ://
   //: it can handle both plain text and nested elements like lists          ://
   //: data - content to be reduced                                          ://
@@ -644,15 +642,20 @@ const handleExpandableContent = (contents) => {
     //. if cloned content does not contain any children nodes               .//
     if (data.children.length === 0) {
       //. create array of particular words                                  .//
-      const wordsArray = data.html.split(' ').filter(elem => elem !== '');
+      const wordsArray = data.html.slice().split(' ').filter(elem => elem !== '');
+      const reducedArray = [...wordsArray];
       //. remove words starting from the end until content fits space       .//
       for (let i = 0; i < wordsArray.length; i++) {
-        wordsArray.pop();
-        container.innerHTML = `${wordsArray.join(' ')} ...`;
+        reducedArray.pop();
+        container.innerHTML = reducedArray.length === 0
+          ? ''
+          : `${reducedArray.join(' ')} <span class='dots'>...</span>`;
         if (parent.clientHeight <= available) break;
       }
     //. if cloned content contains children nodes                           .//
     } else {
+      //. empty textContent of each childNode                               .//
+      [...container.children].forEach(child => child.textContent = '');
       //. create array of each node's html content                          .//
       const nodesArray = data.children.map(child => child.html);
       //. add consectuive nodes content until it extends available space    .//
@@ -664,14 +667,17 @@ const handleExpandableContent = (contents) => {
           //. repeat the operations on particular nodes                     .//
           reduceContent(dataNode, containerNode, available, parent);
           //. remove unnecessary empty nodes outside available space        .//
-          while (container.children.length - 1 > i) {
-            container.removeChild(container.lastElementChild);
-          }
+          [...container.children].forEach(child => {
+            if (child.innerHTML === '') child.parentNode.removeChild(child);
+          });
           break;
         }
       }
     }
   }
+//| end of REDUCE CONTENT - RECURSIVE FUNCTION                              |//
+//| HANDLE EXPANDABLE CONTENT                                               |//
+const handleExpandableContent = (contents) => {
   //: aquire html and children of every children node and its own children  ://
   const getChildren = (content) => {
     let array = [];
@@ -691,8 +697,10 @@ const handleExpandableContent = (contents) => {
   }
   //: clone content data to an array of objects and empty node              ://
   [...contents].forEach(content => {
+    content.style.height = '100%';
     contentData = [...contentData, {
       fullHeight: content.clientHeight,
+      parentFullHeight: content.parentNode.clientHeight,
       html: content.innerHTML,
       children: getChildren(content)
     }];
@@ -703,15 +711,18 @@ const handleExpandableContent = (contents) => {
     const currentContentData = contentData[index];
     //. get available space for reduced content                             .//
     content.parentNode.style.height = '100%';
-    currentContentData.availableHeight = content.clientHeight;
+    contentData[index].availableHeight = content.clientHeight;
+    contentData[index].parentAvailableHeight = content.parentNode.clientHeight;
     const { availableHeight, fullHeight, html } = currentContentData;
     //. check if content fits available space                               .//
     if (availableHeight >= fullHeight) {
       content.innerHTML = html;
     } else {
+      content.parentNode.classList.add('collapsed');
       //. show read more button and update available space                  .//
       readMoreButtons[index].classList.add('tab__readMore--visible');
       contentData[index].availableHeight = content.clientHeight;
+      contentData[index].parentAvailableHeight = content.parentNode.clientHeight;
       const { availableHeight } = currentContentData;
       //. reduce content using recursive function                           .//
       reduceContent(currentContentData, content, availableHeight, content);
@@ -719,6 +730,34 @@ const handleExpandableContent = (contents) => {
   });
 }
 //| end of HANDLE EXPANDABLE CONTENT                                        |//
+//| HANDLE 'READ MORE' BUTTONS                                              |//
+const handleReadMore = (e) => {
+  const { index, parentNode } = e.target;
+  const expandableNode = parentNode.querySelector('.js-expandable');
+  const currentContentData = contentData[index];
+  const { availableHeight } = currentContentData;
+
+  //: expand tab                                                            ://
+  if (parentNode.classList.contains('collapsed')) {
+
+    //: reduce content using recursive function                             ://
+    parentNode.style.height = '';
+    expandableNode.innerHTML = contentData[index].html;
+    //: change buttons label                                                ://
+    e.target.innerHTML = 'Show Less';
+    //: remove 'collapsed' class flag                                       ://
+    parentNode.classList.remove('collapsed');
+
+  //: collapse tab                                                          ://
+  } else {
+    reduceContent(currentContentData, expandableNode, availableHeight, expandableNode);
+    //: change buttons label                                                ://
+    e.target.innerHTML = 'Read More';
+    //: remove 'collapsed' class flag                                       ://
+    parentNode.classList.add('collapsed');
+  }
+}
+//| end of HANDLE 'READ MORE' BUTTONS                                       |//
 
 //| GLOBAL VARIABLES                                                        |//
 //: INTRO                                                                   ://
@@ -809,7 +848,7 @@ window.onload = () => {
 // ! project id must fit repo id
 
 //| EVENT LISTENERS                                                         |//
-//: MENU AND NAVIGATION                                                ://
+//: MENU AND NAVIGATION                                                     ://
 window.addEventListener('resize', updateSectionsOffsets);
 window.addEventListener('resize', updateMenuItemsOffsets);
 pageHeader.addEventListener('resize', handleIntroBox);
@@ -830,7 +869,7 @@ pageContainer.addEventListener('wheel', () => {
 });
 
 burgerButton.addEventListener('click', handleBurgerButton);
-//: RESUME                                                             ://
+//: RESUME                                                                  ://
 [...resumeButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...resumeTabs], index));
@@ -839,10 +878,18 @@ burgerButton.addEventListener('click', handleBurgerButton);
   button.addEventListener('click', () =>
   handleAccordion([...resumeSubtabs], index));
 });
-//: OTHER PROJECTS                                                     ://
+//: OTHER PROJECTS                                                          ://
 if (window.innerWidth < mediaDesktop) {
   [...otherProjectsButtons].forEach((button, index) => {
     button.addEventListener('click', () =>
     handleAccordion([...otherProjectsTabs], index));
   });
 }
+//: 'READ MORE' BUTTONS                                                     ://
+[...readMoreButtons].forEach((button, index) => {
+  button.index = index;
+  button.addEventListener('click', handleReadMore);
+});
+
+
+let breakpoint = false;
