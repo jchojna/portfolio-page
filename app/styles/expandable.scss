@@ -1,0 +1,37 @@
+@import 'variables.scss';
+
+.wrapper {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  transition: height $expandable-time;
+}
+
+.expandableHidden,
+.expandedHidden {
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: visibility 0s;
+  visibility: hidden;
+  width: 100%;
+}
+
+.expandableVisible,
+.expandedVisible {
+  transition: visibility 0s;
+  visibility: visible;
+}
+
+.expandableVisible {
+  transition: visibility 0s $expandable-time;
+}
+
+.expandedHidden {
+  transition: visibility 0s $expandable-time;
+}
+
+.dots {
+  font-size: 2em;
+  line-height: 0;
+}
