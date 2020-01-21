@@ -12,17 +12,21 @@
   width: 100%;
 
   &__ending {
+    background-color: #000;
     position: absolute;
-    background-color: #333;
+    visibility: hidden;
+
+    &--visible {
+      visibility: visible;
+    }
   }
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(30, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   list-style-type: none;
   margin: 0;
-  overflow: hidden;
   padding: 0;
 
   &__item {

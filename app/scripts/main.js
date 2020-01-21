@@ -813,58 +813,104 @@ const handleFastScroll = (e) => {
 //| HANDLE INTRO ANIMATION                                                  |//
 const handleIntroAnimation = () => {
   //: variables                                                             ://
-  const itemWidth = 40;
+  const itemWidth = 30;
   const itemHeight = 2 * itemWidth;
-  let charNumber = 0;
+  const addCharInterval = 100;
+  const firstTimeoutInterval = 1000;
+  let textIndex = 0;
   //: create an array of all letters used in animation                      ://
   const text = 'jakub chojna frontend projects';
+  const charTotal = text.length;
   //: generate html structure dynamically                                   ://
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i];
-    charNumber = i + 1;
-    const gridItem = char !== ' '
-    ? `<li class="grid__item">
-        <svg class="grid__svg" viewBox="0 0 50 100">
-          <use href="assets/svg/letters.svg#${char}"></use>
-        </svg>
-      </li>`
-    : `<li class="grid__item">
-        <div class="grid__separator"></div>
-      </li>`;
-    introGrid.innerHTML += gridItem;
+
+  const setEndings = () => {
+    if (introGrid.children.length === 0) {
+      const tempChild = document.createElement('LI');
+      tempChild.style.width = `${itemWidth}px`;
+      tempChild.style.height = `${itemHeight}px`;
+      introGrid.appendChild(tempChild);
+      var endingBeforeTop = `${tempChild.offsetTop}px`;
+      var endingBeforeLeft = `${tempChild.offsetLeft - itemWidth}px`;
+      var endingAfterTop = `${tempChild.offsetTop}px`;
+      var endingAfterLeft = `${tempChild.offsetLeft}px`;
+    } else {
+      const beforeChild = introGrid.firstElementChild;
+      const afterChild = introGrid.lastElementChild;
+      var endingBeforeTop = `${beforeChild.offsetTop}px`;
+      var endingBeforeLeft = `${beforeChild.offsetLeft - itemWidth}px`;
+      var endingAfterTop = `${afterChild.offsetTop}px`;
+      var endingAfterLeft = `${afterChild.offsetLeft + itemWidth}px`;
+    }
+    endingBefore.style.top = endingBeforeTop;
+    endingBefore.style.left = endingBeforeLeft;
+    endingAfter.style.top = endingAfterTop;
+    endingAfter.style.left = endingAfterLeft;
   }
-  //: set size of grid items                                                ://
+
+  const addCharacter = () => {
+    if (textIndex < charTotal) {
+      const char = text[textIndex];
+
+      const gridItem = char !== ' '
+      ? `<li class="grid__item grid__item--js">
+          <svg class="grid__svg" viewBox="0 0 50 100">
+            <use href="assets/svg/letters.svg#${char}"></use>
+          </svg>
+        </li>`
+      : `<li class="grid__item grid__item--js">
+          <div class="grid__separator"></div>
+        </li>`;
+      introGrid.insertAdjacentHTML('beforeend', gridItem);
+      
+      const currentItem = introGrid.querySelectorAll('.grid__item--js')[textIndex];
+      currentItem.style.width = `${itemWidth}px`;
+      currentItem.style.height = `${itemHeight}px`;
+    
+      //: set position of ending elements                                   ://
+      setEndings();
+
+      textIndex++;
+
+    } else {
+      clearInterval(introCharIntervalId);
+    }
+  }
+
+  /*
+   ######  ########    ###    ########  ########
+  ##    ##    ##      ## ##   ##     ##    ##
+  ##          ##     ##   ##  ##     ##    ##
+   ######     ##    ##     ## ########     ##
+        ##    ##    ######### ##   ##      ##
+  ##    ##    ##    ##     ## ##    ##     ##
+   ######     ##    ##     ## ##     ##    ##
+  */
   introGrid = document.querySelector('.grid--js');
-  const gridItems = introGrid.children;
-
-  [...gridItems].forEach(item => {
-    item.style.width = `${itemWidth}px`;
-    item.style.height = `${itemHeight}px`;
-  });
-  
-  introGrid.style.width = `${charNumber * itemWidth}px`;
-  
-  //: get grid sizes and assign values to grid object's keys                ://
-  grid.top = introGrid.offsetTop;
-  grid.left = introGrid.offsetLeft;
-  grid.width = introGrid.clientWidth;
-  grid.height = introGrid.clientHeight;
-
   //: set sizes and position of ending elements                             ://
   endingBefore.style.width = `${itemWidth}px`;
   endingBefore.style.height = `${itemHeight}px`;
   endingAfter.style.width = `${itemWidth}px`;
   endingAfter.style.height = `${itemHeight}px`;
-
-  endingBefore.style.top = `${grid.top}px`;
-  endingBefore.style.left = `${grid.left - itemWidth}px`;
-  endingAfter.style.bottom = `${grid.bottom}px`;
-  endingAfter.style.left = `${grid.left + grid.width}px`;
+  setEndings();
 
 
 
 
-  console.log(grid);
+  //:                                                                       ://
+  //: FIRST TIMEOUT                                                         ://
+  clearTimeout(introTimeoutId);
+  introTimeoutId = setTimeout(() => {
+    //. show ending elements                                                .//
+    endingBefore.classList.add('intro__ending--visible');
+    endingAfter.classList.add('intro__ending--visible');
+    //. remove temporary child                                              .//
+    introGrid.removeChild(introGrid.firstElementChild);
+    introCharIntervalId = setInterval(() => {
+      addCharacter();
+    }, addCharInterval);
+    
+  }, firstTimeoutInterval);
+
   console.log('introGrid.clientWidth', introGrid.clientWidth);
 
 
@@ -900,13 +946,15 @@ let menuSmFirstTimeoutId = null;
 let menuSmSecondTimeoutId = null;
 let menuLgFirstTimeoutId = null;
 let menuLgSecondTimeoutId = null;
+let introTimeoutId = null;
+let introCharIntervalId = null;
+let introGridIntervalId = null;
 const menuSmFirstTimeoutInterval = 300;
 const menuSmSecondTimeoutInterval = 600;
 const menuLgFirstTimeoutInterval = 500;
 const menuLgSecondTimeoutInterval = 500;
 //: INTRO                                                                   ://
 let introGrid = document.querySelector('.grid--js');
-const grid = {};
 const endingBefore = document.querySelector('.intro__ending--js-before');
 const endingAfter = document.querySelector('.intro__ending--js-after');
 //: MENU AND NAVIGATION                                                     ://
