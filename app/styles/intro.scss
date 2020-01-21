@@ -1,0 +1,24 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.intro {
+  background-color: $intro-background-color;
+  height: 100%;
+  left: 0;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.grid {
+
+  &__item {
+    width: 50px;
+    @include flex-center;
+  }
+
+  &__svg {
+    width: 100%;
+  }
+}

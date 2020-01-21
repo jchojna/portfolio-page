@@ -810,6 +810,32 @@ const handleFastScroll = (e) => {
   }
 }
 //| end of HANDLE JUMPING TO NEXT SECTION ON SCROLL                         |//
+//| HANDLE INTRO ANIMATION                                                  |//
+const handleIntroAnimation = () => {
+
+  const letters = ['a','b','c','d','e','f','h','j','k','n','o','p','r','s','t','u'];
+
+  for (let i = 0; i < letters.length; i++) {
+
+    const letter = `
+      <li class="grid__item">
+        <svg class="grid__svg" viewBox="0 0 100 100">
+          <use href="assets/svg/letters.svg#${letters[i]}"></use>
+        </svg>
+      </li>
+    `;
+    introGrid.innerHTML += letter;
+
+
+
+
+  }
+
+
+
+
+}
+//| end of HANDLE INTRO ANIMATION                                           |//
 
 //| GLOBAL VARIABLES                                                        |//
 //: INTRO                                                                   ://
@@ -832,6 +858,7 @@ const menuSmSecondTimeoutInterval = 600;
 const menuLgFirstTimeoutInterval = 500;
 const menuLgSecondTimeoutInterval = 500;
 //: MENU AND NAVIGATION                                                     ://
+const introGrid = document.querySelector('.grid--js');
 const pageHeader = document.querySelector('.pageHeader--js');
 const introBox = document.querySelector('.visuals__introBox--js');
 const menuIndicator = document.querySelector('.pageHeader__indicator--js');
@@ -883,6 +910,7 @@ let contentData = [];
 const expandableContent = document.querySelectorAll('.js-expandable');
 
 //| FUNCTION CALLS ON PAGE LOAD                                             |//
+handleIntroAnimation();
 handleIntroMenu();
 //: handle page's accordions                                                ://
 handleAccordion([...resumeSubtabs]);

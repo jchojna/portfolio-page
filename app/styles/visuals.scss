@@ -10,6 +10,8 @@
   width: 100%;
   z-index: 5;
 
+  display: none;
+
   @media only screen and (min-width: $media-lg) {
 
     & {
