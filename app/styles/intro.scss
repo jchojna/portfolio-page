@@ -3,6 +3,7 @@
 
 .intro {
   @include flex-center;
+  align-items: flex-start;
   background-color: $intro-background-color;
   height: 100%;
   left: 0;
@@ -12,6 +13,7 @@
   width: 100%;
 
   &__ending {
+    display: none;
     background-color: #000;
     position: absolute;
     visibility: hidden;
@@ -24,7 +26,6 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -34,13 +35,27 @@
     position: relative;
   }
 
-  &__svg {
+  &__char {
     width: 100%;
-  }
 
-  &__separator {
-    background-color: #000;
-    height: 100%;
-    width: 100%;
+    &--separator {
+      background-color: #000;
+      height: 100%;
+    }
+
+    $time: 0.5s;
+
+    &--transition {
+      position: fixed;
+      transition: top $time, left $time;
+    }
+
+    &--faded.grid__char--svg {
+      fill: $color-about;
+    }
+
+    &--faded.grid__char--separator {
+      background-color: $color-about;
+    }
   }
 }

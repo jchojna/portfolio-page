@@ -813,14 +813,17 @@ const handleFastScroll = (e) => {
 //| HANDLE INTRO ANIMATION                                                  |//
 const handleIntroAnimation = () => {
   //: variables                                                             ://
-  const itemWidth = 30;
+  const itemWidth = 40;
   const itemHeight = 2 * itemWidth;
-  const addCharInterval = 100;
-  const firstTimeoutInterval = 1000;
+  const addCharInterval = 10;
+  const firstTimeoutInterval = 10;
+  const secondTimeoutInterval = 500;
   let textIndex = 0;
   //: create an array of all letters used in animation                      ://
   const text = 'jakub chojna frontend projects';
   const charTotal = text.length;
+  let maxColNum = charTotal;
+  let minColNum = 6;
   //: generate html structure dynamically                                   ://
 
   const setEndings = () => {
@@ -853,12 +856,12 @@ const handleIntroAnimation = () => {
 
       const gridItem = char !== ' '
       ? `<li class="grid__item grid__item--js">
-          <svg class="grid__svg" viewBox="0 0 50 100">
+          <svg class="grid__char grid__char--svg grid__char--js" viewBox="0 0 50 100">
             <use href="assets/svg/letters.svg#${char}"></use>
           </svg>
         </li>`
       : `<li class="grid__item grid__item--js">
-          <div class="grid__separator"></div>
+          <div class="grid__char grid__char--separator grid__char--js"></div>
         </li>`;
       introGrid.insertAdjacentHTML('beforeend', gridItem);
       
@@ -876,6 +879,34 @@ const handleIntroAnimation = () => {
     }
   }
 
+  const handleChars = (chars, isInitial) => {
+
+    if (isInitial) {
+      [...chars].forEach((char, index) => {
+        const {offsetTop, offsetLeft} = introGrid.children[index];
+        char.style.top = `${offsetTop}px`;
+        char.style.left = `${offsetLeft}px`;
+        char.style.width = `${itemWidth}px`;
+        char.style.height = `${itemHeight}px`;
+        char.classList.add('grid__char--transition');
+      });
+    } else {
+      [...chars].forEach((char, index) => {
+        const bias = minColNum / (maxColNum - minColNum);
+
+
+        if (index >= maxColNum - bias) {
+          const { offsetTop, offsetLeft } = introGrid.children[index];
+          char.style.top = `${offsetTop}px`;
+          char.style.left = `${offsetLeft}px`;
+          if (!char.classList.contains('grid__char--faded')) {
+            char.classList.add('grid__char--faded');
+          }
+        }
+      });
+    }
+  }
+
   /*
    ######  ########    ###    ########  ########
   ##    ##    ##      ## ##   ##     ##    ##
@@ -886,6 +917,7 @@ const handleIntroAnimation = () => {
    ######     ##    ##     ## ##     ##    ##
   */
   introGrid = document.querySelector('.grid--js');
+  introGrid.style.gridTemplateColumns = `repeat(${maxColNum}, 1fr)`;
   //: set sizes and position of ending elements                             ://
   endingBefore.style.width = `${itemWidth}px`;
   endingBefore.style.height = `${itemHeight}px`;
@@ -894,12 +926,11 @@ const handleIntroAnimation = () => {
   setEndings();
 
 
-
-
   //:                                                                       ://
   //: FIRST TIMEOUT                                                         ://
-  clearTimeout(introTimeoutId);
-  introTimeoutId = setTimeout(() => {
+  clearTimeout(introFirstTimeoutId);
+  clearTimeout(introSecondTimeoutId);
+  introFirstTimeoutId = setTimeout(() => {
     //. show ending elements                                                .//
     endingBefore.classList.add('intro__ending--visible');
     endingAfter.classList.add('intro__ending--visible');
@@ -908,25 +939,50 @@ const handleIntroAnimation = () => {
     introCharIntervalId = setInterval(() => {
       addCharacter();
     }, addCharInterval);
+
+
+    //:                                                                     ://
+    //: SECOND TIMEOUT                                                      ://
+    introSecondTimeoutId = setTimeout(() => {
+      //. assign fixed positioning to svg elements                          .//
+      const gridChars = document.querySelectorAll('.grid__char--js');
+      
+      handleChars(gridChars, true);
+
+
+
+
+
+
+
+
+
+
+
+      //. decrease number of grid columns                                   .//
+      introCharIntervalId = setInterval(() => {
+        if (maxColNum >= minColNum) {
+          handleChars(gridChars, false);
+          introGrid.style.gridTemplateColumns = `repeat(${--maxColNum}, 1fr)`;
+        } else {
+          clearInterval(introCharIntervalId);
+        }
+      }, 100);
+
+
+
+
+
+
+
+
+
+
+
+
     
+    }, secondTimeoutInterval);
   }, firstTimeoutInterval);
-
-  console.log('introGrid.clientWidth', introGrid.clientWidth);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 //| end of HANDLE INTRO ANIMATION                                           |//
 
@@ -946,9 +1002,9 @@ let menuSmFirstTimeoutId = null;
 let menuSmSecondTimeoutId = null;
 let menuLgFirstTimeoutId = null;
 let menuLgSecondTimeoutId = null;
-let introTimeoutId = null;
+let introFirstTimeoutId = null;
+let introSecondTimeoutId = null;
 let introCharIntervalId = null;
-let introGridIntervalId = null;
 const menuSmFirstTimeoutInterval = 300;
 const menuSmSecondTimeoutInterval = 600;
 const menuLgFirstTimeoutInterval = 500;
