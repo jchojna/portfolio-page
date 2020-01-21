@@ -2,6 +2,7 @@
 @import 'mixins.scss';
 
 .intro {
+  @include flex-center;
   background-color: $intro-background-color;
   height: 100%;
   left: 0;
@@ -9,16 +10,33 @@
   position: fixed;
   top: 0;
   width: 100%;
+
+  &__ending {
+    position: absolute;
+    background-color: #333;
+  }
 }
 
 .grid {
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
 
   &__item {
-    width: 50px;
     @include flex-center;
+    position: relative;
   }
 
   &__svg {
+    width: 100%;
+  }
+
+  &__separator {
+    background-color: #000;
+    height: 100%;
     width: 100%;
   }
 }

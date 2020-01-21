@@ -812,24 +812,71 @@ const handleFastScroll = (e) => {
 //| end of HANDLE JUMPING TO NEXT SECTION ON SCROLL                         |//
 //| HANDLE INTRO ANIMATION                                                  |//
 const handleIntroAnimation = () => {
-
-  const letters = ['a','b','c','d','e','f','h','j','k','n','o','p','r','s','t','u'];
-
-  for (let i = 0; i < letters.length; i++) {
-
-    const letter = `
-      <li class="grid__item">
-        <svg class="grid__svg" viewBox="0 0 100 100">
-          <use href="assets/svg/letters.svg#${letters[i]}"></use>
+  //: variables                                                             ://
+  const itemWidth = 40;
+  const itemHeight = 2 * itemWidth;
+  let charNumber = 0;
+  //: create an array of all letters used in animation                      ://
+  const text = 'jakub chojna frontend projects';
+  //: generate html structure dynamically                                   ://
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    charNumber = i + 1;
+    const gridItem = char !== ' '
+    ? `<li class="grid__item">
+        <svg class="grid__svg" viewBox="0 0 50 100">
+          <use href="assets/svg/letters.svg#${char}"></use>
         </svg>
-      </li>
-    `;
-    introGrid.innerHTML += letter;
-
-
-
-
+      </li>`
+    : `<li class="grid__item">
+        <div class="grid__separator"></div>
+      </li>`;
+    introGrid.innerHTML += gridItem;
   }
+  //: set size of grid items                                                ://
+  introGrid = document.querySelector('.grid--js');
+  const gridItems = introGrid.children;
+
+  [...gridItems].forEach(item => {
+    item.style.width = `${itemWidth}px`;
+    item.style.height = `${itemHeight}px`;
+  });
+  
+  introGrid.style.width = `${charNumber * itemWidth}px`;
+  
+  //: get grid sizes and assign values to grid object's keys                ://
+  grid.top = introGrid.offsetTop;
+  grid.left = introGrid.offsetLeft;
+  grid.width = introGrid.clientWidth;
+  grid.height = introGrid.clientHeight;
+
+  //: set sizes and position of ending elements                             ://
+  endingBefore.style.width = `${itemWidth}px`;
+  endingBefore.style.height = `${itemHeight}px`;
+  endingAfter.style.width = `${itemWidth}px`;
+  endingAfter.style.height = `${itemHeight}px`;
+
+  endingBefore.style.top = `${grid.top}px`;
+  endingBefore.style.left = `${grid.left - itemWidth}px`;
+  endingAfter.style.bottom = `${grid.bottom}px`;
+  endingAfter.style.left = `${grid.left + grid.width}px`;
+
+
+
+
+  console.log(grid);
+  console.log('introGrid.clientWidth', introGrid.clientWidth);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -838,7 +885,7 @@ const handleIntroAnimation = () => {
 //| end of HANDLE INTRO ANIMATION                                           |//
 
 //| GLOBAL VARIABLES                                                        |//
-//: INTRO                                                                   ://
+//: OVERALL                                                                 ://
 let isIntroMode = true;
 let isBackToIntroMode = false;
 let isMenuTransformMode = false;
@@ -857,8 +904,12 @@ const menuSmFirstTimeoutInterval = 300;
 const menuSmSecondTimeoutInterval = 600;
 const menuLgFirstTimeoutInterval = 500;
 const menuLgSecondTimeoutInterval = 500;
+//: INTRO                                                                   ://
+let introGrid = document.querySelector('.grid--js');
+const grid = {};
+const endingBefore = document.querySelector('.intro__ending--js-before');
+const endingAfter = document.querySelector('.intro__ending--js-after');
 //: MENU AND NAVIGATION                                                     ://
-const introGrid = document.querySelector('.grid--js');
 const pageHeader = document.querySelector('.pageHeader--js');
 const introBox = document.querySelector('.visuals__introBox--js');
 const menuIndicator = document.querySelector('.pageHeader__indicator--js');
