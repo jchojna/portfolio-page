@@ -815,15 +815,16 @@ const handleIntroAnimation = () => {
   //: variables                                                             ://
   const itemWidth = 40;
   const itemHeight = 2 * itemWidth;
-  const addCharInterval = 10;
-  const firstTimeoutInterval = 10;
-  const secondTimeoutInterval = 500;
   let textIndex = 0;
   //: create an array of all letters used in animation                      ://
   const text = 'jakub chojna frontend projects';
   const charTotal = text.length;
   let maxColNum = charTotal;
   let minColNum = 6;
+  //: intervals                                                             ://
+  const addCharInterval = 30;
+  const firstTimeoutInterval = 1000;
+  const secondTimeoutInterval = addCharInterval * charTotal + 500;
   //: generate html structure dynamically                                   ://
 
   const setEndings = () => {
@@ -892,8 +893,9 @@ const handleIntroAnimation = () => {
       });
     } else {
       [...chars].forEach((char, index) => {
-        const bias = minColNum / (maxColNum - minColNum);
-
+        const bias = maxColNum - minColNum < minColNum
+        ? minColNum - (maxColNum - minColNum)
+        : 0;
 
         if (index >= maxColNum - bias) {
           const { offsetTop, offsetLeft } = introGrid.children[index];
@@ -947,6 +949,8 @@ const handleIntroAnimation = () => {
       //. assign fixed positioning to svg elements                          .//
       const gridChars = document.querySelectorAll('.grid__char--js');
       
+      endingAfter.classList.remove('intro__ending--visible');
+      endingBefore.classList.remove('intro__ending--visible');
       handleChars(gridChars, true);
 
 
@@ -962,8 +966,8 @@ const handleIntroAnimation = () => {
       //. decrease number of grid columns                                   .//
       introCharIntervalId = setInterval(() => {
         if (maxColNum >= minColNum) {
+          introGrid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
           handleChars(gridChars, false);
-          introGrid.style.gridTemplateColumns = `repeat(${--maxColNum}, 1fr)`;
         } else {
           clearInterval(introCharIntervalId);
         }

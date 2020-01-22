@@ -13,21 +13,26 @@
   width: 100%;
 
   &__ending {
-    display: none;
     background-color: #000;
+    opacity: 0;
     position: absolute;
     visibility: hidden;
+    transition: opacity 0.3s, visibility 0s 0.3s;
 
     &--visible {
+      opacity: 1;
+      transition: opacity 0s, visibility 0s;
       visibility: visible;
     }
   }
 }
 
 .grid {
+  gap: 3px;
   display: grid;
   list-style-type: none;
   margin: 0;
+  margin-top: 200px;
   padding: 0;
 
   &__item {
