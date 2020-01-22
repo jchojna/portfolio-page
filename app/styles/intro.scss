@@ -29,15 +29,23 @@
 
 .grid {
   gap: 3px;
-  display: grid;
+  display: none;
   list-style-type: none;
   margin: 0;
   margin-top: 200px;
   padding: 0;
 
+  &--visible {
+    display: grid;
+  }
+
   &__item {
-    @include flex-center;
+    display: none;
     position: relative;
+
+    &--visible {
+      @include flex-center;
+    }
   }
 
   &__char {

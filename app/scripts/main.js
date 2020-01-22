@@ -103,11 +103,11 @@ const handleMenuItemClick = (e) => {
   if (window.innerWidth < mediaTablet) {
     //. variables                                                           .//
     const windowHeight = window.innerHeight;
-    const clickedItemHeight = items[activeIndex].height;
+    const clickedintroItemHeight = items[activeIndex].height;
     const clickedItemOffset = items[activeIndex].offset;
     const clickedElementId = sections[activeIndex].id;
     const viewOffset = pageHeader.scrollTop;
-    const upperBackgroundHeight = clickedItemHeight + clickedItemOffset - viewOffset;
+    const upperBackgroundHeight = clickedintroItemHeight + clickedItemOffset - viewOffset;
     const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
     //. change items colors and set introbox position                       .//
     handleColorChange(lastMenuItemIndex, 'deactivate');
@@ -136,7 +136,7 @@ const handleMenuItemClick = (e) => {
     menuSmFirstTimeoutId = setTimeout(() => {
       //. variables                                                         .//
       const upwardsOffset = clickedItemOffset;
-      const downwardsOffset = windowHeight - clickedItemOffset - clickedItemHeight;
+      const downwardsOffset = windowHeight - clickedItemOffset - clickedintroItemHeight;
       //. set translated position of menu items                             .//
       [...menuItems].forEach((item, index) => {
         const currentItemOffset = items[index].offset;
@@ -149,7 +149,7 @@ const handleMenuItemClick = (e) => {
       introBox.classList.add('visuals__introBox--content');
       introBox.style.top = 0;
       //. handle menu background                                            .//
-      menuUpperBackground.style.height = `${clickedItemHeight}px`;
+      menuUpperBackground.style.height = `${clickedintroItemHeight}px`;
       menuBottomBackground.style.height = 0;
       menuUpperBackground.classList.add('visuals__background--animated');
       menuBottomBackground.classList.add('visuals__background--animated');
@@ -259,13 +259,13 @@ const handleMenuItemClick = (e) => {
 const handleBurgerButton = () => {
   //. variables                                                             .//
   const windowHeight = window.innerHeight;
-  const activeItemHeight = items[lastMenuItemIndex].height;
+  const activeintroItemHeight = items[lastMenuItemIndex].height;
   const activeItemOffset = items[lastMenuItemIndex].offset;
   const activeId = sections[lastMenuItemIndex].id;
-  const upperBackgroundHeight = activeItemHeight + activeItemOffset;
+  const upperBackgroundHeight = activeintroItemHeight + activeItemOffset;
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
   const upwardsOffset = activeItemOffset;
-  const downwardsOffset = windowHeight - activeItemOffset - activeItemHeight;
+  const downwardsOffset = windowHeight - activeItemOffset - activeintroItemHeight;
 
   isMenuTransformMode = true;
   //. hide burger button                                                    .//
@@ -810,15 +810,34 @@ const handleFastScroll = (e) => {
   }
 }
 //| end of HANDLE JUMPING TO NEXT SECTION ON SCROLL                         |//
+//| LOAD INTRO GRID CONTENT                                                 |//
+const loadIntroContent = () => {
+  [...introText].forEach(char => {
+    const gridItem = char !== ' '
+    ? `<li
+        class="grid__item grid__item--js"
+        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
+      >
+        <svg class="grid__char grid__char--svg grid__char--js" viewBox="0 0 50 100">
+          <use href="assets/svg/letters.svg#${char}"></use>
+        </svg>
+      </li>`
+    : `<li
+        class="grid__item grid__item--js"
+        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
+      >
+        <div class="grid__char grid__char--separator grid__char--js"></div>
+      </li>`;
+    introGrid.insertAdjacentHTML('beforeend', gridItem);
+  });
+}
+//| end of LOAD INTRO GRID CONTENT                                          |//
 //| HANDLE INTRO ANIMATION                                                  |//
 const handleIntroAnimation = () => {
   //: variables                                                             ://
-  const itemWidth = 40;
-  const itemHeight = 2 * itemWidth;
-  let textIndex = 0;
+  let charIndex = 0;
   //: create an array of all letters used in animation                      ://
-  const text = 'jakub chojna frontend projects';
-  const charTotal = text.length;
+  const charTotal = introText.length;
   let maxColNum = charTotal;
   let minColNum = 6;
   //: intervals                                                             ://
@@ -827,55 +846,39 @@ const handleIntroAnimation = () => {
   const secondTimeoutInterval = addCharInterval * charTotal + 500;
   //: generate html structure dynamically                                   ://
 
-  const setEndings = () => {
-    if (introGrid.children.length === 0) {
-      const tempChild = document.createElement('LI');
-      tempChild.style.width = `${itemWidth}px`;
-      tempChild.style.height = `${itemHeight}px`;
-      introGrid.appendChild(tempChild);
-      var endingBeforeTop = `${tempChild.offsetTop}px`;
-      var endingBeforeLeft = `${tempChild.offsetLeft - itemWidth}px`;
-      var endingAfterTop = `${tempChild.offsetTop}px`;
-      var endingAfterLeft = `${tempChild.offsetLeft}px`;
+  const setEndings = (index) => {
+    if (index < charTotal) {
+      const beforeChild = introGrid.children[0];
+      const afterChild = introGrid.children[index];
+      var endingBeforeTop  = beforeChild.offsetTop;
+      var endingBeforeLeft = beforeChild.offsetLeft - introItemWidth;
+      var endingAfterTop   = afterChild.offsetTop;
+      var endingAfterLeft  = afterChild.offsetLeft;
     } else {
-      const beforeChild = introGrid.firstElementChild;
-      const afterChild = introGrid.lastElementChild;
-      var endingBeforeTop = `${beforeChild.offsetTop}px`;
-      var endingBeforeLeft = `${beforeChild.offsetLeft - itemWidth}px`;
-      var endingAfterTop = `${afterChild.offsetTop}px`;
-      var endingAfterLeft = `${afterChild.offsetLeft + itemWidth}px`;
+      const prevAfterChildOffset = introGrid.children[index - 1].offsetLeft;
+      var endingAfterLeft = prevAfterChildOffset + introItemWidth;
     }
-    endingBefore.style.top = endingBeforeTop;
-    endingBefore.style.left = endingBeforeLeft;
-    endingAfter.style.top = endingAfterTop;
-    endingAfter.style.left = endingAfterLeft;
+    endingBefore.style.top  = `${endingBeforeTop}px`;
+    endingBefore.style.left = `${endingBeforeLeft}px`;
+    endingAfter.style.top   = `${endingAfterTop}px`;
+    endingAfter.style.left  = `${endingAfterLeft}px`;
   }
 
-  const addCharacter = () => {
-    if (textIndex < charTotal) {
-      const char = text[textIndex];
+  const loadChar = () => {
 
-      const gridItem = char !== ' '
-      ? `<li class="grid__item grid__item--js">
-          <svg class="grid__char grid__char--svg grid__char--js" viewBox="0 0 50 100">
-            <use href="assets/svg/letters.svg#${char}"></use>
-          </svg>
-        </li>`
-      : `<li class="grid__item grid__item--js">
-          <div class="grid__char grid__char--separator grid__char--js"></div>
-        </li>`;
-      introGrid.insertAdjacentHTML('beforeend', gridItem);
+    if (charIndex < charTotal) {
+      const currentItem = introGrid.children[charIndex];
+      currentItem.style.width = `${introItemWidth}px`;
+      currentItem.style.height = `${introItemHeight}px`;
+      currentItem.classList.add('grid__item--visible');
       
-      const currentItem = introGrid.querySelectorAll('.grid__item--js')[textIndex];
-      currentItem.style.width = `${itemWidth}px`;
-      currentItem.style.height = `${itemHeight}px`;
-    
       //: set position of ending elements                                   ://
-      setEndings();
-
-      textIndex++;
+      setEndings(charIndex);
+      charIndex++;
+      
 
     } else {
+      setEndings(charIndex);
       clearInterval(introCharIntervalId);
     }
   }
@@ -887,8 +890,8 @@ const handleIntroAnimation = () => {
         const {offsetTop, offsetLeft} = introGrid.children[index];
         char.style.top = `${offsetTop}px`;
         char.style.left = `${offsetLeft}px`;
-        char.style.width = `${itemWidth}px`;
-        char.style.height = `${itemHeight}px`;
+        char.style.width = `${introItemWidth}px`;
+        char.style.height = `${introItemHeight}px`;
         char.classList.add('grid__char--transition');
       });
     } else {
@@ -921,11 +924,14 @@ const handleIntroAnimation = () => {
   introGrid = document.querySelector('.grid--js');
   introGrid.style.gridTemplateColumns = `repeat(${maxColNum}, 1fr)`;
   //: set sizes and position of ending elements                             ://
-  endingBefore.style.width = `${itemWidth}px`;
-  endingBefore.style.height = `${itemHeight}px`;
-  endingAfter.style.width = `${itemWidth}px`;
-  endingAfter.style.height = `${itemHeight}px`;
-  setEndings();
+  introGrid.classList.add('grid--visible');
+  endingBefore.style.width = `${introItemWidth}px`;
+  endingBefore.style.height = `${introItemHeight}px`;
+  endingAfter.style.width = `${introItemWidth}px`;
+  endingAfter.style.height = `${introItemHeight}px`;
+  loadChar(charIndex);
+  endingBefore.classList.add('intro__ending--visible');
+  endingAfter.classList.add('intro__ending--visible');
 
 
   //:                                                                       ://
@@ -934,12 +940,11 @@ const handleIntroAnimation = () => {
   clearTimeout(introSecondTimeoutId);
   introFirstTimeoutId = setTimeout(() => {
     //. show ending elements                                                .//
-    endingBefore.classList.add('intro__ending--visible');
-    endingAfter.classList.add('intro__ending--visible');
+    //endingBefore.classList.add('intro__ending--visible');
+    //endingAfter.classList.add('intro__ending--visible');
     //. remove temporary child                                              .//
-    introGrid.removeChild(introGrid.firstElementChild);
     introCharIntervalId = setInterval(() => {
-      addCharacter();
+      loadChar();
     }, addCharInterval);
 
 
@@ -967,7 +972,7 @@ const handleIntroAnimation = () => {
       introCharIntervalId = setInterval(() => {
         if (maxColNum >= minColNum) {
           introGrid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
-          handleChars(gridChars, false);
+          //handleChars(gridChars, false);
         } else {
           clearInterval(introCharIntervalId);
         }
@@ -1014,6 +1019,10 @@ const menuSmSecondTimeoutInterval = 600;
 const menuLgFirstTimeoutInterval = 500;
 const menuLgSecondTimeoutInterval = 500;
 //: INTRO                                                                   ://
+let introText = 'jakub chojna frontend projects';
+const introItemWidth = 40;
+const introItemHeight = 2 * introItemWidth;
+const intro = document.querySelector('.grid--js');
 let introGrid = document.querySelector('.grid--js');
 const endingBefore = document.querySelector('.intro__ending--js-before');
 const endingAfter = document.querySelector('.intro__ending--js-after');
@@ -1069,7 +1078,6 @@ let contentData = [];
 const expandableContent = document.querySelectorAll('.js-expandable');
 
 //| FUNCTION CALLS ON PAGE LOAD                                             |//
-handleIntroAnimation();
 handleIntroMenu();
 //: handle page's accordions                                                ://
 handleAccordion([...resumeSubtabs]);
@@ -1077,9 +1085,11 @@ handleAccordion([...resumeTabs]);
 if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
+loadIntroContent();
 //: collapse expandable content on page load                                ://
 window.onload = () => {
   handleExpandableContent(expandableContent);
+  handleIntroAnimation();
 };
 
 //: fetch github api                                                        ://
