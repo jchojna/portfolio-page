@@ -18,16 +18,19 @@
     animation: showLoader 0.5s;
     background-color: $color-about;
     height: 200px;
+    opacity: 1;
     position: fixed;
     visibility: visible;
     width: 200px;
     z-index: 1;
+    transition: opacity 0.5s, visibility 0s;
 
-    &--loaded {
+    &--transition {
       transition-property: height, left, top, width;
     }
 
     &--hidden {
+      opacity: 0;
       visibility: hidden;
     }
   }
@@ -72,8 +75,12 @@
   &__char {
     width: 100%;
 
+    &--svg {
+      fill: $intro-link-color;
+    }
+
     &--separator {
-      background-color: #000;
+      background-color: $intro-link-color;
       height: 100%;
     }
 

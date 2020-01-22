@@ -832,6 +832,27 @@ const loadIntroContent = () => {
   });
 }
 //| end of LOAD INTRO GRID CONTENT                                          |//
+//| HANDLE INTRO LOADER                                                     |//
+
+const setSizeAndPosition = (element, target, size) => {
+  element.style.top = `${target.offsetTop}px`;
+  element.style.left = `${target.offsetLeft}px`;
+  element.style.width = size ? `${size}px` : `${target.clientWidth}px`;
+  element.style.height = size ? `${size}px` : `${target.clientHeight}px`;
+}
+
+const setIntroLoaderPosition = () => {
+  introLoader.style.top = `${introLoader.offsetTop}px`;
+  introLoader.style.left = `${introLoader.offsetLeft}px`;
+}
+
+const handleIntroLoader = () => {
+  introLoader.classList.add('intro__loader--transition');
+  introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
+  setSizeAndPosition(introLoader, endingBefore, introItemHeight);
+}
+
+//| end of HANDLE INTRO LOADER                                              |//
 //| HANDLE INTRO ANIMATION                                                  |//
 const handleIntroAnimation = () => {
   //: variables                                                             ://
@@ -842,7 +863,7 @@ const handleIntroAnimation = () => {
   let minColNum = 6;
   //: intervals                                                             ://
   const addCharInterval = 30;
-  const secondTimeoutInterval = addCharInterval * charTotal + 500;
+  const introSecondTimeoutInterval = addCharInterval * charTotal + 500;
   //: FUNCTIONS                                                             ://
   const setEndings = (index) => {
     if (index < charTotal) {
@@ -933,78 +954,52 @@ const handleIntroAnimation = () => {
   //: FIRST TIMEOUT                                                         ://
   clearTimeout(introFirstTimeoutId);
   clearTimeout(introSecondTimeoutId);
+  clearTimeout(introThirdTimeoutId);
   introFirstTimeoutId = setTimeout(() => {
     //. show ending elements                                                .//
     endingBefore.classList.add('intro__ending--visible');
     endingAfter.classList.add('intro__ending--visible');
-
     introLoader.classList.add('intro__loader--hidden');
+    introLoader.classList.remove('intro__loader--transition');
     //. remove temporary child                                              .//
     introCharIntervalId = setInterval(() => {
       loadChar();
     }, addCharInterval);
-
-
     //:                                                                     ://
     //: SECOND TIMEOUT                                                      ://
     introSecondTimeoutId = setTimeout(() => {
       //. assign fixed positioning to svg elements                          .//
       const gridChars = document.querySelectorAll('.grid__char--js');
-      
       endingAfter.classList.remove('intro__ending--visible');
       endingBefore.classList.remove('intro__ending--visible');
       handleChars(gridChars, true);
-
-
-
-
-
-
-
-
-
-
-
       //. decrease number of grid columns                                   .//
       introCharIntervalId = setInterval(() => {
         if (maxColNum >= minColNum) {
           introGrid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
           handleChars(gridChars, false);
         } else {
+          //. show intro loader                                             .//
           clearInterval(introCharIntervalId);
+          setSizeAndPosition(introLoader, introGrid);
+          introThirdTimeoutId = setTimeout(() => {
+            introLoader.classList.remove('intro__loader--hidden');
+
+
+
+            console.log(introBox.clientLeft);
+
+
+
+
+            
+          }, introThirdTimeoutInterval);
         }
-      }, 100);
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    }, secondTimeoutInterval);
+      }, 100);    
+    }, introSecondTimeoutInterval);
   }, introFirstTimeoutInterval);
 }
 //| end of HANDLE INTRO ANIMATION                                           |//
-
-const setIntroLoaderPosition = () => {
-  introLoader.style.top = `${introLoader.offsetTop}px`;
-  introLoader.style.left = `${introLoader.offsetLeft}px`;
-}
-
-const handleIntroLoader = () => {
-  introLoader.classList.add('intro__loader--loaded');
-  introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
-  introLoader.style.top = `${endingBefore.offsetTop}px`;
-  introLoader.style.left = `${endingBefore.offsetLeft}px`;
-  introLoader.style.width = `${introItemHeight}px`;
-  introLoader.style.height = `${introItemHeight}px`;
-}
 
 //| GLOBAL VARIABLES                                                        |//
 //: OVERALL                                                                 ://
@@ -1029,8 +1024,10 @@ const menuLgSecondTimeoutInterval = 500;
 
 let introFirstTimeoutId = null;
 let introSecondTimeoutId = null;
+let introThirdTimeoutId = null;
 let introCharIntervalId = null;
 const introFirstTimeoutInterval = 600;
+const introThirdTimeoutInterval = 1000;
 //: INTRO                                                                   ://
 let introText = 'jakub chojna frontend projects';
 const introItemWidth = 40;
