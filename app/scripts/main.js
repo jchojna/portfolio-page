@@ -842,10 +842,8 @@ const handleIntroAnimation = () => {
   let minColNum = 6;
   //: intervals                                                             ://
   const addCharInterval = 30;
-  const firstTimeoutInterval = 1000;
   const secondTimeoutInterval = addCharInterval * charTotal + 500;
-  //: generate html structure dynamically                                   ://
-
+  //: FUNCTIONS                                                             ://
   const setEndings = (index) => {
     if (index < charTotal) {
       const beforeChild = introGrid.children[0];
@@ -922,17 +920,14 @@ const handleIntroAnimation = () => {
    ######     ##    ##     ## ##     ##    ##
   */
   introGrid = document.querySelector('.grid--js');
+  introGrid.classList.add('grid--visible');
   introGrid.style.gridTemplateColumns = `repeat(${maxColNum}, 1fr)`;
   //: set sizes and position of ending elements                             ://
-  introGrid.classList.add('grid--visible');
   endingBefore.style.width = `${introItemWidth}px`;
   endingBefore.style.height = `${introItemHeight}px`;
   endingAfter.style.width = `${introItemWidth}px`;
   endingAfter.style.height = `${introItemHeight}px`;
-  loadChar(charIndex);
-  endingBefore.classList.add('intro__ending--visible');
-  endingAfter.classList.add('intro__ending--visible');
-
+  setEndings(charIndex);
 
   //:                                                                       ://
   //: FIRST TIMEOUT                                                         ://
@@ -940,8 +935,10 @@ const handleIntroAnimation = () => {
   clearTimeout(introSecondTimeoutId);
   introFirstTimeoutId = setTimeout(() => {
     //. show ending elements                                                .//
-    //endingBefore.classList.add('intro__ending--visible');
-    //endingAfter.classList.add('intro__ending--visible');
+    endingBefore.classList.add('intro__ending--visible');
+    endingAfter.classList.add('intro__ending--visible');
+
+    introLoader.classList.add('intro__loader--hidden');
     //. remove temporary child                                              .//
     introCharIntervalId = setInterval(() => {
       loadChar();
@@ -972,7 +969,7 @@ const handleIntroAnimation = () => {
       introCharIntervalId = setInterval(() => {
         if (maxColNum >= minColNum) {
           introGrid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
-          //handleChars(gridChars, false);
+          handleChars(gridChars, false);
         } else {
           clearInterval(introCharIntervalId);
         }
@@ -991,9 +988,23 @@ const handleIntroAnimation = () => {
 
     
     }, secondTimeoutInterval);
-  }, firstTimeoutInterval);
+  }, introFirstTimeoutInterval);
 }
 //| end of HANDLE INTRO ANIMATION                                           |//
+
+const setIntroLoaderPosition = () => {
+  introLoader.style.top = `${introLoader.offsetTop}px`;
+  introLoader.style.left = `${introLoader.offsetLeft}px`;
+}
+
+const handleIntroLoader = () => {
+  introLoader.classList.add('intro__loader--loaded');
+  introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
+  introLoader.style.top = `${endingBefore.offsetTop}px`;
+  introLoader.style.left = `${endingBefore.offsetLeft}px`;
+  introLoader.style.width = `${introItemHeight}px`;
+  introLoader.style.height = `${introItemHeight}px`;
+}
 
 //| GLOBAL VARIABLES                                                        |//
 //: OVERALL                                                                 ://
@@ -1011,18 +1022,21 @@ let menuSmFirstTimeoutId = null;
 let menuSmSecondTimeoutId = null;
 let menuLgFirstTimeoutId = null;
 let menuLgSecondTimeoutId = null;
-let introFirstTimeoutId = null;
-let introSecondTimeoutId = null;
-let introCharIntervalId = null;
 const menuSmFirstTimeoutInterval = 300;
 const menuSmSecondTimeoutInterval = 600;
 const menuLgFirstTimeoutInterval = 500;
 const menuLgSecondTimeoutInterval = 500;
+
+let introFirstTimeoutId = null;
+let introSecondTimeoutId = null;
+let introCharIntervalId = null;
+const introFirstTimeoutInterval = 600;
 //: INTRO                                                                   ://
 let introText = 'jakub chojna frontend projects';
 const introItemWidth = 40;
 const introItemHeight = 2 * introItemWidth;
 const intro = document.querySelector('.grid--js');
+const introLoader = document.querySelector('.intro__loader--js');
 let introGrid = document.querySelector('.grid--js');
 const endingBefore = document.querySelector('.intro__ending--js-before');
 const endingAfter = document.querySelector('.intro__ending--js-after');
@@ -1078,6 +1092,8 @@ let contentData = [];
 const expandableContent = document.querySelectorAll('.js-expandable');
 
 //| FUNCTION CALLS ON PAGE LOAD                                             |//
+setIntroLoaderPosition();
+loadIntroContent();
 handleIntroMenu();
 //: handle page's accordions                                                ://
 handleAccordion([...resumeSubtabs]);
@@ -1085,11 +1101,11 @@ handleAccordion([...resumeTabs]);
 if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
-loadIntroContent();
 //: collapse expandable content on page load                                ://
 window.onload = () => {
   handleExpandableContent(expandableContent);
   handleIntroAnimation();
+  handleIntroLoader();
 };
 
 //: fetch github api                                                        ://
