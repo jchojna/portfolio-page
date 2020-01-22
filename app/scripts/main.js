@@ -862,8 +862,14 @@ const handleIntroAnimation = () => {
   let maxColNum = charTotal;
   let minColNum = 6;
   //: intervals                                                             ://
-  const addCharInterval = 30;
-  const introSecondTimeoutInterval = addCharInterval * charTotal + 500;
+  const loadCharInterval = 30;
+  const translateCharInterval = 100;
+  const introSecondTimeoutInterval = loadCharInterval * charTotal + 500;
+
+  const changeLoaderPositionToIntrobox = 1000;
+  const inBetweenTransition = 500;
+
+  const smoothTransition = 500;
   //: FUNCTIONS                                                             ://
   const setEndings = (index) => {
     if (index < charTotal) {
@@ -955,6 +961,7 @@ const handleIntroAnimation = () => {
   clearTimeout(introFirstTimeoutId);
   clearTimeout(introSecondTimeoutId);
   clearTimeout(introThirdTimeoutId);
+  clearTimeout(introForthTimeoutId);
   introFirstTimeoutId = setTimeout(() => {
     //. show ending elements                                                .//
     endingBefore.classList.add('intro__ending--visible');
@@ -964,7 +971,7 @@ const handleIntroAnimation = () => {
     //. remove temporary child                                              .//
     introCharIntervalId = setInterval(() => {
       loadChar();
-    }, addCharInterval);
+    }, loadCharInterval);
     //:                                                                     ://
     //: SECOND TIMEOUT                                                      ://
     introSecondTimeoutId = setTimeout(() => {
@@ -979,23 +986,46 @@ const handleIntroAnimation = () => {
           introGrid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
           handleChars(gridChars, false);
         } else {
-          //. show intro loader                                             .//
+          //: when interval ends                                            ://
           clearInterval(introCharIntervalId);
           setSizeAndPosition(introLoader, introGrid);
+          //. show intro loader                                             .//
+          introLoader.classList.remove('intro__loader--hidden');
+          introLoader.style.transition = `
+            opacity ${smoothTransition}ms ${inBetweenTransition}ms,
+            visibility 0s ${inBetweenTransition}ms
+          `;
+          
+          //:                                                               ://
+          //: THIRD TIMEOUT                                                 ://
           introThirdTimeoutId = setTimeout(() => {
-            introLoader.classList.remove('intro__loader--hidden');
-
-
-
-            console.log(introBox.clientLeft);
-
-
-
+            
+            introLoader.classList.add('intro__loader--transition');
+            introLoader.style.transition = '';
+            introLoader.style.transitionDuration = `${inBetweenTransition}ms`;
+            introGrid.classList.remove('grid--visible');
+            setSizeAndPosition(introLoader, introBox);
 
             
-          }, introThirdTimeoutInterval);
+
+            //:                                                             ://
+            //: FORTH TIMEOUT                                               ://
+            introForthTimeoutId = setTimeout(() => {
+              //. activeate menu items                                      .//
+              [...menuItems].forEach(item => {
+                item.classList.add('menu__item--active');
+              });
+              //. show page header                                          .//
+              pageHeader.classList.add('pageHeader--visible');
+              //. show introBox                                             .//
+              visuals.classList.add('visuals--visible');
+              //. hide intro                                                .//
+              intro.classList.add('intro--hidden');
+              
+            }, inBetweenTransition);
+          }, changeLoaderPositionToIntrobox);
         }
-      }, 100);    
+      }, translateCharInterval);    
     }, introSecondTimeoutInterval);
   }, introFirstTimeoutInterval);
 }
@@ -1025,20 +1055,21 @@ const menuLgSecondTimeoutInterval = 500;
 let introFirstTimeoutId = null;
 let introSecondTimeoutId = null;
 let introThirdTimeoutId = null;
+let introForthTimeoutId = null;
 let introCharIntervalId = null;
 const introFirstTimeoutInterval = 600;
-const introThirdTimeoutInterval = 1000;
 //: INTRO                                                                   ://
 let introText = 'jakub chojna frontend projects';
 const introItemWidth = 40;
 const introItemHeight = 2 * introItemWidth;
-const intro = document.querySelector('.grid--js');
+const intro = document.querySelector('.intro--js');
 const introLoader = document.querySelector('.intro__loader--js');
 let introGrid = document.querySelector('.grid--js');
 const endingBefore = document.querySelector('.intro__ending--js-before');
 const endingAfter = document.querySelector('.intro__ending--js-after');
 //: MENU AND NAVIGATION                                                     ://
 const pageHeader = document.querySelector('.pageHeader--js');
+const visuals = document.querySelector('.visuals--js');
 const introBox = document.querySelector('.visuals__introBox--js');
 const menuIndicator = document.querySelector('.pageHeader__indicator--js');
 const menuUpperBackground = document.querySelector('.visuals__background--js-upper');

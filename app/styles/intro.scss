@@ -13,6 +13,12 @@
   top: 0;
   width: 100%;
 
+  z-index: 999;
+
+  &--hidden {
+    display: none;
+  }
+
   &__loader {
     align-self: center;
     animation: showLoader 0.5s;
@@ -20,7 +26,7 @@
     height: 200px;
     opacity: 1;
     position: fixed;
-    visibility: visible;
+    visibility: inherit;
     width: 200px;
     z-index: 1;
     transition: opacity 0.5s, visibility 0s;
@@ -45,7 +51,7 @@
     &--visible {
       opacity: 1;
       transition: opacity 0s, visibility 0s;
-      visibility: visible;
+      visibility: inherit;
     }
   }
 }
@@ -68,7 +74,7 @@
     visibility: hidden;
 
     &--visible {
-      visibility: visible;
+      visibility: inherit;
     }
   }
 

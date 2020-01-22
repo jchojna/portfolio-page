@@ -7,10 +7,13 @@
   min-height: 100vh;
   position: fixed;
   top: 0;
+  visibility: hidden;
   width: 100%;
   z-index: 5;
 
-  display: none;
+  &--visible {
+    visibility: visible;
+  }
 
   @media only screen and (min-width: $media-lg) {
 
