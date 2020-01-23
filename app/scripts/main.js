@@ -1232,6 +1232,11 @@ if (window.innerWidth < mediaDesktop) {
   button.index = index;
   button.addEventListener('click', handleReadMore);
 });
+//: SAVE FORM INPUTS VALUES TO LOCAL STORAGE                                ://
+[...formInputs].forEach(input => {
+  input.addEventListener('keyup', (e) => localStorage.setItem(e.target.id, e.target.value));
+  input.value = localStorage.getItem(input.id) ? localStorage.getItem(input.id) : '';
+});
 //: VALIDATE CONTACT FORM                                                   ://
 //formSubmitButton.addEventListener('click', validateForm);
 formSubmitButton.addEventListener('click', (e) => handleAlerts({
