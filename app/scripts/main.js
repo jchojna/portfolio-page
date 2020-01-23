@@ -860,6 +860,7 @@ const handleIntroAnimation = () => {
   let maxColNum = charTotal;
   let minColNum = 6;
   const rowGap = 10;
+  let gridTopMargin = null;
   //: intervals                                                             ://
   const loadCharInterval = 30;
   const translateCharInterval = 100;
@@ -932,9 +933,18 @@ const handleIntroAnimation = () => {
     const gridHeight = (rowNum * introItemHeight) + ((rowNum - 1) * rowGap);
     return (gridHeight - (minColNum * introItemWidth)) / (minColNum - 1);
   }
+  //. set introGrid's top margin                                            .//
+  const updateTopMargin = () => {
+    const topMargin = (window.innerHeight - introGrid.clientHeight) / 2;
+    if (topMargin !== gridTopMargin || gridTopMargin === null) {
+      gridTopMargin = topMargin;
+      introGrid.style.marginTop = `${gridTopMargin}px`;
+    }
+  }
   //: configure introGrid on start                                          ://
   introGrid.classList.add('grid--visible');
   introGrid.style.gridTemplateColumns = `repeat(${maxColNum}, 1fr)`;
+  updateTopMargin();
   //: set sizes and position of ending elements                             ://
   endingBefore.style.width = `${introItemWidth}px`;
   endingBefore.style.height = `${introItemHeight}px`;
@@ -957,6 +967,7 @@ const handleIntroAnimation = () => {
     //. remove temporary child                                              .//
     introCharIntervalId = setInterval(() => {
       loadChar();
+      updateTopMargin();
     }, loadCharInterval);
     //:                                                                     ://
     //: SECOND TIMEOUT                                                      ://
@@ -975,6 +986,7 @@ const handleIntroAnimation = () => {
         if (maxColNum >= minColNum) {
           introGrid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
           handleChars(gridChars, false);
+          updateTopMargin();
         } else {
           //: when interval ends                                            ://
           clearInterval(introCharIntervalId);
