@@ -1,0 +1,52 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.alerts {
+  left: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 4;
+
+  border: 1px solid #000;
+
+  &__box {
+    align-items: center;
+    background-color: $color-contact-shadow;
+    border-radius: 6px;
+    color: $color-contact-light;
+    display: flex;
+    font-size: 1.6em;
+    height: 80px;
+    left: 540px;
+    top: -80px;
+    overflow: hidden;
+    position: fixed;
+    transition: top 0.3s 0.3s, visibility 0s 0.6s, width 0.3s;
+    visibility: hidden;
+    width: 80px;
+
+    &--visible {
+      transition: top 0.3s, visibility 0s, width 0.3s 0.3s;
+      visibility: visible;
+      width: $container-size;
+    }
+  }
+  
+
+  &__text {
+    margin: 0;
+    margin-left: 1em;
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  &__button {
+    @include flex-center;
+    margin-right: 1em;
+  }
+}
