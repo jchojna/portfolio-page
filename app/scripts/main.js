@@ -103,11 +103,11 @@ const handleMenuItemClick = (e) => {
   if (window.innerWidth < mediaTablet) {
     //. variables                                                           .//
     const windowHeight = window.innerHeight;
-    const clickedItemHeight = items[activeIndex].height;
+    const clickedintroItemHeight = items[activeIndex].height;
     const clickedItemOffset = items[activeIndex].offset;
     const clickedElementId = sections[activeIndex].id;
     const viewOffset = pageHeader.scrollTop;
-    const upperBackgroundHeight = clickedItemHeight + clickedItemOffset - viewOffset;
+    const upperBackgroundHeight = clickedintroItemHeight + clickedItemOffset - viewOffset;
     const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
     //. change items colors and set introbox position                       .//
     handleColorChange(lastMenuItemIndex, 'deactivate');
@@ -136,7 +136,7 @@ const handleMenuItemClick = (e) => {
     menuSmFirstTimeoutId = setTimeout(() => {
       //. variables                                                         .//
       const upwardsOffset = clickedItemOffset;
-      const downwardsOffset = windowHeight - clickedItemOffset - clickedItemHeight;
+      const downwardsOffset = windowHeight - clickedItemOffset - clickedintroItemHeight;
       //. set translated position of menu items                             .//
       [...menuItems].forEach((item, index) => {
         const currentItemOffset = items[index].offset;
@@ -149,7 +149,7 @@ const handleMenuItemClick = (e) => {
       introBox.classList.add('visuals__introBox--content');
       introBox.style.top = 0;
       //. handle menu background                                            .//
-      menuUpperBackground.style.height = `${clickedItemHeight}px`;
+      menuUpperBackground.style.height = `${clickedintroItemHeight}px`;
       menuBottomBackground.style.height = 0;
       menuUpperBackground.classList.add('visuals__background--animated');
       menuBottomBackground.classList.add('visuals__background--animated');
@@ -259,13 +259,13 @@ const handleMenuItemClick = (e) => {
 const handleBurgerButton = () => {
   //. variables                                                             .//
   const windowHeight = window.innerHeight;
-  const activeItemHeight = items[lastMenuItemIndex].height;
+  const activeintroItemHeight = items[lastMenuItemIndex].height;
   const activeItemOffset = items[lastMenuItemIndex].offset;
   const activeId = sections[lastMenuItemIndex].id;
-  const upperBackgroundHeight = activeItemHeight + activeItemOffset;
+  const upperBackgroundHeight = activeintroItemHeight + activeItemOffset;
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
   const upwardsOffset = activeItemOffset;
-  const downwardsOffset = windowHeight - activeItemOffset - activeItemHeight;
+  const downwardsOffset = windowHeight - activeItemOffset - activeintroItemHeight;
 
   isMenuTransformMode = true;
   //. hide burger button                                                    .//
@@ -810,9 +810,226 @@ const handleFastScroll = (e) => {
   }
 }
 //| end of HANDLE JUMPING TO NEXT SECTION ON SCROLL                         |//
+//| LOAD INTRO GRID CONTENT                                                 |//
+const loadIntroContent = () => {
+  [...introText].forEach(char => {
+    const gridItem = char !== ' '
+    ? `<li
+        class="grid__item grid__item--js"
+        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
+      >
+        <svg class="grid__char grid__char--svg grid__char--js" viewBox="0 0 50 100">
+          <use href="assets/svg/letters.svg#${char}"></use>
+        </svg>
+      </li>`
+    : `<li
+        class="grid__item grid__item--js"
+        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
+      >
+        <div class="grid__char grid__char--separator grid__char--js"></div>
+      </li>`;
+    introGrid.insertAdjacentHTML('beforeend', gridItem);
+  });
+}
+//| end of LOAD INTRO GRID CONTENT                                          |//
+//| HANDLE INTRO LOADER                                                     |//
+//: assign size and position of one element to another                      ://
+const setSizeAndPosition = (element, target, size) => {
+  element.style.top = `${target.offsetTop}px`;
+  element.style.left = `${target.offsetLeft}px`;
+  element.style.width = size ? `${size}px` : `${target.clientWidth}px`;
+  element.style.height = size ? `${size}px` : `${target.clientHeight}px`;
+}
+//: set initial position of intro loader to be animated later               ://
+const setIntroLoaderPosition = () => {
+  introLoader.style.top = `${introLoader.offsetTop}px`;
+  introLoader.style.left = `${introLoader.offsetLeft}px`;
+}
+//: animate new size and position of intro loader                           ://
+const handleIntroLoader = () => {
+  introLoader.classList.add('intro__loader--transition');
+  introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
+  setSizeAndPosition(introLoader, endingBefore, introItemHeight);
+}
+//| end of HANDLE INTRO LOADER                                              |//
+//| HANDLE INTRO ANIMATION                                                  |//
+const handleIntroAnimation = () => {
+  //: variables                                                             ://
+  let charIndex = 0;
+  const charTotal = introText.length;
+  let maxColNum = charTotal;
+  let minColNum = 6;
+  const rowGap = 10;
+  let gridTopMargin = null;
+  //: intervals                                                             ://
+  const loadCharInterval = 30;
+  const translateCharInterval = 100;
+  const introSecondTimeoutInterval = loadCharInterval * charTotal + 1000;
+  const introGridViewInterval = 2000;
+  const inBetweenTransition = 500;
+  //: FUNCTIONS                                                             ://
+  //. set position of ending elements                                       .//
+  const setEndings = (index) => {
+    if (index < charTotal) {
+      const beforeChild = introGrid.children[0];
+      const afterChild = introGrid.children[index];
+      var endingBeforeTop  = beforeChild.offsetTop;
+      var endingBeforeLeft = beforeChild.offsetLeft - introItemWidth;
+      var endingAfterTop   = afterChild.offsetTop;
+      var endingAfterLeft  = afterChild.offsetLeft;
+    } else {
+      const prevAfterChildOffset = introGrid.children[index - 1].offsetLeft;
+      var endingAfterLeft = prevAfterChildOffset + introItemWidth;
+    }
+    endingBefore.style.top  = `${endingBeforeTop}px`;
+    endingBefore.style.left = `${endingBeforeLeft}px`;
+    endingAfter.style.top   = `${endingAfterTop}px`;
+    endingAfter.style.left  = `${endingAfterLeft}px`;
+  }
+  //. show consecutive characters of intro text                             .//
+  const loadChar = () => {
+    if (charIndex < charTotal) {
+      const currentItem = introGrid.children[charIndex];
+      currentItem.style.width = `${introItemWidth}px`;
+      currentItem.style.height = `${introItemHeight}px`;
+      currentItem.classList.add('grid__item--visible');
+      setEndings(charIndex);
+      charIndex++;
+    } else {
+      setEndings(charIndex);
+      clearInterval(introCharIntervalId);
+    }
+  }
+  //. animate characters position on introGrid change                       .//
+  const handleChars = (chars, isInitial) => {
+    if (isInitial) {
+      [...chars].forEach((char, index) => {
+        const {offsetTop, offsetLeft} = introGrid.children[index];
+        char.style.top = `${offsetTop}px`;
+        char.style.left = `${offsetLeft}px`;
+        char.style.width = `${introItemWidth}px`;
+        char.style.height = `${introItemHeight}px`;
+        char.classList.add('grid__char--transition');
+      });
+    } else {
+      [...chars].forEach((char, index) => {
+        const bias = maxColNum - minColNum < minColNum
+        ? minColNum - (maxColNum - minColNum)
+        : 0;
+        if (index >= maxColNum - bias) {
+          const { offsetTop, offsetLeft } = introGrid.children[index];
+          char.style.top = `${offsetTop}px`;
+          char.style.left = `${offsetLeft}px`;
+          if (!char.classList.contains('grid__char--faded')) {
+            char.classList.add('grid__char--faded');
+          }
+        }
+      });
+    }
+  }
+  //. calculate introGrid's gaps and items paddings                         .//
+  const getColGap = () => {
+    const rowNum = charTotal / minColNum;
+    const gridHeight = (rowNum * introItemHeight) + ((rowNum - 1) * rowGap);
+    return (gridHeight - (minColNum * introItemWidth)) / (minColNum - 1);
+  }
+  //. set introGrid's top margin                                            .//
+  const updateTopMargin = () => {
+    const topMargin = (window.innerHeight - introGrid.clientHeight) / 2;
+    if (topMargin !== gridTopMargin || gridTopMargin === null) {
+      gridTopMargin = topMargin;
+      introGrid.style.marginTop = `${gridTopMargin}px`;
+    }
+  }
+  //: configure introGrid on start                                          ://
+  introGrid.classList.add('grid--visible');
+  introGrid.style.gridTemplateColumns = `repeat(${maxColNum}, 1fr)`;
+  updateTopMargin();
+  //: set sizes and position of ending elements                             ://
+  endingBefore.style.width = `${introItemWidth}px`;
+  endingBefore.style.height = `${introItemHeight}px`;
+  endingAfter.style.width = `${introItemWidth}px`;
+  endingAfter.style.height = `${introItemHeight}px`;
+  setEndings(charIndex);
+
+  //:                                                                       ://
+  //: FIRST TIMEOUT                                                         ://
+  clearTimeout(introFirstTimeoutId);
+  clearTimeout(introSecondTimeoutId);
+  clearTimeout(introThirdTimeoutId);
+  clearTimeout(introForthTimeoutId);
+  introFirstTimeoutId = setTimeout(() => {
+    //. show ending elements                                                .//
+    endingBefore.classList.add('intro__ending--visible');
+    endingAfter.classList.add('intro__ending--visible');
+    introLoader.classList.add('intro__loader--hidden');
+    introLoader.classList.remove('intro__loader--transition');
+    //. remove temporary child                                              .//
+    introCharIntervalId = setInterval(() => {
+      loadChar();
+      updateTopMargin();
+    }, loadCharInterval);
+    //:                                                                     ://
+    //: SECOND TIMEOUT                                                      ://
+    introSecondTimeoutId = setTimeout(() => {
+      //. assign fixed positioning to svg elements                          .//
+      const gridChars = document.querySelectorAll('.grid__char--js');
+      endingAfter.classList.remove('intro__ending--visible');
+      endingBefore.classList.remove('intro__ending--visible');
+      handleChars(gridChars, true);
+      //. set introGrid's column and row gaps to make introGrid a square    .//
+      const columnGap = getColGap();
+      introGrid.style.columnGap = `${columnGap}px`;
+      introGrid.style.rowGap = `${rowGap}px`;
+      //. decrease number of grid columns                                   .//
+      introCharIntervalId = setInterval(() => {
+        if (maxColNum >= minColNum) {
+          introGrid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
+          handleChars(gridChars, false);
+          updateTopMargin();
+        } else {
+          //: when interval ends                                            ://
+          clearInterval(introCharIntervalId);
+          setSizeAndPosition(introLoader, introGrid);
+          //. show intro loader                                             .//
+          introLoader.classList.remove('intro__loader--hidden');
+          const delay = introGridViewInterval - inBetweenTransition;
+          introLoader.style.transition = `
+            opacity ${inBetweenTransition}ms ${delay}ms,
+            visibility 0s ${delay}ms
+          `;
+          //:                                                               ://
+          //: THIRD TIMEOUT                                                 ://
+          introThirdTimeoutId = setTimeout(() => {
+            introLoader.classList.add('intro__loader--transition');
+            introLoader.style.transition = '';
+            introLoader.style.transitionDuration = `${inBetweenTransition}ms`;
+            introGrid.classList.remove('grid--visible');
+            setSizeAndPosition(introLoader, introBox);
+            //:                                                             ://
+            //: FORTH TIMEOUT                                               ://
+            introForthTimeoutId = setTimeout(() => {
+              //. activeate menu items                                      .//
+              [...menuItems].forEach(item => {
+                item.classList.add('menu__item--active');
+              });
+              //. show introBox                                             .//
+              visuals.classList.add('visuals--visible');
+              //. hide intro                                                .//
+              intro.classList.add('intro--hidden');
+              //. show page header                                            .//
+              pageHeader.classList.add('pageHeader--visible');
+            }, inBetweenTransition);
+          }, introGridViewInterval);
+        }
+      }, translateCharInterval);    
+    }, introSecondTimeoutInterval);
+  }, introFirstTimeoutInterval);
+}
+//| end of HANDLE INTRO ANIMATION                                           |//
 
 //| GLOBAL VARIABLES                                                        |//
-//: INTRO                                                                   ://
+//: OVERALL                                                                 ://
 let isIntroMode = true;
 let isBackToIntroMode = false;
 let isMenuTransformMode = false;
@@ -831,8 +1048,25 @@ const menuSmFirstTimeoutInterval = 300;
 const menuSmSecondTimeoutInterval = 600;
 const menuLgFirstTimeoutInterval = 500;
 const menuLgSecondTimeoutInterval = 500;
+
+let introFirstTimeoutId = null;
+let introSecondTimeoutId = null;
+let introThirdTimeoutId = null;
+let introForthTimeoutId = null;
+let introCharIntervalId = null;
+const introFirstTimeoutInterval = 600;
+//: INTRO                                                                   ://
+let introText = 'jakub chojna frontend projects';
+const introItemWidth = 40;
+const introItemHeight = 2 * introItemWidth;
+const intro = document.querySelector('.intro--js');
+const introLoader = document.querySelector('.intro__loader--js');
+let introGrid = document.querySelector('.grid--js');
+const endingBefore = document.querySelector('.intro__ending--js-before');
+const endingAfter = document.querySelector('.intro__ending--js-after');
 //: MENU AND NAVIGATION                                                     ://
 const pageHeader = document.querySelector('.pageHeader--js');
+const visuals = document.querySelector('.visuals--js');
 const introBox = document.querySelector('.visuals__introBox--js');
 const menuIndicator = document.querySelector('.pageHeader__indicator--js');
 const menuUpperBackground = document.querySelector('.visuals__background--js-upper');
@@ -883,6 +1117,8 @@ let contentData = [];
 const expandableContent = document.querySelectorAll('.js-expandable');
 
 //| FUNCTION CALLS ON PAGE LOAD                                             |//
+setIntroLoaderPosition();
+loadIntroContent();
 handleIntroMenu();
 //: handle page's accordions                                                ://
 handleAccordion([...resumeSubtabs]);
@@ -893,6 +1129,8 @@ if (window.innerWidth < mediaDesktop) {
 //: collapse expandable content on page load                                ://
 window.onload = () => {
   handleExpandableContent(expandableContent);
+  handleIntroAnimation();
+  handleIntroLoader();
 };
 
 //: fetch github api                                                        ://
