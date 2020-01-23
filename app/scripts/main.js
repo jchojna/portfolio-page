@@ -1031,12 +1031,35 @@ const handleIntroAnimation = () => {
 const validateForm = (e) => {
   e.preventDefault();
   //: backend validation => send form using ajax request                    ://
-  const formSubmit = formSubmitButton.value;
-  const userName = document.querySelector('.form__input--js-name').value;
-  const userEmail = document.querySelector('.form__input--js-email').value;
-  const userPhone = document.querySelector('.form__input--js-phone').value;
-  const userTitle = document.querySelector('.form__input--js-title').value;
-  const userMessage = document.querySelector('.form__input--js-message').value;
+  const xhr = new XMLHttpRequest();
+  const url = 'form.php';
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var jsonData = JSON.parse(xhr.response);
+      if (xhr.status === 200) {
+        handleAlerts(jsonData, false);
+      } else {
+        handleAlerts(jsonData, true);
+      }
+    }
+  };
+  const formSubmitVal  = formSubmitButton.value;
+  const userNameVal    = userName.value;
+  const userEmailVal   = userEmail.value;
+  const userPhoneVal   = userPhone.value;
+  const userTitleVal   = userTitle.value;
+  const userMessageVal = userMessage.value;
+  const data = JSON.stringify({
+    'submit': formSubmitVal,
+    'userName': userNameVal,
+    'userEmail': userEmailVal,
+    'userPhone': userPhoneVal,
+    'userTitle': userTitleVal,
+    'userMessage': userMessageVal
+  });
+  xhr.send(data);
 }
 //| end of VALIDATE CONTACT FORM                                            |//
 
