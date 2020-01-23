@@ -3,6 +3,9 @@ node_modules
 bower_components
 project
 
+#sensitive data
+form_handler
+
 # compiled output
 /dist
 /.tmp

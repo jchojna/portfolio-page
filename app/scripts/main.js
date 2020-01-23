@@ -1027,6 +1027,18 @@ const handleIntroAnimation = () => {
   }, introFirstTimeoutInterval);
 }
 //| end of HANDLE INTRO ANIMATION                                           |//
+//| VALIDATE CONTACT FORM                                                   |//
+const validateForm = (e) => {
+  e.preventDefault();
+  //: backend validation => send form using ajax request                    ://
+  const formSubmit = formSubmitButton.value;
+  const userName = document.querySelector('.form__input--js-name').value;
+  const userEmail = document.querySelector('.form__input--js-email').value;
+  const userPhone = document.querySelector('.form__input--js-phone').value;
+  const userTitle = document.querySelector('.form__input--js-title').value;
+  const userMessage = document.querySelector('.form__input--js-message').value;
+}
+//| end of VALIDATE CONTACT FORM                                            |//
 
 //| GLOBAL VARIABLES                                                        |//
 //: OVERALL                                                                 ://
@@ -1040,6 +1052,14 @@ let lastMenuItemIndex = 0;
 let scrollTimeoutId = null;
 let scrollTotal = 0;
 //: INTERVALS                                                               ://
+//. intro                                                                   .//
+let introFirstTimeoutId = null;
+let introSecondTimeoutId = null;
+let introThirdTimeoutId = null;
+let introForthTimeoutId = null;
+let introCharIntervalId = null;
+const introFirstTimeoutInterval = 600;
+//. menu                                                                    .//
 let menuSmFirstTimeoutId = null;
 let menuSmSecondTimeoutId = null;
 let menuLgFirstTimeoutId = null;
@@ -1048,13 +1068,6 @@ const menuSmFirstTimeoutInterval = 300;
 const menuSmSecondTimeoutInterval = 600;
 const menuLgFirstTimeoutInterval = 500;
 const menuLgSecondTimeoutInterval = 500;
-
-let introFirstTimeoutId = null;
-let introSecondTimeoutId = null;
-let introThirdTimeoutId = null;
-let introForthTimeoutId = null;
-let introCharIntervalId = null;
-const introFirstTimeoutInterval = 600;
 //: INTRO                                                                   ://
 let introText = 'jakub chojna frontend projects';
 const introItemWidth = 40;
@@ -1072,7 +1085,6 @@ const menuIndicator = document.querySelector('.pageHeader__indicator--js');
 const menuUpperBackground = document.querySelector('.visuals__background--js-upper');
 const menuBottomBackground = document.querySelector('.visuals__background--js-bottom');
 const burgerButton = document.querySelector('.burgerButton--js');
-
 const menu = document.querySelector('.menu--js');
 const menuItems = document.querySelectorAll('.menu__item--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
@@ -1095,8 +1107,8 @@ const resumeSubtabs = document.querySelectorAll('.subtab--js-resume');
 const resumeSubButtons = document.querySelectorAll('.subtab__button--js-resume');
 const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
 const otherProjectsButtons = document.querySelectorAll('.tab__button--js-other');
-
 const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
+const formSubmitButton = document.querySelector('.form__submit--js');
 
 const sections = [...pageSections].map((section, index) => ({
   index,
@@ -1117,8 +1129,15 @@ let contentData = [];
 const expandableContent = document.querySelectorAll('.js-expandable');
 
 //| FUNCTION CALLS ON PAGE LOAD                                             |//
-setIntroLoaderPosition();
-loadIntroContent();
+
+// ! temporary page load
+intro.classList.add('intro--hidden');
+[...menuItems].forEach(item => item.classList.add('menu__item--active'));
+visuals.classList.add('visuals--visible');
+pageHeader.classList.add('pageHeader--visible');
+
+//setIntroLoaderPosition();
+//loadIntroContent();
 handleIntroMenu();
 //: handle page's accordions                                                ://
 handleAccordion([...resumeSubtabs]);
@@ -1129,8 +1148,8 @@ if (window.innerWidth < mediaDesktop) {
 //: collapse expandable content on page load                                ://
 window.onload = () => {
   handleExpandableContent(expandableContent);
-  handleIntroAnimation();
-  handleIntroLoader();
+  //handleIntroAnimation();
+  //handleIntroLoader();
 };
 
 //: fetch github api                                                        ://
@@ -1182,3 +1201,5 @@ if (window.innerWidth < mediaDesktop) {
   button.index = index;
   button.addEventListener('click', handleReadMore);
 });
+//: VALIDATE CONTACT FORM                                                   ://
+formSubmitButton.addEventListener('click', validateForm);
