@@ -4,7 +4,7 @@ bower_components
 project
 
 #sensitive data
-form_handler
+credentials
 
 # compiled output
 /dist
