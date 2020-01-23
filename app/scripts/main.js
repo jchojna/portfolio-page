@@ -859,6 +859,7 @@ const handleIntroAnimation = () => {
   const charTotal = introText.length;
   let maxColNum = charTotal;
   let minColNum = 6;
+  const rowGap = 10;
   //: intervals                                                             ://
   const loadCharInterval = 30;
   const translateCharInterval = 100;
@@ -925,7 +926,12 @@ const handleIntroAnimation = () => {
       });
     }
   }
-  
+  //. calculate introGrid's gaps and items paddings                         .//
+  const getColGap = () => {
+    const rowNum = charTotal / minColNum;
+    const gridHeight = (rowNum * introItemHeight) + ((rowNum - 1) * rowGap);
+    return (gridHeight - (minColNum * introItemWidth)) / (minColNum - 1);
+  }
   //: configure introGrid on start                                          ://
   introGrid.classList.add('grid--visible');
   introGrid.style.gridTemplateColumns = `repeat(${maxColNum}, 1fr)`;
@@ -935,6 +941,7 @@ const handleIntroAnimation = () => {
   endingAfter.style.width = `${introItemWidth}px`;
   endingAfter.style.height = `${introItemHeight}px`;
   setEndings(charIndex);
+
   //:                                                                       ://
   //: FIRST TIMEOUT                                                         ://
   clearTimeout(introFirstTimeoutId);
@@ -959,6 +966,10 @@ const handleIntroAnimation = () => {
       endingAfter.classList.remove('intro__ending--visible');
       endingBefore.classList.remove('intro__ending--visible');
       handleChars(gridChars, true);
+      //. set introGrid's column and row gaps to make introGrid a square    .//
+      const columnGap = getColGap();
+      introGrid.style.columnGap = `${columnGap}px`;
+      introGrid.style.rowGap = `${rowGap}px`;
       //. decrease number of grid columns                                   .//
       introCharIntervalId = setInterval(() => {
         if (maxColNum >= minColNum) {
