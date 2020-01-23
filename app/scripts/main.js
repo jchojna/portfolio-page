@@ -1131,6 +1131,14 @@ const resumeSubButtons = document.querySelectorAll('.subtab__button--js-resume')
 const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
 const otherProjectsButtons = document.querySelectorAll('.tab__button--js-other');
 const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
+
+//. CONTACT FORM                                                            .//
+const formInputs = document.querySelectorAll('.form__input--js');
+const userName = document.querySelector('.form__input--js-name');
+const userEmail = document.querySelector('.form__input--js-email');
+const userPhone = document.querySelector('.form__input--js-phone');
+const userTitle = document.querySelector('.form__input--js-title');
+const userMessage = document.querySelector('.form__input--js-message');
 const formSubmitButton = document.querySelector('.form__submit--js');
 
 const sections = [...pageSections].map((section, index) => ({
@@ -1225,4 +1233,12 @@ if (window.innerWidth < mediaDesktop) {
   button.addEventListener('click', handleReadMore);
 });
 //: VALIDATE CONTACT FORM                                                   ://
-formSubmitButton.addEventListener('click', validateForm);
+//formSubmitButton.addEventListener('click', validateForm);
+formSubmitButton.addEventListener('click', (e) => handleAlerts({
+  'emptyEmailError': true,
+  'invalidEmailError': false,
+  'messageError': true,
+  'phoneError': true,
+  'failure': '',
+  'success': false
+}, false, event));
