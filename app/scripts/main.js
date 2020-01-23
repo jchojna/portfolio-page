@@ -833,44 +833,40 @@ const loadIntroContent = () => {
 }
 //| end of LOAD INTRO GRID CONTENT                                          |//
 //| HANDLE INTRO LOADER                                                     |//
-
+//: assign size and position of one element to another                      ://
 const setSizeAndPosition = (element, target, size) => {
   element.style.top = `${target.offsetTop}px`;
   element.style.left = `${target.offsetLeft}px`;
   element.style.width = size ? `${size}px` : `${target.clientWidth}px`;
   element.style.height = size ? `${size}px` : `${target.clientHeight}px`;
 }
-
+//: set initial position of intro loader to be animated later               ://
 const setIntroLoaderPosition = () => {
   introLoader.style.top = `${introLoader.offsetTop}px`;
   introLoader.style.left = `${introLoader.offsetLeft}px`;
 }
-
+//: animate new size and position of intro loader                           ://
 const handleIntroLoader = () => {
   introLoader.classList.add('intro__loader--transition');
   introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
   setSizeAndPosition(introLoader, endingBefore, introItemHeight);
 }
-
 //| end of HANDLE INTRO LOADER                                              |//
 //| HANDLE INTRO ANIMATION                                                  |//
 const handleIntroAnimation = () => {
   //: variables                                                             ://
   let charIndex = 0;
-  //: create an array of all letters used in animation                      ://
   const charTotal = introText.length;
   let maxColNum = charTotal;
   let minColNum = 6;
   //: intervals                                                             ://
   const loadCharInterval = 30;
   const translateCharInterval = 100;
-  const introSecondTimeoutInterval = loadCharInterval * charTotal + 500;
-
-  const changeLoaderPositionToIntrobox = 1000;
+  const introSecondTimeoutInterval = loadCharInterval * charTotal + 1000;
+  const introGridViewInterval = 2000;
   const inBetweenTransition = 500;
-
-  const smoothTransition = 500;
   //: FUNCTIONS                                                             ://
+  //. set position of ending elements                                       .//
   const setEndings = (index) => {
     if (index < charTotal) {
       const beforeChild = introGrid.children[0];
@@ -888,28 +884,22 @@ const handleIntroAnimation = () => {
     endingAfter.style.top   = `${endingAfterTop}px`;
     endingAfter.style.left  = `${endingAfterLeft}px`;
   }
-
+  //. show consecutive characters of intro text                             .//
   const loadChar = () => {
-
     if (charIndex < charTotal) {
       const currentItem = introGrid.children[charIndex];
       currentItem.style.width = `${introItemWidth}px`;
       currentItem.style.height = `${introItemHeight}px`;
       currentItem.classList.add('grid__item--visible');
-      
-      //: set position of ending elements                                   ://
       setEndings(charIndex);
       charIndex++;
-      
-
     } else {
       setEndings(charIndex);
       clearInterval(introCharIntervalId);
     }
   }
-
+  //. animate characters position on introGrid change                       .//
   const handleChars = (chars, isInitial) => {
-
     if (isInitial) {
       [...chars].forEach((char, index) => {
         const {offsetTop, offsetLeft} = introGrid.children[index];
@@ -924,7 +914,6 @@ const handleIntroAnimation = () => {
         const bias = maxColNum - minColNum < minColNum
         ? minColNum - (maxColNum - minColNum)
         : 0;
-
         if (index >= maxColNum - bias) {
           const { offsetTop, offsetLeft } = introGrid.children[index];
           char.style.top = `${offsetTop}px`;
@@ -936,17 +925,8 @@ const handleIntroAnimation = () => {
       });
     }
   }
-
-  /*
-   ######  ########    ###    ########  ########
-  ##    ##    ##      ## ##   ##     ##    ##
-  ##          ##     ##   ##  ##     ##    ##
-   ######     ##    ##     ## ########     ##
-        ##    ##    ######### ##   ##      ##
-  ##    ##    ##    ##     ## ##    ##     ##
-   ######     ##    ##     ## ##     ##    ##
-  */
-  introGrid = document.querySelector('.grid--js');
+  
+  //: configure introGrid on start                                          ://
   introGrid.classList.add('grid--visible');
   introGrid.style.gridTemplateColumns = `repeat(${maxColNum}, 1fr)`;
   //: set sizes and position of ending elements                             ://
@@ -955,7 +935,6 @@ const handleIntroAnimation = () => {
   endingAfter.style.width = `${introItemWidth}px`;
   endingAfter.style.height = `${introItemHeight}px`;
   setEndings(charIndex);
-
   //:                                                                       ://
   //: FIRST TIMEOUT                                                         ://
   clearTimeout(introFirstTimeoutId);
@@ -991,23 +970,19 @@ const handleIntroAnimation = () => {
           setSizeAndPosition(introLoader, introGrid);
           //. show intro loader                                             .//
           introLoader.classList.remove('intro__loader--hidden');
+          const delay = introGridViewInterval - inBetweenTransition;
           introLoader.style.transition = `
-            opacity ${smoothTransition}ms ${inBetweenTransition}ms,
-            visibility 0s ${inBetweenTransition}ms
+            opacity ${inBetweenTransition}ms ${delay}ms,
+            visibility 0s ${delay}ms
           `;
-          
           //:                                                               ://
           //: THIRD TIMEOUT                                                 ://
           introThirdTimeoutId = setTimeout(() => {
-            
             introLoader.classList.add('intro__loader--transition');
             introLoader.style.transition = '';
             introLoader.style.transitionDuration = `${inBetweenTransition}ms`;
             introGrid.classList.remove('grid--visible');
             setSizeAndPosition(introLoader, introBox);
-
-            
-
             //:                                                             ://
             //: FORTH TIMEOUT                                               ://
             introForthTimeoutId = setTimeout(() => {
@@ -1015,15 +990,14 @@ const handleIntroAnimation = () => {
               [...menuItems].forEach(item => {
                 item.classList.add('menu__item--active');
               });
-              //. show page header                                          .//
-              pageHeader.classList.add('pageHeader--visible');
               //. show introBox                                             .//
               visuals.classList.add('visuals--visible');
               //. hide intro                                                .//
               intro.classList.add('intro--hidden');
-              
+              //. show page header                                            .//
+              pageHeader.classList.add('pageHeader--visible');
             }, inBetweenTransition);
-          }, changeLoaderPositionToIntrobox);
+          }, introGridViewInterval);
         }
       }, translateCharInterval);    
     }, introSecondTimeoutInterval);

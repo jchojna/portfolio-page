@@ -18,7 +18,8 @@
 
   &--visible {
     opacity: 1;
-    transition: opacity 0.5s;
+    transition: opacity 1s;
+    visibility: visible;
   }
   
   @media only screen and (min-width: $media-lg) {
