@@ -1062,6 +1062,41 @@ const validateForm = (e) => {
   xhr.send(data);
 }
 //| end of VALIDATE CONTACT FORM                                            |//
+//| HANDLE ALERTS                                                           |//
+const handleAlerts = (data, isFailed, e) => {
+  e.preventDefault();
+
+  //: if sending process fails                                              ://
+  if (isFailed) {
+    console.log('Something went wrongs...');
+  //: if sending process fails                                              ://
+  } else {
+    console.log(data);
+    
+    const margin = 20;
+    let heightTotal = margin;
+    let alertTimeoutId = null;
+    const alertTimeoutInterval = 3000;
+
+    const truthies = Object.keys(data).filter(key => data[key]);
+    [...truthies].forEach(truthy => {
+      const alertBox = document.querySelector(`.alerts__box--js-${truthy}`);
+      const alertBoxHeight = alertBox.clientHeight;
+      alertBox.style.top = `${heightTotal}px`;
+      heightTotal += alertBoxHeight + margin;
+      alertBox.classList.add('alerts__box--visible');
+      
+
+      alertTimeoutId = setTimeout(() => {
+        alertBox.style.top = `${alertBoxHeight * -1}px`;
+        alertBox.classList.remove('alerts__box--visible');
+
+        
+      }, alertTimeoutInterval);
+    });
+  }  
+}
+//| end of HANDLE ALERTS                                                    |//
 
 //| GLOBAL VARIABLES                                                        |//
 //: OVERALL                                                                 ://
