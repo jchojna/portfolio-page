@@ -94,12 +94,12 @@ function lintTest() {
 function html() {
   return src('app/*.html')
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
-    .pipe($.if(/\.js$/, $.uglify({compress: {drop_console: true}})))
+    .pipe($.if(/\.js$/, $.uglify({compress: {drop_console: false}})))
     .pipe($.if(/\.css$/, $.postcss([cssnano({safe: true, autoprefixer: false})])))
     .pipe($.if(/\.html$/, $.htmlmin({
       collapseWhitespace: true,
       minifyCSS: true,
-      minifyJS: {compress: {drop_console: true}},
+      minifyJS: {compress: {drop_console: false}},
       processConditionalComments: true,
       removeComments: true,
       removeEmptyAttributes: true,
@@ -110,14 +110,19 @@ function html() {
 }
 
 function images() {
-  return src('app/images/**/*', { since: lastRun(images) })
+  return src('app/assets/img/**/*', { since: lastRun(images) })
     .pipe($.imagemin())
-    .pipe(dest('dist/images'));
+    .pipe(dest('dist/assets/img'));
+};
+
+function svg() {
+  return src('app/assets/svg/**/*')
+    .pipe(dest('dist/assets/svg'));
 };
 
 function fonts() {
-  return src('app/fonts/**/*.{eot,svg,ttf,woff,woff2}')
-    .pipe($.if(!isProd, dest('.tmp/fonts'), dest('dist/fonts')));
+  return src('app/assets/fonts/**/*.{eot,svg,ttf,woff,woff2}')
+    .pipe($.if(!isProd, dest('.tmp/fonts'), dest('dist/assets/fonts')));
 };
 
 function extras() {
@@ -127,6 +132,14 @@ function extras() {
   ], {
     dot: true
   }).pipe(dest('dist'));
+};
+
+function phpmailer() {
+  return src([
+    'app/phpmailer/*',
+  ], {
+    dot: true
+  }).pipe(dest('dist/phpmailer'));
 };
 
 function clean() {
@@ -144,8 +157,10 @@ const build = series(
     lint,
     series(parallel(styles, scripts, modernizr), html),
     images,
+    svg,
     fonts,
-    extras
+    extras,
+    phpmailer
   ),
   measureSize
 );
@@ -164,14 +179,16 @@ function startAppServer() {
 
   watch([
     'app/*.html',
-    'app/images/**/*',
-    '.tmp/fonts/**/*'
+    'app/assets/img/**/*',
+    '.tmp/assets/fonts/**/*'
   ]).on('change', server.reload);
 
   watch('app/styles/**/*.scss', styles);
   watch('app/scripts/**/*.js', scripts);
   watch('modernizr.json', modernizr);
-  watch('app/fonts/**/*', fonts);
+  watch('app/assets/svg/**/*', svg);
+  watch('app/assets/fonts/**/*', fonts);
+  watch('app/phpmailer/**/*', phpmailer);
 }
 
 function startTestServer() {

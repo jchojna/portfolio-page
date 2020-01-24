@@ -1027,6 +1027,117 @@ const handleIntroAnimation = () => {
   }, introFirstTimeoutInterval);
 }
 //| end of HANDLE INTRO ANIMATION                                           |//
+//| VALIDATE CONTACT FORM                                                   |//
+const validateForm = (e) => {
+  e.preventDefault();
+  //: backend validation => send form using ajax request                    ://
+  const xhr = new XMLHttpRequest();
+  const url = 'form.php';
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4) {
+      var jsonData = JSON.parse(xhr.response);
+      if (xhr.status === 200) {
+        handleAlerts(jsonData, false);
+      } else {
+        handleAlerts(jsonData, true);
+      }
+    }
+  };
+  const formSubmitVal  = formSubmitButton.value;
+  const userNameVal    = userName.value;
+  const userEmailVal   = userEmail.value;
+  const userPhoneVal   = userPhone.value;
+  const userTitleVal   = userTitle.value;
+  const userMessageVal = userMessage.value;
+  const data = JSON.stringify({
+    'submit': formSubmitVal,
+    'userName': userNameVal,
+    'userEmail': userEmailVal,
+    'userPhone': userPhoneVal,
+    'userTitle': userTitleVal,
+    'userMessage': userMessageVal
+  });
+  xhr.send(data);
+}
+//| end of VALIDATE CONTACT FORM                                            |//
+//| HANDLE ALERTS                                                           |//
+// ! remove event later
+const handleAlerts = (data, isFailed, e) => {
+  e.preventDefault();
+  const margin = 20;
+  let heightTotal = margin;
+  let delay = 0;
+  const delayInterval = 60;
+  const alertTimeoutInterval = 5000;
+  const transitionTime = 250;
+  let visibleAlerts = [];
+  //: close alert box                                                       ://
+  const quitAlertBox = (e) => {
+    const self = e.target ? e.target : e;
+    const { parentNode, index } = self;
+    //. hide clicked alert box                                              .//
+    parentNode.style.top = `${parentNode.clientHeight * -1}px`;
+    parentNode.classList.remove('alerts__box--visible');
+    delay = index * delayInterval;
+    parentNode.style.transition = `
+      top ${transitionTime}ms ${delay + transitionTime}ms,
+      visibility 0s ${delay + transitionTime * 2}ms,
+      width ${transitionTime}ms ${delay}ms
+    `;
+    //. update alert boxes below                                            .//
+    if (e.target) {
+      visibleAlerts = visibleAlerts.filter(alert => alert.button.index !== index);
+      visibleAlerts
+      .filter(alert => alert.button.index >= index)
+      .forEach(alert => {
+        const { offsetTop, clientHeight } = alert.box;
+        alert.box.style.top = `${offsetTop - clientHeight - margin}px`;
+        alert.button.index--;
+      });
+    }
+    //. clear timeout and event listener                                    .//
+    clearTimeout(self.alertTimeoutId);
+    self.alertTimeoutId = null;
+    self.removeEventListener('click', quitAlertBox);
+  }
+  //: handle active alerts                                                  ://
+  const alerts = isFailed ? ['failure'] : Object.keys(data).filter(key => data[key]);
+  [...alerts].forEach((alert, index) => {
+    //. select elements                                                     .//
+    const alertBox = document.querySelector(`.alerts__box--js-${alert}`);
+    const alertButton = document.querySelector(`.alerts__button--js-${alert}`);
+    //. handle appearance of alert boxes                                    .//
+    const alertBoxHeight = alertBox.clientHeight;
+    alertBox.style.top = `${heightTotal}px`;
+    alertBox.style.transition = `
+      top ${transitionTime}ms ${delay}ms,
+      visibility 0s,
+      width ${transitionTime}ms ${delay + transitionTime}ms
+    `;
+    heightTotal += alertBoxHeight + margin;
+    delay += delayInterval;
+    alertBox.classList.add('alerts__box--visible');
+    //. clear timeout and event                                             .//
+    clearTimeout(alertButton.alertTimeoutId);
+    alertButton.alertTimeoutId = null;
+    alertButton.removeEventListener('click', quitAlertBox);
+    //. set timeout and event                                               .//
+    alertButton.alertTimeoutId = setTimeout(() => {
+      quitAlertBox(alertButton);
+    }, alertTimeoutInterval);
+    alertButton.index = index;
+    alertButton.addEventListener('click', quitAlertBox);
+    //. create array of alert objects                                       .//
+    visibleAlerts = [...visibleAlerts, {
+      box: alertBox,
+      button: alertButton
+    }];
+  });
+}
+//| end of HANDLE ALERTS                                                    |//
+
 
 //| GLOBAL VARIABLES                                                        |//
 //: OVERALL                                                                 ://
@@ -1040,6 +1151,14 @@ let lastMenuItemIndex = 0;
 let scrollTimeoutId = null;
 let scrollTotal = 0;
 //: INTERVALS                                                               ://
+//. intro                                                                   .//
+let introFirstTimeoutId = null;
+let introSecondTimeoutId = null;
+let introThirdTimeoutId = null;
+let introForthTimeoutId = null;
+let introCharIntervalId = null;
+const introFirstTimeoutInterval = 600;
+//. menu                                                                    .//
 let menuSmFirstTimeoutId = null;
 let menuSmSecondTimeoutId = null;
 let menuLgFirstTimeoutId = null;
@@ -1048,13 +1167,6 @@ const menuSmFirstTimeoutInterval = 300;
 const menuSmSecondTimeoutInterval = 600;
 const menuLgFirstTimeoutInterval = 500;
 const menuLgSecondTimeoutInterval = 500;
-
-let introFirstTimeoutId = null;
-let introSecondTimeoutId = null;
-let introThirdTimeoutId = null;
-let introForthTimeoutId = null;
-let introCharIntervalId = null;
-const introFirstTimeoutInterval = 600;
 //: INTRO                                                                   ://
 let introText = 'jakub chojna frontend projects';
 const introItemWidth = 40;
@@ -1072,7 +1184,6 @@ const menuIndicator = document.querySelector('.pageHeader__indicator--js');
 const menuUpperBackground = document.querySelector('.visuals__background--js-upper');
 const menuBottomBackground = document.querySelector('.visuals__background--js-bottom');
 const burgerButton = document.querySelector('.burgerButton--js');
-
 const menu = document.querySelector('.menu--js');
 const menuItems = document.querySelectorAll('.menu__item--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
@@ -1095,8 +1206,16 @@ const resumeSubtabs = document.querySelectorAll('.subtab--js-resume');
 const resumeSubButtons = document.querySelectorAll('.subtab__button--js-resume');
 const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
 const otherProjectsButtons = document.querySelectorAll('.tab__button--js-other');
-
 const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
+
+//. CONTACT FORM                                                            .//
+const formInputs = document.querySelectorAll('.form__input--js');
+const userName = document.querySelector('.form__input--js-name');
+const userEmail = document.querySelector('.form__input--js-email');
+const userPhone = document.querySelector('.form__input--js-phone');
+const userTitle = document.querySelector('.form__input--js-title');
+const userMessage = document.querySelector('.form__input--js-message');
+const formSubmitButton = document.querySelector('.form__submit--js');
 
 const sections = [...pageSections].map((section, index) => ({
   index,
@@ -1117,8 +1236,15 @@ let contentData = [];
 const expandableContent = document.querySelectorAll('.js-expandable');
 
 //| FUNCTION CALLS ON PAGE LOAD                                             |//
-setIntroLoaderPosition();
-loadIntroContent();
+
+// ! temporary page load
+intro.classList.add('intro--hidden');
+[...menuItems].forEach(item => item.classList.add('menu__item--active'));
+visuals.classList.add('visuals--visible');
+pageHeader.classList.add('pageHeader--visible');
+
+//setIntroLoaderPosition();
+//loadIntroContent();
 handleIntroMenu();
 //: handle page's accordions                                                ://
 handleAccordion([...resumeSubtabs]);
@@ -1129,8 +1255,8 @@ if (window.innerWidth < mediaDesktop) {
 //: collapse expandable content on page load                                ://
 window.onload = () => {
   handleExpandableContent(expandableContent);
-  handleIntroAnimation();
-  handleIntroLoader();
+  //handleIntroAnimation();
+  //handleIntroLoader();
 };
 
 //: fetch github api                                                        ://
@@ -1182,3 +1308,18 @@ if (window.innerWidth < mediaDesktop) {
   button.index = index;
   button.addEventListener('click', handleReadMore);
 });
+//: SAVE FORM INPUTS VALUES TO LOCAL STORAGE                                ://
+[...formInputs].forEach(input => {
+  input.addEventListener('keyup', (e) => localStorage.setItem(e.target.id, e.target.value));
+  input.value = localStorage.getItem(input.id) ? localStorage.getItem(input.id) : '';
+});
+//: VALIDATE CONTACT FORM                                                   ://
+//formSubmitButton.addEventListener('click', validateForm);
+formSubmitButton.addEventListener('click', (e) => handleAlerts({
+  'emptyEmailError': true,
+  'invalidEmailError': true,
+  'messageError': true,
+  'phoneError': false,
+  'failure': true,
+  'success': true
+}, false, event));

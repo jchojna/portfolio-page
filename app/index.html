@@ -2285,7 +2285,7 @@
               <input
                 id="name"
                 name="name"
-                class="form__input form__input--name"
+                class="form__input form__input--name form__input--js form__input--js-name"
                 placeholder="Your name:"
                 spellcheck="false"
               >
@@ -2299,7 +2299,7 @@
               <input
                 id="email"
                 name="email"
-                class="form__input form__input--email"
+                class="form__input form__input--email form__input--js form__input--js-email"
                 placeholder="Your e-mail:"
                 spellcheck="false"
               >
@@ -2313,7 +2313,7 @@
               <input
                 id="phone"
                 name="phone"
-                class="form__input form__input--phone"
+                class="form__input form__input--phone form__input--js form__input--js-phone"
                 placeholder="Your phone number:"
                 spellcheck="false"
               >
@@ -2327,7 +2327,7 @@
               <input
                 id="title"
                 name="title"
-                class="form__input form__input--title"
+                class="form__input form__input--title form__input--js form__input--js-title"
                 placeholder="Title of your message:"
                 spellcheck="false"
               >
@@ -2341,7 +2341,7 @@
               <textarea
                 id="message"
                 name="message"
-                class="form__input form__input--message"
+                class="form__input form__input--message form__input--js form__input--js-message"
                 placeholder="Type in your message:"
                 autocomplete="off"
                 spellcheck="false"
@@ -2352,11 +2352,73 @@
               </label>
             </div>
             <!--. SUBMIT BUTTON                                            .-->
-            <button class="form__submit">
-              Send
-            </button>
+            <button class="form__submit form__submit--js">Send</button>
           </form>
           <!--: END OF CONTACT FORM                                        :-->
+          <!--: ALERTS                                                     :-->
+          <ul class="alerts">
+            <li class="alerts__box alerts__box--error alerts__box--js-emptyEmailError">
+              <p class="alerts__text">
+                You need to enter your e-mail address!
+              </p>
+              <button class="alerts__button alerts__button--js-emptyEmailError">
+                <svg class="alerts__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/icons.svg#close"></use>
+                </svg>
+              </button>
+            </li>
+            <li class="alerts__box alerts__box--error alerts__box--js-invalidEmailError">
+              <p class="alerts__text">
+                E-mail format is not correct!
+              </p>
+              <button class="alerts__button alerts__button--js-invalidEmailError">
+                <svg class="alerts__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/icons.svg#close"></use>
+                </svg>
+              </button>
+            </li>
+            <li class="alerts__box alerts__box--error alerts__box--js-messageError">
+              <p class="alerts__text">
+                Please type your message!
+              </p>
+              <button class="alerts__button alerts__button--js-messageError">
+                <svg class="alerts__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/icons.svg#close"></use>
+                </svg>
+              </button>
+            </li>
+            <li class="alerts__box alerts__box--error alerts__box--js-phoneError">
+              <p class="alerts__text">
+                Phone format is not correct!
+              </p>
+              <button class="alerts__button alerts__button--js-phoneError">
+                <svg class="alerts__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/icons.svg#close"></use>
+                </svg>
+              </button>
+            </li>
+            <li class="alerts__box alerts__box--error alerts__box--js-failure">
+              <p class="alerts__text">
+                Something went wrong! Try again later!
+              </p>
+              <button class="alerts__button alerts__button--js-failure">
+                <svg class="alerts__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/icons.svg#close"></use>
+                </svg>
+              </button>
+            </li>
+            <li class="alerts__box alerts__box--success alerts__box--js-success">
+              <p class="alerts__text">
+                Thank you for sending me a message! I'll get back to you soon
+              </p>
+              <button class="alerts__button alerts__button--js-success">
+                <svg class="alerts__svg" viewBox="0 0 200 200">
+                  <use href="assets/svg/icons.svg#close"></use>
+                </svg>
+              </button>
+            </li>
+          </ul>
+          <!--: end of ALERTS                                              :-->
           <!--: SOCIAL MEDIA PROFILES                                      :-->
           <section class="tab tab--social">
             <h3 class="tab__heading tab__heading--contact visuallyhidden">
