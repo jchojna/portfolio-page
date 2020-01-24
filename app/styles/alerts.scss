@@ -9,7 +9,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 4;
+  z-index: 6;
 
   &__box {
     align-items: center;
@@ -17,10 +17,11 @@
     border-radius: 6px;
     color: $color-contact-light;
     display: flex;
-    font-size: 1.6em;
-    height: 80px;
-    left: 540px;
+    font-size: 1em;
+    height: 60px;
+    left: $offset-alert;
     overflow: hidden;
+    padding: 0 1em;
     position: fixed;
     top: -80px;
     visibility: hidden;
@@ -28,31 +29,56 @@
 
     &--visible {
       visibility: visible;
-      width: $container-size;
+      width: calc(100vw - #{$offset-alert} * 2);
     }
 
     &--success {
       background-color: $color-contact-shadow;
     }
+
+    @media only screen and (min-width: $media-lg) {
+  
+      & {
+        font-size: 1.6em;
+        height: 80px;
+        left: 540px;
+
+        &--visible {
+          width: $container-size;
+        }
+      }
+    }
   }
 
   &__text {
     margin: 0;
-    margin-left: 1em;
     text-align: center;
-    white-space: nowrap;
     width: 100%;
+
+    @media only screen and (min-width: $media-lg) {
+  
+      & {
+        white-space: nowrap;
+      }
+    }
   }
 
   &__button {
     @include flex-center;
     @include button;
     fill: $color-contact-light;
-    margin-right: 1em;
-    width: 50px;
+    margin-left: 1em;
+    width: 30px;
 
     &:hover {
       fill: $color-contact-white;
+    }
+
+    @media only screen and (min-width: $media-lg) {
+  
+      & {
+        width: 50px;
+      }
     }
   }
 

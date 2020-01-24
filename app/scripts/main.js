@@ -1068,7 +1068,7 @@ const validateForm = (e) => {
 // ! remove event later
 const handleAlerts = (data, isFailed, e) => {
   e.preventDefault();
-  const margin = 20;
+  const margin = window.innerWidth >= mediaDesktop ? 20 : 5;
   let heightTotal = margin;
   let delay = 0;
   const delayInterval = 60;
