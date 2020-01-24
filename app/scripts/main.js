@@ -1140,12 +1140,22 @@ const handleAlerts = (data, isFailed, e) => {
 }
 //| end of HANDLE ALERTS                                                    |//
 //| VALIDATE FORM INPUTS                                                    |//
+//: handle input appearance on change                                       ://
+const handleInputStyle = (input, isValid) => {
+  if (isValid) {
+    if (input.classList.contains('form__input--invalid'))
+    input.classList.remove('form__input--invalid');
+  } else {
+    if (!input.classList.contains('form__input--invalid'))
+    input.classList.add('form__input--invalid');
+  }
+}
 //: validate e-mail input                                                   ://
 const validateEmail = (e) => {
   const self = e.target;
   self.value.match(/^\S+@\S+\.\S+$/)
-  ? self.classList.remove('form__input--invalid')
-  : self.classList.add('form__input--invalid');
+  ? handleInputStyle(self, true)
+  : handleInputStyle(self, false);
 }
 //: validate phone number input                                             ://
 const validatePhone = (e) => {
@@ -1153,15 +1163,14 @@ const validatePhone = (e) => {
 
 
 
-  
+
 }
 //: validate message input                                                  ://
 const validateMessage = (e) => {
-
-
-
-
-
+  const self = e.target;
+  self.value.length > 0
+  ? handleInputStyle(self, true)
+  : handleInputStyle(self, false);
 }
 //| end of VALIDATE FORM INPUTS                                             |//
 
@@ -1354,5 +1363,5 @@ formSubmitButton.addEventListener('click', (e) => handleAlerts({
 
 //: VALIDATE FORM INPUTS                                                    ://
 userEmail.addEventListener('keyup', validateEmail);
-//userPhone
-//userMessage
+userPhone.addEventListener('keyup', validatePhone);
+userMessage.addEventListener('keyup', validateMessage);
