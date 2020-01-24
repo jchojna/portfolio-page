@@ -10,11 +10,16 @@
 .expandableHidden,
 .expandedHidden {
   left: 0;
+  max-width: calc(100vw - #{$offset-left-sm} - #{$offset-right-sm});
   position: absolute;
   top: 0;
   transition: visibility 0s;
   visibility: hidden;
   width: 100%;
+
+  @media only screen and (min-width: $media-lg) {
+    max-width: none;
+  }
 }
 
 .expandableVisible,

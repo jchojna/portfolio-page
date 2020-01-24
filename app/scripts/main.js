@@ -678,7 +678,7 @@ const handleRepo = (repos) => {
     }
   }
 //| end of REDUCE CONTENT - RECURSIVE FUNCTION                              |//
-//| HANDLE EXPANDABLE CONTENT                                               |//
+//| HANDLE EXPANDABLE CONTENT WITH READ MORE BUTTON                         |//
 const handleExpandableContent = (contents) => {
   //: aquire html and children of every children node and its own children  ://
   const getChildren = (content) => {
@@ -721,9 +721,12 @@ const handleExpandableContent = (contents) => {
   //: add data from content database to empty content                       ://
   [...contents].forEach((content, index) => {
     const currentContentData = contentData[index];
+    const minMobileHeight = 300;
     //. get available space for reduced content                             .//
     content.style.height = '100%';
-    contentData[index].availableHeight = content.clientHeight;
+    contentData[index].availableHeight = window.innerWidth >= mediaDesktop
+    ? content.clientHeight
+    : minMobileHeight;
     const { availableHeight, fullHeight, html } = currentContentData;
     //. check if content fits available space                               .//
     if (availableHeight >= fullHeight) {
@@ -732,7 +735,9 @@ const handleExpandableContent = (contents) => {
       content.parentNode.classList.add('collapsed');
       //. show read more button and update available space                  .//
       readMoreButtons[index].classList.add('tab__readMore--visible');
-      contentData[index].availableHeight = content.clientHeight;
+      contentData[index].availableHeight = window.innerWidth >= mediaDesktop
+      ? content.clientHeight
+      : minMobileHeight;
       const { availableHeight } = currentContentData;
       //. reduce content using recursive function                           .//
       reduceContent(currentContentData, content, availableHeight, content);
@@ -740,7 +745,7 @@ const handleExpandableContent = (contents) => {
     }
   });
 }
-//| end of HANDLE EXPANDABLE CONTENT                                        |//
+//|                                                                         |//
 //| HANDLE 'READ MORE' BUTTONS                                              |//
 const handleReadMore = (e) => {
   const { index, parentNode } = e.target;
@@ -1064,8 +1069,8 @@ const validateForm = (e) => {
   xhr.send(data);
 }
 //| end of VALIDATE CONTACT FORM                                            |//
-//| HANDLE ALERTS                                                           |//
 // ! remove event later
+//| HANDLE ALERTS                                                           |//
 const handleAlerts = (data, isFailed, e) => {
   e.preventDefault();
   const margin = window.innerWidth >= mediaDesktop ? 20 : 5;
