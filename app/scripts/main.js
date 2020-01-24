@@ -1036,7 +1036,7 @@ const validateForm = (e) => {
   xhr.open('POST', url, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4 && xhr.status === 200) {
+    if (xhr.readyState === 4) {
       var jsonData = JSON.parse(xhr.response);
       if (xhr.status === 200) {
         handleAlerts(jsonData, false);
@@ -1063,6 +1063,7 @@ const validateForm = (e) => {
 }
 //| end of VALIDATE CONTACT FORM                                            |//
 //| HANDLE ALERTS                                                           |//
+// ! remove event later
 const handleAlerts = (data, isFailed, e) => {
   e.preventDefault();
   const margin = 20;
@@ -1105,6 +1106,35 @@ const handleAlerts = (data, isFailed, e) => {
   //: if sending process fails                                              ://
   if (isFailed) {
     console.log('Something went wrongs...');
+    //. select elements                                                     .//
+    const alertBox = document.querySelector('.alerts__box--js-failure');
+    const alertButton = document.querySelector('.alerts__button--js-failure');
+    //. handle appearance of alert boxes                                    .//
+    const alertBoxHeight = alertBox.clientHeight;
+    alertBox.style.top = `${heightTotal}px`;
+    alertBox.style.transition = `
+      top ${transitionTime}ms ${delay}ms,
+      visibility 0s,
+      width ${transitionTime}ms ${delay + transitionTime}ms
+    `;
+    heightTotal += alertBoxHeight + margin;
+    alertBox.classList.add('alerts__box--visible');
+    //. clear timeout and event                                             .//
+    clearTimeout(alertButton.alertTimeoutId);
+    alertButton.alertTimeoutId = null;
+    alertButton.removeEventListener('click', quitAlertBox);
+    //. set timeout and event                                               .//
+    alertButton.alertTimeoutId = setTimeout(() => {
+      quitAlertBox(alertButton);
+    }, alertTimeoutInterval);
+    alertButton.index = 0;
+    alertButton.addEventListener('click', quitAlertBox);
+
+
+
+
+
+
   //: if sending process fails                                              ://
   } else {
     //console.log(data);
@@ -1140,7 +1170,7 @@ const handleAlerts = (data, isFailed, e) => {
         button: alertButton
       }];
     });
-  }  
+  }
 }
 //| end of HANDLE ALERTS                                                    |//
 
@@ -1325,7 +1355,7 @@ formSubmitButton.addEventListener('click', (e) => handleAlerts({
   'emptyEmailError': true,
   'invalidEmailError': true,
   'messageError': true,
-  'phoneError': true,
+  'phoneError': false,
   'failure': '',
   'success': true
 }, false, event));

@@ -13,7 +13,7 @@
 
   &__box {
     align-items: center;
-    background-color: $color-contact-shadow;
+    background-color: $color-contact-diff;
     border-radius: 6px;
     color: $color-contact-light;
     display: flex;
@@ -29,6 +29,10 @@
     &--visible {
       visibility: visible;
       width: $container-size;
+    }
+
+    &--success {
+      background-color: $color-contact-shadow;
     }
   }
   
