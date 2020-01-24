@@ -117,6 +117,8 @@ const handleMenuItemClick = (e) => {
     //. remove introBox resize and scroll events                            .//
     pageHeader.removeEventListener('resize', handleIntroBox);
     pageHeader.removeEventListener('scroll', handleIntroBox);
+    //. remove pointer events from pageHeader                               .//
+    pageHeader.classList.remove('pageHeader--intro');
     //. change menu items to be in a fixed position                         .//
     [...menuItems].forEach((item, index) => {
       item.classList.add('menu__item--mobileHeader');
@@ -1066,7 +1068,7 @@ const validateForm = (e) => {
 // ! remove event later
 const handleAlerts = (data, isFailed, e) => {
   e.preventDefault();
-  const margin = 20;
+  const margin = window.innerWidth >= mediaDesktop ? 20 : 5;
   let heightTotal = margin;
   let delay = 0;
   const delayInterval = 60;
@@ -1134,11 +1136,64 @@ const handleAlerts = (data, isFailed, e) => {
       box: alertBox,
       button: alertButton
     }];
+    //. handle inputs appearance                                            .//
+    switch (alert) {
+      case 'emptyEmailError':
+      case 'invalidEmailError':
+        handleInputStyle(userEmail, false);
+        break;
+      case 'phoneError':
+        handleInputStyle(userPhone, false);
+        break;
+      case 'messageError':
+        handleInputStyle(userMessage, false);
+        break;
+      case 'success':
+        handleInputStyle(userEmail, true);
+        handleInputStyle(userPhone, true);
+        handleInputStyle(userMessage, true);
+        break;
+      default: break;
+    }
   });
 }
 //| end of HANDLE ALERTS                                                    |//
+//| VALIDATE FORM INPUTS                                                    |//
+//: handle input appearance on change                                       ://
+const handleInputStyle = (input, isValid) => {
+  if (isValid) {
+    if (input.classList.contains('form__input--invalid'))
+    input.classList.remove('form__input--invalid');
+  } else {
+    if (!input.classList.contains('form__input--invalid'))
+    input.classList.add('form__input--invalid');
+  }
+}
+//: validate e-mail input                                                   ://
+const validateEmail = (e) => {
+  const self = e.target;
+  self.value.match(/^\S+@\S+\.\S+$/)
+  ? handleInputStyle(self, true)
+  : handleInputStyle(self, false);
+}
+//: validate phone number input                                             ://
+const validatePhone = (e) => {
+  const self = e.target;
+  self.value.match(/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{3}$/i)
+  || self.value.length === 0
+  ? handleInputStyle(self, true)
+  : handleInputStyle(self, false);
+}
+//: validate message input                                                  ://
+const validateMessage = (e) => {
+  const self = e.target;
+  self.value.length > 0
+  ? handleInputStyle(self, true)
+  : handleInputStyle(self, false);
+}
+//| end of VALIDATE FORM INPUTS                                             |//
 
-
+//|                                                                         |//
 //| GLOBAL VARIABLES                                                        |//
 //: OVERALL                                                                 ://
 let isIntroMode = true;
@@ -1208,15 +1263,6 @@ const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
 const otherProjectsButtons = document.querySelectorAll('.tab__button--js-other');
 const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
 
-//. CONTACT FORM                                                            .//
-const formInputs = document.querySelectorAll('.form__input--js');
-const userName = document.querySelector('.form__input--js-name');
-const userEmail = document.querySelector('.form__input--js-email');
-const userPhone = document.querySelector('.form__input--js-phone');
-const userTitle = document.querySelector('.form__input--js-title');
-const userMessage = document.querySelector('.form__input--js-message');
-const formSubmitButton = document.querySelector('.form__submit--js');
-
 const sections = [...pageSections].map((section, index) => ({
   index,
   id: section.id,
@@ -1232,6 +1278,15 @@ const items = [...menuItems].map((item, index) => ({
   currentSectionIndex: getCurrentSectionIndex(item.offsetTop + menu.offsetTop)
 }));
 
+//. CONTACT FORM                                                            .//
+const formInputs = document.querySelectorAll('.form__input--js');
+const userName = document.querySelector('.form__input--js-name');
+const userEmail = document.querySelector('.form__input--js-email');
+const userPhone = document.querySelector('.form__input--js-phone');
+const userTitle = document.querySelector('.form__input--js-title');
+const userMessage = document.querySelector('.form__input--js-message');
+const formSubmitButton = document.querySelector('.form__submit--js');
+
 let contentData = [];
 const expandableContent = document.querySelectorAll('.js-expandable');
 
@@ -1242,6 +1297,7 @@ intro.classList.add('intro--hidden');
 [...menuItems].forEach(item => item.classList.add('menu__item--active'));
 visuals.classList.add('visuals--visible');
 pageHeader.classList.add('pageHeader--visible');
+// ! temporary page load
 
 //setIntroLoaderPosition();
 //loadIntroContent();
@@ -1323,3 +1379,8 @@ formSubmitButton.addEventListener('click', (e) => handleAlerts({
   'failure': true,
   'success': true
 }, false, event));
+
+//: VALIDATE FORM INPUTS                                                    ://
+userEmail.addEventListener('keyup', validateEmail);
+userPhone.addEventListener('keyup', validatePhone);
+userMessage.addEventListener('keyup', validateMessage);

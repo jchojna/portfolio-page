@@ -10,6 +10,7 @@
   overflow: auto;
   opacity: 0;
   padding: $offset-top-bottom-lg 0;
+  pointer-events: none;
   position: fixed;
   top: 0;
   visibility: hidden;
@@ -20,6 +21,10 @@
     opacity: 1;
     transition: opacity 1s;
     visibility: visible;
+  }
+
+  &--intro {
+    pointer-events: all;
   }
   
   @media only screen and (min-width: $media-lg) {
