@@ -1136,6 +1136,25 @@ const handleAlerts = (data, isFailed, e) => {
       box: alertBox,
       button: alertButton
     }];
+    //. handle inputs appearance                                            .//
+    switch (alert) {
+      case 'emptyEmailError':
+      case 'invalidEmailError':
+        handleInputStyle(userEmail, false);
+        break;
+      case 'phoneError':
+        handleInputStyle(userPhone, false);
+        break;
+      case 'messageError':
+        handleInputStyle(userMessage, false);
+        break;
+      case 'success':
+        handleInputStyle(userEmail, true);
+        handleInputStyle(userPhone, true);
+        handleInputStyle(userMessage, true);
+        break;
+      default: break;
+    }
   });
 }
 //| end of HANDLE ALERTS                                                    |//
