@@ -116,6 +116,14 @@
         margin-left $tabHeader-time ease-in;
     }
 
+    &--invalid {
+      border-color: $color-contact-diff;
+
+      &:focus {
+        border-color: $color-contact-diff;
+      }
+    }
+
     @media only screen and (min-width: $media-lg) {
   
       & {

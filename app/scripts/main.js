@@ -1139,6 +1139,31 @@ const handleAlerts = (data, isFailed, e) => {
   });
 }
 //| end of HANDLE ALERTS                                                    |//
+//| VALIDATE FORM INPUTS                                                    |//
+//: validate e-mail input                                                   ://
+const validateEmail = (e) => {
+  const self = e.target;
+  self.value.match(/^\S+@\S+\.\S+$/)
+  ? self.classList.remove('form__input--invalid')
+  : self.classList.add('form__input--invalid');
+}
+//: validate phone number input                                             ://
+const validatePhone = (e) => {
+  
+
+
+
+  
+}
+//: validate message input                                                  ://
+const validateMessage = (e) => {
+
+
+
+
+
+}
+//| end of VALIDATE FORM INPUTS                                             |//
 
 //|                                                                         |//
 //| GLOBAL VARIABLES                                                        |//
@@ -1210,15 +1235,6 @@ const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
 const otherProjectsButtons = document.querySelectorAll('.tab__button--js-other');
 const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
 
-//. CONTACT FORM                                                            .//
-const formInputs = document.querySelectorAll('.form__input--js');
-const userName = document.querySelector('.form__input--js-name');
-const userEmail = document.querySelector('.form__input--js-email');
-const userPhone = document.querySelector('.form__input--js-phone');
-const userTitle = document.querySelector('.form__input--js-title');
-const userMessage = document.querySelector('.form__input--js-message');
-const formSubmitButton = document.querySelector('.form__submit--js');
-
 const sections = [...pageSections].map((section, index) => ({
   index,
   id: section.id,
@@ -1233,6 +1249,15 @@ const items = [...menuItems].map((item, index) => ({
   height: item.clientHeight,
   currentSectionIndex: getCurrentSectionIndex(item.offsetTop + menu.offsetTop)
 }));
+
+//. CONTACT FORM                                                            .//
+const formInputs = document.querySelectorAll('.form__input--js');
+const userName = document.querySelector('.form__input--js-name');
+const userEmail = document.querySelector('.form__input--js-email');
+const userPhone = document.querySelector('.form__input--js-phone');
+const userTitle = document.querySelector('.form__input--js-title');
+const userMessage = document.querySelector('.form__input--js-message');
+const formSubmitButton = document.querySelector('.form__submit--js');
 
 let contentData = [];
 const expandableContent = document.querySelectorAll('.js-expandable');
@@ -1326,3 +1351,8 @@ formSubmitButton.addEventListener('click', (e) => handleAlerts({
   'failure': true,
   'success': true
 }, false, event));
+
+//: VALIDATE FORM INPUTS                                                    ://
+userEmail.addEventListener('keyup', validateEmail);
+//userPhone
+//userMessage
