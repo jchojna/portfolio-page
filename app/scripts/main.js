@@ -1067,7 +1067,10 @@ const handleAlerts = (data, isFailed, e) => {
   e.preventDefault();
   const margin = 20;
   let heightTotal = margin;
+  let delay = 0;
+  const delayInterval = 60;
   const alertTimeoutInterval = 3000;
+  const transitionTime = 250;
   let visibleAlerts = [];
 
   const quitAlertBox = (e) => {
@@ -1076,6 +1079,12 @@ const handleAlerts = (data, isFailed, e) => {
     //. hide clicked alert box                                              .//
     parentNode.style.top = `${parentNode.clientHeight * -1}px`;
     parentNode.classList.remove('alerts__box--visible');
+    delay = index * delayInterval;
+    parentNode.style.transition = `
+      top ${transitionTime}ms ${delay + transitionTime}ms,
+      visibility 0s ${delay + transitionTime * 2}ms,
+      width ${transitionTime}ms ${delay}ms
+    `;
     //. update alert boxes below                                            .//
     if (e.target) {
       visibleAlerts = visibleAlerts.filter(alert => alert.button.index !== index);
@@ -1105,8 +1114,15 @@ const handleAlerts = (data, isFailed, e) => {
       const alertBox = document.querySelector(`.alerts__box--js-${truthy}`);
       const alertButton = document.querySelector(`.alerts__button--js-${truthy}`);
       //. handle appearance of alert boxes                                  .//
+      const alertBoxHeight = alertBox.clientHeight;
       alertBox.style.top = `${heightTotal}px`;
-      heightTotal += alertBox.clientHeight + margin;
+      alertBox.style.transition = `
+        top ${transitionTime}ms ${delay}ms,
+        visibility 0s,
+        width ${transitionTime}ms ${delay + transitionTime}ms
+      `;
+      heightTotal += alertBoxHeight + margin;
+      delay += delayInterval;
       alertBox.classList.add('alerts__box--visible');
       //. clear timeout and event                                           .//
       clearTimeout(alertButton.alertTimeoutId);
