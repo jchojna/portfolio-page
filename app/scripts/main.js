@@ -1159,11 +1159,11 @@ const validateEmail = (e) => {
 }
 //: validate phone number input                                             ://
 const validatePhone = (e) => {
-  
-
-
-
-
+  const self = e.target;
+  self.value.match(/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{3}$/i)
+  || self.value.length === 0
+  ? handleInputStyle(self, true)
+  : handleInputStyle(self, false);
 }
 //: validate message input                                                  ://
 const validateMessage = (e) => {
