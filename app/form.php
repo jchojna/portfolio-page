@@ -102,7 +102,7 @@
       $failure = $mail->ErrorInfo;
       $userName = $userTitle = $userEmail = $userPhone = $userMessage = "";
 
-      if ($failure === "") $success = true;
+      if ($failure === false) $success = true;
     }
     $data = array(
       'emptyEmailError'=>$emptyEmailError,

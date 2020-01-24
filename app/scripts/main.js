@@ -1073,7 +1073,7 @@ const handleAlerts = (data, isFailed, e) => {
   const alertTimeoutInterval = 5000;
   const transitionTime = 250;
   let visibleAlerts = [];
-
+  //: close alert box                                                       ://
   const quitAlertBox = (e) => {
     const self = e.target ? e.target : e;
     const { parentNode, index } = self;
@@ -1102,13 +1102,12 @@ const handleAlerts = (data, isFailed, e) => {
     self.alertTimeoutId = null;
     self.removeEventListener('click', quitAlertBox);
   }
-
-  //: if sending process fails                                              ://
-  if (isFailed) {
-    console.log('Something went wrongs...');
+  //: handle active alerts                                                  ://
+  const alerts = isFailed ? ['failure'] : Object.keys(data).filter(key => data[key]);
+  [...alerts].forEach((alert, index) => {
     //. select elements                                                     .//
-    const alertBox = document.querySelector('.alerts__box--js-failure');
-    const alertButton = document.querySelector('.alerts__button--js-failure');
+    const alertBox = document.querySelector(`.alerts__box--js-${alert}`);
+    const alertButton = document.querySelector(`.alerts__button--js-${alert}`);
     //. handle appearance of alert boxes                                    .//
     const alertBoxHeight = alertBox.clientHeight;
     alertBox.style.top = `${heightTotal}px`;
@@ -1118,6 +1117,7 @@ const handleAlerts = (data, isFailed, e) => {
       width ${transitionTime}ms ${delay + transitionTime}ms
     `;
     heightTotal += alertBoxHeight + margin;
+    delay += delayInterval;
     alertBox.classList.add('alerts__box--visible');
     //. clear timeout and event                                             .//
     clearTimeout(alertButton.alertTimeoutId);
@@ -1127,50 +1127,14 @@ const handleAlerts = (data, isFailed, e) => {
     alertButton.alertTimeoutId = setTimeout(() => {
       quitAlertBox(alertButton);
     }, alertTimeoutInterval);
-    alertButton.index = 0;
+    alertButton.index = index;
     alertButton.addEventListener('click', quitAlertBox);
-
-
-
-
-
-
-  //: if sending process fails                                              ://
-  } else {
-    //console.log(data);
-    const truthies = Object.keys(data).filter(key => data[key]);
-    [...truthies].forEach((truthy, index) => {
-      //. select elements                                                   .//
-      const alertBox = document.querySelector(`.alerts__box--js-${truthy}`);
-      const alertButton = document.querySelector(`.alerts__button--js-${truthy}`);
-      //. handle appearance of alert boxes                                  .//
-      const alertBoxHeight = alertBox.clientHeight;
-      alertBox.style.top = `${heightTotal}px`;
-      alertBox.style.transition = `
-        top ${transitionTime}ms ${delay}ms,
-        visibility 0s,
-        width ${transitionTime}ms ${delay + transitionTime}ms
-      `;
-      heightTotal += alertBoxHeight + margin;
-      delay += delayInterval;
-      alertBox.classList.add('alerts__box--visible');
-      //. clear timeout and event                                           .//
-      clearTimeout(alertButton.alertTimeoutId);
-      alertButton.alertTimeoutId = null;
-      alertButton.removeEventListener('click', quitAlertBox);
-      //. set timeout and event                                             .//
-      alertButton.alertTimeoutId = setTimeout(() => {
-        quitAlertBox(alertButton);
-      }, alertTimeoutInterval);
-      alertButton.index = index;
-      alertButton.addEventListener('click', quitAlertBox);
-      //. create array of alert objects                                     .//
-      visibleAlerts = [...visibleAlerts, {
-        box: alertBox,
-        button: alertButton
-      }];
-    });
-  }
+    //. create array of alert objects                                       .//
+    visibleAlerts = [...visibleAlerts, {
+      box: alertBox,
+      button: alertButton
+    }];
+  });
 }
 //| end of HANDLE ALERTS                                                    |//
 
@@ -1356,6 +1320,6 @@ formSubmitButton.addEventListener('click', (e) => handleAlerts({
   'invalidEmailError': true,
   'messageError': true,
   'phoneError': false,
-  'failure': '',
+  'failure': true,
   'success': true
 }, false, event));

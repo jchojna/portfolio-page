@@ -20,9 +20,9 @@
     font-size: 1.6em;
     height: 80px;
     left: 540px;
-    top: -80px;
     overflow: hidden;
     position: fixed;
+    top: -80px;
     visibility: hidden;
     width: 80px;
 
@@ -35,7 +35,6 @@
       background-color: $color-contact-shadow;
     }
   }
-  
 
   &__text {
     margin: 0;
