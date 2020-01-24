@@ -1070,7 +1070,7 @@ const handleAlerts = (data, isFailed, e) => {
   let heightTotal = margin;
   let delay = 0;
   const delayInterval = 60;
-  const alertTimeoutInterval = 3000;
+  const alertTimeoutInterval = 5000;
   const transitionTime = 250;
   let visibleAlerts = [];
 

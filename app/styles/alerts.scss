@@ -47,6 +47,18 @@
 
   &__button {
     @include flex-center;
+    @include button;
+    fill: $color-contact-light;
     margin-right: 1em;
+    width: 50px;
+
+    &:hover {
+      fill: $color-contact-white;
+    }
+  }
+
+  &__svg {
+    pointer-events: none;
+    width: 100%;
   }
 }
