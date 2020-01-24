@@ -117,6 +117,8 @@ const handleMenuItemClick = (e) => {
     //. remove introBox resize and scroll events                            .//
     pageHeader.removeEventListener('resize', handleIntroBox);
     pageHeader.removeEventListener('scroll', handleIntroBox);
+    //. remove pointer events from pageHeader                               .//
+    pageHeader.classList.remove('pageHeader--intro');
     //. change menu items to be in a fixed position                         .//
     [...menuItems].forEach((item, index) => {
       item.classList.add('menu__item--mobileHeader');
@@ -1138,7 +1140,7 @@ const handleAlerts = (data, isFailed, e) => {
 }
 //| end of HANDLE ALERTS                                                    |//
 
-
+//|                                                                         |//
 //| GLOBAL VARIABLES                                                        |//
 //: OVERALL                                                                 ://
 let isIntroMode = true;
@@ -1242,6 +1244,7 @@ intro.classList.add('intro--hidden');
 [...menuItems].forEach(item => item.classList.add('menu__item--active'));
 visuals.classList.add('visuals--visible');
 pageHeader.classList.add('pageHeader--visible');
+// ! temporary page load
 
 //setIntroLoaderPosition();
 //loadIntroContent();
