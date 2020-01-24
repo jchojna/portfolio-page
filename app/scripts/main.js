@@ -1065,38 +1065,69 @@ const validateForm = (e) => {
 //| HANDLE ALERTS                                                           |//
 const handleAlerts = (data, isFailed, e) => {
   e.preventDefault();
+  const margin = 20;
+  let heightTotal = margin;
+  const alertTimeoutInterval = 3000;
+  let visibleAlerts = [];
+
+  const quitAlertBox = (e) => {
+    const self = e.target ? e.target : e;
+    const { parentNode, index } = self;
+    //. hide clicked alert box                                              .//
+    parentNode.style.top = `${parentNode.clientHeight * -1}px`;
+    parentNode.classList.remove('alerts__box--visible');
+    //. update alert boxes below                                            .//
+    if (e.target) {
+      visibleAlerts = visibleAlerts.filter(alert => alert.button.index !== index);
+      visibleAlerts
+      .filter(alert => alert.button.index >= index)
+      .forEach(alert => {
+        const { offsetTop, clientHeight } = alert.box;
+        alert.box.style.top = `${offsetTop - clientHeight - margin}px`;
+        alert.button.index--;
+      });
+    }
+    //. clear timeout and event listener                                    .//
+    clearTimeout(self.alertTimeoutId);
+    self.alertTimeoutId = null;
+    self.removeEventListener('click', quitAlertBox);
+  }
 
   //: if sending process fails                                              ://
   if (isFailed) {
     console.log('Something went wrongs...');
   //: if sending process fails                                              ://
   } else {
-    console.log(data);
-    
-    const margin = 20;
-    let heightTotal = margin;
-    let alertTimeoutId = null;
-    const alertTimeoutInterval = 3000;
-
+    //console.log(data);
     const truthies = Object.keys(data).filter(key => data[key]);
-    [...truthies].forEach(truthy => {
+    [...truthies].forEach((truthy, index) => {
+      //. select elements                                                   .//
       const alertBox = document.querySelector(`.alerts__box--js-${truthy}`);
-      const alertBoxHeight = alertBox.clientHeight;
+      const alertButton = document.querySelector(`.alerts__button--js-${truthy}`);
+      //. handle appearance of alert boxes                                  .//
       alertBox.style.top = `${heightTotal}px`;
-      heightTotal += alertBoxHeight + margin;
+      heightTotal += alertBox.clientHeight + margin;
       alertBox.classList.add('alerts__box--visible');
-      
-
-      alertTimeoutId = setTimeout(() => {
-        alertBox.style.top = `${alertBoxHeight * -1}px`;
-        alertBox.classList.remove('alerts__box--visible');
-
-        
+      //. clear timeout and event                                           .//
+      clearTimeout(alertButton.alertTimeoutId);
+      alertButton.alertTimeoutId = null;
+      alertButton.removeEventListener('click', quitAlertBox);
+      //. set timeout and event                                             .//
+      alertButton.alertTimeoutId = setTimeout(() => {
+        quitAlertBox(alertButton);
       }, alertTimeoutInterval);
+      alertButton.index = index;
+      alertButton.addEventListener('click', quitAlertBox);
+      //. create array of alert objects                                     .//
+      visibleAlerts = [...visibleAlerts, {
+        box: alertBox,
+        button: alertButton
+      }];
     });
   }  
 }
 //| end of HANDLE ALERTS                                                    |//
+
 
 //| GLOBAL VARIABLES                                                        |//
 //: OVERALL                                                                 ://
@@ -1276,9 +1307,9 @@ if (window.innerWidth < mediaDesktop) {
 //formSubmitButton.addEventListener('click', validateForm);
 formSubmitButton.addEventListener('click', (e) => handleAlerts({
   'emptyEmailError': true,
-  'invalidEmailError': false,
+  'invalidEmailError': true,
   'messageError': true,
   'phoneError': true,
   'failure': '',
-  'success': false
+  'success': true
 }, false, event));
