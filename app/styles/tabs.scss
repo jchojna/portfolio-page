@@ -125,19 +125,11 @@
     position: relative;
     z-index: 2;
 
-    &--resume    { background-color: $color-resume; }
-    &--tasktimer { background-color: $color-tasktimer; }
-    &--portfolio { background-color: $color-portfolio; }
-    &--hydrapp   { background-color: $color-hydrapp; }
-    &--archviz   { background-color: $color-archviz; }
-    &--quotes    { background-color: $color-quotes; }
-
     &--category {
       font-size: $features-category-size-sm;
     }
     
     &--other {
-      background-color: $color-other;
       font-size: $otherHeading-size-sm;
       min-height: $otherHeading-size-sm;
     }
@@ -453,6 +445,10 @@
   }
 }
 
+.container {
+  overflow: hidden;
+}
+
 .content {
 
   &__list {
@@ -558,5 +554,5 @@
 }
 
 .rollable {
-  transition: margin-top $accordion-time;
+  transition: height $accordion-time;
 }
