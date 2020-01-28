@@ -1271,12 +1271,12 @@
                   </ul>
                 </div>
               </section>
-              <!--. VISUAL STYLE                                           .-->
+              <!--. VISUAL APPEARANCE                                      .-->
               <section class="tab tab--category tab--portfolio tab--js-portfolio">
                 <h4 class="tab__header tab__header--category tab__header--portfolio">
                   <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
                     <span class="mark mark--category mark--portfolio"></span>
-                    <span>Visual Style</span>
+                    <span>Visual Appearance</span>
                   </button>
                 </h4>
                 <div class="container">
@@ -1586,9 +1586,14 @@
             <h3 class="tab__heading tab__heading--hydrapp">
               About Project
             </h3>
-            <p class="tab__description tab__description--hydrapp js-expandable">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-            </p>
+            <div class="tab__wrapper js-expandable">
+              <p class="tab__description tab__description--hydrapp">
+                Simple yet useful app for daily tracking of water consumption. User can quickly basic app’s functionality and add (or remove) next glass of drank water what may help with not forgetting about this really important activity, especially during hot summer. There’s also an archive section with a modifiable history entries divided on weeks, to have an overall insight into water consumption tendency.
+              </p>
+              <p class="tab__description tab__description--hydrapp">
+                I started writing scripts for this app in pure JS, but there is still many functionalities I would like to implement, so I think it’s a good moment for rewriting this project to react.js
+              </p>
+            </div>
             <button class="tab__readMore tab__readMore--hydrapp tab__readMore--js">
               Read more
             </button>
@@ -1611,13 +1616,25 @@
                 <div class="container">
                   <ul class="features features--hydrapp content">
                     <li class="features__item">
-
+                      user can increase / decrease amount of glasses of water per day
                     </li>
                     <li class="features__item">
-
+                      archive section with a list of days divided on weeks
                     </li>
                     <li class="features__item">
-
+                      each archive’s entry can be modified by increasing or decreasing amount of consumed water glasses and by adding or removing archive’s new or last entry accordingly
+                    </li>
+                    <li class="features__item">
+                      weeks calendar is automatically updated after adding or removing an entry
+                    </li>
+                    <li class="features__item">
+                      creator window appears when adding new entries
+                    </li>
+                    <li class="features__item">
+                      burger button menu
+                    </li>
+                    <li class="features__item">
+                      local storage support for entries data
                     </li>
                   </ul>
                 </div>
@@ -1633,22 +1650,10 @@
                 <div class="container">
                   <ul class="features features--hydrapp content">
                     <li class="features__item">
-
+                      emoticons indicating current level of consumed level of water on a given day
                     </li>
                     <li class="features__item">
-
-                    </li>
-                    <li class="features__item">
-
-                    </li>
-                    <li class="features__item">
-
-                    </li>
-                    <li class="features__item">
-
-                    </li>
-                    <li class="features__item">
-
+                      animated icons and buttons and smooth transitions between sections
                     </li>
                   </ul>
                 </div>
@@ -1658,22 +1663,31 @@
                 <h4 class="tab__header tab__header--category tab__header--hydrapp">
                   <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
                     <span class="mark mark--category mark--hydrapp"></span>
-                    <span>To be implemented</span>
+                    <span>To Be Implemented</span>
                   </button>
                 </h4>
                 <div class="container">
                   <ul class="features features--hydrapp content">
                     <li class="features__item">
-
+                      rewriting to react.js
                     </li>
                     <li class="features__item">
-
+                      stats section with analysis of water consumption
                     </li>
                     <li class="features__item">
-
+                      settings section allowing user to change some of the app’s interface elements
                     </li>
                     <li class="features__item">
-
+                      functionality introducing some level of gamification, for instance, glass streaks, when users keeps consuming minimum amount of water each consecutive day
+                    </li>
+                    <li class="features__item">
+                      calculating optimal amount of water based on the user’s weight
+                    </li>
+                    <li class="features__item">
+                      fetching data about weather conditions in user’s location from external API and recalculating minimum amount of water to be consumed
+                    </li>
+                    <li class="features__item">
+                      animated SVG graphic of glass
                     </li>
                   </ul>
                 </div>
