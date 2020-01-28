@@ -1,0 +1,114 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.container {
+  overflow: hidden;
+}
+
+.content {
+
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+  }
+
+  &__item {
+    align-items: center;
+    display: grid;
+    justify-content: flex-start;
+    justify-items: flex-start;
+    padding: 0 0 20px $separator-width-thick + $tabGap;
+
+    &--resume {
+      color: $color-resume-white;
+    }
+  }
+
+  &__title {
+    border-left: $separator-width-thick solid $color-resume-dark;
+    color: $color-resume-dark;
+    font-size: 25px;
+    margin: 0;
+    padding: 0 0 10px $tabGap;
+  }
+  
+  &__description {
+    font-size: 1em;
+    line-height: 1.4;
+    margin: 0;
+    padding-left: $tabHeader-size-sm;
+
+    &--primary,
+    &--secondary {
+      border-left: $separator-width-thick solid $color-resume-dark;
+      padding-left: $tabGap;
+    }
+
+    &--additional {
+      color: $color-resume-dark;
+      padding-left: $separator-width-thick + $tabGap;
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+
+      &--other {
+        padding-left: 30px;
+      }
+
+      &__item {
+        column-gap: 25px;
+        grid-template-columns: 180px repeat(2, minmax(auto, 1fr));
+        padding-bottom: 0;
+      }
+
+      &__title {
+        border: none;
+        padding: 0;
+      }
+  
+      &__description {
+        align-items: center;
+        display: flex;
+        font-size: 16px;
+        padding-left: 0;
+        position: relative;
+
+        &--primary,
+        &--secondary {
+          border: none;
+          font-size: 25px;
+        }
+
+        &--secondary::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: -25px;
+          background-color: $color-resume-dark;
+          width: $tabGap;
+          height: $tabGap;
+          z-index: 0;
+        }
+
+        &--additional {
+          grid-column: 2 / 4;
+        }
+
+        &--fullWidth {
+          grid-column: 1 / 4;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.rollable {
+  transition: height $accordion-time;
+}

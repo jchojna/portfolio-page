@@ -32,10 +32,6 @@
     position: relative;
     padding-bottom: 0.4em;
 
-    /* &--description {
-      margin-left: $features-category-size-sm;
-    } */
-
     &::before {
       content: "";
       position: absolute;
@@ -66,6 +62,18 @@
 
     & {
       margin: 0;
+
+      &--description {
+        margin-left: $features-category-size-sm;
+      }
+    }
+
+    &__item {
+      margin-left: $features-category-size-sm;
+
+      &--description {
+        margin: 0;
+      }
     }
   }
 }

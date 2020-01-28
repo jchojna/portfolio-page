@@ -60,6 +60,11 @@
     & {
       height: $tabHeader-size-lg;
       width: $tabHeader-size-lg;
+
+      &--category {
+        height: $features-category-size-lg;
+        width: $features-category-size-lg;
+      }
       
       &--other {
         height: $otherHeading-size-lg;

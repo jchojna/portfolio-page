@@ -584,12 +584,12 @@ const handleAccordion = (tabs, clickedIndex) => {
         //. apply transformations                                           .//
         if (height === 0 || height === '' || height === '0px') {
           container.style.height = `${content.clientHeight}px`;
-          button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
-          mark.classList.remove('mark--unrolled');
-        } else {
-          container.style.height = 0;
           button.classList.add(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.add('mark--unrolled');
+        } else {
+          container.style.height = 0;
+          button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
+          mark.classList.remove('mark--unrolled');
         }
       //. handle not clicked elements                                       .//
       } else {

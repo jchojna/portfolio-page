@@ -4,7 +4,6 @@
 //| TAB AND SUBTABS                                                         |//
 .tab,
 .subtab {
-  overflow: hidden;
   position: relative;
   margin-top: 20px;
   //: ABOUT                                                            ://
@@ -15,7 +14,6 @@
   //: RESUME                                                           ://
   &--resume {
     color: $color-resume-diff;
-    min-height: $tabHeader-size-sm;
   }
   &--experience {
     grid-area: experience;
@@ -39,10 +37,9 @@
   &--features {
     grid-area: features;
   }
-  &--tasktimer { color: $color-tasktimer-shadow; }
+  //&--tasktimer { color: $color-tasktimer-shadow; }
   &--category {
     margin: 0 $offset-right-sm 0 $separator-width-thick + $tabGap;
-    min-height: $features-category-size-sm * 2;
   }
   &--technologies {
     grid-area: technologies;
@@ -57,7 +54,6 @@
   //: RESUME                                                           ://
   &--other {
     color: $color-other-diff;
-    min-height: $otherHeading-size-sm;
   }
 
   &--social {
@@ -69,10 +65,6 @@
     & {
       margin-top: 0;
 
-      &--resume {
-        min-height: $tabHeader-size-lg + $tabGap;
-      }
-
       &--description {
         padding-right: 20px;
       }
@@ -81,9 +73,12 @@
         padding-right: 20px;
       }
 
+      &--category {
+        margin: 0;
+      }
+
       &--other {
         margin: 0;
-        min-height: $otherHeading-size-lg;
 
         &:hover {
           
@@ -121,28 +116,34 @@
     font-size: $tabHeader-size-sm;
     line-height: 1;
     margin: 0;
-    min-height: $tabHeader-size-sm;
     position: relative;
     z-index: 2;
 
     &--category {
       font-size: $features-category-size-sm;
     }
+
+    &--tasktimer { color: $color-tasktimer-shadow; }
+    &--portfolio { color: $color-tasktimer-shadow; }
+    &--hydrapp   { color: $color-tasktimer-shadow; }
+    &--archviz   { color: $color-tasktimer-shadow; }
+    &--quotes    { color: $color-tasktimer-shadow; }
     
     &--other {
       font-size: $otherHeading-size-sm;
-      min-height: $otherHeading-size-sm;
     }
 
     @media only screen and (min-width: $media-lg) {
   
       & {
         font-size: $tabHeader-size-lg;
-        min-height: $tabHeader-size-lg;
+
+        &--category {
+          font-size: $features-category-size-lg;
+        }
 
         &--other {
           font-size: $otherHeading-size-lg;
-          min-height: $otherHeading-size-lg;
         }
       }
     }
@@ -334,6 +335,12 @@
         height: $tabHeader-size-lg;
         padding-left: $tabHeader-size-lg + $tabGap;
 
+        &--category {
+          height: $features-category-size-lg;
+          margin-bottom: $features-category-size-lg;
+          padding-left: $features-category-size-lg + $tabGap;
+        }
+
         &--other {
           height: $otherHeading-size-lg;
           padding-left: $otherHeading-size-lg + $tabGap;
@@ -399,7 +406,6 @@
 }
 
 .subtab {
-  min-height: $tabHeader-size-sm + $tabGap;
 
   &--resume {
     margin-left: $separator-width-thick + $tabGap;
@@ -410,7 +416,6 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: $tabHeader-size-sm + $tabGap;
 
     &--resume {
       font-size: $tabHeader-size-sm;
@@ -432,10 +437,8 @@
   @media only screen and (min-width: $media-lg) {
 
     & {
-      min-height: $tabHeader-size-lg + $tabGap;
 
       &__header {
-        min-height: $tabHeader-size-lg + $tabGap;
 
         &--resume {
           font-size: $tabHeader-size-lg;
@@ -443,116 +446,4 @@
       }
     }
   }
-}
-
-.container {
-  overflow: hidden;
-}
-
-.content {
-
-  &__list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    padding-top: 20px;
-  }
-
-  &__item {
-    align-items: center;
-    display: grid;
-    justify-content: flex-start;
-    justify-items: flex-start;
-    padding: 0 0 20px $separator-width-thick + $tabGap;
-
-    &--resume {
-      color: $color-resume-white;
-    }
-  }
-
-  &__title {
-    border-left: $separator-width-thick solid $color-resume-dark;
-    color: $color-resume-dark;
-    font-size: 25px;
-    margin: 0;
-    padding: 0 0 10px $tabGap;
-  }
-  
-  &__description {
-    font-size: 1em;
-    line-height: 1.4;
-    margin: 0;
-    padding-left: $tabHeader-size-sm;
-
-    &--primary,
-    &--secondary {
-      border-left: $separator-width-thick solid $color-resume-dark;
-      padding-left: $tabGap;
-    }
-
-    &--additional {
-      color: $color-resume-dark;
-      padding-left: $separator-width-thick + $tabGap;
-    }
-  }
-
-  @media only screen and (min-width: $media-lg) {
-
-    & {
-
-      &--other {
-        padding-left: 30px;
-      }
-
-      &__item {
-        column-gap: 25px;
-        grid-template-columns: 180px repeat(2, minmax(auto, 1fr));
-        padding-bottom: 0;
-      }
-
-      &__title {
-        border: none;
-        padding: 0;
-      }
-  
-      &__description {
-        align-items: center;
-        display: flex;
-        font-size: 16px;
-        padding-left: 0;
-        position: relative;
-
-        &--primary,
-        &--secondary {
-          border: none;
-          font-size: 25px;
-        }
-
-        &--secondary::before {
-          content: "";
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          left: -25px;
-          background-color: $color-resume-dark;
-          width: $tabGap;
-          height: $tabGap;
-          z-index: 0;
-        }
-
-        &--additional {
-          grid-column: 2 / 4;
-        }
-
-        &--fullWidth {
-          grid-column: 1 / 4;
-          width: 100%;
-        }
-      }
-    }
-  }
-}
-
-.rollable {
-  transition: height $accordion-time;
 }
