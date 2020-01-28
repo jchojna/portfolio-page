@@ -11,6 +11,10 @@
   margin-left: $features-category-size-sm;
   padding: 0;
 
+  &--description {
+    margin: 0 $offset-right-sm 0 $offset-left-sm;
+  }
+
   &--tasktimer { color: $color-tasktimer-white; }  
   &--portfolio { color: $color-portfolio-white; }
   &--hydrapp { color: $color-hydrapp-white; }
@@ -26,6 +30,10 @@
   &__item {
     position: relative;
     padding-bottom: 0.4em;
+
+    &--description {
+      margin-left: $features-category-size-sm;
+    }
 
     &::before {
       content: "";
