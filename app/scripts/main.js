@@ -1281,6 +1281,8 @@ const resumeSubtabs = document.querySelectorAll('.subtab--js-resume');
 const resumeSubButtons = document.querySelectorAll('.subtab__button--js-resume');
 const tasktimerTabs = document.querySelectorAll('.tab--js-tasktimer');
 const tasktimerButtons = document.querySelectorAll('.tab__button--js-tasktimer');
+const portfolioTabs = document.querySelectorAll('.tab--js-portfolio');
+const portfolioButtons = document.querySelectorAll('.tab__button--js-portfolio');
 const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
 const otherProjectsButtons = document.querySelectorAll('.tab__button--js-other');
 const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
@@ -1328,6 +1330,7 @@ handleIntroMenu();
 handleAccordion([...resumeSubtabs]);
 handleAccordion([...resumeTabs]);
 handleAccordion([...tasktimerTabs]);
+handleAccordion([...portfolioTabs]);
 if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
@@ -1379,6 +1382,10 @@ pageContainer.addEventListener('wheel', handleFastScroll);
 [...tasktimerButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...tasktimerTabs], index));
+});
+[...portfolioButtons].forEach((button, index) => {
+  button.addEventListener('click', () =>
+  handleAccordion([...portfolioTabs], index));
 });
 //: OTHER PROJECTS                                                          ://
 if (window.innerWidth < mediaDesktop) {

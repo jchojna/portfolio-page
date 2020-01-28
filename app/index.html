@@ -844,7 +844,10 @@
             </h3>
             <div class="tab__wrapper js-expandable">
               <p class="tab__description tab__description--tasktimer">
-                You could say this is just another Pomodoro Clock react app, but this one is a little bit more complex and playful. I tried to make it look more like a board game with cards, interactive and entertaining. The app can handle multiple tasks going on at the same time, even though it may not be too practical to work on many tasks simultaneously, but it’s nice to see so many countdowns in action anyway:) For GIT training purposes, the app has started being developed in multiple phases:
+                You could say this is just another Pomodoro Clock react app, but this one is a little bit more complex and playful. I tried to make it look more like a board game with cards, interactive and entertaining. The app can handle multiple tasks going on at the same time, even though it may not be too practical to work on many tasks simultaneously, but it’s nice to see so many countdowns in action anyway:)
+              </p>
+              <p class="tab__description tab__description--tasktimer">
+                For GIT training purposes, the app has started being developed in multiple phases:
               </p>
               <!--. DEVELOPMENT PROCESS                                    .-->
               <ul class="features features--tasktimer features--description">
@@ -1180,9 +1183,17 @@
             <h3 class="tab__heading tab__heading--portfolio">
               About Project
             </h3>
-            <p class="tab__description tab__description--portfolio js-expandable">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+            <div class="tab__wrapper js-expandable">
+              <p class="tab__description tab__description--portfolio">
+                This project you have already started exploring and it’s what you are viewing right now. It presents five most representative frontend projects of mine (including itself) placed in separate sections, starting from the ones I am proud of the most. In addition, the other section contains a few more straightforward and exercise projects I created in the beginning of my frontend journey.
+              </p>
+              <p class="tab__description tab__description--portfolio">
+                I tried to emphasize creative and dynamic character of this SPA website mostly by providing noticeable level of interaction with a visual output and quite many animated elements. At the same time, I tried not to cross the line of exaggeration regarding transforming elements and kept my eye on performance aspect so the transitions would appear relatively smooth.
+              </p>
+              <p class="tab__description tab__description--portfolio">
+                In order to distinguish one section from another I assumed a design rule, that each section has its own independent color palette. Because of many color shades in every section, there is 68 colors in total on this page and it’s one of those moments when SCSS comes in handy… In this project I decided not to use any javascript frameworks, just vanilla JS.
+              </p>
+            </div>
             <button class="tab__readMore tab__readMore--portfolio tab__readMore--js">
               Read more
             </button>
@@ -1193,44 +1204,184 @@
             <h3 class="tab__heading tab__heading--portfolio">
               Features
             </h3>
-            <ul class="features features--portfolio js-expandable">
-              <li class="features__item">
-                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
-              </li>
-              <li class="features__item">
-                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
-              </li>
-              <li class="features__item">
-                Lazy loading for grid images and gallery pictures (recursive function)
-              </li>
-              <li class="features__item">
-                Responsive slider gallery of images
-              </li>
-              <li class="features__item">
-                Two display modes in gallery view (image and svg placeholder modes)
-              </li>
-              <li class="features__item">
-                Fully functional contact form with checkbox verification and backend validation
-              </li>
-              <li class="features__item">
-                Simple accordions in about section
-              </li>
-              <li class="features__item">
-                Page preloader for the main page
-              </li>
-              <li class="features__item">
-                Fully functional contact form with checkbox verification and backend validation
-              </li>
-              <li class="features__item">
-                Simple accordions in about section
-              </li>
-              <li class="features__item">
-                Page preloader for the main page
-              </li>
-            </ul>
-            <button class="tab__readMore tab__readMore--portfolio tab__readMore--js">
-              Read more
-            </button>
+            <div class="tab__wrapper">
+              <!--. FUNCTIONALITY                                          .-->
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Functionality</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      website fetches my github repositories data using github API and searches for total number of commits, date of creation and last modification of each repo
+                    </li>
+                    <li class="features__item">
+                      expandable content functionality implemented by using recursive functions and a global object. It is applicable for plain text and more complex, nested elements like lists of items or lists inside another ones
+                    </li>
+                    <li class="features__item">
+                      accordion elements handling nested content
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. INTERACTION                                            .-->
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Interaction</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      menu links appearance depends on currently displayed section
+                    </li>
+                    <li class="features__item">
+                      smooth scroll to the next section when user scrolls down fast enough
+                    </li>
+                    <li class="features__item">
+                      animated graphic elements serve as additional visual indicator
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. INTRO ANIMATION                                        .-->
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Intro Animation</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      created with extensive use of setTimeout callback functions (because of a little callback hell, I want to rewrite this part using Promises)
+                    </li>
+                    <li class="features__item">
+                      transitions are mainly controlled with JS because of dynamically changing elements in the viewport
+                    </li>
+                    <li class="features__item">
+                      animated text is composed of SVG letters, but the output is based on simple string input
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. VISUAL STYLE                                           .-->
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Visual Style</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      colors applied using SCSS variables
+                    </li>
+                    <li class="features__item">
+                      each section has its own dedicated logo, being an SVG graphic element
+                    </li>
+                    <li class="features__item">
+                      grids of multiple SVG icons
+                    </li>
+                    <li class="features__item">
+                      animated elements and transitions emphasizes creative and dynamic look of the website
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. RESPONSIVENESS                                         .-->
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Responsiveness</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      website layout based on CSS Grid (grid-areas mostly)
+                    </li>
+                    <li class="features__item">
+                      different behavior of menu/content transition for mobile and tablet/desktop devices
+                    </li>
+                    <li class="features__item">
+                      animated navigation buttons on tablets and large screen devices and burger button on mobiles
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. CONTACT FORM                                          .--> 
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Contact Form</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      supported with frontend and backend validation
+                    </li>
+                    <li class="features__item">
+                      AJAX request written in vanilla JS
+                    </li>
+                    <li class="features__item">
+                      mail sending functionality based on phpmailer class
+                    </li>
+                    <li class="features__item">
+                      server responses and backend validation result displayed as animated alert boxes
+                    </li>
+                    <li class="features__item">
+                      Local storage support for contact form inputs
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. OVERALL                                               .--> 
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Overall</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      project’s precise mockup created in Figma
+                    </li>
+                    <li class="features__item">
+                      website seed by yeoman - generator webapp
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. TO BE IMPLEMENTED                                      .-->
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>To Be Implemented</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      Bonus functionality allowing to generate and display intro animation with content based on the string input provided by the user
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </div>
           </section>
           <!--: end of PROJECT FEATURES                                    :-->
           <!--: PROJECT LINKS                                              :-->
@@ -1448,40 +1599,86 @@
             <h3 class="tab__heading tab__heading--hydrapp">
               Features
             </h3>
-            <ul class="features features--hydrapp js-expandable">
-              <li class="features__item">
-                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
-              </li>
-              <li class="features__item">
-                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
-              </li>
-              <ul class="features">
-                <li class="features__item">
-                  Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
-                </li>
-                <li class="features__item">
-                  Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
-                </li>
-                <li class="features__item">
-                  Lazy loading for grid images and gallery pictures (recursive function)
-                </li>
-              </ul>
-              <li class="features__item">
-                Lazy loading for grid images and gallery pictures (recursive function)
-              </li>
-              <li class="features__item">
-                Responsive slider gallery of images
-              </li>
-              <li class="features__item">
-                Two display modes in gallery view (image and svg placeholder modes)
-              </li>
-              <li class="features__item">
-                Fully functional contact form with checkbox verification and backend validation
-              </li>
-            </ul>
-            <button class="tab__readMore tab__readMore--hydrapp tab__readMore--js">
-              Read more
-            </button>
+            <div class="tab__wrapper">
+              <!--. FUNCTIONALITY                                          .-->
+              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
+                <h4 class="tab__header tab__header--category tab__header--hydrapp">
+                  <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
+                    <span class="mark mark--category mark--hydrapp"></span>
+                    <span>Functionality</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--hydrapp content">
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. VISUAL APPEARANCE                                      .-->
+              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
+                <h4 class="tab__header tab__header--category tab__header--hydrapp">
+                  <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
+                    <span class="mark mark--category mark--hydrapp"></span>
+                    <span>Visual Appearance</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--hydrapp content">
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. TO BE IMPLEMENTED                                      .-->
+              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
+                <h4 class="tab__header tab__header--category tab__header--hydrapp">
+                  <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
+                    <span class="mark mark--category mark--hydrapp"></span>
+                    <span>To be implemented</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--hydrapp content">
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </div>
           </section>
           <!--: end of PROJECT FEATURES                                    :-->
           <!--: PROJECT LINKS                                              :-->
@@ -1690,35 +1887,86 @@
             <h3 class="tab__heading tab__heading--archviz">
               Features
             </h3>
-            <ul class="features features--archviz js-expandable">
-              <li class="features__item">
-                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
-              </li>
-              <li class="features__item">
-                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
-              </li>
-              <li class="features__item">
-                Lazy loading for grid images and gallery pictures (recursive function)
-              </li>
-              <li class="features__item">
-                Responsive slider gallery of images
-              </li>
-              <li class="features__item">
-                Two display modes in gallery view (image and svg placeholder modes)
-              </li>
-              <li class="features__item">
-                Fully functional contact form with checkbox verification and backend validation
-              </li>
-              <li class="features__item">
-                Simple accordions in about section
-              </li>
-              <li class="features__item">
-                Page preloader for the main page
-              </li>
-            </ul>
-            <button class="tab__readMore tab__readMore--archviz tab__readMore--js">
-              Read more
-            </button>
+            <div class="tab__wrapper">
+              <!--. FUNCTIONALITY                                          .-->
+              <section class="tab tab--category tab--archviz tab--js-archviz">
+                <h4 class="tab__header tab__header--category tab__header--archviz">
+                  <button class="tab__button tab__button--category tab__button--archviz tab__button--js-archviz">
+                    <span class="mark mark--category mark--archviz"></span>
+                    <span>Functionality</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--archviz content">
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. VISUAL APPEARANCE                                      .-->
+              <section class="tab tab--category tab--archviz tab--js-archviz">
+                <h4 class="tab__header tab__header--category tab__header--archviz">
+                  <button class="tab__button tab__button--category tab__button--archviz tab__button--js-archviz">
+                    <span class="mark mark--category mark--archviz"></span>
+                    <span>Visual Appearance</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--archviz content">
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. TO BE IMPLEMENTED                                      .-->
+              <section class="tab tab--category tab--archviz tab--js-archviz">
+                <h4 class="tab__header tab__header--category tab__header--archviz">
+                  <button class="tab__button tab__button--category tab__button--archviz tab__button--js-archviz">
+                    <span class="mark mark--category mark--archviz"></span>
+                    <span>To be implemented</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--archviz content">
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </div>
           </section>
           <!--: end of PROJECT FEATURES                                    :-->
           <!--: PROJECT LINKS                                              :-->
@@ -1921,35 +2169,86 @@
             <h3 class="tab__heading tab__heading--quotes">
               Features
             </h3>
-            <ul class="features features--quotes js-expandable">
-              <li class="features__item">
-                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
-              </li>
-              <li class="features__item">
-                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
-              </li>
-              <li class="features__item">
-                Lazy loading for grid images and gallery pictures (recursive function)
-              </li>
-              <li class="features__item">
-                Responsive slider gallery of images
-              </li>
-              <li class="features__item">
-                Two display modes in gallery view (image and svg placeholder modes)
-              </li>
-              <li class="features__item">
-                Fully functional contact form with checkbox verification and backend validation
-              </li>
-              <li class="features__item">
-                Simple accordions in about section
-              </li>
-              <li class="features__item">
-                Page preloader for the main page
-              </li>
-            </ul>
-            <button class="tab__readMore tab__readMore--quotes tab__readMore--js">
-              Read more
-            </button>
+            <div class="tab__wrapper">
+              <!--. FUNCTIONALITY                                          .-->
+              <section class="tab tab--category tab--quotes tab--js-quotes">
+                <h4 class="tab__header tab__header--category tab__header--quotes">
+                  <button class="tab__button tab__button--category tab__button--quotes tab__button--js-quotes">
+                    <span class="mark mark--category mark--quotes"></span>
+                    <span>Functionality</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--quotes content">
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. VISUAL APPEARANCE                                      .-->
+              <section class="tab tab--category tab--quotes tab--js-quotes">
+                <h4 class="tab__header tab__header--category tab__header--quotes">
+                  <button class="tab__button tab__button--category tab__button--quotes tab__button--js-quotes">
+                    <span class="mark mark--category mark--quotes"></span>
+                    <span>Visual Appearance</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--quotes content">
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. TO BE IMPLEMENTED                                      .-->
+              <section class="tab tab--category tab--quotes tab--js-quotes">
+                <h4 class="tab__header tab__header--category tab__header--quotes">
+                  <button class="tab__button tab__button--category tab__button--quotes tab__button--js-quotes">
+                    <span class="mark mark--category mark--quotes"></span>
+                    <span>To be implemented</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--quotes content">
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                    <li class="features__item">
+
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </div>
           </section>
           <!--: end of PROJECT FEATURES                                    :-->
           <!--: PROJECT LINKS                                              :-->
