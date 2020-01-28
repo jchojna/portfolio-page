@@ -3,12 +3,10 @@
 
 //| PROJECT'S FEATURES                                                      |//
 .features {
-  list-style-type: none;
-  margin: 0 $offset-right-sm 0 $offset-left-sm;
-  padding-left: 0.8em;
   font-family: 'Antonio Regular';
   font-size: 18px;
   line-height: 1.4;
+  margin: 0 $offset-right-sm 0 $offset-left-sm;
 
   &--tasktimer { color: $color-tasktimer-white; }  
   &--portfolio { color: $color-portfolio-white; }
@@ -16,22 +14,59 @@
   &--archviz { color: $color-archviz-white; }
   &--quotes { color: $color-quotes-white; }
   
+  &--tasktimer &__heading::before { background-color: $color-tasktimer-shadow; }
+  &--portfolio &__heading::before { background-color: $color-portfolio-shadow; }
+  &--hydrapp &__heading::before { background-color: $color-hydrapp-shadow; }
+  &--archviz &__heading::before { background-color: $color-archviz-shadow; }
+  &--quotes &__heading::before { background-color: $color-quotes-shadow; }
+  
   &--tasktimer &__item::before { background-color: $color-tasktimer-light; }
   &--portfolio &__item::before { background-color: $color-portfolio-light; }
   &--hydrapp &__item::before { background-color: $color-hydrapp-light; }
   &--archviz &__item::before { background-color: $color-archviz-light; }
   &--quotes &__item::before { background-color: $color-quotes-light; }
-  
-  &__item {
+
+  &__heading {
+    font-family: 'Antonio Bold';
+    font-size: 1.3em;
+    margin: 0;
+    margin-bottom: 0.4em;
     position: relative;
+    text-transform: uppercase;
 
     &::before {
       content: "";
       position: absolute;
-      top: 0.3em;
-      left: -1.6em;
-      width: 0.8em;
-      height: 0.8em;
+      top: 0;
+      left: -25px;
+      width: $separator-width-thick;
+      height: 100px;
+    }
+
+    &--tasktimer { color: $color-tasktimer-shadow; }  
+    &--portfolio { color: $color-portfolio-shadow; }
+    &--hydrapp { color: $color-hydrapp-shadow; }
+    &--archviz { color: $color-archviz-shadow; }
+    &--quotes { color: $color-quotes-shadow; }
+  }
+
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 20px;
+  }
+  
+  &__item {
+    position: relative;
+    margin-bottom: 0.4em;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0.4em;
+      left: -20px;
+      width: $separator-width-thick;
+      height: $separator-width-thick;
     }
     
     &--tasktimer::before {
@@ -55,7 +90,6 @@
 
     & {
       margin: 0;
-      padding-left: 1.6em;
     }
   }
 }

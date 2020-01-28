@@ -262,6 +262,10 @@
       & {
         margin: 0;
         line-height: 1.6;
+
+        &--tasktimer {
+          margin-bottom: 10px;
+        }
       }
     }
   }

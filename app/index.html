@@ -830,9 +830,34 @@
             <h3 class="tab__heading tab__heading--tasktimer">
               About Project
             </h3>
-            <p class="tab__description tab__description--tasktimer js-expandable">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-            </p>
+            <div class="tab__wrapper js-expandable">
+              <p class="tab__description tab__description--tasktimer">
+                You could say this is just another Pomodoro Clock react app, but this one is a little bit more complex and playful. I tried to make it look more like a board game with cards, interactive and entertaining. The app can handle multiple tasks going on at the same time, even though it may not be too practical to work on many tasks simultaneously, but it’s nice to see so many countdowns in action anyway:) For GIT training purposes, the app has started being developed in multiple phases:
+              </p>
+              <!--. DEVELOPMENT PROCESS                                    .-->
+              <section class="features features--tasktimer">
+                <h4 class="features__heading visuallyhidden">
+                  Development process
+                </h4>
+                <ul class="features__list features--tasktimer">
+                  <li class="features__item">
+                    as a static page (static-page branch)
+                  </li>
+                  <li class="features__item">
+                    as vanilla JS app using document.createElement (vanilla branch)
+                  </li>
+                  <li class="features__item">
+                    as vanilla JS to react.js rewriting phase with use of React.createElement, but no JSX yet (react-no-jsx branch)
+                  </li>
+                  <li class="features__item">
+                    previous and simpler version of the app created using create-react-app seed is located on react-simple branch
+                  </li>
+                  <li class="features__item">
+                    app’s version on master branch is still being developed as the main app
+                  </li>
+                </ul>
+              </section>
+            </div>
             <button class="tab__readMore tab__readMore--tasktimer tab__readMore--js">
               Read more
             </button>
@@ -843,11 +868,92 @@
             <h3 class="tab__heading tab__heading--tasktimer">
               Features
             </h3>
-            <ul class="features features--tasktimer js-expandable">
-              <li class="features__item">
-                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
-              </li>
-            </ul>
+            <div class="tab__wrapper js-expandable">
+              <!--. FUNCTIONALITY                                          .-->
+              <section class="tab--category tab--tasktimer tab">
+                <h4 class="features__heading features__heading--tasktimer">
+                  Functionality
+                </h4>
+                <ul class="features__list">
+                  <li class="features__item">
+                    creating new task and editing or removing existing ones
+                  </li>
+                  <li class="features__item">
+                    user can specify a task name, time to finish the task and maximum break time
+                  </li>
+                  <li class="features__item">
+                    all inputs have validation rules applied to them
+                  </li>
+                  <li class="features__item">
+                    task name has limited amount of characters available and progress bar reflects the input’s current length
+                  </li>
+                  <li class="features__item">
+                    work and break time countdown available for multiple cards simultaneously
+                  </li>
+                  <li class="features__item">
+                    two display modes for work and break phases showing either elapsed or remaining time
+                  </li>
+                  <li class="features__item">
+                    progress bar with percentage sign indicates elapsed or remaining time as well, depending on the current display mode
+                  </li>
+                  <li class="features__item">
+                    card’s outro mode appears on task finish or when the maximum break time gets exceeded, summarizing that given task’s stats 
+                  </li>
+                  <li class="features__item">
+                    drag and drop functionality for task cards with transition effects
+                  </li>
+                  <li class="features__item">
+                    cards can be minimized to more concise form and display only the task name
+                  </li>
+                </ul>
+              </section>
+              <!--. VISUAL APPEARANCE                                      .-->
+              <section class="features features--tasktimer">
+                <h4 class="features__heading features__heading--tasktimer">
+                  Visual Appearance
+                </h4>
+                <ul class="features__list">
+                  <li class="features__item">
+                    intro animation is based on SVG logo with masking applied to casted shadow
+                  </li>
+                  <li class="features__item">
+                    shadow’s spiral trajectory is calculated using trigonometric functions
+                  </li>
+                  <li class="features__item">
+                    all tasks form grid of elements resembling cards laid out on a game board rotating 180 degrees on every status change
+                  </li>
+                  <li class="features__item">
+                    app is fully responsive with grid of cards adjusting to viewport size
+                  </li>
+                  <li class="features__item">
+                    all cards are minimized by default on mobile devices due to accessibility reasons
+                  </li>
+                  <li class="features__item">
+                    project’s mockup was created in Figma 
+                  </li>
+                </ul>
+              </section>
+              <!--. TO BE IMPLEMENTED                                      .-->
+              <section class="features features--tasktimer">
+                <h4 class="features__heading features__heading--tasktimer">
+                  To be implemented
+                </h4>
+                <ul class="features__list">
+                  <li class="features__item">
+                    stats section for all finished tasks
+                  </li>
+                  <li class="features__item">
+                    settings section allowing user to interfere with app’s interface, for example to change color palette for the entire app
+                  </li>
+                  <li class="features__item">
+                    json-server functionality
+                  </li>
+                  <li class="features__item">
+                    full keyboard support for an entire app
+                  </li>
+                </ul>
+              </section>
+            </div>
             <button class="tab__readMore tab__readMore--tasktimer tab__readMore--js">
               Read more
             </button>
