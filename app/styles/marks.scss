@@ -15,6 +15,14 @@
 
   &--about { background-color: $color-about-diff; }
   &--resume { background-color: $color-resume-dark; }
+  &--category {
+    height: $features-category-size-sm;
+    width: $features-category-size-sm;
+  }
+  &--tasktimer { background-color: $color-tasktimer-white; }
+  &--portfolio { background-color: $color-portfolio-white; }
+  &--hydrapp   { background-color: $color-hydrapp-white; }
+  &--quotes    { background-color: $color-quotes-white; }
   &--other {
     background-color: $color-other-shadow;
     height: $otherHeading-size-sm;
@@ -30,14 +38,22 @@
       width $tabHeader-time ease-in;
     width: $separator-width-thick;
   }
-  
-  &--small.mark--resume { background-color: $color-resume-dark; }
-  &--small.mark--other { background-color: $color-other-dark; }
-  &--small.mark--contact { background-color: $color-contact-dark; }
 
-  &--unrolled.mark--resume { background-color: $color-resume-diff; }
-  &--unrolled.mark--other { background-color: $color-other-diff; }
-  &--unrolled.mark--contact { background-color: $color-contact-diff; }
+  
+  &--small.mark--resume    { background-color: $color-resume-dark; }
+  &--small.mark--tasktimer { background-color: $color-tasktimer-dark; }
+  &--small.mark--other     { background-color: $color-other-dark; }
+  &--small.mark--contact   { background-color: $color-contact-dark; }
+  
+  &--unrolled.mark--resume    { background-color: $color-resume-diff; }
+  &--unrolled.mark--tasktimer { background-color: $color-tasktimer-shadow; }
+  &--unrolled.mark--portfolio { background-color: $color-portfolio-shadow; }
+  &--unrolled.mark--hydrapp   { background-color: $color-hydrapp-shadow; }
+  &--unrolled.mark--archviz   { background-color: $color-archviz-shadow; }
+  &--unrolled.mark--quotes    { background-color: $color-quotes-shadow; }
+  &--unrolled.mark--category  { height: 50px; }
+  &--unrolled.mark--other     { background-color: $color-other-diff; }
+  &--unrolled.mark--contact   { background-color: $color-contact-diff; }
 
   @media only screen and (min-width: $media-lg) {
 

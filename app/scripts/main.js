@@ -1264,6 +1264,8 @@ const resumeTabs = document.querySelectorAll('.tab--js-resume');
 const resumeButtons = document.querySelectorAll('.tab__button--js-resume');
 const resumeSubtabs = document.querySelectorAll('.subtab--js-resume');
 const resumeSubButtons = document.querySelectorAll('.subtab__button--js-resume');
+const tasktimerTabs = document.querySelectorAll('.tab--js-tasktimer');
+const tasktimerButtons = document.querySelectorAll('.tab__button--js-tasktimer');
 const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
 const otherProjectsButtons = document.querySelectorAll('.tab__button--js-other');
 const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
@@ -1310,6 +1312,7 @@ handleIntroMenu();
 //: handle page's accordions                                                ://
 handleAccordion([...resumeSubtabs]);
 handleAccordion([...resumeTabs]);
+handleAccordion([...tasktimerTabs]);
 if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
@@ -1356,6 +1359,11 @@ pageContainer.addEventListener('wheel', handleFastScroll);
 [...resumeSubButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...resumeSubtabs], index));
+});
+//: PROJECT SECTIONS                                                        ://
+[...tasktimerButtons].forEach((button, index) => {
+  button.addEventListener('click', () =>
+  handleAccordion([...tasktimerTabs], index));
 });
 //: OTHER PROJECTS                                                          ://
 if (window.innerWidth < mediaDesktop) {

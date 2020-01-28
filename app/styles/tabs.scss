@@ -39,6 +39,11 @@
   &--features {
     grid-area: features;
   }
+  &--tasktimer { color: $color-tasktimer-shadow; }
+  &--category {
+    margin: 0 $offset-right-sm 0 $separator-width-thick + $tabGap;
+    min-height: $features-category-size-sm * 2;
+  }
   &--technologies {
     grid-area: technologies;
   }
@@ -120,8 +125,15 @@
     position: relative;
     z-index: 2;
 
-    &--resume {
-      background-color: $color-resume;
+    &--resume    { background-color: $color-resume; }
+    &--tasktimer { background-color: $color-tasktimer; }
+    &--portfolio { background-color: $color-portfolio; }
+    &--hydrapp   { background-color: $color-hydrapp; }
+    &--archviz   { background-color: $color-archviz; }
+    &--quotes    { background-color: $color-quotes; }
+
+    &--category {
+      font-size: $features-category-size-sm;
     }
     
     &--other {
@@ -290,6 +302,25 @@
 
     &--resume {
       color: $color-resume-dark;
+    }
+
+    &--category {
+      height: $features-category-size-sm;
+      margin-bottom: $features-category-size-sm;
+      padding-left: $features-category-size-sm + $tabGap;
+    }
+    
+    &--tasktimer {
+      color: $color-tasktimer-white;
+    }
+    &--portfolio {
+      color: $color-portfolio-white;
+    }
+    &--hydrapp {
+      color: $color-hydrapp-white;
+    }
+    &--quotes {
+      color: $color-quotes-white;
     }
     
     &--other {
