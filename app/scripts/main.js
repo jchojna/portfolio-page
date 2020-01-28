@@ -1285,6 +1285,8 @@ const portfolioTabs = document.querySelectorAll('.tab--js-portfolio');
 const portfolioButtons = document.querySelectorAll('.tab__button--js-portfolio');
 const hydrappTabs = document.querySelectorAll('.tab--js-hydrapp');
 const hydrappButtons = document.querySelectorAll('.tab__button--js-hydrapp');
+const quotesTabs = document.querySelectorAll('.tab--js-quotes');
+const quotesButtons = document.querySelectorAll('.tab__button--js-quotes');
 
 const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
 const otherProjectsButtons = document.querySelectorAll('.tab__button--js-other');
@@ -1335,6 +1337,7 @@ handleAccordion([...resumeTabs]);
 handleAccordion([...tasktimerTabs]);
 handleAccordion([...portfolioTabs]);
 handleAccordion([...hydrappTabs]);
+handleAccordion([...quotesTabs]);
 if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
@@ -1394,6 +1397,10 @@ pageContainer.addEventListener('wheel', handleFastScroll);
 [...hydrappButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...hydrappTabs], index));
+});
+[...quotesButtons].forEach((button, index) => {
+  button.addEventListener('click', () =>
+  handleAccordion([...quotesTabs], index));
 });
 //: OTHER PROJECTS                                                          ://
 if (window.innerWidth < mediaDesktop) {
