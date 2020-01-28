@@ -571,15 +571,15 @@ const handleAccordion = (tabs, clickedIndex) => {
     const button = tab.querySelector('[class*="button"]');
     const mark = tab.querySelector('[class*="mark"]');
 
-    //: when specific tab is being clicked                             ://
+    //: when specific tab is being clicked                                  ://
     if (clickedIndex !== undefined) {
       const subtab = /subtab/.test(button.className);
-      //. handle clicked tab                                      .//
+      //. handle clicked tab                                                .//
       if (clickedIndex === index) {
         const translation = content.style.marginTop;
-        //. apply transition effect                               .//
+        //. apply transition effect                                         .//
         if (!content.classList.contains('rollable')) content.classList.add('rollable');
-        //. apply transformations                                 .//
+        //. apply transformations                                           .//
         if (translation === 0 || translation === '' || translation === '0px') {
           content.style.marginTop = `${-1 * content.clientHeight - 2}px`;
           button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
@@ -589,13 +589,26 @@ const handleAccordion = (tabs, clickedIndex) => {
           button.classList.add(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.add('mark--unrolled');
         }
-      //. handle not clicked elements                             .//
+      //. handle not clicked elements                                       .//
       } else {
         content.style.marginTop = `${-1 * content.clientHeight - 2}px`;
         button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
         mark.classList.remove('mark--unrolled');
+
+        //: update scroll position                                          ://
+        if (index === (clickedIndex - 1)) {
+          const { top } = button.getBoundingClientRect();
+          const scrollOffset = window.pageYOffset + top - 100;
+          const timeoutId = setTimeout(() => {
+            window.scrollTo({
+              top: scrollOffset,
+              behavior: 'smooth'
+            });
+            clearTimeout(timeoutId);
+          }, 500);
+        }
       }
-    //: handle elements on page load                                   ://
+    //: handle elements on page load                                        ://
     } else {
       content.style.marginTop = `${-1 * content.clientHeight - 2}px`;
       mark.classList.remove('mark--unrolled');
