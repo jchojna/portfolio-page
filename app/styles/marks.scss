@@ -19,10 +19,11 @@
     height: $features-category-size-sm;
     width: $features-category-size-sm;
   }
-  &--tasktimer { background-color: $color-tasktimer-white; }
-  &--portfolio { background-color: $color-portfolio-white; }
-  &--hydrapp   { background-color: $color-hydrapp-white; }
-  &--quotes    { background-color: $color-quotes-white; }
+  &--tasktimer { background-color: $color-tasktimer-light; }
+  &--portfolio { background-color: $color-portfolio-light; }
+  &--hydrapp   { background-color: $color-hydrapp-light; }
+  &--archviz   { background-color: $color-archviz-light; }
+  &--quotes    { background-color: $color-quotes-light; }
   &--other {
     background-color: $color-other-shadow;
     height: $otherHeading-size-sm;
@@ -38,12 +39,6 @@
       width $tabHeader-time ease-in;
     width: $separator-width-thick;
   }
-
-  
-  &--small.mark--resume    { background-color: $color-resume-dark; }
-  &--small.mark--tasktimer { background-color: $color-tasktimer-dark; }
-  &--small.mark--other     { background-color: $color-other-dark; }
-  &--small.mark--contact   { background-color: $color-contact-dark; }
   
   &--unrolled.mark--resume    { background-color: $color-resume-diff; }
   &--unrolled.mark--tasktimer { background-color: $color-tasktimer-shadow; }

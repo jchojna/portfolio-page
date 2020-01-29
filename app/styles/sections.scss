@@ -67,17 +67,11 @@
     padding-bottom: 20px;
   }
 
-  @media only screen and (min-width: $media-lg) {
-
-    & {
-      align-items: center;
-      padding: $offset-top-bottom-lg 0;
-    }
-  }
   //: SECTION CONTAINER                                                     ://
   &__container {
     align-items: start;
     display: grid;
+    row-gap: $gridGap;
     width: 100%;
 
     &--about {
@@ -135,13 +129,13 @@
     @media only screen and (min-width: $media-lg) {
 
       & {
+        gap: $gridGap;
         margin-left: 540px;
         max-width: $container-size;
         min-height: $container-size;
         min-width: 600px;
 
         &--about {
-          column-gap: 20px;
           grid-template-areas:
           "heading     photography"
           "description photography"
@@ -166,7 +160,6 @@
         &--hydrapp,
         &--archviz,
         &--quotes {
-          gap: 20px;
           grid-template-areas:
           "heading      heading     "
           "description  features    "

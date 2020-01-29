@@ -1,3 +1,22 @@
+//| HANDLE VARIOUS FUNCTIONS ON WINDOW RESIZE                               |//
+const handleWindowResize = () => {
+  [...sectionContainers].forEach(container => {
+    handleTopMargins(container, minTopMargin);
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 //| UPDATE MENU ITEMS OFFSETS                                               |//
 const updateMenuItemsOffsets = () => {
   [...items].forEach(item => {
@@ -32,6 +51,14 @@ const getCurrentSectionIndex = (scrollOffset) => {
 const getCurrentNavigationIndex = () => {
   const navigationOffset = navigation.offsetTop + navigation.clientHeight / 2;
   return getCurrentSectionIndex(navigationOffset);
+}
+//| HANDLE ELEMENTS'S TOP MARGINS TO CENTER IT VERTICALLY                   |//
+//: this functionality I found more reasonable to be handled in JS,         ://
+//: because of expandable content inside section containers                 ://
+//: distorting and complicating content layout                              ://
+const handleTopMargins = (element, distance) => {
+  const margin = (window.innerHeight - element.clientHeight) / 2;
+  element.style.marginTop = `${margin > distance ? margin : distance}px`;
 }
 //| CHANGE ACTIVE LINK ON HOVER                                             |//
 const handleColorChange = (index, action) => {
@@ -1275,6 +1302,8 @@ let currentNavigationIndex = null;
 //: MAIN CONTENT                                                            ://
 const pageContainer = document.querySelector('.pageContainer--js');
 const pageSections = document.querySelectorAll('.section--js');
+const sectionContainers = document.querySelectorAll('.section__container--js');
+const minTopMargin = 30;
 const resumeTabs = document.querySelectorAll('.tab--js-resume');
 const resumeButtons = document.querySelectorAll('.tab__button--js-resume');
 const resumeSubtabs = document.querySelectorAll('.subtab--js-resume');
@@ -1341,9 +1370,12 @@ handleAccordion([...quotesTabs]);
 if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
+handleExpandableContent(expandableContent);
+[...sectionContainers].forEach(container => {
+  handleTopMargins(container, minTopMargin);
+});
 //: collapse expandable content on page load                                ://
 window.onload = () => {
-  handleExpandableContent(expandableContent);
   //handleIntroAnimation();
   //handleIntroLoader();
 };
@@ -1434,3 +1466,6 @@ formSubmitButton.addEventListener('click', (e) => handleAlerts({
 userEmail.addEventListener('keyup', validateEmail);
 userPhone.addEventListener('keyup', validatePhone);
 userMessage.addEventListener('keyup', validateMessage);
+
+
+window.addEventListener('resize', handleWindowResize);
