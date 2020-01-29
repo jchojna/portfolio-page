@@ -410,6 +410,7 @@ const handleMenuOnScroll = () => {
     menuLinks[lastMenuItemIndex].classList.add('menu__link--active');
     introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
     handleMenuIndicator(lastMenuItemIndex);
+    if (!isFastScroll) isFastScroll = true;
   }
   //: handle all menu items appearance on local id change                   ://
   [...menuLinks].forEach((link, index) => {
@@ -613,10 +614,12 @@ const handleAccordion = (tabs, clickedIndex) => {
           container.style.height = `${content.clientHeight}px`;
           button.classList.add(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.add('mark--unrolled');
+          isFastScroll = false;
         } else {
           container.style.height = 0;
           button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.remove('mark--unrolled');
+          isFastScroll = true;
         }
       //. handle not clicked elements                                       .//
       } else {
@@ -809,6 +812,8 @@ const handleReadMore = (e) => {
     e.target.innerHTML = 'Show Less';
     //: remove 'collapsed' class flag                                       ://
     wrapper.classList.remove('collapsed');
+    //: stop fast scroll functionality                                      ://
+    isFastScroll = false;
   //: collapse tab                                                          ://
   } else {    
     expandableNode.style.height = '';
@@ -822,30 +827,33 @@ const handleReadMore = (e) => {
     e.target.innerHTML = 'Read More';
     //: remove 'collapsed' class flag                                       ://
     wrapper.classList.add('collapsed');
+    //: enable fast scroll functionality                                    ://
+    isFastScroll = true;
   }
 }
 //| end of HANDLE 'READ MORE' BUTTONS                                       |//
 //| HANDLE JUMPING TO NEXT SECTION ON SCROLL                                |//
 const handleFastScroll = (e) => {
   //: function resetting timeout and scroll accumulator                     |//
-  const reset = () => {
+  /* const reset = () => {
     clearTimeout(scrollTimeoutId);
     scrollTimeoutId = null;
     scrollTotal = 0;
-  }
+  } */
   const goToNextSection = () => {
-    if (lastMenuItemIndex < pageSections.length - 1) {      
-      ++lastMenuItemIndex;
-      const nextsectionOffset = sections[lastMenuItemIndex].offset;
-      pageContainer.scrollTo(0, nextsectionOffset);
+    if (lastMenuItemIndex < pageSections.length - 1) {
+      if (pageContainer.scrollTop >= sections[lastMenuItemIndex].offset) {
+        const nextsectionOffset = sections[++lastMenuItemIndex].offset;
+        pageContainer.scrollTo(0, nextsectionOffset);
+      }
     }
   }
   //: when scrolling down                                                   |//
-  if (e.deltaY > 0) {
+  /* if (e.deltaY > 0) {
     scrollTotal += 1;
     if (scrollTimeoutId === null) {
       scrollTimeoutId = setTimeout(() => {
-        if (scrollTotal >= 3) {
+        if (scrollTotal >= 8) {
           goToNextSection();
           reset();
         } else {
@@ -853,9 +861,13 @@ const handleFastScroll = (e) => {
         }
       }, 100);
     }
-  //: when scrolling up                                                     |//
+    //: when scrolling up                                                     |//
   } else {
     reset();
+  } */
+  if (e.deltaY > 0 && isFastScroll) {
+    e.preventDefault();
+    goToNextSection();
   }
 }
 //| end of HANDLE JUMPING TO NEXT SECTION ON SCROLL                         |//
@@ -1247,6 +1259,7 @@ let isIntroMode = true;
 let isBackToIntroMode = false;
 let isMenuTransformMode = false;
 let scrollEventFlag = false;
+let isFastScroll = true;
 const mediaTablet = 768;
 const mediaDesktop = 1200;
 let lastMenuItemIndex = 0;
