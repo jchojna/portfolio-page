@@ -7,9 +7,11 @@ const handleWindowResize = () => {
 
 
 
-
-
-
+}
+//| ON USER'S ACTIVITY                                                      |//
+const handleUserActivity = () => {
+  if (shouldSectionsBeUpdated) updateSectionsOffsets();
+  isScrollEnabled = true;
 }
 //| UPDATE MENU ITEMS OFFSETS                                               |//
 const updateMenuItemsOffsets = () => {
@@ -216,6 +218,7 @@ const handleMenuItemClick = (e) => {
   //| end of HANDLE MENU ITEMS ON MOBILE DEVICES                            ///
   //| HANDLE MENU ITEMS ON LARGE SCREEN DEVICES                             |//
   } else if (window.innerWidth >= mediaDesktop && !isBackToIntroMode) {
+    isScrollEnabled = false;
     //. handle introBox                                                     .//
     introBox.style.top = 0;
     introBox.classList.add('visuals__introBox--content');
@@ -227,10 +230,6 @@ const handleMenuItemClick = (e) => {
     //. handle color of menu items and introBox on click                    .//
     handleColorChange(lastMenuItemIndex, 'deactivate');
     handleColorChange(activeIndex, 'activate');
-    //. remove scroll events                                                .//
-    pageContainer.removeEventListener('scroll', handleMenuOnScroll);
-    pageContainer.removeEventListener('scroll', handleNavOnScroll);
-    scrollEventFlag = false;
     //. handle navigation appearance                                        .//
     if (currentNavigationIndex !== null) {
       handleNavOnClick(currentNavigationIndex, 'deactivate');
@@ -273,6 +272,7 @@ const handleMenuItemClick = (e) => {
         //. handle global flags                                             .//
         isIntroMode = false;
         isMenuTransformMode = true;
+        
       }, menuLgSecondTimeoutInterval);
     }, menuLgFirstTimeoutInterval);   
     //: end of timeout                                                      ://
@@ -394,33 +394,35 @@ const handleMobileHeader = () => {
 }
 //| end of HANDLE MOBILE HEADER CHANGE                                      |//
 //| HANDLE MENU ITEMS ON SCROLL EVENT                                       |//
-const handleMenuOnScroll = () => {
-  //: handle indicator and active menu item on section change               ://
-  const newMenuItemIndex = getCurrentSectionIndex(0);
-  if (newMenuItemIndex !== lastMenuItemIndex) {
-    menuLinks[lastMenuItemIndex].classList.remove('menu__link--active');
-    introBox.classList.remove(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
-    //. index change                                                        .//
-    lastMenuItemIndex = newMenuItemIndex;
-    menuLinks[lastMenuItemIndex].classList.add('menu__link--active');
-    introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
-    handleMenuIndicator(lastMenuItemIndex);
-    if (!isFastScroll) isFastScroll = true;
-  }
-  //: handle all menu items appearance on local id change                   ://
-  [...menuLinks].forEach((link, index) => {
-    const singleItemOffset = items[index].offset;
-    const currentSingleItemIndex = items[index].currentSectionIndex;
-    const newSingleItemIndex = getCurrentSectionIndex(singleItemOffset);
-    
-    if (newSingleItemIndex !== currentSingleItemIndex) {
-      const currentId = sections[currentSingleItemIndex].id;
-      const newId = sections[newSingleItemIndex].id;
-      link.classList.remove(`menu__link--${currentId}`);
-      items[index].currentSectionIndex = newSingleItemIndex;
-      link.classList.add(`menu__link--${newId}`);
+const handleMenuOnScroll = (e) => {
+  if (isScrollEnabled) {
+    //: handle indicator and active menu item on section change               ://
+    const newMenuItemIndex = getCurrentSectionIndex(0);
+    if (newMenuItemIndex !== lastMenuItemIndex) {
+      menuLinks[lastMenuItemIndex].classList.remove('menu__link--active');
+      introBox.classList.remove(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
+      //. index change                                                        .//
+      lastMenuItemIndex = newMenuItemIndex;
+      menuLinks[lastMenuItemIndex].classList.add('menu__link--active');
+      introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
+      handleMenuIndicator(lastMenuItemIndex);
+      if (!isFastScroll) isFastScroll = true;
     }
-  });
+    //: handle all menu items appearance on local id change                   ://
+    [...menuLinks].forEach((link, index) => {
+      const singleItemOffset = items[index].offset;
+      const currentSingleItemIndex = items[index].currentSectionIndex;
+      const newSingleItemIndex = getCurrentSectionIndex(singleItemOffset);
+      
+      if (newSingleItemIndex !== currentSingleItemIndex) {
+        const currentId = sections[currentSingleItemIndex].id;
+        const newId = sections[newSingleItemIndex].id;
+        link.classList.remove(`menu__link--${currentId}`);
+        items[index].currentSectionIndex = newSingleItemIndex;
+        link.classList.add(`menu__link--${newId}`);
+      }
+    });
+  }
 }
 //| end of HANDLE MENU ITEMS ON SCROLL EVENT                                |//
 //| HANDLE MENU ITEMS ON CLICK EVENT                                        |//
@@ -570,10 +572,7 @@ const handleNavOnClick = (index, action) => {
 //| end of HANDLE NAVIGATION ON CLICK EVENT                                 |//
 //| HANDLE JUMPING TO ANOTHER SECTION USING NAVIGATION                      |//
 const navigateToSection = (e) => {
-  //: activate scroll events                                                |//
-  pageContainer.addEventListener('scroll', handleMenuOnScroll);
-  pageContainer.addEventListener('scroll', handleNavOnScroll);
-  scrollEventFlag = true;
+  isScrollEnabled = true;
   //: get target index                                                      |//
   const targetIndex = e.target === navigationPrevButton
     //. previous button clicked                                             .//
@@ -836,6 +835,7 @@ const handleFastScroll = (e) => {
     scrollTimeoutId = null;
     scrollTotal = 0;
   } */
+  handleUserActivity();
   const goToNextSection = () => {
     if (lastMenuItemIndex < pageSections.length - 1) {
       if (pageContainer.scrollTop >= sections[lastMenuItemIndex].offset) {
@@ -862,7 +862,6 @@ const handleFastScroll = (e) => {
     reset();
   } */
   if (e.deltaY > 0 && isFastScroll) {
-    console.log('scroll');
     e.preventDefault();
     goToNextSection();
   }
@@ -1255,8 +1254,8 @@ const validateMessage = (e) => {
 let isIntroMode = true;
 let isBackToIntroMode = false;
 let isMenuTransformMode = false;
-let scrollEventFlag = false;
 let isFastScroll = true;
+let isScrollEnabled = true;
 let shouldSectionsBeUpdated = false;
 const mediaTablet = 768;
 const mediaDesktop = 1200;
@@ -1388,7 +1387,6 @@ window.onload = () => {
   //handleIntroLoader();
   //: set each section's container top margin                               ://
   [...sectionContainers].forEach(container => {
-    console.log('test');
     handleTopMargins(container, minTopMargin);
   });
 };
@@ -1399,6 +1397,11 @@ window.onload = () => {
   .then(resp => handleRepo(resp)); */
 // ! project id must fit repo id
 
+
+
+
+
+
 //|                                                                         |//
 //| EVENT LISTENERS                                                         |//
 //: MENU AND NAVIGATION                                                     ://
@@ -1407,22 +1410,19 @@ window.addEventListener('resize', updateMenuItemsOffsets);
 pageHeader.addEventListener('resize', handleIntroBox);
 pageHeader.addEventListener('scroll', handleIntroBox);
 
-pageContainer.addEventListener('wheel', () => {
-  if (shouldSectionsBeUpdated) updateSectionsOffsets();
-  if (!scrollEventFlag) {
-    pageContainer.addEventListener('scroll', handleMenuOnScroll);
-    pageContainer.addEventListener('scroll', handleNavOnScroll);
-    scrollEventFlag = true;
-  }
-});
+pageContainer.addEventListener('mousedown', handleUserActivity);
+pageContainer.addEventListener('touchstart', handleUserActivity);
+
+pageContainer.addEventListener('scroll', handleMenuOnScroll);
+pageContainer.addEventListener('scroll', handleNavOnScroll);
+pageContainer.addEventListener('wheel', handleFastScroll);
+
 [...menuLinks].forEach((link, index) => {
   link.index = index;
   link.addEventListener('click', handleMenuItemClick);
   link.addEventListener('mousemove', handleIntroMenu);
 });
 burgerButton.addEventListener('click', handleBurgerButton);
-//: SECTIONS                                                                ://
-pageContainer.addEventListener('wheel', handleFastScroll);
 //: RESUME                                                                  ://
 [...resumeButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
@@ -1482,12 +1482,4 @@ userEmail.addEventListener('keyup', validateEmail);
 userPhone.addEventListener('keyup', validatePhone);
 userMessage.addEventListener('keyup', validateMessage);
 
-
 window.addEventListener('resize', handleWindowResize);
-
-
-
-
-
-
-// on scroll
