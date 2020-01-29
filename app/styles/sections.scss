@@ -144,7 +144,7 @@
           "knowing     knowing    "
           "learning    learning   ";
           grid-template-columns: 1fr 48%;
-          grid-template-rows: repeat(6, auto);
+          //grid-template-rows: repeat(6, auto);
         }
 
         &--resume {

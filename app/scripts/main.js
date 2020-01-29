@@ -10,12 +10,6 @@ const handleWindowResize = () => {
 
 
 
-
-
-
-
-
-
 }
 //| UPDATE MENU ITEMS OFFSETS                                               |//
 const updateMenuItemsOffsets = () => {
@@ -28,6 +22,7 @@ const updateSectionsOffsets = () => {
   [...sections].forEach((section, index) => {
     section.offset = pageSections[index].offsetTop;
   });
+  shouldSectionsBeUpdated = false;
 }
 //| GET CURRENT ITEM INDEX                                                  |//
 const getCurrentItemIndex = (cursorYPosition) => {
@@ -621,6 +616,7 @@ const handleAccordion = (tabs, clickedIndex) => {
           mark.classList.remove('mark--unrolled');
           isFastScroll = true;
         }
+        shouldSectionsBeUpdated = true;
       //. handle not clicked elements                                       .//
       } else {
         container.style.height = 0;
@@ -799,7 +795,6 @@ const handleReadMore = (e) => {
   const expandedNode = document.querySelectorAll('.js-expanded')[index];
   const currentContentData = contentData[index];
   const { availableHeight } = currentContentData;
-
   //: expand tab                                                            ://
   if (wrapper.classList.contains('collapsed')) {
     //: reduce content using recursive function                             ://
@@ -830,6 +825,7 @@ const handleReadMore = (e) => {
     //: enable fast scroll functionality                                    ://
     isFastScroll = true;
   }
+  shouldSectionsBeUpdated = true;
 }
 //| end of HANDLE 'READ MORE' BUTTONS                                       |//
 //| HANDLE JUMPING TO NEXT SECTION ON SCROLL                                |//
@@ -866,6 +862,7 @@ const handleFastScroll = (e) => {
     reset();
   } */
   if (e.deltaY > 0 && isFastScroll) {
+    console.log('scroll');
     e.preventDefault();
     goToNextSection();
   }
@@ -1260,6 +1257,7 @@ let isBackToIntroMode = false;
 let isMenuTransformMode = false;
 let scrollEventFlag = false;
 let isFastScroll = true;
+let shouldSectionsBeUpdated = false;
 const mediaTablet = 768;
 const mediaDesktop = 1200;
 let lastMenuItemIndex = 0;
@@ -1383,14 +1381,16 @@ handleAccordion([...quotesTabs]);
 if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
-handleExpandableContent(expandableContent);
-[...sectionContainers].forEach(container => {
-  handleTopMargins(container, minTopMargin);
-});
 //: collapse expandable content on page load                                ://
+handleExpandableContent(expandableContent);
 window.onload = () => {
   //handleIntroAnimation();
   //handleIntroLoader();
+  //: set each section's container top margin                               ://
+  [...sectionContainers].forEach(container => {
+    console.log('test');
+    handleTopMargins(container, minTopMargin);
+  });
 };
 
 //: fetch github api                                                        ://
@@ -1399,6 +1399,7 @@ window.onload = () => {
   .then(resp => handleRepo(resp)); */
 // ! project id must fit repo id
 
+//|                                                                         |//
 //| EVENT LISTENERS                                                         |//
 //: MENU AND NAVIGATION                                                     ://
 window.addEventListener('resize', updateSectionsOffsets);
@@ -1407,6 +1408,7 @@ pageHeader.addEventListener('resize', handleIntroBox);
 pageHeader.addEventListener('scroll', handleIntroBox);
 
 pageContainer.addEventListener('wheel', () => {
+  if (shouldSectionsBeUpdated) updateSectionsOffsets();
   if (!scrollEventFlag) {
     pageContainer.addEventListener('scroll', handleMenuOnScroll);
     pageContainer.addEventListener('scroll', handleNavOnScroll);
@@ -1482,3 +1484,10 @@ userMessage.addEventListener('keyup', validateMessage);
 
 
 window.addEventListener('resize', handleWindowResize);
+
+
+
+
+
+
+// on scroll
