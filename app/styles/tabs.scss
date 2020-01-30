@@ -15,6 +15,12 @@
   &--resume {
     color: $color-resume-diff;
   }
+  &--info {
+    display: flex;
+    flex-direction: column;
+    grid-area: info;
+    height: 100%;
+  }
   &--experience {
     grid-area: experience;
   }
@@ -37,7 +43,6 @@
   &--features {
     grid-area: features;
   }
-  //&--tasktimer { color: $color-tasktimer-shadow; }
   &--category {
     margin: 0 $offset-right-sm 0 $separator-width-thick + $tabGap;
   }
@@ -239,6 +244,10 @@
       color: $color-about-white;
       margin-bottom: 20px;
     }
+    &--resume {
+      color: $color-resume-white;
+      margin-left: $separator-width-thick + $tabGap;
+    }
     &--tasktimer {
       color: $color-tasktimer-white;
     }
@@ -269,6 +278,9 @@
         margin-bottom: 10px;
         line-height: 1.6;
 
+        &--resume {
+          margin-left: $separator-width-thick + $tabGap;
+        }
         &--tasktimer {
           margin-bottom: 10px;
         }

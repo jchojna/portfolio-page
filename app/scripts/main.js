@@ -587,13 +587,12 @@ const navigateToSection = (e) => {
 }
 //| end of HANDLE JUMPING TO ANOTHER SECTION USING NAVIGATION               |//
 //| RESUME'S ACCORDION HANDLER                                              |//
-const handleAccordion = (tabs, clickedIndex) => {
+const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
   tabs.forEach((tab, index) => {
     const container = tab.querySelector('[class*=container]');
-    const content = tab.querySelector('[class*=content]');
+    const content = container.firstElementChild;
     const button = tab.querySelector('[class*="button"]');
     const mark = tab.querySelector('[class*="mark"]');
-
 
     //: when specific tab is being clicked                                  ://
     if (clickedIndex !== undefined) {
@@ -604,7 +603,7 @@ const handleAccordion = (tabs, clickedIndex) => {
         //. apply transition effect                                         .//
         if (!container.classList.contains('rollable')) container.classList.add('rollable');
         //. apply transformations                                           .//
-        if (height === 0 || height === '' || height === '0px') {
+        if (height === 0 || height === '0px') {
           container.style.height = `${content.clientHeight}px`;
           button.classList.add(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.add('mark--unrolled');
@@ -637,8 +636,15 @@ const handleAccordion = (tabs, clickedIndex) => {
       }
     //: handle elements on page load                                        ://
     } else {
-      container.style.height = 0;
-      mark.classList.remove('mark--unrolled');
+      if (index !== excludeIndex) {
+        container.style.height = 0;
+        mark.classList.remove('mark--unrolled');
+      } else {
+        container.style.height = `${content.clientHeight}px`;
+        mark.classList.add('mark--unrolled');
+        button.classList.add('tab__button--unrolled');
+        container.classList.add('rollable');
+      }
     }
   });
 }
@@ -1372,7 +1378,7 @@ pageHeader.classList.add('pageHeader--visible');
 handleIntroMenu();
 //: handle page's accordions                                                ://
 handleAccordion([...resumeSubtabs]);
-handleAccordion([...resumeTabs]);
+handleAccordion([...resumeTabs], undefined, 0);
 handleAccordion([...tasktimerTabs]);
 handleAccordion([...portfolioTabs]);
 handleAccordion([...hydrappTabs]);
