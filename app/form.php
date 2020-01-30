@@ -1,7 +1,7 @@
 <?php
   header("Content-Type: application/json");
   require 'PHPMailerAutoload.php';
-  require_once dirname(__FILE__)."/../credentials/credentials.php";
+  require_once dirname(__FILE__)."/../../form_handler/credentials.php";
   $mail = new PHPMailer;
   function test_input($data) {
     $data = trim($data);
@@ -12,7 +12,8 @@
   // RESET VARIABLES
   $emptyEmailError = $invalidEmailError = $phoneError = $messageError = false;
   $userName = $userTitle = $userEmail = $userPhone = $userMessage = '';
-  $submit = $success = $failure = false;
+  $submit = $success = false;
+  $failure = "";
   // GET DATA AND ASSIGN VALUES TO VARIABLES
   $data = json_decode(file_get_contents('php://input'));
   $submit      = $data->submit;
@@ -98,11 +99,11 @@
       $mail->Subject = $userTitle;
       $mail->Body    = $body;
       $mail->AltBody = strip_tags($body);
-      //$mail->send();
+      $mail->send();
       $failure = $mail->ErrorInfo;
       $userName = $userTitle = $userEmail = $userPhone = $userMessage = "";
 
-      if ($failure === false) $success = true;
+      if ($failure === "") $success = true;
     }
     $data = array(
       'emptyEmailError'=>$emptyEmailError,

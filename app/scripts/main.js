@@ -691,7 +691,6 @@ const handleRepo = (repos) => {
     if (data.children.length === 0) {
       //. create array of particular words                                  .//
       const wordsArray = data.html.slice().split(' ').filter(elem => elem !== '');
-      console.log(data);
       const reducedArray = [...wordsArray];
       //. remove words starting from the end until content fits space       .//
       for (let i = 0; i < wordsArray.length; i++) {
@@ -774,7 +773,6 @@ const handleExpandableContent = (contents) => {
     ? content.clientHeight
     : minMobileHeight;
     const { availableHeight, fullHeight, html } = currentContentData;
-    console.log(fullHeight);
     //. check if content fits available space                               .//
     if (availableHeight >= fullHeight) {
       content.innerHTML = html;
@@ -918,7 +916,7 @@ const handleIntroAnimation = () => {
   const charTotal = introText.length;
   let maxColNum = charTotal;
   let minColNum = 6;
-  const rowGap = 10;
+  const rowGap = 2;
   let gridTopMargin = null;
   //: intervals                                                             ://
   const loadCharInterval = 30;
@@ -1119,10 +1117,8 @@ const validateForm = (e) => {
   });
   xhr.send(data);
 }
-// ! remove event later
 //| HANDLE ALERTS                                                           |//
-const handleAlerts = (data, isFailed, e) => {
-  e.preventDefault();
+const handleAlerts = (data, isFailed) => {
   const margin = window.innerWidth >= mediaDesktop ? 20 : 5;
   let heightTotal = margin;
   let delay = 0;
@@ -1298,7 +1294,6 @@ const menu = document.querySelector('.menu--js');
 const menuItems = document.querySelectorAll('.menu__item--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
 const menuLabels = document.querySelectorAll('.label--js');
-//const sectionScrollOffset = 200;
 
 //: NAVIGATION                                                              ://
 const navigation = document.querySelector('.navigation--js');
@@ -1358,15 +1353,15 @@ const expandableContent = document.querySelectorAll('.js-expandable');
 
 //| FUNCTION CALLS ON PAGE LOAD                                             |//
 
-// ! temporary page load
-intro.classList.add('intro--hidden');
+// page load with no animation intro
+/* intro.classList.add('intro--hidden');
 [...menuItems].forEach(item => item.classList.add('menu__item--active'));
 visuals.classList.add('visuals--visible');
-pageHeader.classList.add('pageHeader--visible');
-// ! temporary page load
+pageHeader.classList.add('pageHeader--visible'); */
+// page load with no animation intro
 
-//setIntroLoaderPosition();
-//loadIntroContent();
+setIntroLoaderPosition();
+loadIntroContent();
 handleIntroMenu();
 //: handle page's accordions                                                ://
 handleAccordion([...resumeSubtabs]);
@@ -1380,8 +1375,8 @@ if (window.innerWidth < mediaDesktop) {
 }
 //: collapse expandable content on page load                                ://
 window.onload = () => {
-  //handleIntroAnimation();
-  //handleIntroLoader();
+  handleIntroAnimation();
+  handleIntroLoader();
   handleExpandableContent(expandableContent);
   //: set each section's container top margin                               ://
   [...sectionContainers].forEach(container => {
@@ -1390,9 +1385,9 @@ window.onload = () => {
 };
 
 //: fetch github api                                                        ://
-/* fetch('https://api.github.com/users/jchojna/repos')
+fetch('https://api.github.com/users/jchojna/repos')
   .then(resp => resp.json())
-  .then(resp => handleRepo(resp)); */
+  .then(resp => handleRepo(resp));
 // ! project id must fit repo id
 
 
@@ -1460,19 +1455,9 @@ if (window.innerWidth < mediaDesktop) {
   input.value = localStorage.getItem(input.id) ? localStorage.getItem(input.id) : '';
 });
 //: VALIDATE CONTACT FORM                                                   ://
-//formSubmitButton.addEventListener('click', validateForm);
-formSubmitButton.addEventListener('click', (e) => handleAlerts({
-  'emptyEmailError': true,
-  'invalidEmailError': true,
-  'messageError': true,
-  'phoneError': false,
-  'failure': true,
-  'success': true
-}, false, event));
-
+formSubmitButton.addEventListener('click', validateForm);
 //: VALIDATE FORM INPUTS                                                    ://
 userEmail.addEventListener('keyup', validateEmail);
 userPhone.addEventListener('keyup', validatePhone);
 userMessage.addEventListener('keyup', validateMessage);
-
 window.addEventListener('resize', handleWindowResize);
