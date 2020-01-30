@@ -2,20 +2,24 @@
 
 .wrapper {
   height: 100%;
+  margin: 0 $offset-right-sm 0 $offset-left-sm;
   overflow: hidden;
   position: relative;
   transition: height $expandable-time;
+
+  @media only screen and (min-width: $media-lg) {
+    margin: 0;
+  }
 }
 
 .expandableHidden,
 .expandedHidden {
   left: 0;
-  max-width: calc(100vw - #{$offset-left-sm} - #{$offset-right-sm});
   position: absolute;
   top: 0;
+  right: 0;
   transition: visibility 0s;
   visibility: hidden;
-  width: 100%;
 
   @media only screen and (min-width: $media-lg) {
     max-width: none;

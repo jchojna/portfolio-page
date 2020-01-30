@@ -62,6 +62,7 @@
   }
 
   &--social {
+    margin-top: 20px;
     grid-area: social;
   }
 
@@ -132,10 +133,10 @@
     }
 
     &--tasktimer { color: $color-tasktimer-shadow; }
-    &--portfolio { color: $color-tasktimer-shadow; }
-    &--hydrapp   { color: $color-tasktimer-shadow; }
-    &--archviz   { color: $color-tasktimer-shadow; }
-    &--quotes    { color: $color-tasktimer-shadow; }
+    &--portfolio { color: $color-portfolio-shadow; }
+    &--hydrapp   { color: $color-hydrapp-shadow; }
+    &--archviz   { color: $color-archviz-shadow; }
+    &--quotes    { color: $color-quotes-shadow; }
     
     &--other {
       font-size: $otherHeading-size-sm;
@@ -179,7 +180,6 @@
     &--about {
       color: $color-about-diff;
       &::before { background-color: $color-about-diff; }
-      margin: 20px 0;
     }
     &--tasktimer {
       color: $color-tasktimer-diff;
@@ -212,6 +212,10 @@
         padding: 0;
         font-size: $tabHeading-size-lg;
 
+        &--about {
+          margin-bottom: 20px;
+        }
+
         &--technologies {
           display: none;
         }
@@ -234,7 +238,8 @@
     font-family: 'Antonio Regular';
     font-size: 18px;
     line-height: 1.4;
-    margin: 20px $offset-right-sm 0 $offset-left-sm;
+    margin: 0;
+    padding-top: 20px;
 
     &--small {
       font-family: 'Antonio Bold';
@@ -245,7 +250,7 @@
       font-family: 'Antonio Bold';
       font-size: 1.5em;
       color: $color-about-white;
-      margin-bottom: 20px;
+      margin: 0 $offset-right-sm 20px $offset-left-sm;
     }
     &--resume {
       color: $color-resume-white;
@@ -280,12 +285,9 @@
 
       & {
         margin: 0;
-        margin-top: 20px;
         line-height: 1.6;
 
         &--resume {
-          margin-top: 0;
-          padding-top: 20px;
           margin-left: $separator-width-thick + $tabGap;
         }
       }

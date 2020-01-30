@@ -82,6 +82,7 @@
       "working    "
       "knowing    "
       "learning   ";
+      row-gap: $rowGap;
     }
 
     &--resume {
@@ -107,7 +108,7 @@
       "technologies"
       "stats       "
       "repoLinks   ";
-      row-gap: $gridGap;
+      row-gap: $rowGap;
     }
 
     &--other {
@@ -116,7 +117,7 @@
       "logo       "
       "description"
       "otherRepos ";
-      row-gap: $gridGap;
+      row-gap: $rowGap;
     }
 
     &--contact {
@@ -134,9 +135,9 @@
         margin-left: 540px;
         max-width: $container-size;
         min-height: $container-size;
-        min-width: 600px;
 
         &--about {
+          gap: $gridGap;
           grid-template-areas:
           "heading     photography"
           "description photography"
@@ -310,7 +311,7 @@
   border-collapse: collapse;
   border-bottom: 3px solid transparent;
   display: flex;
-  margin: 0 $offset-right-sm 0 $offset-left-sm;
+  margin: 20px $offset-right-sm 0 $offset-left-sm;
   padding-bottom: 10px;
   
   &--tasktimer {
@@ -360,6 +361,7 @@
 
     & {
       margin: 0;
+      margin-top: 10px;
     }
   }
 }
@@ -373,7 +375,6 @@
   grid-area: repoLinks;
   grid-template-columns: repeat(2, 1fr);
   margin: 0.5em $offset-right-sm 0 $offset-left-sm;
-  width: 100%;
 
   &--about     { border-color: $color-about-diff; }
   &--tasktimer { border-color: $color-tasktimer-diff; }
@@ -459,6 +460,7 @@
     & {
       margin: 0;
       margin-top: 15px;
+      width: 100%;
     }
   }
 }

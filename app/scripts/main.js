@@ -54,8 +54,10 @@ const getCurrentNavigationIndex = () => {
 //: because of expandable content inside section containers                 ://
 //: distorting and complicating content layout                              ://
 const handleTopMargins = (element, distance) => {
-  const margin = (window.innerHeight - element.clientHeight) / 2;
-  element.style.marginTop = `${margin > distance ? margin : distance}px`;
+  if (window.innerWidth >= mediaDesktop) {
+    const margin = (window.innerHeight - element.clientHeight) / 2;
+    element.style.marginTop = `${margin > distance ? margin : distance}px`;
+  }
 }
 //| CHANGE ACTIVE LINK ON HOVER                                             |//
 const handleColorChange = (index, action) => {
@@ -558,7 +560,7 @@ const handleNavOnClick = (index, action) => {
 }
 //| HANDLE JUMPING TO ANOTHER SECTION USING NAVIGATION                      |//
 const navigateToSection = (e) => {
-  isScrollEnabled = true;
+  handleUserActivity();
   //: get target index                                                      |//
   const targetIndex = e.target === navigationPrevButton
     //. previous button clicked                                             .//
@@ -691,6 +693,7 @@ const handleRepo = (repos) => {
     if (data.children.length === 0) {
       //. create array of particular words                                  .//
       const wordsArray = data.html.slice().split(' ').filter(elem => elem !== '');
+      console.log(data);
       const reducedArray = [...wordsArray];
       //. remove words starting from the end until content fits space       .//
       for (let i = 0; i < wordsArray.length; i++) {
@@ -712,6 +715,20 @@ const handleRepo = (repos) => {
         const containerNode = container.children[i];
         containerNode.innerHTML = nodesArray[i];
         if (parent.clientHeight > available) {
+
+
+
+
+
+
+         /*  console.log(parent.clientHeight);
+          console.log(available); */
+
+
+
+
+
+
           //. repeat the operations on particular nodes                     .//
           reduceContent(dataNode, containerNode, available, parent);
           //. remove unnecessary empty nodes outside available space        .//
@@ -744,11 +761,6 @@ const handleExpandableContent = (contents) => {
   }
   //: clone content data to an array of objects and empty node              ://
   [...contents].forEach(content => {
-    contentData = [...contentData, {
-      fullHeight: content.clientHeight,
-      html: content.innerHTML,
-      children: getChildren(content)
-    }];
     //. copy original content node and hide it                              .//
     const wrapper = document.createElement('div');
     wrapper.className = 'wrapper';
@@ -760,6 +772,11 @@ const handleExpandableContent = (contents) => {
     //. wrap content and content copy inside a wrapper                      .//
     content.parentNode.insertBefore(wrapper, content);
     wrapper.append(content, contentCopy);
+    contentData = [...contentData, {
+      fullHeight: content.clientHeight,
+      html: content.innerHTML,
+      children: getChildren(content)
+    }];
     //. empty content of original content node                              .//
     emptyContent(content);
   });
@@ -773,6 +790,7 @@ const handleExpandableContent = (contents) => {
     ? content.clientHeight
     : minMobileHeight;
     const { availableHeight, fullHeight, html } = currentContentData;
+    console.log(fullHeight);
     //. check if content fits available space                               .//
     if (availableHeight >= fullHeight) {
       content.innerHTML = html;
@@ -1377,10 +1395,10 @@ if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
 //: collapse expandable content on page load                                ://
-handleExpandableContent(expandableContent);
 window.onload = () => {
   //handleIntroAnimation();
   //handleIntroLoader();
+  handleExpandableContent(expandableContent);
   //: set each section's container top margin                               ://
   [...sectionContainers].forEach(container => {
     handleTopMargins(container, minTopMargin);

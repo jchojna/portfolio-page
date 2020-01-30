@@ -7,7 +7,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   list-style-type: none;
-  margin: 0 $offset-right-sm 0 $offset-left-sm;
+  margin: 20px $offset-right-sm 0 $offset-left-sm;
   padding: 0;
 
   &--contact {

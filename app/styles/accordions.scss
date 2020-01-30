@@ -75,6 +75,11 @@
       &__title {
         border: none;
         padding: 0;
+
+        &--fullWidth {
+          grid-column: 1 / 4;
+          width: 100%;
+        }
       }
   
       &__description {
@@ -104,11 +109,6 @@
 
         &--additional {
           grid-column: 2 / 4;
-        }
-
-        &--fullWidth {
-          grid-column: 1 / 4;
-          width: 100%;
         }
       }
     }
