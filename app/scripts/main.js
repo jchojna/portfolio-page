@@ -3,10 +3,6 @@ const handleWindowResize = () => {
   [...sectionContainers].forEach(container => {
     handleTopMargins(container, minTopMargin);
   });
-
-
-
-
 }
 //| ON USER'S ACTIVITY                                                      |//
 const handleUserActivity = () => {
@@ -389,11 +385,13 @@ const handleMobileHeader = () => {
   } 
 }
 //| HANDLE MENU ITEMS ON SCROLL EVENT                                       |//
-const handleMenuOnScroll = (e) => {
+const handleMenuOnScroll = () => {
   if (isScrollEnabled) {
     //: handle indicator and active menu item on section change               ://
     const newMenuItemIndex = getCurrentSectionIndex(0);
     if (newMenuItemIndex !== lastMenuItemIndex) {
+      const prevId = sections[lastMenuItemIndex].id;
+      menuLinks[lastMenuItemIndex].classList.remove(`menu__link--intro-${prevId}`);
       menuLinks[lastMenuItemIndex].classList.remove('menu__link--active');
       introBox.classList.remove(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
       //. index change                                                        .//
@@ -715,20 +713,6 @@ const handleRepo = (repos) => {
         const containerNode = container.children[i];
         containerNode.innerHTML = nodesArray[i];
         if (parent.clientHeight > available) {
-
-
-
-
-
-
-         /*  console.log(parent.clientHeight);
-          console.log(available); */
-
-
-
-
-
-
           //. repeat the operations on particular nodes                     .//
           reduceContent(dataNode, containerNode, available, parent);
           //. remove unnecessary empty nodes outside available space        .//
@@ -1412,10 +1396,6 @@ window.onload = () => {
 // ! project id must fit repo id
 
 
-
-
-
-
 //|                                                                         |//
 //| EVENT LISTENERS                                                         |//
 //: MENU AND NAVIGATION                                                     ://
@@ -1423,10 +1403,9 @@ window.addEventListener('resize', updateSectionsOffsets);
 window.addEventListener('resize', updateMenuItemsOffsets);
 pageHeader.addEventListener('resize', handleIntroBox);
 pageHeader.addEventListener('scroll', handleIntroBox);
-
+//: MAIN CONTENT                                                            ://
 pageContainer.addEventListener('mousedown', handleUserActivity);
 pageContainer.addEventListener('touchstart', handleUserActivity);
-
 pageContainer.addEventListener('scroll', handleMenuOnScroll);
 pageContainer.addEventListener('scroll', handleNavOnScroll);
 pageContainer.addEventListener('wheel', handleFastScroll);

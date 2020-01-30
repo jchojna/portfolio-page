@@ -10,7 +10,7 @@
   top: 0;
   visibility: hidden;
   width: 100%;
-  z-index: 5;
+  z-index: 2;
 
   &--visible {
     visibility: visible;
@@ -29,7 +29,6 @@
     position: fixed;
     transition: background-color $menu-sm-first-timeout;
     width: 100%;
-    z-index: -1;
 
     &--animated {
       transition:
@@ -60,13 +59,6 @@
     &--quotes    { background-color: $color-quotes-diff; }
     &--other     { background-color: $color-other-diff; }
     &--contact   { background-color: $color-contact-diff; }
-
-    @media only screen and (min-width: $media-lg) {
-
-      & {
-        //display: none;
-      }
-    }
   }
   //| PAGE INTROBOX                                                         |//
   &__introBox {
@@ -77,7 +69,6 @@
     position: fixed;
     transition: opacity $menu-sm-first-timeout, top $menu-sm-first-timeout;
     width: $menu-item-height;
-    z-index: -1;
     
     &--content {
       transition: opacity $menu-sm-first-timeout, top $menu-sm-second-timeout;

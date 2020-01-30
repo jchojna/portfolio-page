@@ -38,7 +38,6 @@
     grid-area: description;
     height: 100%;
     overflow: initial;
-    z-index: 3;
   }
   &--features {
     grid-area: features;
@@ -126,7 +125,6 @@
     line-height: 1;
     margin: 0;
     position: relative;
-    z-index: 2;
 
     &--category {
       font-size: $features-category-size-sm;
@@ -166,7 +164,6 @@
     padding-left: $tabHeading-size-sm;
     position: relative;
     text-transform: uppercase;
-    z-index: 1;
 
     &::before {
       content: "";
@@ -278,6 +275,7 @@
 
       &.tab__description--small {
         color: $color-other-shadow;
+        margin: 0 $offset-right-sm 20px $offset-left-sm;
       }
     }
 
@@ -289,6 +287,10 @@
 
         &--resume {
           margin-left: $separator-width-thick + $tabGap;
+        }
+
+        &--other.tab__description--small {
+          margin: 0;
         }
       }
     }
@@ -440,7 +442,6 @@
 
     &--resume {
       font-size: $tabHeader-size-sm;
-      z-index: 1;
     }
   }
 

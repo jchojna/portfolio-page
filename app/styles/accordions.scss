@@ -47,6 +47,10 @@
       padding-left: $tabGap;
     }
 
+    &--secondary {
+      font-family: 'Antonio Regular';
+    }
+
     &--additional {
       color: $color-resume-dark;
       padding-left: $separator-width-thick + $tabGap;
@@ -104,7 +108,6 @@
           background-color: $color-resume-dark;
           width: $tabGap;
           height: $tabGap;
-          z-index: 0;
         }
 
         &--additional {

@@ -209,7 +209,7 @@
     padding: 75px 0 25px 20px;
     position: relative;
     width: 100%;
-    z-index: 4;
+    z-index: 1;
 
     &--large {
       font-size: 72px;
@@ -275,7 +275,7 @@
     margin-top: -50px;
     padding-left: $offset-left-sm;
     width: 100%;
-    z-index: 4;
+    z-index: 1;
 
     @media only screen and (min-width: $media-lg) {
 
