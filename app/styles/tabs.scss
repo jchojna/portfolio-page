@@ -5,7 +5,7 @@
 .tab,
 .subtab {
   position: relative;
-  margin-top: 20px;
+  //margin-top: 20px;
   //: ABOUT                                                            ://
   &--profiles { grid-area: profiles; }
   &--working { grid-area: working; }
@@ -159,7 +159,6 @@
     font-size: $tabHeading-size-sm;
     line-height: 1;
     margin: 0;
-    margin-bottom: 20px;
     padding-left: $tabHeading-size-sm;
     position: relative;
     text-transform: uppercase;
@@ -177,6 +176,7 @@
     &--about {
       color: $color-about-diff;
       &::before { background-color: $color-about-diff; }
+      margin: 20px 0;
     }
     &--tasktimer {
       color: $color-tasktimer-diff;
@@ -231,7 +231,7 @@
     font-family: 'Antonio Regular';
     font-size: 18px;
     line-height: 1.4;
-    margin: 0 $offset-right-sm 10px $offset-left-sm;
+    margin: 20px $offset-right-sm 0 $offset-left-sm;
 
     &--small {
       font-family: 'Antonio Bold';
@@ -247,6 +247,8 @@
     &--resume {
       color: $color-resume-white;
       margin-left: $separator-width-thick + $tabGap;
+      margin-top: 0;
+      padding-top: 20px;
     }
     &--tasktimer {
       color: $color-tasktimer-white;
@@ -275,14 +277,13 @@
 
       & {
         margin: 0;
-        margin-bottom: 10px;
+        margin-top: 20px;
         line-height: 1.6;
 
         &--resume {
+          margin-top: 0;
+          padding-top: 20px;
           margin-left: $separator-width-thick + $tabGap;
-        }
-        &--tasktimer {
-          margin-bottom: 10px;
         }
       }
     }
@@ -295,7 +296,7 @@
     height: $tabHeader-size-sm;
     line-height: 1;
     margin: 0;
-    margin-bottom: 10px;
+    margin-top: $tabHeader-size-sm / 2;
     padding: 0;
     padding-left: $tabHeader-size-sm + $tabGap;
     position: relative;
@@ -312,7 +313,7 @@
 
     &--category {
       height: $features-category-size-sm;
-      margin-bottom: $features-category-size-sm;
+      margin-top: $features-category-size-sm;
       padding-left: $features-category-size-sm + $tabGap;
     }
     
@@ -346,11 +347,12 @@
 
       & {
         height: $tabHeader-size-lg;
+        margin-top: $tabHeader-size-lg / 2;
         padding-left: $tabHeader-size-lg + $tabGap;
 
         &--category {
           height: $features-category-size-lg;
-          margin-bottom: $features-category-size-lg;
+          margin-top: $features-category-size-sm;
           padding-left: $features-category-size-lg + $tabGap;
         }
 

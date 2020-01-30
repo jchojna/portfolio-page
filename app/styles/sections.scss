@@ -71,7 +71,6 @@
   &__container {
     align-items: start;
     display: grid;
-    row-gap: $gridGap;
     width: 100%;
 
     &--about {
@@ -108,6 +107,7 @@
       "technologies"
       "stats       "
       "repoLinks   ";
+      row-gap: $gridGap;
     }
 
     &--other {
@@ -130,7 +130,6 @@
     @media only screen and (min-width: $media-lg) {
 
       & {
-        gap: $gridGap;
         margin-left: 540px;
         max-width: $container-size;
         min-height: $container-size;
@@ -144,7 +143,8 @@
           "working     working    "
           "knowing     knowing    "
           "learning    learning   ";
-          grid-template-columns: 1fr 48%;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto 1fr repeat(4, auto);
         }
 
         &--resume {
@@ -155,7 +155,6 @@
           "experience"
           "education "
           "languages ";
-          //grid-template-rows: auto 1fr repeat(3, auto);
         }
 
         &--tasktimer,
@@ -163,6 +162,7 @@
         &--hydrapp,
         &--archviz,
         &--quotes {
+          gap: $gridGap;
           grid-template-areas:
           "heading      heading     "
           "description  features    "

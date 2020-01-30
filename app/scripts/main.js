@@ -606,11 +606,13 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
           mark.classList.remove('mark--unrolled');
           isFastScroll = true;
         }
+        //. when subtab clicked                                             .//
         if (subtab) {
           const parentContainer = findFirstParentWithClass(container.parentNode, 'container');
           const subtabs = parentContainer.querySelectorAll('.subtab__header');
           const clickedSubtabsContainerHeight = container.firstElementChild.clientHeight;
-          let height = clickedSubtabsContainerHeight;
+          const isUnrolled = mark.classList.contains('mark--unrolled');
+          let height = isUnrolled ? clickedSubtabsContainerHeight : 0;
           [...subtabs].forEach(subtab => height += subtab.clientHeight);
           parentContainer.style.height = `${height}px`;
         }
