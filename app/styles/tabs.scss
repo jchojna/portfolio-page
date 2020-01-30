@@ -84,6 +84,9 @@
 
       &--other {
         margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         &:hover {
           
@@ -358,6 +361,7 @@
 
         &--other {
           height: $otherHeading-size-lg;
+          margin: 0;
           padding-left: $otherHeading-size-lg + $tabGap;
         }
 

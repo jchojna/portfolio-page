@@ -116,6 +116,7 @@
       "logo       "
       "description"
       "otherRepos ";
+      row-gap: $gridGap;
     }
 
     &--contact {
@@ -173,11 +174,12 @@
         }
 
         &--other {
+          gap: $gridGap;
           grid-template-areas:
           "heading    "
           "description"
           "otherRepos ";
-          grid-template-rows: repeat(2, auto) 1fr;
+          grid-template-rows: auto 1fr auto;
         }
 
         &--contact {
@@ -290,7 +292,6 @@
   //: end of SECTION PHOTO & SVG                                            ://
   //: SECTION REPOS                                                         ://
   &__repos {
-    margin-top: 30px;
     grid-area: otherRepos;
 
     @media only screen and (min-width: $media-lg) {
@@ -372,6 +373,7 @@
   grid-area: repoLinks;
   grid-template-columns: repeat(2, 1fr);
   margin: 0.5em $offset-right-sm 0 $offset-left-sm;
+  width: 100%;
 
   &--about     { border-color: $color-about-diff; }
   &--tasktimer { border-color: $color-tasktimer-diff; }
