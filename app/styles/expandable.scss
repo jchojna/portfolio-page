@@ -2,9 +2,14 @@
 
 .wrapper {
   height: 100%;
+  margin: 0 $offset-right-sm 0 $offset-left-sm;
   overflow: hidden;
   position: relative;
   transition: height $expandable-time;
+
+  @media only screen and (min-width: $media-lg) {
+    margin: 0;
+  }
 }
 
 .expandableHidden,
@@ -12,9 +17,13 @@
   left: 0;
   position: absolute;
   top: 0;
+  right: 0;
   transition: visibility 0s;
   visibility: hidden;
-  width: 100%;
+
+  @media only screen and (min-width: $media-lg) {
+    max-width: none;
+  }
 }
 
 .expandableVisible,
@@ -32,6 +41,7 @@
 }
 
 .dots {
-  font-size: 2em;
+  font-family: 'Antonio Bold';
+  font-size: 1.5em;
   line-height: 0;
 }

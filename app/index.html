@@ -148,12 +148,12 @@
     <main class="pageContainer pageContainer--js">
       <!--| ABOUT                                                          |-->
       <article id="about" class="section section--about section--js">
-        <div class="section__container section__container--about">
+        <div class="section__container section__container--about section__container--js">
           <h2 class="section__heading section__heading--large section__heading--about">
             Hello there!
           </h2>
           <img
-            src=""
+            src="assets/img/photo.jpg"
             class="section__photo"
             alt="Photo of Jakub Chojna"
           >
@@ -579,7 +579,7 @@
       <!--| END OF ABOUT                                                   |-->
       <!--| RESUME                                                         |-->
       <article id="resume" class="section section--resume section--js">
-        <div class="section__container section__container--resume">
+        <div class="section__container section__container--resume section__container--js">
           <h2 class="section__heading section__heading--large section__heading--resume">Jakub Chojna</h2>
           <!--: LOGO                                                       :-->
           <div class="logo logo--resume">
@@ -591,6 +591,26 @@
             </svg>
           </div>
           <!--: END OF LOGO                                                :-->
+          <!--: PERSONAL INFO                                              :-->
+          <section class="tab tab--resume tab--info tab--js-resume">
+            <h3 class="tab__header tab__header--resume">
+              <button class="tab__button tab__button--resume tab__button--js-resume">
+                <span class="mark mark--resume"></span>
+                <span>Personal Info</span>
+              </button>
+            </h3>
+            <div class="container container--info">
+              <div class="content">
+                <p class="tab__description tab__description--resume">
+                  As an architect I have a background in programming parametric architecture using tools like Grasshopper and Kangaroo. Long experience in 3d graphic and architectural visualization industry had a strong impact on my sense of aesthetics and visual composition. I also had an encounter with motion design and compositing. During my one year stay in Slovenia, I had an opportunity to work in English-speaking environment. As an individual, I think I would describe myself as a self-taught, multipotentialite person with a certain dose of perfectionism.
+                </p>
+                <p class="tab__description tab__description--resume">
+                  After I had created my first personal portfolio website in Wordpress, I decided to take my chances in frontend development about one year ago and learn it after hours. I have taken some online courses, but first of all I focused on writing my own projects and learning by practice. I tried to avoid using external libraries where I possibly could while writing the code, to get better understanding of HTML, CSS and JS basics. What I like about frontend web development is an endless process of learning, logical and analytical thinking and that it enables me to connect my previous experience backgrounds at some level.
+                </p>
+              </div>
+            </div>
+          </section>
+          <!--: END OF PERSONAL INFO                                       :-->
           <!--: PROFESSIONAL EXPERIENCE                                    :-->
           <section class="tab tab--resume tab--experience tab--js-resume">
             <h3 class="tab__header tab__header--resume">
@@ -599,120 +619,128 @@
                 <span>Experience</span>
               </button>
             </h3>
-            <div class="content">
-              <!--. ARCHITECTURE                                           .-->
-              <section class="subtab subtab--resume subtab--js-resume">
-                <h4 class="subtab__header subtab__header--resume">
-                  <button class="subtab__button subtab__button--resume subtab__button--js-resume">
-                    <span class="mark mark--resume"></span>
-                    <span>Architecture</span>
-                  </button>
-                </h4>
-                <ul class="content__list">
-                  <li class="content__item content__item--resume content__item--experience">
-                    <p class="content__title">2017 - present</p>
-                    <p class="content__description content__description--primary">
-                      Freelance Architect
-                    </p>
-                    <p class="content__description content__description--secondary">
-                      self-employed
-                    </p>
-                    <p class="content__description content__description--additional">
-                      Remote
-                    </p>
-                  </li>
-                  <li class="content__item content__item--resume content__item--experience">
-                    <p class="content__title">2018</p>
-                    <p class="content__description content__description--primary">
-                      Architect / 3d Visualizer
-                    </p>
-                    <p class="content__description content__description--secondary">
-                      Svet Vmes
-                    </p>
-                    <p class="content__description content__description--additional">
-                      Ljubljana, Slovenia
-                    </p>
-                  </li>
-                  <li class="content__item content__item--resume content__item--experience">
-                    <p class="content__title">2015 - 2017</p>
-                    <p class="content__description content__description--primary">
-                      Architect / 3d Visualizer
-                    </p>
-                    <p class="content__description content__description--secondary">
-                      Mofo Architekci
-                    </p>
-                    <p class="content__description content__description--additional">
-                      Warsaw, Poland
-                    </p>
-                  </li>
-                  <li class="content__item content__item--resume content__item--experience">
-                    <p class="content__title">2011 - 2013</p>
-                    <p class="content__description content__description--primary">
-                      Architect
-                    </p>
-                    <p class="content__description content__description--secondary">
-                      Activum Projektowanie
-                    </p>
-                    <p class="content__description content__description--additional">
-                      Warsaw, Poland
-                    </p>
-                  </li>
-                </ul>
-              </section>
-              <!--. END OF ARCHITECTURE                                    .-->
-              <!--. 3D GRAPHICS                                            .-->
-              <section class="subtab subtab--resume subtab--js-resume">
-                <h4 class="subtab__header subtab__header--resume">
-                  <button class="subtab__button subtab__button--resume subtab__button--js-resume">
-                    <span class="mark mark--resume"></span>
-                    <span>3d Graphics</span>
-                  </button>
-                </h4>
-                <ul class="content__list">
-                  <li class="content__item content__item--resume content__item--experience">
-                    <p class="content__title">2008 - present</p>
-                    <p class="content__description content__description--primary">
-                      Freelance 3d Visualizer
-                    </p>
-                    <p class="content__description content__description--secondary">
-                      self-employed
-                    </p>
-                    <p class="content__description content__description--additional">
-                      Remote
-                    </p>
-                  </li>
-                  <li class="content__item content__item--resume content__item--experience">
-                    <p class="content__title">2010 - 2013</p>
-                    <p class="content__description content__description--primary">
-                      3d software tutor
-                    </p>
-                    <p class="content__description content__description--secondary">
-                      Euro Info Group
-                    </p>
-                    <p class="content__description content__description--additional">
-                      Warsaw, Poland
-                    </p>
-                  </li>
-                </ul>
-              </section>
-              <!--. END OF 3D GRAPHICS                                     .-->
-              <!--. FRONTEND DEVELOPMENT                                   .-->
-              <section class="subtab subtab--resume subtab--js-resume">
-                <h4 class="subtab__header subtab__header--resume">
-                  <button class="subtab__button subtab__button--resume subtab__button--js-resume">
-                    <span class="mark mark--resume"></span>
-                    <span>Frontend Dev</span>
-                  </button>
-                </h4>
-                <ul class="content__list">
-                  <li class="content__item content__item--resume content__item--frontend">
-                    <p class="content__description content__description--fullWidth">
-                      No professional experience yet ...
-                    </p>
-                  </li>
-                </ul>
-              </section>
-              <!--. END OF FRONTEND DEVELOPMENT                            .-->
+            <div class="container">
+              <div class="content">
+                <!--. ARCHITECTURE                                         .-->
+                <section class="subtab subtab--resume subtab--js-resume">
+                  <h4 class="subtab__header subtab__header--resume">
+                    <button class="subtab__button subtab__button--resume subtab__button--js-resume">
+                      <span class="mark mark--resume"></span>
+                      <span>Architecture</span>
+                    </button>
+                  </h4>
+                  <div class="container">
+                    <ul class="content__list">
+                      <li class="content__item content__item--resume content__item--experience">
+                        <p class="content__title">2017 - present</p>
+                        <p class="content__description content__description--primary">
+                          Freelance Architect
+                        </p>
+                        <p class="content__description content__description--secondary">
+                          self-employed
+                        </p>
+                        <p class="content__description content__description--additional">
+                          Remote
+                        </p>
+                      </li>
+                      <li class="content__item content__item--resume content__item--experience">
+                        <p class="content__title">2018</p>
+                        <p class="content__description content__description--primary">
+                          Architect / 3d Visualizer
+                        </p>
+                        <p class="content__description content__description--secondary">
+                          Svet Vmes
+                        </p>
+                        <p class="content__description content__description--additional">
+                          Ljubljana, Slovenia
+                        </p>
+                      </li>
+                      <li class="content__item content__item--resume content__item--experience">
+                        <p class="content__title">2015 - 2017</p>
+                        <p class="content__description content__description--primary">
+                          Architect / 3d Visualizer
+                        </p>
+                        <p class="content__description content__description--secondary">
+                          Mofo Architekci
+                        </p>
+                        <p class="content__description content__description--additional">
+                          Warsaw, Poland
+                        </p>
+                      </li>
+                      <li class="content__item content__item--resume content__item--experience">
+                        <p class="content__title">2011 - 2013</p>
+                        <p class="content__description content__description--primary">
+                          Architect
+                        </p>
+                        <p class="content__description content__description--secondary">
+                          Activum Projektowanie
+                        </p>
+                        <p class="content__description content__description--additional">
+                          Warsaw, Poland
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+                <!--. END OF ARCHITECTURE                                  .-->
+                <!--. 3D GRAPHICS                                          .-->
+                <section class="subtab subtab--resume subtab--js-resume">
+                  <h4 class="subtab__header subtab__header--resume">
+                    <button class="subtab__button subtab__button--resume subtab__button--js-resume">
+                      <span class="mark mark--resume"></span>
+                      <span>3d Graphics</span>
+                    </button>
+                  </h4>
+                  <div class="container">
+                    <ul class="content__list">
+                      <li class="content__item content__item--resume content__item--experience">
+                        <p class="content__title">2008 - present</p>
+                        <p class="content__description content__description--primary">
+                          Freelance 3d Visualizer
+                        </p>
+                        <p class="content__description content__description--secondary">
+                          self-employed
+                        </p>
+                        <p class="content__description content__description--additional">
+                          Remote
+                        </p>
+                      </li>
+                      <li class="content__item content__item--resume content__item--experience">
+                        <p class="content__title">2010 - 2013</p>
+                        <p class="content__description content__description--primary">
+                          3d software tutor
+                        </p>
+                        <p class="content__description content__description--secondary">
+                          Euro Info Group
+                        </p>
+                        <p class="content__description content__description--additional">
+                          Warsaw, Poland
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+                <!--. END OF 3D GRAPHICS                                   .-->
+                <!--. FRONTEND WEB DEV                                     .-->
+                <section class="subtab subtab--resume subtab--js-resume">
+                  <h4 class="subtab__header subtab__header--resume">
+                    <button class="subtab__button subtab__button--resume subtab__button--js-resume">
+                      <span class="mark mark--resume"></span>
+                      <span>Frontend Web Dev</span>
+                    </button>
+                  </h4>
+                  <div class="container">
+                    <ul class="content__list">
+                      <li class="content__item content__item--resume content__item--frontend">
+                        <p class="content__title content__title--fullWidth">
+                          No professional experience yet ...
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+                <!--. END OF FRONTEND WEB DEV                              .-->
+              </div>
             </div>
           </section>
           <!--: END OF PROFESSIONAL EXPERIENCE                             :-->
@@ -724,44 +752,46 @@
                 <span>Education</span>
               </button>
             </h3>
-            <ul class="content__list">
-              <li class="content__item content__item--resume content__item--education">
-                <p class="content__title">2011 - 2014</p>
-                <p class="content__description content__description--primary">
-                  Warsaw University of Technology
-                </p>
-                <p class="content__description content__description--secondary">
-                  Faculty of Architecture
-                </p>
-                <p class="content__description content__description--additional">
-                  Master's Degree
-                </p>
-              </li>
-              <li class="content__item content__item--resume content__item--education">
-                <p class="content__title">2006 - 2010</p>
-                <p class="content__description content__description--primary">
-                  Warsaw University of Technology
-                </p>
-                <p class="content__description content__description--secondary">
-                  Faculty of Architecture
-                </p>
-                <p class="content__description content__description--additional">
-                  Bachelor's Degree
-                </p>
-              </li>
-              <li class="content__item content__item--resume content__item--education">
-                <p class="content__title">2003 - 2006</p>
-                <p class="content__description content__description--primary">
-                  Joachim Lelewel High School No. XLI
-                </p>
-                <p class="content__description content__description--secondary">
-                  Mathematics - Physics profile
-                </p>
-                <p class="content__description content__description--additional">
-                  Warsaw, Poland
-                </p>
-              </li>
-            </ul>
+            <div class="container">
+              <ul class="content__list">
+                <li class="content__item content__item--resume content__item--education">
+                  <p class="content__title">2011 - 2014</p>
+                  <p class="content__description content__description--primary">
+                    Warsaw University of Technology
+                  </p>
+                  <p class="content__description content__description--secondary">
+                    Faculty of Architecture
+                  </p>
+                  <p class="content__description content__description--additional">
+                    Master's Degree
+                  </p>
+                </li>
+                <li class="content__item content__item--resume content__item--education">
+                  <p class="content__title">2006 - 2010</p>
+                  <p class="content__description content__description--primary">
+                    Warsaw University of Technology
+                  </p>
+                  <p class="content__description content__description--secondary">
+                    Faculty of Architecture
+                  </p>
+                  <p class="content__description content__description--additional">
+                    Bachelor's Degree
+                  </p>
+                </li>
+                <li class="content__item content__item--resume content__item--education">
+                  <p class="content__title">2003 - 2006</p>
+                  <p class="content__description content__description--primary">
+                    Joachim Lelewel High School No. XLI
+                  </p>
+                  <p class="content__description content__description--secondary">
+                    Mathematics - Physics profile
+                  </p>
+                  <p class="content__description content__description--additional">
+                    Warsaw, Poland
+                  </p>
+                </li>
+              </ul>
+            </div>
           </section>
           <!--: END OF EDUCATION                                           :-->
           <!--: LANGUAGES                                                  :-->
@@ -772,32 +802,34 @@
                 <span>Languages</span>
               </button>
             </h3>
-            <ul class="content__list">
-              <li class="content__item content__item--resume content__item--languages">
-                <p class="content__title">
-                  English
-                </p>
-                <p class="content__description content__description--secondary">
-                  Proficient
-                </p>
-              </li>
-              <li class="content__item content__item--resume content__item--languages">
-                <p class="content__title">
-                  German
-                </p>
-                <p class="content__description content__description--secondary">
-                  Elementary
-                </p>
-              </li>
-              <li class="content__item content__item--resume content__item--languages">
-                <p class="content__title">
-                  Polish
-                </p>
-                <p class="content__description content__description--secondary">
-                  Native
-                </p>
-              </li>
-            </ul>
+            <div class="container">
+              <ul class="content__list">
+                <li class="content__item content__item--resume content__item--languages">
+                  <p class="content__title">
+                    English
+                  </p>
+                  <p class="content__description content__description--secondary">
+                    Proficient
+                  </p>
+                </li>
+                <li class="content__item content__item--resume content__item--languages">
+                  <p class="content__title">
+                    German
+                  </p>
+                  <p class="content__description content__description--secondary">
+                    Elementary
+                  </p>
+                </li>
+                <li class="content__item content__item--resume content__item--languages">
+                  <p class="content__title">
+                    Polish
+                  </p>
+                  <p class="content__description content__description--secondary">
+                    Native
+                  </p>
+                </li>
+              </ul>
+            </div>
           </section>
           <!--: END OF LANGUAGES                                           :-->
         </div>
@@ -805,7 +837,7 @@
       <!--| END OF RESUME                                                  |-->
       <!--| TASKTIMER                                                      |-->
       <article id="tasktimer" class="section section--tasktimer section--js">
-        <div class="section__container section__container--tasktimer">
+        <div class="section__container section__container--tasktimer section__container--js">
           <h2 class="section__heading section__heading--tasktimer">
             “get things done on time with taskTimer app”
           </h2>
@@ -830,9 +862,32 @@
             <h3 class="tab__heading tab__heading--tasktimer">
               About Project
             </h3>
-            <p class="tab__description tab__description--tasktimer js-expandable">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-            </p>
+            <div class="tab__wrapper js-expandable">
+              <p class="tab__description tab__description--tasktimer">
+                You could say this is just another Pomodoro Clock react app, but this one is a little bit more complex and playful. I tried to make it look more like a board game with cards, interactive and entertaining. The app can handle multiple tasks going on at the same time, even though it may not be too practical to work on many tasks simultaneously, but it’s nice to see so many countdowns in action anyway:)
+              </p>
+              <p class="tab__description tab__description--tasktimer">
+                For GIT training purposes, the app has started being developed in multiple phases:
+              </p>
+              <!--. DEVELOPMENT PROCESS                                    .-->
+              <ul class="features features--tasktimer features--description">
+                <li class="features__item features__item--description">
+                  as a static page (static-page branch)
+                </li>
+                <li class="features__item features__item--description">
+                  as vanilla JS app using document.createElement (vanilla branch)
+                </li>
+                <li class="features__item features__item--description">
+                  as vanilla JS to react.js rewriting phase with use of React.createElement, but no JSX yet (react-no-jsx branch)
+                </li>
+                <li class="features__item features__item--description">
+                  previous and simpler version of the app created using create-react-app seed is located on react-simple branch
+                </li>
+                <li class="features__item features__item--description">
+                  app’s version on master branch is still being developed as the main app
+                </li>
+              </ul>
+            </div>
             <button class="tab__readMore tab__readMore--tasktimer tab__readMore--js">
               Read more
             </button>
@@ -843,14 +898,107 @@
             <h3 class="tab__heading tab__heading--tasktimer">
               Features
             </h3>
-            <ul class="features features--tasktimer js-expandable">
-              <li class="features__item">
-                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
-              </li>
-            </ul>
-            <button class="tab__readMore tab__readMore--tasktimer tab__readMore--js">
-              Read more
-            </button>
+            <div class="tab__wrapper">
+              <!--. FUNCTIONALITY                                          .-->
+              <section class="tab tab--category tab--tasktimer tab--js-tasktimer">
+                <h4 class="tab__header tab__header--category tab__header--tasktimer">
+                  <button class="tab__button tab__button--category tab__button--tasktimer tab__button--js-tasktimer">
+                    <span class="mark mark--category mark--tasktimer"></span>
+                    <span>Functionality</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--tasktimer content">
+                    <li class="features__item">
+                      creating new task and editing or removing existing ones
+                    </li>
+                    <li class="features__item">
+                      user can specify a task name, time to finish the task and maximum break time
+                    </li>
+                    <li class="features__item">
+                      all inputs have validation rules applied to them
+                    </li>
+                    <li class="features__item">
+                      task name has limited amount of characters available and progress bar reflects the input’s current length
+                    </li>
+                    <li class="features__item">
+                      work and break time countdown available for multiple cards simultaneously
+                    </li>
+                    <li class="features__item">
+                      two display modes for work and break phases showing either elapsed or remaining time
+                    </li>
+                    <li class="features__item">
+                      progress bar with percentage sign indicates elapsed or remaining time as well, depending on the current display mode
+                    </li>
+                    <li class="features__item">
+                      card’s outro mode appears on task finish or when the maximum break time gets exceeded, summarizing that given task’s stats 
+                    </li>
+                    <li class="features__item">
+                      drag and drop functionality for task cards with transition effects
+                    </li>
+                    <li class="features__item">
+                      cards can be minimized to more concise form and display only the task name
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. VISUAL APPEARANCE                                      .-->
+              <section class="tab tab--category tab--tasktimer tab--js-tasktimer">
+                <h4 class="tab__header tab__header--category tab__header--tasktimer">
+                  <button class="tab__button tab__button--category tab__button--tasktimer tab__button--js-tasktimer">
+                    <span class="mark mark--category mark--tasktimer"></span>
+                    <span>Visual Appearance</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--tasktimer content">
+                    <li class="features__item">
+                      intro animation is based on SVG logo with masking applied to casted shadow
+                    </li>
+                    <li class="features__item">
+                      shadow’s spiral trajectory is calculated using trigonometric functions
+                    </li>
+                    <li class="features__item">
+                      all tasks form grid of elements resembling cards laid out on a game board rotating 180 degrees on every status change
+                    </li>
+                    <li class="features__item">
+                      app is fully responsive with grid of cards adjusting to viewport size
+                    </li>
+                    <li class="features__item">
+                      all cards are minimized by default on mobile devices due to accessibility reasons
+                    </li>
+                    <li class="features__item">
+                      project’s mockup was created in Figma 
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. TO BE IMPLEMENTED                                      .-->
+              <section class="tab tab--category tab--tasktimer tab--js-tasktimer">
+                <h4 class="tab__header tab__header--category tab__header--tasktimer">
+                  <button class="tab__button tab__button--category tab__button--tasktimer tab__button--js-tasktimer">
+                    <span class="mark mark--category mark--tasktimer"></span>
+                    <span>To be implemented</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--tasktimer content">
+                    <li class="features__item">
+                      stats section for all finished tasks
+                    </li>
+                    <li class="features__item">
+                      settings section allowing user to interfere with app’s interface, for example to change color palette for the entire app
+                    </li>
+                    <li class="features__item">
+                      json-server functionality
+                    </li>
+                    <li class="features__item">
+                      full keyboard support for an entire app
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </div>
           </section>
           <!--: end of PROJECT FEATURES                                    :-->
           <!--: PROJECT LINKS                                              :-->
@@ -1036,7 +1184,7 @@
       <!--| END OF TASKTIMER                                               |-->
       <!--| PORTFOLIO                                                      |-->
       <article id="portfolio" class="section section--portfolio section--js">
-        <div class="section__container section__container--portfolio">
+        <div class="section__container section__container--portfolio section__container--js">
           <h2 class="section__heading section__heading--portfolio">
             “this portfolio website...”
           </h2>
@@ -1055,9 +1203,17 @@
             <h3 class="tab__heading tab__heading--portfolio">
               About Project
             </h3>
-            <p class="tab__description tab__description--portfolio js-expandable">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+            <div class="tab__wrapper js-expandable">
+              <p class="tab__description tab__description--portfolio">
+                This project you have already started exploring and it’s what you are viewing right now. It presents five most representative frontend projects of mine (including itself) placed in separate sections, starting from the ones I am proud of the most. In addition, the other section contains a few more straightforward and exercise projects I created in the beginning of my frontend journey.
+              </p>
+              <p class="tab__description tab__description--portfolio">
+                I tried to emphasize creative and dynamic character of this SPA website mostly by providing noticeable level of interaction with a visual output and quite many animated elements. At the same time, I tried not to cross the line of exaggeration regarding transforming elements and kept my eye on performance aspect so the transitions would appear relatively smooth.
+              </p>
+              <p class="tab__description tab__description--portfolio">
+                In order to distinguish one section from another I assumed a design rule, that each section has its own independent color palette. Because of many color shades in every section, there is 68 colors in total on this page and it’s one of those moments when SCSS comes in handy… In this project I decided not to use any javascript frameworks, just vanilla JS.
+              </p>
+            </div>
             <button class="tab__readMore tab__readMore--portfolio tab__readMore--js">
               Read more
             </button>
@@ -1068,44 +1224,184 @@
             <h3 class="tab__heading tab__heading--portfolio">
               Features
             </h3>
-            <ul class="features features--portfolio js-expandable">
-              <li class="features__item">
-                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
-              </li>
-              <li class="features__item">
-                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
-              </li>
-              <li class="features__item">
-                Lazy loading for grid images and gallery pictures (recursive function)
-              </li>
-              <li class="features__item">
-                Responsive slider gallery of images
-              </li>
-              <li class="features__item">
-                Two display modes in gallery view (image and svg placeholder modes)
-              </li>
-              <li class="features__item">
-                Fully functional contact form with checkbox verification and backend validation
-              </li>
-              <li class="features__item">
-                Simple accordions in about section
-              </li>
-              <li class="features__item">
-                Page preloader for the main page
-              </li>
-              <li class="features__item">
-                Fully functional contact form with checkbox verification and backend validation
-              </li>
-              <li class="features__item">
-                Simple accordions in about section
-              </li>
-              <li class="features__item">
-                Page preloader for the main page
-              </li>
-            </ul>
-            <button class="tab__readMore tab__readMore--portfolio tab__readMore--js">
-              Read more
-            </button>
+            <div class="tab__wrapper">
+              <!--. FUNCTIONALITY                                          .-->
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Functionality</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      website fetches my github repositories data using github API and searches for total number of commits, date of creation and last modification of each repo
+                    </li>
+                    <li class="features__item">
+                      expandable content functionality implemented by using recursive functions and a global object. It is applicable for plain text and more complex, nested elements like lists of items or lists inside another ones
+                    </li>
+                    <li class="features__item">
+                      accordion elements handling nested content
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. INTERACTION                                            .-->
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Interaction</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      menu links appearance depends on currently displayed section
+                    </li>
+                    <li class="features__item">
+                      smooth scroll to the next section when user scrolls down fast enough
+                    </li>
+                    <li class="features__item">
+                      animated graphic elements serve as additional visual indicator
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. INTRO ANIMATION                                        .-->
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Intro Animation</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      created with extensive use of setTimeout callback functions (because of a little callback hell, I want to rewrite this part using Promises)
+                    </li>
+                    <li class="features__item">
+                      transitions are mainly controlled with JS because of dynamically changing elements in the viewport
+                    </li>
+                    <li class="features__item">
+                      animated text is composed of SVG letters, but the output is based on simple string input
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. VISUAL APPEARANCE                                      .-->
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Visual Appearance</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      colors applied using SCSS variables
+                    </li>
+                    <li class="features__item">
+                      each section has its own dedicated logo, being an SVG graphic element
+                    </li>
+                    <li class="features__item">
+                      grids of multiple SVG icons
+                    </li>
+                    <li class="features__item">
+                      animated elements and transitions emphasizes creative and dynamic look of the website
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. RESPONSIVENESS                                         .-->
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Responsiveness</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      website layout based on CSS Grid (grid-areas mostly)
+                    </li>
+                    <li class="features__item">
+                      different behavior of menu/content transition for mobile and tablet/desktop devices
+                    </li>
+                    <li class="features__item">
+                      animated navigation buttons on tablets and large screen devices and burger button on mobiles
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. CONTACT FORM                                          .--> 
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Contact Form</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      supported with frontend and backend validation
+                    </li>
+                    <li class="features__item">
+                      AJAX request written in vanilla JS
+                    </li>
+                    <li class="features__item">
+                      mail sending functionality based on phpmailer class
+                    </li>
+                    <li class="features__item">
+                      server responses and backend validation result displayed as animated alert boxes
+                    </li>
+                    <li class="features__item">
+                      Local storage support for contact form inputs
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. OVERALL                                               .--> 
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Overall</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      project’s precise mockup created in Figma
+                    </li>
+                    <li class="features__item">
+                      website seed by yeoman - generator webapp
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. TO BE IMPLEMENTED                                      .-->
+              <section class="tab tab--category tab--portfolio tab--js-portfolio">
+                <h4 class="tab__header tab__header--category tab__header--portfolio">
+                  <button class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio">
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>To Be Implemented</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      Bonus functionality allowing to generate and display intro animation with content based on the string input provided by the user
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </div>
           </section>
           <!--: end of PROJECT FEATURES                                    :-->
           <!--: PROJECT LINKS                                              :-->
@@ -1291,7 +1587,7 @@
       <!--| END OF PORTFOLIO                                               |-->
       <!--| HYDRAPP                                                        |-->
       <article id="hydrapp" class="section section--hydrapp section--js">
-        <div class="section__container section__container--hydrapp">
+        <div class="section__container section__container--hydrapp section__container--js">
           <h2 class="section__heading section__heading--hydrapp">
             “track water consumption with hydrApp”
           </h2>
@@ -1310,9 +1606,14 @@
             <h3 class="tab__heading tab__heading--hydrapp">
               About Project
             </h3>
-            <p class="tab__description tab__description--hydrapp js-expandable">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-            </p>
+            <div class="tab__wrapper js-expandable">
+              <p class="tab__description tab__description--hydrapp">
+                Simple yet useful app for daily tracking of water consumption. User can quickly basic app’s functionality and add (or remove) next glass of drank water what may help with not forgetting about this really important activity, especially during hot summer. There’s also an archive section with a modifiable history entries divided on weeks, to have an overall insight into water consumption tendency.
+              </p>
+              <p class="tab__description tab__description--hydrapp">
+                I started writing scripts for this app in pure JS, but there is still many functionalities I would like to implement, so I think it’s a good moment for rewriting this project to react.js
+              </p>
+            </div>
             <button class="tab__readMore tab__readMore--hydrapp tab__readMore--js">
               Read more
             </button>
@@ -1323,40 +1624,95 @@
             <h3 class="tab__heading tab__heading--hydrapp">
               Features
             </h3>
-            <ul class="features features--hydrapp js-expandable">
-              <li class="features__item">
-                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
-              </li>
-              <li class="features__item">
-                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
-              </li>
-              <ul class="features">
-                <li class="features__item">
-                  Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
-                </li>
-                <li class="features__item">
-                  Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
-                </li>
-                <li class="features__item">
-                  Lazy loading for grid images and gallery pictures (recursive function)
-                </li>
-              </ul>
-              <li class="features__item">
-                Lazy loading for grid images and gallery pictures (recursive function)
-              </li>
-              <li class="features__item">
-                Responsive slider gallery of images
-              </li>
-              <li class="features__item">
-                Two display modes in gallery view (image and svg placeholder modes)
-              </li>
-              <li class="features__item">
-                Fully functional contact form with checkbox verification and backend validation
-              </li>
-            </ul>
-            <button class="tab__readMore tab__readMore--hydrapp tab__readMore--js">
-              Read more
-            </button>
+            <div class="tab__wrapper">
+              <!--. FUNCTIONALITY                                          .-->
+              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
+                <h4 class="tab__header tab__header--category tab__header--hydrapp">
+                  <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
+                    <span class="mark mark--category mark--hydrapp"></span>
+                    <span>Functionality</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--hydrapp content">
+                    <li class="features__item">
+                      user can increase / decrease amount of glasses of water per day
+                    </li>
+                    <li class="features__item">
+                      archive section with a list of days divided on weeks
+                    </li>
+                    <li class="features__item">
+                      each archive’s entry can be modified by increasing or decreasing amount of consumed water glasses and by adding or removing archive’s new or last entry accordingly
+                    </li>
+                    <li class="features__item">
+                      weeks calendar is automatically updated after adding or removing an entry
+                    </li>
+                    <li class="features__item">
+                      creator window appears when adding new entries
+                    </li>
+                    <li class="features__item">
+                      burger button menu
+                    </li>
+                    <li class="features__item">
+                      local storage support for entries data
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. VISUAL APPEARANCE                                      .-->
+              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
+                <h4 class="tab__header tab__header--category tab__header--hydrapp">
+                  <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
+                    <span class="mark mark--category mark--hydrapp"></span>
+                    <span>Visual Appearance</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--hydrapp content">
+                    <li class="features__item">
+                      emoticons indicating current level of consumed level of water on a given day
+                    </li>
+                    <li class="features__item">
+                      animated icons and buttons and smooth transitions between sections
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!--. TO BE IMPLEMENTED                                      .-->
+              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
+                <h4 class="tab__header tab__header--category tab__header--hydrapp">
+                  <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
+                    <span class="mark mark--category mark--hydrapp"></span>
+                    <span>To Be Implemented</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--hydrapp content">
+                    <li class="features__item">
+                      rewriting to react.js
+                    </li>
+                    <li class="features__item">
+                      stats section with analysis of water consumption
+                    </li>
+                    <li class="features__item">
+                      settings section allowing user to change some of the app’s interface elements
+                    </li>
+                    <li class="features__item">
+                      functionality introducing some level of gamification, for instance, glass streaks, when users keeps consuming minimum amount of water each consecutive day
+                    </li>
+                    <li class="features__item">
+                      calculating optimal amount of water based on the user’s weight
+                    </li>
+                    <li class="features__item">
+                      fetching data about weather conditions in user’s location from external API and recalculating minimum amount of water to be consumed
+                    </li>
+                    <li class="features__item">
+                      animated SVG graphic of glass
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </div>
           </section>
           <!--: end of PROJECT FEATURES                                    :-->
           <!--: PROJECT LINKS                                              :-->
@@ -1533,7 +1889,7 @@
       <!--| END OF HYDRAPP                                                 |-->
       <!--| ARCHVIZ                                                        |-->
       <article id="archviz" class="section section--archviz section--js">
-        <div class="section__container section__container--archviz">
+        <div class="section__container section__container--archviz section__container--js">
           <h2 class="section__heading section__heading--archviz">
             “personal portfolio with my architectural visulizations”
           </h2>
@@ -1552,9 +1908,14 @@
             <h3 class="tab__heading tab__heading--archviz">
               About Project
             </h3>
-            <p class="tab__description tab__description--archviz js-expandable">
-              The main idea for this project was to compromise a large amount of high quality pictures with page load performance. Because of that I decided to create svg placeholders for every image as a starting content and load the raster images regarding their actual visibility on the screen and using lazy loading functionality. In this project I decided not to use any external libraries and write all the functions by myself (exception: throttle function from Underscore.js). All the visualization used on this website were created by me, while I have been working as an architectural visualizer.
-            </p>
+            <div class="tab__wrapper js-expandable">
+              <p class="tab__description tab__description--archviz">
+                The main idea for this project was to compromise a large amount of high quality pictures with page load performance. Because of that I decided to create SVG placeholders for every image as a starting content and load the raster images progressively, taking into account their actual visibility on the screen and using lazy loading functionality.
+              </p>
+              <p class="tab__description tab__description--archviz">
+                I decided not to use any external libraries and write all the functions by myself (exception: throttle function from Underscore.js). All the visualizations used on this website were created by me, while I have been working as an architectural visualizer.
+              </p>
+            </div>
             <button class="tab__readMore tab__readMore--archviz tab__readMore--js">
               Read more
             </button>
@@ -1567,10 +1928,10 @@
             </h3>
             <ul class="features features--archviz js-expandable">
               <li class="features__item">
-                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
+                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighboring images located in a particular row and taking the whole width of the container
               </li>
               <li class="features__item">
-                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
+                Sprite map of SVG placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
               </li>
               <li class="features__item">
                 Lazy loading for grid images and gallery pictures (recursive function)
@@ -1579,7 +1940,7 @@
                 Responsive slider gallery of images
               </li>
               <li class="features__item">
-                Two display modes in gallery view (image and svg placeholder modes)
+                Two display modes in gallery view (image and SVG placeholder modes)
               </li>
               <li class="features__item">
                 Fully functional contact form with checkbox verification and backend validation
@@ -1588,7 +1949,13 @@
                 Simple accordions in about section
               </li>
               <li class="features__item">
-                Page preloader for the main page
+                Page pre-loader
+              </li>
+              <li class="features__item">
+                Improved content accessibility according to WCAG
+              </li>
+              <li class="features__item">
+                TO BE IMPLEMENTED: More detailed and animated page pre-loader containing website’s SVG logo
               </li>
             </ul>
             <button class="tab__readMore tab__readMore--archviz tab__readMore--js">
@@ -1764,7 +2131,7 @@
       <!--| END OF ARCHVIZ                                                 |-->
       <!--| QUOTES                                                         |-->
       <article id="quotes" class="section section--quotes section--js">
-        <div class="section__container section__container--quotes">
+        <div class="section__container section__container--quotes section__container--js">
           <h2 class="section__heading section__heading--quotes">
             “collection of useful and funny quotes”
           </h2>
@@ -1784,7 +2151,7 @@
               About Project
             </h3>
             <p class="tab__description tab__description--quotes js-expandable">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Quotes collection containing nice pictures and many useful and funny quotes. In this is simple MPA website I wanted to keep perceived continuity, when user navigates between different pages and make it look more like a simple app. All the pictures used in this project has been taken and post-processed by myself during my one year stay in Slovenia.
             </p>
             <button class="tab__readMore tab__readMore--quotes tab__readMore--js">
               Read more
@@ -1798,28 +2165,37 @@
             </h3>
             <ul class="features features--quotes js-expandable">
               <li class="features__item">
-                Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighbouring images located in a particular row and taking the whole width of the container
+                random quote functionality
               </li>
               <li class="features__item">
-                Sprite map of svg placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images
+                simple and basic PWA
               </li>
               <li class="features__item">
-                Lazy loading for grid images and gallery pictures (recursive function)
+                keyboard support for navigating between pages
               </li>
               <li class="features__item">
-                Responsive slider gallery of images
+                burger button menu
               </li>
               <li class="features__item">
-                Two display modes in gallery view (image and svg placeholder modes)
+                animated SVG icons
               </li>
               <li class="features__item">
-                Fully functional contact form with checkbox verification and backend validation
+                transition effect for grid of images with delays applied using SCSS loop
               </li>
               <li class="features__item">
-                Simple accordions in about section
+                responsive layout and grid of images
               </li>
               <li class="features__item">
-                Page preloader for the main page
+                local storage support for contact form’s inputs
+              </li>
+              <li class="features__item">
+                contact form’s HTML validation
+              </li>
+              <li class="features__item">
+                checkboxes validation and alerts
+              </li>
+              <li class="features__item">
+                TO BE IMPLEMENTED: contact form JS validation and functionality
               </li>
             </ul>
             <button class="tab__readMore tab__readMore--quotes tab__readMore--js">
@@ -1978,48 +2354,6 @@
                 </div>
                 <span class="icons__name icons__name--quotes">photoshop</span>
               </li>
-              <!--. REACT.JS                                               .-->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--quotes">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#react"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--quotes">react.js</span>
-              </li>
-              <!--. PHP                                                    .-->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--quotes">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#php"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--quotes">php</span>
-              </li>
-              <!--. FIGMA                                                  .-->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--quotes">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#figma-1"></use>
-                  </svg>
-                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#figma-2"></use>
-                  </svg>
-                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#figma-3"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--quotes">figma</span>
-              </li>
-              <!--. ILLUSTRATOR                                            .-->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--quotes">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#illustrator"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--quotes">illustrator</span>
-              </li>
             </ul>
           </section>
           <!--: END OF TECHNOLOGIES USED                                   :-->
@@ -2028,7 +2362,7 @@
       <!--| END OF QUOTES                                                  |-->
       <!--| OTHER                                                          |-->
       <article id="other" class="section section--other section--js">
-        <div class="section__container section__container--other">
+        <div class="section__container section__container--other section__container--js">
           <h2 class="section__heading section__heading--other">
             “other simple training projects ...”
           </h2>
@@ -2037,10 +2371,10 @@
             <h3 class="tab__heading tab__heading--other">
               About Projects
             </h3>
-            <p class="tab__description tab__description--other">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            <p class="tab__description tab__description--other js-expandable">
+              This section contains all the training projects, which are either just starting to take shape or had stopped being developed at some point. I decided to share them anyway to show my very first steps in frontend development or present some quick exercise projects, but keep in mind that most of them hasn’t been updated for a long time and the code doesn’t always reflect my current level of advancement.
             </p>
-            <button class="tab__readMore tab__readMore--other">
+            <button class="tab__readMore tab__readMore--other tab__readMore--js">
               Read more
             </button>
           </section>
@@ -2065,27 +2399,29 @@
                   <span>Score Table</span>
                 </button>
               </h3>
-              <div class="content content--other">
-                <p class="tab__description tab__description--other tab__description--small">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-                </p>
-                <div class="repoLinks repoLinks--other">
-                  <a
-                    href="https://github.com/jchojna/scoretable"
-                    class="repoLinks__link repoLinks__link--other"
-                    target="_blank" rel="nofollow noreferrer"
-                    aria-label="ScoreTable app code"
-                  >
-                    Code
-                  </a>
-                  <a
-                    href="https://jchojna.github.io/scoretable/"
-                    class="repoLinks__link repoLinks__link--other"
-                    target="_blank" rel="nofollow noreferrer"
-                    aria-label="ScoreTable app demo"
-                  >
-                    Demo
-                  </a>
+              <div class="container">
+                <div class="content content--other">
+                  <p class="tab__description tab__description--other tab__description--small">
+                    Quick exercise project in react.js after a little time off JS frameworks. I am going to transform this into scrabble game-helping app.
+                  </p>
+                  <div class="repoLinks repoLinks--other">
+                    <a
+                      href="https://github.com/jchojna/scoretable"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank" rel="nofollow noreferrer"
+                      aria-label="ScoreTable app code"
+                    >
+                      Code
+                    </a>
+                    <a
+                      href="https://jchojna.github.io/scoretable/"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank" rel="nofollow noreferrer"
+                      aria-label="ScoreTable app demo"
+                    >
+                      Demo
+                    </a>
+                  </div>
                 </div>
               </div>
             </section>
@@ -2098,27 +2434,29 @@
                   <span>Drum Machine</span>
                 </button>
               </h3>
-              <div class="content content--other">
-                <p class="tab__description tab__description--other tab__description--small">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-                </p>
-                <div class="repoLinks repoLinks--other">
-                  <a
-                    href="https://github.com/jchojna/drum-machine"
-                    class="repoLinks__link repoLinks__link--other"
-                    target="_blank" rel="nofollow noreferrer"
-                    aria-label="Drum Machine app code"
-                  >
-                    Code
-                  </a>
-                  <a
-                    href="https://jchojna.github.io/drum-machine/"
-                    class="repoLinks__link repoLinks__link--other"
-                    target="_blank" rel="nofollow noreferrer"
-                    aria-label="Drum Machine app demo"
-                  >
-                    Demo
-                  </a>
+              <div class="container">
+                <div class="content content--other">
+                  <p class="tab__description tab__description--other tab__description--small">
+                    My first app created in react.js. and it’s actually audible
+                  </p>
+                  <div class="repoLinks repoLinks--other">
+                    <a
+                      href="https://github.com/jchojna/drum-machine"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank" rel="nofollow noreferrer"
+                      aria-label="Drum Machine app code"
+                    >
+                      Code
+                    </a>
+                    <a
+                      href="https://jchojna.github.io/drum-machine/"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank" rel="nofollow noreferrer"
+                      aria-label="Drum Machine app demo"
+                    >
+                      Demo
+                    </a>
+                  </div>
                 </div>
               </div>
             </section>
@@ -2131,27 +2469,29 @@
                   <span>Pomodoro</span>
                 </button>
               </h3>
-              <div class="content content--other">
-                <p class="tab__description tab__description--other tab__description--small">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-                </p>
-                <div class="repoLinks repoLinks--other">
-                  <a
-                    href="https://github.com/jchojna/pomodoro-clock"
-                    class="repoLinks__link repoLinks__link--other"
-                    target="_blank" rel="nofollow noreferrer"
-                    aria-label="Pomodoro Clock app code"
-                  >
-                    Code
-                  </a>
-                  <a
-                    href="https://github.com/jchojna/pomodoro-clock"
-                    class="repoLinks__link repoLinks__link--other"
-                    target="_blank" rel="nofollow noreferrer"
-                    aria-label="Pomodoro Clock app demo"
-                  >
-                    Demo
-                  </a>
+              <div class="container">
+                <div class="content content--other">
+                  <p class="tab__description tab__description--other tab__description--small">
+                    My first encounter with time intervals in react.js. This app also uses some sounds in the background
+                  </p>
+                  <div class="repoLinks repoLinks--other">
+                    <a
+                      href="https://github.com/jchojna/pomodoro-clock"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank" rel="nofollow noreferrer"
+                      aria-label="Pomodoro Clock app code"
+                    >
+                      Code
+                    </a>
+                    <a
+                      href="https://github.com/jchojna/pomodoro-clock"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank" rel="nofollow noreferrer"
+                      aria-label="Pomodoro Clock app demo"
+                    >
+                      Demo
+                    </a>
+                  </div>
                 </div>
               </div>
             </section>
@@ -2164,27 +2504,29 @@
                   <span>Simple Note</span>
                 </button>
               </h3>
-              <div class="content content--other">
-                <p class="tab__description tab__description--other tab__description--small">
-                  Simple note is a plain text editor with local storage support
-                </p>
-                <div class="repoLinks repoLinks--other">
-                  <a
-                    href="https://github.com/jchojna/simple-note"
-                    class="repoLinks__link repoLinks__link--other"
-                    target="_blank" rel="nofollow noreferrer"
-                    aria-label="Simple Note code"
-                  >
-                    Code
-                  </a>
-                  <a
-                    href="https://jchojna.github.io/simple-note/"
-                    class="repoLinks__link repoLinks__link--other"
-                    target="_blank" rel="nofollow noreferrer"
-                    aria-label="Simple Note demo"
-                  >
-                    Demo
-                  </a>
+              <div class="container">
+                <div class="content content--other">
+                  <p class="tab__description tab__description--other tab__description--small">
+                    Plain text editor with local storage support
+                  </p>
+                  <div class="repoLinks repoLinks--other">
+                    <a
+                      href="https://github.com/jchojna/simple-note"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank" rel="nofollow noreferrer"
+                      aria-label="Simple Note code"
+                    >
+                      Code
+                    </a>
+                    <a
+                      href="https://jchojna.github.io/simple-note/"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank" rel="nofollow noreferrer"
+                      aria-label="Simple Note demo"
+                    >
+                      Demo
+                    </a>
+                  </div>
                 </div>
               </div>
             </section>
@@ -2197,27 +2539,29 @@
                   <span>Calculator</span>
                 </button>
               </h3>
-              <div class="content content--other">
-                <p class="tab__description tab__description--other tab__description--small">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-                </p>
-                <div class="repoLinks repoLinks--other">
-                  <a
-                    href="https://github.com/jchojna/calculator"
-                    class="repoLinks__link repoLinks__link--other"
-                    target="_blank" rel="nofollow noreferrer"
-                    aria-label="Calculator app code"
-                  >
-                    Code
-                  </a>
-                  <a
-                    href="https://github.com/jchojna/calculator"
-                    class="repoLinks__link repoLinks__link--other"
-                    target="_blank" rel="nofollow noreferrer"
-                    aria-label="Calculator app demo"
-                  >
-                    Demo
-                  </a>
+              <div class="container">
+                <div class="content content--other">
+                  <p class="tab__description tab__description--other tab__description--small">
+                    Simple calculator, but unfortunately not fully functional at the moment
+                  </p>
+                  <div class="repoLinks repoLinks--other">
+                    <a
+                      href="https://github.com/jchojna/calculator"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank" rel="nofollow noreferrer"
+                      aria-label="Calculator app code"
+                    >
+                      Code
+                    </a>
+                    <a
+                      href="https://github.com/jchojna/calculator"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank" rel="nofollow noreferrer"
+                      aria-label="Calculator app demo"
+                    >
+                      Demo
+                    </a>
+                  </div>
                 </div>
               </div>
             </section>
@@ -2230,27 +2574,29 @@
                   <span>Portfolio</span>
                 </button>
               </h3>
-              <div class="content content--other">
-                <p class="tab__description tab__description--other tab__description--small">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-                </p>
-                <div class="repoLinks repoLinks--other">
-                  <a
-                    href="https://github.com/jchojna/jchojna.github.io"
-                    class="repoLinks__link repoLinks__link--other"
-                    target="_blank" rel="nofollow noreferrer"
-                    aria-label="Portfolio Sketch code"
-                  >
-                    Code
-                  </a>
-                  <a
-                    href="https://jchojna.github.io/"
-                    class="repoLinks__link repoLinks__link--other"
-                    target="_blank" rel="nofollow noreferrer"
-                    aria-label="Portfolio Sketch demo"
-                  >
-                    Demo
-                  </a>
+              <div class="container">
+                <div class="content content--other">
+                  <p class="tab__description tab__description--other tab__description--small">
+                    My previous temporary portfolio webpage developed according to some finished project in Figma
+                  </p>
+                  <div class="repoLinks repoLinks--other">
+                    <a
+                      href="https://github.com/jchojna/jchojna.github.io"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank" rel="nofollow noreferrer"
+                      aria-label="Portfolio Sketch code"
+                    >
+                      Code
+                    </a>
+                    <a
+                      href="https://jchojna.github.io/"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank" rel="nofollow noreferrer"
+                      aria-label="Portfolio Sketch demo"
+                    >
+                      Demo
+                    </a>
+                  </div>
                 </div>
               </div>
             </section>
@@ -2262,7 +2608,7 @@
       <!--| END OF OTHER                                                   |-->
       <!--| CONTACT                                                        |-->
       <article id="contact" class="section section--contact section--js">
-        <div class="section__container section__container--contact">
+        <div class="section__container section__container--contact section__container--js">
           <h2 class="section__heading section__heading--contact">
             “Feel free to contact me! I’m open for new
             <span class="breakable">opportunities</span>
@@ -2516,14 +2862,13 @@
       <!--| END OF CONTACT                                                 |-->
     </main>
     <!--| end of MAIN CONTENT                                              |-->
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];
       e.src='https://www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
+      ga('create','UA-74247371-2');ga('send','pageview');
     </script>
     <!-- build:js scripts/vendor.js -->
     <!-- endbuild -->

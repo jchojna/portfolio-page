@@ -1,3 +1,14 @@
+//| HANDLE VARIOUS FUNCTIONS ON WINDOW RESIZE                               |//
+const handleWindowResize = () => {
+  [...sectionContainers].forEach(container => {
+    handleTopMargins(container, minTopMargin);
+  });
+}
+//| ON USER'S ACTIVITY                                                      |//
+const handleUserActivity = () => {
+  if (shouldSectionsBeUpdated) updateSectionsOffsets();
+  isScrollEnabled = true;
+}
 //| UPDATE MENU ITEMS OFFSETS                                               |//
 const updateMenuItemsOffsets = () => {
   [...items].forEach(item => {
@@ -9,6 +20,7 @@ const updateSectionsOffsets = () => {
   [...sections].forEach((section, index) => {
     section.offset = pageSections[index].offsetTop;
   });
+  shouldSectionsBeUpdated = false;
 }
 //| GET CURRENT ITEM INDEX                                                  |//
 const getCurrentItemIndex = (cursorYPosition) => {
@@ -32,6 +44,16 @@ const getCurrentSectionIndex = (scrollOffset) => {
 const getCurrentNavigationIndex = () => {
   const navigationOffset = navigation.offsetTop + navigation.clientHeight / 2;
   return getCurrentSectionIndex(navigationOffset);
+}
+//| HANDLE ELEMENTS'S TOP MARGINS TO CENTER IT VERTICALLY                   |//
+//: this functionality I found more reasonable to be handled in JS,         ://
+//: because of expandable content inside section containers                 ://
+//: distorting and complicating content layout                              ://
+const handleTopMargins = (element, distance) => {
+  if (window.innerWidth >= mediaDesktop) {
+    const margin = (window.innerHeight - element.clientHeight) / 2;
+    element.style.marginTop = `${margin > distance ? margin : distance}px`;
+  }
 }
 //| CHANGE ACTIVE LINK ON HOVER                                             |//
 const handleColorChange = (index, action) => {
@@ -62,7 +84,6 @@ const handleIntroBox = (e) => {
   //: assign size and position                                         ://
   introBox.style.top = `${currentYOffset - viewOffset}px`;
 }
-//| end of HANDLE INTROBOX                                                  |//
 //| HANDLE MENU IN INTRO MODE                                               |//
 const handleIntroMenu = (e) => {
   //: handle intro menu on mouse event                                      ://
@@ -83,7 +104,6 @@ const handleIntroMenu = (e) => {
     handleColorChange(lastMenuItemIndex, 'activate');
   }
 }
-//| end of HANDLE MENU IN INTRO MODE                                        |//
 //| HANDLE MENU ITEMS SINGLE CHANGE                                         |//
 const handleMenuItemChange = (index) => {
   handleColorChange(lastMenuItemIndex, 'deactivate');
@@ -93,7 +113,6 @@ const handleMenuItemChange = (index) => {
   handleMenuOnClick(lastMenuItemIndex, 'activate');
   handleMenuIndicator(lastMenuItemIndex);
 }
-//| end of HANDLE MENU ITEMS SINGLE CHANGE                                  |//
 //| HANDLE MENU ITEMS                                                       |//
 const handleMenuItemClick = (e) => {
   const activeIndex = e.target.index;
@@ -191,9 +210,9 @@ const handleMenuItemClick = (e) => {
       }, menuSmSecondTimeoutInterval);
     }, menuSmFirstTimeoutInterval);
     //: end of timeouts                                                     ://
-  //| end of HANDLE MENU ITEMS ON MOBILE DEVICES                            ///
   //| HANDLE MENU ITEMS ON LARGE SCREEN DEVICES                             |//
   } else if (window.innerWidth >= mediaDesktop && !isBackToIntroMode) {
+    isScrollEnabled = false;
     //. handle introBox                                                     .//
     introBox.style.top = 0;
     introBox.classList.add('visuals__introBox--content');
@@ -205,10 +224,6 @@ const handleMenuItemClick = (e) => {
     //. handle color of menu items and introBox on click                    .//
     handleColorChange(lastMenuItemIndex, 'deactivate');
     handleColorChange(activeIndex, 'activate');
-    //. remove scroll events                                                .//
-    pageContainer.removeEventListener('scroll', handleMenuOnScroll);
-    pageContainer.removeEventListener('scroll', handleNavOnScroll);
-    scrollEventFlag = false;
     //. handle navigation appearance                                        .//
     if (currentNavigationIndex !== null) {
       handleNavOnClick(currentNavigationIndex, 'deactivate');
@@ -251,12 +266,12 @@ const handleMenuItemClick = (e) => {
         //. handle global flags                                             .//
         isIntroMode = false;
         isMenuTransformMode = true;
+        
       }, menuLgSecondTimeoutInterval);
     }, menuLgFirstTimeoutInterval);   
     //: end of timeout                                                      ://
   }
 }
-//| end of HANDLE MENU ITEMS ON MOBILE DEVICES                              |//
 //| BURGER BUTTON HANDLER                                                   |//
 const handleBurgerButton = () => {
   //. variables                                                             .//
@@ -338,7 +353,6 @@ const handleBurgerButton = () => {
   }, menuSmFirstTimeoutInterval);
   //: end of timeout                                                        ://
 }
-//| end of BURGER BUTTON HANDLER                                            |//
 //| HANDLE MOBILE HEADER CHANGE                                             |//
 const handleMobileHeader = () => {
 
@@ -370,36 +384,39 @@ const handleMobileHeader = () => {
     handleHeader(lastMenuItemIndex, 'deactivate');
   } 
 }
-//| end of HANDLE MOBILE HEADER CHANGE                                      |//
 //| HANDLE MENU ITEMS ON SCROLL EVENT                                       |//
 const handleMenuOnScroll = () => {
-  //: handle indicator and active menu item on section change               ://
-  const newMenuItemIndex = getCurrentSectionIndex(0);
-  if (newMenuItemIndex !== lastMenuItemIndex) {
-    menuLinks[lastMenuItemIndex].classList.remove('menu__link--active');
-    introBox.classList.remove(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
-    //. index change                                                        .//
-    lastMenuItemIndex = newMenuItemIndex;
-    menuLinks[lastMenuItemIndex].classList.add('menu__link--active');
-    introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
-    handleMenuIndicator(lastMenuItemIndex);
-  }
-  //: handle all menu items appearance on local id change                   ://
-  [...menuLinks].forEach((link, index) => {
-    const singleItemOffset = items[index].offset;
-    const currentSingleItemIndex = items[index].currentSectionIndex;
-    const newSingleItemIndex = getCurrentSectionIndex(singleItemOffset);
-    
-    if (newSingleItemIndex !== currentSingleItemIndex) {
-      const currentId = sections[currentSingleItemIndex].id;
-      const newId = sections[newSingleItemIndex].id;
-      link.classList.remove(`menu__link--${currentId}`);
-      items[index].currentSectionIndex = newSingleItemIndex;
-      link.classList.add(`menu__link--${newId}`);
+  if (isScrollEnabled) {
+    //: handle indicator and active menu item on section change               ://
+    const newMenuItemIndex = getCurrentSectionIndex(0);
+    if (newMenuItemIndex !== lastMenuItemIndex) {
+      const prevId = sections[lastMenuItemIndex].id;
+      menuLinks[lastMenuItemIndex].classList.remove(`menu__link--intro-${prevId}`);
+      menuLinks[lastMenuItemIndex].classList.remove('menu__link--active');
+      introBox.classList.remove(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
+      //. index change                                                        .//
+      lastMenuItemIndex = newMenuItemIndex;
+      menuLinks[lastMenuItemIndex].classList.add('menu__link--active');
+      introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
+      handleMenuIndicator(lastMenuItemIndex);
+      if (!isFastScroll) isFastScroll = true;
     }
-  });
+    //: handle all menu items appearance on local id change                   ://
+    [...menuLinks].forEach((link, index) => {
+      const singleItemOffset = items[index].offset;
+      const currentSingleItemIndex = items[index].currentSectionIndex;
+      const newSingleItemIndex = getCurrentSectionIndex(singleItemOffset);
+      
+      if (newSingleItemIndex !== currentSingleItemIndex) {
+        const currentId = sections[currentSingleItemIndex].id;
+        const newId = sections[newSingleItemIndex].id;
+        link.classList.remove(`menu__link--${currentId}`);
+        items[index].currentSectionIndex = newSingleItemIndex;
+        link.classList.add(`menu__link--${newId}`);
+      }
+    });
+  }
 }
-//| end of HANDLE MENU ITEMS ON SCROLL EVENT                                |//
 //| HANDLE MENU ITEMS ON CLICK EVENT                                        |//
 const handleMenuOnClick = (activeIndex, action) => {
   //: add new appearance                                                    ://
@@ -425,13 +442,11 @@ const handleMenuOnClick = (activeIndex, action) => {
     });
   }
 }
-//| end of HANDLE MENU ITEMS ON CLICK EVENT                                 |//
 //| HANDLE MENU INDICATOR                                                   |//
 const handleMenuIndicator = (index) => {
   const offset = items[index].offset;
   menuIndicator.style.top = `${offset}px`;
 }
-//| end of HANDLE MENU INDICATOR                                            |//
 //| HANDLE BACK TO INTRO BUTTON                                             |//
 const handleBackButton = () => {
   const currentId = sections[lastMenuItemIndex].id;
@@ -488,7 +503,6 @@ const handleBackButton = () => {
   }, menuLgFirstTimeoutInterval);
   //: end of timeout                                                        ://
 }
-//| end of HANDLE BACK TO INTRO BUTTON                                      |//
 //| HANDLE PREVIOUS AND NEXT BUTTON VISIBILITY                              |//
 const handlePrevNextButtonsVisibility = (index, action) => {
   const lastElementIndex = sections.length - 1;
@@ -504,7 +518,6 @@ const handlePrevNextButtonsVisibility = (index, action) => {
     }
   }
 }
-//| end of HANDLE PREVIOUS AND NEXT BUTTON VISIBILITY                       |//
 //| HANDLE NAVIGATION ON SCROLL EVENT                                       |//
 const handleNavOnScroll = () => {
   const updatedNavigationIndex = getCurrentNavigationIndex();
@@ -526,7 +539,6 @@ const handleNavOnScroll = () => {
     }
   }
 }
-//| end of HANDLE NAVIGATION ON SCROLL EVENT                                |//
 //| HANDLE NAVIGATION ON CLICK EVENT                                        |//
 const handleNavOnClick = (index, action) => {
   const currentId = sections[index].id;
@@ -544,13 +556,9 @@ const handleNavOnClick = (index, action) => {
     }
   }
 }
-//| end of HANDLE NAVIGATION ON CLICK EVENT                                 |//
 //| HANDLE JUMPING TO ANOTHER SECTION USING NAVIGATION                      |//
 const navigateToSection = (e) => {
-  //: activate scroll events                                                |//
-  pageContainer.addEventListener('scroll', handleMenuOnScroll);
-  pageContainer.addEventListener('scroll', handleNavOnScroll);
-  scrollEventFlag = true;
+  handleUserActivity();
   //: get target index                                                      |//
   const targetIndex = e.target === navigationPrevButton
     //. previous button clicked                                             .//
@@ -563,46 +571,85 @@ const navigateToSection = (e) => {
   const sectionOffset = sections[targetIndex].offset;
   pageContainer.scrollTo(0, sectionOffset);
 }
-//| end of HANDLE JUMPING TO ANOTHER SECTION USING NAVIGATION               |//
+//| RETURN FIRST PARENT OR PASSED ELEMENT WITH GIVEN CLASS                  |//
+const findFirstParentWithClass = (element, className) => {
+  while (element.tagName !== 'HTML' && !element.classList.contains(className)) {
+    element = element.parentNode;
+  }
+  return element;
+}
 //| RESUME'S ACCORDION HANDLER                                              |//
-const handleAccordion = (tabs, clickedIndex) => {
+const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
   tabs.forEach((tab, index) => {
-    const content = tab.querySelector('[class*=content]');
+    const container = tab.querySelector('[class*=container]');
+    const content = container.firstElementChild;
     const button = tab.querySelector('[class*="button"]');
     const mark = tab.querySelector('[class*="mark"]');
 
-    //: when specific tab is being clicked                             ://
+    //: when specific tab is being clicked                                  ://
     if (clickedIndex !== undefined) {
       const subtab = /subtab/.test(button.className);
-      //. handle clicked tab                                      .//
+      //. handle clicked tab                                                .//
       if (clickedIndex === index) {
-        const translation = content.style.marginTop;
-        //. apply transition effect                               .//
-        if (!content.classList.contains('rollable')) content.classList.add('rollable');
-        //. apply transformations                                 .//
-        if (translation === 0 || translation === '' || translation === '0px') {
-          content.style.marginTop = `${-1 * content.clientHeight - 2}px`;
-          button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
-          mark.classList.remove('mark--unrolled');
-        } else {
-          content.style.marginTop = 0;
+        const height = container.style.height;
+        //. apply transition effect                                         .//
+        if (!container.classList.contains('rollable')) container.classList.add('rollable');
+        //. apply transformations                                           .//
+        if (height === 0 || height === '0px') {
+          container.style.height = `${content.clientHeight}px`;
           button.classList.add(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.add('mark--unrolled');
+          isFastScroll = false;
+        } else {
+          container.style.height = 0;
+          button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
+          mark.classList.remove('mark--unrolled');
+          isFastScroll = true;
         }
-      //. handle not clicked elements                             .//
+        //. when subtab clicked                                             .//
+        if (subtab) {
+          const parentContainer = findFirstParentWithClass(container.parentNode, 'container');
+          const subtabs = parentContainer.querySelectorAll('.subtab__header');
+          const clickedSubtabsContainerHeight = container.firstElementChild.clientHeight;
+          const isUnrolled = mark.classList.contains('mark--unrolled');
+          let height = isUnrolled ? clickedSubtabsContainerHeight : 0;
+          [...subtabs].forEach(subtab => height += subtab.clientHeight);
+          parentContainer.style.height = `${height}px`;
+        }
+        shouldSectionsBeUpdated = true;
+      //. handle not clicked elements                                       .//
       } else {
-        content.style.marginTop = `${-1 * content.clientHeight - 2}px`;
+        container.style.height = 0;
         button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
         mark.classList.remove('mark--unrolled');
+
+        //: update scroll position                                          ://
+        if (index === (clickedIndex - 1)) {
+          const { top } = button.getBoundingClientRect();
+          const scrollOffset = window.pageYOffset + top - 100;
+          const timeoutId = setTimeout(() => {
+            window.scrollTo({
+              top: scrollOffset,
+              behavior: 'smooth'
+            });
+            clearTimeout(timeoutId);
+          }, 500);
+        }
       }
-    //: handle elements on page load                                   ://
+    //: handle elements on page load                                        ://
     } else {
-      content.style.marginTop = `${-1 * content.clientHeight - 2}px`;
-      mark.classList.remove('mark--unrolled');
+      if (index !== excludeIndex) {
+        container.style.height = 0;
+        mark.classList.remove('mark--unrolled');
+      } else {
+        container.style.height = `${content.clientHeight}px`;
+        mark.classList.add('mark--unrolled');
+        button.classList.add('tab__button--unrolled');
+        container.classList.add('rollable');
+      }
     }
   });
 }
-//| end of RESUME'S ACCORDION HANDLER                                       |//
 //| FETCH GITHUB API                                                        |//
 const handleRepo = (repos) => {
   const statsCreated = document.querySelectorAll('.stats__value--js-created');
@@ -632,7 +679,6 @@ const handleRepo = (repos) => {
     .then(resp => statsCommits[i].innerHTML = resp[0].contributions);
   }    
 }
-//| end of FETCH GITHUB API                                                 |//
 //| REDUCE CONTENT - RECURSIVE FUNCTION                                     |//
   //: recursive function handling reduced content creation                  ://
   //: it can handle both plain text and nested elements like lists          ://
@@ -677,8 +723,7 @@ const handleRepo = (repos) => {
       }
     }
   }
-//| end of REDUCE CONTENT - RECURSIVE FUNCTION                              |//
-//| HANDLE EXPANDABLE CONTENT                                               |//
+//| HANDLE EXPANDABLE CONTENT WITH READ MORE BUTTON                         |//
 const handleExpandableContent = (contents) => {
   //: aquire html and children of every children node and its own children  ://
   const getChildren = (content) => {
@@ -699,11 +744,6 @@ const handleExpandableContent = (contents) => {
   }
   //: clone content data to an array of objects and empty node              ://
   [...contents].forEach(content => {
-    contentData = [...contentData, {
-      fullHeight: content.clientHeight,
-      html: content.innerHTML,
-      children: getChildren(content)
-    }];
     //. copy original content node and hide it                              .//
     const wrapper = document.createElement('div');
     wrapper.className = 'wrapper';
@@ -715,15 +755,23 @@ const handleExpandableContent = (contents) => {
     //. wrap content and content copy inside a wrapper                      .//
     content.parentNode.insertBefore(wrapper, content);
     wrapper.append(content, contentCopy);
+    contentData = [...contentData, {
+      fullHeight: content.clientHeight,
+      html: content.innerHTML,
+      children: getChildren(content)
+    }];
     //. empty content of original content node                              .//
     emptyContent(content);
   });
   //: add data from content database to empty content                       ://
   [...contents].forEach((content, index) => {
     const currentContentData = contentData[index];
+    const minMobileHeight = 300;
     //. get available space for reduced content                             .//
     content.style.height = '100%';
-    contentData[index].availableHeight = content.clientHeight;
+    contentData[index].availableHeight = window.innerWidth >= mediaDesktop
+    ? content.clientHeight
+    : minMobileHeight;
     const { availableHeight, fullHeight, html } = currentContentData;
     //. check if content fits available space                               .//
     if (availableHeight >= fullHeight) {
@@ -732,7 +780,9 @@ const handleExpandableContent = (contents) => {
       content.parentNode.classList.add('collapsed');
       //. show read more button and update available space                  .//
       readMoreButtons[index].classList.add('tab__readMore--visible');
-      contentData[index].availableHeight = content.clientHeight;
+      contentData[index].availableHeight = window.innerWidth >= mediaDesktop
+      ? content.clientHeight
+      : minMobileHeight;
       const { availableHeight } = currentContentData;
       //. reduce content using recursive function                           .//
       reduceContent(currentContentData, content, availableHeight, content);
@@ -740,7 +790,6 @@ const handleExpandableContent = (contents) => {
     }
   });
 }
-//| end of HANDLE EXPANDABLE CONTENT                                        |//
 //| HANDLE 'READ MORE' BUTTONS                                              |//
 const handleReadMore = (e) => {
   const { index, parentNode } = e.target;
@@ -749,7 +798,6 @@ const handleReadMore = (e) => {
   const expandedNode = document.querySelectorAll('.js-expanded')[index];
   const currentContentData = contentData[index];
   const { availableHeight } = currentContentData;
-
   //: expand tab                                                            ://
   if (wrapper.classList.contains('collapsed')) {
     //: reduce content using recursive function                             ://
@@ -762,6 +810,8 @@ const handleReadMore = (e) => {
     e.target.innerHTML = 'Show Less';
     //: remove 'collapsed' class flag                                       ://
     wrapper.classList.remove('collapsed');
+    //: stop fast scroll functionality                                      ://
+    isFastScroll = false;
   //: collapse tab                                                          ://
   } else {    
     expandableNode.style.height = '';
@@ -775,30 +825,34 @@ const handleReadMore = (e) => {
     e.target.innerHTML = 'Read More';
     //: remove 'collapsed' class flag                                       ://
     wrapper.classList.add('collapsed');
+    //: enable fast scroll functionality                                    ://
+    isFastScroll = true;
   }
+  shouldSectionsBeUpdated = true;
 }
-//| end of HANDLE 'READ MORE' BUTTONS                                       |//
 //| HANDLE JUMPING TO NEXT SECTION ON SCROLL                                |//
 const handleFastScroll = (e) => {
   //: function resetting timeout and scroll accumulator                     |//
-  const reset = () => {
+  /* const reset = () => {
     clearTimeout(scrollTimeoutId);
     scrollTimeoutId = null;
     scrollTotal = 0;
-  }
+  } */
+  handleUserActivity();
   const goToNextSection = () => {
-    if (lastMenuItemIndex < pageSections.length - 1) {      
-      ++lastMenuItemIndex;
-      const nextsectionOffset = sections[lastMenuItemIndex].offset;
-      pageContainer.scrollTo(0, nextsectionOffset);
+    if (lastMenuItemIndex < pageSections.length - 1) {
+      if (pageContainer.scrollTop >= sections[lastMenuItemIndex].offset) {
+        const nextsectionOffset = sections[++lastMenuItemIndex].offset;
+        pageContainer.scrollTo(0, nextsectionOffset);
+      }
     }
   }
   //: when scrolling down                                                   |//
-  if (e.deltaY > 0) {
+  /* if (e.deltaY > 0) {
     scrollTotal += 1;
     if (scrollTimeoutId === null) {
       scrollTimeoutId = setTimeout(() => {
-        if (scrollTotal >= 3) {
+        if (scrollTotal >= 8) {
           goToNextSection();
           reset();
         } else {
@@ -806,12 +860,15 @@ const handleFastScroll = (e) => {
         }
       }, 100);
     }
-  //: when scrolling up                                                     |//
+    //: when scrolling up                                                     |//
   } else {
     reset();
+  } */
+  if (e.deltaY > 0 && isFastScroll) {
+    e.preventDefault();
+    goToNextSection();
   }
 }
-//| end of HANDLE JUMPING TO NEXT SECTION ON SCROLL                         |//
 //| LOAD INTRO GRID CONTENT                                                 |//
 const loadIntroContent = () => {
   [...introText].forEach(char => {
@@ -833,7 +890,6 @@ const loadIntroContent = () => {
     introGrid.insertAdjacentHTML('beforeend', gridItem);
   });
 }
-//| end of LOAD INTRO GRID CONTENT                                          |//
 //| HANDLE INTRO LOADER                                                     |//
 //: assign size and position of one element to another                      ://
 const setSizeAndPosition = (element, target, size) => {
@@ -853,7 +909,6 @@ const handleIntroLoader = () => {
   introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
   setSizeAndPosition(introLoader, endingBefore, introItemHeight);
 }
-//| end of HANDLE INTRO LOADER                                              |//
 //| HANDLE INTRO ANIMATION                                                  |//
 const handleIntroAnimation = () => {
   //: variables                                                             ://
@@ -861,7 +916,7 @@ const handleIntroAnimation = () => {
   const charTotal = introText.length;
   let maxColNum = charTotal;
   let minColNum = 6;
-  const rowGap = 10;
+  const rowGap = 2;
   let gridTopMargin = null;
   //: intervals                                                             ://
   const loadCharInterval = 30;
@@ -1028,7 +1083,6 @@ const handleIntroAnimation = () => {
     }, introSecondTimeoutInterval);
   }, introFirstTimeoutInterval);
 }
-//| end of HANDLE INTRO ANIMATION                                           |//
 //| VALIDATE CONTACT FORM                                                   |//
 const validateForm = (e) => {
   e.preventDefault();
@@ -1063,11 +1117,8 @@ const validateForm = (e) => {
   });
   xhr.send(data);
 }
-//| end of VALIDATE CONTACT FORM                                            |//
 //| HANDLE ALERTS                                                           |//
-// ! remove event later
-const handleAlerts = (data, isFailed, e) => {
-  e.preventDefault();
+const handleAlerts = (data, isFailed) => {
   const margin = window.innerWidth >= mediaDesktop ? 20 : 5;
   let heightTotal = margin;
   let delay = 0;
@@ -1157,7 +1208,6 @@ const handleAlerts = (data, isFailed, e) => {
     }
   });
 }
-//| end of HANDLE ALERTS                                                    |//
 //| VALIDATE FORM INPUTS                                                    |//
 //: handle input appearance on change                                       ://
 const handleInputStyle = (input, isValid) => {
@@ -1191,7 +1241,6 @@ const validateMessage = (e) => {
   ? handleInputStyle(self, true)
   : handleInputStyle(self, false);
 }
-//| end of VALIDATE FORM INPUTS                                             |//
 
 //|                                                                         |//
 //| GLOBAL VARIABLES                                                        |//
@@ -1199,7 +1248,9 @@ const validateMessage = (e) => {
 let isIntroMode = true;
 let isBackToIntroMode = false;
 let isMenuTransformMode = false;
-let scrollEventFlag = false;
+let isFastScroll = true;
+let isScrollEnabled = true;
+let shouldSectionsBeUpdated = false;
 const mediaTablet = 768;
 const mediaDesktop = 1200;
 let lastMenuItemIndex = 0;
@@ -1243,7 +1294,6 @@ const menu = document.querySelector('.menu--js');
 const menuItems = document.querySelectorAll('.menu__item--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
 const menuLabels = document.querySelectorAll('.label--js');
-//const sectionScrollOffset = 200;
 
 //: NAVIGATION                                                              ://
 const navigation = document.querySelector('.navigation--js');
@@ -1255,10 +1305,21 @@ let currentNavigationIndex = null;
 //: MAIN CONTENT                                                            ://
 const pageContainer = document.querySelector('.pageContainer--js');
 const pageSections = document.querySelectorAll('.section--js');
+const sectionContainers = document.querySelectorAll('.section__container--js');
+const minTopMargin = 30;
 const resumeTabs = document.querySelectorAll('.tab--js-resume');
 const resumeButtons = document.querySelectorAll('.tab__button--js-resume');
 const resumeSubtabs = document.querySelectorAll('.subtab--js-resume');
 const resumeSubButtons = document.querySelectorAll('.subtab__button--js-resume');
+const tasktimerTabs = document.querySelectorAll('.tab--js-tasktimer');
+const tasktimerButtons = document.querySelectorAll('.tab__button--js-tasktimer');
+const portfolioTabs = document.querySelectorAll('.tab--js-portfolio');
+const portfolioButtons = document.querySelectorAll('.tab__button--js-portfolio');
+const hydrappTabs = document.querySelectorAll('.tab--js-hydrapp');
+const hydrappButtons = document.querySelectorAll('.tab__button--js-hydrapp');
+const quotesTabs = document.querySelectorAll('.tab--js-quotes');
+const quotesButtons = document.querySelectorAll('.tab__button--js-quotes');
+
 const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
 const otherProjectsButtons = document.querySelectorAll('.tab__button--js-other');
 const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
@@ -1292,57 +1353,64 @@ const expandableContent = document.querySelectorAll('.js-expandable');
 
 //| FUNCTION CALLS ON PAGE LOAD                                             |//
 
-// ! temporary page load
-intro.classList.add('intro--hidden');
+// page load with no animation intro
+/* intro.classList.add('intro--hidden');
 [...menuItems].forEach(item => item.classList.add('menu__item--active'));
 visuals.classList.add('visuals--visible');
-pageHeader.classList.add('pageHeader--visible');
-// ! temporary page load
+pageHeader.classList.add('pageHeader--visible'); */
+// page load with no animation intro
 
-//setIntroLoaderPosition();
-//loadIntroContent();
+setIntroLoaderPosition();
+loadIntroContent();
 handleIntroMenu();
 //: handle page's accordions                                                ://
 handleAccordion([...resumeSubtabs]);
-handleAccordion([...resumeTabs]);
+handleAccordion([...resumeTabs], undefined, 0);
+handleAccordion([...tasktimerTabs]);
+handleAccordion([...portfolioTabs]);
+handleAccordion([...hydrappTabs]);
+handleAccordion([...quotesTabs]);
 if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
 //: collapse expandable content on page load                                ://
 window.onload = () => {
+  handleIntroAnimation();
+  handleIntroLoader();
   handleExpandableContent(expandableContent);
-  //handleIntroAnimation();
-  //handleIntroLoader();
+  //: set each section's container top margin                               ://
+  [...sectionContainers].forEach(container => {
+    handleTopMargins(container, minTopMargin);
+  });
 };
 
 //: fetch github api                                                        ://
-/* fetch('https://api.github.com/users/jchojna/repos')
+fetch('https://api.github.com/users/jchojna/repos')
   .then(resp => resp.json())
-  .then(resp => handleRepo(resp)); */
+  .then(resp => handleRepo(resp));
 // ! project id must fit repo id
 
+
+//|                                                                         |//
 //| EVENT LISTENERS                                                         |//
 //: MENU AND NAVIGATION                                                     ://
 window.addEventListener('resize', updateSectionsOffsets);
 window.addEventListener('resize', updateMenuItemsOffsets);
 pageHeader.addEventListener('resize', handleIntroBox);
 pageHeader.addEventListener('scroll', handleIntroBox);
+//: MAIN CONTENT                                                            ://
+pageContainer.addEventListener('mousedown', handleUserActivity);
+pageContainer.addEventListener('touchstart', handleUserActivity);
+pageContainer.addEventListener('scroll', handleMenuOnScroll);
+pageContainer.addEventListener('scroll', handleNavOnScroll);
+pageContainer.addEventListener('wheel', handleFastScroll);
 
-pageContainer.addEventListener('wheel', () => {
-  if (!scrollEventFlag) {
-    pageContainer.addEventListener('scroll', handleMenuOnScroll);
-    pageContainer.addEventListener('scroll', handleNavOnScroll);
-    scrollEventFlag = true;
-  }
-});
 [...menuLinks].forEach((link, index) => {
   link.index = index;
   link.addEventListener('click', handleMenuItemClick);
   link.addEventListener('mousemove', handleIntroMenu);
 });
 burgerButton.addEventListener('click', handleBurgerButton);
-//: SECTIONS                                                                ://
-pageContainer.addEventListener('wheel', handleFastScroll);
 //: RESUME                                                                  ://
 [...resumeButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
@@ -1351,6 +1419,23 @@ pageContainer.addEventListener('wheel', handleFastScroll);
 [...resumeSubButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...resumeSubtabs], index));
+});
+//: PROJECT SECTIONS                                                        ://
+[...tasktimerButtons].forEach((button, index) => {
+  button.addEventListener('click', () =>
+  handleAccordion([...tasktimerTabs], index));
+});
+[...portfolioButtons].forEach((button, index) => {
+  button.addEventListener('click', () =>
+  handleAccordion([...portfolioTabs], index));
+});
+[...hydrappButtons].forEach((button, index) => {
+  button.addEventListener('click', () =>
+  handleAccordion([...hydrappTabs], index));
+});
+[...quotesButtons].forEach((button, index) => {
+  button.addEventListener('click', () =>
+  handleAccordion([...quotesTabs], index));
 });
 //: OTHER PROJECTS                                                          ://
 if (window.innerWidth < mediaDesktop) {
@@ -1370,17 +1455,9 @@ if (window.innerWidth < mediaDesktop) {
   input.value = localStorage.getItem(input.id) ? localStorage.getItem(input.id) : '';
 });
 //: VALIDATE CONTACT FORM                                                   ://
-//formSubmitButton.addEventListener('click', validateForm);
-formSubmitButton.addEventListener('click', (e) => handleAlerts({
-  'emptyEmailError': true,
-  'invalidEmailError': true,
-  'messageError': true,
-  'phoneError': false,
-  'failure': true,
-  'success': true
-}, false, event));
-
+formSubmitButton.addEventListener('click', validateForm);
 //: VALIDATE FORM INPUTS                                                    ://
 userEmail.addEventListener('keyup', validateEmail);
 userPhone.addEventListener('keyup', validatePhone);
 userMessage.addEventListener('keyup', validateMessage);
+window.addEventListener('resize', handleWindowResize);

@@ -30,10 +30,10 @@ $navigation-time-rotate: 0.2s;
 $offset-left-sm: 50px;
 $offset-right-sm: 10px;
 $offset-alert: 5px;
-$offset-top-bottom-lg: 100px;
 
 $container-size: 800px;
 $menu-width: 450px;
+$mobile-menu-offset-top: 100px;
 
 $tabHeader-size-sm: 30px;
 $tabHeader-size-lg: 40px;
@@ -41,7 +41,12 @@ $tabHeading-size-sm: 30px;
 $tabHeading-size-lg: 25px;
 $otherHeading-size-sm: 30px;
 $otherHeading-size-lg: 30px;
+$features-category-size-sm: 25px;
+$features-category-size-lg: 20px;
+
 $tabGap: 20px;
+$gridGap: 20px;
+$rowGap: 30px;
 
 $separator-width-thick: 10px;
 $separator-width-thin: 5px;
@@ -49,6 +54,7 @@ $separator-width-thin: 5px;
 //| TIME                                                                    |//
 $tabHeader-time: 0.2s;
 $expandable-time: 0.5s;
+$accordion-time: 0.5s;
 
 //| ABOUT                                                                   |//
 $color-about-white: #BBD3E0;
@@ -69,7 +75,6 @@ $color-resume-shadow: rgb(66, 31, 40);
 $color-resume-diff: #244E60;
 $color-resume-diff-dark: rgb(26, 63, 78);
 //: TIME                                                                    ://
-$time-resume: 0.5s;
 
 //| TASKTIMER                                                               |//
 $color-tasktimer-white: #C5D8D9;

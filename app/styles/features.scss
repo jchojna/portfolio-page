@@ -3,12 +3,14 @@
 
 //| PROJECT'S FEATURES                                                      |//
 .features {
-  list-style-type: none;
-  margin: 0 $offset-right-sm 0 $offset-left-sm;
-  padding-left: 0.8em;
   font-family: 'Antonio Regular';
   font-size: 18px;
   line-height: 1.4;
+  list-style-type: none;
+  margin: 0;
+  margin-left: $features-category-size-sm;
+  padding: 0;
+  padding-top: 20px;
 
   &--tasktimer { color: $color-tasktimer-white; }  
   &--portfolio { color: $color-portfolio-white; }
@@ -24,14 +26,15 @@
   
   &__item {
     position: relative;
+    padding-bottom: 0.4em;
 
     &::before {
       content: "";
       position: absolute;
-      top: 0.3em;
-      left: -1.6em;
-      width: 0.8em;
-      height: 0.8em;
+      top: 0;
+      left: $features-category-size-sm * -1;
+      width: $separator-width-thick;
+      height: $features-category-size-sm;
     }
     
     &--tasktimer::before {
@@ -55,7 +58,18 @@
 
     & {
       margin: 0;
-      padding-left: 1.6em;
+
+      &--description {
+        margin-left: $features-category-size-sm;
+      }
+    }
+
+    &__item {
+      margin-left: $features-category-size-sm;
+
+      &--description {
+        margin: 0;
+      }
     }
   }
 }
