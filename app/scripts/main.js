@@ -86,7 +86,6 @@ const handleIntroBox = (e) => {
   //: assign size and position                                         ://
   introBox.style.top = `${currentYOffset - viewOffset}px`;
 }
-//| end of HANDLE INTROBOX                                                  |//
 //| HANDLE MENU IN INTRO MODE                                               |//
 const handleIntroMenu = (e) => {
   //: handle intro menu on mouse event                                      ://
@@ -107,7 +106,6 @@ const handleIntroMenu = (e) => {
     handleColorChange(lastMenuItemIndex, 'activate');
   }
 }
-//| end of HANDLE MENU IN INTRO MODE                                        |//
 //| HANDLE MENU ITEMS SINGLE CHANGE                                         |//
 const handleMenuItemChange = (index) => {
   handleColorChange(lastMenuItemIndex, 'deactivate');
@@ -117,7 +115,6 @@ const handleMenuItemChange = (index) => {
   handleMenuOnClick(lastMenuItemIndex, 'activate');
   handleMenuIndicator(lastMenuItemIndex);
 }
-//| end of HANDLE MENU ITEMS SINGLE CHANGE                                  |//
 //| HANDLE MENU ITEMS                                                       |//
 const handleMenuItemClick = (e) => {
   const activeIndex = e.target.index;
@@ -215,7 +212,6 @@ const handleMenuItemClick = (e) => {
       }, menuSmSecondTimeoutInterval);
     }, menuSmFirstTimeoutInterval);
     //: end of timeouts                                                     ://
-  //| end of HANDLE MENU ITEMS ON MOBILE DEVICES                            ///
   //| HANDLE MENU ITEMS ON LARGE SCREEN DEVICES                             |//
   } else if (window.innerWidth >= mediaDesktop && !isBackToIntroMode) {
     isScrollEnabled = false;
@@ -278,7 +274,6 @@ const handleMenuItemClick = (e) => {
     //: end of timeout                                                      ://
   }
 }
-//| end of HANDLE MENU ITEMS ON MOBILE DEVICES                              |//
 //| BURGER BUTTON HANDLER                                                   |//
 const handleBurgerButton = () => {
   //. variables                                                             .//
@@ -360,7 +355,6 @@ const handleBurgerButton = () => {
   }, menuSmFirstTimeoutInterval);
   //: end of timeout                                                        ://
 }
-//| end of BURGER BUTTON HANDLER                                            |//
 //| HANDLE MOBILE HEADER CHANGE                                             |//
 const handleMobileHeader = () => {
 
@@ -392,7 +386,6 @@ const handleMobileHeader = () => {
     handleHeader(lastMenuItemIndex, 'deactivate');
   } 
 }
-//| end of HANDLE MOBILE HEADER CHANGE                                      |//
 //| HANDLE MENU ITEMS ON SCROLL EVENT                                       |//
 const handleMenuOnScroll = (e) => {
   if (isScrollEnabled) {
@@ -424,7 +417,6 @@ const handleMenuOnScroll = (e) => {
     });
   }
 }
-//| end of HANDLE MENU ITEMS ON SCROLL EVENT                                |//
 //| HANDLE MENU ITEMS ON CLICK EVENT                                        |//
 const handleMenuOnClick = (activeIndex, action) => {
   //: add new appearance                                                    ://
@@ -450,13 +442,11 @@ const handleMenuOnClick = (activeIndex, action) => {
     });
   }
 }
-//| end of HANDLE MENU ITEMS ON CLICK EVENT                                 |//
 //| HANDLE MENU INDICATOR                                                   |//
 const handleMenuIndicator = (index) => {
   const offset = items[index].offset;
   menuIndicator.style.top = `${offset}px`;
 }
-//| end of HANDLE MENU INDICATOR                                            |//
 //| HANDLE BACK TO INTRO BUTTON                                             |//
 const handleBackButton = () => {
   const currentId = sections[lastMenuItemIndex].id;
@@ -513,7 +503,6 @@ const handleBackButton = () => {
   }, menuLgFirstTimeoutInterval);
   //: end of timeout                                                        ://
 }
-//| end of HANDLE BACK TO INTRO BUTTON                                      |//
 //| HANDLE PREVIOUS AND NEXT BUTTON VISIBILITY                              |//
 const handlePrevNextButtonsVisibility = (index, action) => {
   const lastElementIndex = sections.length - 1;
@@ -529,7 +518,6 @@ const handlePrevNextButtonsVisibility = (index, action) => {
     }
   }
 }
-//| end of HANDLE PREVIOUS AND NEXT BUTTON VISIBILITY                       |//
 //| HANDLE NAVIGATION ON SCROLL EVENT                                       |//
 const handleNavOnScroll = () => {
   const updatedNavigationIndex = getCurrentNavigationIndex();
@@ -551,7 +539,6 @@ const handleNavOnScroll = () => {
     }
   }
 }
-//| end of HANDLE NAVIGATION ON SCROLL EVENT                                |//
 //| HANDLE NAVIGATION ON CLICK EVENT                                        |//
 const handleNavOnClick = (index, action) => {
   const currentId = sections[index].id;
@@ -569,7 +556,6 @@ const handleNavOnClick = (index, action) => {
     }
   }
 }
-//| end of HANDLE NAVIGATION ON CLICK EVENT                                 |//
 //| HANDLE JUMPING TO ANOTHER SECTION USING NAVIGATION                      |//
 const navigateToSection = (e) => {
   isScrollEnabled = true;
@@ -585,7 +571,13 @@ const navigateToSection = (e) => {
   const sectionOffset = sections[targetIndex].offset;
   pageContainer.scrollTo(0, sectionOffset);
 }
-//| end of HANDLE JUMPING TO ANOTHER SECTION USING NAVIGATION               |//
+//| RETURN FIRST PARENT OR PASSED ELEMENT WITH GIVEN CLASS                  |//
+const findFirstParentWithClass = (element, className) => {
+  while (element.tagName !== 'HTML' && !element.classList.contains(className)) {
+    element = element.parentNode;
+  }
+  return element;
+}
 //| RESUME'S ACCORDION HANDLER                                              |//
 const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
   tabs.forEach((tab, index) => {
@@ -613,6 +605,14 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
           button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.remove('mark--unrolled');
           isFastScroll = true;
+        }
+        if (subtab) {
+          const parentContainer = findFirstParentWithClass(container.parentNode, 'container');
+          const subtabs = parentContainer.querySelectorAll('.subtab__header');
+          const clickedSubtabsContainerHeight = container.firstElementChild.clientHeight;
+          let height = clickedSubtabsContainerHeight;
+          [...subtabs].forEach(subtab => height += subtab.clientHeight);
+          parentContainer.style.height = `${height}px`;
         }
         shouldSectionsBeUpdated = true;
       //. handle not clicked elements                                       .//
@@ -648,7 +648,6 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
     }
   });
 }
-//| end of RESUME'S ACCORDION HANDLER                                       |//
 //| FETCH GITHUB API                                                        |//
 const handleRepo = (repos) => {
   const statsCreated = document.querySelectorAll('.stats__value--js-created');
@@ -678,7 +677,6 @@ const handleRepo = (repos) => {
     .then(resp => statsCommits[i].innerHTML = resp[0].contributions);
   }    
 }
-//| end of FETCH GITHUB API                                                 |//
 //| REDUCE CONTENT - RECURSIVE FUNCTION                                     |//
   //: recursive function handling reduced content creation                  ://
   //: it can handle both plain text and nested elements like lists          ://
@@ -723,7 +721,6 @@ const handleRepo = (repos) => {
       }
     }
   }
-//| end of REDUCE CONTENT - RECURSIVE FUNCTION                              |//
 //| HANDLE EXPANDABLE CONTENT WITH READ MORE BUTTON                         |//
 const handleExpandableContent = (contents) => {
   //: aquire html and children of every children node and its own children  ://
@@ -791,7 +788,6 @@ const handleExpandableContent = (contents) => {
     }
   });
 }
-//|                                                                         |//
 //| HANDLE 'READ MORE' BUTTONS                                              |//
 const handleReadMore = (e) => {
   const { index, parentNode } = e.target;
@@ -832,7 +828,6 @@ const handleReadMore = (e) => {
   }
   shouldSectionsBeUpdated = true;
 }
-//| end of HANDLE 'READ MORE' BUTTONS                                       |//
 //| HANDLE JUMPING TO NEXT SECTION ON SCROLL                                |//
 const handleFastScroll = (e) => {
   //: function resetting timeout and scroll accumulator                     |//
@@ -872,7 +867,6 @@ const handleFastScroll = (e) => {
     goToNextSection();
   }
 }
-//| end of HANDLE JUMPING TO NEXT SECTION ON SCROLL                         |//
 //| LOAD INTRO GRID CONTENT                                                 |//
 const loadIntroContent = () => {
   [...introText].forEach(char => {
@@ -894,7 +888,6 @@ const loadIntroContent = () => {
     introGrid.insertAdjacentHTML('beforeend', gridItem);
   });
 }
-//| end of LOAD INTRO GRID CONTENT                                          |//
 //| HANDLE INTRO LOADER                                                     |//
 //: assign size and position of one element to another                      ://
 const setSizeAndPosition = (element, target, size) => {
@@ -914,7 +907,6 @@ const handleIntroLoader = () => {
   introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
   setSizeAndPosition(introLoader, endingBefore, introItemHeight);
 }
-//| end of HANDLE INTRO LOADER                                              |//
 //| HANDLE INTRO ANIMATION                                                  |//
 const handleIntroAnimation = () => {
   //: variables                                                             ://
@@ -1089,7 +1081,6 @@ const handleIntroAnimation = () => {
     }, introSecondTimeoutInterval);
   }, introFirstTimeoutInterval);
 }
-//| end of HANDLE INTRO ANIMATION                                           |//
 //| VALIDATE CONTACT FORM                                                   |//
 const validateForm = (e) => {
   e.preventDefault();
@@ -1124,7 +1115,6 @@ const validateForm = (e) => {
   });
   xhr.send(data);
 }
-//| end of VALIDATE CONTACT FORM                                            |//
 // ! remove event later
 //| HANDLE ALERTS                                                           |//
 const handleAlerts = (data, isFailed, e) => {
@@ -1218,7 +1208,6 @@ const handleAlerts = (data, isFailed, e) => {
     }
   });
 }
-//| end of HANDLE ALERTS                                                    |//
 //| VALIDATE FORM INPUTS                                                    |//
 //: handle input appearance on change                                       ://
 const handleInputStyle = (input, isValid) => {
@@ -1252,7 +1241,6 @@ const validateMessage = (e) => {
   ? handleInputStyle(self, true)
   : handleInputStyle(self, false);
 }
-//| end of VALIDATE FORM INPUTS                                             |//
 
 //|                                                                         |//
 //| GLOBAL VARIABLES                                                        |//
