@@ -1,17 +1,16 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
-//| TAB AND SUBTABS                                                         |//
 .tab,
 .subtab {
   position: relative;
   //margin-top: 20px;
-  //: ABOUT                                                            ://
+  
   &--profiles { grid-area: profiles; }
   &--working { grid-area: working; }
   &--knowing { grid-area: knowing; }
   &--learning { grid-area: learning; }
-  //: RESUME                                                           ://
+  
   &--resume {
     color: $color-resume-diff;
   }
@@ -30,7 +29,7 @@
   &--languages {
     grid-area: languages;
   }
-  //: PROJECT                                                          ://
+  
   &--description,
   &--features {
     display: flex;
@@ -55,7 +54,7 @@
     overflow: initial;
     text-transform: lowercase;
   }
-  //: RESUME                                                           ://
+  
   &--other {
     color: $color-other-diff;
   }

@@ -1,6 +1,6 @@
 @import 'variables.scss';
 @import 'mixins.scss';
-//| VISUAL ELEMENTS                                                         |//
+
 .visuals {
   height: 100%;
   left: 0;
@@ -22,7 +22,7 @@
       z-index: -1;
     }
   }
-  //| PAGE BACKGROUND                                                       |//
+  
   &__background {
     background-color: $intro-background-color;
     height: 100%;
@@ -60,7 +60,7 @@
     &--other     { background-color: $color-other-diff; }
     &--contact   { background-color: $color-contact-diff; }
   }
-  //| PAGE INTROBOX                                                         |//
+  
   &__introBox {
     height: $menu-item-height;
     left: 0;
