@@ -1509,10 +1509,12 @@ const expandableContent = document.querySelectorAll('.js-expandable');
 //#region [ Horizon ] FUNCTION CALLS
 
 // page load with no animation intro
-/* intro.classList.add('intro--hidden');
+
+intro.classList.add('intro--hidden');
 [...menuItems].forEach(item => item.classList.add('menu__item--active'));
 visuals.classList.add('visuals--visible');
-pageHeader.classList.add('pageHeader--visible'); */
+pageHeader.classList.add('pageHeader--visible');
+
 // page load with no animation intro
 
 setIntroLoaderPosition();
