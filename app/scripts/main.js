@@ -1,35 +1,43 @@
-//| HANDLE VARIOUS FUNCTIONS ON WINDOW RESIZE                               |//
+//#region [ Horizon ] HELPER FUNCTIONS
+
+const findFirstParentWithClass = (element, className) => {
+  while (element.tagName !== 'HTML' && !element.classList.contains(className)) {
+    element = element.parentNode;
+  }
+  return element;
+}
+
 const handleWindowResize = () => {
   [...sectionContainers].forEach(container => {
     handleTopMargins(container, minTopMargin);
   });
 }
-//| ON USER'S ACTIVITY                                                      |//
+
 const handleUserActivity = () => {
   if (shouldSectionsBeUpdated) updateSectionsOffsets();
   isScrollEnabled = true;
 }
-//| UPDATE MENU ITEMS OFFSETS                                               |//
+
 const updateMenuItemsOffsets = () => {
   [...items].forEach(item => {
     item.offset = item.node.offsetTop + menu.offsetTop;
   });
 }
-//| UPDATE SECTIONS OFFSETS                                                 |//
+
 const updateSectionsOffsets = () => {
   [...sections].forEach((section, index) => {
     section.offset = pageSections[index].offsetTop;
   });
   shouldSectionsBeUpdated = false;
 }
-//| GET CURRENT ITEM INDEX                                                  |//
+
 const getCurrentItemIndex = (cursorYPosition) => {
   return items.length - 1 - [...items]
-    .map(item => item.offset)
-    .reverse()
-    .findIndex(offset => cursorYPosition >= offset)
+  .map(item => item.offset)
+  .reverse()
+  .findIndex(offset => cursorYPosition >= offset);
 }
-//| GET CURRENT SECTION INDEX                                               |//
+
 const getCurrentSectionIndex = (scrollOffset) => {
   const currentOffset = window.innerWidth >= mediaDesktop
   ? pageContainer.scrollTop
@@ -40,22 +48,32 @@ const getCurrentSectionIndex = (scrollOffset) => {
     .reverse()
     .findIndex(offset => currentOffset >= offset - scrollOffset);
 }
-//| GET CURRENT NAVIGATION INDEX                                            |//
+
 const getCurrentNavigationIndex = () => {
   const navigationOffset = navigation.offsetTop + navigation.clientHeight / 2;
   return getCurrentSectionIndex(navigationOffset);
 }
-//| HANDLE ELEMENTS'S TOP MARGINS TO CENTER IT VERTICALLY                   |//
-//: this functionality I found more reasonable to be handled in JS,         ://
-//: because of expandable content inside section containers                 ://
-//: distorting and complicating content layout                              ://
+
 const handleTopMargins = (element, distance) => {
+  
+  // this functionality I found more reasonable to be handled in JS,
+  // because of expandable content inside section containers
+  // distorting and complicating content layout
+
   if (window.innerWidth >= mediaDesktop) {
     const margin = (window.innerHeight - element.clientHeight) / 2;
     element.style.marginTop = `${margin > distance ? margin : distance}px`;
   }
 }
-//| CHANGE ACTIVE LINK ON HOVER                                             |//
+
+// assign size and position of one element to another
+const setSizeAndPosition = (element, target, size) => {
+  element.style.top = `${target.offsetTop}px`;
+  element.style.left = `${target.offsetLeft}px`;
+  element.style.width = size ? `${size}px` : `${target.clientWidth}px`;
+  element.style.height = size ? `${size}px` : `${target.clientHeight}px`;
+}
+
 const handleColorChange = (index, action) => {
   const introLinkId = sections[index].id;
 
@@ -67,9 +85,14 @@ const handleColorChange = (index, action) => {
     introBox.classList.remove(`visuals__introBox--${introLinkId}`);
   }
 }
-//| HANDLE INTROBOX                                                         |//
+
+//#endregion
+
+//#region [ Horizon ] INTRO
+
 const handleIntroBox = (e) => {
-  //: disable transition effect on resize                              ://
+  
+  // disable transition effect on resize
   if (e && (e.type === 'resize' || e.type === 'scroll')) {
     !introBox.classList.contains('visuals__introBox--onResize')
     ? introBox.classList.add('visuals__introBox--onResize')
@@ -81,12 +104,14 @@ const handleIntroBox = (e) => {
   }
   const currentYOffset = items[lastMenuItemIndex].offset;
   const viewOffset = pageHeader.scrollTop;
-  //: assign size and position                                         ://
+
+  // assign size and position
   introBox.style.top = `${currentYOffset - viewOffset}px`;
 }
-//| HANDLE MENU IN INTRO MODE                                               |//
+
 const handleIntroMenu = (e) => {
-  //: handle intro menu on mouse event                                      ://
+
+  // handle intro menu on mouse event
   if (e && e.type === 'mousemove' && window.innerWidth >= mediaTablet) {
 
     if (!isMenuTransformMode) {
@@ -99,12 +124,249 @@ const handleIntroMenu = (e) => {
       handleColorChange(lastMenuItemIndex, 'activate');
     }
   } else {
-    //: handle intro menu on page load                                      ://
+    // handle intro menu on page load
     handleIntroBox();
     handleColorChange(lastMenuItemIndex, 'activate');
   }
 }
-//| HANDLE MENU ITEMS SINGLE CHANGE                                         |//
+
+const handleIntroAnimation = () => {
+  
+  let charIndex = 0;
+  const charTotal = introText.length;
+  let maxColNum = charTotal;
+  let minColNum = 6;
+  const rowGap = 2;
+  let gridTopMargin = null;
+
+  // intervals
+  const loadCharInterval = 30;
+  const translateCharInterval = 100;
+  const introSecondTimeoutInterval = loadCharInterval * charTotal + 1000;
+  const introGridViewInterval = 2000;
+  const inBetweenTransition = 500;
+  
+  // set position of ending elements
+  const setEndings = (index) => {
+    if (index < charTotal) {
+      const beforeChild = introGrid.children[0];
+      const afterChild = introGrid.children[index];
+      var endingBeforeTop  = beforeChild.offsetTop;
+      var endingBeforeLeft = beforeChild.offsetLeft - introItemWidth;
+      var endingAfterTop   = afterChild.offsetTop;
+      var endingAfterLeft  = afterChild.offsetLeft;
+
+    } else {
+      const prevAfterChildOffset = introGrid.children[index - 1].offsetLeft;
+      var endingAfterLeft = prevAfterChildOffset + introItemWidth;
+    }
+
+    endingBefore.style.top  = `${endingBeforeTop}px`;
+    endingBefore.style.left = `${endingBeforeLeft}px`;
+    endingAfter.style.top   = `${endingAfterTop}px`;
+    endingAfter.style.left  = `${endingAfterLeft}px`;
+  }
+
+  // show consecutive characters of intro text
+  const loadChar = () => {
+
+    if (charIndex < charTotal) {
+      const currentItem = introGrid.children[charIndex];
+      currentItem.style.width = `${introItemWidth}px`;
+      currentItem.style.height = `${introItemHeight}px`;
+      currentItem.classList.add('grid__item--visible');
+      setEndings(charIndex);
+      charIndex++;
+
+    } else {
+      setEndings(charIndex);
+      clearInterval(introCharIntervalId);
+    }
+  }
+
+  // animate characters position on introGrid change
+  const handleChars = (chars, isInitial) => {
+
+    if (isInitial) {
+      [...chars].forEach((char, index) => {
+        const {offsetTop, offsetLeft} = introGrid.children[index];
+        char.style.top = `${offsetTop}px`;
+        char.style.left = `${offsetLeft}px`;
+        char.style.width = `${introItemWidth}px`;
+        char.style.height = `${introItemHeight}px`;
+        char.classList.add('grid__char--transition');
+      });
+
+    } else {
+      [...chars].forEach((char, index) => {
+        const bias = maxColNum - minColNum < minColNum
+        ? minColNum - (maxColNum - minColNum)
+        : 0;
+
+        if (index >= maxColNum - bias) {
+          const { offsetTop, offsetLeft } = introGrid.children[index];
+          char.style.top = `${offsetTop}px`;
+          char.style.left = `${offsetLeft}px`;
+
+          if (!char.classList.contains('grid__char--faded')) {
+            char.classList.add('grid__char--faded');
+          }
+        }
+      });
+    }
+  }
+
+  // calculate introGrid's gaps and items paddings
+  const getColGap = () => {
+    const rowNum = charTotal / minColNum;
+    const gridHeight = (rowNum * introItemHeight) + ((rowNum - 1) * rowGap);
+    return (gridHeight - (minColNum * introItemWidth)) / (minColNum - 1);
+  }
+
+  // set introGrid's top margin
+  const updateTopMargin = () => {
+    const topMargin = (window.innerHeight - introGrid.clientHeight) / 2;
+
+    if (topMargin !== gridTopMargin || gridTopMargin === null) {
+      gridTopMargin = topMargin;
+      introGrid.style.marginTop = `${gridTopMargin}px`;
+    }
+  }
+
+  // configure introGrid on start
+  introGrid.classList.add('grid--visible');
+  introGrid.style.gridTemplateColumns = `repeat(${maxColNum}, 1fr)`;
+  updateTopMargin();
+
+  // set sizes and position of ending elements
+  endingBefore.style.width = `${introItemWidth}px`;
+  endingBefore.style.height = `${introItemHeight}px`;
+  endingAfter.style.width = `${introItemWidth}px`;
+  endingAfter.style.height = `${introItemHeight}px`;
+  setEndings(charIndex);
+
+  // FIRST TIMEOUT
+  clearTimeout(introFirstTimeoutId);
+  clearTimeout(introSecondTimeoutId);
+  clearTimeout(introThirdTimeoutId);
+  clearTimeout(introForthTimeoutId);
+  introFirstTimeoutId = setTimeout(() => {
+
+    // show ending elements
+    endingBefore.classList.add('intro__ending--visible');
+    endingAfter.classList.add('intro__ending--visible');
+    introLoader.classList.add('intro__loader--hidden');
+    introLoader.classList.remove('intro__loader--transition');
+
+    // remove temporary child
+    introCharIntervalId = setInterval(() => {
+      loadChar();
+      updateTopMargin();
+    }, loadCharInterval);
+    
+    // SECOND TIMEOUT
+    introSecondTimeoutId = setTimeout(() => {
+
+      // assign fixed positioning to svg elements
+      const gridChars = document.querySelectorAll('.grid__char--js');
+      endingAfter.classList.remove('intro__ending--visible');
+      endingBefore.classList.remove('intro__ending--visible');
+      handleChars(gridChars, true);
+
+      // set introGrid's column and row gaps to make introGrid a square
+      const columnGap = getColGap();
+      introGrid.style.columnGap = `${columnGap}px`;
+      introGrid.style.rowGap = `${rowGap}px`;
+
+      // decrease number of grid columns
+      introCharIntervalId = setInterval(() => {
+        if (maxColNum >= minColNum) {
+          introGrid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
+          handleChars(gridChars, false);
+          updateTopMargin();
+
+        } else {
+          // when interval ends
+          clearInterval(introCharIntervalId);
+          setSizeAndPosition(introLoader, introGrid);
+
+          // show intro loader
+          introLoader.classList.remove('intro__loader--hidden');
+          const delay = introGridViewInterval - inBetweenTransition;
+          introLoader.style.transition = `
+            opacity ${inBetweenTransition}ms ${delay}ms,
+            visibility 0s ${delay}ms
+          `;
+          
+          // THIRD TIMEOUT
+          introThirdTimeoutId = setTimeout(() => {
+            introLoader.classList.add('intro__loader--transition');
+            introLoader.style.transition = '';
+            introLoader.style.transitionDuration = `${inBetweenTransition}ms`;
+            introGrid.classList.remove('grid--visible');
+            setSizeAndPosition(introLoader, introBox);
+            
+            // FORTH TIMEOUT
+            introForthTimeoutId = setTimeout(() => {
+
+              // activeate menu items
+              [...menuItems].forEach(item => {
+                item.classList.add('menu__item--active');
+              });
+
+              // show introBox
+              visuals.classList.add('visuals--visible');
+
+              // hide intro
+              intro.classList.add('intro--hidden');
+
+              // show page header
+              pageHeader.classList.add('pageHeader--visible');
+            }, inBetweenTransition);
+          }, introGridViewInterval);
+        }
+      }, translateCharInterval);    
+    }, introSecondTimeoutInterval);
+  }, introFirstTimeoutInterval);
+}
+
+const loadIntroContent = () => {
+  
+  [...introText].forEach(char => {
+    const gridItem = char !== ' '
+    ? `<li
+        class="grid__item grid__item--js"
+        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
+      >
+        <svg class="grid__char grid__char--svg grid__char--js" viewBox="0 0 50 100">
+          <use href="assets/svg/letters.svg#${char}"></use>
+        </svg>
+      </li>`
+    : `<li
+        class="grid__item grid__item--js"
+        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
+      >
+        <div class="grid__char grid__char--separator grid__char--js"></div>
+      </li>`;
+    introGrid.insertAdjacentHTML('beforeend', gridItem);
+  });
+}
+
+const setIntroLoaderPosition = () => {
+  introLoader.style.top = `${introLoader.offsetTop}px`;
+  introLoader.style.left = `${introLoader.offsetLeft}px`;
+}
+
+const handleIntroLoader = () => {
+  introLoader.classList.add('intro__loader--transition');
+  introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
+  setSizeAndPosition(introLoader, endingBefore, introItemHeight);
+}
+
+//#endregion
+
+//#region [ Horizon ] MENU
+
 const handleMenuItemChange = (index) => {
   handleColorChange(lastMenuItemIndex, 'deactivate');
   handleMenuOnClick(lastMenuItemIndex, 'deactivate');
@@ -113,14 +375,16 @@ const handleMenuItemChange = (index) => {
   handleMenuOnClick(lastMenuItemIndex, 'activate');
   handleMenuIndicator(lastMenuItemIndex);
 }
-//| HANDLE MENU ITEMS                                                       |//
+
 const handleMenuItemClick = (e) => {
+
   const activeIndex = e.target.index;
   updateSectionsOffsets();
   isMenuTransformMode = true;
-  //| HANDLE MENU ITEMS ON MOBILE DEVICES                                   |//
+
+  //#region [ Horizon ] ON MOBILE DEVICES
   if (window.innerWidth < mediaTablet) {
-    //. variables                                                           .//
+
     const windowHeight = window.innerHeight;
     const clickedintroItemHeight = items[activeIndex].height;
     const clickedItemOffset = items[activeIndex].offset;
@@ -128,37 +392,44 @@ const handleMenuItemClick = (e) => {
     const viewOffset = pageHeader.scrollTop;
     const upperBackgroundHeight = clickedintroItemHeight + clickedItemOffset - viewOffset;
     const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
-    //. change items colors and set introbox position                       .//
+
+    // change items colors and set introbox position
     handleColorChange(lastMenuItemIndex, 'deactivate');
     lastMenuItemIndex = activeIndex; // ! what if both are the same
     handleColorChange(lastMenuItemIndex, 'activate');
     handleIntroBox();
-    //. remove introBox resize and scroll events                            .//
+
+    // remove introBox resize and scroll events
     pageHeader.removeEventListener('resize', handleIntroBox);
     pageHeader.removeEventListener('scroll', handleIntroBox);
-    //. remove pointer events from pageHeader                               .//
+
+    // remove pointer events from pageHeader
     pageHeader.classList.remove('pageHeader--intro');
-    //. change menu items to be in a fixed position                         .//
+
+    // change menu items to be in a fixed position
     [...menuItems].forEach((item, index) => {
       item.classList.add('menu__item--mobileHeader');
       item.style.top = `${items[index].offset - viewOffset}px`;
     });
-    //. set initial link width as style property in order to be animated    .//
+
+    // set initial link width as style property in order to be animated
     const linkWidth = menuLinks[activeIndex].clientWidth;
     menuLinks[activeIndex].style.width = `${linkWidth}px`;
     items[activeIndex].width = linkWidth;
-    //. set backgrounds startings heights                                   .//
+
+    // set backgrounds startings heights
     menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
     menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
-    //:                                                                     ://
-    //: add first timeout                                                   ://
+    
+    // ADD FIRST TIMEOUT
     clearTimeout(menuSmFirstTimeoutId);
     clearTimeout(menuSmSecondTimeoutId);
     menuSmFirstTimeoutId = setTimeout(() => {
-      //. variables                                                         .//
+      
       const upwardsOffset = clickedItemOffset;
       const downwardsOffset = windowHeight - clickedItemOffset - clickedintroItemHeight;
-      //. set translated position of menu items                             .//
+
+      // set translated position of menu items
       [...menuItems].forEach((item, index) => {
         const currentItemOffset = items[index].offset;
         item.style.top = index <= activeIndex // ! refactor
@@ -166,28 +437,29 @@ const handleMenuItemClick = (e) => {
         : `${currentItemOffset + downwardsOffset}px`;
         item.classList.add('menu__item--animated');
       });
-      //. set position of introBox                                          .//
+      // set position of introBox
       introBox.classList.add('visuals__introBox--content');
       introBox.style.top = 0;
-      //. handle menu background                                            .//
+      // handle menu background
       menuUpperBackground.style.height = `${clickedintroItemHeight}px`;
       menuBottomBackground.style.height = 0;
       menuUpperBackground.classList.add('visuals__background--animated');
       menuBottomBackground.classList.add('visuals__background--animated');
-      //. remove pointer events from pageHeader                             .//
+      // remove pointer events from pageHeader
       pageHeader.classList.remove('pageHeader--intro');
-      //. scroll pageContainer to desired position                          .//
+      // scroll pageContainer to desired position
       window.scrollTo({
         left: 0,
         top: sections[activeIndex].offset,
         behavior: 'auto'
       });
-      //. add event handling mobile header appearance                       .//
+      // add event handling mobile header appearance
       window.addEventListener('scroll', handleMobileHeader);
-      //:                                                                   ://
-      //: add second timeout                                                ://
+      
+      // ADD SECOND TIMEOUT
       menuSmSecondTimeoutId = setTimeout(() => {
-        //. handle menu items                                               .//
+
+        // handle menu items
         [...menuItems].forEach((item, index) => {
           const sectionId = sections[index].id;
           if (index !== activeIndex) {
@@ -200,81 +472,98 @@ const handleMenuItemClick = (e) => {
           item.classList.remove('menu__item--animated');
           menuLinks[index].style.width = '100%';
         });
-        //. handle introBox and menu background                             .//
+
+        // handle introBox and menu background
         introBox.classList.remove('visuals__introBox--visible');
         menuUpperBackground.classList.add(`visuals__background--${clickedElementId}`);
-        //. show burger button                                              .//
+
+        // show burger button
         burgerButton.classList.add('burgerButton--visible');
         burgerButton.classList.add(`burgerButton--${clickedElementId}`);
         isMenuTransformMode = false;
       }, menuSmSecondTimeoutInterval);
     }, menuSmFirstTimeoutInterval);
-    //: end of timeouts                                                     ://
-  //| HANDLE MENU ITEMS ON LARGE SCREEN DEVICES                             |//
+
+    //#endregion
+
+  //#region [ Horizon ] ON LARGE SCREEN DEVICES
+
   } else if (window.innerWidth >= mediaDesktop && !isBackToIntroMode) {
     isScrollEnabled = false;
-    //. handle introBox                                                     .//
+
+    // handle introBox
     introBox.style.top = 0;
     introBox.classList.add('visuals__introBox--content');
     introBox.classList.add('visuals__introBox--halfWindow');
-    //. handle menu indicator                                               .//
+
+    // handle menu indicator
     menuIndicator.classList.add('pageHeader__indicator--animated');
-    //. handle menu items change only when content is visible               .//
+
+    // handle menu items change only when content is visible
     if (!isIntroMode) handleMenuItemChange(activeIndex);
-    //. handle color of menu items and introBox on click                    .//
+
+    // handle color of menu items and introBox on click
     handleColorChange(lastMenuItemIndex, 'deactivate');
     handleColorChange(activeIndex, 'activate');
-    //. handle navigation appearance                                        .//
+
+    // handle navigation appearance
     if (currentNavigationIndex !== null) {
       handleNavOnClick(currentNavigationIndex, 'deactivate');
     }
     currentNavigationIndex = activeIndex;
     handleNavOnClick(currentNavigationIndex, 'activate');
 
-    //:                                                                     ://
-    //: set first timeout                                                   ://
+    // SET FIRST TIMEOUT
     clearTimeout(menuLgFirstTimeoutId);
     menuLgFirstTimeoutId = setTimeout(() => {
-      //. handle menu items change only when intro mode is active           .//
+
+      // handle menu items change only when intro mode is active
       if (isIntroMode) handleMenuItemChange(activeIndex);
-      //. translate menu and content to the left of the screen              .//
+
+      // translate menu and content to the left of the screen
       menu.classList.remove('menu--intro');
       pageContainer.classList.add('pageContainer--visible');
-      //. move introBox to the left and make indicator thiner               .//
+
+      // move introBox to the left and make indicator thiner
       introBox.classList.remove('visuals__introBox--centered');
       introBox.classList.add('visuals__introBox--fullWidth');
       menuIndicator.classList.add('pageHeader__indicator--narrowed');
-      //. handle navigation                                                 .//
+
+      // handle navigation
       navigation.classList.add('navigation--visible');
       navigationPrevButton.addEventListener('click', navigateToSection);
       navigationNextButton.addEventListener('click', navigateToSection);
       navigationBackButton.addEventListener('click', handleBackButton);
 
-      //:                                                                   ://
-      //: set second timeout                                                ://
+      // SET SECOND TIMEOUT
       menuLgSecondTimeoutId = setTimeout(() => {
-        //. add smooth scrolling to page container                          .//
+
+        // add smooth scrolling to page container
         pageContainer.classList.add('pageContainer--smooth');
-        //. hide menu backgrounds                                           .//
+
+        // hide menu backgrounds
         menuUpperBackground.classList.add('visuals__background--hidden');
         menuBottomBackground.classList.add('visuals__background--hidden');
-        //. hide introBox                                                   .//
+
+        // hide introBox
         introBox.classList.remove('visuals__introBox--visible');
-        //. add transition effects to navigation buttons                    .//
+
+        // add transition effects to navigation buttons
         [...navigation.children].forEach(child =>
           child.classList.add('navigation__button--animated'));
-        //. handle global flags                                             .//
+
+        // handle global flags
         isIntroMode = false;
         isMenuTransformMode = true;
         
       }, menuLgSecondTimeoutInterval);
-    }, menuLgFirstTimeoutInterval);   
-    //: end of timeout                                                      ://
+    }, menuLgFirstTimeoutInterval);
   }
+  //#endregion
 }
-//| BURGER BUTTON HANDLER                                                   |//
+
 const handleBurgerButton = () => {
-  //. variables                                                             .//
+  
   const windowHeight = window.innerHeight;
   const activeintroItemHeight = items[lastMenuItemIndex].height;
   const activeItemOffset = items[lastMenuItemIndex].offset;
@@ -285,9 +574,9 @@ const handleBurgerButton = () => {
   const downwardsOffset = windowHeight - activeItemOffset - activeintroItemHeight;
 
   isMenuTransformMode = true;
-  //. hide burger button                                                    .//
   burgerButton.classList.remove('burgerButton--visible');
-  //. set starting position of menu items                                   .//
+
+  // set starting position of menu items
   [...menuItems].forEach((item, index) => {
     const currentItemOffset = items[index].offset;
     const currentId = sections[index].id;
@@ -304,56 +593,62 @@ const handleBurgerButton = () => {
     ? menuLinks[index].classList.remove(`menu__link--intro-${currentId}`)
     : false;
   });
-  //. set appearance of introBox and background                             .//
+
+  // set appearance of introBox and background
   introBox.classList.add('visuals__introBox--visible');
   menuUpperBackground.classList.remove(`visuals__background--${activeId}`);
 
-  //:                                                                       ://
-  //: add first timeout                                                     ://
+  // ADD FIRST TIMEOUT
   clearTimeout(menuSmFirstTimeoutId);
   clearTimeout(menuSmSecondTimeoutId);
   menuSmFirstTimeoutId = setTimeout(() => {
-    //. set menu items default position                                     .//
+
+    // set menu items default position
     [...menuItems].forEach((item, index) => {
       item.style.top = `${items[index].offset}px`;
       item.classList.add('menu__item--animated');
     });
-    //. set introBox and menu backgrounds appearance                        .//
+
+    // set introBox and menu backgrounds appearance
     introBox.style.top = `${activeItemOffset}px`;
     menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
     menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
-    //. handle burger button's color                                        .//
+
+    // handle burger button's color
     burgerButton.classList.remove(`burgerButton--${activeId}`);
-    //. remove event handling mobile header appearance                      .//
+
+    // remove event handling mobile header appearance
     window.removeEventListener('scroll', handleMobileHeader);
 
-    //:                                                                     ://
-    //: add second timeout                                                  ://
+    // ADD SECOND TIMEOUT
     menuSmSecondTimeoutId = setTimeout(() => {
       window.scrollTo(0,0);
-      //. add pointer events to pageHeader                                  .//
+
+      // add pointer events to pageHeader
       pageHeader.classList.add('pageHeader--intro');
-      //. handle menu items                                                 .//
+
+      // handle menu items
       [...menuItems].forEach(item => {
         item.classList.remove('menu__item--mobileHeader');
         item.classList.remove('menu__item--animated');
       });
-      //. handle introBox and backgrounds                                   .//
+
+      // handle introBox and backgrounds
       introBox.classList.remove('visuals__introBox--content');
       menuUpperBackground.classList.remove('visuals__background--animated');
       menuBottomBackground.classList.remove('visuals__background--animated');
       menuUpperBackground.style.height = '100%';
       menuBottomBackground.style.height = '100%';
-      //. remove events                                                     .//
+
+      // remove events
       pageHeader.addEventListener('resize', handleIntroBox);
       pageHeader.addEventListener('scroll', handleIntroBox);
       
       isMenuTransformMode = true;
     }, menuSmSecondTimeoutInterval);
   }, menuSmFirstTimeoutInterval);
-  //: end of timeout                                                        ://
 }
-//| HANDLE MOBILE HEADER CHANGE                                             |//
+
 const handleMobileHeader = () => {
 
   const handleHeader = (index, action) => {
@@ -377,31 +672,36 @@ const handleMobileHeader = () => {
     }
   }
   const newActiveSectionIndex = getCurrentSectionIndex(0);
-  //: when index changes                                                    ://
+
+  // when index changes
   if (newActiveSectionIndex !== lastMenuItemIndex) {
     handleHeader(lastMenuItemIndex, 'activate');
     lastMenuItemIndex = newActiveSectionIndex;
     handleHeader(lastMenuItemIndex, 'deactivate');
   } 
 }
-//| HANDLE MENU ITEMS ON SCROLL EVENT                                       |//
+
 const handleMenuOnScroll = () => {
+
   if (isScrollEnabled) {
-    //: handle indicator and active menu item on section change               ://
+
+    // handle indicator and active menu item on section change
     const newMenuItemIndex = getCurrentSectionIndex(0);
     if (newMenuItemIndex !== lastMenuItemIndex) {
       const prevId = sections[lastMenuItemIndex].id;
       menuLinks[lastMenuItemIndex].classList.remove(`menu__link--intro-${prevId}`);
       menuLinks[lastMenuItemIndex].classList.remove('menu__link--active');
       introBox.classList.remove(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
-      //. index change                                                        .//
+
+      // index change
       lastMenuItemIndex = newMenuItemIndex;
       menuLinks[lastMenuItemIndex].classList.add('menu__link--active');
       introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
       handleMenuIndicator(lastMenuItemIndex);
       if (!isFastScroll) isFastScroll = true;
     }
-    //: handle all menu items appearance on local id change                   ://
+
+    // handle all menu items appearance on local id change
     [...menuLinks].forEach((link, index) => {
       const singleItemOffset = items[index].offset;
       const currentSingleItemIndex = items[index].currentSectionIndex;
@@ -417,9 +717,10 @@ const handleMenuOnScroll = () => {
     });
   }
 }
-//| HANDLE MENU ITEMS ON CLICK EVENT                                        |//
+
 const handleMenuOnClick = (activeIndex, action) => {
-  //: add new appearance                                                    ://
+
+  // add new appearance
   if (action === 'activate') {
     const currentId = sections[activeIndex].id;
     [...menuLinks].forEach((link, linkIndex) => {
@@ -430,7 +731,8 @@ const handleMenuOnClick = (activeIndex, action) => {
         link.classList.remove(`menu__link--intro-${currentId}`);
       }
     });
-  //: remove current appearance                                                    ://
+
+  // remove current appearance
   } else if (action === 'deactivate') {
     [...menuLinks].forEach((link, linkIndex) => {
       const currentId = sections[items[linkIndex].currentSectionIndex].id;
@@ -442,75 +744,93 @@ const handleMenuOnClick = (activeIndex, action) => {
     });
   }
 }
-//| HANDLE MENU INDICATOR                                                   |//
+
 const handleMenuIndicator = (index) => {
   const offset = items[index].offset;
   menuIndicator.style.top = `${offset}px`;
 }
-//| HANDLE BACK TO INTRO BUTTON                                             |//
+
+//#endregion
+
+//#region [ Horizon ] NAVIGATION
+
 const handleBackButton = () => {
+
   const currentId = sections[lastMenuItemIndex].id;
   isBackToIntroMode = true;
   isMenuTransformMode = true;
-  //. handle intro background                                               .//
+
+  // handle intro background
   menuUpperBackground.classList.remove('visuals__background--hidden');
   menuBottomBackground.classList.remove('visuals__background--hidden');
-  //. handle menu indicator                                                 .//
+
+  // handle menu indicator
   menuIndicator.classList.remove('pageHeader__indicator--narrowed');
   menuIndicator.classList.add('pageHeader__indicator--centered');
-  //. handle introBox                                                       .//
+
+  // handle introBox
   introBox.classList.add('visuals__introBox--centered');
   introBox.classList.remove('visuals__introBox--fullWindow');
   introBox.classList.add('visuals__introBox--visible');
   introBox.classList.add(`visuals__introBox--${currentId}`);
-  //. translate menu and content back to the right of the screen            .//
+
+  // translate menu and content back to the right of the screen
   menu.classList.add('menu--intro');
   pageContainer.classList.remove('pageContainer--visible');
   pageContainer.classList.remove('pageContainer--smooth');
-  //. handle navigation                                                     .//
+
+  // handle navigation
   navigation.classList.remove('navigation--visible');
   navigationPrevButton.removeEventListener('click', navigateToSection);
   navigationNextButton.removeEventListener('click', navigateToSection);
   navigationBackButton.removeEventListener('click', handleBackButton);
-  //. remove transition effects from navigation buttons                     .//
+
+  // remove transition effects from navigation buttons
   [...navigation.children].forEach(child =>
     child.classList.remove('navigation__button--animated'));
-  //. change colors of menu items to default                                .//
+
+  // change colors of menu items to default
   handleMenuOnClick(lastMenuItemIndex, 'deactivate');
   menuLinks[lastMenuItemIndex].classList.add(`menu__link--intro-${currentId}`);
-  //:                                                                       ://
-  //: add first timeout                                                     ://
+  
+  // FIRST TIMEOUT
   clearTimeout(menuLgFirstTimeoutId);
   clearTimeout(menuLgSecondTimeoutId);
   menuLgFirstTimeoutId = setTimeout(() => {
-    //. handle introBox                                                     .//
+
+    // handle introBox
     introBox.style.top = `${items[lastMenuItemIndex].offset}px`;
     introBox.classList.remove('visuals__introBox--halfWindow');
-    //:                                                                     ://
-    //: add second timeout                                                  ://
+    
+    // SECOND TIMEOUT
     menuLgSecondTimeoutId = setTimeout(() => {
-      //. handle introBox                                                   .//
+
+      // handle introBox
       introBox.classList.remove('visuals__introBox--content');
-      //. handle menu indicator                                             .//
+
+      // handle menu indicator
       menuIndicator.classList.remove('pageHeader__indicator--animated');
       menuIndicator.classList.remove('pageHeader__indicator--centered');
       menuIndicator.style.top = '';
-      //. handle global flags                                               .//
+
+      // handle global flags
       isIntroMode = true;
       isBackToIntroMode = false;
       isMenuTransformMode = false;
     }, menuLgSecondTimeoutInterval);
   }, menuLgFirstTimeoutInterval);
-  //: end of timeout                                                        ://
 }
-//| HANDLE PREVIOUS AND NEXT BUTTON VISIBILITY                              |//
+
 const handlePrevNextButtonsVisibility = (index, action) => {
+
   const lastElementIndex = sections.length - 1;
   if (index === 0 || index === lastElementIndex) {
+
     if (action === 'hide') {
       index === 0
       ? navigationPrevButton.classList.add('navigation__button--hidden')
       : navigationNextButton.classList.add('navigation__button--hidden');
+
     } else if (action === 'show') {
       index === 0
       ? navigationPrevButton.classList.remove('navigation__button--hidden')
@@ -518,37 +838,44 @@ const handlePrevNextButtonsVisibility = (index, action) => {
     }
   }
 }
-//| HANDLE NAVIGATION ON SCROLL EVENT                                       |//
+
 const handleNavOnScroll = () => {
+
   const updatedNavigationIndex = getCurrentNavigationIndex();
-  //: change navigation elements class names when index changes             ://
+
+  // change navigation elements class names when index changes
   if (updatedNavigationIndex !== currentNavigationIndex) {
     const currentId = sections[currentNavigationIndex].id;
     const nextId = sections[updatedNavigationIndex].id;
-    //: remove current appearance                                           ://
+
+    // remove current appearance
     for (let child of navigation.children) {
       child.classList.remove(`navigation__button--${currentId}`);
       handlePrevNextButtonsVisibility(currentNavigationIndex, 'show');
     }
-    //: update navigation index                                             ://
+
+    // update navigation index
     currentNavigationIndex = updatedNavigationIndex;
-    //: add new appearance                                                  ://
+
+    // add new appearance
     for (let child of navigation.children) {
       child.classList.add(`navigation__button--${nextId}`);
       handlePrevNextButtonsVisibility(currentNavigationIndex, 'hide');
     }
   }
 }
-//| HANDLE NAVIGATION ON CLICK EVENT                                        |//
+
 const handleNavOnClick = (index, action) => {
+
   const currentId = sections[index].id;
-  //: remove current appearance                                             ://
+  // remove current appearance
   if (action === 'activate') {
     for (let child of navigation.children) {
       child.classList.add(`navigation__button--${currentId}`);
       handlePrevNextButtonsVisibility(index, 'hide');
     }
-  //: add new appearance                                                    ://
+
+  // add new appearance
   } else if (action === 'deactivate') {
     for (let child of navigation.children) {
       child.classList.remove(`navigation__button--${currentId}`);
@@ -556,29 +883,27 @@ const handleNavOnClick = (index, action) => {
     }
   }
 }
-//| HANDLE JUMPING TO ANOTHER SECTION USING NAVIGATION                      |//
+
 const navigateToSection = (e) => {
+
   handleUserActivity();
-  //: get target index                                                      |//
+
+  // get target index
   const targetIndex = e.target === navigationPrevButton
-    //. previous button clicked                                             .//
   ? currentNavigationIndex > 0 ? --currentNavigationIndex : 0
-    //. next     button clicked                                             .//
   : lastMenuItemIndex < pageSections.length - 1
     ? ++lastMenuItemIndex
     : pageSections.length - 1;
-  //: scroll to target index                                                |//
+
+  // scroll to target index
   const sectionOffset = sections[targetIndex].offset;
   pageContainer.scrollTo(0, sectionOffset);
 }
-//| RETURN FIRST PARENT OR PASSED ELEMENT WITH GIVEN CLASS                  |//
-const findFirstParentWithClass = (element, className) => {
-  while (element.tagName !== 'HTML' && !element.classList.contains(className)) {
-    element = element.parentNode;
-  }
-  return element;
-}
-//| RESUME'S ACCORDION HANDLER                                              |//
+
+//#endregion
+
+//#region [ Horizon ] MAIN CONTENT
+
 const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
   tabs.forEach((tab, index) => {
     const container = tab.querySelector('[class*=container]');
@@ -650,7 +975,7 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
     }
   });
 }
-//| FETCH GITHUB API                                                        |//
+
 const handleRepo = (repos) => {
   const statsCreated = document.querySelectorAll('.stats__value--js-created');
   const statsUpdated = document.querySelectorAll('.stats__value--js-updated');
@@ -679,53 +1004,64 @@ const handleRepo = (repos) => {
     .then(resp => statsCommits[i].innerHTML = resp[0].contributions);
   }    
 }
-//| REDUCE CONTENT - RECURSIVE FUNCTION                                     |//
-  //: recursive function handling reduced content creation                  ://
-  //: it can handle both plain text and nested elements like lists          ://
-  //: data - content to be reduced                                          ://
-  //: container - node which got empty in order to receive reduced content  ://
-  //: available - available space to contain reduced content                ://
-  //: parent - root container to obtain current content height at the time  ://
-  const reduceContent = (data, container, available, parent) => {
-    //. if cloned content does not contain any children nodes               .//
-    if (data.children.length === 0) {
-      //. create array of particular words                                  .//
-      const wordsArray = data.html.slice().split(' ').filter(elem => elem !== '');
-      const reducedArray = [...wordsArray];
-      //. remove words starting from the end until content fits space       .//
-      for (let i = 0; i < wordsArray.length; i++) {
-        reducedArray.pop();
-        container.innerHTML = reducedArray.length === 0
-          ? ''
-          : `${reducedArray.join(' ')} <span class='dots'>...</span>`;
-        if (parent.clientHeight <= available) break;
-      }
-    //. if cloned content contains children nodes                           .//
-    } else {
-      //. empty textContent of each childNode                               .//
-      [...container.children].forEach(child => child.textContent = '');
-      //. create array of each node's html content                          .//
-      const nodesArray = data.children.map(child => child.html);
-      //. add consectuive nodes content until it extends available space    .//
-      for (let i = 0; i < container.children.length; i++) {
-        const dataNode = data.children[i];
-        const containerNode = container.children[i];
-        containerNode.innerHTML = nodesArray[i];
-        if (parent.clientHeight > available) {
-          //. repeat the operations on particular nodes                     .//
-          reduceContent(dataNode, containerNode, available, parent);
-          //. remove unnecessary empty nodes outside available space        .//
-          [...container.children].forEach(child => {
-            if (child.innerHTML === '') child.parentNode.removeChild(child);
-          });
-          break;
-        }
+
+const reduceContent = (data, container, available, parent) => {
+  // recursive function handling reduced content creation
+  // it can handle both plain text and nested elements like lists
+  // data - content to be reduced
+  // container - node which got empty in order to receive reduced content
+  // available - available space to contain reduced content
+  // parent - root container to obtain current content height at the time
+  
+  // if cloned content does not contain any children nodes
+  if (data.children.length === 0) {
+
+    // create array of particular words
+    const wordsArray = data.html.slice().split(' ').filter(elem => elem !== '');
+    const reducedArray = [...wordsArray];
+
+    // remove words starting from the end until content fits space
+    for (let i = 0; i < wordsArray.length; i++) {
+      reducedArray.pop();
+      container.innerHTML = reducedArray.length === 0
+        ? ''
+        : `${reducedArray.join(' ')} <span class='dots'>...</span>`;
+      if (parent.clientHeight <= available) break;
+    }
+
+  // if cloned content contains children nodes
+  } else {
+
+    // empty textContent of each childNode
+    [...container.children].forEach(child => child.textContent = '');
+
+    // create array of each node's html content
+    const nodesArray = data.children.map(child => child.html);
+
+    // add consectuive nodes content until it extends available space
+    for (let i = 0; i < container.children.length; i++) {
+      const dataNode = data.children[i];
+      const containerNode = container.children[i];
+      containerNode.innerHTML = nodesArray[i];
+
+      if (parent.clientHeight > available) {
+
+        // repeat the operations on particular nodes
+        reduceContent(dataNode, containerNode, available, parent);
+
+        // remove unnecessary empty nodes outside available space
+        [...container.children].forEach(child => {
+          if (child.innerHTML === '') child.parentNode.removeChild(child);
+        });
+        break;
       }
     }
   }
-//| HANDLE EXPANDABLE CONTENT WITH READ MORE BUTTON                         |//
+}
+
 const handleExpandableContent = (contents) => {
-  //: aquire html and children of every children node and its own children  ://
+
+  // aquire html and children of every children node and its own children
   const getChildren = (content) => {
     let array = [];
     [...content.children].forEach(child => array = [...array, {
@@ -734,7 +1070,8 @@ const handleExpandableContent = (contents) => {
     }]);
     return array;
   }
-  //: empty content of every node, including the nested ones                ://
+
+  // empty content of every node, including the nested ones
   const emptyContent = (content) => {
     if (content.children.length === 0) {
       content.textContent = '';
@@ -742,9 +1079,11 @@ const handleExpandableContent = (contents) => {
       [...content.children].forEach(child => emptyContent(child));
     }
   }
-  //: clone content data to an array of objects and empty node              ://
+
+  // clone content data to an array of objects and empty node
   [...contents].forEach(content => {
-    //. copy original content node and hide it                              .//
+
+    // copy original content node and hide it
     const wrapper = document.createElement('div');
     wrapper.className = 'wrapper';
     const contentCopy = content.cloneNode(true);
@@ -752,7 +1091,8 @@ const handleExpandableContent = (contents) => {
     contentCopy.classList.add('js-expanded');
     contentCopy.classList.add('expandedHidden');
     content.classList.add('expandableVisible');
-    //. wrap content and content copy inside a wrapper                      .//
+
+    // wrap content and content copy inside a wrapper
     content.parentNode.insertBefore(wrapper, content);
     wrapper.append(content, contentCopy);
     contentData = [...contentData, {
@@ -760,59 +1100,68 @@ const handleExpandableContent = (contents) => {
       html: content.innerHTML,
       children: getChildren(content)
     }];
-    //. empty content of original content node                              .//
+
+    // empty content of original content node
     emptyContent(content);
   });
-  //: add data from content database to empty content                       ://
+
+  // add data from content database to empty content
   [...contents].forEach((content, index) => {
     const currentContentData = contentData[index];
     const minMobileHeight = 300;
-    //. get available space for reduced content                             .//
+
+    // get available space for reduced content
     content.style.height = '100%';
     contentData[index].availableHeight = window.innerWidth >= mediaDesktop
     ? content.clientHeight
     : minMobileHeight;
     const { availableHeight, fullHeight, html } = currentContentData;
-    //. check if content fits available space                               .//
+
+    // check if content fits available space
     if (availableHeight >= fullHeight) {
       content.innerHTML = html;
+
     } else {
       content.parentNode.classList.add('collapsed');
-      //. show read more button and update available space                  .//
+
+      // show read more button and update available space
       readMoreButtons[index].classList.add('tab__readMore--visible');
       contentData[index].availableHeight = window.innerWidth >= mediaDesktop
       ? content.clientHeight
       : minMobileHeight;
       const { availableHeight } = currentContentData;
-      //. reduce content using recursive function                           .//
+
+      // reduce content using recursive function
       reduceContent(currentContentData, content, availableHeight, content);
       content.parentNode.style.height = `${availableHeight}px`;
     }
   });
 }
-//| HANDLE 'READ MORE' BUTTONS                                              |//
+
 const handleReadMore = (e) => {
+
   const { index, parentNode } = e.target;
   const wrapper = parentNode.querySelector('.wrapper');
   const expandableNode = parentNode.querySelector('.js-expandable');
   const expandedNode = document.querySelectorAll('.js-expanded')[index];
   const currentContentData = contentData[index];
   const { availableHeight } = currentContentData;
-  //: expand tab                                                            ://
+
+  // expand tab
   if (wrapper.classList.contains('collapsed')) {
-    //: reduce content using recursive function                             ://
+
+    // reduce content using recursive function
     wrapper.style.height = `${contentData[index].fullHeight}px`;
     expandableNode.classList.add('expandableHidden');
     expandableNode.classList.remove('expandableVisible');
     expandedNode.classList.remove('expandedHidden');
     expandedNode.classList.add('expandedVisible');
-    //: change buttons label                                                ://
+    
     e.target.innerHTML = 'Show Less';
-    //: remove 'collapsed' class flag                                       ://
     wrapper.classList.remove('collapsed');
-    //: stop fast scroll functionality                                      ://
     isFastScroll = false;
-  //: collapse tab                                                          ://
+
+  // collapse tab
   } else {    
     expandableNode.style.height = '';
     wrapper.style.height = `${contentData[index].availableHeight}px`;
@@ -821,18 +1170,17 @@ const handleReadMore = (e) => {
     expandedNode.classList.add('expandedHidden');
     expandedNode.classList.remove('expandedVisible');
     reduceContent(currentContentData, expandableNode, availableHeight, expandableNode);
-    //: change buttons label                                                ://
+    
     e.target.innerHTML = 'Read More';
-    //: remove 'collapsed' class flag                                       ://
     wrapper.classList.add('collapsed');
-    //: enable fast scroll functionality                                    ://
     isFastScroll = true;
   }
   shouldSectionsBeUpdated = true;
 }
-//| HANDLE JUMPING TO NEXT SECTION ON SCROLL                                |//
+
 const handleFastScroll = (e) => {
-  //: function resetting timeout and scroll accumulator                     |//
+
+  // function resetting timeout and scroll accumulator
   /* const reset = () => {
     clearTimeout(scrollTimeoutId);
     scrollTimeoutId = null;
@@ -847,7 +1195,7 @@ const handleFastScroll = (e) => {
       }
     }
   }
-  //: when scrolling down                                                   |//
+  // when scrolling down
   /* if (e.deltaY > 0) {
     scrollTotal += 1;
     if (scrollTimeoutId === null) {
@@ -860,7 +1208,7 @@ const handleFastScroll = (e) => {
         }
       }, 100);
     }
-    //: when scrolling up                                                     |//
+    // when scrolling up
   } else {
     reset();
   } */
@@ -869,226 +1217,17 @@ const handleFastScroll = (e) => {
     goToNextSection();
   }
 }
-//| LOAD INTRO GRID CONTENT                                                 |//
-const loadIntroContent = () => {
-  [...introText].forEach(char => {
-    const gridItem = char !== ' '
-    ? `<li
-        class="grid__item grid__item--js"
-        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
-      >
-        <svg class="grid__char grid__char--svg grid__char--js" viewBox="0 0 50 100">
-          <use href="assets/svg/letters.svg#${char}"></use>
-        </svg>
-      </li>`
-    : `<li
-        class="grid__item grid__item--js"
-        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
-      >
-        <div class="grid__char grid__char--separator grid__char--js"></div>
-      </li>`;
-    introGrid.insertAdjacentHTML('beforeend', gridItem);
-  });
-}
-//| HANDLE INTRO LOADER                                                     |//
-//: assign size and position of one element to another                      ://
-const setSizeAndPosition = (element, target, size) => {
-  element.style.top = `${target.offsetTop}px`;
-  element.style.left = `${target.offsetLeft}px`;
-  element.style.width = size ? `${size}px` : `${target.clientWidth}px`;
-  element.style.height = size ? `${size}px` : `${target.clientHeight}px`;
-}
-//: set initial position of intro loader to be animated later               ://
-const setIntroLoaderPosition = () => {
-  introLoader.style.top = `${introLoader.offsetTop}px`;
-  introLoader.style.left = `${introLoader.offsetLeft}px`;
-}
-//: animate new size and position of intro loader                           ://
-const handleIntroLoader = () => {
-  introLoader.classList.add('intro__loader--transition');
-  introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
-  setSizeAndPosition(introLoader, endingBefore, introItemHeight);
-}
-//| HANDLE INTRO ANIMATION                                                  |//
-const handleIntroAnimation = () => {
-  //: variables                                                             ://
-  let charIndex = 0;
-  const charTotal = introText.length;
-  let maxColNum = charTotal;
-  let minColNum = 6;
-  const rowGap = 2;
-  let gridTopMargin = null;
-  //: intervals                                                             ://
-  const loadCharInterval = 30;
-  const translateCharInterval = 100;
-  const introSecondTimeoutInterval = loadCharInterval * charTotal + 1000;
-  const introGridViewInterval = 2000;
-  const inBetweenTransition = 500;
-  //: FUNCTIONS                                                             ://
-  //. set position of ending elements                                       .//
-  const setEndings = (index) => {
-    if (index < charTotal) {
-      const beforeChild = introGrid.children[0];
-      const afterChild = introGrid.children[index];
-      var endingBeforeTop  = beforeChild.offsetTop;
-      var endingBeforeLeft = beforeChild.offsetLeft - introItemWidth;
-      var endingAfterTop   = afterChild.offsetTop;
-      var endingAfterLeft  = afterChild.offsetLeft;
-    } else {
-      const prevAfterChildOffset = introGrid.children[index - 1].offsetLeft;
-      var endingAfterLeft = prevAfterChildOffset + introItemWidth;
-    }
-    endingBefore.style.top  = `${endingBeforeTop}px`;
-    endingBefore.style.left = `${endingBeforeLeft}px`;
-    endingAfter.style.top   = `${endingAfterTop}px`;
-    endingAfter.style.left  = `${endingAfterLeft}px`;
-  }
-  //. show consecutive characters of intro text                             .//
-  const loadChar = () => {
-    if (charIndex < charTotal) {
-      const currentItem = introGrid.children[charIndex];
-      currentItem.style.width = `${introItemWidth}px`;
-      currentItem.style.height = `${introItemHeight}px`;
-      currentItem.classList.add('grid__item--visible');
-      setEndings(charIndex);
-      charIndex++;
-    } else {
-      setEndings(charIndex);
-      clearInterval(introCharIntervalId);
-    }
-  }
-  //. animate characters position on introGrid change                       .//
-  const handleChars = (chars, isInitial) => {
-    if (isInitial) {
-      [...chars].forEach((char, index) => {
-        const {offsetTop, offsetLeft} = introGrid.children[index];
-        char.style.top = `${offsetTop}px`;
-        char.style.left = `${offsetLeft}px`;
-        char.style.width = `${introItemWidth}px`;
-        char.style.height = `${introItemHeight}px`;
-        char.classList.add('grid__char--transition');
-      });
-    } else {
-      [...chars].forEach((char, index) => {
-        const bias = maxColNum - minColNum < minColNum
-        ? minColNum - (maxColNum - minColNum)
-        : 0;
-        if (index >= maxColNum - bias) {
-          const { offsetTop, offsetLeft } = introGrid.children[index];
-          char.style.top = `${offsetTop}px`;
-          char.style.left = `${offsetLeft}px`;
-          if (!char.classList.contains('grid__char--faded')) {
-            char.classList.add('grid__char--faded');
-          }
-        }
-      });
-    }
-  }
-  //. calculate introGrid's gaps and items paddings                         .//
-  const getColGap = () => {
-    const rowNum = charTotal / minColNum;
-    const gridHeight = (rowNum * introItemHeight) + ((rowNum - 1) * rowGap);
-    return (gridHeight - (minColNum * introItemWidth)) / (minColNum - 1);
-  }
-  //. set introGrid's top margin                                            .//
-  const updateTopMargin = () => {
-    const topMargin = (window.innerHeight - introGrid.clientHeight) / 2;
-    if (topMargin !== gridTopMargin || gridTopMargin === null) {
-      gridTopMargin = topMargin;
-      introGrid.style.marginTop = `${gridTopMargin}px`;
-    }
-  }
-  //: configure introGrid on start                                          ://
-  introGrid.classList.add('grid--visible');
-  introGrid.style.gridTemplateColumns = `repeat(${maxColNum}, 1fr)`;
-  updateTopMargin();
-  //: set sizes and position of ending elements                             ://
-  endingBefore.style.width = `${introItemWidth}px`;
-  endingBefore.style.height = `${introItemHeight}px`;
-  endingAfter.style.width = `${introItemWidth}px`;
-  endingAfter.style.height = `${introItemHeight}px`;
-  setEndings(charIndex);
 
-  //:                                                                       ://
-  //: FIRST TIMEOUT                                                         ://
-  clearTimeout(introFirstTimeoutId);
-  clearTimeout(introSecondTimeoutId);
-  clearTimeout(introThirdTimeoutId);
-  clearTimeout(introForthTimeoutId);
-  introFirstTimeoutId = setTimeout(() => {
-    //. show ending elements                                                .//
-    endingBefore.classList.add('intro__ending--visible');
-    endingAfter.classList.add('intro__ending--visible');
-    introLoader.classList.add('intro__loader--hidden');
-    introLoader.classList.remove('intro__loader--transition');
-    //. remove temporary child                                              .//
-    introCharIntervalId = setInterval(() => {
-      loadChar();
-      updateTopMargin();
-    }, loadCharInterval);
-    //:                                                                     ://
-    //: SECOND TIMEOUT                                                      ://
-    introSecondTimeoutId = setTimeout(() => {
-      //. assign fixed positioning to svg elements                          .//
-      const gridChars = document.querySelectorAll('.grid__char--js');
-      endingAfter.classList.remove('intro__ending--visible');
-      endingBefore.classList.remove('intro__ending--visible');
-      handleChars(gridChars, true);
-      //. set introGrid's column and row gaps to make introGrid a square    .//
-      const columnGap = getColGap();
-      introGrid.style.columnGap = `${columnGap}px`;
-      introGrid.style.rowGap = `${rowGap}px`;
-      //. decrease number of grid columns                                   .//
-      introCharIntervalId = setInterval(() => {
-        if (maxColNum >= minColNum) {
-          introGrid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
-          handleChars(gridChars, false);
-          updateTopMargin();
-        } else {
-          //: when interval ends                                            ://
-          clearInterval(introCharIntervalId);
-          setSizeAndPosition(introLoader, introGrid);
-          //. show intro loader                                             .//
-          introLoader.classList.remove('intro__loader--hidden');
-          const delay = introGridViewInterval - inBetweenTransition;
-          introLoader.style.transition = `
-            opacity ${inBetweenTransition}ms ${delay}ms,
-            visibility 0s ${delay}ms
-          `;
-          //:                                                               ://
-          //: THIRD TIMEOUT                                                 ://
-          introThirdTimeoutId = setTimeout(() => {
-            introLoader.classList.add('intro__loader--transition');
-            introLoader.style.transition = '';
-            introLoader.style.transitionDuration = `${inBetweenTransition}ms`;
-            introGrid.classList.remove('grid--visible');
-            setSizeAndPosition(introLoader, introBox);
-            //:                                                             ://
-            //: FORTH TIMEOUT                                               ://
-            introForthTimeoutId = setTimeout(() => {
-              //. activeate menu items                                      .//
-              [...menuItems].forEach(item => {
-                item.classList.add('menu__item--active');
-              });
-              //. show introBox                                             .//
-              visuals.classList.add('visuals--visible');
-              //. hide intro                                                .//
-              intro.classList.add('intro--hidden');
-              //. show page header                                            .//
-              pageHeader.classList.add('pageHeader--visible');
-            }, inBetweenTransition);
-          }, introGridViewInterval);
-        }
-      }, translateCharInterval);    
-    }, introSecondTimeoutInterval);
-  }, introFirstTimeoutInterval);
-}
-//| VALIDATE CONTACT FORM                                                   |//
+//#endregion
+
+//#region [ Horizon ] CONTACT FORM
+
 const validateForm = (e) => {
   e.preventDefault();
-  //: backend validation => send form using ajax request                    ://
   const xhr = new XMLHttpRequest();
   const url = 'form.php';
+
+  // backend validation => send form using ajax request
   xhr.open('POST', url, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onreadystatechange = () => {
@@ -1101,6 +1240,7 @@ const validateForm = (e) => {
       }
     }
   };
+
   const formSubmitVal  = formSubmitButton.value;
   const userNameVal    = userName.value;
   const userEmailVal   = userEmail.value;
@@ -1117,8 +1257,9 @@ const validateForm = (e) => {
   });
   xhr.send(data);
 }
-//| HANDLE ALERTS                                                           |//
+
 const handleAlerts = (data, isFailed) => {
+
   const margin = window.innerWidth >= mediaDesktop ? 20 : 5;
   let heightTotal = margin;
   let delay = 0;
@@ -1126,11 +1267,13 @@ const handleAlerts = (data, isFailed) => {
   const alertTimeoutInterval = 5000;
   const transitionTime = 250;
   let visibleAlerts = [];
-  //: close alert box                                                       ://
+
+  // close alert box
   const quitAlertBox = (e) => {
     const self = e.target ? e.target : e;
     const { parentNode, index } = self;
-    //. hide clicked alert box                                              .//
+
+    // hide clicked alert box
     parentNode.style.top = `${parentNode.clientHeight * -1}px`;
     parentNode.classList.remove('alerts__box--visible');
     delay = index * delayInterval;
@@ -1139,7 +1282,8 @@ const handleAlerts = (data, isFailed) => {
       visibility 0s ${delay + transitionTime * 2}ms,
       width ${transitionTime}ms ${delay}ms
     `;
-    //. update alert boxes below                                            .//
+
+    // update alert boxes below
     if (e.target) {
       visibleAlerts = visibleAlerts.filter(alert => alert.button.index !== index);
       visibleAlerts
@@ -1150,18 +1294,22 @@ const handleAlerts = (data, isFailed) => {
         alert.button.index--;
       });
     }
-    //. clear timeout and event listener                                    .//
+
+    // clear timeout and event listener
     clearTimeout(self.alertTimeoutId);
     self.alertTimeoutId = null;
     self.removeEventListener('click', quitAlertBox);
   }
-  //: handle active alerts                                                  ://
+
+  // handle active alerts
   const alerts = isFailed ? ['failure'] : Object.keys(data).filter(key => data[key]);
   [...alerts].forEach((alert, index) => {
-    //. select elements                                                     .//
+
+    // select elements
     const alertBox = document.querySelector(`.alerts__box--js-${alert}`);
     const alertButton = document.querySelector(`.alerts__button--js-${alert}`);
-    //. handle appearance of alert boxes                                    .//
+
+    // handle appearance of alert boxes
     const alertBoxHeight = alertBox.clientHeight;
     alertBox.style.top = `${heightTotal}px`;
     alertBox.style.transition = `
@@ -1172,22 +1320,26 @@ const handleAlerts = (data, isFailed) => {
     heightTotal += alertBoxHeight + margin;
     delay += delayInterval;
     alertBox.classList.add('alerts__box--visible');
-    //. clear timeout and event                                             .//
+
+    // clear timeout and event
     clearTimeout(alertButton.alertTimeoutId);
     alertButton.alertTimeoutId = null;
     alertButton.removeEventListener('click', quitAlertBox);
-    //. set timeout and event                                               .//
+
+    // set timeout and event
     alertButton.alertTimeoutId = setTimeout(() => {
       quitAlertBox(alertButton);
     }, alertTimeoutInterval);
     alertButton.index = index;
     alertButton.addEventListener('click', quitAlertBox);
-    //. create array of alert objects                                       .//
+
+    // create array of alert objects
     visibleAlerts = [...visibleAlerts, {
       box: alertBox,
       button: alertButton
     }];
-    //. handle inputs appearance                                            .//
+
+    // handle inputs appearance
     switch (alert) {
       case 'emptyEmailError':
       case 'invalidEmailError':
@@ -1208,8 +1360,7 @@ const handleAlerts = (data, isFailed) => {
     }
   });
 }
-//| VALIDATE FORM INPUTS                                                    |//
-//: handle input appearance on change                                       ://
+
 const handleInputStyle = (input, isValid) => {
   if (isValid) {
     if (input.classList.contains('form__input--invalid'))
@@ -1219,14 +1370,14 @@ const handleInputStyle = (input, isValid) => {
     input.classList.add('form__input--invalid');
   }
 }
-//: validate e-mail input                                                   ://
+
 const validateEmail = (e) => {
   const self = e.target;
   self.value.match(/^\S+@\S+\.\S+$/)
   ? handleInputStyle(self, true)
   : handleInputStyle(self, false);
 }
-//: validate phone number input                                             ://
+
 const validatePhone = (e) => {
   const self = e.target;
   self.value.match(/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{3}$/i)
@@ -1234,7 +1385,7 @@ const validatePhone = (e) => {
   ? handleInputStyle(self, true)
   : handleInputStyle(self, false);
 }
-//: validate message input                                                  ://
+
 const validateMessage = (e) => {
   const self = e.target;
   self.value.length > 0
@@ -1242,9 +1393,9 @@ const validateMessage = (e) => {
   : handleInputStyle(self, false);
 }
 
-//|                                                                         |//
-//| GLOBAL VARIABLES                                                        |//
-//: OVERALL                                                                 ://
+//#endregion
+
+//#region [ Horizon ] VARIABLES - OVERALL
 let isIntroMode = true;
 let isBackToIntroMode = false;
 let isMenuTransformMode = false;
@@ -1256,15 +1407,16 @@ const mediaDesktop = 1200;
 let lastMenuItemIndex = 0;
 let scrollTimeoutId = null;
 let scrollTotal = 0;
-//: INTERVALS                                                               ://
-//. intro                                                                   .//
+//#endregion
+//#region [ Horizon ] VARIABLES - INTERVALS
+// intro
 let introFirstTimeoutId = null;
 let introSecondTimeoutId = null;
 let introThirdTimeoutId = null;
 let introForthTimeoutId = null;
 let introCharIntervalId = null;
 const introFirstTimeoutInterval = 600;
-//. menu                                                                    .//
+// menu
 let menuSmFirstTimeoutId = null;
 let menuSmSecondTimeoutId = null;
 let menuLgFirstTimeoutId = null;
@@ -1273,7 +1425,8 @@ const menuSmFirstTimeoutInterval = 300;
 const menuSmSecondTimeoutInterval = 600;
 const menuLgFirstTimeoutInterval = 500;
 const menuLgSecondTimeoutInterval = 500;
-//: INTRO                                                                   ://
+//#endregion
+//#region [ Horizon ] VARIABLES - INTRO
 let introText = 'jakub chojna frontend projects';
 const introItemWidth = 40;
 const introItemHeight = 2 * introItemWidth;
@@ -1282,7 +1435,8 @@ const introLoader = document.querySelector('.intro__loader--js');
 let introGrid = document.querySelector('.grid--js');
 const endingBefore = document.querySelector('.intro__ending--js-before');
 const endingAfter = document.querySelector('.intro__ending--js-after');
-//: MENU AND NAVIGATION                                                     ://
+//#endregion
+//#region [ Horizon ] VARIABLES - MENU
 const pageHeader = document.querySelector('.pageHeader--js');
 const visuals = document.querySelector('.visuals--js');
 const introBox = document.querySelector('.visuals__introBox--js');
@@ -1294,15 +1448,15 @@ const menu = document.querySelector('.menu--js');
 const menuItems = document.querySelectorAll('.menu__item--js');
 const menuLinks = document.querySelectorAll('.menu__link--js');
 const menuLabels = document.querySelectorAll('.label--js');
-
-//: NAVIGATION                                                              ://
+//#endregion
+//#region [ Horizon ] VARIABLES - NAVIGATION
 const navigation = document.querySelector('.navigation--js');
 const navigationBackButton = document.querySelector('.navigation__button--js-back');
 const navigationPrevButton = document.querySelector('.navigation__button--js-prev');
 const navigationNextButton = document.querySelector('.navigation__button--js-next');
 let currentNavigationIndex = null;
-
-//: MAIN CONTENT                                                            ://
+//#endregion
+//#region [ Horizon ] VARIABLES - MAIN CONTENT
 const pageContainer = document.querySelector('.pageContainer--js');
 const pageSections = document.querySelectorAll('.section--js');
 const sectionContainers = document.querySelectorAll('.section__container--js');
@@ -1338,8 +1492,8 @@ const items = [...menuItems].map((item, index) => ({
   height: item.clientHeight,
   currentSectionIndex: getCurrentSectionIndex(item.offsetTop + menu.offsetTop)
 }));
-
-//. CONTACT FORM                                                            .//
+//#endregion
+//#region [ Horizon ] VARIABLES - CONTACT FORM
 const formInputs = document.querySelectorAll('.form__input--js');
 const userName = document.querySelector('.form__input--js-name');
 const userEmail = document.querySelector('.form__input--js-email');
@@ -1350,8 +1504,9 @@ const formSubmitButton = document.querySelector('.form__submit--js');
 
 let contentData = [];
 const expandableContent = document.querySelectorAll('.js-expandable');
+//#endregion
 
-//| FUNCTION CALLS ON PAGE LOAD                                             |//
+//#region [ Horizon ] FUNCTION CALLS
 
 // page load with no animation intro
 /* intro.classList.add('intro--hidden');
@@ -1390,15 +1545,17 @@ fetch('https://api.github.com/users/jchojna/repos')
   .then(resp => handleRepo(resp));
 // ! project id must fit repo id
 
+//#endregion
 
-//|                                                                         |//
-//| EVENT LISTENERS                                                         |//
-//: MENU AND NAVIGATION                                                     ://
+//#region [ Horizon ] EVENT LISTENERS
+
+// MENU AND NAVIGATION
 window.addEventListener('resize', updateSectionsOffsets);
 window.addEventListener('resize', updateMenuItemsOffsets);
 pageHeader.addEventListener('resize', handleIntroBox);
 pageHeader.addEventListener('scroll', handleIntroBox);
-//: MAIN CONTENT                                                            ://
+
+// MAIN CONTENT
 pageContainer.addEventListener('mousedown', handleUserActivity);
 pageContainer.addEventListener('touchstart', handleUserActivity);
 pageContainer.addEventListener('scroll', handleMenuOnScroll);
@@ -1411,7 +1568,8 @@ pageContainer.addEventListener('wheel', handleFastScroll);
   link.addEventListener('mousemove', handleIntroMenu);
 });
 burgerButton.addEventListener('click', handleBurgerButton);
-//: RESUME                                                                  ://
+
+// RESUME
 [...resumeButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...resumeTabs], index));
@@ -1420,7 +1578,8 @@ burgerButton.addEventListener('click', handleBurgerButton);
   button.addEventListener('click', () =>
   handleAccordion([...resumeSubtabs], index));
 });
-//: PROJECT SECTIONS                                                        ://
+
+// PROJECT SECTIONS
 [...tasktimerButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...tasktimerTabs], index));
@@ -1437,27 +1596,34 @@ burgerButton.addEventListener('click', handleBurgerButton);
   button.addEventListener('click', () =>
   handleAccordion([...quotesTabs], index));
 });
-//: OTHER PROJECTS                                                          ://
+
+// OTHER PROJECTS
 if (window.innerWidth < mediaDesktop) {
   [...otherProjectsButtons].forEach((button, index) => {
     button.addEventListener('click', () =>
     handleAccordion([...otherProjectsTabs], index));
   });
 }
-//: 'READ MORE' BUTTONS                                                     ://
+
+// 'READ MORE' BUTTONS
 [...readMoreButtons].forEach((button, index) => {
   button.index = index;
   button.addEventListener('click', handleReadMore);
 });
-//: SAVE FORM INPUTS VALUES TO LOCAL STORAGE                                ://
+
+// SAVE FORM INPUTS VALUES TO LOCAL STORAGE
 [...formInputs].forEach(input => {
   input.addEventListener('keyup', (e) => localStorage.setItem(e.target.id, e.target.value));
   input.value = localStorage.getItem(input.id) ? localStorage.getItem(input.id) : '';
 });
-//: VALIDATE CONTACT FORM                                                   ://
+
+// VALIDATE CONTACT FORM
 formSubmitButton.addEventListener('click', validateForm);
-//: VALIDATE FORM INPUTS                                                    ://
+
+// VALIDATE FORM INPUTS
 userEmail.addEventListener('keyup', validateEmail);
 userPhone.addEventListener('keyup', validatePhone);
 userMessage.addEventListener('keyup', validateMessage);
 window.addEventListener('resize', handleWindowResize);
+
+//#endregion
