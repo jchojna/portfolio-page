@@ -48,7 +48,6 @@
     grid-area: technologies;
   }
   &--stats {
-    font-family: 'Antonio Regular';
     font-size: 1.3em;
     grid-area: stats;
     overflow: initial;
@@ -120,6 +119,7 @@
   &__header {
     align-items: flex-start;
     display: flex;
+    font-family: 'Antonio Bold';
     font-size: $tabHeader-size-sm;
     line-height: 1;
     margin: 0;
@@ -207,6 +207,8 @@
       & {
         padding: 0;
         font-size: $tabHeading-size-lg;
+        /* -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale; */
 
         &--about {
           margin-bottom: 20px;
@@ -231,19 +233,16 @@
   }
 
   &__description {
-    font-family: 'Antonio Regular';
     font-size: 18px;
     line-height: 1.4;
     margin: 0;
     padding-top: 20px;
 
     &--small {
-      font-family: 'Antonio Bold';
       font-size: 1em;
     }
 
     &--about {
-      font-family: 'Antonio Bold';
       font-size: 1.5em;
       color: $color-about-white;
       margin: 0 $offset-right-sm 20px $offset-left-sm;

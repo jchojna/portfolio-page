@@ -1520,7 +1520,8 @@ pageHeader.classList.add('pageHeader--visible');
 setIntroLoaderPosition();
 loadIntroContent();
 handleIntroMenu();
-//: handle page's accordions                                                ://
+
+// handle page's accordions
 handleAccordion([...resumeSubtabs]);
 handleAccordion([...resumeTabs], undefined, 0);
 handleAccordion([...tasktimerTabs]);
@@ -1530,21 +1531,23 @@ handleAccordion([...quotesTabs]);
 if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
-//: collapse expandable content on page load                                ://
+
+// collapse expandable content on page load
 window.onload = () => {
   handleIntroAnimation();
   handleIntroLoader();
   handleExpandableContent(expandableContent);
-  //: set each section's container top margin                               ://
+
+  // set each section's container top margin
   [...sectionContainers].forEach(container => {
     handleTopMargins(container, minTopMargin);
   });
 };
 
-//: fetch github api                                                        ://
-fetch('https://api.github.com/users/jchojna/repos')
+// fetch github api
+/* fetch('https://api.github.com/users/jchojna/repos')
   .then(resp => resp.json())
-  .then(resp => handleRepo(resp));
+  .then(resp => handleRepo(resp)); */
 // ! project id must fit repo id
 
 //#endregion
@@ -1562,7 +1565,7 @@ pageContainer.addEventListener('mousedown', handleUserActivity);
 pageContainer.addEventListener('touchstart', handleUserActivity);
 pageContainer.addEventListener('scroll', handleMenuOnScroll);
 pageContainer.addEventListener('scroll', handleNavOnScroll);
-pageContainer.addEventListener('wheel', handleFastScroll);
+//pageContainer.addEventListener('wheel', handleFastScroll);
 
 [...menuLinks].forEach((link, index) => {
   link.index = index;
