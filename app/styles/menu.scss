@@ -134,7 +134,8 @@
     }
   }
   
-  &__link {
+  &__button {
+    @include button;
     display: flex;
     fill: $intro-link-color;
     height: $menu-item-height;

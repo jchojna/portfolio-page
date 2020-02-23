@@ -14,8 +14,8 @@ const handleWindowResize = () => {
 }
 
 const handleUserActivity = () => {
-  if (shouldSectionsBeUpdated) updateSectionsOffsets();
-  isScrollEnabled = true;
+  if (flags.shouldSectionsBeUpdated) updateSectionsOffsets();
+  flags.isScrollEnabled = true;
 }
 
 const updateMenuItemsOffsets = () => {
@@ -28,7 +28,7 @@ const updateSectionsOffsets = () => {
   [...sections].forEach((section, index) => {
     section.offset = pageSections[index].offsetTop;
   });
-  shouldSectionsBeUpdated = false;
+  flags.shouldSectionsBeUpdated = false;
 }
 
 const getCurrentItemIndex = (cursorYPosition) => {
@@ -74,61 +74,9 @@ const setSizeAndPosition = (element, target, size) => {
   element.style.height = size ? `${size}px` : `${target.clientHeight}px`;
 }
 
-const handleColorChange = (index, action) => {
-  const introLinkId = sections[index].id;
-
-  if (action === 'activate') {
-    menuLinks[index].classList.add(`menu__link--intro-${introLinkId}`);
-    introBox.classList.add(`visuals__introBox--${introLinkId}`);
-  } else if (action === 'deactivate') {
-    menuLinks[index].classList.remove(`menu__link--intro-${introLinkId}`);
-    introBox.classList.remove(`visuals__introBox--${introLinkId}`);
-  }
-}
-
 //#endregion
 
 //#region [ Horizon ] INTRO
-
-const handleIntroBox = (e) => {
-  
-  // disable transition effect on resize
-  if (e && (e.type === 'resize' || e.type === 'scroll')) {
-    !introBox.classList.contains('visuals__introBox--onResize')
-    ? introBox.classList.add('visuals__introBox--onResize')
-    : false;
-  } else {
-    introBox.classList.contains('visuals__introBox--onResize')
-    ? introBox.classList.remove('visuals__introBox--onResize')
-    : false;
-  }
-  const currentYOffset = items[lastMenuItemIndex].offset;
-  const viewOffset = pageHeader.scrollTop;
-
-  // assign size and position
-  introBox.style.top = `${currentYOffset - viewOffset}px`;
-}
-
-const handleIntroMenu = (e) => {
-
-  // handle intro menu on mouse event
-  if (e && e.type === 'mousemove' && window.innerWidth >= mediaTablet) {
-
-    if (!isMenuTransformMode) {
-      const viewOffset = pageHeader.scrollTop;
-      const currentItemIndex = getCurrentItemIndex(e.clientY - viewOffset);
-
-      introBox.style.top = `${items[currentItemIndex].offset}px`;
-      handleColorChange(lastMenuItemIndex, 'deactivate');
-      lastMenuItemIndex = currentItemIndex;
-      handleColorChange(lastMenuItemIndex, 'activate');
-    }
-  } else {
-    // handle intro menu on page load
-    handleIntroBox();
-    handleColorChange(lastMenuItemIndex, 'activate');
-  }
-}
 
 const handleIntroAnimation = () => {
   
@@ -330,6 +278,25 @@ const handleIntroAnimation = () => {
   }, introFirstTimeoutInterval);
 }
 
+const handleIntroBox = (e) => {
+  
+  // disable transition effect on resize
+  if (e && (e.type === 'resize' || e.type === 'scroll')) {
+    !introBox.classList.contains('visuals__introBox--onResize')
+    ? introBox.classList.add('visuals__introBox--onResize')
+    : false;
+  } else {
+    introBox.classList.contains('visuals__introBox--onResize')
+    ? introBox.classList.remove('visuals__introBox--onResize')
+    : false;
+  }
+  const currentYOffset = items[lastMenuItemIndex].offset;
+  const viewOffset = pageHeader.scrollTop;
+
+  // assign size and position
+  introBox.style.top = `${currentYOffset - viewOffset}px`;
+}
+
 const loadIntroContent = () => {
   
   [...introText].forEach(char => {
@@ -367,20 +334,36 @@ const handleIntroLoader = () => {
 
 //#region [ Horizon ] MENU
 
-const handleMenuItemChange = (index) => {
-  handleColorChange(lastMenuItemIndex, 'deactivate');
-  handleMenuOnClick(lastMenuItemIndex, 'deactivate');
-  lastMenuItemIndex = index; // ! what if both are the same
-  handleColorChange(lastMenuItemIndex, 'activate');
-  handleMenuOnClick(lastMenuItemIndex, 'activate');
-  handleMenuIndicator(lastMenuItemIndex);
+const handleIntroMenu = (e) => {
+  // handle intro menu on mouse event
+  if (e && e.type === 'mousemove' && window.innerWidth >= mediaTablet) {
+
+    if (flags.isIntroMode && !flags.isMenuTransforming) {
+      const viewOffset = pageHeader.scrollTop;
+      const currentItemIndex = getCurrentItemIndex(e.clientY - viewOffset);
+
+      introBox.style.top = `${items[currentItemIndex].offset}px`;
+      handleColorChange(lastMenuItemIndex, 'deactivate');
+      lastMenuItemIndex = currentItemIndex;
+      handleColorChange(lastMenuItemIndex, 'activate');
+    }
+
+  // handle intro menu on page load
+  } else {
+    handleIntroBox();
+    handleColorChange(lastMenuItemIndex, 'activate');
+  }
 }
 
-const handleMenuItemClick = (e) => {
+const handleIntroMenuItemClick = (e) => {
+
+  if (!flags.isIntroMode) return false;
+  if (flags.isMenuTransforming) return false;
+  console.log('DISABLING INTRO MODE');
 
   const activeIndex = e.target.index;
+  flags.isMenuTransforming = true;
   updateSectionsOffsets();
-  isMenuTransformMode = true;
 
   //#region [ Horizon ] ON MOBILE DEVICES
   if (window.innerWidth < mediaTablet) {
@@ -413,8 +396,8 @@ const handleMenuItemClick = (e) => {
     });
 
     // set initial link width as style property in order to be animated
-    const linkWidth = menuLinks[activeIndex].clientWidth;
-    menuLinks[activeIndex].style.width = `${linkWidth}px`;
+    const linkWidth = menuButtons[activeIndex].clientWidth;
+    menuButtons[activeIndex].style.width = `${linkWidth}px`;
     items[activeIndex].width = linkWidth;
 
     // set backgrounds startings heights
@@ -466,11 +449,11 @@ const handleMenuItemClick = (e) => {
             item.classList.remove('menu__item--visible');
             item.classList.add('menu__item--minimized');
             item.style.top = 0;
-            items[index].width = menuLinks[index].clientWidth;
-            menuLinks[index].classList.add(`menu__link--intro-${sectionId}`);
+            items[index].width = menuButtons[index].clientWidth;
+            menuButtons[index].classList.add(`menu__button--intro-${sectionId}`);
           }
           item.classList.remove('menu__item--animated');
-          menuLinks[index].style.width = '100%';
+          menuButtons[index].style.width = '100%';
         });
 
         // handle introBox and menu background
@@ -480,7 +463,7 @@ const handleMenuItemClick = (e) => {
         // show burger button
         burgerButton.classList.add('burgerButton--visible');
         burgerButton.classList.add(`burgerButton--${clickedElementId}`);
-        isMenuTransformMode = false;
+        isMenuTransforming = false;
       }, menuSmSecondTimeoutInterval);
     }, menuSmFirstTimeoutInterval);
 
@@ -488,23 +471,210 @@ const handleMenuItemClick = (e) => {
 
   //#region [ Horizon ] ON LARGE SCREEN DEVICES
 
-  } else if (window.innerWidth >= mediaDesktop && !isBackToIntroMode) {
-    isScrollEnabled = false;
+  } else if (window.innerWidth >= mediaDesktop) {
 
+    flags.isScrollEnabled = false;
+        
     // handle introBox
     introBox.style.top = 0;
     introBox.classList.add('visuals__introBox--content');
     introBox.classList.add('visuals__introBox--halfWindow');
-
     // handle menu indicator
     menuIndicator.classList.add('pageHeader__indicator--animated');
+    // handle navigation appearance
+    handleNavOnClick(activeIndex, 'activate');
+    // navigate to selected section
+    navigateToSection(activeIndex);
 
-    // handle menu items change only when content is visible
-    if (!isIntroMode) handleMenuItemChange(activeIndex);
+    //#region FIRST TIMEOUT
+    const firstTimeoutId = setTimeout(() => {
+
+      // move introBox to the left and make indicator thiner
+      introBox.classList.remove('visuals__introBox--centered');
+      introBox.classList.add('visuals__introBox--fullWidth');
+      menuIndicator.classList.add('pageHeader__indicator--narrowed');
+      // translate menu and content to the left of the screen
+      menu.classList.remove('menu--intro');
+      pageContainer.classList.add('pageContainer--visible');
+      // set classnames and colors for every menu button
+      handleMenuOnClick(activeIndex, 'activate');
+      // show navigation panel
+      navigation.classList.add('navigation--visible');
+
+      //#region SECOND TIMEOUT
+      const secondTimeoutId = setTimeout(() => {
+
+        // add smooth scrolling to page container
+        pageContainer.classList.add('pageContainer--smooth');
+
+        // hide menu backgrounds
+        menuUpperBackground.classList.add('visuals__background--hidden');
+        menuBottomBackground.classList.add('visuals__background--hidden');
+
+        // hide introBox
+        introBox.classList.remove('visuals__introBox--visible');
+
+        // add transition effects to navigation buttons
+        [...navigation.children].forEach(child =>
+          child.classList.add('navigation__button--animated'));
+
+        // handle global flags
+        flags.isMenuTransforming = false;
+        flags.isIntroMode = false;
+
+        clearTimeout(secondTimeoutId)
+      }, firstTimeoutLg);
+      //#endregion
+      clearTimeout(firstTimeoutId)
+    }, secondTimeoutLg);
+    //#endregion
+  }
+  //#endregion
+}
+
+const handleMenuItemClick = (e) => {
+
+  if (flags.isIntroMode) return false;
+  console.log('CONTENT MODE');
+
+  const activeIndex = e.target.index;
+
+  //#region [ Horizon ] ON MOBILE DEVICES
+  if (window.innerWidth < mediaTablet) {
+
+    const windowHeight = window.innerHeight;
+    const clickedintroItemHeight = items[activeIndex].height;
+    const clickedItemOffset = items[activeIndex].offset;
+    const clickedElementId = sections[activeIndex].id;
+    const viewOffset = pageHeader.scrollTop;
+    const upperBackgroundHeight = clickedintroItemHeight + clickedItemOffset - viewOffset;
+    const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
+
+    // change items colors and set introbox position
+    handleColorChange(lastMenuItemIndex, 'deactivate');
+    lastMenuItemIndex = activeIndex; // ! what if both are the same
+    handleColorChange(lastMenuItemIndex, 'activate');
+    handleIntroBox();
+
+    // remove introBox resize and scroll events
+    pageHeader.removeEventListener('resize', handleIntroBox);
+    pageHeader.removeEventListener('scroll', handleIntroBox);
+
+    // remove pointer events from pageHeader
+    pageHeader.classList.remove('pageHeader--intro');
+
+    // change menu items to be in a fixed position
+    [...menuItems].forEach((item, index) => {
+      item.classList.add('menu__item--mobileHeader');
+      item.style.top = `${items[index].offset - viewOffset}px`;
+    });
+
+    // set initial link width as style property in order to be animated
+    const linkWidth = menuButtons[activeIndex].clientWidth;
+    menuButtons[activeIndex].style.width = `${linkWidth}px`;
+    items[activeIndex].width = linkWidth;
+
+    // set backgrounds startings heights
+    menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
+    menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
+    
+    // ADD FIRST TIMEOUT
+    clearTimeout(menuSmFirstTimeoutId);
+    clearTimeout(menuSmSecondTimeoutId);
+    menuSmFirstTimeoutId = setTimeout(() => {
+      
+      const upwardsOffset = clickedItemOffset;
+      const downwardsOffset = windowHeight - clickedItemOffset - clickedintroItemHeight;
+
+      // set translated position of menu items
+      [...menuItems].forEach((item, index) => {
+        const currentItemOffset = items[index].offset;
+        item.style.top = index <= activeIndex // ! refactor
+        ? `${currentItemOffset - upwardsOffset}px`
+        : `${currentItemOffset + downwardsOffset}px`;
+        item.classList.add('menu__item--animated');
+      });
+      // set position of introBox
+      introBox.classList.add('visuals__introBox--content');
+      introBox.style.top = 0;
+      // handle menu background
+      menuUpperBackground.style.height = `${clickedintroItemHeight}px`;
+      menuBottomBackground.style.height = 0;
+      menuUpperBackground.classList.add('visuals__background--animated');
+      menuBottomBackground.classList.add('visuals__background--animated');
+      // remove pointer events from pageHeader
+      pageHeader.classList.remove('pageHeader--intro');
+      // scroll pageContainer to desired position
+      window.scrollTo({
+        left: 0,
+        top: sections[activeIndex].offset,
+        behavior: 'auto'
+      });
+      // add event handling mobile header appearance
+      window.addEventListener('scroll', handleMobileHeader);
+      
+      // ADD SECOND TIMEOUT
+      menuSmSecondTimeoutId = setTimeout(() => {
+
+        // handle menu items
+        [...menuItems].forEach((item, index) => {
+          const sectionId = sections[index].id;
+          if (index !== activeIndex) {
+            item.classList.remove('menu__item--visible');
+            item.classList.add('menu__item--minimized');
+            item.style.top = 0;
+            items[index].width = menuButtons[index].clientWidth;
+            menuButtons[index].classList.add(`menu__button--intro-${sectionId}`);
+          }
+          item.classList.remove('menu__item--animated');
+          menuButtons[index].style.width = '100%';
+        });
+
+        // handle introBox and menu background
+        introBox.classList.remove('visuals__introBox--visible');
+        menuUpperBackground.classList.add(`visuals__background--${clickedElementId}`);
+
+        // show burger button
+        burgerButton.classList.add('burgerButton--visible');
+        burgerButton.classList.add(`burgerButton--${clickedElementId}`);
+        isMenuTransforming = false;
+      }, menuSmSecondTimeoutInterval);
+    }, menuSmFirstTimeoutInterval);
+
+    //#endregion
+
+  //#region [ Horizon ] ON LARGE SCREEN DEVICES
+
+  } else if (window.innerWidth >= mediaDesktop && !flags.isBackToIntroMode) {
+
+    flags.isScrollEnabled = false;
+
+    
+    if (flags.isIntroMode) {
+      
+      console.log('INTRO');
+      // handle introBox
+      introBox.style.top = 0;
+      introBox.classList.add('visuals__introBox--content');
+      introBox.classList.add('visuals__introBox--halfWindow');
+      // handle menu indicator
+      menuIndicator.classList.add('pageHeader__indicator--animated');
+
+
+    } else {
+
+      console.log('CONTENT');
+      // handle menu items change only when content is visible
+      handleMenuItemChange(activeIndex);
+
+
+    }
 
     // handle color of menu items and introBox on click
+    /* 
     handleColorChange(lastMenuItemIndex, 'deactivate');
     handleColorChange(activeIndex, 'activate');
+    */
 
     // handle navigation appearance
     if (currentNavigationIndex !== null) {
@@ -554,13 +724,58 @@ const handleMenuItemClick = (e) => {
 
         // handle global flags
         isIntroMode = false;
-        isMenuTransformMode = true;
+        isMenuTransforming = true;
         
       }, menuLgSecondTimeoutInterval);
     }, menuLgFirstTimeoutInterval);
   }
   //#endregion
 }
+
+const handleColorChange = (index, action) => {
+  const introLinkId = sections[index].id;
+
+  if (action === 'activate') {
+    menuButtons[index].classList.add(`menu__button--intro-${introLinkId}`);
+    introBox.classList.add(`visuals__introBox--${introLinkId}`);
+  } else if (action === 'deactivate') {
+    menuButtons[index].classList.remove(`menu__button--intro-${introLinkId}`);
+    introBox.classList.remove(`visuals__introBox--${introLinkId}`);
+  }
+}
+
+const handleMenuOnClick = (activeIndex, action) => {
+
+  // add new appearance
+  if (action === 'activate') {
+    const currentId = sections[activeIndex].id;
+
+    [...menuButtons].forEach((button, buttonIndex) => {
+      button.classList.add(`menu__button--${currentId}`);
+      items[buttonIndex].currentSectionIndex = activeIndex;
+
+      if (buttonIndex === activeIndex) {
+        button.classList.add('menu__button--active');
+        button.classList.remove(`menu__button--intro-${currentId}`);
+      }
+    });
+
+  // remove current appearance
+  } else if (action === 'deactivate') {
+
+    [...menuButtons].forEach((button, buttonIndex) => {
+      const currentId = sections[items[buttonIndex].currentSectionIndex].id;
+      button.classList.remove(`menu__button--${currentId}`);
+
+      if (buttonIndex === activeIndex) {
+        button.classList.remove('menu__button--active');
+        button.classList.remove(`menu__button--intro-${currentId}`);
+      }
+    });
+  }
+}
+
+
 
 const handleBurgerButton = () => {
   
@@ -573,7 +788,7 @@ const handleBurgerButton = () => {
   const upwardsOffset = activeItemOffset;
   const downwardsOffset = windowHeight - activeItemOffset - activeintroItemHeight;
 
-  isMenuTransformMode = true;
+  isMenuTransforming = true;
   burgerButton.classList.remove('burgerButton--visible');
 
   // set starting position of menu items
@@ -586,11 +801,11 @@ const handleBurgerButton = () => {
     ? `${currentItemOffset - upwardsOffset}px`
     : `${currentItemOffset + downwardsOffset}px`;
 
-    menuLinks[index].style.width = `${items[index].width}px`;
+    menuButtons[index].style.width = `${items[index].width}px`;
     item.classList.remove('menu__item--minimized');
 
     index !== lastMenuItemIndex
-    ? menuLinks[index].classList.remove(`menu__link--intro-${currentId}`)
+    ? menuButtons[index].classList.remove(`menu__button--intro-${currentId}`)
     : false;
   });
 
@@ -644,9 +859,18 @@ const handleBurgerButton = () => {
       pageHeader.addEventListener('resize', handleIntroBox);
       pageHeader.addEventListener('scroll', handleIntroBox);
       
-      isMenuTransformMode = true;
+      isMenuTransforming = true;
     }, menuSmSecondTimeoutInterval);
   }, menuSmFirstTimeoutInterval);
+}
+
+const handleMenuItemChange = (index) => {
+  handleColorChange(lastMenuItemIndex, 'deactivate');
+  handleMenuOnClick(lastMenuItemIndex, 'deactivate');
+  lastMenuItemIndex = index; // ! what if both are the same
+  handleColorChange(lastMenuItemIndex, 'activate');
+  handleMenuOnClick(lastMenuItemIndex, 'activate');
+  handleMenuIndicator(lastMenuItemIndex);
 }
 
 const handleMobileHeader = () => {
@@ -689,20 +913,20 @@ const handleMenuOnScroll = () => {
     const newMenuItemIndex = getCurrentSectionIndex(0);
     if (newMenuItemIndex !== lastMenuItemIndex) {
       const prevId = sections[lastMenuItemIndex].id;
-      menuLinks[lastMenuItemIndex].classList.remove(`menu__link--intro-${prevId}`);
-      menuLinks[lastMenuItemIndex].classList.remove('menu__link--active');
+      menuButtons[lastMenuItemIndex].classList.remove(`menu__button--intro-${prevId}`);
+      menuButtons[lastMenuItemIndex].classList.remove('menu__button--active');
       introBox.classList.remove(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
 
       // index change
       lastMenuItemIndex = newMenuItemIndex;
-      menuLinks[lastMenuItemIndex].classList.add('menu__link--active');
+      menuButtons[lastMenuItemIndex].classList.add('menu__button--active');
       introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
       handleMenuIndicator(lastMenuItemIndex);
       if (!isFastScroll) isFastScroll = true;
     }
 
     // handle all menu items appearance on local id change
-    [...menuLinks].forEach((link, index) => {
+    [...menuButtons].forEach((link, index) => {
       const singleItemOffset = items[index].offset;
       const currentSingleItemIndex = items[index].currentSectionIndex;
       const newSingleItemIndex = getCurrentSectionIndex(singleItemOffset);
@@ -710,36 +934,9 @@ const handleMenuOnScroll = () => {
       if (newSingleItemIndex !== currentSingleItemIndex) {
         const currentId = sections[currentSingleItemIndex].id;
         const newId = sections[newSingleItemIndex].id;
-        link.classList.remove(`menu__link--${currentId}`);
+        link.classList.remove(`menu__button--${currentId}`);
         items[index].currentSectionIndex = newSingleItemIndex;
-        link.classList.add(`menu__link--${newId}`);
-      }
-    });
-  }
-}
-
-const handleMenuOnClick = (activeIndex, action) => {
-
-  // add new appearance
-  if (action === 'activate') {
-    const currentId = sections[activeIndex].id;
-    [...menuLinks].forEach((link, linkIndex) => {
-      link.classList.add(`menu__link--${currentId}`);
-      items[linkIndex].currentSectionIndex = activeIndex;
-      if (linkIndex === activeIndex) {
-        link.classList.add('menu__link--active');
-        link.classList.remove(`menu__link--intro-${currentId}`);
-      }
-    });
-
-  // remove current appearance
-  } else if (action === 'deactivate') {
-    [...menuLinks].forEach((link, linkIndex) => {
-      const currentId = sections[items[linkIndex].currentSectionIndex].id;
-      link.classList.remove(`menu__link--${currentId}`);
-      if (linkIndex === activeIndex) {
-        link.classList.remove('menu__link--active');
-        link.classList.remove(`menu__link--intro-${currentId}`);
+        link.classList.add(`menu__button--${newId}`);
       }
     });
   }
@@ -758,7 +955,7 @@ const handleBackButton = () => {
 
   const currentId = sections[lastMenuItemIndex].id;
   isBackToIntroMode = true;
-  isMenuTransformMode = true;
+  isMenuTransforming = true;
 
   // handle intro background
   menuUpperBackground.classList.remove('visuals__background--hidden');
@@ -791,7 +988,7 @@ const handleBackButton = () => {
 
   // change colors of menu items to default
   handleMenuOnClick(lastMenuItemIndex, 'deactivate');
-  menuLinks[lastMenuItemIndex].classList.add(`menu__link--intro-${currentId}`);
+  menuButtons[lastMenuItemIndex].classList.add(`menu__button--intro-${currentId}`);
   
   // FIRST TIMEOUT
   clearTimeout(menuLgFirstTimeoutId);
@@ -816,7 +1013,7 @@ const handleBackButton = () => {
       // handle global flags
       isIntroMode = true;
       isBackToIntroMode = false;
-      isMenuTransformMode = false;
+      isMenuTransforming = false;
     }, menuLgSecondTimeoutInterval);
   }, menuLgFirstTimeoutInterval);
 }
@@ -841,26 +1038,29 @@ const handlePrevNextButtonsVisibility = (index, action) => {
 
 const handleNavOnScroll = () => {
 
-  const updatedNavigationIndex = getCurrentNavigationIndex();
+  if (isNavVisible) {
 
-  // change navigation elements class names when index changes
-  if (updatedNavigationIndex !== currentNavigationIndex) {
-    const currentId = sections[currentNavigationIndex].id;
-    const nextId = sections[updatedNavigationIndex].id;
-
-    // remove current appearance
-    for (let child of navigation.children) {
-      child.classList.remove(`navigation__button--${currentId}`);
-      handlePrevNextButtonsVisibility(currentNavigationIndex, 'show');
-    }
-
-    // update navigation index
-    currentNavigationIndex = updatedNavigationIndex;
-
-    // add new appearance
-    for (let child of navigation.children) {
-      child.classList.add(`navigation__button--${nextId}`);
-      handlePrevNextButtonsVisibility(currentNavigationIndex, 'hide');
+    const updatedNavigationIndex = getCurrentNavigationIndex();
+  
+    // change navigation elements class names when index changes
+    if (updatedNavigationIndex !== currentNavigationIndex) {
+      const currentId = sections[currentNavigationIndex].id;
+      const nextId = sections[updatedNavigationIndex].id;
+  
+      // remove current appearance
+      for (let child of navigation.children) {
+        child.classList.remove(`navigation__button--${currentId}`);
+        handlePrevNextButtonsVisibility(currentNavigationIndex, 'show');
+      }
+  
+      // update navigation index
+      currentNavigationIndex = updatedNavigationIndex;
+  
+      // add new appearance
+      for (let child of navigation.children) {
+        child.classList.add(`navigation__button--${nextId}`);
+        handlePrevNextButtonsVisibility(currentNavigationIndex, 'hide');
+      }
     }
   }
 }
@@ -872,28 +1072,33 @@ const handleNavOnClick = (index, action) => {
   if (action === 'activate') {
     for (let child of navigation.children) {
       child.classList.add(`navigation__button--${currentId}`);
-      handlePrevNextButtonsVisibility(index, 'hide');
     }
+    handlePrevNextButtonsVisibility(index, 'hide');
 
   // add new appearance
   } else if (action === 'deactivate') {
     for (let child of navigation.children) {
       child.classList.remove(`navigation__button--${currentId}`);
-      handlePrevNextButtonsVisibility(index, 'show');
     }
+    handlePrevNextButtonsVisibility(index, 'show');
   }
 }
 
 const navigateToSection = (e) => {
 
   handleUserActivity();
+  let targetIndex = e;
 
   // get target index
-  const targetIndex = e.target === navigationPrevButton
-  ? currentNavigationIndex > 0 ? --currentNavigationIndex : 0
-  : lastMenuItemIndex < pageSections.length - 1
-    ? ++lastMenuItemIndex
-    : pageSections.length - 1;
+  if (e.target) {
+    targetIndex = e.target === navigationPrevButton
+    ? currentNavigationIndex > 0
+      ? --currentNavigationIndex
+      : 0
+    : lastMenuItemIndex < pageSections.length - 1
+      ? ++lastMenuItemIndex
+      : pageSections.length - 1;
+  }
 
   // scroll to target index
   const sectionOffset = sections[targetIndex].offset;
@@ -1395,13 +1600,23 @@ const validateMessage = (e) => {
 
 //#endregion
 
-//#region [ Horizon ] VARIABLES - OVERALL
-let isIntroMode = true;
-let isBackToIntroMode = false;
-let isMenuTransformMode = false;
+//#region [ Horizon ] VARIABLES - FLAGS
+
+const flags = {
+  isIntroMode: true,
+  isMenuTransforming: false,
+  shouldSectionsBeUpdated: false,
+  isScrollEnabled: true
+}
+
+/*
+
+let isNavVisible = false;
 let isFastScroll = true;
-let isScrollEnabled = true;
-let shouldSectionsBeUpdated = false;
+
+*/
+//#endregion
+//#region [ Horizon ] VARIABLES - OVERALL
 const mediaTablet = 768;
 const mediaDesktop = 1200;
 let lastMenuItemIndex = 0;
@@ -1419,12 +1634,10 @@ const introFirstTimeoutInterval = 600;
 // menu
 let menuSmFirstTimeoutId = null;
 let menuSmSecondTimeoutId = null;
-let menuLgFirstTimeoutId = null;
-let menuLgSecondTimeoutId = null;
 const menuSmFirstTimeoutInterval = 300;
 const menuSmSecondTimeoutInterval = 600;
-const menuLgFirstTimeoutInterval = 500;
-const menuLgSecondTimeoutInterval = 500;
+const firstTimeoutLg = 500;
+const secondTimeoutLg = 500;
 //#endregion
 //#region [ Horizon ] VARIABLES - INTRO
 let introText = 'jakub chojna frontend projects';
@@ -1446,7 +1659,7 @@ const menuBottomBackground = document.querySelector('.visuals__background--js-bo
 const burgerButton = document.querySelector('.burgerButton--js');
 const menu = document.querySelector('.menu--js');
 const menuItems = document.querySelectorAll('.menu__item--js');
-const menuLinks = document.querySelectorAll('.menu__link--js');
+const menuButtons = document.querySelectorAll('.menu__button--js');
 const menuLabels = document.querySelectorAll('.label--js');
 //#endregion
 //#region [ Horizon ] VARIABLES - NAVIGATION
@@ -1518,7 +1731,7 @@ pageHeader.classList.add('pageHeader--visible');
 // page load with no animation intro
 
 setIntroLoaderPosition();
-loadIntroContent();
+//loadIntroContent();
 handleIntroMenu();
 
 // handle page's accordions
@@ -1534,7 +1747,7 @@ if (window.innerWidth < mediaDesktop) {
 
 // collapse expandable content on page load
 window.onload = () => {
-  handleIntroAnimation();
+  //handleIntroAnimation();
   handleIntroLoader();
   handleExpandableContent(expandableContent);
 
@@ -1555,37 +1768,49 @@ window.onload = () => {
 //#region [ Horizon ] EVENT LISTENERS
 
 // MENU AND NAVIGATION
-window.addEventListener('resize', updateSectionsOffsets);
-window.addEventListener('resize', updateMenuItemsOffsets);
-pageHeader.addEventListener('resize', handleIntroBox);
-pageHeader.addEventListener('scroll', handleIntroBox);
+//window.addEventListener('resize', updateSectionsOffsets);
+//window.addEventListener('resize', updateMenuItemsOffsets);
+//pageHeader.addEventListener('resize', handleIntroBox);
+//pageHeader.addEventListener('scroll', handleIntroBox);
 
-// MAIN CONTENT
-pageContainer.addEventListener('mousedown', handleUserActivity);
-pageContainer.addEventListener('touchstart', handleUserActivity);
-pageContainer.addEventListener('scroll', handleMenuOnScroll);
-pageContainer.addEventListener('scroll', handleNavOnScroll);
-//pageContainer.addEventListener('wheel', handleFastScroll);
+//navigationPrevButton.addEventListener('click', navigateToSection);
+//navigationNextButton.addEventListener('click', navigateToSection);
+//navigationBackButton.addEventListener('click', handleBackButton);
 
-[...menuLinks].forEach((link, index) => {
+[...menuButtons].forEach((link, index) => {
   link.index = index;
-  link.addEventListener('click', handleMenuItemClick);
+  link.addEventListener('click', handleIntroMenuItemClick);
+  //link.addEventListener('click', handleMenuItemClick);
   link.addEventListener('mousemove', handleIntroMenu);
 });
-burgerButton.addEventListener('click', handleBurgerButton);
+//burgerButton.addEventListener('click', handleBurgerButton);
+
+// MAIN CONTENT
+//pageContainer.addEventListener('mousedown', handleUserActivity);
+//pageContainer.addEventListener('touchstart', handleUserActivity);
+//pageContainer.addEventListener('scroll', handleMenuOnScroll);
+//pageContainer.addEventListener('scroll', handleNavOnScroll);
+
+//pageContainer.addEventListener('wheel', handleFastScroll);
+
+//window.addEventListener('resize', handleWindowResize);
+
+//#endregion
+
+//#region [ Horizon ] EVENTS - ACCORDIONS
 
 // RESUME
-[...resumeButtons].forEach((button, index) => {
+/* [...resumeButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...resumeTabs], index));
 });
 [...resumeSubButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...resumeSubtabs], index));
-});
+}); */
 
 // PROJECT SECTIONS
-[...tasktimerButtons].forEach((button, index) => {
+/* [...tasktimerButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...tasktimerTabs], index));
 });
@@ -1600,35 +1825,33 @@ burgerButton.addEventListener('click', handleBurgerButton);
 [...quotesButtons].forEach((button, index) => {
   button.addEventListener('click', () =>
   handleAccordion([...quotesTabs], index));
-});
+}); */
 
 // OTHER PROJECTS
-if (window.innerWidth < mediaDesktop) {
+/* if (window.innerWidth < mediaDesktop) {
   [...otherProjectsButtons].forEach((button, index) => {
     button.addEventListener('click', () =>
     handleAccordion([...otherProjectsTabs], index));
   });
-}
+} */
 
 // 'READ MORE' BUTTONS
-[...readMoreButtons].forEach((button, index) => {
+/* [...readMoreButtons].forEach((button, index) => {
   button.index = index;
   button.addEventListener('click', handleReadMore);
-});
+}); */
 
+//#endregion
+
+//#region [ Horizon ] EVENTS - CONTACT FORM
 // SAVE FORM INPUTS VALUES TO LOCAL STORAGE
-[...formInputs].forEach(input => {
+/* [...formInputs].forEach(input => {
   input.addEventListener('keyup', (e) => localStorage.setItem(e.target.id, e.target.value));
   input.value = localStorage.getItem(input.id) ? localStorage.getItem(input.id) : '';
-});
+}); */
 
-// VALIDATE CONTACT FORM
-formSubmitButton.addEventListener('click', validateForm);
-
-// VALIDATE FORM INPUTS
+/* formSubmitButton.addEventListener('click', validateForm);
 userEmail.addEventListener('keyup', validateEmail);
 userPhone.addEventListener('keyup', validatePhone);
-userMessage.addEventListener('keyup', validateMessage);
-window.addEventListener('resize', handleWindowResize);
-
+userMessage.addEventListener('keyup', validateMessage); */
 //#endregion
