@@ -5,6 +5,11 @@
   overflow: hidden;
   width: 100%;
   position: relative;
+  visibility: hidden;
+
+  &--visible {
+    visibility: visible;
+  }
   
   @media only screen and (min-width: $media-lg) {
 

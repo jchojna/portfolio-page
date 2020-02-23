@@ -31,7 +31,6 @@
 
     & {
       box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
-      pointer-events: none;
 
       &__indicator {
         background-color: #fff;
@@ -54,6 +53,7 @@
         }
 
         &--centered {
+          background-color: $intro-link-color;
           left: calc(50vw + 10px);
           right: calc(50vw - 10px);
         }
