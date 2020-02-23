@@ -123,7 +123,7 @@
     }
 
     &--visible {
-      visibility: visible;
+      visibility: inherit;
     }
 
     @media only screen and (min-width: $media-lg) {
