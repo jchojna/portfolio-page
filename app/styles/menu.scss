@@ -57,6 +57,10 @@
           left: calc(50vw + 10px);
           right: calc(50vw - 10px);
         }
+
+        &--onResize {
+          transition: none;
+        }
       }
     }
   }

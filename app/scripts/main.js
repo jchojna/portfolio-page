@@ -7,15 +7,83 @@ const findFirstParentWithClass = (element, className) => {
   return element;
 }
 
+const getCurrentMedia = () => {
+  return window.innerWidth >= mediaDesktop ? 'desktop' : 'mobile';
+}
+
 const handleWindowResize = () => {
+
+  const media = getCurrentMedia();
+
   [...sectionContainers].forEach(container => {
     handleTopMargins(container, minTopMargin);
   });
+
+
+  if (media !== flags.media) {
+    flags.media = media
+
+    switch (media) {
+
+      case 'desktop':
+        console.log('desktop');
+        updateMenuItemsOffsets();
+        handleIntroBox();
+
+
+
+
+
+
+
+
+
+
+      break;
+
+      case 'mobile':
+      console.log('mobile');
+      updateMenuItemsOffsets();
+      handleIntroBox();
+
+
+
+
+
+
+
+
+
+
+      break;
+    }
+  }
+
+
+
+
+  
+  /* if (window.innerWidth < mediaDesktop) {
+    handleAccordion([...otherProjectsTabs]);
+  } */
 }
 
 const handleUserActivity = () => {
   if (flags.shouldSectionsBeUpdated) updateSectionsOffsets();
   if (!flags.isScrollEnabled) flags.isScrollEnabled = true;
+}
+
+const removeTransitionsOnScrollAndResize = (e, element, classname) => {
+
+  if (e.type === 'resize' || e.type === 'scroll') {
+    !element.classList.contains(`${classname}--onResize`)
+    ? element.classList.add(`${classname}--onResize`)
+    : false;
+  } else {
+    element.classList.contains(`${classname}--onResize`)
+    ? element.classList.remove(`${classname}--onResize`)
+    : false;
+  }
 }
 
 const updateMenuItemsOffsets = () => {
@@ -409,6 +477,7 @@ const handleIntroMenuItemClick = (e) => {
   if (flags.isMenuTransforming) return false;
 
   window.addEventListener('resize', handleMenuIndicator);
+  pageHeader.addEventListener('scroll', handleMenuIndicator);
 
   const activeIndex = e.target.index;
   flags.isMenuTransforming = true;
@@ -428,7 +497,7 @@ const handleIntroMenuItemClick = (e) => {
     // change items colors and set introbox position
     if (lastMenuItemIndex !== activeIndex) {
       handleMenuItemColor(lastMenuItemIndex, 'deactivate');
-      lastMenuItemIndex = activeIndex; // ! what if both are the same
+      lastMenuItemIndex = activeIndex;
       handleMenuItemColor(lastMenuItemIndex, 'activate');
     }
     handleIntroBox();
@@ -602,6 +671,11 @@ const handleMenuItemClick = (e) => {
   navigateToSection(activeIndex);
   // handle buttons appearance
   handleMenuButtonChange(activeIndex);
+  
+  // remove transitions of menu indicator
+  menuIndicator.classList.contains('pageHeader__indicator--onResize')
+  ? menuIndicator.classList.remove('pageHeader__indicator--onResize')
+  : false;
 
   // handle navigation and introBox appearance
   handleNavOnClick(currentNavigationIndex, 'deactivate');
@@ -628,14 +702,14 @@ const handleBurgerButton = () => {
 
   flags.isMenuTransforming = true;
   flags.isIntroMode = true;
-      
-  window.removeEventListener('resize', handleMenuIndicator);
 
   // hide burger button
   burgerButton.classList.remove('burgerButton--visible');
 
   pageHeader.addEventListener('resize', handleIntroBox);
   pageHeader.addEventListener('scroll', handleIntroBox);
+  window.removeEventListener('resize', handleMenuIndicator);
+  window.removeEventListener('scroll', handleMenuIndicator);
 
   // set starting position of menu items
   [...menuItems].forEach((item, index) => {
@@ -726,7 +800,12 @@ const handleMenuOnScroll = () => {
       lastMenuItemIndex = newMenuItemIndex;
       menuButtons[lastMenuItemIndex].classList.add('menu__button--active');
       introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
+      
       handleMenuIndicator();
+      // remove transitions of menu indicator
+      menuIndicator.classList.contains('pageHeader__indicator--onResize')
+      ? menuIndicator.classList.remove('pageHeader__indicator--onResize')
+      : false;
     }
 
     // handle all menu items appearance on local id change
@@ -826,22 +905,13 @@ const handleMobileHeader = () => {
 const handleIntroBox = (e) => {
 
   if(!flags.isIntroMode) return false;
-  
-  // disable transition effect on resize
-  if (e && (e.type === 'resize' || e.type === 'scroll')) {
-    !introBox.classList.contains('visuals__introBox--onResize')
-    ? introBox.classList.add('visuals__introBox--onResize')
-    : false;
-  } else {
-    introBox.classList.contains('visuals__introBox--onResize')
-    ? introBox.classList.remove('visuals__introBox--onResize')
-    : false;
-  }
-
+  if (e) removeTransitionsOnScrollAndResize(e, introBox, 'visuals__introBox');
   introBox.style.top = `${getCurrentItemOffset()}px`;
 }
 
-const handleMenuIndicator = () => {
+const handleMenuIndicator = (e) => {
+
+  if (e) removeTransitionsOnScrollAndResize(e, menuIndicator, 'pageHeader__indicator');
   menuIndicator.style.top = `${getCurrentItemOffset()}px`;
 }
 
@@ -859,6 +929,7 @@ const handleBackButton = () => {
   flags.isIntroMode = true;
       
   window.removeEventListener('resize', handleMenuIndicator);
+  pageHeader.removeEventListener('scroll', handleMenuIndicator);
 
   // handle intro background
   menuUpperBackground.classList.remove('visuals__background--hidden');
@@ -986,6 +1057,11 @@ const navigateToSection = (e) => {
 
   if (flags.shouldSectionsBeUpdated) updateSectionsOffsets();
   let targetIndex = e;
+  
+  // remove transitions of menu indicator
+  menuIndicator.classList.contains('pageHeader__indicator--onResize')
+  ? menuIndicator.classList.remove('pageHeader__indicator--onResize')
+  : false;
 
   // get target index
   if (e.target === navigationPrevButton) {
@@ -1472,7 +1548,8 @@ const flags = {
   isIntroMode: true,
   isMenuTransforming: false,
   shouldSectionsBeUpdated: false,
-  isScrollEnabled: false
+  isScrollEnabled: false,
+  media: null
 }
 const mediaTablet = 768;
 const mediaDesktop = 1200;
@@ -1583,17 +1660,18 @@ const expandableContent = document.querySelectorAll('.js-expandable');
 //#region [ Horizon ] FUNCTION CALLS
 
 // page load with no animation intro
-/* 
+
 intro.classList.add('intro--hidden');
 [...menuItems].forEach(item => item.classList.add('menu__item--active'));
 visuals.classList.add('visuals--visible');
 pageHeader.classList.add('pageHeader--visible');
- */
+
 // page load with no animation intro
 
-setIntroLoaderPosition();
-loadIntroContent();
+flags.media = getCurrentMedia();
 
+//setIntroLoaderPosition();
+//loadIntroContent();
 handleIntroMenu();
 
 // handle page's accordions
@@ -1603,14 +1681,15 @@ handleAccordion([...tasktimerTabs]);
 handleAccordion([...portfolioTabs]);
 handleAccordion([...hydrappTabs]);
 handleAccordion([...quotesTabs]);
+
 if (window.innerWidth < mediaDesktop) {
   handleAccordion([...otherProjectsTabs]);
 }
 
 // collapse expandable content on page load
 window.onload = () => {
-  handleIntroAnimation();
-  handleIntroLoader();
+  //handleIntroAnimation();
+  //handleIntroLoader();
   handleExpandableContent(expandableContent);
 
   // set each section's container top margin
@@ -1659,10 +1738,6 @@ pageContainer.addEventListener('scroll', handleNavOnScroll);
 
 window.addEventListener('resize', handleWindowResize);
 
-//#endregion
-
-//#region [ Horizon ] EVENTS - ACCORDIONS
-
 addAccordionEvents(resumeButtons, resumeTabs);
 addAccordionEvents(resumeSubButtons, resumeSubtabs);
 addAccordionEvents(tasktimerButtons, tasktimerTabs);
@@ -1671,15 +1746,10 @@ addAccordionEvents(hydrappButtons, hydrappTabs);
 addAccordionEvents(quotesButtons, quotesTabs);
 addAccordionEvents(otherProjectsButtons, otherProjectsTabs);
 
-if (window.innerWidth < mediaDesktop) {
-  addAccordionEvents(otherProjectsButtons, otherProjectsTabs);
-}
-
 [...readMoreButtons].forEach((button, index) => {
   button.index = index;
   button.addEventListener('click', handleReadMore);
 });
-
 //#endregion
 
 //#region [ Horizon ] EVENTS - CONTACT FORM
