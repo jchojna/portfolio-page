@@ -74,7 +74,7 @@
       transition: opacity $menu-sm-first-timeout, top $menu-sm-second-timeout;
     }
 
-    &--onResize {
+    &--noTransition {
       transition: none;
     }
 

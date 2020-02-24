@@ -21,14 +21,15 @@ const handleWindowResize = () => {
 
 
   if (media !== flags.media) {
-    flags.media = media
+    flags.media = media;
+    flags.isMobileHeader = false;
 
-    switch (media) {
-
+    switch (media) {      
+      // load configuration for desktops
       case 'desktop':
         console.log('desktop');
-        updateMenuItemsOffsets();
-        handleIntroBox();
+        //updateMenuItemsOffsets();
+        //handleIntroBox();
 
 
 
@@ -41,10 +42,11 @@ const handleWindowResize = () => {
 
       break;
 
+      // load configuration for mobiles
       case 'mobile':
-      console.log('mobile');
-      updateMenuItemsOffsets();
-      handleIntroBox();
+        console.log('mobile');
+        //updateMenuItemsOffsets();
+        //handleIntroBox();
 
 
 
@@ -73,21 +75,21 @@ const handleUserActivity = () => {
   if (!flags.isScrollEnabled) flags.isScrollEnabled = true;
 }
 
-const removeTransitionsOnScrollAndResize = (e, element, classname) => {
+const removeTransitionsOnEvent = (e, element, classname) => {
 
-  if (e.type === 'resize' || e.type === 'scroll') {
-    !element.classList.contains(`${classname}--onResize`)
-    ? element.classList.add(`${classname}--onResize`)
+  if (e) {
+    !element.classList.contains(`${classname}--noTransition`)
+    ? element.classList.add(`${classname}--noTransition`)
     : false;
   } else {
-    element.classList.contains(`${classname}--onResize`)
-    ? element.classList.remove(`${classname}--onResize`)
+    element.classList.contains(`${classname}--noTransition`)
+    ? element.classList.remove(`${classname}--noTransition`)
     : false;
   }
 }
 
 const updateMenuItemsOffsets = () => {
-  if (window.innerWidth < mediaDesktop) return false;
+  if (flags.isMobileHeader) return false;
   [...items].forEach(item => {
     item.offset = item.node.offsetTop + menu.offsetTop;
   });
@@ -447,10 +449,6 @@ const handleIntroMenu = (e) => {
     lastMenuItemIndex = currentItemIndex;
     handleMenuItemColor(lastMenuItemIndex, 'activate');
 
-    introBox.classList.contains('visuals__introBox')
-    ? introBox.classList.remove('visuals__introBox--onResize')
-    : false;
-
   // handle intro menu on page load
   } else {
     handleIntroBox();
@@ -493,6 +491,8 @@ const handleIntroMenuItemClick = (e) => {
     const viewOffset = pageHeader.scrollTop;
     const upperBackgroundHeight = clickedintroItemHeight + clickedItemOffset - viewOffset;
     const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
+
+    flags.isMobileHeader = true;
 
     // change items colors and set introbox position
     if (lastMenuItemIndex !== activeIndex) {
@@ -671,11 +671,6 @@ const handleMenuItemClick = (e) => {
   navigateToSection(activeIndex);
   // handle buttons appearance
   handleMenuButtonChange(activeIndex);
-  
-  // remove transitions of menu indicator
-  menuIndicator.classList.contains('pageHeader__indicator--onResize')
-  ? menuIndicator.classList.remove('pageHeader__indicator--onResize')
-  : false;
 
   // handle navigation and introBox appearance
   handleNavOnClick(currentNavigationIndex, 'deactivate');
@@ -732,6 +727,8 @@ const handleBurgerButton = () => {
   // set appearance of introBox and background
   introBox.classList.add('visuals__introBox--visible');
   menuUpperBackground.classList.remove(`visuals__background--${activeId}`);
+
+  flags.isMobileHeader = false;
 
   //#region TIMEOUTS
   const firstTimeoutId = setTimeout(() => {
@@ -802,10 +799,6 @@ const handleMenuOnScroll = () => {
       introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
       
       handleMenuIndicator();
-      // remove transitions of menu indicator
-      menuIndicator.classList.contains('pageHeader__indicator--onResize')
-      ? menuIndicator.classList.remove('pageHeader__indicator--onResize')
-      : false;
     }
 
     // handle all menu items appearance on local id change
@@ -905,13 +898,16 @@ const handleMobileHeader = () => {
 const handleIntroBox = (e) => {
 
   if(!flags.isIntroMode) return false;
-  if (e) removeTransitionsOnScrollAndResize(e, introBox, 'visuals__introBox');
+  removeTransitionsOnEvent(e, introBox, 'visuals__introBox');
   introBox.style.top = `${getCurrentItemOffset()}px`;
+
+
+
 }
 
 const handleMenuIndicator = (e) => {
 
-  if (e) removeTransitionsOnScrollAndResize(e, menuIndicator, 'pageHeader__indicator');
+  removeTransitionsOnEvent(e, menuIndicator, 'pageHeader__indicator');
   menuIndicator.style.top = `${getCurrentItemOffset()}px`;
 }
 
@@ -1057,11 +1053,6 @@ const navigateToSection = (e) => {
 
   if (flags.shouldSectionsBeUpdated) updateSectionsOffsets();
   let targetIndex = e;
-  
-  // remove transitions of menu indicator
-  menuIndicator.classList.contains('pageHeader__indicator--onResize')
-  ? menuIndicator.classList.remove('pageHeader__indicator--onResize')
-  : false;
 
   // get target index
   if (e.target === navigationPrevButton) {
@@ -1549,6 +1540,7 @@ const flags = {
   isMenuTransforming: false,
   shouldSectionsBeUpdated: false,
   isScrollEnabled: false,
+  isMobileHeader: false,
   media: null
 }
 const mediaTablet = 768;
