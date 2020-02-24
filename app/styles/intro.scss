@@ -12,7 +12,6 @@
   position: fixed;
   top: 0;
   width: 100%;
-
   z-index: 5;
 
   &--hidden {
@@ -26,10 +25,10 @@
     height: 200px;
     opacity: 1;
     position: fixed;
+    transition: opacity 0.5s, visibility 0s;
     visibility: inherit;
     width: 200px;
     z-index: 1;
-    transition: opacity 0.5s, visibility 0s;
 
     &--transition {
       transition-property: height, left, top, width;
@@ -54,6 +53,39 @@
       visibility: inherit;
     }
   }
+
+  &__skip {
+    @include button;
+    bottom: 50px;
+    color: $intro-link-color;
+    font-family: 'Antonio Bold';
+    font-size: 2em;
+    left: 50%;
+    opacity: 0;
+    position: fixed;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+    transition: color 0.2s, opacity 0.3s, visibility 0s 0.3s;
+    visibility: hidden;
+
+    &--visible {
+      opacity: 1;
+      transition: color 0.2s, opacity 0.3s, visibility 0s;
+      visibility: visible;
+    }
+
+    &:hover {
+      color: $color-about;
+    }
+
+    @media only screen and (min-width: $media-md) {
+      font-size: 2.5em;
+    }
+
+    @media only screen and (min-width: $media-lg) {
+      font-size: 3em;
+    }
+  }
 }
 
 .grid {
@@ -61,7 +93,6 @@
   display: none;
   list-style-type: none;
   margin: 0;
-  margin-top: 200px;
   padding: 0;
 
   &--visible {

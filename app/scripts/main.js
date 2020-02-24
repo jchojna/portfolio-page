@@ -94,18 +94,54 @@ const setSizeAndPosition = (element, target, size) => {
 
 //#region [ Horizon ] INTRO
 
+const setIntroLoaderPosition = () => {
+  introLoader.style.top = `${introLoader.offsetTop}px`;
+  introLoader.style.left = `${introLoader.offsetLeft}px`;
+}
+
+const loadIntroContent = () => {
+  
+  [...introText].forEach(char => {
+    const gridItem = char !== ' '
+    ? `<li
+        class="grid__item grid__item--js"
+        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
+      >
+        <svg class="grid__char grid__char--svg grid__char--js" viewBox="0 0 50 100">
+          <use href="assets/svg/letters.svg#${char}"></use>
+        </svg>
+      </li>`
+    : `<li
+        class="grid__item grid__item--js"
+        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
+      >
+        <div class="grid__char grid__char--separator grid__char--js"></div>
+      </li>`;
+    introGrid.insertAdjacentHTML('beforeend', gridItem);
+  });
+}
+
+const handleIntroLoader = () => {
+  introLoader.classList.add('intro__loader--transition');
+  introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
+  setSizeAndPosition(introLoader, endingBefore, introItemHeight);
+}
+
 const handleIntroAnimation = () => {
   
   let charIndex = 0;
   const charTotal = introText.length;
-  let maxColNum = charTotal;
+  let maxColNum = window.innerWidth >= mediaDesktop
+  ? charTotal : window.innerWidth >= mediaTablet
+  ? charTotal / 2
+  : charTotal / 3;
   let minColNum = 6;
   const rowGap = 2;
   let gridTopMargin = null;
 
   // intervals
-  const loadCharInterval = 30;
-  const translateCharInterval = 100;
+  const loadCharInterval = 25; //30
+  const translateCharInterval = 0; //100
   const introSecondTimeoutInterval = loadCharInterval * charTotal + 1000;
   const introGridViewInterval = 2000;
   const inBetweenTransition = 500;
@@ -216,6 +252,8 @@ const handleIntroAnimation = () => {
   clearTimeout(introForthTimeoutId);
   introFirstTimeoutId = setTimeout(() => {
 
+    introSkip.classList.add('intro__skip--visible');
+
     // show ending elements
     endingBefore.classList.add('intro__ending--visible');
     endingAfter.classList.add('intro__ending--visible');
@@ -264,6 +302,7 @@ const handleIntroAnimation = () => {
           
           // THIRD TIMEOUT
           introThirdTimeoutId = setTimeout(() => {
+            introSkip.classList.remove('intro__skip--visible');
             introLoader.classList.add('intro__loader--transition');
             introLoader.style.transition = '';
             introLoader.style.transitionDuration = `${inBetweenTransition}ms`;
@@ -289,42 +328,33 @@ const handleIntroAnimation = () => {
             }, inBetweenTransition);
           }, introGridViewInterval);
         }
-      }, translateCharInterval);    
+      }, translateCharInterval);
     }, introSecondTimeoutInterval);
   }, introFirstTimeoutInterval);
 }
 
-const loadIntroContent = () => {
-  
-  [...introText].forEach(char => {
-    const gridItem = char !== ' '
-    ? `<li
-        class="grid__item grid__item--js"
-        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
-      >
-        <svg class="grid__char grid__char--svg grid__char--js" viewBox="0 0 50 100">
-          <use href="assets/svg/letters.svg#${char}"></use>
-        </svg>
-      </li>`
-    : `<li
-        class="grid__item grid__item--js"
-        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
-      >
-        <div class="grid__char grid__char--separator grid__char--js"></div>
-      </li>`;
-    introGrid.insertAdjacentHTML('beforeend', gridItem);
+const skipIntro = () => {
+  // mainly as a fallback against unpredicted animation fail and crash
+  // clear timeouts and intervals
+  clearTimeout(introFirstTimeoutId);
+  clearTimeout(introSecondTimeoutId);
+  clearTimeout(introThirdTimeoutId);
+  clearTimeout(introForthTimeoutId);
+  clearInterval(introCharIntervalId);
+  introFirstTimeoutId = null;
+  introSecondTimeoutId = null;
+  introThirdTimeoutId = null;
+  introForthTimeoutId = null;
+  introCharIntervalId = null;
+
+  [...menuItems].forEach(item => {
+    item.classList.add('menu__item--active');
   });
-}
 
-const setIntroLoaderPosition = () => {
-  introLoader.style.top = `${introLoader.offsetTop}px`;
-  introLoader.style.left = `${introLoader.offsetLeft}px`;
-}
-
-const handleIntroLoader = () => {
-  introLoader.classList.add('intro__loader--transition');
-  introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
-  setSizeAndPosition(introLoader, endingBefore, introItemHeight);
+  intro.classList.add('intro--hidden');
+  introSkip.classList.remove('intro__skip--visible');
+  pageHeader.classList.add('pageHeader--visible');
+  visuals.classList.add('visuals--visible');
 }
 
 //#endregion
@@ -1465,14 +1495,20 @@ const firstTimeoutLg = 500;
 const secondTimeoutLg = 500;
 //#endregion
 //#region [ Horizon ] VARIABLES - INTRO
+
 let introText = 'jakub chojna frontend projects';
-const introItemWidth = 40;
+
+const introItemWidth = window.innerWidth >= mediaDesktop
+? 35 : window.innerWidth >= mediaTablet ? 35 : 20;
 const introItemHeight = 2 * introItemWidth;
+
 const intro = document.querySelector('.intro--js');
 const introLoader = document.querySelector('.intro__loader--js');
 let introGrid = document.querySelector('.grid--js');
 const endingBefore = document.querySelector('.intro__ending--js-before');
 const endingAfter = document.querySelector('.intro__ending--js-after');
+const introSkip = document.querySelector('.intro__skip--js');
+
 //#endregion
 //#region [ Horizon ] VARIABLES - MENU
 const pageHeader = document.querySelector('.pageHeader--js');
@@ -1547,16 +1583,17 @@ const expandableContent = document.querySelectorAll('.js-expandable');
 //#region [ Horizon ] FUNCTION CALLS
 
 // page load with no animation intro
-
+/* 
 intro.classList.add('intro--hidden');
 [...menuItems].forEach(item => item.classList.add('menu__item--active'));
 visuals.classList.add('visuals--visible');
 pageHeader.classList.add('pageHeader--visible');
-
+ */
 // page load with no animation intro
 
 setIntroLoaderPosition();
-//loadIntroContent();
+loadIntroContent();
+
 handleIntroMenu();
 
 // handle page's accordions
@@ -1572,7 +1609,7 @@ if (window.innerWidth < mediaDesktop) {
 
 // collapse expandable content on page load
 window.onload = () => {
-  //handleIntroAnimation();
+  handleIntroAnimation();
   handleIntroLoader();
   handleExpandableContent(expandableContent);
 
@@ -1592,6 +1629,7 @@ window.onload = () => {
 
 //#region [ Horizon ] EVENT LISTENERS
 
+introSkip.addEventListener('click', skipIntro);
 // MENU AND NAVIGATION
 window.addEventListener('resize', updateSectionsOffsets);
 pageHeader.addEventListener('scroll', handleIntroBox);
