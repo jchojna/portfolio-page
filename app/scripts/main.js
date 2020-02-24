@@ -15,7 +15,7 @@ const handleWindowResize = () => {
 
 const handleUserActivity = () => {
   if (flags.shouldSectionsBeUpdated) updateSectionsOffsets();
-  flags.isScrollEnabled = true;
+  if (!flags.isScrollEnabled) flags.isScrollEnabled = true;
 }
 
 const updateMenuItemsOffsets = () => {
@@ -685,6 +685,7 @@ const handleMenuOnScroll = () => {
 
     // handle indicator and active menu item on section change
     const newMenuItemIndex = getCurrentSectionIndex(0);
+
     if (newMenuItemIndex !== lastMenuItemIndex) {
       const prevId = sections[lastMenuItemIndex].id;
       menuButtons[lastMenuItemIndex].classList.remove(`menu__button--intro-${prevId}`);
@@ -696,12 +697,10 @@ const handleMenuOnScroll = () => {
       menuButtons[lastMenuItemIndex].classList.add('menu__button--active');
       introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
       handleMenuIndicator();
-
-      //if (!isFastScroll) isFastScroll = true;
     }
 
     // handle all menu items appearance on local id change
-    [...menuButtons].forEach((link, index) => {
+    [...menuButtons].forEach((button, index) => {
       const singleItemOffset = items[index].offset;
       const currentSingleItemIndex = items[index].currentSectionIndex;
       const newSingleItemIndex = getCurrentSectionIndex(singleItemOffset);
@@ -709,9 +708,9 @@ const handleMenuOnScroll = () => {
       if (newSingleItemIndex !== currentSingleItemIndex) {
         const currentId = sections[currentSingleItemIndex].id;
         const newId = sections[newSingleItemIndex].id;
-        link.classList.remove(`menu__button--${currentId}`);
+        button.classList.remove(`menu__button--${currentId}`);
         items[index].currentSectionIndex = newSingleItemIndex;
-        link.classList.add(`menu__button--${newId}`);
+        button.classList.add(`menu__button--${newId}`);
       }
     });
   }
@@ -995,27 +994,27 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
     const button = tab.querySelector('[class*="button"]');
     const mark = tab.querySelector('[class*="mark"]');
 
-    //: when specific tab is being clicked                                  ://
+    // when specific tab is being clicked
     if (clickedIndex !== undefined) {
       const subtab = /subtab/.test(button.className);
-      //. handle clicked tab                                                .//
+
+      // handle clicked tab
       if (clickedIndex === index) {
         const height = container.style.height;
-        //. apply transition effect                                         .//
+        // apply transition effect
         if (!container.classList.contains('rollable')) container.classList.add('rollable');
-        //. apply transformations                                           .//
+        // apply transformations
         if (height === 0 || height === '0px') {
           container.style.height = `${content.clientHeight}px`;
           button.classList.add(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.add('mark--unrolled');
-          isFastScroll = false;
         } else {
           container.style.height = 0;
           button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.remove('mark--unrolled');
-          isFastScroll = true;
         }
-        //. when subtab clicked                                             .//
+
+        // when subtab clicked
         if (subtab) {
           const parentContainer = findFirstParentWithClass(container.parentNode, 'container');
           const subtabs = parentContainer.querySelectorAll('.subtab__header');
@@ -1025,14 +1024,15 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
           [...subtabs].forEach(subtab => height += subtab.clientHeight);
           parentContainer.style.height = `${height}px`;
         }
-        shouldSectionsBeUpdated = true;
-      //. handle not clicked elements                                       .//
+        flags.shouldSectionsBeUpdated = true;
+
+      // handle not clicked elements
       } else {
         container.style.height = 0;
         button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
         mark.classList.remove('mark--unrolled');
 
-        //: update scroll position                                          ://
+        // update scroll position
         if (index === (clickedIndex - 1)) {
           const { top } = button.getBoundingClientRect();
           const scrollOffset = window.pageYOffset + top - 100;
@@ -1045,7 +1045,8 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
           }, 500);
         }
       }
-    //: handle elements on page load                                        ://
+
+    // handle elements on page load
     } else {
       if (index !== excludeIndex) {
         container.style.height = 0;
@@ -1243,7 +1244,6 @@ const handleReadMore = (e) => {
     
     e.target.innerHTML = 'Show Less';
     wrapper.classList.remove('collapsed');
-    //isFastScroll = false;
 
   // collapse tab
   } else {    
@@ -1257,49 +1257,8 @@ const handleReadMore = (e) => {
     
     e.target.innerHTML = 'Read More';
     wrapper.classList.add('collapsed');
-    //isFastScroll = true;
   }
   flags.shouldSectionsBeUpdated = true;
-}
-
-const handleFastScroll = (e) => {
-
-  // function resetting timeout and scroll accumulator
-  /* const reset = () => {
-    clearTimeout(scrollTimeoutId);
-    scrollTimeoutId = null;
-    scrollTotal = 0;
-  } */
-  handleUserActivity();
-  const goToNextSection = () => {
-    if (lastMenuItemIndex < pageSections.length - 1) {
-      if (pageContainer.scrollTop >= sections[lastMenuItemIndex].offset) {
-        const nextsectionOffset = sections[++lastMenuItemIndex].offset;
-        pageContainer.scrollTo(0, nextsectionOffset);
-      }
-    }
-  }
-  // when scrolling down
-  /* if (e.deltaY > 0) {
-    scrollTotal += 1;
-    if (scrollTimeoutId === null) {
-      scrollTimeoutId = setTimeout(() => {
-        if (scrollTotal >= 8) {
-          goToNextSection();
-          reset();
-        } else {
-          reset();
-        }
-      }, 100);
-    }
-    // when scrolling up
-  } else {
-    reset();
-  } */
-  if (e.deltaY > 0 && isFastScroll) {
-    e.preventDefault();
-    goToNextSection();
-  }
 }
 
 //#endregion
@@ -1478,23 +1437,13 @@ const validateMessage = (e) => {
 }
 
 //#endregion
-
-//#region [ Horizon ] VARIABLES - FLAGS
-
+//#region [ Horizon ] VARIABLES - OVERALL
 const flags = {
   isIntroMode: true,
   isMenuTransforming: false,
   shouldSectionsBeUpdated: false,
-  isScrollEnabled: true
+  isScrollEnabled: false
 }
-
-/*
-
-let isFastScroll = true;
-
-*/
-//#endregion
-//#region [ Horizon ] VARIABLES - OVERALL
 const mediaTablet = 768;
 const mediaDesktop = 1200;
 let lastMenuItemIndex = 0;
@@ -1670,8 +1619,6 @@ pageContainer.addEventListener('wheel', handleUserActivity);
 pageContainer.addEventListener('scroll', handleMenuOnScroll);
 pageContainer.addEventListener('scroll', handleNavOnScroll);
 
-//pageContainer.addEventListener('wheel', handleFastScroll);
-
 window.addEventListener('resize', handleWindowResize);
 
 //#endregion
@@ -1708,4 +1655,58 @@ formSubmitButton.addEventListener('click', validateForm);
 userEmail.addEventListener('keyup', validateEmail);
 userPhone.addEventListener('keyup', validatePhone);
 userMessage.addEventListener('keyup', validateMessage);
+//#endregion
+
+//#region UNUSED
+
+const handleFastScroll = (e) => {
+
+  // function resetting timeout and scroll accumulator
+  /* const reset = () => {
+    clearTimeout(scrollTimeoutId);
+    scrollTimeoutId = null;
+    scrollTotal = 0;
+  } */
+  if (window.innerWidth < mediaDesktop) return false;
+  if (flags.isIntroMode) return false;
+  if (flags.isMenuTransforming) return false;
+  if (!flags.isFastScroll) return false;
+
+  const goToNextSection = () => {
+    if (lastMenuItemIndex < pageSections.length - 1) {
+      if (pageContainer.scrollTop >= sections[lastMenuItemIndex].offset) {
+        const nextsectionOffset = sections[++lastMenuItemIndex].offset;
+        pageContainer.scrollTo(0, nextsectionOffset);
+      }
+    }
+  }
+  // when scrolling down
+  /* if (e.deltaY > 0) {
+    scrollTotal += 1;
+    if (scrollTimeoutId === null) {
+      scrollTimeoutId = setTimeout(() => {
+        if (scrollTotal >= 8) {
+          goToNextSection();
+          reset();
+        } else {
+          reset();
+        }
+      }, 100);
+    }
+    // when scrolling up
+  } else {
+    reset();
+  } */
+  if (e.deltaY > 0) {
+    //e.preventDefault();
+    flags.isScrollEnabled = false;
+    console.log(lastMenuItemIndex);
+
+    if (!isFastScroll)
+    navigateToSection(++lastMenuItemIndex);
+
+    //goToNextSection();
+  }
+}
+
 //#endregion
