@@ -15,21 +15,34 @@ const handleWindowResize = () => {
 
   const media = getCurrentMedia();
 
-  [...sectionContainers].forEach(container => {
-    handleTopMargins(container, minTopMargin);
-  });
+  if (media === 'desktop') {
+    [...sectionContainers].forEach(container => {
+      handleTopMargins(container, minTopMargin);
+    });
+  }
 
-
+  // handle changes on breakpoint
   if (media !== flags.media) {
     flags.media = media;
     flags.isMobileHeader = false;
+
+    pageContainer.classList.remove('pageContainer--visible');
+    pageHeader.classList.add('pageHeader--intro');
+    
+    // update menu items heights
+    [...menuItems].forEach((item, index) => items[index].height = item.clientHeight);
 
     switch (media) {      
       // load configuration for desktops
       case 'desktop':
         console.log('desktop');
-        //updateMenuItemsOffsets();
-        //handleIntroBox();
+
+        // change menu items to be in a static position
+        [...menuItems].forEach(item => {
+          item.classList.remove('menu__item--mobileHeader');
+          item.style.top = '';
+        });
+        
 
 
 
@@ -45,8 +58,8 @@ const handleWindowResize = () => {
       // load configuration for mobiles
       case 'mobile':
         console.log('mobile');
-        //updateMenuItemsOffsets();
-        //handleIntroBox();
+        
+        
 
 
 
@@ -76,7 +89,6 @@ const handleUserActivity = () => {
 }
 
 const removeTransitionsOnEvent = (e, element, classname) => {
-
   if (e) {
     !element.classList.contains(`${classname}--noTransition`)
     ? element.classList.add(`${classname}--noTransition`)
@@ -138,11 +150,8 @@ const handleTopMargins = (element, distance) => {
   // this functionality I found more reasonable to be handled in JS,
   // because of expandable content inside section containers
   // distorting and complicating content layout
-
-  if (window.innerWidth >= mediaDesktop) {
-    const margin = (window.innerHeight - element.clientHeight) / 2;
-    element.style.marginTop = `${margin > distance ? margin : distance}px`;
-  }
+  const margin = (window.innerHeight - element.clientHeight) / 2;
+  element.style.marginTop = `${margin > distance ? margin : distance}px`;
 }
 
 const addAccordionEvents = (buttons, tabs) => {
@@ -900,9 +909,6 @@ const handleIntroBox = (e) => {
   if(!flags.isIntroMode) return false;
   removeTransitionsOnEvent(e, introBox, 'visuals__introBox');
   introBox.style.top = `${getCurrentItemOffset()}px`;
-
-
-
 }
 
 const handleMenuIndicator = (e) => {
