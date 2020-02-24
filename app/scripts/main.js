@@ -26,7 +26,6 @@ const updateMenuItemsOffsets = () => {
 }
 
 const updateSectionsOffsets = () => {
-  console.log('update');
   [...sections].forEach((section, index) => {
     section.offset = pageSections[index].offsetTop;
   });
@@ -74,6 +73,13 @@ const handleTopMargins = (element, distance) => {
     const margin = (window.innerHeight - element.clientHeight) / 2;
     element.style.marginTop = `${margin > distance ? margin : distance}px`;
   }
+}
+
+const addAccordionEvents = (buttons, tabs) => {
+  [...buttons].forEach((button, index) => {
+    button.addEventListener('click', () =>
+    handleAccordion([...tabs], index));
+  });
 }
 
 // assign size and position of one element to another
@@ -371,7 +377,6 @@ const handleIntroMenuItemClick = (e) => {
 
   if (!flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
-  console.log('DISABLING INTRO MODE');
 
   window.addEventListener('resize', handleMenuIndicator);
 
@@ -1658,7 +1663,6 @@ burgerButton.addEventListener('click', handleBurgerButton);
 // add event handling mobile header appearance
 window.addEventListener('scroll', handleMobileHeader);
 
-
 // MAIN CONTENT
 pageContainer.addEventListener('mousedown', handleUserActivity);
 pageContainer.addEventListener('touchstart', handleUserActivity);
@@ -1674,43 +1678,18 @@ window.addEventListener('resize', handleWindowResize);
 
 //#region [ Horizon ] EVENTS - ACCORDIONS
 
-// RESUME
-[...resumeButtons].forEach((button, index) => {
-  button.addEventListener('click', () =>
-  handleAccordion([...resumeTabs], index));
-});
-[...resumeSubButtons].forEach((button, index) => {
-  button.addEventListener('click', () =>
-  handleAccordion([...resumeSubtabs], index));
-});
+addAccordionEvents(resumeButtons, resumeTabs);
+addAccordionEvents(resumeSubButtons, resumeSubtabs);
+addAccordionEvents(tasktimerButtons, tasktimerTabs);
+addAccordionEvents(portfolioButtons, portfolioTabs);
+addAccordionEvents(hydrappButtons, hydrappTabs);
+addAccordionEvents(quotesButtons, quotesTabs);
+addAccordionEvents(otherProjectsButtons, otherProjectsTabs);
 
-// PROJECT SECTIONS
-[...tasktimerButtons].forEach((button, index) => {
-  button.addEventListener('click', () =>
-  handleAccordion([...tasktimerTabs], index));
-});
-[...portfolioButtons].forEach((button, index) => {
-  button.addEventListener('click', () =>
-  handleAccordion([...portfolioTabs], index));
-});
-[...hydrappButtons].forEach((button, index) => {
-  button.addEventListener('click', () =>
-  handleAccordion([...hydrappTabs], index));
-});
-[...quotesButtons].forEach((button, index) => {
-  button.addEventListener('click', () =>
-  handleAccordion([...quotesTabs], index));
-});
-
-// OTHER PROJECTS
 if (window.innerWidth < mediaDesktop) {
-  [...otherProjectsButtons].forEach((button, index) => {
-    button.addEventListener('click', () =>
-    handleAccordion([...otherProjectsTabs], index));
-  });
+  addAccordionEvents(otherProjectsButtons, otherProjectsTabs);
 }
 
-// 'READ MORE' BUTTONS
 [...readMoreButtons].forEach((button, index) => {
   button.index = index;
   button.addEventListener('click', handleReadMore);
