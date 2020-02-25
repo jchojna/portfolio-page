@@ -4,7 +4,7 @@
 .tab,
 .subtab {
   position: relative;
-  //margin-top: 20px;
+  margin-top: 30px;
   
   &--profiles { grid-area: profiles; }
   &--working { grid-area: working; }
@@ -19,6 +19,7 @@
     flex-direction: column;
     grid-area: info;
     height: 100%;
+    margin-top: 0;
   }
   &--experience {
     grid-area: experience;
@@ -37,6 +38,9 @@
     grid-area: description;
     height: 100%;
     overflow: initial;
+  }
+  &--description {
+    margin-top: 0;
   }
   &--features {
     grid-area: features;
@@ -250,6 +254,7 @@
     &--resume {
       color: $color-resume-white;
       margin-left: $separator-width-thick + $tabGap;
+      margin-right: $offset-right-sm;
       margin-top: 0;
       padding-top: 20px;
     }
@@ -269,6 +274,7 @@
       color: $color-quotes-white;
     }
     &--other {
+      font-size: 1.1em;
       color: $color-other-white;
 
       &.tab__description--small {
@@ -301,7 +307,6 @@
     height: $tabHeader-size-sm;
     line-height: 1;
     margin: 0;
-    margin-top: $tabHeader-size-sm / 2;
     padding: 0;
     padding-left: $tabHeader-size-sm + $tabGap;
     position: relative;
@@ -432,6 +437,7 @@
   &--resume {
     margin-left: $separator-width-thick + $tabGap;
     margin-top: 0;
+    //padding-top: 30px;
   }
 
   &__header {

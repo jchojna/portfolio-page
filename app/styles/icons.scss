@@ -12,14 +12,26 @@
 
   &--contact {
     grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
     margin: 0 $offset-right-sm;
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-sm) {
+
+    & {
+      grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+
+      &--contact {
+        grid-template-columns: repeat(6, 50px);
+        margin: 0;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
 
     & {
       grid-template-columns: repeat(12, 1fr);
-      margin: 0;
 
       &--profiles {
         grid-template-columns: repeat(6, 1fr);

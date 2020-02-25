@@ -42,6 +42,7 @@
 .section {
   align-items: flex-start;
   display: flex;
+  justify-content: center;
   min-height: 100vh;
   padding-bottom: 50px;
   position: relative;
@@ -77,29 +78,33 @@
     padding-bottom: 20px;
   }
 
+  @media only screen and (min-width: $media-lg) {
+
+    & {
+      justify-content: flex-start;
+    }      
+  }   
+
   &__container {
     align-items: start;
     display: grid;
     width: 100%;
 
-    max-width: 300px;
-
     &--about {
       grid-template-areas:
-      "heading    "
       "photography"
+      "heading    "
       "description"
       "profiles   "
       "working    "
       "knowing    "
       "learning   ";
-      row-gap: $rowGap;
     }
 
     &--resume {
       grid-template-areas:
-      "heading   "
       "logo      "
+      "heading   "
       "info      "
       "experience"
       "education "
@@ -112,38 +117,36 @@
     &--archviz,
     &--quotes {
       grid-template-areas:
-      "heading     "
       "logo        "
+      "heading     "
       "description "
       "features    "
       "technologies"
       "stats       "
       "repoLinks   ";
-      row-gap: $rowGap;
     }
 
     &--other {
       grid-template-areas:
-      "heading    "
       "logo       "
+      "heading    "
       "description"
       "otherRepos ";
-      row-gap: $rowGap;
     }
 
     &--contact {
       grid-template-areas:
-      "heading"
       "logo   "
+      "heading"
       "form   "
       "social "
       "footer ";
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-md) {
 
       & {
-        margin-left: 540px;
+
         max-width: $container-size;
         min-height: $container-size;
 
@@ -206,19 +209,27 @@
         }
       }
     }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        margin-left: 540px;
+      }      
+    }
   }
   
   &__heading {
-    border-left: 8px solid transparent;
+    border-left: $separator-width-thick solid transparent;
     color: #fff;
     font-size: 50px;
     grid-area: heading;
     line-height: 1.2;
     margin: 0 $offset-right-sm 0 0;
-    padding: 75px 0 25px 20px;
+    margin-top: -50px;
+    padding: 30px 10px 30px 20px;
     position: relative;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
 
     &--large {
       font-size: 72px;
@@ -228,7 +239,7 @@
     &--about {
       border-color: $color-about-diff;
       color: $color-about-diff;
-      width: 60%;
+      //width: 60%;
     }
     &--resume {
       border-color: $color-resume-diff;
@@ -280,7 +291,7 @@
     background: $color-about-white;
     background-clip: content-box;
     grid-area: photography;
-    margin-top: -50px;
+    margin-top: 50px;
     padding-left: $offset-left-sm;
     width: 100%;
     z-index: 1;
