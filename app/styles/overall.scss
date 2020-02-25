@@ -3,24 +3,24 @@
 
 .browserupgrade {
   margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
+  background: $intro-background-color;
+  color: #ccc;
   padding: 0.2em 0;
 }
 
 @font-face {
   font-family: 'Antonio Bold';
-  src: url('../assets/fonts/Antonio-Bold.ttf');
+  src: url('../assets/fonts/Antonio-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Antonio Regular';
-  src: url('../assets/fonts/Antonio-Regular.ttf');
+  src: url('../assets/fonts/Antonio-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Antonio Light';
-  src: url('../assets/fonts/Antonio-Light.ttf');
+  src: url('../assets/fonts/Antonio-Light.ttf') format('truetype');
 }
 
 html {
@@ -42,13 +42,11 @@ html {
 }
 
 body {
-  color: #000;
-  font-family: "Antonio Bold", Arial, sans-serif;
+  color: $intro-background-color;
+  font-family: "Antonio Regular", Arial, sans-serif;
   font-size: 16px;
-  font-weight: normal;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
+  scroll-snap-type: y proximity;
 }
 
 a {

@@ -1,6 +1,6 @@
 @import 'variables.scss';
 @import 'mixins.scss';
-//| NAVIGATION                                                              |//
+
 .navigation {
   display: none;
 }
@@ -51,7 +51,7 @@
         transform $navigation-time,
         width $navigation-time $navigation-time-rotate;
     }
-    //: NAVIGATION BUTTON                                                   ://
+    
     &__button {
       @include button;
       @include flex-center;
@@ -134,7 +134,7 @@
         visibility: hidden;
       }
     }
-    //: NAVIGATION ICON                                                     ://
+    
     &__icon {
       border-color: inherit;
       border-style: solid;

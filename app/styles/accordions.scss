@@ -30,6 +30,7 @@
   &__title {
     border-left: $separator-width-thick solid $color-resume-dark;
     color: $color-resume-dark;
+    font-family: 'Antonio Bold';
     font-size: 25px;
     margin: 0;
     padding: 0 0 10px $tabGap;
@@ -45,10 +46,6 @@
     &--secondary {
       border-left: $separator-width-thick solid $color-resume-dark;
       padding-left: $tabGap;
-    }
-
-    &--secondary {
-      font-family: 'Antonio Regular';
     }
 
     &--additional {

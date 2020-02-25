@@ -1,6 +1,6 @@
 @import 'variables.scss';
 @import 'mixins.scss';
-//| PAGE HEADER                                                             |//
+
 .pageHeader {
   align-items: flex-start;
   display: flex;
@@ -31,9 +31,7 @@
 
     & {
       box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
-      pointer-events: none;
 
-      //: PAGE INDICATOR                                                    ://
       &__indicator {
         background-color: #fff;
         left: 0;
@@ -41,7 +39,12 @@
         position: fixed;
         right: calc(100vw - #{$menu-item-height-lg});
         top: -$menu-item-height-lg;
+        visibility: hidden;
         z-index: -1;
+
+        &--visible {
+          visibility: visible;
+        }
 
         &--animated {
           transition:
@@ -55,23 +58,19 @@
         }
 
         &--centered {
+          background-color: $intro-link-color;
           left: calc(50vw + 10px);
           right: calc(50vw - 10px);
+        }
+
+        &--noTransition {
+          transition: none;
         }
       }
     }
   }
 }
-/*
-##     ## ######## ##    ## ##     ##
-###   ### ##       ###   ## ##     ##
-#### #### ##       ####  ## ##     ##
-## ### ## ######   ## ## ## ##     ##
-##     ## ##       ##  #### ##     ##
-##     ## ##       ##   ### ##     ##
-##     ## ######## ##    ##  #######
-*/
-//| MAIN MENU                                                               |//
+
 .menu {
   width: 100%;
   position: relative;
@@ -92,7 +91,7 @@
       }
     }
   }
-  //: MENU LIST                                                             ://
+  
   &__list {
     display: grid;
     list-style-type: none;
@@ -101,17 +100,17 @@
     row-gap: 10px;
     width: 100%;
   }
-  //: MENU ITEMS                                                            ://
+  
   &__item {
     align-items: flex-start;
     display: flex;
     height: $menu-item-height;
     overflow: hidden;
     padding-right: 10px;
-    pointer-events: none;    // ! make possible to enable menu by clicking link name
+    pointer-events: none;
     visibility: hidden;
     width: 100%;
-    transition: height 0.3s;
+    //transition: height 0.3s; // rather unnecessary
 
     &--active {
       pointer-events: all;
@@ -125,7 +124,8 @@
 
     &--minimized {
       height: 0;
-      transition: height 0.3s, visibility 0s 0.3s;
+      //transition: height 0.3s, visibility 0s 0.3s; // rather unnecessary
+      transition: visibility 0s 0.3s;
     }
 
     &--animated {
@@ -133,7 +133,7 @@
     }
 
     &--visible {
-      visibility: visible;
+      visibility: inherit;
     }
 
     @media only screen and (min-width: $media-lg) {
@@ -143,8 +143,9 @@
       width: 100%;
     }
   }
-  //: MENU LINKS                                                            ://
-  &__link {
+  
+  &__button {
+    @include button;
     display: flex;
     fill: $intro-link-color;
     height: $menu-item-height;
@@ -209,7 +210,7 @@
       width: 100%;
     }
   }
-  //: MENU SVG                                                              ://
+  
   &__svg {
     height: $menu-item-height;
     pointer-events: none;
@@ -221,7 +222,6 @@
   }
 }
 
-//| BURGER BUTTON                                                           |//
 .burgerButton {
   @include button;
   @include flex-center;
@@ -248,7 +248,6 @@
   &--other     { fill: $color-other; }
   &--contact   { fill: $color-contact; }
 
-  //: BURGER BUTTON SVG                                                     ://
   &__svg {
     width: 100%;
   }

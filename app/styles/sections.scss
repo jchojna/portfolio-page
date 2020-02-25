@@ -1,10 +1,16 @@
 @import 'variables.scss';
 @import 'mixins.scss';
-//| PAGE CONTAINER                                                          |//
+
 .pageContainer {
+  background-color: $intro-background-color;
   overflow: hidden;
-  width: 100%;
   position: relative;
+  visibility: hidden;
+  width: 100%;
+
+  &--visible {
+    visibility: visible;
+  }
   
   @media only screen and (min-width: $media-lg) {
 
@@ -15,7 +21,10 @@
       left: 100vw;
       width: 100%;
       height: 100%;
-      transition: left $menu-lg-second-timeout, visibility 0s $menu-lg-second-timeout;
+      transition:
+        left $menu-lg-second-timeout,
+        visibility 0s $menu-lg-second-timeout;
+      scroll-snap-type: y mandatory;
 
       &--visible {
         left: 0;
@@ -29,13 +38,14 @@
     }
   }
 }
-//| SECTION                                                                 |//
+
 .section {
   align-items: flex-start;
   display: flex;
   min-height: 100vh;
   padding-bottom: 50px;
   position: relative;
+  scroll-snap-align: start;
   width: 100%;
 
   &--about {
@@ -67,11 +77,12 @@
     padding-bottom: 20px;
   }
 
-  //: SECTION CONTAINER                                                     ://
   &__container {
     align-items: start;
     display: grid;
     width: 100%;
+
+    max-width: 300px;
 
     &--about {
       grid-template-areas:
@@ -196,13 +207,11 @@
       }
     }
   }
-  //: end of SECTION CONTAINER                                              ://
-  //: SECTION HEADING                                                       ://
+  
   &__heading {
     border-left: 8px solid transparent;
     color: #fff;
     font-size: 50px;
-    font-weight: normal;
     grid-area: heading;
     line-height: 1.2;
     margin: 0 $offset-right-sm 0 0;
@@ -266,8 +275,7 @@
       }
     }
   }
-  //: end of SECTION HEADING                                                ://
-  //: SECTION PHOTO & SVG                                                   ://
+  
   &__photo {
     background: $color-about-white;
     background-clip: content-box;
@@ -290,8 +298,7 @@
   &__svg {
     display: none;
   }
-  //: end of SECTION PHOTO & SVG                                            ://
-  //: SECTION REPOS                                                         ://
+  
   &__repos {
     grid-area: otherRepos;
 
@@ -304,9 +311,8 @@
       }
     }
   }
-  //: end of SECTION REPOS                                                  ://
 }
-//| SECTION STATS                                                           |//
+
 .stats {
   border-collapse: collapse;
   border-bottom: 3px solid transparent;
@@ -365,8 +371,7 @@
     }
   }
 }
-//| end of SECTION STATS                                                    |//
-//| CODE AND DEMO LINKS                                                     |//
+
 .repoLinks {
   align-self: end;
   column-gap: 10px;
@@ -464,8 +469,7 @@
     }
   }
 }
-//| end of CODE AND DEMO LINKS                                              |//
-//| PAGE FOOTER                                                             |//
+
 .footer {
   border-top: 2px solid $color-contact-shadow;
   color: $color-contact-shadow;
@@ -491,4 +495,3 @@
     }
   }
 }
-//| end of PAGE FOOTER                                                      |//
