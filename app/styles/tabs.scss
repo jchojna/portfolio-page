@@ -46,7 +46,7 @@
     grid-area: features;
   }
   &--category {
-    margin: 0 $offset-right-sm 0 $separator-width-thick + $tabGap;
+    margin: 0 $offset-right-xs 0 $separator-width-thick + $tabGap-xs;
   }
   &--technologies {
     grid-area: technologies;
@@ -67,7 +67,7 @@
     grid-area: social;
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
 
     & {
       margin-top: 0;
@@ -124,13 +124,13 @@
     align-items: flex-start;
     display: flex;
     font-family: 'Antonio Bold';
-    font-size: $tabHeader-size-sm;
+    font-size: $tabHeader-size-xs;
     line-height: 1;
     margin: 0;
     position: relative;
 
     &--category {
-      font-size: $features-category-size-sm;
+      font-size: $features-category-size-xs;
     }
 
     &--tasktimer { color: $color-tasktimer-shadow; }
@@ -140,10 +140,10 @@
     &--quotes    { color: $color-quotes-shadow; }
     
     &--other {
-      font-size: $otherHeading-size-sm;
+      font-size: $otherHeading-size-xs;
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-md) {
   
       & {
         font-size: $tabHeader-size-lg;
@@ -161,10 +161,10 @@
 
   &__heading {
     align-self: start;
-    font-size: $tabHeading-size-sm;
+    font-size: $tabHeading-size-xs;
     line-height: 1;
     margin: 0;
-    padding-left: $tabHeading-size-sm;
+    padding-left: $tabHeading-size-xs;
     position: relative;
     text-transform: uppercase;
 
@@ -206,7 +206,7 @@
       &::before { background-color: $color-other-diff; }
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-md) {
 
       & {
         padding: 0;
@@ -249,12 +249,12 @@
     &--about {
       font-size: 1.5em;
       color: $color-about-white;
-      margin: 0 $offset-right-sm 20px $offset-left-sm;
+      margin: 0 $offset-right-xs 20px $offset-left-xs;
     }
     &--resume {
       color: $color-resume-white;
-      margin-left: $separator-width-thick + $tabGap;
-      margin-right: $offset-right-sm;
+      margin-left: $separator-width-thick + $tabGap-xs;
+      margin-right: $offset-right-xs;
       margin-top: 0;
       padding-top: 20px;
     }
@@ -279,18 +279,40 @@
 
       &.tab__description--small {
         color: $color-other-shadow;
-        margin: 0 $offset-right-sm 20px $offset-left-sm;
+        margin: 0 $offset-right-xs 20px $offset-left-xs;
       }
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-sm) {
+
+      & {
+
+        &--about {
+          margin: 0 $offset-right-sm 20px $offset-left-sm;
+        }
+
+        &--resume {
+          margin-left: $separator-width-thick + $tabGap-sm;
+          margin-right: $offset-right-sm;
+        }
+
+        &--other {
+    
+          &.tab__description--small {
+            margin: 0 $offset-right-sm 20px $offset-left-sm;
+          }
+        }
+      }
+    }
+
+    @media only screen and (min-width: $media-md) {
 
       & {
         margin: 0;
         line-height: 1.6;
 
         &--resume {
-          margin-left: $separator-width-thick + $tabGap;
+          //margin-left: $separator-width-thick + $tabGap-xs;
         }
 
         &--other.tab__description--small {
@@ -304,11 +326,11 @@
     @include button;
     align-items: center;
     display: flex;
-    height: $tabHeader-size-sm;
+    height: $tabHeader-size-xs;
     line-height: 1;
     margin: 0;
     padding: 0;
-    padding-left: $tabHeader-size-sm + $tabGap;
+    padding-left: $tabHeader-size-xs + $tabGap-xs;
     position: relative;
     text-align: left;
     text-transform: uppercase;
@@ -322,9 +344,9 @@
     }
 
     &--category {
-      height: $features-category-size-sm;
-      margin-top: $features-category-size-sm;
-      padding-left: $features-category-size-sm + $tabGap;
+      height: $features-category-size-xs;
+      margin-top: $features-category-size-xs;
+      padding-left: $features-category-size-xs + $tabGap-xs;
     }
     
     &--tasktimer {
@@ -342,38 +364,49 @@
     
     &--other {
       color: $color-other-shadow;
-      height: $otherHeading-size-sm;
+      height: $otherHeading-size-xs;
     }
 
     &--unrolled {
       color: inherit;
-      padding-left: $tabHeader-size-sm;
+      padding-left: $tabHeader-size-xs;
       transition:
         color $tabHeader-time,
         padding-left $tabHeader-time ease-in;
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-sm) {
+
+      & {
+        padding-left: $tabHeader-size-xs + $tabGap-sm;
+
+        &--category {
+          padding-left: $features-category-size-xs + $tabGap-sm;
+        }
+      }
+    }
+
+    @media only screen and (min-width: $media-md) {
 
       & {
         height: $tabHeader-size-lg;
         margin-top: $tabHeader-size-lg / 2;
-        padding-left: $tabHeader-size-lg + $tabGap;
+        padding-left: $tabHeader-size-lg + $tabGap-xs;
 
         &--category {
           height: $features-category-size-lg;
-          margin-top: $features-category-size-sm;
-          padding-left: $features-category-size-lg + $tabGap;
+          margin-top: $features-category-size-xs;
+          padding-left: $features-category-size-lg + $tabGap-xs;
         }
 
         &--other {
           height: $otherHeading-size-lg;
           margin: 0;
-          padding-left: $otherHeading-size-lg + $tabGap;
+          padding-left: $otherHeading-size-lg + $tabGap-xs;
         }
 
         &--unrolled {
-          padding-left: $separator-width-thick + $tabGap;
+          padding-left: $separator-width-thick + $tabGap-xs;
         }
       }
     }
@@ -388,7 +421,7 @@
     display: none;
     font-size: 1em;
     grid-area: readMore;
-    margin: 10px $offset-right-sm 10px $offset-left-sm;
+    margin: 10px $offset-right-xs 10px $offset-left-xs;
     padding: 0.2em 0;
     text-transform: uppercase;
 
@@ -421,10 +454,16 @@
       color: $color-other-light;
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-sm) {
 
       & {
-        align-self: flex-end;
+        margin: 10px $offset-right-sm 10px $offset-left-sm;
+      }
+    }
+
+    @media only screen and (min-width: $media-md) {
+
+      & {
         margin: 0;
         margin-top: 10px;
       }
@@ -435,9 +474,8 @@
 .subtab {
 
   &--resume {
-    margin-left: $separator-width-thick + $tabGap;
+    margin-left: $separator-width-thick + $tabGap-xs;
     margin-top: 0;
-    //padding-top: 30px;
   }
 
   &__header {
@@ -446,7 +484,7 @@
     justify-content: flex-end;
 
     &--resume {
-      font-size: $tabHeader-size-sm;
+      font-size: $tabHeader-size-xs;
     }
   }
 
@@ -454,6 +492,7 @@
 
     &--resume {
       color: $color-resume-dark;
+      margin-top: 20px;
     }
 
     &--unrolled {
@@ -461,7 +500,17 @@
     }
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-sm) {
+
+    & {
+
+      &--resume {
+        margin-left: $separator-width-thick + $tabGap-sm;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
 
     & {
 

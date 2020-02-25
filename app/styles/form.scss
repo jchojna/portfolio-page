@@ -51,20 +51,27 @@
   
   &__label {
     color: $color-contact-dark;
-    font-size: $tabHeading-size-sm;
+    font-size: $tabHeading-size-xs;
     line-height: 1;
-    margin: 0 $offset-right-sm 0 $offset-left-sm;
+    margin: 0 $offset-right-xs 0 $offset-left-xs;
     order: -1;
     text-transform: uppercase;
     transition:
       color $tabHeader-time $tabHeader-time,
       margin-left $tabHeader-time $tabHeader-time ease-out;
 
+      @media only screen and (min-width: $media-sm) {
+    
+        & {
+          margin: 0 $offset-right-sm 0 $offset-left-sm;
+        }
+      }
+
     @media only screen and (min-width: $media-lg) {
   
       & {
         font-size: $tabHeading-size-lg;
-        margin: 0 0 15px $tabHeading-size-lg + $tabGap;
+        margin: 0 0 15px $tabHeading-size-lg + $tabGap-xs;
       }
     }
   }
@@ -74,7 +81,7 @@
     border: 3px solid $color-contact-light;
     color: $color-contact-white;
     font-size: 1.25em;
-    margin: 20px $offset-right-sm 0 $offset-left-sm;
+    margin: 20px $offset-right-xs 0 $offset-left-xs;
     min-width: 50px;
     outline: none;
     padding: 0.8em 0.5em;
@@ -92,7 +99,7 @@
     &:focus {
       background-color: $color-contact-dark;
       border-color: $color-contact-white;
-      margin-left: $separator-width-thick + $tabGap;
+      margin-left: $separator-width-thick + $tabGap-xs;
       transition: margin-left $tabHeader-time ease-in;
     }
     
@@ -108,7 +115,7 @@
     
     &:focus ~ .form__label {
       color: $color-contact-diff;
-      margin-left: $tabHeading-size-sm;
+      margin-left: $tabHeading-size-xs;
       transition:
         color $tabHeader-time,
         margin-left $tabHeader-time ease-in;
@@ -122,11 +129,22 @@
       }
     }
 
+    @media only screen and (min-width: $media-sm) {
+  
+      & {
+        margin: 20px $offset-right-sm 0 $offset-left-sm;
+
+        &:focus {
+          margin-left: $separator-width-thick + $tabGap-sm;
+        }
+      }
+    }
+
     @media only screen and (min-width: $media-lg) {
   
       & {
         margin: 0;
-        margin-left: $tabHeading-size-lg + $tabGap;
+        margin-left: $tabHeading-size-lg + $tabGap-xs;
       }
     }
   }
@@ -136,9 +154,9 @@
     border: 3px solid $color-contact-white;
     color: $color-contact-white;
     cursor: pointer;
-    font-size: $tabHeading-size-sm;
+    font-size: $tabHeading-size-xs;
     grid-area: submit;
-    margin: $tabHeading-size-sm $offset-right-sm 0 $offset-left-sm;
+    margin: $tabHeading-size-xs $offset-right-xs 0 $offset-left-xs;
     padding: 0.3em;
     text-transform: uppercase;
 
@@ -148,10 +166,17 @@
       color: $color-contact;
     }
 
+    @media only screen and (min-width: $media-sm) {
+  
+      & {
+        margin: $tabHeading-size-xs $offset-right-sm 0 $offset-left-sm;
+      }
+    }
+
     @media only screen and (min-width: $media-lg) {
   
       & {
-        margin: 50px 0 0 $tabHeading-size-lg + $tabGap;
+        margin: 50px 0 0 $tabHeading-size-lg + $tabGap-xs;
       }
     }
   }

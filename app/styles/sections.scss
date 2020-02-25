@@ -182,8 +182,8 @@
           grid-template-areas:
           "heading      heading     "
           "description  features    "
-          "stats        repoLinks   "
-          "technologies technologies";
+          "technologies technologies"
+          "stats        repoLinks   ";
           grid-template-columns: 1fr 1fr;
           grid-template-rows: auto 1fr repeat(2, auto);
         }
@@ -224,8 +224,8 @@
     font-size: 50px;
     grid-area: heading;
     line-height: 1.2;
-    margin: 0 $offset-right-sm 0 0;
-    margin-top: -50px;
+    margin: 0 $offset-right-xs 0 0;
+    margin-top: -60px;
     padding: 30px 10px 30px 20px;
     position: relative;
     width: 100%;
@@ -239,7 +239,6 @@
     &--about {
       border-color: $color-about-diff;
       color: $color-about-diff;
-      //width: 60%;
     }
     &--resume {
       border-color: $color-resume-diff;
@@ -274,33 +273,50 @@
       color: $color-contact-diff;
     }
     
+    @media only screen and (min-width: $media-md) {
+
+      & {
+        border: none;
+        margin: $menu-item-height + $offset-right-sm 0;
+        min-width: 380px;
+        padding: 0;
+        width: 100%;
+        max-width: 60%;
+      }
+    }
+    
     @media only screen and (min-width: $media-lg) {
 
       & {
-        border-left-width: $separator-width-thick;
-        margin: 0;
-        margin: 0 0 0 -50px;
-        min-width: 380px;
-        padding: 25px 0 25px 40px;
-        width: 100%;
+        margin-top: 0;
       }
     }
   }
   
   &__photo {
+    justify-self: end;
     background: $color-about-white;
     background-clip: content-box;
     grid-area: photography;
-    margin-top: 50px;
-    padding-left: $offset-left-sm;
+    margin-top: $menu-item-height;
+    max-width: 500px;
+    padding-left: $offset-left-xs;
     width: 100%;
     z-index: 1;
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-sm) {
+
+      & {
+        padding-left: $offset-left-sm;
+      }
+    }
+
+    @media only screen and (min-width: $media-md) {
 
       & {
         border: 3px solid $color-about-light;
-        margin: 0;
+        margin-top: $menu-item-height + $offset-right-sm;
+        margin-right: $offset-right-sm;
         padding: 3px;
       }
     }
@@ -313,11 +329,11 @@
   &__repos {
     grid-area: otherRepos;
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-md) {
 
       & {
         display: grid;
-        gap: $tabGap;
+        gap: $tabGap-xs;
         grid-template-columns: repeat(3, 1fr);
       }
     }
@@ -328,7 +344,7 @@
   border-collapse: collapse;
   border-bottom: 3px solid transparent;
   display: flex;
-  margin: 20px $offset-right-sm 0 $offset-left-sm;
+  margin: 20px $offset-right-xs 0 $offset-left-xs;
   padding-bottom: 10px;
   
   &--tasktimer {
@@ -374,7 +390,14 @@
     text-align: right;
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-sm) {
+
+    & {
+      margin: 20px $offset-right-sm 0 $offset-left-sm;
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
 
     & {
       margin: 0;
@@ -390,7 +413,7 @@
   font-size: 2em;
   grid-area: repoLinks;
   grid-template-columns: repeat(2, 1fr);
-  margin: 0.5em $offset-right-sm 0 $offset-left-sm;
+  margin: 0.5em $offset-right-xs 0 $offset-left-xs;
 
   &--about     { border-color: $color-about-diff; }
   &--tasktimer { border-color: $color-tasktimer-diff; }
@@ -401,7 +424,7 @@
 
   &--other {
     font-size: 1.5em;
-    margin: 0.5em $offset-right-sm 0 $offset-left-sm;
+    margin: 0.5em $offset-right-xs 0 $offset-left-xs;
   }
 
   &__link {
@@ -471,7 +494,14 @@
     }
   }
   
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-sm) {
+
+    & {
+      margin: 0.5em $offset-right-sm 0 $offset-left-sm;
+    }
+  }
+  
+  @media only screen and (min-width: $media-md) {
 
     & {
       margin: 0;
@@ -486,22 +516,22 @@
   color: $color-contact-shadow;
   font-size: 14px;
   grid-area: footer;
-  margin: $offset-right-sm;
+  margin: $offset-right-xs;
   margin-bottom: 0;
-  padding-top: $offset-right-sm;
+  padding-top: $offset-right-xs;
   text-align: center;
 
   &__text {
     margin: 0;
   }
   
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
 
     & {
       border-color: $color-contact-dark;
       color: $color-contact-dark;
       margin: 0;
-      margin-top: $offset-right-sm;
+      margin-top: $offset-right-xs;
       text-align: left;
     }
   }

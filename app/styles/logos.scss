@@ -2,13 +2,13 @@
 @import 'mixins.scss';
 
 .logo {
-  @include flex-center;
+  display: flex;
+  justify-content: flex-end;
   grid-area: logo;
-  margin-left: $offset-left-sm;
+  margin-top: $menu-item-height;
+  margin-left: $offset-left-xs;
   position: relative;
   transform-origin: bottom left;
-
-  border: 1px solid #000;
 
   &--about {
     display: none;
@@ -18,13 +18,16 @@
     margin-right: -50px;
   }
 
+  &--portfolio,
+  &--quotes,
+  &--other,
   &--contact {
-    margin-right: -20px;
+    margin-right: -25px;
   }
 
   &__base {
     width: 100%;
-    max-height: 300px;
+    max-width: 400px;
 
     &--about {fill: $color-about-light; }
     &--resume { fill: $color-resume-dark; }
@@ -39,9 +42,9 @@
 
   &__shadow {
     position: absolute;
-    max-height: 300px;
+    max-width: 400px;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
 
     &--about { fill: $color-about-dark; }
@@ -59,21 +62,35 @@
   &__letter {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
     height: 100%;
+    max-width: 400px;
 
     &--tasktimer { fill: $color-tasktimer-letter; }
+  }
+
+  @media only screen and (min-width: $media-sm) {
+
+    & {
+      margin-left: $offset-left-sm;
+    }
   }
 
   @media only screen and (min-width: $media-md) {
 
     & {
-      display: block;
       position: absolute;
-      right: 50px;
+      margin: 0;
+      right: 0;
       top: 50px;
-      width: 400px;
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+
+    &--about {
+      display: block;
     }
   }
 }

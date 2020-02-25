@@ -20,7 +20,7 @@
     display: grid;
     justify-content: flex-start;
     justify-items: flex-start;
-    padding: 0 0 20px $separator-width-thick + $tabGap;
+    padding: 0 0 20px $separator-width-thick + $tabGap-xs;
 
     &--resume {
       color: $color-resume-white;
@@ -31,30 +31,70 @@
     border-left: $separator-width-thick solid $color-resume-dark;
     color: $color-resume-dark;
     font-family: 'Antonio Bold';
-    font-size: 25px;
+    font-size: 1.6em;
     margin: 0;
-    padding: 0 0 10px $tabGap;
+    padding: 0 0 10px $tabGap-xs;
+
+    &--fullWidth {
+      font-size: 1em;
+    }
   }
   
   &__description {
     font-size: 1em;
     line-height: 1.4;
     margin: 0;
-    padding-left: $tabHeader-size-sm;
+    padding-left: $tabHeader-size-xs;
 
     &--primary,
     &--secondary {
       border-left: $separator-width-thick solid $color-resume-dark;
-      padding-left: $tabGap;
+      padding-left: $tabGap-xs;
     }
 
     &--additional {
       color: $color-resume-dark;
-      padding-left: $separator-width-thick + $tabGap;
+      padding-left: $separator-width-thick + $tabGap-xs;
     }
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-sm) {
+
+    & {
+
+      &__item {
+        padding: 0 0 20px $separator-width-thick + $tabGap-sm;
+
+        &--experience {
+          column-gap: 25px;
+          grid-template-columns: repeat(2, auto);
+        }
+      }
+
+
+      &__title {        
+        padding: 0 0 10px $tabGap-sm;
+
+        &--experience {
+          grid-column: 1 / 3;
+        }
+      }
+  
+      &__description {
+    
+        &--primary,
+        &--secondary {
+          padding-left: $tabGap-sm;
+        }
+    
+        &--additional {
+          padding-left: $separator-width-thick + $tabGap-sm;
+        }
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
 
     & {
 
@@ -69,15 +109,18 @@
 
       &__item {
         column-gap: 25px;
-        grid-template-columns: 180px repeat(2, minmax(auto, 1fr));
+        grid-template-columns: repeat(3, auto);
         padding-bottom: 0;
       }
 
       &__title {
         border: none;
+        grid-column: 1 / 4;
         padding: 0;
+        margin-bottom: 10px;
 
         &--fullWidth {
+          font-size: 1.2em;
           grid-column: 1 / 4;
           width: 100%;
         }
@@ -86,14 +129,19 @@
       &__description {
         align-items: center;
         display: flex;
-        font-size: 16px;
+        font-size: 1.3em;
+        margin-bottom: 10px;
         padding-left: 0;
         position: relative;
 
         &--primary,
         &--secondary {
           border: none;
-          font-size: 25px;
+        }
+
+        &--secondary {
+          margin-left: 20px;
+          padding-left: 10px;
         }
 
         &--secondary::before {
@@ -103,12 +151,8 @@
           transform: translateY(-50%);
           left: -25px;
           background-color: $color-resume-dark;
-          width: $tabGap;
-          height: $tabGap;
-        }
-
-        &--additional {
-          grid-column: 2 / 4;
+          width: $tabGap-xs;
+          height: $tabGap-xs;
         }
       }
     }

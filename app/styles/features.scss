@@ -6,7 +6,7 @@
   line-height: 1.4;
   list-style-type: none;
   margin: 0;
-  margin-left: $features-category-size-sm;
+  margin-left: $features-category-size-xs;
   padding: 0;
   padding-top: 20px;
 
@@ -30,9 +30,9 @@
       content: "";
       position: absolute;
       top: 0;
-      left: $features-category-size-sm * -1;
+      left: $features-category-size-xs * -1;
       width: $separator-width-thick;
-      height: $features-category-size-sm;
+      height: $features-category-size-xs;
     }
     
     &--tasktimer::before {
@@ -58,12 +58,12 @@
       margin: 0;
 
       &--description {
-        margin-left: $features-category-size-sm;
+        margin-left: $features-category-size-xs;
       }
     }
 
     &__item {
-      margin-left: $features-category-size-sm;
+      margin-left: $features-category-size-xs;
 
       &--description {
         margin: 0;

@@ -29,24 +29,28 @@ $navigation-time-delay: 1s;
 $navigation-time-rotate: 0.2s;
 
 // LAYOUT
+$offset-left-xs: 50px;
 $offset-left-sm: 50px;
-$offset-right-sm: 10px;
+$offset-right-xs: 10px;
+$offset-right-sm: 20px;
+
 $offset-alert: 5px;
 
 $container-size: 800px;
 $menu-width: 450px;
 $mobile-menu-offset-top: 100px;
 
-$tabHeader-size-sm: 30px;
+$tabHeader-size-xs: 30px;
 $tabHeader-size-lg: 40px;
-$tabHeading-size-sm: 30px;
+$tabHeading-size-xs: 30px;
 $tabHeading-size-lg: 24px;
-$otherHeading-size-sm: 30px;
+$otherHeading-size-xs: 30px;
 $otherHeading-size-lg: 30px;
-$features-category-size-sm: 25px;
+$features-category-size-xs: 25px;
 $features-category-size-lg: 20px;
 
-$tabGap: 20px;
+$tabGap-xs: 20px;
+$tabGap-sm: 20px;
 $gridGap: 20px;
 $rowGap: 30px;
 

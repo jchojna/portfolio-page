@@ -2,7 +2,7 @@
 @import 'mixins.scss';
 
 .mark {
-  height: $tabHeader-size-sm;
+  height: $tabHeader-size-xs;
   position: absolute;
   top: 0;
   left: 0;
@@ -10,13 +10,13 @@
     background-color $tabHeader-time $tabHeader-time,
     height $tabHeader-time ease-in,
     width $tabHeader-time $tabHeader-time ease-out;
-  width: $tabHeader-size-sm;
+  width: $tabHeader-size-xs;
 
   &--about { background-color: $color-about-diff; }
   &--resume { background-color: $color-resume-dark; }
   &--category {
-    height: $features-category-size-sm;
-    width: $features-category-size-sm;
+    height: $features-category-size-xs;
+    width: $features-category-size-xs;
   }
   &--tasktimer { background-color: $color-tasktimer-light; }
   &--portfolio { background-color: $color-portfolio-light; }
@@ -25,8 +25,8 @@
   &--quotes    { background-color: $color-quotes-light; }
   &--other {
     background-color: $color-other-shadow;
-    height: $otherHeading-size-sm;
-    width: $otherHeading-size-sm;
+    height: $otherHeading-size-xs;
+    width: $otherHeading-size-xs;
   }
   &--contact { background-color: $color-contact-dark; }
 

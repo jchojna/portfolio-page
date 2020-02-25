@@ -2,12 +2,12 @@
 
 .wrapper {
   height: 100%;
-  margin: 0 $offset-right-sm 0 $offset-left-sm;
+  margin: 0 $offset-right-xs 0 $offset-left-xs;
   overflow: hidden;
   position: relative;
   transition: height $expandable-time;
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
     margin: 0;
   }
 }
@@ -21,7 +21,7 @@
   transition: visibility 0s;
   visibility: hidden;
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
     max-width: none;
   }
 }

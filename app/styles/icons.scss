@@ -7,19 +7,20 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   list-style-type: none;
-  margin: 20px $offset-right-sm 0 $offset-left-sm;
+  margin: 20px $offset-right-xs 0 $offset-left-xs;
   padding: 0;
 
   &--contact {
     grid-template-columns: repeat(6, 1fr);
     justify-content: center;
-    margin: 0 $offset-right-sm;
+    margin: 0 $offset-right-xs;
   }
 
   @media only screen and (min-width: $media-sm) {
 
     & {
       grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+      margin: 20px $offset-right-sm 0 $offset-left-sm;
 
       &--contact {
         grid-template-columns: repeat(6, 50px);
@@ -32,6 +33,7 @@
 
     & {
       grid-template-columns: repeat(12, 1fr);
+      margin: 0;
 
       &--profiles {
         grid-template-columns: repeat(6, 1fr);
