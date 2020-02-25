@@ -483,9 +483,6 @@ const handleIntroMenuItemClick = (e) => {
   if (!flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
 
-  window.addEventListener('resize', handleMenuIndicator);
-  pageHeader.addEventListener('scroll', handleMenuIndicator);
-
   const activeIndex = e.target.index;
   flags.isMenuTransforming = true;
   updateSectionsOffsets();
@@ -501,8 +498,6 @@ const handleIntroMenuItemClick = (e) => {
     const upperBackgroundHeight = clickedintroItemHeight + clickedItemOffset - viewOffset;
     const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
 
-    flags.isMobileHeader = true;
-
     // change items colors and set introbox position
     if (lastMenuItemIndex !== activeIndex) {
       handleMenuItemColor(lastMenuItemIndex, 'deactivate');
@@ -510,13 +505,13 @@ const handleIntroMenuItemClick = (e) => {
       handleMenuItemColor(lastMenuItemIndex, 'activate');
     }
     handleIntroBox();
+    // set flag to mobile header after handling introBox
+    flags.isMobileHeader = true;
+    flags.isIntroMode = false;
 
     // remove pointer events from pageHeader
     pageHeader.classList.remove('pageHeader--intro');
     pageContainer.classList.add('pageContainer--visible');
-
-    pageHeader.removeEventListener('resize', handleIntroBox);
-    pageHeader.removeEventListener('scroll', handleIntroBox);
 
     // change menu items to be in a fixed position
     [...menuItems].forEach((item, index) => {
@@ -592,7 +587,6 @@ const handleIntroMenuItemClick = (e) => {
 
         // handle global flags
         flags.isMenuTransforming = false;
-        flags.isIntroMode = false;
 
         clearTimeout(secondTimeoutId);
       }, secondTimeoutXs);
@@ -606,8 +600,8 @@ const handleIntroMenuItemClick = (e) => {
   } else if (window.innerWidth >= mediaDesktop) {
 
     flags.isScrollEnabled = false;
+    flags.isIntroMode = false;
     currentNavigationIndex = activeIndex;
-        
     // handle introBox
     introBox.style.top = 0;
     introBox.classList.add('visuals__introBox--content');
@@ -709,11 +703,6 @@ const handleBurgerButton = () => {
 
   // hide burger button
   burgerButton.classList.remove('burgerButton--visible');
-
-  pageHeader.addEventListener('resize', handleIntroBox);
-  pageHeader.addEventListener('scroll', handleIntroBox);
-  window.removeEventListener('resize', handleMenuIndicator);
-  window.removeEventListener('scroll', handleMenuIndicator);
 
   // set starting position of menu items
   [...menuItems].forEach((item, index) => {
@@ -905,14 +894,16 @@ const handleMobileHeader = () => {
 }
 
 const handleIntroBox = (e) => {
-
+  
   if(!flags.isIntroMode) return false;
   removeTransitionsOnEvent(e, introBox, 'visuals__introBox');
   introBox.style.top = `${getCurrentItemOffset()}px`;
 }
 
 const handleMenuIndicator = (e) => {
-
+  
+  if(flags.isIntroMode) return false;
+  if (flags.media === 'mobile') return false;
   removeTransitionsOnEvent(e, menuIndicator, 'pageHeader__indicator');
   menuIndicator.style.top = `${getCurrentItemOffset()}px`;
 }
@@ -929,9 +920,7 @@ const handleBackButton = () => {
   const currentId = sections[lastMenuItemIndex].id;
   flags.isMenuTransforming = true;
   flags.isIntroMode = true;
-      
-  window.removeEventListener('resize', handleMenuIndicator);
-  pageHeader.removeEventListener('scroll', handleMenuIndicator);
+  flags.isScrollEnabled = false;
 
   // handle intro background
   menuUpperBackground.classList.remove('visuals__background--hidden');
@@ -1711,6 +1700,9 @@ introSkip.addEventListener('click', skipIntro);
 window.addEventListener('resize', updateSectionsOffsets);
 pageHeader.addEventListener('scroll', handleIntroBox);
 window.addEventListener('resize', handleIntroBox);
+
+window.addEventListener('resize', handleMenuIndicator);
+pageHeader.addEventListener('scroll', handleMenuIndicator);
 
 navigationPrevButton.addEventListener('click', navigateToSection);
 navigationNextButton.addEventListener('click', navigateToSection);
