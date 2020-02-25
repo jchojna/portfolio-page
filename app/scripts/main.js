@@ -15,6 +15,7 @@ const handleWindowResize = () => {
 
   const media = getCurrentMedia();
 
+  // update top margin only on large screen devices
   if (media === 'desktop') {
     [...sectionContainers].forEach(container => {
       handleTopMargins(container, minTopMargin);
@@ -27,18 +28,42 @@ const handleWindowResize = () => {
     flags.isMobileHeader = false;
     flags.isIntroMode = true;
 
+    // handle main containers
     pageContainer.classList.remove('pageContainer--visible');
+    pageContainer.classList.remove('pageContainer--smooth');
     pageHeader.classList.add('pageHeader--intro');
+    menu.classList.add('menu--intro');
+    navigation.classList.remove('navigation--visible');
     
     // update menu items heights
     [...menuItems].forEach((item, index) => items[index].height = item.clientHeight);
+    [...navigation.children].forEach(child => {
+      child.classList.remove('navigation__button--hidden');
+    });
 
+    // handle introBox and menu indicator
+    introBox.classList.add('visuals__introBox--visible');
+    introBox.classList.add('visuals__introBox--centered');
+    introBox.classList.remove('visuals__introBox--fullWindow');
+    introBox.classList.remove('visuals__introBox--halfWindow');
+    introBox.classList.remove('visuals__introBox--content');
+    menuIndicator.classList.remove('pageHeader__indicator--visible');
+    menuIndicator.style.top = 0;
+    
+    // collapse accordion sections
+    handleAccordion([...resumeSubtabs]);
+    handleAccordion([...resumeTabs], undefined, 0);
+    handleAccordion([...tasktimerTabs]);
+    handleAccordion([...portfolioTabs]);
+    handleAccordion([...hydrappTabs]);
+    handleAccordion([...quotesTabs]);
 
+    handleIntroBox();
 
     switch (media) {      
       // load configuration for desktops
       case 'desktop':
-        console.log('desktop');
+        const currentId = sections[lastMenuItemIndex].id;
 
         // change menu items to be in a static position
         [...menuItems].forEach(item => {
@@ -48,6 +73,7 @@ const handleWindowResize = () => {
           item.style.top = '';
         });
 
+        // handle menu buttons colors
         [...menuButtons].forEach((button, index) => {
           const currentId = sections[index].id;
 
@@ -55,59 +81,49 @@ const handleWindowResize = () => {
           index !== lastMenuItemIndex
           ? menuButtons[index].classList.remove(`menu__button--intro-${currentId}`)
           : false;
-          
         });
 
+        // handle backgrounds
         menuUpperBackground.style.height = '';
         menuBottomBackground.style.height = '';
         menuUpperBackground.classList.remove('visuals__background--animated');
         menuBottomBackground.classList.remove('visuals__background--animated');
+        menuUpperBackground.classList.remove(`visuals__background--${currentId}`);
 
+        // handle burger button appearance
         burgerButton.classList.remove('burgerButton--visible');
+        burgerButton.classList.remove(`burgerButton--${currentId}`);
         
-        // set position of introBox
-        introBox.classList.remove('visuals__introBox--content');
-        introBox.classList.add('visuals__introBox--visible');
-
-
-
-
-
-
-
-
-
+        // expand other projects accordion section
+        handleAccordion([...otherProjectsTabs], undefined, 'all');
 
       break;
 
       // load configuration for mobiles
       case 'mobile':
-        console.log('mobile');
+
+        [...sectionContainers].forEach(container => container.style.marginTop = '');
+        // handle menu buttons colors
+        [...menuButtons].forEach((button, index) => {
+          const currentId = sections[lastMenuItemIndex].id;
+          button.classList.remove(`menu__button--${currentId}`);
+
+          if (index === lastMenuItemIndex) {
+            button.classList.remove('menu__button--active');
+            button.classList.add(`menu__button--intro-${currentId}`);
+          }
+        });
+        introBox.classList.add('visuals__introBox--content');
+
+        // handle bacground appearance
         menuUpperBackground.classList.remove('visuals__background--hidden');
         menuBottomBackground.classList.remove('visuals__background--hidden');
-        
-        
 
-
-
-
-
-
-
-
-
-
+        // collapse other projects accordion section on mobile devices
+        handleAccordion([...otherProjectsTabs]);
       break;
     }
   }
-
-
-
-
-  
-  /* if (window.innerWidth < mediaDesktop) {
-    handleAccordion([...otherProjectsTabs]);
-  } */
 }
 
 const handleUserActivity = () => {
@@ -480,10 +496,10 @@ const handleIntroMenu = (e) => {
     const currentItemIndex = getCurrentItemIndex(e.clientY + viewOffset);
     if (currentItemIndex >= items.length) return false;
 
-    introBox.style.top = `${items[currentItemIndex].offset - viewOffset}px`;
     handleMenuItemColor(lastMenuItemIndex, 'deactivate');
     lastMenuItemIndex = currentItemIndex;
     handleMenuItemColor(lastMenuItemIndex, 'activate');
+    handleIntroBox();
 
   // handle intro menu on page load
   } else {
@@ -635,6 +651,7 @@ const handleIntroMenuItemClick = (e) => {
     introBox.classList.add('visuals__introBox--halfWindow');
     // handle menu indicator
     menuIndicator.classList.add('pageHeader__indicator--animated');
+    menuIndicator.classList.add('pageHeader__indicator--narrowed');
     // handle navigation appearance
     handleNavOnClick(activeIndex, 'activate');
     // navigate to selected section
@@ -645,8 +662,8 @@ const handleIntroMenuItemClick = (e) => {
 
       // move introBox to the left and make indicator thiner
       introBox.classList.remove('visuals__introBox--centered');
-      introBox.classList.add('visuals__introBox--fullWidth');
-      menuIndicator.classList.add('pageHeader__indicator--narrowed');
+      introBox.classList.add('visuals__introBox--fullWindow');
+      menuIndicator.classList.add('pageHeader__indicator--visible');
       // translate menu and content to the left of the screen
       menu.classList.remove('menu--intro');
       pageContainer.classList.add('pageContainer--visible');
@@ -973,8 +990,10 @@ const handleBackButton = () => {
   navigation.classList.remove('navigation--visible');
 
   // remove transition effects from navigation buttons
-  [...navigation.children].forEach(child =>
-    child.classList.remove('navigation__button--animated'));
+  [...navigation.children].forEach(child => {
+    child.classList.remove('navigation__button--animated');
+    child.classList.remove(`navigation__button--${currentId}`);
+  });
 
   // change colors of menu items to default
   handleMenuButtons(lastMenuItemIndex, 'deactivate');
@@ -995,6 +1014,7 @@ const handleBackButton = () => {
       introBox.classList.remove('visuals__introBox--content');
 
       // handle menu indicator
+      menuIndicator.classList.remove('pageHeader__indicator--visible');
       menuIndicator.classList.remove('pageHeader__indicator--animated');
       menuIndicator.classList.remove('pageHeader__indicator--centered');
       menuIndicator.style.top = '';
@@ -1053,7 +1073,6 @@ const handleNavOnScroll = () => {
 }
 
 const handleNavOnClick = (index, action) => {
-
   const currentId = sections[index].id;
   // remove current appearance
   if (action === 'activate') {
@@ -1107,6 +1126,7 @@ const navigateToSection = (e) => {
 //#region [ Horizon ] MAIN CONTENT
 
 const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
+
   tabs.forEach((tab, index) => {
     const container = tab.querySelector('[class*=container]');
     const content = container.firstElementChild;
@@ -1147,34 +1167,31 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
 
       // handle not clicked elements
       } else {
-        container.style.height = 0;
-        button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
-        mark.classList.remove('mark--unrolled');
-
-        // update scroll position
-        if (index === (clickedIndex - 1)) {
-          const { top } = button.getBoundingClientRect();
-          const scrollOffset = window.pageYOffset + top - 100;
-          const timeoutId = setTimeout(() => {
-            window.scrollTo({
-              top: scrollOffset,
-              behavior: 'smooth'
-            });
-            clearTimeout(timeoutId);
-          }, 500);
+        if (flags.media === 'desktop') {
+          container.style.height = 0;
+          button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
+          mark.classList.remove('mark--unrolled');
         }
       }
 
-    // handle elements on page load
+    // handle elements on page load or media breakpoint
     } else {
-      if (index !== excludeIndex) {
+      if (index !== excludeIndex && excludeIndex !== 'all') {
         container.style.height = 0;
         mark.classList.remove('mark--unrolled');
+        button.classList.remove('tab__button--unrolled');
+
+      } else if (excludeIndex === 'all') {
+        container.style.height = '';
+        mark.classList.remove('mark--unrolled');
+        button.classList.remove('tab__button--unrolled');
+
       } else {
         container.style.height = `${content.clientHeight}px`;
         mark.classList.add('mark--unrolled');
         button.classList.add('tab__button--unrolled');
         container.classList.add('rollable');
+
       }
     }
   });
@@ -1825,7 +1842,6 @@ const handleFastScroll = (e) => {
   if (e.deltaY > 0) {
     //e.preventDefault();
     flags.isScrollEnabled = false;
-    console.log(lastMenuItemIndex);
 
     if (!isFastScroll)
     navigateToSection(++lastMenuItemIndex);

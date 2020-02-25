@@ -82,6 +82,8 @@
     display: grid;
     width: 100%;
 
+    max-width: 300px;
+
     &--about {
       grid-template-areas:
       "heading    "

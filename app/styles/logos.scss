@@ -8,6 +8,8 @@
   position: relative;
   transform-origin: bottom left;
 
+  border: 1px solid #000;
+
   &--about {
     display: none;
   }
@@ -22,6 +24,7 @@
 
   &__base {
     width: 100%;
+    max-height: 300px;
 
     &--about {fill: $color-about-light; }
     &--resume { fill: $color-resume-dark; }
@@ -36,6 +39,7 @@
 
   &__shadow {
     position: absolute;
+    max-height: 300px;
     top: 0;
     left: 0;
     width: 100%;
