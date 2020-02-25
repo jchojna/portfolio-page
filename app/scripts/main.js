@@ -25,12 +25,15 @@ const handleWindowResize = () => {
   if (media !== flags.media) {
     flags.media = media;
     flags.isMobileHeader = false;
+    flags.isIntroMode = true;
 
     pageContainer.classList.remove('pageContainer--visible');
     pageHeader.classList.add('pageHeader--intro');
     
     // update menu items heights
     [...menuItems].forEach((item, index) => items[index].height = item.clientHeight);
+
+
 
     switch (media) {      
       // load configuration for desktops
@@ -40,9 +43,31 @@ const handleWindowResize = () => {
         // change menu items to be in a static position
         [...menuItems].forEach(item => {
           item.classList.remove('menu__item--mobileHeader');
+          item.classList.add('menu__item--visible');
+          item.classList.remove('menu__item--minimized');
           item.style.top = '';
         });
+
+        [...menuButtons].forEach((button, index) => {
+          const currentId = sections[index].id;
+
+          button.style.width = '';
+          index !== lastMenuItemIndex
+          ? menuButtons[index].classList.remove(`menu__button--intro-${currentId}`)
+          : false;
+          
+        });
+
+        menuUpperBackground.style.height = '';
+        menuBottomBackground.style.height = '';
+        menuUpperBackground.classList.remove('visuals__background--animated');
+        menuBottomBackground.classList.remove('visuals__background--animated');
+
+        burgerButton.classList.remove('burgerButton--visible');
         
+        // set position of introBox
+        introBox.classList.remove('visuals__introBox--content');
+        introBox.classList.add('visuals__introBox--visible');
 
 
 
@@ -58,6 +83,8 @@ const handleWindowResize = () => {
       // load configuration for mobiles
       case 'mobile':
         console.log('mobile');
+        menuUpperBackground.classList.remove('visuals__background--hidden');
+        menuBottomBackground.classList.remove('visuals__background--hidden');
         
         
 
