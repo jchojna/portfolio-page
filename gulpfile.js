@@ -120,6 +120,11 @@ function svg() {
     .pipe(dest('dist/assets/svg'));
 };
 
+function icons() {
+  return src('app/assets/icons/**/*')
+    .pipe(dest('dist/assets/icons'));
+};
+
 function fonts() {
   return src('app/assets/fonts/**/*.{eot,svg,ttf,woff,woff2}')
     .pipe($.if(!isProd, dest('.tmp/fonts'), dest('dist/assets/fonts')));
@@ -158,6 +163,7 @@ const build = series(
     series(parallel(styles, scripts, modernizr), html),
     images,
     svg,
+    icons,
     fonts,
     extras,
     phpmailer
@@ -187,6 +193,7 @@ function startAppServer() {
   watch('app/scripts/**/*.js', scripts);
   watch('modernizr.json', modernizr);
   watch('app/assets/svg/**/*', svg);
+  watch('app/assets/icons/**/*', icons);
   watch('app/assets/fonts/**/*', fonts);
   watch('app/phpmailer/**/*', phpmailer);
 }

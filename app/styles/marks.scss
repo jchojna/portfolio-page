@@ -18,11 +18,11 @@
     height: $features-category-size-xs;
     width: $features-category-size-xs;
   }
-  &--tasktimer { background-color: $color-tasktimer-light; }
-  &--portfolio { background-color: $color-portfolio-light; }
-  &--hydrapp   { background-color: $color-hydrapp-light; }
-  &--archviz   { background-color: $color-archviz-light; }
-  &--quotes    { background-color: $color-quotes-light; }
+  &--tasktimer { background-color: $color-tasktimer-white; }
+  &--portfolio { background-color: $color-portfolio-white; }
+  &--hydrapp   { background-color: $color-hydrapp-white; }
+  &--archviz   { background-color: $color-archviz-white; }
+  &--quotes    { background-color: $color-quotes-white; }
   &--other {
     background-color: $color-other-shadow;
     height: $otherHeading-size-xs;

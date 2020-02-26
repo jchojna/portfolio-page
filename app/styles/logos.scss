@@ -89,8 +89,17 @@
 
   @media only screen and (min-width: $media-lg) {
 
-    &--about {
-      display: block;
+    & {
+
+      &--about {
+        display: block;
+      }
+
+      &__base,
+      &__shadow,
+      &__letter {
+        max-width: 500px;
+      }
     }
   }
 }

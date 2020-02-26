@@ -3,11 +3,31 @@
   <!-- #region [ Horizon ] HEAD -->
   <head>
     <meta charset="utf-8">
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Jakub Chojna | Frontend Portfolio</title>
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
+    <meta name="description" content="I am an aspiring Frontend Web Developer, an Architect, a 3d Visualizer and this is my frontend portfolio website">
+    <!-- <link rel="manifest" href="manifest.json" /> -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="assets/icons/icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/icons/icon-192x192.png"
+    />
+
+    <!-- #region [ Horizon ] OPEN GRAPH -->
+    <meta property="og:title" content="Jakub Chojna | Frontend Portfolio" />
+    <meta property="og:description" content="I am an aspiring Frontend Web Developer, an Architect, a 3d Visualizer and this is my frontend portfolio website" />
+    <meta property="og:url" content="http://frontend.jakubchojna.pl/" />
+    <meta property="og:image" content="http://frontend.jakubchojna.pl/assets/img/cover.png" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="600" />
+    <!-- #endregion -->
+
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -30,67 +50,148 @@
       <nav class="menu menu--intro menu--js">
         <h2 class="menu__heading visuallyhidden">Main Menu</h2>
         <ul class="menu__list menu__list--js">
+          <!-- ABOUT -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 263 100">
-                <use href="assets/svg/menu.svg#about"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 263 100">
+                  <use href="assets/svg/menu.svg#about"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 263 100"
+                >
+                  <use href="assets/svg/menu.svg#about-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- RESUME -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 328 100">
-                <use href="assets/svg/menu.svg#resume"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 328 100">
+                  <use href="assets/svg/menu.svg#resume"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 328 100"
+                >
+                  <use href="assets/svg/menu.svg#resume-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- HYDRAPP -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 375 100">
-                <use href="assets/svg/menu.svg#hydrapp"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 375 100">
+                  <use href="assets/svg/menu.svg#hydrapp"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 375 100"
+                >
+                  <use href="assets/svg/menu.svg#hydrapp-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- TASKTIMER -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 450 100">
-                <use href="assets/svg/menu.svg#tasktimer"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 450 100">
+                  <use href="assets/svg/menu.svg#tasktimer"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 450 100"
+                >
+                  <use href="assets/svg/menu.svg#tasktimer-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- PORTFOLIO -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 428 100">
-                <use href="assets/svg/menu.svg#portfolio"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 428 100">
+                  <use href="assets/svg/menu.svg#portfolio"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 428 100"
+                >
+                  <use href="assets/svg/menu.svg#portfolio-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- ARCHVIZ -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 352 100">
-                <use href="assets/svg/menu.svg#archviz"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 352 100">
+                  <use href="assets/svg/menu.svg#archviz"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 352 100"
+                >
+                  <use href="assets/svg/menu.svg#archviz-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- QUOTES -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 299 100">
-                <use href="assets/svg/menu.svg#quotes"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 299 100">
+                  <use href="assets/svg/menu.svg#quotes"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 299 100"
+                >
+                  <use href="assets/svg/menu.svg#quotes-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- OTHER -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 248 100">
-                <use href="assets/svg/menu.svg#other"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 248 100">
+                  <use href="assets/svg/menu.svg#other"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 248 100"
+                >
+                  <use href="assets/svg/menu.svg#other-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- CONTACT -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 355 100">
-                <use href="assets/svg/menu.svg#contact"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 355 100">
+                  <use href="assets/svg/menu.svg#contact"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 355 100"
+                >
+                  <use href="assets/svg/menu.svg#contact-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
         </ul>
@@ -179,7 +280,7 @@
               About Me
             </h3>
             <p class="tab__description tab__description--about">
-              My name is Jakub and I’m an aspiring Frontend Developer, an Architect, a 3d Visualizer and a keen road cycling fan.
+              My name is Jakub and I’m an aspiring Frontend Web Developer, an Architect, a 3d Visualizer and a keen road cycling fan.
             </p>
           </section>
           <!-- #endregion -->

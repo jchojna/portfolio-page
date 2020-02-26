@@ -49,6 +49,9 @@ const handleWindowResize = () => {
       child.classList.remove('navigation__button--hidden');
     });
 
+    // show all menu shadows
+    handleMenuShadows('all', 'activate');
+
     // handle introBox and menu indicator
     introBox.classList.add('visuals__introBox--visible');
     introBox.classList.add('visuals__introBox--centered');
@@ -508,7 +511,6 @@ const skipIntro = () => {
 
 //#region [ Horizon ] MENU
 
-
 const handleIntroMenu = (e) => {
 
   if (flags.isMenuTransforming) return false;
@@ -625,6 +627,9 @@ const handleIntroMenuItemClick = (e) => {
       // remove pointer events from pageHeader
       pageHeader.classList.remove('pageHeader--intro');
 
+      // hide all menu shadows
+      handleMenuShadows('all', 'deactivate');
+
       navigateToSection(activeIndex);
       clearTimeout(firstTimeoutId);
 
@@ -698,6 +703,8 @@ const handleIntroMenuItemClick = (e) => {
       handleMenuIndicator();
       // show navigation panel
       navigation.classList.add('navigation--visible');
+      // hide shadow on active menu item
+      menuShadows[activeIndex].classList.remove('menuSvg__shadow--visible');
 
       // SECOND TIMEOUT
       const secondTimeoutId = setTimeout(() => {
@@ -747,10 +754,11 @@ const handleMenuItemClick = (e) => {
   // handle navigation and introBox appearance
   handleNavOnClick(currentNavigationIndex, 'deactivate');
   handleMenuItemColor(currentNavigationIndex, 'deactivate');
+  handleMenuShadows(currentNavigationIndex, 'activate');
   currentNavigationIndex = activeIndex;
   handleNavOnClick(currentNavigationIndex, 'activate');
   handleMenuItemColor(currentNavigationIndex, 'activate');
-
+  handleMenuShadows(currentNavigationIndex, 'deactivate');
 }
 
 const handleBurgerButton = () => {
@@ -814,6 +822,9 @@ const handleBurgerButton = () => {
     // handle burger button's color
     burgerButton.classList.remove(`burgerButton--${activeId}`);
 
+    // show all menu shadows
+    handleMenuShadows('all', 'activate');
+
     clearTimeout(firstTimeoutId);
 
     // SECOND TIMEOUT
@@ -855,17 +866,20 @@ const handleMenuOnScroll = () => {
     const newMenuItemIndex = getCurrentSectionIndex(0);
 
     if (newMenuItemIndex !== lastMenuItemIndex) {
+
       const prevId = sections[lastMenuItemIndex].id;
       menuButtons[lastMenuItemIndex].classList.remove(`menu__button--intro-${prevId}`);
       menuButtons[lastMenuItemIndex].classList.remove('menu__button--active');
       introBox.classList.remove(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
+      handleMenuShadows(lastMenuItemIndex, 'activate');
 
       // index change
       lastMenuItemIndex = newMenuItemIndex;
+
       menuButtons[lastMenuItemIndex].classList.add('menu__button--active');
       introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
-      
       handleMenuIndicator();
+      handleMenuShadows(lastMenuItemIndex, 'deactivate');
     }
 
     // handle all menu items appearance on local id change
@@ -931,13 +945,13 @@ const handleMobileHeader = () => {
 
   if (window.innerWidth >= mediaLg) return false;
   if (flags.isIntroMode) return false;
+  if (window.pageYOffset <= 0) return false;
 
   const handleHeader = (index, action) => {
     const currentId = sections[index].id;
 
     if (action === 'activate') {
       menuItems[index].classList.remove('menu__item--visible');
-      menuItems[index].classList.add('menu__item--minimized');
 
       introBox.classList.remove(`visuals__introBox--${currentId}`);
       burgerButton.classList.remove(`burgerButton--${currentId}`);
@@ -945,7 +959,6 @@ const handleMobileHeader = () => {
 
     } else if (action === 'deactivate') {
       menuItems[index].classList.add('menu__item--visible');
-      menuItems[index].classList.remove('menu__item--minimized');
 
       introBox.classList.add(`visuals__introBox--${currentId}`);
       burgerButton.classList.add(`burgerButton--${currentId}`);
@@ -975,6 +988,20 @@ const handleMenuIndicator = (e) => {
   if (flags.media === 'mediaXs') return false;
   removeTransitionsOnEvent(e, menuIndicator, 'pageHeader__indicator');
   menuIndicator.style.top = `${getCurrentItemOffset()}px`;
+}
+
+const handleMenuShadows = (index, action) => {
+
+  if (index === 'all') {
+    [...menuShadows].forEach(shadow => action === 'activate'
+    ? shadow.classList.add('menuSvg__shadow--visible')
+    : shadow.classList.remove('menuSvg__shadow--visible'));
+
+  } else {
+    action === 'activate'
+    ? menuShadows[index].classList.add('menuSvg__shadow--visible')
+    : menuShadows[index].classList.remove('menuSvg__shadow--visible');
+  }
 }
 
 //#endregion
@@ -1023,6 +1050,7 @@ const handleBackButton = () => {
   // change colors of menu items to default
   handleMenuButtons(lastMenuItemIndex, 'deactivate');
   menuButtons[lastMenuItemIndex].classList.add(`menu__button--intro-${currentId}`);
+  handleMenuShadows(lastMenuItemIndex, 'activate');
   
   // FIRST TIMEOUT
   const firstTimeoutId = setTimeout(() => {
@@ -1688,6 +1716,7 @@ const burgerButton = document.querySelector('.burgerButton--js');
 const menu = document.querySelector('.menu--js');
 const menuItems = document.querySelectorAll('.menu__item--js');
 const menuButtons = document.querySelectorAll('.menu__button--js');
+const menuShadows = document.querySelectorAll('.menuSvg__shadow--js');
 const menuLabels = document.querySelectorAll('.label--js');
 //#endregion
 //#region [ Horizon ] VARIABLES - NAVIGATION
