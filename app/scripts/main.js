@@ -1381,11 +1381,14 @@ const handleExpandableContent = (contents) => {
   [...contents].forEach((content, index) => {
     const currentContentData = contentData[index];
     const minMobileHeight = 300;
+    const minDesktopHeight = 200;
 
     // get available space for reduced content
     content.style.height = '100%';
     contentData[index].availableHeight = window.innerWidth >= mediaLg
-    ? content.clientHeight
+    ? content.classList.contains('js-minHeight')
+      ? minDesktopHeight
+      : content.clientHeight
     : minMobileHeight;
     const { availableHeight, fullHeight, html } = currentContentData;
 
@@ -1399,7 +1402,9 @@ const handleExpandableContent = (contents) => {
       // show read more button and update available space
       readMoreButtons[index].classList.add('tab__readMore--visible');
       contentData[index].availableHeight = window.innerWidth >= mediaLg
-      ? content.clientHeight
+      ? content.classList.contains('js-minHeight')
+        ? minDesktopHeight
+        : content.clientHeight
       : minMobileHeight;
       const { availableHeight } = currentContentData;
 

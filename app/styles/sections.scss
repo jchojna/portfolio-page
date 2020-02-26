@@ -147,11 +147,11 @@
 
       & {
 
+        gap: $gridGap;
         max-width: $container-size;
         min-height: $container-size;
 
         &--about {
-          gap: $gridGap;
           grid-template-areas:
           "heading     photography"
           "description photography"
@@ -178,7 +178,6 @@
         &--hydrapp,
         &--archviz,
         &--quotes {
-          gap: $gridGap;
           grid-template-areas:
           "heading      heading     "
           "description  features    "
@@ -189,7 +188,6 @@
         }
 
         &--other {
-          gap: $gridGap;
           grid-template-areas:
           "heading    "
           "description"
@@ -213,7 +211,7 @@
     @media only screen and (min-width: $media-lg) {
 
       & {
-        margin-left: 540px;
+        margin-left: 500px;
       }      
     }
   }
@@ -221,7 +219,7 @@
   &__heading {
     border-left: $separator-width solid transparent;
     color: #fff;
-    font-size: 50px;
+    font-size: 60px;
     grid-area: heading;
     line-height: 1.2;
     margin: 0 $offset-right-xs 0 0;
@@ -277,27 +275,35 @@
 
       & {
         border: none;
+        font-size: 72px;
         margin: $menu-item-height + $offset-right-sm 0;
+        max-width: 60%;
         min-width: 380px;
         padding: 0;
         width: 100%;
-        max-width: 60%;
+
+        &--about,
+        &--other {
+          margin-bottom: 0;
+        }
       }
     }
     
     @media only screen and (min-width: $media-lg) {
 
       & {
-        margin-top: 0;
+        margin: 0;
+        margin-bottom: 20px;
+        max-width: none;
       }
     }
   }
   
   &__photo {
-    justify-self: end;
-    background: $color-about-white;
+    background: $color-about-light;
     background-clip: content-box;
     grid-area: photography;
+    justify-self: end;
     margin-top: $menu-item-height;
     max-width: 500px;
     padding-left: $offset-left-xs;
@@ -320,6 +326,14 @@
         padding: 3px;
       }
     }
+
+    @media only screen and (min-width: $media-lg) {
+
+      & {
+        margin: 0;
+        max-width: 350px;
+      }
+    }
   }
 
   &__svg {
@@ -328,6 +342,9 @@
   
   &__repos {
     grid-area: otherRepos;
+    justify-self: start;
+    margin-top: 20px;
+    max-width: 500px;
 
     @media only screen and (min-width: $media-md) {
 
@@ -335,6 +352,7 @@
         display: grid;
         gap: $tabGap-xs;
         grid-template-columns: repeat(3, 1fr);
+        max-width: none;
       }
     }
   }
@@ -512,8 +530,8 @@
 }
 
 .footer {
-  border-top: 2px solid $color-contact-shadow;
-  color: $color-contact-shadow;
+  border-top: 2px solid $color-contact-dark;
+  color: $color-contact-dark;
   font-size: 14px;
   grid-area: footer;
   margin: $offset-right-xs;
@@ -528,10 +546,7 @@
   @media only screen and (min-width: $media-md) {
 
     & {
-      border-color: $color-contact-dark;
-      color: $color-contact-dark;
       margin: 0;
-      margin-top: $offset-right-xs;
       text-align: left;
     }
   }

@@ -38,6 +38,18 @@
       &--profiles {
         grid-template-columns: repeat(6, 1fr);
       }
+
+      &--contact {
+        grid-template-columns: repeat(6, 50px);
+        margin: 0;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+
+    &--contact {
+      justify-content: start;
     }
   }
 
@@ -76,19 +88,8 @@
       fill: $color-quotes-shadow;
     }
     &--contact {
-      border-color: $color-contact-shadow;
-      fill: $color-contact-shadow;
-    }
-
-    @media only screen and (min-width: $media-lg) {
-
-      & {
-
-        &--contact {
-          border-color: $color-contact-dark;
-          fill: $color-contact-dark;
-        }
-      }
+      border-color: $color-contact-dark;
+      fill: $color-contact-dark;
     }
   }
 

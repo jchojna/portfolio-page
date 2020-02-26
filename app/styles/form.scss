@@ -2,19 +2,20 @@
 @import 'mixins.scss';
 
 .form {
-  justify-self: end;
   display: grid;
   grid-area: form;
   grid-template-areas:
-  "name   "
-  "email  "
-  "phone  "
-  "title  "
-  "message"
-  "submit ";
+    "name   "
+    "email  "
+    "phone  "
+    "title  "
+    "message"
+    "submit ";
+  justify-self: center;
+  max-width: 400px;
   width: 100%;
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
 
     & {
       gap: 20px;
@@ -24,6 +25,7 @@
       "message phone "
       ".       submit";
       grid-template-columns: 3fr 2fr;
+      max-width: none;
     }
   }
   
@@ -80,11 +82,11 @@
     background: none;
     border: 3px solid $color-contact-light;
     color: $color-contact-white;
-    font-size: 1.25em;
+    font-size: 1.1em;
     margin: 20px $offset-right-xs 0 $offset-left-xs;
     min-width: 50px;
     outline: none;
-    padding: 0.8em 0.5em;
+    padding: 0.7em 0.5em;
     transition: margin-left $tabHeader-time $tabHeader-time ease-out;
 
     &--message {
@@ -169,6 +171,17 @@
     @media only screen and (min-width: $media-sm) {
   
       & {
+        margin: 0;
+        margin-top: $tabHeading-size-xs;
+        justify-self: center;
+        padding: 0.3em 2em;
+      }
+    }
+
+    @media only screen and (min-width: $media-md) {
+  
+      & {
+        justify-self: stretch;
         margin: $tabHeading-size-xs $offset-right-sm 0 $offset-left-sm;
       }
     }
