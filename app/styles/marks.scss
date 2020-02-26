@@ -49,7 +49,7 @@
   &--unrolled.mark--other     { background-color: $color-other-diff; }
   &--unrolled.mark--contact   { background-color: $color-contact-diff; }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
 
     & {
       height: $tabHeader-size-lg;

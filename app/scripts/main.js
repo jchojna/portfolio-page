@@ -8,11 +8,19 @@ const findFirstParentWithClass = (element, className) => {
 }
 
 const getCurrentMedia = () => {
-  return window.innerWidth >= mediaLg ? 'mediaLg' : 'mediaXs';
+  return window.innerWidth >= mediaLg
+  ? 'mediaLg' : window.innerWidth >= mediaMd
+  ? 'mediaMd' : window.innerWidth >= mediaSm
+  ? 'mediaSm' : 'mediaXs';
+}
+
+const getMenuLayout = () => {
+  return window.innerWidth >= mediaLg ? 'side' : 'burger';
 }
 
 const handleWindowResize = () => {
 
+  const menuLayout = getMenuLayout();
   const media = getCurrentMedia();
 
   // update top margin only on large screen devices
@@ -23,8 +31,8 @@ const handleWindowResize = () => {
   }
 
   // handle changes on breakpoint
-  if (media !== flags.media) {
-    flags.media = media;
+  if (menuLayout !== flags.menuLayout) {
+    flags.menuLayout = menuLayout;
     flags.isMobileHeader = false;
     flags.isIntroMode = true;
 
@@ -60,9 +68,10 @@ const handleWindowResize = () => {
 
     handleIntroBox();
 
-    switch (media) {      
-      // load configuration for desktops
-      case 'mediaLg':
+    switch (menuLayout) {
+
+      // load configuration for large screens
+      case 'side':
         const currentId = sections[lastMenuItemIndex].id;
 
         // change menu items to be in a static position
@@ -93,14 +102,11 @@ const handleWindowResize = () => {
         // handle burger button appearance
         burgerButton.classList.remove('burgerButton--visible');
         burgerButton.classList.remove(`burgerButton--${currentId}`);
-        
-        // expand other projects accordion section
-        handleAccordion([...otherProjectsTabs], undefined, 'all');
 
       break;
 
-      // load configuration for mobiles
-      case 'mediaXs':
+      // load configuration for small and medium screens
+      case 'burger':
 
         [...sectionContainers].forEach(container => container.style.marginTop = '');
         // handle menu buttons colors
@@ -119,9 +125,28 @@ const handleWindowResize = () => {
         menuUpperBackground.classList.remove('visuals__background--hidden');
         menuBottomBackground.classList.remove('visuals__background--hidden');
 
-        // collapse other projects accordion section on mobile devices
+      break;
+      default: break;
+    }
+  }
+
+  if (media !== flags.media) {
+    flags.media = media;
+
+    switch (media) {
+
+      case 'mediaMd':
+      case 'mediaSm':
+        // expand other projects accordion section
+        handleAccordion([...otherProjectsTabs], undefined, 'all');
+      break;
+      
+      case 'mediaXs':
+        // collapse other projects accordion section
         handleAccordion([...otherProjectsTabs]);
       break;
+
+      default: break;   
     }
   }
 }
@@ -1133,9 +1158,12 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
     const button = tab.querySelector('[class*="button"]');
     const mark = tab.querySelector('[class*="mark"]');
 
+
     // when specific tab is being clicked
     if (clickedIndex !== undefined) {
       const subtab = /subtab/.test(button.className);
+      const isDisabled = /other/.test(tab.className) && flags.media !== 'mediaXs';
+      if (isDisabled) return false;
 
       // handle clicked tab
       if (clickedIndex === index) {
@@ -1199,8 +1227,15 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
 
       } else if (excludeIndex === 'all') {
         container.style.height = '';
-        mark.classList.remove('mark--unrolled');
-        button.classList.remove('tab__button--unrolled');
+
+        if (flags.media === 'mediaSm') {
+          mark.classList.add('mark--unrolled');
+          button.classList.add('tab__button--unrolled');
+
+        } else {
+          mark.classList.remove('mark--unrolled');
+          button.classList.remove('tab__button--unrolled');
+        }
 
       } else {
         container.style.height = `${content.clientHeight}px`;
@@ -1597,7 +1632,8 @@ const flags = {
   shouldSectionsBeUpdated: false,
   isScrollEnabled: false,
   isMobileHeader: false,
-  media: null
+  media: null,
+  menuLayout: null
 }
 const mediaSm = 380;
 const mediaMd = 768;
@@ -1718,6 +1754,7 @@ pageHeader.classList.add('pageHeader--visible');
 // page load with no animation intro
 
 flags.media = getCurrentMedia();
+flags.menuLayout = getMenuLayout();
 
 //setIntroLoaderPosition();
 //loadIntroContent();
@@ -1731,8 +1768,10 @@ handleAccordion([...portfolioTabs]);
 handleAccordion([...hydrappTabs]);
 handleAccordion([...quotesTabs]);
 
-if (flags.media === 'mediaLg') {
+if (flags.media === 'mediaXs') {
   handleAccordion([...otherProjectsTabs]);
+} else {
+  handleAccordion([...otherProjectsTabs], undefined, 'all');
 }
 
 // collapse expandable content on page load
