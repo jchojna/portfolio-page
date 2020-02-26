@@ -36,7 +36,7 @@
       background-color $tabHeader-time,
       height $tabHeader-time $tabHeader-time ease-out,
       width $tabHeader-time ease-in;
-    width: $separator-width-thick;
+    width: $separator-width;
   }
   
   &--unrolled.mark--resume    { background-color: $color-resume-diff; }
@@ -72,7 +72,7 @@
 
       &--unrolled {
         height: 120px;
-        width: $separator-width-thick;
+        width: $separator-width;
       }
     }
   }

@@ -20,7 +20,7 @@
     display: grid;
     justify-content: flex-start;
     justify-items: flex-start;
-    padding: 0 0 20px $separator-width-thick + $tabGap-xs;
+    padding: 0 0 20px $separator-width + $tabGap-xs;
 
     &--resume {
       color: $color-resume-white;
@@ -28,7 +28,7 @@
   }
 
   &__title {
-    border-left: $separator-width-thick solid $color-resume-dark;
+    border-left: $separator-width solid $color-resume-dark;
     color: $color-resume-dark;
     font-family: 'Antonio Bold';
     font-size: 1.6em;
@@ -48,13 +48,13 @@
 
     &--primary,
     &--secondary {
-      border-left: $separator-width-thick solid $color-resume-dark;
+      border-left: $separator-width solid $color-resume-dark;
       padding-left: $tabGap-xs;
     }
 
     &--additional {
       color: $color-resume-dark;
-      padding-left: $separator-width-thick + $tabGap-xs;
+      padding-left: $separator-width + $tabGap-xs;
     }
   }
 
@@ -63,7 +63,7 @@
     & {
 
       &__item {
-        padding: 0 0 20px $separator-width-thick + $tabGap-sm;
+        padding: 0 0 20px $separator-width + $tabGap-sm;
 
         &--experience {
           column-gap: 25px;
@@ -88,7 +88,7 @@
         }
     
         &--additional {
-          padding-left: $separator-width-thick + $tabGap-sm;
+          padding-left: $separator-width + $tabGap-sm;
         }
       }
     }

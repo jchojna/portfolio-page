@@ -52,7 +52,7 @@ const handleWindowResize = () => {
     
     // collapse accordion sections
     handleAccordion([...resumeSubtabs]);
-    handleAccordion([...resumeTabs], undefined, 0);
+    handleAccordion([...resumeTabs]);
     handleAccordion([...tasktimerTabs]);
     handleAccordion([...portfolioTabs]);
     handleAccordion([...hydrappTabs]);
@@ -1725,7 +1725,7 @@ handleIntroMenu();
 
 // handle page's accordions
 handleAccordion([...resumeSubtabs]);
-handleAccordion([...resumeTabs], undefined, 0);
+handleAccordion([...resumeTabs]);
 handleAccordion([...tasktimerTabs]);
 handleAccordion([...portfolioTabs]);
 handleAccordion([...hydrappTabs]);

@@ -46,7 +46,7 @@
     grid-area: features;
   }
   &--category {
-    margin: 0 $offset-right-xs 0 $separator-width-thick + $tabGap-xs;
+    margin: 0 $offset-right-xs 0 $separator-width + $tabGap-xs;
   }
   &--technologies {
     grid-area: technologies;
@@ -99,7 +99,7 @@
               background-color $tabHeader-time,
               height $tabHeader-time $tabHeader-time ease-out,
               width $tabHeader-time ease-in;
-            width: $separator-width-thick;
+            width: $separator-width;
           }
 
           & .tab__button--other {
@@ -173,13 +173,17 @@
       position: absolute;
       top: 0;
       left: 0;
-      width:  $separator-width-thick;
+      width:  $separator-width;
       height: 110px;
     }
 
     &--about {
       color: $color-about-diff;
       &::before { background-color: $color-about-diff; }
+    }
+    &--resume {
+      color: $color-resume-diff;
+      &::before { background-color: $color-resume-diff; }
     }
     &--tasktimer {
       color: $color-tasktimer-diff;
@@ -230,7 +234,7 @@
         &::before {
           height: 70px;
           left: -20px;
-          width: $separator-width-thin;
+          width: $separator-width;
         }
       }
     }
@@ -253,8 +257,6 @@
     }
     &--resume {
       color: $color-resume-white;
-      margin-left: $separator-width-thick + $tabGap-xs;
-      margin-right: $offset-right-xs;
       margin-top: 0;
       padding-top: 20px;
     }
@@ -291,11 +293,6 @@
           margin: 0 $offset-right-sm 20px $offset-left-sm;
         }
 
-        &--resume {
-          margin-left: $separator-width-thick + $tabGap-sm;
-          margin-right: $offset-right-sm;
-        }
-
         &--other {
     
           &.tab__description--small {
@@ -312,7 +309,7 @@
         line-height: 1.6;
 
         &--resume {
-          //margin-left: $separator-width-thick + $tabGap-xs;
+          //margin-left: $separator-width + $tabGap-xs;
         }
 
         &--other.tab__description--small {
@@ -406,7 +403,7 @@
         }
 
         &--unrolled {
-          padding-left: $separator-width-thick + $tabGap-xs;
+          padding-left: $separator-width + $tabGap-xs;
         }
       }
     }
@@ -429,6 +426,10 @@
       display: block;
     }
 
+    &--resume {
+      border-color: $color-resume-light;
+      color: $color-resume-light;
+    }
     &--tasktimer {
       border-color: $color-tasktimer-light;
       color: $color-tasktimer-light;
@@ -474,7 +475,7 @@
 .subtab {
 
   &--resume {
-    margin-left: $separator-width-thick + $tabGap-xs;
+    margin-left: $separator-width + $tabGap-xs;
     margin-top: 0;
   }
 
@@ -505,7 +506,7 @@
     & {
 
       &--resume {
-        margin-left: $separator-width-thick + $tabGap-sm;
+        margin-left: $separator-width + $tabGap-sm;
       }
     }
   }

@@ -99,7 +99,7 @@
     &:focus {
       background-color: $color-contact-dark;
       border-color: $color-contact-white;
-      margin-left: $separator-width-thick + $tabGap-xs;
+      margin-left: $separator-width + $tabGap-xs;
       transition: margin-left $tabHeader-time ease-in;
     }
     
@@ -135,7 +135,7 @@
         margin: 20px $offset-right-sm 0 $offset-left-sm;
 
         &:focus {
-          margin-left: $separator-width-thick + $tabGap-sm;
+          margin-left: $separator-width + $tabGap-sm;
         }
       }
     }
