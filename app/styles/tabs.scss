@@ -137,11 +137,11 @@
       font-size: $features-category-size-xs;
     }
 
-    &--tasktimer { color: $color-tasktimer-shadow; }
-    &--portfolio { color: $color-portfolio-shadow; }
-    &--hydrapp   { color: $color-hydrapp-shadow; }
-    &--archviz   { color: $color-archviz-shadow; }
-    &--quotes    { color: $color-quotes-shadow; }
+    &--hydrapp   { color: $color-hydrapp-white; }
+    &--tasktimer { color: $color-tasktimer-white; }
+    &--portfolio { color: $color-portfolio-white; }
+    &--archviz   { color: $color-archviz-white; }
+    &--quotes    { color: $color-quotes-white; }
     
     &--other {
       font-size: $otherHeading-size-xs;
@@ -213,9 +213,7 @@
       &::before { background-color: $color-quotes-diff; }
     }
     &--other {
-      //color: $color-other-diff;
       display: none;
-      //&::before { background-color: $color-other-diff; }
     }
 
     @media only screen and (min-width: $media-md) {
@@ -350,17 +348,14 @@
       padding-left: $features-category-size-xs + $tabGap-xs;
     }
     
+    &--hydrapp {
+      color: $color-hydrapp-light;
+    }
     &--tasktimer {
-      color: $color-tasktimer-white;
+      color: $color-tasktimer-light;
     }
     &--portfolio {
-      color: $color-portfolio-white;
-    }
-    &--hydrapp {
-      color: $color-hydrapp-white;
-    }
-    &--quotes {
-      color: $color-quotes-white;
+      color: $color-portfolio-light;
     }
     
     &--other {
@@ -383,6 +378,26 @@
         margin-top: $tabHeader-size-lg / 2;
         padding-left: $tabHeader-size-lg + $tabGap-xs;
 
+        &--resume:focus,
+        &--resume:hover { color: $color-resume-diff; }
+        &--resume:focus .mark--resume,
+        &--resume:hover .mark--resume { background-color: $color-resume-diff; }
+
+        &--hydrapp:focus,
+        &--hydrapp:hover { color: $color-hydrapp-white; }
+        &--hydrapp:focus .mark--hydrapp,
+        &--hydrapp:hover .mark--hydrapp { background-color: $color-hydrapp-white; }
+
+        &--tasktimer:focus,
+        &--tasktimer:hover { color: $color-tasktimer-white; }
+        &--tasktimer:focus .mark--tasktimer,
+        &--tasktimer:hover .mark--tasktimer { background-color: $color-tasktimer-white; }
+
+        &--portfolio:focus,
+        &--portfolio:hover { color: $color-portfolio-white; }
+        &--portfolio:focus .mark--portfolio,
+        &--portfolio:hover .mark--portfolio { background-color: $color-portfolio-white; }
+      
         &--category {
           height: $features-category-size-lg;
           margin-top: $features-category-size-xs;
@@ -414,6 +429,7 @@
     margin: 10px $offset-right-xs 10px $offset-left-xs;
     padding: 0.2em 0;
     text-transform: uppercase;
+    transition: border-color $button-hover, color $button-hover;
 
     &--visible {
       display: block;
@@ -449,32 +465,32 @@
     }
 
     @mixin resumeReadMore {
-      border-color: $color-resume-dark;
-      color: $color-resume-dark;
+      border-color: $color-resume-white;
+      color: $color-resume-white;
     }
     @mixin hydrappReadMore {
-      border-color: $color-hydrapp-dark;
-      color: $color-hydrapp-dark;
+      border-color: $color-hydrapp-white;
+      color: $color-hydrapp-white;
     }
     @mixin tasktimerReadMore {
-      border-color: $color-tasktimer-dark;
-      color: $color-tasktimer-dark;
+      border-color: $color-tasktimer-white;
+      color: $color-tasktimer-white;
     }
     @mixin portfolioReadMore {
-      border-color: $color-portfolio-dark;
-      color: $color-portfolio-dark;
+      border-color: $color-portfolio-white;
+      color: $color-portfolio-white;
     }
     @mixin archvizReadMore {
-      border-color: $color-archviz-dark;
-      color: $color-archviz-dark;
+      border-color: $color-archviz-white;
+      color: $color-archviz-white;
     }
     @mixin quotesReadMore {
-      border-color: $color-quotes-dark;
-      color: $color-quotes-dark;
+      border-color: $color-quotes-white;
+      color: $color-quotes-white;
     }
     @mixin otherReadMore {
-      border-color: $color-other-dark;
-      color: $color-other-dark;
+      border-color: $color-other-white;
+      color: $color-other-white;
     }
 
     &--resume:active { @include resumeReadMore };
