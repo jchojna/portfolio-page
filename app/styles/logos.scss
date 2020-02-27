@@ -10,10 +10,6 @@
   position: relative;
   transform-origin: bottom left;
 
-  &--about {
-    display: none;
-  }
-
   &--tasktimer {
     margin-right: -50px;
   }
@@ -90,10 +86,6 @@
   @media only screen and (min-width: $media-lg) {
 
     & {
-
-      &--about {
-        display: block;
-      }
 
       &__base,
       &__shadow,
