@@ -2,29 +2,30 @@
 @import 'mixins.scss';
 
 .logo {
-  @include flex-center;
+  align-items: center;
+  display: flex;
   grid-area: logo;
-  margin-left: $offset-left-sm;
+  justify-content: center;
+  justify-self: end;
+  margin-top: $menu-item-height;
+  max-width: calc(100% - #{$offset-left-xs});
   position: relative;
   transform-origin: bottom left;
-
-  border: 1px solid #000;
-
-  &--about {
-    display: none;
-  }
+  width: 100%;
 
   &--tasktimer {
     margin-right: -50px;
   }
 
+  &--portfolio,
+  &--quotes,
+  &--other,
   &--contact {
-    margin-right: -20px;
+    margin-right: -25px;
   }
 
   &__base {
     width: 100%;
-    max-height: 300px;
 
     &--about {fill: $color-about-light; }
     &--resume { fill: $color-resume-dark; }
@@ -39,12 +40,11 @@
 
   &__shadow {
     position: absolute;
-    max-height: 300px;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
 
-    &--about { fill: $color-about-dark; }
+    &--about { fill: $color-about-shadow; }
     &--resume { fill: $color-resume-shadow; }
     &--tasktimerBase { fill: $color-tasktimer-shadow; }
     &--tasktimerLetter { fill: $color-tasktimer-shadowLetter; }
@@ -59,21 +59,34 @@
   &__letter {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
-    height: 100%;
 
     &--tasktimer { fill: $color-tasktimer-letter; }
+  }
+
+  @media only screen and (min-width: $media-sm) {
+
+    & {
+      margin-left: $offset-left-sm;
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
+
+    & {
+      position: absolute;
+      margin: 0;
+      max-width: 400px;
+      right: 0;
+      top: 50px;
+    }
   }
 
   @media only screen and (min-width: $media-lg) {
 
     & {
-      display: block;
-      position: absolute;
-      right: 50px;
-      top: 50px;
-      width: 400px;
+      max-width: 500px;
     }
   }
 }

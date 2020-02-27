@@ -2,19 +2,20 @@
 @import 'mixins.scss';
 
 .form {
-  justify-self: end;
   display: grid;
   grid-area: form;
   grid-template-areas:
-  "name   "
-  "email  "
-  "phone  "
-  "title  "
-  "message"
-  "submit ";
+    "name   "
+    "email  "
+    "phone  "
+    "title  "
+    "message"
+    "submit ";
+  justify-self: center;
+  max-width: 400px;
   width: 100%;
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
 
     & {
       gap: 20px;
@@ -24,6 +25,7 @@
       "message phone "
       ".       submit";
       grid-template-columns: 3fr 2fr;
+      max-width: none;
     }
   }
   
@@ -51,20 +53,27 @@
   
   &__label {
     color: $color-contact-dark;
-    font-size: $tabHeading-size-sm;
+    font-size: $tabHeading-size-xs;
     line-height: 1;
-    margin: 0 $offset-right-sm 0 $offset-left-sm;
+    margin: 0 $offset-right-xs 0 $offset-left-xs;
     order: -1;
     text-transform: uppercase;
     transition:
       color $tabHeader-time $tabHeader-time,
       margin-left $tabHeader-time $tabHeader-time ease-out;
 
+      @media only screen and (min-width: $media-sm) {
+    
+        & {
+          margin: 0 $offset-right-sm 0 $offset-left-sm;
+        }
+      }
+
     @media only screen and (min-width: $media-lg) {
   
       & {
         font-size: $tabHeading-size-lg;
-        margin: 0 0 15px $tabHeading-size-lg + $tabGap;
+        margin: 0 0 15px $tabHeading-size-lg + $tabGap-xs;
       }
     }
   }
@@ -73,11 +82,11 @@
     background: none;
     border: 3px solid $color-contact-light;
     color: $color-contact-white;
-    font-size: 1.25em;
-    margin: 20px $offset-right-sm 0 $offset-left-sm;
+    font-size: 1.1em;
+    margin: 20px $offset-right-xs 0 $offset-left-xs;
     min-width: 50px;
     outline: none;
-    padding: 0.8em 0.5em;
+    padding: 0.7em 0.5em;
     transition: margin-left $tabHeader-time $tabHeader-time ease-out;
 
     &--message {
@@ -92,7 +101,7 @@
     &:focus {
       background-color: $color-contact-dark;
       border-color: $color-contact-white;
-      margin-left: $separator-width-thick + $tabGap;
+      margin-left: $separator-width + $tabGap-xs;
       transition: margin-left $tabHeader-time ease-in;
     }
     
@@ -108,7 +117,7 @@
     
     &:focus ~ .form__label {
       color: $color-contact-diff;
-      margin-left: $tabHeading-size-sm;
+      margin-left: $tabHeading-size-xs;
       transition:
         color $tabHeader-time,
         margin-left $tabHeader-time ease-in;
@@ -122,36 +131,99 @@
       }
     }
 
+    @media only screen and (min-width: $media-sm) {
+  
+      & {
+        margin: 20px $offset-right-sm 0 $offset-left-sm;
+
+        &:focus {
+          margin-left: $separator-width + $tabGap-sm;
+        }
+      }
+    }
+
     @media only screen and (min-width: $media-lg) {
   
       & {
         margin: 0;
-        margin-left: $tabHeading-size-lg + $tabGap;
+        margin-left: $tabHeading-size-lg + $tabGap-xs;
       }
     }
   }
   
   &__submit {
-    background: none;
-    border: 3px solid $color-contact-white;
-    color: $color-contact-white;
-    cursor: pointer;
-    font-size: $tabHeading-size-sm;
+    @include button;
+    background-color: $color-contact-dark;
+    color: $color-contact-light;
+    font-size: $tabHeading-size-xs;
     grid-area: submit;
-    margin: $tabHeading-size-sm $offset-right-sm 0 $offset-left-sm;
+    margin: $tabHeading-size-xs $offset-right-xs 0 $offset-left-xs;
     padding: 0.3em;
+    position: relative;
     text-transform: uppercase;
+    transition: background-color $button-hover, color $button-hover;
 
-    &:hover {
-      background: $color-contact-diff;
-      border-color: transparent;
+    @mixin buttonShadow {
+      border-left-width: 10px;
+      border-top-width: 10px;
+    }
+
+    @mixin submitButtonShadow { border-color: $color-contact-shadow; }
+
+    @mixin submitButton {
       color: $color-contact;
+      background-color: rgba($color: $color-contact-shadow, $alpha: $background-opacity);
+    }
+
+    &::before {
+      border-style: solid;
+      border-width: 0;
+      bottom: 0;
+      content: '';
+      left: 0;
+      opacity: 0.6;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: border-width $button-hover;
+    }
+
+    &:active::before { @include buttonShadow; }
+
+    &--hydrapp {
+      &::before { @include submitButtonShadow; }
+      &:active { @include submitButton; }
+    }
+
+    @media only screen and (min-width: $media-sm) {
+  
+      & {
+        margin: 0;
+        margin-top: $tabHeading-size-xs;
+        justify-self: center;
+        padding: 0.3em 2em;
+      }
+    }
+
+    @media only screen and (min-width: $media-md) {
+  
+      & {
+        justify-self: stretch;
+        margin: $tabHeading-size-xs $offset-right-sm 0 $offset-left-sm;
+
+        &:focus::before,
+        &:hover::before { @include buttonShadow; }
+
+        &::before { @include submitButtonShadow; }
+        &:focus,
+        &:hover { @include submitButton; }
+      }
     }
 
     @media only screen and (min-width: $media-lg) {
   
       & {
-        margin: 50px 0 0 $tabHeading-size-lg + $tabGap;
+        margin: 50px 0 0 $tabHeading-size-lg + $tabGap-xs;
       }
     }
   }

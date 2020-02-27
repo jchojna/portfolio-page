@@ -4,7 +4,7 @@
 .tab,
 .subtab {
   position: relative;
-  //margin-top: 20px;
+  margin-top: 30px;
   
   &--profiles { grid-area: profiles; }
   &--working { grid-area: working; }
@@ -19,6 +19,7 @@
     flex-direction: column;
     grid-area: info;
     height: 100%;
+    margin-top: 0;
   }
   &--experience {
     grid-area: experience;
@@ -38,11 +39,14 @@
     height: 100%;
     overflow: initial;
   }
+  &--description {
+    margin-top: 0;
+  }
   &--features {
     grid-area: features;
   }
   &--category {
-    margin: 0 $offset-right-sm 0 $separator-width-thick + $tabGap;
+    margin: 0 $offset-right-xs 0 $offset-left-xs;
   }
   &--technologies {
     grid-area: technologies;
@@ -59,11 +63,11 @@
   }
 
   &--social {
-    margin-top: 20px;
+    margin-top: 30px;
     grid-area: social;
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
 
     & {
       margin-top: 0;
@@ -95,7 +99,7 @@
               background-color $tabHeader-time,
               height $tabHeader-time $tabHeader-time ease-out,
               width $tabHeader-time ease-in;
-            width: $separator-width-thick;
+            width: $separator-width;
           }
 
           & .tab__button--other {
@@ -113,6 +117,10 @@
           }
         }
       }
+
+      &--social {
+        margin-top: 20px;
+      }
     }
   }
 
@@ -120,26 +128,26 @@
     align-items: flex-start;
     display: flex;
     font-family: 'Antonio Bold';
-    font-size: $tabHeader-size-sm;
+    font-size: $tabHeader-size-xs;
     line-height: 1;
     margin: 0;
     position: relative;
 
     &--category {
-      font-size: $features-category-size-sm;
+      font-size: $features-category-size-xs;
     }
 
-    &--tasktimer { color: $color-tasktimer-shadow; }
-    &--portfolio { color: $color-portfolio-shadow; }
-    &--hydrapp   { color: $color-hydrapp-shadow; }
-    &--archviz   { color: $color-archviz-shadow; }
-    &--quotes    { color: $color-quotes-shadow; }
+    &--hydrapp   { color: $color-hydrapp-white; }
+    &--tasktimer { color: $color-tasktimer-white; }
+    &--portfolio { color: $color-portfolio-white; }
+    &--archviz   { color: $color-archviz-white; }
+    &--quotes    { color: $color-quotes-white; }
     
     &--other {
-      font-size: $otherHeading-size-sm;
+      font-size: $otherHeading-size-xs;
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-md) {
   
       & {
         font-size: $tabHeader-size-lg;
@@ -157,10 +165,10 @@
 
   &__heading {
     align-self: start;
-    font-size: $tabHeading-size-sm;
+    font-size: $tabHeading-size-xs;
     line-height: 1;
     margin: 0;
-    padding-left: $tabHeading-size-sm;
+    padding-left: $tabHeading-size-xs;
     position: relative;
     text-transform: uppercase;
 
@@ -169,13 +177,20 @@
       position: absolute;
       top: 0;
       left: 0;
-      width:  $separator-width-thick;
+      width:  $separator-width;
       height: 110px;
     }
 
     &--about {
       color: $color-about-diff;
       &::before { background-color: $color-about-diff; }
+    }
+    &--aboutMe {
+      display: none;
+    }
+    &--resume {
+      color: $color-resume-diff;
+      &::before { background-color: $color-resume-diff; }
     }
     &--tasktimer {
       color: $color-tasktimer-diff;
@@ -198,35 +213,28 @@
       &::before { background-color: $color-quotes-diff; }
     }
     &--other {
-      color: $color-other-diff;
-      &::before { background-color: $color-other-diff; }
+      display: none;
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-md) {
 
       & {
-        padding: 0;
         font-size: $tabHeading-size-lg;
-        /* -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale; */
+        padding: 0;
 
         &--about {
           margin-bottom: 20px;
         }
 
-        &--technologies {
-          display: none;
-        }
-        
-        &--aboutMe,
+        &--technologies,
         &--profiles {
           display: none;
         }
 
         &::before {
           height: 70px;
-          left: -20px;
-          width: $separator-width-thin;
+          left: -30px;
+          width: $separator-width;
         }
       }
     }
@@ -245,13 +253,11 @@
     &--about {
       font-size: 1.5em;
       color: $color-about-white;
-      margin: 0 $offset-right-sm 20px $offset-left-sm;
+      margin: 0 $offset-right-xs 20px $offset-left-xs;
     }
     &--resume {
       color: $color-resume-white;
-      margin-left: $separator-width-thick + $tabGap;
       margin-top: 0;
-      padding-top: 20px;
     }
     &--tasktimer {
       color: $color-tasktimer-white;
@@ -269,27 +275,48 @@
       color: $color-quotes-white;
     }
     &--other {
+      font-size: 1.1em;
       color: $color-other-white;
 
       &.tab__description--small {
         color: $color-other-shadow;
-        margin: 0 $offset-right-sm 20px $offset-left-sm;
+        margin: 0 $offset-right-xs 10px $offset-left-xs;
       }
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-sm) {
+
+      & {
+
+        &--about {
+          margin: 0 $offset-right-sm 20px $offset-left-sm;
+        }
+
+        &--other {
+    
+          &.tab__description--small {
+            margin: 0 $offset-right-sm 10px $offset-left-sm;
+          }
+        }
+      }
+    }
+
+    @media only screen and (min-width: $media-md) {
 
       & {
         margin: 0;
         line-height: 1.6;
 
-        &--resume {
-          margin-left: $separator-width-thick + $tabGap;
-        }
-
         &--other.tab__description--small {
           margin: 0;
         }
+      }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+
+      &--about {
+        padding-top: 0;
       }
     }
   }
@@ -298,18 +325,17 @@
     @include button;
     align-items: center;
     display: flex;
-    height: $tabHeader-size-sm;
+    height: $tabHeader-size-xs;
     line-height: 1;
     margin: 0;
-    margin-top: $tabHeader-size-sm / 2;
     padding: 0;
-    padding-left: $tabHeader-size-sm + $tabGap;
+    padding-left: $tabHeader-size-xs + $tabGap-xs;
     position: relative;
     text-align: left;
     text-transform: uppercase;
     transition:
-      color $tabHeader-time $tabHeader-time,
-      padding-left $tabHeader-time $tabHeader-time ease-out;
+      color $button-hover,
+      padding-left $button-hover $button-hover ease-out;
     width: 100%;
 
     &--resume {
@@ -317,80 +343,104 @@
     }
 
     &--category {
-      height: $features-category-size-sm;
-      margin-top: $features-category-size-sm;
-      padding-left: $features-category-size-sm + $tabGap;
+      height: $features-category-size-xs;
+      margin-top: $features-category-size-xs;
+      padding-left: $features-category-size-xs + $tabGap-xs;
     }
     
+    &--hydrapp {
+      color: $color-hydrapp-light;
+    }
     &--tasktimer {
-      color: $color-tasktimer-white;
+      color: $color-tasktimer-light;
     }
     &--portfolio {
-      color: $color-portfolio-white;
-    }
-    &--hydrapp {
-      color: $color-hydrapp-white;
-    }
-    &--quotes {
-      color: $color-quotes-white;
+      color: $color-portfolio-light;
     }
     
     &--other {
       color: $color-other-shadow;
-      height: $otherHeading-size-sm;
+      height: $otherHeading-size-xs;
     }
 
     &--unrolled {
       color: inherit;
-      padding-left: $tabHeader-size-sm;
+      padding-left: $tabHeader-size-xs;
       transition:
-        color $tabHeader-time,
-        padding-left $tabHeader-time ease-in;
+        color $button-hover,
+        padding-left $button-hover ease-in;
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-md) {
 
       & {
         height: $tabHeader-size-lg;
         margin-top: $tabHeader-size-lg / 2;
-        padding-left: $tabHeader-size-lg + $tabGap;
+        padding-left: $tabHeader-size-lg + $tabGap-xs;
 
+        &--resume:focus,
+        &--resume:hover { color: $color-resume-diff; }
+        &--resume:focus .mark--resume,
+        &--resume:hover .mark--resume { background-color: $color-resume-diff; }
+
+        &--hydrapp:focus,
+        &--hydrapp:hover { color: $color-hydrapp-white; }
+        &--hydrapp:focus .mark--hydrapp,
+        &--hydrapp:hover .mark--hydrapp { background-color: $color-hydrapp-white; }
+
+        &--tasktimer:focus,
+        &--tasktimer:hover { color: $color-tasktimer-white; }
+        &--tasktimer:focus .mark--tasktimer,
+        &--tasktimer:hover .mark--tasktimer { background-color: $color-tasktimer-white; }
+
+        &--portfolio:focus,
+        &--portfolio:hover { color: $color-portfolio-white; }
+        &--portfolio:focus .mark--portfolio,
+        &--portfolio:hover .mark--portfolio { background-color: $color-portfolio-white; }
+      
         &--category {
           height: $features-category-size-lg;
-          margin-top: $features-category-size-sm;
-          padding-left: $features-category-size-lg + $tabGap;
+          margin-top: $features-category-size-xs;
+          padding-left: $features-category-size-lg + $tabGap-xs;
         }
 
         &--other {
           height: $otherHeading-size-lg;
           margin: 0;
-          padding-left: $otherHeading-size-lg + $tabGap;
+          padding-left: $otherHeading-size-lg + $tabGap-xs;
         }
 
         &--unrolled {
-          padding-left: $separator-width-thick + $tabGap;
+          padding-left: $separator-width + $tabGap-xs;
         }
       }
     }
   }
 
   &__readMore {
+    @include button;
     align-self: flex-start;
-    background: none;
-    border: none;
     border-bottom: 2px solid transparent;
-    cursor: pointer;
     display: none;
-    font-size: 1em;
+    font-size: 1.1em;
     grid-area: readMore;
-    margin: 10px $offset-right-sm 10px $offset-left-sm;
+    margin: 10px $offset-right-xs 10px $offset-left-xs;
     padding: 0.2em 0;
     text-transform: uppercase;
+    transition: border-color $button-hover, color $button-hover;
 
     &--visible {
       display: block;
     }
 
+    &--resume {
+      border-color: $color-resume-light;
+      color: $color-resume-light;
+    }
+    &--hydrapp {
+      border-color: $color-hydrapp-light;
+      color: $color-hydrapp-light;
+    }
     &--tasktimer {
       border-color: $color-tasktimer-light;
       color: $color-tasktimer-light;
@@ -398,10 +448,6 @@
     &--portfolio {
       border-color: $color-portfolio-light;
       color: $color-portfolio-light;
-    }
-    &--hydrapp {
-      border-color: $color-hydrapp-light;
-      color: $color-hydrapp-light;
     }
     &--archviz {
       border-color: $color-archviz-light;
@@ -416,13 +462,71 @@
       color: $color-other-light;
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @mixin resumeReadMore {
+      border-color: $color-resume-white;
+      color: $color-resume-white;
+    }
+    @mixin hydrappReadMore {
+      border-color: $color-hydrapp-white;
+      color: $color-hydrapp-white;
+    }
+    @mixin tasktimerReadMore {
+      border-color: $color-tasktimer-white;
+      color: $color-tasktimer-white;
+    }
+    @mixin portfolioReadMore {
+      border-color: $color-portfolio-white;
+      color: $color-portfolio-white;
+    }
+    @mixin archvizReadMore {
+      border-color: $color-archviz-white;
+      color: $color-archviz-white;
+    }
+    @mixin quotesReadMore {
+      border-color: $color-quotes-white;
+      color: $color-quotes-white;
+    }
+    @mixin otherReadMore {
+      border-color: $color-other-white;
+      color: $color-other-white;
+    }
+
+    &--resume:active { @include resumeReadMore };
+    &--hydrapp:active { @include hydrappReadMore };
+    &--tasktimer:active { @include tasktimerReadMore };
+    &--portfolio:active { @include portfolioReadMore };
+    &--archviz:active { @include archvizReadMore };
+    &--quotes:active { @include quotesReadMore };
+    &--other:active { @include otherReadMore };
+
+    @media only screen and (min-width: $media-sm) {
 
       & {
-        align-self: flex-end;
+        margin: 10px $offset-right-sm 10px $offset-left-sm;
+      }
+    }
+
+    @media only screen and (min-width: $media-md) {
+
+      & {
         margin: 0;
         margin-top: 10px;
       }
+
+      &--resume:focus,
+      &--resume:hover { @include resumeReadMore };
+      &--hydrapp:focus,
+      &--hydrapp:hover { @include hydrappReadMore };
+      &--tasktimer:focus,
+      &--tasktimer:hover { @include tasktimerReadMore };
+      &--portfolio:focus,
+      &--portfolio:hover { @include portfolioReadMore };
+      &--archviz:focus,
+      &--archviz:hover { @include archvizReadMore };
+      &--quotes:focus,
+      &--quotes:hover { @include quotesReadMore };
+      &--other:focus,
+      &--other:hover { @include otherReadMore };
     }
   }
 }
@@ -430,7 +534,7 @@
 .subtab {
 
   &--resume {
-    margin-left: $separator-width-thick + $tabGap;
+    margin-left: $separator-width + $tabGap-xs;
     margin-top: 0;
   }
 
@@ -440,7 +544,7 @@
     justify-content: flex-end;
 
     &--resume {
-      font-size: $tabHeader-size-sm;
+      font-size: $tabHeader-size-xs;
     }
   }
 
@@ -448,6 +552,7 @@
 
     &--resume {
       color: $color-resume-dark;
+      margin-top: 20px;
     }
 
     &--unrolled {
@@ -455,7 +560,17 @@
     }
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-sm) {
+
+    & {
+
+      &--resume {
+        margin-left: $separator-width + $tabGap-sm;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
 
     & {
 

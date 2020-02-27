@@ -7,15 +7,29 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   list-style-type: none;
-  margin: 20px $offset-right-sm 0 $offset-left-sm;
+  margin: 20px $offset-right-xs 0 $offset-left-xs;
   padding: 0;
 
   &--contact {
     grid-template-columns: repeat(6, 1fr);
-    margin: 0 $offset-right-sm;
+    justify-content: center;
+    margin: 0 $offset-right-xs;
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-sm) {
+
+    & {
+      grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+      margin: 20px $offset-right-sm 0 $offset-left-sm;
+
+      &--contact {
+        grid-template-columns: repeat(6, 50px);
+        margin: 0;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
 
     & {
       grid-template-columns: repeat(12, 1fr);
@@ -24,6 +38,18 @@
       &--profiles {
         grid-template-columns: repeat(6, 1fr);
       }
+
+      &--contact {
+        grid-template-columns: repeat(6, 50px);
+        margin: 0;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+
+    &--contact {
+      justify-content: start;
     }
   }
 
@@ -34,46 +60,108 @@
 
   &__logo {
     @include flex-center;
-    border: 2px solid transparent;
     position: relative;
 
     &--about {
-      border-color: $color-about-light;
-      fill: $color-about-white;
+      background-color: rgba($color: $color-about-dark, $alpha: $background-opacity);
+      fill: $color-about-light;
+    }
+    &--hydrapp {
+      background-color: rgba($color: $color-hydrapp-dark, $alpha: $background-opacity);
+      fill: $color-hydrapp-shadow;
     }
     &--tasktimer {
-      border-color: $color-tasktimer-shadow;
+      background-color: rgba($color: $color-tasktimer-dark, $alpha: $background-opacity);
       fill: $color-tasktimer-shadow;
     }
     &--portfolio {
-      border-color: $color-portfolio-shadow;
+      background-color: rgba($color: $color-portfolio-dark, $alpha: $background-opacity);
       fill: $color-portfolio-shadow;
     }
-    &--hydrapp {
-      border-color: $color-hydrapp-shadow;
-      fill: $color-hydrapp-shadow;
-    }
     &--archviz {
-      border-color: $color-archviz-shadow;
+      background-color: rgba($color: $color-archviz-dark, $alpha: $background-opacity);
       fill: $color-archviz-shadow;
     }
     &--quotes {
-      border-color: $color-quotes-shadow;
+      background-color: rgba($color: $color-quotes-dark, $alpha: $background-opacity);
       fill: $color-quotes-shadow;
     }
     &--contact {
-      border-color: $color-contact-shadow;
-      fill: $color-contact-shadow;
+      background-color: rgba($color: $color-contact-dark, $alpha: $background-opacity);
+      fill: $color-contact;
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @mixin shadow {
+      border-left-width: 8px;
+      border-top-width: 8px;
+    }
 
-      & {
+    @mixin aboutShadow {
+      border-color: $color-about-shadow;
+    }
 
-        &--contact {
-          border-color: $color-contact-dark;
-          fill: $color-contact-dark;
-        }
+    @mixin contactShadow {
+      border-color: $color-contact-shadow;
+    }
+
+    @mixin aboutIcon {
+      fill: $color-about;
+      background-color: rgba($color: $color-about-shadow, $alpha: $background-opacity);
+    }
+
+    @mixin contactIcon {
+      fill: $color-contact-light;
+      background-color: rgba($color: $color-contact-shadow, $alpha: $background-opacity);
+    }
+
+    &--link {
+      outline: none;
+      position: relative;
+      transition: background-color $button-hover, fill $button-hover;
+
+      &::before {
+        border-style: solid;
+        border-width: 0;
+        bottom: 0;
+        content: '';
+        left: 0;
+        opacity: 0.6;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: border-width $button-hover;
+      }
+
+      &:active::before { @include shadow; }
+    }
+
+    &--link.icons__logo--about {
+      &::before { @include aboutShadow; }
+      &:active { @include aboutIcon; }
+    }
+
+    &--link.icons__logo--contact {
+      &::before { @include contactShadow; }
+      &:active { @include contactIcon; }
+    }
+
+    @media only screen and (min-width: $media-md) {
+
+      &--link {
+        &:focus::before,
+        &:hover::before { @include shadow; }
+      }
+
+      &--link.icons__logo--about {
+        &::before { @include aboutShadow; }
+        &:focus,
+        &:hover { @include aboutIcon; }
+      }
+
+      &--link.icons__logo--contact {
+        &::before { @include contactShadow; }
+        &:focus,
+        &:hover { @include contactIcon; }
       }
     }
   }

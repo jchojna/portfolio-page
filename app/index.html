@@ -3,11 +3,29 @@
   <!-- #region [ Horizon ] HEAD -->
   <head>
     <meta charset="utf-8">
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Jakub Chojna | Frontend Portfolio</title>
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
+    <meta name="description" content="I am an aspiring Frontend Web Developer, an Architect, a 3d Visualizer and this is my frontend portfolio website">
+    <link rel="manifest" href="manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="assets/icons/icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/icons/icon-192x192.png"
+    />
+    <!-- #region [ Horizon ] OPEN GRAPH -->
+    <meta property="og:title" content="Jakub Chojna | Frontend Portfolio" />
+    <meta property="og:description" content="I am an aspiring Frontend Web Developer, an Architect, a 3d Visualizer and this is my frontend portfolio website" />
+    <meta property="og:url" content="http://frontend.jakubchojna.pl/" />
+    <meta property="og:image" content="http://frontend.jakubchojna.pl/assets/img/cover.png" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="600" />
+    <!-- #endregion -->
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -30,67 +48,148 @@
       <nav class="menu menu--intro menu--js">
         <h2 class="menu__heading visuallyhidden">Main Menu</h2>
         <ul class="menu__list menu__list--js">
+          <!-- ABOUT -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 263 100">
-                <use href="assets/svg/menu.svg#about"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 263 100">
+                  <use href="assets/svg/menu.svg#about"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 263 100"
+                >
+                  <use href="assets/svg/menu.svg#about-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- RESUME -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 328 100">
-                <use href="assets/svg/menu.svg#resume"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 328 100">
+                  <use href="assets/svg/menu.svg#resume"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 328 100"
+                >
+                  <use href="assets/svg/menu.svg#resume-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- HYDRAPP -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 375 100">
-                <use href="assets/svg/menu.svg#hydrapp"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 375 100">
+                  <use href="assets/svg/menu.svg#hydrapp"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 375 100"
+                >
+                  <use href="assets/svg/menu.svg#hydrapp-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- TASKTIMER -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 450 100">
-                <use href="assets/svg/menu.svg#tasktimer"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 450 100">
+                  <use href="assets/svg/menu.svg#tasktimer"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 450 100"
+                >
+                  <use href="assets/svg/menu.svg#tasktimer-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- PORTFOLIO -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 428 100">
-                <use href="assets/svg/menu.svg#portfolio"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 428 100">
+                  <use href="assets/svg/menu.svg#portfolio"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 428 100"
+                >
+                  <use href="assets/svg/menu.svg#portfolio-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- ARCHVIZ -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 352 100">
-                <use href="assets/svg/menu.svg#archviz"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 352 100">
+                  <use href="assets/svg/menu.svg#archviz"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 352 100"
+                >
+                  <use href="assets/svg/menu.svg#archviz-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- QUOTES -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 299 100">
-                <use href="assets/svg/menu.svg#quotes"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 299 100">
+                  <use href="assets/svg/menu.svg#quotes"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 299 100"
+                >
+                  <use href="assets/svg/menu.svg#quotes-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- OTHER -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 248 100">
-                <use href="assets/svg/menu.svg#other"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 248 100">
+                  <use href="assets/svg/menu.svg#other"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 248 100"
+                >
+                  <use href="assets/svg/menu.svg#other-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
+          <!-- CONTACT -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
-              <svg class="menu__svg" viewBox="0 0 355 100">
-                <use href="assets/svg/menu.svg#contact"></use>
-              </svg>
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 355 100">
+                  <use href="assets/svg/menu.svg#contact"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 355 100"
+                >
+                  <use href="assets/svg/menu.svg#contact-shadow"></use>
+                </svg>
+              </div>
             </button>
           </li>
         </ul>
@@ -163,23 +262,13 @@
             class="section__photo"
             alt="Photo of Jakub Chojna"
           >
-          <!-- #region [ Horizon ] LOGO -->
-          <div class="logo logo--about">
-            <svg class="logo__base logo__base--about" viewBox="0 0 512 512">
-              <use href="assets/svg/logos.svg#about-base"></use>
-            </svg>
-            <svg class="logo__shadow logo__shadow--about" viewBox="0 0 512 512">
-              <use href="assets/svg/logos.svg#about-shadow"></use>
-            </svg>
-          </div>
-          <!-- #endregion -->
           <!-- #region [ Horizon ] PERSONAL INFO -->
           <section class="tab tab--description">
             <h3 class="tab__heading tab__heading--about tab__heading--aboutMe">
               About Me
             </h3>
             <p class="tab__description tab__description--about">
-              My name is Jakub and I’m an aspiring Frontend Developer, an Architect, a 3d Visualizer and a keen road cycling fan.
+              My name is Jakub and I’m an aspiring Frontend Web Developer, an Architect, a 3d Visualizer and a keen road cycling fan.
             </p>
           </section>
           <!-- #endregion -->
@@ -193,7 +282,7 @@
               <li class="icons__item">
                 <a
                   href="https://github.com/jchojna"
-                  class="icons__logo icons__logo--about"
+                  class="icons__logo icons__logo--about icons__logo--link"
                   target="_blank" rel="nofollow noreferrer"
                   aria-label="Github profile"
                 >
@@ -207,7 +296,7 @@
               <li class="icons__item">
                 <a
                   href="https://linkedin.com/in/jakub-chojna-126897b7/"
-                  class="icons__logo icons__logo--about"
+                  class="icons__logo icons__logo--about icons__logo--link"
                   target="_blank" rel="nofollow noreferrer"
                   aria-label="LinkedIn profile"
                 >
@@ -221,7 +310,7 @@
               <li class="icons__item">
                 <a
                   href="https://www.codewars.com/users/jchojna/"
-                  class="icons__logo icons__logo--about"
+                  class="icons__logo icons__logo--about icons__logo--link"
                   target="_blank" rel="nofollow noreferrer"
                   aria-label="Codewars profile"
                 >
@@ -235,7 +324,7 @@
               <li class="icons__item">
                 <a
                   href="mailto:frontend@jakubchojna.pl"
-                  class="icons__logo icons__logo--about"
+                  class="icons__logo icons__logo--about icons__logo--link"
                   target="_blank" rel="nofollow noreferrer"
                 >
                   <svg class="icons__svg" viewBox="0 0 200 200">
@@ -600,23 +689,21 @@
           </div>
           <!-- #endregion -->
           <!-- #region [ Horizon ] PERSONAL INFO -->
-          <section class="tab tab--resume tab--info tab--js-resume">
-            <h3 class="tab__header tab__header--resume">
-              <button class="tab__button tab__button--resume tab__button--js-resume">
-                <span class="mark mark--resume"></span>
-                <span>Personal Info</span>
-              </button>
+          <section class="tab tab--resume tab--info">
+            <h3 class="tab__heading tab__heading--resume">
+              Personal Info
             </h3>
-            <div class="container container--info">
-              <div class="content">
-                <p class="tab__description tab__description--resume">
-                  As an architect I have a background in programming parametric architecture using tools like Grasshopper and Kangaroo. Long experience in 3d graphic and architectural visualization industry had a strong impact on my sense of aesthetics and visual composition. I also had an encounter with motion design and compositing. During my one year stay in Slovenia, I had an opportunity to work in English-speaking environment. As an individual, I think I would describe myself as a self-taught, multipotentialite person with a certain dose of perfectionism.
-                </p>
-                <p class="tab__description tab__description--resume">
-                  After I had created my first personal portfolio website in Wordpress, I decided to take my chances in frontend development about one year ago and learn it after hours. I have taken some online courses, but first of all I focused on writing my own projects and learning by practice. I tried to avoid using external libraries where I possibly could while writing the code, to get better understanding of HTML, CSS and JS basics. What I like about frontend web development is an endless process of learning, logical and analytical thinking and that it enables me to connect my previous experience backgrounds at some level.
-                </p>
-              </div>
+            <div class="tab__wrapper js-expandable js-minHeight">
+              <p class="tab__description tab__description--resume">
+                As an architect I have a background in programming parametric architecture using tools like Grasshopper and Kangaroo. Long experience in 3d graphic and architectural visualization industry had a strong impact on my sense of aesthetics and visual composition. I also had an encounter with motion design and compositing. During my one year stay in Slovenia, I had an opportunity to work in English-speaking environment. As an individual, I think I would describe myself as a self-taught, multipotentialite person with a certain dose of perfectionism.
+              </p>
+              <p class="tab__description tab__description--resume">
+                After I had created my first personal portfolio website in Wordpress, I decided to take my chances in frontend development about one year ago and learn it after hours. I have taken some online courses, but first of all I focused on writing my own projects and learning by practice. I tried to avoid using external libraries where I possibly could while writing the code, to get better understanding of HTML, CSS and JS basics. What I like about frontend web development is an endless process of learning, logical and analytical thinking and that it enables me to connect my previous experience backgrounds at some level.
+              </p>
             </div>
+            <button class="tab__readMore tab__readMore--resume tab__readMore--js">
+              Read more
+            </button>
           </section>
           <!-- #endregion -->
           <!-- #region [ Horizon ] PROFESSIONAL EXPERIENCE -->
@@ -640,7 +727,7 @@
                   <div class="container">
                     <ul class="content__list">
                       <li class="content__item content__item--resume content__item--experience">
-                        <p class="content__title">2017 - present</p>
+                        <p class="content__title content__title--experience">2017 - present</p>
                         <p class="content__description content__description--primary">
                           Freelance Architect
                         </p>
@@ -652,7 +739,7 @@
                         </p>
                       </li>
                       <li class="content__item content__item--resume content__item--experience">
-                        <p class="content__title">2018</p>
+                        <p class="content__title content__title--experience">2018</p>
                         <p class="content__description content__description--primary">
                           Architect / 3d Visualizer
                         </p>
@@ -664,7 +751,7 @@
                         </p>
                       </li>
                       <li class="content__item content__item--resume content__item--experience">
-                        <p class="content__title">2015 - 2017</p>
+                        <p class="content__title content__title--experience">2015 - 2017</p>
                         <p class="content__description content__description--primary">
                           Architect / 3d Visualizer
                         </p>
@@ -676,7 +763,7 @@
                         </p>
                       </li>
                       <li class="content__item content__item--resume content__item--experience">
-                        <p class="content__title">2011 - 2013</p>
+                        <p class="content__title content__title--experience">2011 - 2013</p>
                         <p class="content__description content__description--primary">
                           Architect
                         </p>
@@ -702,7 +789,7 @@
                   <div class="container">
                     <ul class="content__list">
                       <li class="content__item content__item--resume content__item--experience">
-                        <p class="content__title">2008 - present</p>
+                        <p class="content__title content__title--experience">2008 - present</p>
                         <p class="content__description content__description--primary">
                           Freelance 3d Visualizer
                         </p>
@@ -714,7 +801,7 @@
                         </p>
                       </li>
                       <li class="content__item content__item--resume content__item--experience">
-                        <p class="content__title">2010 - 2013</p>
+                        <p class="content__title content__title--experience">2010 - 2013</p>
                         <p class="content__description content__description--primary">
                           3d software tutor
                         </p>
@@ -740,7 +827,7 @@
                   <div class="container">
                     <ul class="content__list">
                       <li class="content__item content__item--resume content__item--frontend">
-                        <p class="content__title content__title--fullWidth">
+                        <p class="content__title content__title--experience content__title--fullWidth">
                           No professional experience yet ...
                         </p>
                       </li>
@@ -2430,7 +2517,7 @@
               <div class="container">
                 <div class="content content--other">
                   <p class="tab__description tab__description--other tab__description--small">
-                    Quick exercise project in react.js after a little time off JS frameworks. I am going to transform this into scrabble game-helping app.
+                    Quick exercise project in react.js after a little time off JS frameworks.
                   </p>
                   <div class="repoLinks repoLinks--other">
                     <a
@@ -2500,7 +2587,7 @@
               <div class="container">
                 <div class="content content--other">
                   <p class="tab__description tab__description--other tab__description--small">
-                    My first encounter with time intervals in react.js. This app also uses some sounds in the background
+                    My first encounter with time intervals in react.js.
                   </p>
                   <div class="repoLinks repoLinks--other">
                     <a
@@ -2810,7 +2897,7 @@
               <li class="icons__item">
                 <a
                   href="https://github.com/jchojna"
-                  class="icons__logo icons__logo--contact"
+                  class="icons__logo icons__logo--contact icons__logo--link"
                   target="_blank" rel="nofollow noreferrer"
                   aria-label="Github profile"
                 >
@@ -2823,7 +2910,7 @@
               <li class="icons__item">
                 <a
                   href="https://linkedin.com/in/jakub-chojna-126897b7/"
-                  class="icons__logo icons__logo--contact"
+                  class="icons__logo icons__logo--contact icons__logo--link"
                   target="_blank" rel="nofollow noreferrer"
                   aria-label="LinkedIn profile"
                 >
@@ -2836,7 +2923,7 @@
               <li class="icons__item">
                 <a
                   href="https://www.codewars.com/users/jchojna/"
-                  class="icons__logo icons__logo--contact"
+                  class="icons__logo icons__logo--contact icons__logo--link"
                   target="_blank" rel="nofollow noreferrer"
                   aria-label="Codewars profile"
                 >
@@ -2849,7 +2936,7 @@
               <li class="icons__item">
                 <a
                   href="https://www.facebook.com/jakub.chojna"
-                  class="icons__logo icons__logo--contact"
+                  class="icons__logo icons__logo--contact icons__logo--link"
                   target="_blank" rel="nofollow noreferrer"
                   aria-label="Facebook profile"
                 >
@@ -2862,7 +2949,7 @@
               <li class="icons__item">
                 <a
                   href="https://www.behance.net/jakubchojna"
-                  class="icons__logo icons__logo--contact"
+                  class="icons__logo icons__logo--contact icons__logo--link"
                   target="_blank" rel="nofollow noreferrer"
                   aria-label="Behance profile"
                 >
@@ -2875,7 +2962,7 @@
               <li class="icons__item">
                 <a
                   href="mailto:frontend@jakubchojna.pl"
-                  class="icons__logo icons__logo--contact"
+                  class="icons__logo icons__logo--contact icons__logo--link"
                   target="_blank" rel="nofollow noreferrer"
                 >
                   <svg class="icons__svg" viewBox="0 0 200 200">

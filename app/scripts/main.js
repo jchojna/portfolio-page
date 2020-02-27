@@ -8,23 +8,31 @@ const findFirstParentWithClass = (element, className) => {
 }
 
 const getCurrentMedia = () => {
-  return window.innerWidth >= mediaDesktop ? 'desktop' : 'mobile';
+  return window.innerWidth >= mediaLg
+  ? 'mediaLg' : window.innerWidth >= mediaMd
+  ? 'mediaMd' : window.innerWidth >= mediaSm
+  ? 'mediaSm' : 'mediaXs';
+}
+
+const getMenuLayout = () => {
+  return window.innerWidth >= mediaLg ? 'side' : 'burger';
 }
 
 const handleWindowResize = () => {
 
+  const menuLayout = getMenuLayout();
   const media = getCurrentMedia();
 
   // update top margin only on large screen devices
-  if (media === 'desktop') {
+  if (media === 'mediaLg') {
     [...sectionContainers].forEach(container => {
       handleTopMargins(container, minTopMargin);
     });
   }
 
   // handle changes on breakpoint
-  if (media !== flags.media) {
-    flags.media = media;
+  if (menuLayout !== flags.menuLayout) {
+    flags.menuLayout = menuLayout;
     flags.isMobileHeader = false;
     flags.isIntroMode = true;
 
@@ -41,6 +49,9 @@ const handleWindowResize = () => {
       child.classList.remove('navigation__button--hidden');
     });
 
+    // show all menu shadows
+    handleMenuShadows('all', 'activate');
+
     // handle introBox and menu indicator
     introBox.classList.add('visuals__introBox--visible');
     introBox.classList.add('visuals__introBox--centered');
@@ -52,7 +63,7 @@ const handleWindowResize = () => {
     
     // collapse accordion sections
     handleAccordion([...resumeSubtabs]);
-    handleAccordion([...resumeTabs], undefined, 0);
+    handleAccordion([...resumeTabs]);
     handleAccordion([...tasktimerTabs]);
     handleAccordion([...portfolioTabs]);
     handleAccordion([...hydrappTabs]);
@@ -60,9 +71,10 @@ const handleWindowResize = () => {
 
     handleIntroBox();
 
-    switch (media) {      
-      // load configuration for desktops
-      case 'desktop':
+    switch (menuLayout) {
+
+      // load configuration for large screens
+      case 'side':
         const currentId = sections[lastMenuItemIndex].id;
 
         // change menu items to be in a static position
@@ -93,14 +105,11 @@ const handleWindowResize = () => {
         // handle burger button appearance
         burgerButton.classList.remove('burgerButton--visible');
         burgerButton.classList.remove(`burgerButton--${currentId}`);
-        
-        // expand other projects accordion section
-        handleAccordion([...otherProjectsTabs], undefined, 'all');
 
       break;
 
-      // load configuration for mobiles
-      case 'mobile':
+      // load configuration for small and medium screens
+      case 'burger':
 
         [...sectionContainers].forEach(container => container.style.marginTop = '');
         // handle menu buttons colors
@@ -119,9 +128,28 @@ const handleWindowResize = () => {
         menuUpperBackground.classList.remove('visuals__background--hidden');
         menuBottomBackground.classList.remove('visuals__background--hidden');
 
-        // collapse other projects accordion section on mobile devices
+      break;
+      default: break;
+    }
+  }
+
+  if (media !== flags.media) {
+    flags.media = media;
+
+    switch (media) {
+
+      case 'mediaMd':
+      case 'mediaSm':
+        // expand other projects accordion section
+        handleAccordion([...otherProjectsTabs], undefined, 'all');
+      break;
+      
+      case 'mediaXs':
+        // collapse other projects accordion section
         handleAccordion([...otherProjectsTabs]);
       break;
+
+      default: break;   
     }
   }
 }
@@ -165,7 +193,7 @@ const getCurrentItemIndex = (cursorYPosition) => {
 }
 
 const getCurrentSectionIndex = (scrollOffset) => {
-  const currentOffset = window.innerWidth >= mediaDesktop
+  const currentOffset = window.innerWidth >= mediaLg
   ? pageContainer.scrollTop
   : window.pageYOffset;
 
@@ -229,9 +257,26 @@ const loadIntroContent = () => {
         class="grid__item grid__item--js"
         style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
       >
-        <svg class="grid__char grid__char--svg grid__char--js" viewBox="0 0 50 100">
-          <use href="assets/svg/letters.svg#${char}"></use>
-        </svg>
+
+
+
+        <div class="grid__char grid__char--js">
+          <svg
+            class="grid__svg grid__svg--js-char"
+            viewBox="0 0 50 100"
+          >
+            <use href="assets/svg/letters.svg#${char}"></use>
+          </svg>
+          <svg
+            class="grid__svg grid__svg--shadow"
+            viewBox="0 0 50 100"
+          >
+            <use href="assets/svg/letters.svg#${char}-shadow"></use>
+          </svg>
+        </div>
+
+
+
       </li>`
     : `<li
         class="grid__item grid__item--js"
@@ -253,8 +298,8 @@ const handleIntroAnimation = () => {
   
   let charIndex = 0;
   const charTotal = introText.length;
-  let maxColNum = window.innerWidth >= mediaDesktop
-  ? charTotal : window.innerWidth >= mediaTablet
+  let maxColNum = window.innerWidth >= mediaLg
+  ? charTotal : window.innerWidth >= mediaMd
   ? charTotal / 2
   : charTotal / 3;
   let minColNum = 6;
@@ -330,8 +375,8 @@ const handleIntroAnimation = () => {
           char.style.top = `${offsetTop}px`;
           char.style.left = `${offsetLeft}px`;
 
-          if (!char.classList.contains('grid__char--faded')) {
-            char.classList.add('grid__char--faded');
+          if (!char.classList.contains('grid__char--color')) {
+            char.classList.add('grid__char--color');
           }
         }
       });
@@ -483,14 +528,13 @@ const skipIntro = () => {
 
 //#region [ Horizon ] MENU
 
-
 const handleIntroMenu = (e) => {
 
   if (flags.isMenuTransforming) return false;
   if (!flags.isIntroMode) return false;
 
   // handle intro menu on mouse event
-  if (e && e.type === 'mousemove' && window.innerWidth >= mediaDesktop) {
+  if (e && e.type === 'mousemove' && window.innerWidth >= mediaLg) {
 
     const viewOffset = pageHeader.scrollTop;
     const currentItemIndex = getCurrentItemIndex(e.clientY + viewOffset);
@@ -531,7 +575,7 @@ const handleIntroMenuItemClick = (e) => {
   updateSectionsOffsets();
 
   //#region [ Horizon ] ON MOBILE DEVICES
-  if (window.innerWidth < mediaDesktop) {
+  if (window.innerWidth < mediaLg) {
 
     const windowHeight = window.innerHeight;
     const clickedintroItemHeight = items[activeIndex].height;
@@ -600,6 +644,9 @@ const handleIntroMenuItemClick = (e) => {
       // remove pointer events from pageHeader
       pageHeader.classList.remove('pageHeader--intro');
 
+      // hide all menu shadows
+      handleMenuShadows('all', 'deactivate');
+
       navigateToSection(activeIndex);
       clearTimeout(firstTimeoutId);
 
@@ -640,7 +687,7 @@ const handleIntroMenuItemClick = (e) => {
 
   //#region [ Horizon ] ON LARGE SCREEN DEVICES
 
-  } else if (window.innerWidth >= mediaDesktop) {
+  } else if (window.innerWidth >= mediaLg) {
 
     flags.isScrollEnabled = false;
     flags.isIntroMode = false;
@@ -673,6 +720,8 @@ const handleIntroMenuItemClick = (e) => {
       handleMenuIndicator();
       // show navigation panel
       navigation.classList.add('navigation--visible');
+      // hide shadow on active menu item
+      menuShadows[activeIndex].classList.remove('menuSvg__shadow--visible');
 
       // SECOND TIMEOUT
       const secondTimeoutId = setTimeout(() => {
@@ -709,7 +758,7 @@ const handleMenuItemClick = (e) => {
   // works only in content view on desktop devices
   if (flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
-  if (window.innerWidth < mediaDesktop) return false;
+  if (window.innerWidth < mediaLg) return false;
 
   const activeIndex = e.target.index;
   flags.isScrollEnabled = false;
@@ -722,10 +771,11 @@ const handleMenuItemClick = (e) => {
   // handle navigation and introBox appearance
   handleNavOnClick(currentNavigationIndex, 'deactivate');
   handleMenuItemColor(currentNavigationIndex, 'deactivate');
+  handleMenuShadows(currentNavigationIndex, 'activate');
   currentNavigationIndex = activeIndex;
   handleNavOnClick(currentNavigationIndex, 'activate');
   handleMenuItemColor(currentNavigationIndex, 'activate');
-
+  handleMenuShadows(currentNavigationIndex, 'deactivate');
 }
 
 const handleBurgerButton = () => {
@@ -789,6 +839,9 @@ const handleBurgerButton = () => {
     // handle burger button's color
     burgerButton.classList.remove(`burgerButton--${activeId}`);
 
+    // show all menu shadows
+    handleMenuShadows('all', 'activate');
+
     clearTimeout(firstTimeoutId);
 
     // SECOND TIMEOUT
@@ -830,17 +883,21 @@ const handleMenuOnScroll = () => {
     const newMenuItemIndex = getCurrentSectionIndex(0);
 
     if (newMenuItemIndex !== lastMenuItemIndex) {
+
       const prevId = sections[lastMenuItemIndex].id;
       menuButtons[lastMenuItemIndex].classList.remove(`menu__button--intro-${prevId}`);
       menuButtons[lastMenuItemIndex].classList.remove('menu__button--active');
       introBox.classList.remove(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
+      handleMenuShadows(lastMenuItemIndex, 'activate');
 
       // index change
       lastMenuItemIndex = newMenuItemIndex;
+
       menuButtons[lastMenuItemIndex].classList.add('menu__button--active');
+      menuButtons[lastMenuItemIndex].focus();
       introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
-      
       handleMenuIndicator();
+      handleMenuShadows(lastMenuItemIndex, 'deactivate');
     }
 
     // handle all menu items appearance on local id change
@@ -904,15 +961,15 @@ const handleMenuButtons = (activeIndex, action) => {
 
 const handleMobileHeader = () => {
 
-  if (window.innerWidth >= mediaDesktop) return false;
+  if (window.innerWidth >= mediaLg) return false;
   if (flags.isIntroMode) return false;
+  if (window.pageYOffset <= 0) return false;
 
   const handleHeader = (index, action) => {
     const currentId = sections[index].id;
 
     if (action === 'activate') {
       menuItems[index].classList.remove('menu__item--visible');
-      menuItems[index].classList.add('menu__item--minimized');
 
       introBox.classList.remove(`visuals__introBox--${currentId}`);
       burgerButton.classList.remove(`burgerButton--${currentId}`);
@@ -920,7 +977,6 @@ const handleMobileHeader = () => {
 
     } else if (action === 'deactivate') {
       menuItems[index].classList.add('menu__item--visible');
-      menuItems[index].classList.remove('menu__item--minimized');
 
       introBox.classList.add(`visuals__introBox--${currentId}`);
       burgerButton.classList.add(`burgerButton--${currentId}`);
@@ -947,9 +1003,23 @@ const handleIntroBox = (e) => {
 const handleMenuIndicator = (e) => {
   
   if(flags.isIntroMode) return false;
-  if (flags.media === 'mobile') return false;
+  if (flags.media === 'mediaXs') return false;
   removeTransitionsOnEvent(e, menuIndicator, 'pageHeader__indicator');
   menuIndicator.style.top = `${getCurrentItemOffset()}px`;
+}
+
+const handleMenuShadows = (index, action) => {
+
+  if (index === 'all') {
+    [...menuShadows].forEach(shadow => action === 'activate'
+    ? shadow.classList.add('menuSvg__shadow--visible')
+    : shadow.classList.remove('menuSvg__shadow--visible'));
+
+  } else {
+    action === 'activate'
+    ? menuShadows[index].classList.add('menuSvg__shadow--visible')
+    : menuShadows[index].classList.remove('menuSvg__shadow--visible');
+  }
 }
 
 //#endregion
@@ -998,6 +1068,7 @@ const handleBackButton = () => {
   // change colors of menu items to default
   handleMenuButtons(lastMenuItemIndex, 'deactivate');
   menuButtons[lastMenuItemIndex].classList.add(`menu__button--intro-${currentId}`);
+  handleMenuShadows(lastMenuItemIndex, 'activate');
   
   // FIRST TIMEOUT
   const firstTimeoutId = setTimeout(() => {
@@ -1111,7 +1182,7 @@ const navigateToSection = (e) => {
   }
 
   // scroll to target index
-  if (window.innerWidth >= mediaDesktop) {
+  if (window.innerWidth >= mediaLg) {
     const sectionOffset = sections[targetIndex].offset;
     pageContainer.scrollTo(0, sectionOffset);
 
@@ -1133,9 +1204,12 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
     const button = tab.querySelector('[class*="button"]');
     const mark = tab.querySelector('[class*="mark"]');
 
+
     // when specific tab is being clicked
     if (clickedIndex !== undefined) {
       const subtab = /subtab/.test(button.className);
+      const isDisabled = /other/.test(tab.className) && flags.media !== 'mediaXs';
+      if (isDisabled) return false;
 
       // handle clicked tab
       if (clickedIndex === index) {
@@ -1147,6 +1221,7 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
           container.style.height = `${content.clientHeight}px`;
           button.classList.add(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.add('mark--unrolled');
+
         } else {
           container.style.height = 0;
           button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
@@ -1156,18 +1231,33 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
         // when subtab clicked
         if (subtab) {
           const parentContainer = findFirstParentWithClass(container.parentNode, 'container');
-          const subtabs = parentContainer.querySelectorAll('.subtab__header');
-          const clickedSubtabsContainerHeight = container.firstElementChild.clientHeight;
+          const subtabsHeaders = parentContainer.querySelectorAll('.subtab__header');
+          const subtabsContainers = parentContainer.querySelectorAll('[class*=container]');
           const isUnrolled = mark.classList.contains('mark--unrolled');
-          let height = isUnrolled ? clickedSubtabsContainerHeight : 0;
-          [...subtabs].forEach(subtab => height += subtab.clientHeight);
+          
+          const clickedSubtabsContainerHeight = container.firstElementChild.clientHeight;
+          const subtabsHeadersHeights = [...subtabsHeaders]
+          .reduce((acc, curr) => acc + curr.clientHeight, 0);
+
+          let height = 0;          
+          if (flags.media === 'mediaLg') {
+            height = isUnrolled ? clickedSubtabsContainerHeight : 0;
+
+          } else {
+            height = [...subtabsContainers]
+            .reduce((acc, curr) => curr.style.height === '0px'
+            ? acc : acc + curr.firstElementChild.clientHeight, 0);
+          }
+          
+          height += subtabsHeadersHeights;
           parentContainer.style.height = `${height}px`;
         }
         flags.shouldSectionsBeUpdated = true;
 
       // handle not clicked elements
       } else {
-        if (flags.media === 'desktop') {
+        // collapse other tabs only on large screens
+        if (flags.media === 'mediaLg') {
           container.style.height = 0;
           button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.remove('mark--unrolled');
@@ -1183,8 +1273,15 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
 
       } else if (excludeIndex === 'all') {
         container.style.height = '';
-        mark.classList.remove('mark--unrolled');
-        button.classList.remove('tab__button--unrolled');
+
+        if (flags.media === 'mediaSm') {
+          mark.classList.add('mark--unrolled');
+          button.classList.add('tab__button--unrolled');
+
+        } else {
+          mark.classList.remove('mark--unrolled');
+          button.classList.remove('tab__button--unrolled');
+        }
 
       } else {
         container.style.height = `${content.clientHeight}px`;
@@ -1330,11 +1427,14 @@ const handleExpandableContent = (contents) => {
   [...contents].forEach((content, index) => {
     const currentContentData = contentData[index];
     const minMobileHeight = 300;
+    const minDesktopHeight = 200;
 
     // get available space for reduced content
     content.style.height = '100%';
-    contentData[index].availableHeight = window.innerWidth >= mediaDesktop
-    ? content.clientHeight
+    contentData[index].availableHeight = window.innerWidth >= mediaLg
+    ? content.classList.contains('js-minHeight')
+      ? minDesktopHeight
+      : content.clientHeight
     : minMobileHeight;
     const { availableHeight, fullHeight, html } = currentContentData;
 
@@ -1347,8 +1447,10 @@ const handleExpandableContent = (contents) => {
 
       // show read more button and update available space
       readMoreButtons[index].classList.add('tab__readMore--visible');
-      contentData[index].availableHeight = window.innerWidth >= mediaDesktop
-      ? content.clientHeight
+      contentData[index].availableHeight = window.innerWidth >= mediaLg
+      ? content.classList.contains('js-minHeight')
+        ? minDesktopHeight
+        : content.clientHeight
       : minMobileHeight;
       const { availableHeight } = currentContentData;
 
@@ -1439,7 +1541,7 @@ const validateForm = (e) => {
 
 const handleAlerts = (data, isFailed) => {
 
-  const margin = window.innerWidth >= mediaDesktop ? 20 : 5;
+  const margin = window.innerWidth >= mediaLg ? 20 : 5;
   let heightTotal = margin;
   let delay = 0;
   const delayInterval = 60;
@@ -1573,6 +1675,7 @@ const validateMessage = (e) => {
 }
 
 //#endregion
+
 //#region [ Horizon ] VARIABLES - OVERALL
 const flags = {
   isIntroMode: true,
@@ -1580,10 +1683,12 @@ const flags = {
   shouldSectionsBeUpdated: false,
   isScrollEnabled: false,
   isMobileHeader: false,
-  media: null
+  media: null,
+  menuLayout: null
 }
-const mediaTablet = 768;
-const mediaDesktop = 1200;
+const mediaSm = 380;
+const mediaMd = 768;
+const mediaLg = 1200;
 let lastMenuItemIndex = 0;
 let scrollTimeoutId = null;
 let scrollTotal = 0;
@@ -1606,8 +1711,8 @@ const secondTimeoutLg = 500;
 
 let introText = 'jakub chojna frontend projects';
 
-const introItemWidth = window.innerWidth >= mediaDesktop
-? 35 : window.innerWidth >= mediaTablet ? 35 : 20;
+const introItemWidth = window.innerWidth >= mediaLg
+? 35 : window.innerWidth >= mediaMd ? 35 : 20;
 const introItemHeight = 2 * introItemWidth;
 
 const intro = document.querySelector('.intro--js');
@@ -1629,6 +1734,7 @@ const burgerButton = document.querySelector('.burgerButton--js');
 const menu = document.querySelector('.menu--js');
 const menuItems = document.querySelectorAll('.menu__item--js');
 const menuButtons = document.querySelectorAll('.menu__button--js');
+const menuShadows = document.querySelectorAll('.menuSvg__shadow--js');
 const menuLabels = document.querySelectorAll('.label--js');
 //#endregion
 //#region [ Horizon ] VARIABLES - NAVIGATION
@@ -1691,42 +1797,47 @@ const expandableContent = document.querySelectorAll('.js-expandable');
 //#region [ Horizon ] FUNCTION CALLS
 
 // page load with no animation intro
-
+/* 
 intro.classList.add('intro--hidden');
 [...menuItems].forEach(item => item.classList.add('menu__item--active'));
 visuals.classList.add('visuals--visible');
 pageHeader.classList.add('pageHeader--visible');
-
+ */
 // page load with no animation intro
 
 flags.media = getCurrentMedia();
+flags.menuLayout = getMenuLayout();
 
-//setIntroLoaderPosition();
-//loadIntroContent();
+setIntroLoaderPosition();
+loadIntroContent();
 handleIntroMenu();
 
 // handle page's accordions
 handleAccordion([...resumeSubtabs]);
-handleAccordion([...resumeTabs], undefined, 0);
+handleAccordion([...resumeTabs]);
 handleAccordion([...tasktimerTabs]);
 handleAccordion([...portfolioTabs]);
 handleAccordion([...hydrappTabs]);
 handleAccordion([...quotesTabs]);
 
-if (window.innerWidth < mediaDesktop) {
+if (flags.media === 'mediaXs') {
   handleAccordion([...otherProjectsTabs]);
+} else {
+  handleAccordion([...otherProjectsTabs], undefined, 'all');
 }
 
 // collapse expandable content on page load
 window.onload = () => {
-  //handleIntroAnimation();
-  //handleIntroLoader();
+  handleIntroAnimation();
+  handleIntroLoader();
   handleExpandableContent(expandableContent);
 
   // set each section's container top margin
-  [...sectionContainers].forEach(container => {
-    handleTopMargins(container, minTopMargin);
-  });
+  if (flags.media === 'mediaLg') {
+    [...sectionContainers].forEach(container => {
+      handleTopMargins(container, minTopMargin);
+    });
+  }
 };
 
 // fetch github api
@@ -1809,7 +1920,7 @@ const handleFastScroll = (e) => {
     scrollTimeoutId = null;
     scrollTotal = 0;
   } */
-  if (window.innerWidth < mediaDesktop) return false;
+  if (window.innerWidth < mediaLg) return false;
   if (flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
   if (!flags.isFastScroll) return false;
