@@ -219,6 +219,7 @@
   &__heading {
     border-left: $separator-width solid transparent;
     color: #fff;
+    font-family: 'Antonio Bold';
     font-size: 60px;
     grid-area: heading;
     line-height: 1.2;
@@ -236,39 +237,39 @@
 
     &--about {
       border-color: $color-about-diff;
-      color: $color-about-diff;
+      color: $color-about-light;
     }
     &--resume {
       border-color: $color-resume-diff;
-      color: $color-resume-diff;
+      color: $color-resume-light;
     }
     &--tasktimer {
       border-color: $color-tasktimer-diff;
-      color: $color-tasktimer-diff;
+      color: $color-tasktimer-light;
     }
     &--portfolio {
       border-color: $color-portfolio-diff;
-      color: $color-portfolio-diff;
+      color: $color-portfolio-light;
     }
     &--hydrapp {
       border-color: $color-hydrapp-diff;
-      color: $color-hydrapp-diff;
+      color: $color-hydrapp-light;
     }
     &--archviz {
       border-color: $color-archviz-diff;
-      color: $color-archviz-diff;
+      color: $color-archviz-light;
     }
     &--quotes {
       border-color: $color-quotes-diff;
-      color: $color-quotes-diff;
+      color: $color-quotes-light;
     }
     &--other {
       border-color: $color-other-diff;
-      color: $color-other-diff;
+      color: $color-other-light;
     }
     &--contact {
       border-color: $color-contact-diff;
-      color: $color-contact-diff;
+      color: $color-contact-light;
     }
     
     @media only screen and (min-width: $media-md) {

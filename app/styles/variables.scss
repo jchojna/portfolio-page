@@ -56,15 +56,17 @@ $rowGap: 30px;
 $separator-width: 10px;
 
 $svg-opacity: 0.3;
+$icon-background-opacity: 0.7;
 
 // TIME
 $tabHeader-time: 0.2s;
 $expandable-time: 0.5s;
 $accordion-time: 0.5s;
+$button-hover: 0.3s;
 
 // ABOUT
 $color-about-white: rgb(182, 212, 223);
-$color-about-light: rgb(95, 165, 189);
+$color-about-light: rgb(142, 192, 209);
 $color-about: rgb(27, 129, 163);
 $color-about-dark: rgb(21, 109, 138);
 $color-about-shadow: rgb(12, 81, 104);
@@ -79,6 +81,15 @@ $color-resume-dark: rgb(119, 56, 72);
 $color-resume-shadow: rgb(66, 31, 40);
 $color-resume-diff: #244E60;
 $color-resume-diff-dark: rgb(26, 63, 78);
+
+// HYDRAPP
+$color-hydrapp-white: #d3f3ff;
+$color-hydrapp-light: #88b2c9;
+$color-hydrapp: #2E6484;
+$color-hydrapp-dark: #164D6B;
+$color-hydrapp-shadow: #12344C;
+$color-hydrapp-diff: rgb(168, 148, 131);
+$color-hydrapp-diff-dark: rgb(82, 70, 62);
 
 // TASKTIMER
 $color-tasktimer-white: #C5D8D9;
@@ -100,15 +111,6 @@ $color-portfolio-shadow: rgb(83, 36, 30);
 $color-portfolio-diff: rgb(67, 76, 88);
 $color-portfolio-diff-dark: rgb(50, 59, 70);
 
-// HYDRAPP
-$color-hydrapp-white: #d3f3ff;
-$color-hydrapp-light: #75b3d4;
-$color-hydrapp: #2E6484;
-$color-hydrapp-dark: #164D6B;
-$color-hydrapp-shadow: #12344C;
-$color-hydrapp-diff: rgb(168, 148, 131);
-$color-hydrapp-diff-dark: rgb(82, 70, 62);
-
 // ARCHVIZ
 $color-archviz-white: #EEE7D6;
 $color-archviz-light: #E5C887;
@@ -120,7 +122,7 @@ $color-archviz-diff-dark: rgb(62, 58, 85);
 
 // QUOTES
 $color-quotes-white: #E7EBBF;
-$color-quotes-light: #D0DA61;
+$color-quotes-light: rgb(217, 226, 118);
 $color-quotes: #B9C52F;
 $color-quotes-dark: #A4AE32;
 $color-quotes-shadow: #5B620F;

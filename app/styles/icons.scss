@@ -60,36 +60,108 @@
 
   &__logo {
     @include flex-center;
-    border: 2px solid transparent;
     position: relative;
 
     &--about {
-      border-color: $color-about-light;
-      fill: $color-about-white;
+      background-color: rgba($color: $color-about-dark, $alpha: $icon-background-opacity);
+      fill: $color-about-light;
+    }
+    &--hydrapp {
+      background-color: rgba($color: $color-hydrapp-dark, $alpha: $icon-background-opacity);
+      fill: $color-hydrapp-shadow;
     }
     &--tasktimer {
-      border-color: $color-tasktimer-shadow;
+      background-color: rgba($color: $color-tasktimer-dark, $alpha: $icon-background-opacity);
       fill: $color-tasktimer-shadow;
     }
     &--portfolio {
-      border-color: $color-portfolio-shadow;
+      background-color: rgba($color: $color-portfolio-dark, $alpha: $icon-background-opacity);
       fill: $color-portfolio-shadow;
     }
-    &--hydrapp {
-      border-color: $color-hydrapp-shadow;
-      fill: $color-hydrapp-shadow;
-    }
     &--archviz {
-      border-color: $color-archviz-shadow;
+      background-color: rgba($color: $color-archviz-dark, $alpha: $icon-background-opacity);
       fill: $color-archviz-shadow;
     }
     &--quotes {
-      border-color: $color-quotes-shadow;
+      background-color: rgba($color: $color-quotes-dark, $alpha: $icon-background-opacity);
       fill: $color-quotes-shadow;
     }
     &--contact {
-      border-color: $color-contact-dark;
-      fill: $color-contact-dark;
+      background-color: rgba($color: $color-contact-dark, $alpha: $icon-background-opacity);
+      fill: $color-contact;
+    }
+
+    @mixin shadow {
+      border-left-width: 8px;
+      border-top-width: 8px;
+    }
+
+    @mixin aboutShadow {
+      border-color: $color-about-shadow;
+    }
+
+    @mixin contactShadow {
+      border-color: $color-contact-shadow;
+    }
+
+    @mixin aboutIcon {
+      fill: $color-about;
+      background-color: rgba($color: $color-about-shadow, $alpha: $icon-background-opacity);
+    }
+
+    @mixin contactIcon {
+      fill: $color-contact-light;
+      background-color: rgba($color: $color-contact-shadow, $alpha: $icon-background-opacity);
+    }
+
+    &--link {
+      position: relative;
+      transition: background-color $button-hover, fill $button-hover;
+
+      &::before {
+        border-style: solid;
+        border-width: 0;
+        bottom: 0;
+        content: '';
+        left: 0;
+        opacity: 0.6;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: border-width $button-hover;
+      }
+
+      &:active::before { @include shadow; }
+    }
+
+    &--link.icons__logo--about {
+      &::before { @include aboutShadow; }
+      &:active { @include aboutIcon; }
+    }
+
+    &--link.icons__logo--contact {
+      &::before { @include contactShadow; }
+      &:active { @include contactIcon; }
+    }
+
+    @media only screen and (min-width: $media-md) {
+
+      &--link {
+        &:focus::before,
+        &:hover::before { @include shadow; }
+      }
+
+      &--link.icons__logo--about {
+        &::before { @include aboutShadow; }
+        &:focus,
+        &:hover { @include aboutIcon; }
+      }
+
+      &--link.icons__logo--contact {
+        &::before { @include contactShadow; }
+        &:focus,
+        &:hover { @include contactIcon; }
+      }
     }
   }
 
