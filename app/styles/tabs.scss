@@ -409,7 +409,7 @@
     border-bottom: 2px solid transparent;
     cursor: pointer;
     display: none;
-    font-size: 1em;
+    font-size: 1.1em;
     grid-area: readMore;
     margin: 10px $offset-right-xs 10px $offset-left-xs;
     padding: 0.2em 0;
@@ -423,6 +423,10 @@
       border-color: $color-resume-light;
       color: $color-resume-light;
     }
+    &--hydrapp {
+      border-color: $color-hydrapp-light;
+      color: $color-hydrapp-light;
+    }
     &--tasktimer {
       border-color: $color-tasktimer-light;
       color: $color-tasktimer-light;
@@ -430,10 +434,6 @@
     &--portfolio {
       border-color: $color-portfolio-light;
       color: $color-portfolio-light;
-    }
-    &--hydrapp {
-      border-color: $color-hydrapp-light;
-      color: $color-hydrapp-light;
     }
     &--archviz {
       border-color: $color-archviz-light;
@@ -448,6 +448,43 @@
       color: $color-other-light;
     }
 
+    @mixin resumeReadMore {
+      border-color: $color-resume-dark;
+      color: $color-resume-dark;
+    }
+    @mixin hydrappReadMore {
+      border-color: $color-hydrapp-dark;
+      color: $color-hydrapp-dark;
+    }
+    @mixin tasktimerReadMore {
+      border-color: $color-tasktimer-dark;
+      color: $color-tasktimer-dark;
+    }
+    @mixin portfolioReadMore {
+      border-color: $color-portfolio-dark;
+      color: $color-portfolio-dark;
+    }
+    @mixin archvizReadMore {
+      border-color: $color-archviz-dark;
+      color: $color-archviz-dark;
+    }
+    @mixin quotesReadMore {
+      border-color: $color-quotes-dark;
+      color: $color-quotes-dark;
+    }
+    @mixin otherReadMore {
+      border-color: $color-other-dark;
+      color: $color-other-dark;
+    }
+
+    &--resume:active { @include resumeReadMore };
+    &--hydrapp:active { @include hydrappReadMore };
+    &--tasktimer:active { @include tasktimerReadMore };
+    &--portfolio:active { @include portfolioReadMore };
+    &--archviz:active { @include archvizReadMore };
+    &--quotes:active { @include quotesReadMore };
+    &--other:active { @include otherReadMore };
+
     @media only screen and (min-width: $media-sm) {
 
       & {
@@ -461,6 +498,21 @@
         margin: 0;
         margin-top: 10px;
       }
+
+      &--resume:focus,
+      &--resume:hover { @include resumeReadMore };
+      &--hydrapp:focus,
+      &--hydrapp:hover { @include hydrappReadMore };
+      &--tasktimer:focus,
+      &--tasktimer:hover { @include tasktimerReadMore };
+      &--portfolio:focus,
+      &--portfolio:hover { @include portfolioReadMore };
+      &--archviz:focus,
+      &--archviz:hover { @include archvizReadMore };
+      &--quotes:focus,
+      &--quotes:hover { @include quotesReadMore };
+      &--other:focus,
+      &--other:hover { @include otherReadMore };
     }
   }
 }
