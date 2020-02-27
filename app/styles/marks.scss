@@ -7,9 +7,9 @@
   top: 0;
   left: 0;
   transition:
-    background-color $tabHeader-time $tabHeader-time,
-    height $tabHeader-time ease-in,
-    width $tabHeader-time $tabHeader-time ease-out;
+    background-color $button-hover,
+    height $button-hover ease-in,
+    width $button-hover $button-hover ease-out;
   width: $tabHeader-size-xs;
 
   &--about { background-color: $color-about-diff; }

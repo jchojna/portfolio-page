@@ -152,20 +152,47 @@
   }
   
   &__submit {
-    background: none;
-    border: 3px solid $color-contact-white;
-    color: $color-contact-white;
-    cursor: pointer;
+    @include button;
+    background-color: $color-contact-dark;
+    color: $color-contact-light;
     font-size: $tabHeading-size-xs;
     grid-area: submit;
     margin: $tabHeading-size-xs $offset-right-xs 0 $offset-left-xs;
     padding: 0.3em;
+    position: relative;
     text-transform: uppercase;
+    transition: background-color $button-hover, color $button-hover;
 
-    &:hover {
-      background: $color-contact-diff;
-      border-color: transparent;
+    @mixin buttonShadow {
+      border-left-width: 10px;
+      border-top-width: 10px;
+    }
+
+    @mixin submitButtonShadow { border-color: $color-contact-shadow; }
+
+    @mixin submitButton {
       color: $color-contact;
+      background-color: rgba($color: $color-contact-shadow, $alpha: $background-opacity);
+    }
+
+    &::before {
+      border-style: solid;
+      border-width: 0;
+      bottom: 0;
+      content: '';
+      left: 0;
+      opacity: 0.6;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: border-width $button-hover;
+    }
+
+    &:active::before { @include buttonShadow; }
+
+    &--hydrapp {
+      &::before { @include submitButtonShadow; }
+      &:active { @include submitButton; }
     }
 
     @media only screen and (min-width: $media-sm) {
@@ -183,6 +210,13 @@
       & {
         justify-self: stretch;
         margin: $tabHeading-size-xs $offset-right-sm 0 $offset-left-sm;
+
+        &:focus::before,
+        &:hover::before { @include buttonShadow; }
+
+        &::before { @include submitButtonShadow; }
+        &:focus,
+        &:hover { @include submitButton; }
       }
     }
 

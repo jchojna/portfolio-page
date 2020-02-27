@@ -63,31 +63,31 @@
     position: relative;
 
     &--about {
-      background-color: rgba($color: $color-about-dark, $alpha: $icon-background-opacity);
+      background-color: rgba($color: $color-about-dark, $alpha: $background-opacity);
       fill: $color-about-light;
     }
     &--hydrapp {
-      background-color: rgba($color: $color-hydrapp-dark, $alpha: $icon-background-opacity);
+      background-color: rgba($color: $color-hydrapp-dark, $alpha: $background-opacity);
       fill: $color-hydrapp-shadow;
     }
     &--tasktimer {
-      background-color: rgba($color: $color-tasktimer-dark, $alpha: $icon-background-opacity);
+      background-color: rgba($color: $color-tasktimer-dark, $alpha: $background-opacity);
       fill: $color-tasktimer-shadow;
     }
     &--portfolio {
-      background-color: rgba($color: $color-portfolio-dark, $alpha: $icon-background-opacity);
+      background-color: rgba($color: $color-portfolio-dark, $alpha: $background-opacity);
       fill: $color-portfolio-shadow;
     }
     &--archviz {
-      background-color: rgba($color: $color-archviz-dark, $alpha: $icon-background-opacity);
+      background-color: rgba($color: $color-archviz-dark, $alpha: $background-opacity);
       fill: $color-archviz-shadow;
     }
     &--quotes {
-      background-color: rgba($color: $color-quotes-dark, $alpha: $icon-background-opacity);
+      background-color: rgba($color: $color-quotes-dark, $alpha: $background-opacity);
       fill: $color-quotes-shadow;
     }
     &--contact {
-      background-color: rgba($color: $color-contact-dark, $alpha: $icon-background-opacity);
+      background-color: rgba($color: $color-contact-dark, $alpha: $background-opacity);
       fill: $color-contact;
     }
 
@@ -106,15 +106,16 @@
 
     @mixin aboutIcon {
       fill: $color-about;
-      background-color: rgba($color: $color-about-shadow, $alpha: $icon-background-opacity);
+      background-color: rgba($color: $color-about-shadow, $alpha: $background-opacity);
     }
 
     @mixin contactIcon {
       fill: $color-contact-light;
-      background-color: rgba($color: $color-contact-shadow, $alpha: $icon-background-opacity);
+      background-color: rgba($color: $color-contact-shadow, $alpha: $background-opacity);
     }
 
     &--link {
+      outline: none;
       position: relative;
       transition: background-color $button-hover, fill $button-hover;
 

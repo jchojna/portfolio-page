@@ -211,6 +211,7 @@
     @media only screen and (min-width: $media-lg) {
 
       & {
+        //margin-left: calc((100vw - #{$container-size}) / 2);
         margin-left: 500px;
       }      
     }
@@ -440,19 +441,20 @@
   &--hydrapp   { border-color: $color-hydrapp-diff; }
   &--archviz   { border-color: $color-archviz-diff; }
   &--quotes    { border-color: $color-quotes-diff; }
-
   &--other {
     font-size: 1.5em;
     margin: 0.5em $offset-right-xs 0 $offset-left-xs;
   }
 
   &__link {
+    @include button;  
     @include flex-center;
-    border: 3px solid transparent;
     min-width: 50px;
-    padding: 0.3em 0.5em;
+    padding: 0.4em 0.5em;
+    position: relative;
     text-decoration: none;
     text-transform: uppercase;
+    transition: background-color $button-hover, color $button-hover;
 
     &--about {
       border-color: inherit;
@@ -462,53 +464,165 @@
         color: $color-about-shadow;
       }
     }
-    &--tasktimer {
-      border-color: inherit;
-      color: $color-tasktimer-diff;
-      &:hover {
-        border-color: $color-tasktimer-shadow;
-        color: $color-tasktimer-shadow;
-      }
-    }
-    &--portfolio {
-      border-color: inherit;
-      color: $color-portfolio-diff;
-      &:hover {
-        border-color: $color-portfolio-shadow;
-        color: $color-portfolio-shadow;
-      }
-    }
+
     &--hydrapp {
-      border-color: inherit;
-      color: $color-hydrapp-diff;
-      &:hover {
-        border-color: $color-hydrapp-shadow;
-        color: $color-hydrapp-shadow;
-      }
+      background-color: rgba($color: $color-hydrapp-dark, $alpha: $background-opacity);
+      color: $color-hydrapp-light;
     }
+
+    &--tasktimer {
+      background-color: rgba($color: $color-tasktimer-dark, $alpha: $background-opacity);
+      color: $color-tasktimer-light;
+    }
+
+    &--portfolio {
+      background-color: rgba($color: $color-portfolio-dark, $alpha: $background-opacity);
+      color: $color-portfolio-light;
+    }
+
     &--archviz {
-      border-color: inherit;
-      color: $color-archviz-diff;
-      &:hover {
-        border-color: $color-archviz-shadow;
-        color: $color-archviz-shadow;
-      }
+      background-color: rgba($color: $color-archviz-dark, $alpha: $background-opacity);
+      color: $color-archviz-light;
     }
+
     &--quotes {
-      border-color: inherit;
-      color: $color-quotes-diff;
-      &:hover {
-        border-color: $color-quotes-shadow;
-        color: $color-quotes-shadow;
-      }
+      background-color: rgba($color: $color-quotes-dark, $alpha: $background-opacity);
+      color: $color-quotes-light;
     }
+
     &--other {
-      border-color: $color-other-white;
-      border-width: 2px;
-      color: $color-other-white;
-      &:hover {
-        border-color: $color-other-diff;
-        color: $color-other-diff;
+      background-color: rgba($color: $color-other-dark, $alpha: $background-opacity);
+      color: $color-other-light;
+    }
+
+    @mixin buttonShadow {
+      border-left-width: 10px;
+      border-top-width: 10px;
+    }
+
+    @mixin hydrappButtonShadow { border-color: $color-hydrapp-shadow; }
+    @mixin tasktimerButtonShadow { border-color: $color-tasktimer-shadow; }
+    @mixin portfolioButtonShadow { border-color: $color-portfolio-shadow; }
+    @mixin archvizButtonShadow { border-color: $color-archviz-shadow; }
+    @mixin quotesButtonShadow { border-color: $color-quotes-shadow; }
+    @mixin otherButtonShadow { border-color: $color-other-shadow; }
+
+    @mixin hydrappButton {
+      color: $color-hydrapp;
+      background-color: rgba($color: $color-hydrapp-shadow, $alpha: $background-opacity);
+    }
+    
+    @mixin tasktimerButton {
+      color: $color-tasktimer;
+      background-color: rgba($color: $color-tasktimer-shadow, $alpha: $background-opacity);
+    }
+    
+    @mixin portfolioButton {
+      color: $color-portfolio;
+      background-color: rgba($color: $color-portfolio-shadow, $alpha: $background-opacity);
+    }
+    
+    @mixin archvizButton {
+      color: $color-archviz;
+      background-color: rgba($color: $color-archviz-shadow, $alpha: $background-opacity);
+    }
+    
+    @mixin quotesButton {
+      color: $color-quotes;
+      background-color: rgba($color: $color-quotes-shadow, $alpha: $background-opacity);
+    }
+    
+    @mixin otherButton {
+      color: $color-other;
+      background-color: rgba($color: $color-other-shadow, $alpha: $background-opacity);
+    }
+
+    &::before {
+      border-style: solid;
+      border-width: 0;
+      bottom: 0;
+      content: '';
+      left: 0;
+      opacity: 0.6;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: border-width $button-hover;
+    }
+
+    &:active::before { @include buttonShadow; }
+
+    &--hydrapp {
+      &::before { @include hydrappButtonShadow; }
+      &:active { @include hydrappButton; }
+    }
+
+    &--tasktimer {
+      &::before { @include tasktimerButtonShadow; }
+      &:active { @include tasktimerButton; }
+    }
+
+    &--portfolio {
+      &::before { @include portfolioButtonShadow; }
+      &:active { @include portfolioButton; }
+    }
+
+    &--archviz {
+      &::before { @include archvizButtonShadow; }
+      &:active { @include archvizButton; }
+    }
+
+    &--quotes {
+      &::before { @include quotesButtonShadow; }
+      &:active { @include quotesButton; }
+    }
+
+    &--other {
+      &::before { @include otherButtonShadow; }
+      &:active { @include otherButton; }
+    }
+
+    @media only screen and (min-width: $media-md) {
+
+      & {
+        &:focus::before,
+        &:hover::before { @include buttonShadow; }
+      }
+
+      &--hydrapp {
+        &::before { @include hydrappButtonShadow; }
+        &:focus,
+        &:hover { @include hydrappButton; }
+      }
+
+      &--tasktimer {
+        &::before { @include tasktimerButtonShadow; }
+        &:focus,
+        &:hover { @include tasktimerButton; }
+      }
+
+      &--portfolio {
+        &::before { @include portfolioButtonShadow; }
+        &:focus,
+        &:hover { @include portfolioButton; }
+      }
+
+      &--archviz {
+        &::before { @include archvizButtonShadow; }
+        &:focus,
+        &:hover { @include archvizButton; }
+      }
+
+      &--quotes {
+        &::before { @include quotesButtonShadow; }
+        &:focus,
+        &:hover { @include quotesButton; }
+      }
+
+      &--other {
+        &::before { @include otherButtonShadow; }
+        &:focus,
+        &:hover { @include otherButton; }
       }
     }
   }

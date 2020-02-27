@@ -877,6 +877,7 @@ const handleMenuOnScroll = () => {
       lastMenuItemIndex = newMenuItemIndex;
 
       menuButtons[lastMenuItemIndex].classList.add('menu__button--active');
+      menuButtons[lastMenuItemIndex].focus();
       introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
       handleMenuIndicator();
       handleMenuShadows(lastMenuItemIndex, 'deactivate');

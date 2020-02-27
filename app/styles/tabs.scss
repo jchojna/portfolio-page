@@ -334,8 +334,8 @@
     text-align: left;
     text-transform: uppercase;
     transition:
-      color $tabHeader-time $tabHeader-time,
-      padding-left $tabHeader-time $tabHeader-time ease-out;
+      color $button-hover,
+      padding-left $button-hover $button-hover ease-out;
     width: 100%;
 
     &--resume {
@@ -367,8 +367,8 @@
       color: inherit;
       padding-left: $tabHeader-size-xs;
       transition:
-        color $tabHeader-time,
-        padding-left $tabHeader-time ease-in;
+        color $button-hover,
+        padding-left $button-hover ease-in;
     }
 
     @media only screen and (min-width: $media-md) {
@@ -418,11 +418,9 @@
   }
 
   &__readMore {
+    @include button;
     align-self: flex-start;
-    background: none;
-    border: none;
     border-bottom: 2px solid transparent;
-    cursor: pointer;
     display: none;
     font-size: 1.1em;
     grid-area: readMore;
