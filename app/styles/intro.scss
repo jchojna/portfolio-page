@@ -110,11 +110,10 @@
   }
 
   &__char {
+    @include flex-center;
+    fill: $intro-link-color;
+    position: relative;
     width: 100%;
-
-    &--svg {
-      fill: $intro-link-color;
-    }
 
     &--separator {
       background-color: $intro-link-color;
@@ -128,12 +127,25 @@
       transition: top $time, left $time;
     }
 
-    &--faded.grid__char--svg {
+    &--color {
       fill: $color-about;
     }
 
-    &--faded.grid__char--separator {
+    &--color.grid__char--separator {
       background-color: $color-about;
+    }
+  }
+
+  &__svg {
+    fill: inherit;
+    width: 100%;
+
+    &--shadow {
+      fill: $intro-background-color;
+      left: 0;
+      opacity: $svg-opacity;
+      position: absolute;
+      top: 0;
     }
   }
 }

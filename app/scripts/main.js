@@ -257,9 +257,26 @@ const loadIntroContent = () => {
         class="grid__item grid__item--js"
         style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
       >
-        <svg class="grid__char grid__char--svg grid__char--js" viewBox="0 0 50 100">
-          <use href="assets/svg/letters.svg#${char}"></use>
-        </svg>
+
+
+
+        <div class="grid__char grid__char--js">
+          <svg
+            class="grid__svg grid__svg--js-char"
+            viewBox="0 0 50 100"
+          >
+            <use href="assets/svg/letters.svg#${char}"></use>
+          </svg>
+          <svg
+            class="grid__svg grid__svg--shadow"
+            viewBox="0 0 50 100"
+          >
+            <use href="assets/svg/letters.svg#${char}-shadow"></use>
+          </svg>
+        </div>
+
+
+
       </li>`
     : `<li
         class="grid__item grid__item--js"
@@ -358,8 +375,8 @@ const handleIntroAnimation = () => {
           char.style.top = `${offsetTop}px`;
           char.style.left = `${offsetLeft}px`;
 
-          if (!char.classList.contains('grid__char--faded')) {
-            char.classList.add('grid__char--faded');
+          if (!char.classList.contains('grid__char--color')) {
+            char.classList.add('grid__char--color');
           }
         }
       });
@@ -1780,19 +1797,19 @@ const expandableContent = document.querySelectorAll('.js-expandable');
 //#region [ Horizon ] FUNCTION CALLS
 
 // page load with no animation intro
-
+/* 
 intro.classList.add('intro--hidden');
 [...menuItems].forEach(item => item.classList.add('menu__item--active'));
 visuals.classList.add('visuals--visible');
 pageHeader.classList.add('pageHeader--visible');
-
+ */
 // page load with no animation intro
 
 flags.media = getCurrentMedia();
 flags.menuLayout = getMenuLayout();
 
-//setIntroLoaderPosition();
-//loadIntroContent();
+setIntroLoaderPosition();
+loadIntroContent();
 handleIntroMenu();
 
 // handle page's accordions
@@ -1811,8 +1828,8 @@ if (flags.media === 'mediaXs') {
 
 // collapse expandable content on page load
 window.onload = () => {
-  //handleIntroAnimation();
-  //handleIntroLoader();
+  handleIntroAnimation();
+  handleIntroLoader();
   handleExpandableContent(expandableContent);
 
   // set each section's container top margin
