@@ -1779,19 +1779,19 @@ const expandableContent = document.querySelectorAll('.js-expandable');
 //#region [ Horizon ] FUNCTION CALLS
 
 // page load with no animation intro
-
+/* 
 intro.classList.add('intro--hidden');
 [...menuItems].forEach(item => item.classList.add('menu__item--active'));
 visuals.classList.add('visuals--visible');
 pageHeader.classList.add('pageHeader--visible');
-
+ */
 // page load with no animation intro
 
 flags.media = getCurrentMedia();
 flags.menuLayout = getMenuLayout();
 
-//setIntroLoaderPosition();
-//loadIntroContent();
+setIntroLoaderPosition();
+loadIntroContent();
 handleIntroMenu();
 
 // handle page's accordions
@@ -1810,8 +1810,8 @@ if (flags.media === 'mediaXs') {
 
 // collapse expandable content on page load
 window.onload = () => {
-  //handleIntroAnimation();
-  //handleIntroLoader();
+  handleIntroAnimation();
+  handleIntroLoader();
   handleExpandableContent(expandableContent);
 
   // set each section's container top margin

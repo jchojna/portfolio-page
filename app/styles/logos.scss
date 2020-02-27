@@ -2,11 +2,11 @@
 @import 'mixins.scss';
 
 .logo {
-  display: flex;
-  justify-content: flex-end;
+  @include flex-center;
   grid-area: logo;
   margin-top: $menu-item-height;
   margin-left: $offset-left-xs;
+  max-width: 400px;
   position: relative;
   transform-origin: bottom left;
 
@@ -27,7 +27,7 @@
 
   &__base {
     width: 100%;
-    max-width: 400px;
+    //ax-width: 400px;
 
     &--about {fill: $color-about-light; }
     &--resume { fill: $color-resume-dark; }
@@ -42,12 +42,12 @@
 
   &__shadow {
     position: absolute;
-    max-width: 400px;
+    //max-width: 400px;
     top: 0;
     right: 0;
     width: 100%;
 
-    &--about { fill: $color-about-dark; }
+    &--about { fill: $color-about-shadow; }
     &--resume { fill: $color-resume-shadow; }
     &--tasktimerBase { fill: $color-tasktimer-shadow; }
     &--tasktimerLetter { fill: $color-tasktimer-shadowLetter; }
@@ -65,7 +65,7 @@
     right: 0;
     width: 100%;
     height: 100%;
-    max-width: 400px;
+    //max-width: 400px;
 
     &--tasktimer { fill: $color-tasktimer-letter; }
   }
@@ -98,7 +98,7 @@
       &__base,
       &__shadow,
       &__letter {
-        max-width: 500px;
+        //max-width: 500px;
       }
     }
   }

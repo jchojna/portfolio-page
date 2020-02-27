@@ -53,8 +53,9 @@ $tabGap-xs: 20px;
 $tabGap-sm: 20px;
 $gridGap: 20px;
 $rowGap: 30px;
-
 $separator-width: 10px;
+
+$svg-opacity: 0.3;
 
 // TIME
 $tabHeader-time: 0.2s;
@@ -62,13 +63,13 @@ $expandable-time: 0.5s;
 $accordion-time: 0.5s;
 
 // ABOUT
-$color-about-white: #BBD3E0;
-$color-about-light: #729AB0;
-$color-about: #4F7B94;
-$color-about-dark: #244456;
-$color-about-shadow: #11222c;
-$color-about-diff: #ADA795;
-$color-about-diff-dark: rgb(139, 131, 108);
+$color-about-white: rgb(182, 212, 223);
+$color-about-light: rgb(95, 165, 189);
+$color-about: rgb(27, 129, 163);
+$color-about-dark: rgb(21, 109, 138);
+$color-about-shadow: rgb(12, 81, 104);
+$color-about-diff: rgb(80, 76, 69);
+$color-about-diff-dark: rgb(65, 61, 57);
 
 // RESUME
 $color-resume-white: #EED5DB;
@@ -137,9 +138,9 @@ $color-other-diff-dark: rgb(138, 125, 6);
 
 // CONTACT
 $color-contact-white: #D7E8CD;
-$color-contact-light: #A7CA92;
-$color-contact: #7DAD60;
-$color-contact-dark: #6E9457;
-$color-contact-shadow: #4C663C;
-$color-contact-diff: #635451;
-$color-contact-diff-dark: #50423f;
+$color-contact-light: rgb(175, 201, 142);
+$color-contact: rgb(108, 145, 60);
+$color-contact-dark: rgb(88, 119, 47);
+$color-contact-shadow: rgb(77, 105, 41);
+$color-contact-diff: #5c4e4b;
+$color-contact-diff-dark: #493c3a;
