@@ -1299,9 +1299,9 @@ const handleRepo = (repos) => {
   const statsUpdated = document.querySelectorAll('.stats__value--js-updated');
   const statsCommits = document.querySelectorAll('.stats__value--js-commits');
   const reposIds = [
+    'hydrApp',
     'task-timer',
     'portfolio-page',
-    'hydrApp',
     'archviz-website',
     'homepage-gulp'];
   //: FORMAT FETCHED DATES                                             ://
@@ -1841,10 +1841,9 @@ window.onload = () => {
 };
 
 // fetch github api
-/* fetch('https://api.github.com/users/jchojna/repos')
+fetch('https://api.github.com/users/jchojna/repos')
   .then(resp => resp.json())
-  .then(resp => handleRepo(resp)); */
-// ! project id must fit repo id
+  .then(resp => handleRepo(resp));
 
 //#endregion
 
