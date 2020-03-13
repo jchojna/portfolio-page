@@ -80,22 +80,6 @@
               </div>
             </button>
           </li>
-          <!-- HYDRAPP -->
-          <li class="menu__item menu__item--visible menu__item--js">
-            <button class="menu__button menu__button--js">
-              <div class="menuSvg">
-                <svg class="menuSvg__text" viewBox="0 0 375 100">
-                  <use href="assets/svg/menu.svg#hydrapp"></use>
-                </svg>
-                <svg
-                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
-                  viewBox="0 0 375 100"
-                >
-                  <use href="assets/svg/menu.svg#hydrapp-shadow"></use>
-                </svg>
-              </div>
-            </button>
-          </li>
           <!-- TASKTIMER -->
           <li class="menu__item menu__item--visible menu__item--js">
             <button class="menu__button menu__button--js">
@@ -108,6 +92,22 @@
                   viewBox="0 0 450 100"
                 >
                   <use href="assets/svg/menu.svg#tasktimer-shadow"></use>
+                </svg>
+              </div>
+            </button>
+          </li>
+          <!-- HYDRAPP -->
+          <li class="menu__item menu__item--visible menu__item--js">
+            <button class="menu__button menu__button--js">
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 375 100">
+                  <use href="assets/svg/menu.svg#hydrapp"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 375 100"
+                >
+                  <use href="assets/svg/menu.svg#hydrapp-shadow"></use>
                 </svg>
               </div>
             </button>
@@ -931,312 +931,6 @@
       </article>
       <!-- #endregion -->
 
-      <!-- #region [ Horizon ] HYDRAPP -->
-      <article id="hydrapp" class="section section--hydrapp section--js">
-        <div class="section__container section__container--hydrapp section__container--js">
-          <h2 class="section__heading section__heading--hydrapp">
-            “track water consumption with hydrApp”
-          </h2>
-          <!-- #region [ Horizon ] LOGO -->
-          <div class="logo logo--hydrapp">
-            <svg class="logo__base logo__base--hydrapp" viewBox="0 0 100 100">
-              <use href="assets/svg/logos.svg#hydrapp-base"></use>
-            </svg>
-            <svg class="logo__shadow logo__shadow--hydrapp" viewBox="0 0 100 100">
-              <use href="assets/svg/logos.svg#hydrapp-shadow"></use>
-            </svg>
-          </div>
-          <!-- #endregion -->
-          <!-- #region [ Horizon ] PROJECT DESCRIPTION -->
-          <section class="tab tab--description">
-            <h3 class="tab__heading tab__heading--hydrapp">
-              About Project
-            </h3>
-            <div class="tab__wrapper js-expandable">
-              <p class="tab__description tab__description--hydrapp">
-                Simple yet useful app for daily tracking of water consumption. User can quickly basic app’s functionality and add (or remove) next glass of drank water what may help with not forgetting about this really important activity, especially during hot summer. There’s also an archive section with a modifiable history entries divided on weeks, to have an overall insight into water consumption tendency.
-              </p>
-              <p class="tab__description tab__description--hydrapp">
-                I started writing scripts for this app in pure JS, but there is still many functionalities I would like to implement, so I think it’s a good moment for rewriting this project to react.js
-              </p>
-            </div>
-            <button class="tab__readMore tab__readMore--hydrapp tab__readMore--js">
-              Read more
-            </button>
-          </section>
-          <!-- #endregion -->
-          <!-- #region [ Horizon ] PROJECT FEATURES -->
-          <section class="tab tab--features">
-            <h3 class="tab__heading tab__heading--hydrapp">
-              Features
-            </h3>
-            <div class="tab__wrapper">
-              <!-- #region [ Horizon ] FUNCTIONALITY -->
-              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
-                <h4 class="tab__header tab__header--category tab__header--hydrapp">
-                  <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
-                    <span class="mark mark--category mark--hydrapp"></span>
-                    <span>Functionality</span>
-                  </button>
-                </h4>
-                <div class="container">
-                  <ul class="features features--hydrapp content">
-                    <li class="features__item">
-                      user can increase / decrease amount of glasses of water per day
-                    </li>
-                    <li class="features__item">
-                      archive section with a list of days divided on weeks
-                    </li>
-                    <li class="features__item">
-                      each archive’s entry can be modified by increasing or decreasing amount of consumed water glasses and by adding or removing archive’s new or last entry accordingly
-                    </li>
-                    <li class="features__item">
-                      weeks calendar is automatically updated after adding or removing an entry
-                    </li>
-                    <li class="features__item">
-                      creator window appears when adding new entries
-                    </li>
-                    <li class="features__item">
-                      burger button menu
-                    </li>
-                    <li class="features__item">
-                      local storage support for entries data
-                    </li>
-                  </ul>
-                </div>
-              </section>
-              <!-- #endregion -->
-              <!-- #region [ Horizon ] VISUAL APPEARANCE -->
-              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
-                <h4 class="tab__header tab__header--category tab__header--hydrapp">
-                  <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
-                    <span class="mark mark--category mark--hydrapp"></span>
-                    <span>Visual Appearance</span>
-                  </button>
-                </h4>
-                <div class="container">
-                  <ul class="features features--hydrapp content">
-                    <li class="features__item">
-                      emoticons indicating current level of consumed level of water on a given day
-                    </li>
-                    <li class="features__item">
-                      animated icons and buttons and smooth transitions between sections
-                    </li>
-                  </ul>
-                </div>
-              </section>
-              <!-- #endregion -->
-              <!-- #region [ Horizon ] TO BE IMPLEMENTED -->
-              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
-                <h4 class="tab__header tab__header--category tab__header--hydrapp">
-                  <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
-                    <span class="mark mark--category mark--hydrapp"></span>
-                    <span>To Be Implemented</span>
-                  </button>
-                </h4>
-                <div class="container">
-                  <ul class="features features--hydrapp content">
-                    <li class="features__item">
-                      rewriting to react.js
-                    </li>
-                    <li class="features__item">
-                      stats section with analysis of water consumption
-                    </li>
-                    <li class="features__item">
-                      settings section allowing user to change some of the app’s interface elements
-                    </li>
-                    <li class="features__item">
-                      functionality introducing some level of gamification, for instance, glass streaks, when users keeps consuming minimum amount of water each consecutive day
-                    </li>
-                    <li class="features__item">
-                      calculating optimal amount of water based on the user’s weight
-                    </li>
-                    <li class="features__item">
-                      fetching data about weather conditions in user’s location from external API and recalculating minimum amount of water to be consumed
-                    </li>
-                    <li class="features__item">
-                      animated SVG graphic of glass
-                    </li>
-                  </ul>
-                </div>
-              </section>
-              <!-- #endregion -->
-            </div>
-          </section>
-          <!-- #endregion -->
-          <!-- #region [ Horizon ] PROJECT LINKS -->
-          <div class="repoLinks repoLinks--hydrapp">
-            <a
-              href="https://github.com/jchojna/hydrApp"
-              class="repoLinks__link repoLinks__link--hydrapp"
-              target="_blank" rel="nofollow noreferrer"
-              aria-label="HydrApp code"
-            >
-              Code
-            </a>
-            <a
-              href="https://jchojna.github.io/hydrApp/"
-              class="repoLinks__link repoLinks__link--hydrapp"
-              target="_blank" rel="nofollow noreferrer"
-              aria-label="HydrApp demo"
-            >
-              Demo
-            </a>
-          </div>
-          <!-- #endregion -->
-          <!-- #region [ Horizon ] STATS -->
-          <section class="tab tab--stats">
-            <h3 class="tab__heading tab__heading--hydrapp">
-              Project Details
-            </h3>
-            <table class="stats stats--hydrapp">
-              <thead class="stats__header">
-                <tr>
-                  <th scope="col">category</th>
-                  <th scope="col">value</th>
-                </tr>
-              </thead>
-              <tbody class="stats__body">
-                <tr class="stats__row">
-                  <td class="stats__category">Created:</td>
-                  <td class="stats__value stats__value--js-created"></td>
-                </tr>
-                <tr class="stats__row">
-                  <td class="stats__category">Last update:</td>
-                  <td class="stats__value stats__value--js-updated"></td>
-                </tr>
-                <tr class="stats__row">
-                  <td class="stats__category">Total commits:</td>
-                  <td class="stats__value stats__value--js-commits"></td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-          <!-- #endregion -->
-          <!-- #region [ Horizon ] TECHNOLOGIES USED -->
-          <section class="tab tab--technologies">
-            <h3 class="tab__heading tab__heading--technologies tab__heading--hydrapp">
-              Technologies Used
-            </h3>
-            <ul class="icons">
-              <!-- HTML -->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--hydrapp">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#html-1"></use>
-                  </svg>
-                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#html-2"></use>
-                  </svg>
-                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#html-3"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--hydrapp">html</span>
-              </li>
-              <!-- CSS -->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--hydrapp">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#css-1"></use>
-                  </svg>
-                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#css-2"></use>
-                  </svg>
-                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#css-3"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--hydrapp">css</span>
-              </li>
-              <!-- JAVASCRIPT -->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--hydrapp">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#javascript-1"></use>
-                  </svg>
-                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#javascript-2"></use>
-                  </svg>
-                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#javascript-3"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--hydrapp">javascript</span>
-              </li>
-              <!-- SASS -->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--hydrapp">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#sass"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--hydrapp">sass</span>
-              </li>
-              <!-- BEM -->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--hydrapp">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#bem"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--hydrapp">bem</span>
-              </li>
-              <!-- GIT -->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--hydrapp">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#git"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--hydrapp">git</span>
-              </li>
-              <!-- VISUAL STUDIO CODE -->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--hydrapp">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#vscode-1"></use>
-                  </svg>
-                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#vscode-2"></use>
-                  </svg>
-                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#vscode-3"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--hydrapp">vs code</span>
-              </li>
-              <!-- FIGMA -->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--hydrapp">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#figma-1"></use>
-                  </svg>
-                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#figma-2"></use>
-                  </svg>
-                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#figma-3"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--hydrapp">figma</span>
-              </li>
-              <!-- ILLUSTRATOR -->
-              <li class="icons__item">
-                <div class="icons__logo icons__logo--hydrapp">
-                  <svg class="icons__svg" viewBox="0 0 200 200">
-                    <use href="assets/svg/icons.svg#illustrator"></use>
-                  </svg>
-                </div>
-                <span class="icons__name icons__name--hydrapp">illustrator</span>
-              </li>
-            </ul>
-          </section>
-          <!-- #endregion -->
-        </div>
-      </article>
-      <!-- #endregion -->
-
       <!-- #region [ Horizon ] TASKTIMER -->
       <article id="tasktimer" class="section section--tasktimer section--js">
         <div class="section__container section__container--tasktimer section__container--js">
@@ -1266,7 +960,7 @@
             </h3>
             <div class="tab__wrapper js-expandable">
               <p class="tab__description tab__description--tasktimer">
-                You could say this is just another Pomodoro Clock react app, but this one is a little bit more complex and playful. I tried to make it look more like a board game with cards, interactive and entertaining. The app can handle multiple tasks going on at the same time, even though it may not be too practical to work on many tasks simultaneously, but it’s nice to see so many countdowns in action anyway:)
+                You could say it's just another Pomodoro Clock react app, but this one is a little bit more complex and playful. I tried to make it look more like a board game with cards, interactive and entertaining. The app can handle multiple tasks going on at the same time, even though it may not be too practical to work on many tasks simultaneously, but it’s nice to see them all in action anyway:)
               </p>
               <p class="tab__description tab__description--tasktimer">
                 For GIT training purposes, the app has started being developed in multiple phases:
@@ -1312,7 +1006,16 @@
                 <div class="container">
                   <ul class="features features--tasktimer content">
                     <li class="features__item">
-                      creating new task and editing or removing existing ones
+                      adding / removing users with unique logins and secured by password
+                    </li>
+                    <li class="features__item">
+                      'remember me' functionality when user logs in / signs in
+                    </li>
+                    <li class="features__item">
+                      user editing section allowing to change user's login, password, log out or remove user's profile
+                    </li>
+                    <li class="features__item">
+                      creating / editing / removing tasks
                     </li>
                     <li class="features__item">
                       user can specify a task name, time to finish the task and maximum break time
@@ -1321,16 +1024,13 @@
                       all inputs have validation rules applied to them
                     </li>
                     <li class="features__item">
-                      task name has limited amount of characters available and progress bar reflects the input’s current length
-                    </li>
-                    <li class="features__item">
                       work and break time countdown available for multiple cards simultaneously
                     </li>
                     <li class="features__item">
                       two display modes for work and break phases showing either elapsed or remaining time
                     </li>
                     <li class="features__item">
-                      progress bar with percentage sign indicates elapsed or remaining time as well, depending on the current display mode
+                      progress bars with percentage values indicates elapsed or remaining time as well, depending on the current display mode
                     </li>
                     <li class="features__item">
                       card’s outro mode appears on task finish or when the maximum break time gets exceeded, summarizing that given task’s stats 
@@ -1340,6 +1040,12 @@
                     </li>
                     <li class="features__item">
                       cards can be minimized to more concise form and display only the task name
+                    </li>
+                    <li class="features__item">
+                      stats section for all finished tasks
+                    </li>
+                    <li class="features__item">
+                      data stored in local storage as Json format
                     </li>
                   </ul>
                 </div>
@@ -1387,15 +1093,6 @@
                 </h4>
                 <div class="container">
                   <ul class="features features--tasktimer content">
-                    <li class="features__item">
-                      stats section for all finished tasks
-                    </li>
-                    <li class="features__item">
-                      settings section allowing user to interfere with app’s interface, for example to change color palette for the entire app
-                    </li>
-                    <li class="features__item">
-                      json-server functionality
-                    </li>
                     <li class="features__item">
                       full keyboard support for an entire app
                     </li>
@@ -1580,6 +1277,312 @@
                   </svg>
                 </div>
                 <span class="icons__name icons__name--tasktimer">illustrator</span>
+              </li>
+            </ul>
+          </section>
+          <!-- #endregion -->
+        </div>
+      </article>
+      <!-- #endregion -->
+
+      <!-- #region [ Horizon ] HYDRAPP -->
+      <article id="hydrapp" class="section section--hydrapp section--js">
+        <div class="section__container section__container--hydrapp section__container--js">
+          <h2 class="section__heading section__heading--hydrapp">
+            “track water consumption with hydrApp”
+          </h2>
+          <!-- #region [ Horizon ] LOGO -->
+          <div class="logo logo--hydrapp">
+            <svg class="logo__base logo__base--hydrapp" viewBox="0 0 100 100">
+              <use href="assets/svg/logos.svg#hydrapp-base"></use>
+            </svg>
+            <svg class="logo__shadow logo__shadow--hydrapp" viewBox="0 0 100 100">
+              <use href="assets/svg/logos.svg#hydrapp-shadow"></use>
+            </svg>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT DESCRIPTION -->
+          <section class="tab tab--description">
+            <h3 class="tab__heading tab__heading--hydrapp">
+              About Project
+            </h3>
+            <div class="tab__wrapper js-expandable">
+              <p class="tab__description tab__description--hydrapp">
+                Simple yet useful app for daily tracking of water consumption. User can quickly get to basic app’s functionality and add (or remove) next glass of drank water what may help with not forgetting about this really important activity, especially during hot summer.. There’s also an archive section with an editable history entries divided on weeks, to have an overall insight into water consumption tendency. On top of that, user is able to change his account settings and view his or other users stats. I added some level of gamification in form of points collected by every user for 'minimum water' streaks. There is also an overall ranking of users, dynamically reacting to any change in users stats.
+              </p>
+            </div>
+            <button class="tab__readMore tab__readMore--hydrapp tab__readMore--js">
+              Read more
+            </button>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT FEATURES -->
+          <section class="tab tab--features">
+            <h3 class="tab__heading tab__heading--hydrapp">
+              Features
+            </h3>
+            <div class="tab__wrapper">
+              <!-- #region [ Horizon ] FUNCTIONALITY -->
+              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
+                <h4 class="tab__header tab__header--category tab__header--hydrapp">
+                  <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
+                    <span class="mark mark--category mark--hydrapp"></span>
+                    <span>Functionality</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--hydrapp content">
+                    <li class="features__item">
+                      editable archive section with a list of days divided on weeks
+                    </li>
+                    <li class="features__item">
+                      new archive's entry creator
+                    </li>
+                    <li class="features__item">
+                      weeks calendar is automatically updated after adding or removing an entry
+                    </li>
+                    <li class="features__item">
+                      burger button menu
+                    </li>
+                    <li class="features__item">
+                      stats section displaying results of each user
+                    </li>
+                    <li class="features__item">
+                      calculated current and longest user's streak
+                    </li>
+                    <li class="features__item">
+                      ranking of users based on highest point score
+                    </li>
+                    <li class="features__item">
+                      settings section allowing to log out, remove account or edit profile settings
+                    </li>
+                    <li class="features__item">
+                      data stored in local storage as Json format
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] VISUAL APPEARANCE -->
+              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
+                <h4 class="tab__header tab__header--category tab__header--hydrapp">
+                  <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
+                    <span class="mark mark--category mark--hydrapp"></span>
+                    <span>Visual Appearance</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--hydrapp content">
+                    <li class="features__item">
+                      intro animation
+                    </li>
+                    <li class="features__item">
+                      animated graphical representation of water
+                    </li>
+                    <li class="features__item">
+                      animated counter displaying amount of consumed water
+                    </li>
+                    <li class="features__item">
+                      emoji icons indicating current level of consumed level of water on a given day
+                    </li>
+                    <li class="features__item">
+                      animated icons and buttons and smooth transitions between sections
+                    </li>
+                    <li class="features__item">
+                      responsiveness
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] TO BE IMPLEMENTED -->
+              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
+                <h4 class="tab__header tab__header--category tab__header--hydrapp">
+                  <button class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp">
+                    <span class="mark mark--category mark--hydrapp"></span>
+                    <span>To Be Implemented</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--hydrapp content">
+                    <li class="features__item">
+                      calculating optimal amount of water based on the user’s weight
+                    </li>
+                    <li class="features__item">
+                      fetching data about weather conditions in user’s location from external API and recalculating minimum amount of water to be consumed
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+            </div>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT LINKS -->
+          <div class="repoLinks repoLinks--hydrapp">
+            <a
+              href="https://github.com/jchojna/hydrApp"
+              class="repoLinks__link repoLinks__link--hydrapp"
+              target="_blank" rel="nofollow noreferrer"
+              aria-label="HydrApp code"
+            >
+              Code
+            </a>
+            <a
+              href="https://jchojna.github.io/hydrApp/"
+              class="repoLinks__link repoLinks__link--hydrapp"
+              target="_blank" rel="nofollow noreferrer"
+              aria-label="HydrApp demo"
+            >
+              Demo
+            </a>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] STATS -->
+          <section class="tab tab--stats">
+            <h3 class="tab__heading tab__heading--hydrapp">
+              Project Details
+            </h3>
+            <table class="stats stats--hydrapp">
+              <thead class="stats__header">
+                <tr>
+                  <th scope="col">category</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              <tbody class="stats__body">
+                <tr class="stats__row">
+                  <td class="stats__category">Created:</td>
+                  <td class="stats__value stats__value--js-created"></td>
+                </tr>
+                <tr class="stats__row">
+                  <td class="stats__category">Last update:</td>
+                  <td class="stats__value stats__value--js-updated"></td>
+                </tr>
+                <tr class="stats__row">
+                  <td class="stats__category">Total commits:</td>
+                  <td class="stats__value stats__value--js-commits"></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] TECHNOLOGIES USED -->
+          <section class="tab tab--technologies">
+            <h3 class="tab__heading tab__heading--technologies tab__heading--hydrapp">
+              Technologies Used
+            </h3>
+            <ul class="icons">
+              <!-- HTML -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#html-1"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#html-2"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#html-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">html</span>
+              </li>
+              <!-- CSS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#css-1"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#css-2"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#css-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">css</span>
+              </li>
+              <!-- JAVASCRIPT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#javascript-1"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#javascript-2"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#javascript-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">javascript</span>
+              </li>
+              <!-- SASS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#sass"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">sass</span>
+              </li>
+              <!-- BEM -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#bem"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">bem</span>
+              </li>
+              <!-- GIT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#git"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">git</span>
+              </li>
+              <!-- VISUAL STUDIO CODE -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#vscode-1"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#vscode-2"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#vscode-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">vs code</span>
+              </li>
+              <!-- FIGMA -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#figma-1"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded1" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#figma-2"></use>
+                  </svg>
+                  <svg class="icons__svg icons__svg--faded2" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#figma-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">figma</span>
+              </li>
+              <!-- ILLUSTRATOR -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#illustrator"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">illustrator</span>
               </li>
             </ul>
           </section>

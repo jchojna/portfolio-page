@@ -1299,8 +1299,8 @@ const handleRepo = (repos) => {
   const statsUpdated = document.querySelectorAll('.stats__value--js-updated');
   const statsCommits = document.querySelectorAll('.stats__value--js-commits');
   const reposIds = [
-    'hydrApp',
     'task-timer',
+    'hydrApp',
     'portfolio-page',
     'archviz-website',
     'homepage-gulp'];
