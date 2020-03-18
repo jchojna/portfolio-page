@@ -88,6 +88,7 @@
   &__container {
     align-items: start;
     display: grid;
+    margin: 0 $offset-right-sm;
     width: 100%;
 
     &--about {
@@ -302,30 +303,19 @@
   }
   
   &__photo {
-    background: $color-about-light;
-    background-clip: content-box;
     grid-area: photography;
     justify-self: end;
     margin-top: $menu-item-height;
+    margin-right: $offset-right-sm * -1;
     max-width: 500px;
-    padding-left: $offset-left-xs;
     width: 100%;
     z-index: 1;
-
-    @media only screen and (min-width: $media-sm) {
-
-      & {
-        padding-left: $offset-left-sm;
-      }
-    }
 
     @media only screen and (min-width: $media-md) {
 
       & {
-        border: 3px solid $color-about-light;
+        margin-right: 0;
         margin-top: $menu-item-height + $offset-right-sm;
-        margin-right: $offset-right-sm;
-        padding: 3px;
       }
     }
 
