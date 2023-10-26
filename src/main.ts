@@ -1418,7 +1418,14 @@ const validateMessage = (e) => {
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-import { flags, media, introLoader, introBox } from './scripts/variables';
+import {
+  flags,
+  media,
+  introLoader,
+  introBox,
+  menuItems,
+  pageHeader,
+} from './scripts/variables';
 import {
   setIntroLoaderPosition,
   loadIntroContent,
@@ -1426,12 +1433,10 @@ import {
   handleIntroAnimation,
 } from './scripts/intro';
 
-//#region [ Horizon ] VARIABLES - OVERALL
-
 let lastMenuItemIndex = 0;
-// let scrollTimeoutId = null;
-// let scrollTotal = 0;
-//#endregion
+let scrollTimeoutId = null;
+let scrollTotal = 0;
+
 //#region [ Horizon ] VARIABLES - INTERVALS
 
 // // menu
@@ -1444,7 +1449,6 @@ const secondTimeoutLg = 500;
 
 //#endregion
 //#region [ Horizon ] VARIABLES - MENU
-const pageHeader = document.querySelector('.pageHeader--js');
 const menuIndicator = document.querySelector('.pageHeader__indicator--js');
 const menuUpperBackground = document.querySelector(
   '.visuals__background--js-upper'
@@ -1454,7 +1458,6 @@ const menuBottomBackground = document.querySelector(
 );
 const burgerButton = document.querySelector('.burgerButton--js');
 const menu = document.querySelector('.menu--js');
-const menuItems = document.querySelectorAll('.menu__item--js');
 const menuButtons = document.querySelectorAll('.menu__button--js');
 const menuShadows = document.querySelectorAll('.menuSvg__shadow--js');
 const menuLabels = document.querySelectorAll('.label--js');
@@ -1528,18 +1531,15 @@ const formSubmitButton = document.querySelector('.form__submit--js');
 
 let contentData = [];
 const expandableContent = document.querySelectorAll('.js-expandable');
-//#endregion
 
-//#region [ Horizon ] FUNCTION CALLS
-
+////////////////////////////////////////////////////////////////////////////////
 // page load with no animation intro
-
 // intro.classList.add('intro--hidden');
 // [...menuItems].forEach((item) => item.classList.add('menu__item--active'));
 // visuals.classList.add('visuals--visible');
 // pageHeader.classList.add('pageHeader--visible');
-
 // page load with no animation intro
+////////////////////////////////////////////////////////////////////////////////
 
 flags.media = getCurrentMedia();
 flags.menuLayout = getMenuLayout();

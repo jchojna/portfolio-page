@@ -1,4 +1,12 @@
-import { media, introLoader, introGrid, introBox } from './variables';
+import {
+  media,
+  intro,
+  introLoader,
+  introGrid,
+  introBox,
+  menuItems,
+  pageHeader,
+} from './variables';
 
 let introText = 'jakub chojna frontend projects';
 const introItemWidth =
