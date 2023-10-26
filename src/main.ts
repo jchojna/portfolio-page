@@ -10,17 +10,17 @@ const findFirstParentWithClass = (element, className) => {
 };
 
 const getCurrentMedia = () => {
-  return window.innerWidth >= mediaLg
+  return window.innerWidth >= media.lg
     ? 'mediaLg'
-    : window.innerWidth >= mediaMd
+    : window.innerWidth >= media.md
     ? 'mediaMd'
-    : window.innerWidth >= mediaSm
+    : window.innerWidth >= media.sm
     ? 'mediaSm'
     : 'mediaXs';
 };
 
 const getMenuLayout = () => {
-  return window.innerWidth >= mediaLg ? 'side' : 'burger';
+  return window.innerWidth >= media.lg ? 'side' : 'burger';
 };
 
 const handleWindowResize = () => {
@@ -209,7 +209,9 @@ const getCurrentItemIndex = (cursorYPosition) => {
 
 const getCurrentSectionIndex = (scrollOffset) => {
   const currentOffset =
-    window.innerWidth >= mediaLg ? pageContainer.scrollTop : window.pageYOffset;
+    window.innerWidth >= media.lg
+      ? pageContainer.scrollTop
+      : window.pageYOffset;
 
   return (
     sections.length -
@@ -247,291 +249,6 @@ const addAccordionEvents = (buttons, tabs) => {
   });
 };
 
-// assign size and position of one element to another
-const setSizeAndPosition = (element, target, size) => {
-  element.style.top = `${target.offsetTop}px`;
-  element.style.left = `${target.offsetLeft}px`;
-  element.style.width = size ? `${size}px` : `${target.clientWidth}px`;
-  element.style.height = size ? `${size}px` : `${target.clientHeight}px`;
-};
-
-//#endregion
-
-//#region [ Horizon ] INTRO
-
-const setIntroLoaderPosition = () => {
-  introLoader.style.top = `${introLoader.offsetTop}px`;
-  introLoader.style.left = `${introLoader.offsetLeft}px`;
-};
-
-const loadIntroContent = () => {
-  [...introText].forEach((char) => {
-    const gridItem =
-      char !== ' '
-        ? `<li
-        class="grid__item grid__item--js"
-        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
-      >
-
-
-
-        <div class="grid__char grid__char--js">
-          <svg
-            class="grid__svg grid__svg--js-char"
-            viewBox="0 0 50 100"
-          >
-            <use href="assets/svg/letters.svg#${char}"></use>
-          </svg>
-          <svg
-            class="grid__svg grid__svg--shadow"
-            viewBox="0 0 50 100"
-          >
-            <use href="assets/svg/letters.svg#${char}-shadow"></use>
-          </svg>
-        </div>
-
-
-
-      </li>`
-        : `<li
-        class="grid__item grid__item--js"
-        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
-      >
-        <div class="grid__char grid__char--separator grid__char--js"></div>
-      </li>`;
-    introGrid.insertAdjacentHTML('beforeend', gridItem);
-  });
-};
-
-const handleIntroLoader = () => {
-  introLoader.classList.add('intro__loader--transition');
-  introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
-  setSizeAndPosition(introLoader, endingBefore, introItemHeight);
-};
-
-const handleIntroAnimation = () => {
-  let charIndex = 0;
-  const charTotal = introText.length;
-  let maxColNum =
-    window.innerWidth >= mediaLg
-      ? charTotal
-      : window.innerWidth >= mediaMd
-      ? charTotal / 2
-      : charTotal / 3;
-  let minColNum = 6;
-  const rowGap = 2;
-  let gridTopMargin = null;
-
-  // intervals
-  const loadCharInterval = 25; //30
-  const translateCharInterval = 0; //100
-  const introSecondTimeoutInterval = loadCharInterval * charTotal + 1000;
-  const introGridViewInterval = 2000;
-  const inBetweenTransition = 500;
-
-  // set position of ending elements
-  const setEndings = (index) => {
-    if (index < charTotal) {
-      const beforeChild = introGrid.children[0];
-      const afterChild = introGrid.children[index];
-      var endingBeforeTop = beforeChild.offsetTop;
-      var endingBeforeLeft = beforeChild.offsetLeft - introItemWidth;
-      var endingAfterTop = afterChild.offsetTop;
-      var endingAfterLeft = afterChild.offsetLeft;
-    } else {
-      const prevAfterChildOffset = introGrid.children[index - 1].offsetLeft;
-      var endingAfterLeft = prevAfterChildOffset + introItemWidth;
-    }
-
-    endingBefore.style.top = `${endingBeforeTop}px`;
-    endingBefore.style.left = `${endingBeforeLeft}px`;
-    endingAfter.style.top = `${endingAfterTop}px`;
-    endingAfter.style.left = `${endingAfterLeft}px`;
-  };
-
-  // show consecutive characters of intro text
-  const loadChar = () => {
-    if (charIndex < charTotal) {
-      const currentItem = introGrid.children[charIndex];
-      currentItem.style.width = `${introItemWidth}px`;
-      currentItem.style.height = `${introItemHeight}px`;
-      currentItem.classList.add('grid__item--visible');
-      setEndings(charIndex);
-      charIndex++;
-    } else {
-      setEndings(charIndex);
-      clearInterval(introCharIntervalId);
-    }
-  };
-
-  // animate characters position on introGrid change
-  const handleChars = (chars, isInitial) => {
-    if (isInitial) {
-      [...chars].forEach((char, index) => {
-        const { offsetTop, offsetLeft } = introGrid.children[index];
-        char.style.top = `${offsetTop}px`;
-        char.style.left = `${offsetLeft}px`;
-        char.style.width = `${introItemWidth}px`;
-        char.style.height = `${introItemHeight}px`;
-        char.classList.add('grid__char--transition');
-      });
-    } else {
-      [...chars].forEach((char, index) => {
-        const bias =
-          maxColNum - minColNum < minColNum
-            ? minColNum - (maxColNum - minColNum)
-            : 0;
-
-        if (index >= maxColNum - bias) {
-          const { offsetTop, offsetLeft } = introGrid.children[index];
-          char.style.top = `${offsetTop}px`;
-          char.style.left = `${offsetLeft}px`;
-
-          if (!char.classList.contains('grid__char--color')) {
-            char.classList.add('grid__char--color');
-          }
-        }
-      });
-    }
-  };
-
-  // calculate introGrid's gaps and items paddings
-  const getColGap = () => {
-    const rowNum = charTotal / minColNum;
-    const gridHeight = rowNum * introItemHeight + (rowNum - 1) * rowGap;
-    return (gridHeight - minColNum * introItemWidth) / (minColNum - 1);
-  };
-
-  // set introGrid's top margin
-  const updateTopMargin = () => {
-    const topMargin = (window.innerHeight - introGrid.clientHeight) / 2;
-
-    if (topMargin !== gridTopMargin || gridTopMargin === null) {
-      gridTopMargin = topMargin;
-      introGrid.style.marginTop = `${gridTopMargin}px`;
-    }
-  };
-
-  // configure introGrid on start
-  introGrid.classList.add('grid--visible');
-  introGrid.style.gridTemplateColumns = `repeat(${maxColNum}, 1fr)`;
-  updateTopMargin();
-
-  // set sizes and position of ending elements
-  endingBefore.style.width = `${introItemWidth}px`;
-  endingBefore.style.height = `${introItemHeight}px`;
-  endingAfter.style.width = `${introItemWidth}px`;
-  endingAfter.style.height = `${introItemHeight}px`;
-  setEndings(charIndex);
-
-  // FIRST TIMEOUT
-  clearTimeout(introFirstTimeoutId);
-  clearTimeout(introSecondTimeoutId);
-  clearTimeout(introThirdTimeoutId);
-  clearTimeout(introForthTimeoutId);
-  introFirstTimeoutId = setTimeout(() => {
-    introSkip.classList.add('intro__skip--visible');
-
-    // show ending elements
-    endingBefore.classList.add('intro__ending--visible');
-    endingAfter.classList.add('intro__ending--visible');
-    introLoader.classList.add('intro__loader--hidden');
-    introLoader.classList.remove('intro__loader--transition');
-
-    // remove temporary child
-    introCharIntervalId = setInterval(() => {
-      loadChar();
-      updateTopMargin();
-    }, loadCharInterval);
-
-    // SECOND TIMEOUT
-    introSecondTimeoutId = setTimeout(() => {
-      // assign fixed positioning to svg elements
-      const gridChars = document.querySelectorAll('.grid__char--js');
-      endingAfter.classList.remove('intro__ending--visible');
-      endingBefore.classList.remove('intro__ending--visible');
-      handleChars(gridChars, true);
-
-      // set introGrid's column and row gaps to make introGrid a square
-      const columnGap = getColGap();
-      introGrid.style.columnGap = `${columnGap}px`;
-      introGrid.style.rowGap = `${rowGap}px`;
-
-      // decrease number of grid columns
-      introCharIntervalId = setInterval(() => {
-        if (maxColNum >= minColNum) {
-          introGrid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
-          handleChars(gridChars, false);
-          updateTopMargin();
-        } else {
-          // when interval ends
-          clearInterval(introCharIntervalId);
-          setSizeAndPosition(introLoader, introGrid);
-
-          // show intro loader
-          introLoader.classList.remove('intro__loader--hidden');
-          const delay = introGridViewInterval - inBetweenTransition;
-          introLoader.style.transition = `
-            opacity ${inBetweenTransition}ms ${delay}ms,
-            visibility 0s ${delay}ms
-          `;
-
-          // THIRD TIMEOUT
-          introThirdTimeoutId = setTimeout(() => {
-            introSkip.classList.remove('intro__skip--visible');
-            introLoader.classList.add('intro__loader--transition');
-            introLoader.style.transition = '';
-            introLoader.style.transitionDuration = `${inBetweenTransition}ms`;
-            introGrid.classList.remove('grid--visible');
-            setSizeAndPosition(introLoader, introBox);
-
-            // FORTH TIMEOUT
-            introForthTimeoutId = setTimeout(() => {
-              // activeate menu items
-              [...menuItems].forEach((item) => {
-                item.classList.add('menu__item--active');
-              });
-
-              // show introBox
-              visuals.classList.add('visuals--visible');
-
-              // hide intro
-              intro.classList.add('intro--hidden');
-
-              // show page header
-              pageHeader.classList.add('pageHeader--visible');
-            }, inBetweenTransition);
-          }, introGridViewInterval);
-        }
-      }, translateCharInterval);
-    }, introSecondTimeoutInterval);
-  }, introFirstTimeoutInterval);
-};
-
-const skipIntro = () => {
-  // mainly as a fallback against unpredicted animation fail and crash
-  // clear timeouts and intervals
-  clearTimeout(introFirstTimeoutId);
-  clearTimeout(introSecondTimeoutId);
-  clearTimeout(introThirdTimeoutId);
-  clearTimeout(introForthTimeoutId);
-  clearInterval(introCharIntervalId);
-  introFirstTimeoutId = null;
-  introSecondTimeoutId = null;
-  introThirdTimeoutId = null;
-  introForthTimeoutId = null;
-  introCharIntervalId = null;
-
-  [...menuItems].forEach((item) => {
-    item.classList.add('menu__item--active');
-  });
-
-  intro.classList.add('intro--hidden');
-  introSkip.classList.remove('intro__skip--visible');
-  pageHeader.classList.add('pageHeader--visible');
-  visuals.classList.add('visuals--visible');
-};
-
 //#endregion
 
 //#region [ Horizon ] MENU
@@ -541,7 +258,7 @@ const handleIntroMenu = (e) => {
   if (!flags.isIntroMode) return false;
 
   // handle intro menu on mouse event
-  if (e && e.type === 'mousemove' && window.innerWidth >= mediaLg) {
+  if (e && e.type === 'mousemove' && window.innerWidth >= media.lg) {
     const viewOffset = pageHeader.scrollTop;
     const currentItemIndex = getCurrentItemIndex(e.clientY + viewOffset);
     if (currentItemIndex >= items.length) return false;
@@ -579,7 +296,7 @@ const handleIntroMenuItemClick = (e) => {
   updateSectionsOffsets();
 
   //#region [ Horizon ] ON MOBILE DEVICES
-  if (window.innerWidth < mediaLg) {
+  if (window.innerWidth < media.lg) {
     const windowHeight = window.innerHeight;
     const clickedintroItemHeight = items[activeIndex].height;
     const clickedItemOffset = items[activeIndex].offset;
@@ -694,7 +411,7 @@ const handleIntroMenuItemClick = (e) => {
     //#endregion
 
     //#region [ Horizon ] ON LARGE SCREEN DEVICES
-  } else if (window.innerWidth >= mediaLg) {
+  } else if (window.innerWidth >= media.lg) {
     flags.isScrollEnabled = false;
     flags.isIntroMode = false;
     currentNavigationIndex = activeIndex;
@@ -762,7 +479,7 @@ const handleMenuItemClick = (e) => {
   // works only in content view on desktop devices
   if (flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
-  if (window.innerWidth < mediaLg) return false;
+  if (window.innerWidth < media.lg) return false;
 
   const activeIndex = e.target.index;
   flags.isScrollEnabled = false;
@@ -963,7 +680,7 @@ const handleMenuButtons = (activeIndex, action) => {
 };
 
 const handleMobileHeader = () => {
-  if (window.innerWidth >= mediaLg) return false;
+  if (window.innerWidth >= media.lg) return false;
   if (flags.isIntroMode) return false;
   if (window.pageYOffset <= 0) return false;
 
@@ -1172,7 +889,7 @@ const navigateToSection = (e) => {
   }
 
   // scroll to target index
-  if (window.innerWidth >= mediaLg) {
+  if (window.innerWidth >= media.lg) {
     const sectionOffset = sections[targetIndex].offset;
     pageContainer.scrollTo(0, sectionOffset);
   } else {
@@ -1442,7 +1159,7 @@ const handleExpandableContent = (contents) => {
     // get available space for reduced content
     content.style.height = '100%';
     contentData[index].availableHeight =
-      window.innerWidth >= mediaLg
+      window.innerWidth >= media.lg
         ? content.classList.contains('js-minHeight')
           ? minDesktopHeight
           : content.clientHeight
@@ -1458,7 +1175,7 @@ const handleExpandableContent = (contents) => {
       // show read more button and update available space
       readMoreButtons[index].classList.add('tab__readMore--visible');
       contentData[index].availableHeight =
-        window.innerWidth >= mediaLg
+        window.innerWidth >= media.lg
           ? content.classList.contains('js-minHeight')
             ? minDesktopHeight
             : content.clientHeight
@@ -1554,7 +1271,7 @@ const validateForm = (e) => {
 };
 
 const handleAlerts = (data, isFailed) => {
-  const margin = window.innerWidth >= mediaLg ? 20 : 5;
+  const margin = window.innerWidth >= media.lg ? 20 : 5;
   let heightTotal = margin;
   let delay = 0;
   const delayInterval = 60;
@@ -1697,32 +1414,27 @@ const validateMessage = (e) => {
 
 //#endregion
 
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+import { flags, media, introLoader, introBox } from './scripts/variables';
+import {
+  setIntroLoaderPosition,
+  loadIntroContent,
+  handleIntroLoader,
+  handleIntroAnimation,
+} from './scripts/intro';
+
 //#region [ Horizon ] VARIABLES - OVERALL
-const flags = {
-  isIntroMode: true,
-  isMenuTransforming: false,
-  shouldSectionsBeUpdated: false,
-  isScrollEnabled: false,
-  isMobileHeader: false,
-  media: null,
-  menuLayout: null,
-};
-const mediaSm = 380;
-const mediaMd = 768;
-const mediaLg = 1200;
+
 let lastMenuItemIndex = 0;
-let scrollTimeoutId = null;
-let scrollTotal = 0;
+// let scrollTimeoutId = null;
+// let scrollTotal = 0;
 //#endregion
 //#region [ Horizon ] VARIABLES - INTERVALS
-// intro
-let introFirstTimeoutId = null;
-let introSecondTimeoutId = null;
-let introThirdTimeoutId = null;
-let introForthTimeoutId = null;
-let introCharIntervalId = null;
-const introFirstTimeoutInterval = 600;
-// menu
+
+// // menu
 const firstTimeoutXs = 300;
 const secondTimeoutXs = 600;
 const firstTimeoutLg = 500;
@@ -1730,24 +1442,9 @@ const secondTimeoutLg = 500;
 //#endregion
 //#region [ Horizon ] VARIABLES - INTRO
 
-let introText = 'jakub chojna frontend projects';
-
-const introItemWidth =
-  window.innerWidth >= mediaLg ? 35 : window.innerWidth >= mediaMd ? 35 : 20;
-const introItemHeight = 2 * introItemWidth;
-
-const intro = document.querySelector('.intro--js');
-const introLoader = document.querySelector('.intro__loader--js');
-let introGrid = document.querySelector('.grid--js');
-const endingBefore = document.querySelector('.intro__ending--js-before');
-const endingAfter = document.querySelector('.intro__ending--js-after');
-const introSkip = document.querySelector('.intro__skip--js');
-
 //#endregion
 //#region [ Horizon ] VARIABLES - MENU
 const pageHeader = document.querySelector('.pageHeader--js');
-const visuals = document.querySelector('.visuals--js');
-const introBox = document.querySelector('.visuals__introBox--js');
 const menuIndicator = document.querySelector('.pageHeader__indicator--js');
 const menuUpperBackground = document.querySelector(
   '.visuals__background--js-upper'
@@ -1836,18 +1533,18 @@ const expandableContent = document.querySelectorAll('.js-expandable');
 //#region [ Horizon ] FUNCTION CALLS
 
 // page load with no animation intro
-/* 
-intro.classList.add('intro--hidden');
-[...menuItems].forEach(item => item.classList.add('menu__item--active'));
-visuals.classList.add('visuals--visible');
-pageHeader.classList.add('pageHeader--visible');
- */
+
+// intro.classList.add('intro--hidden');
+// [...menuItems].forEach((item) => item.classList.add('menu__item--active'));
+// visuals.classList.add('visuals--visible');
+// pageHeader.classList.add('pageHeader--visible');
+
 // page load with no animation intro
 
 flags.media = getCurrentMedia();
 flags.menuLayout = getMenuLayout();
 
-setIntroLoaderPosition();
+setIntroLoaderPosition(introLoader);
 loadIntroContent();
 handleIntroMenu();
 
@@ -1880,15 +1577,14 @@ window.onload = () => {
 };
 
 // fetch github api
-fetch('https://api.github.com/users/jchojna/repos')
-  .then((resp) => resp.json())
-  .then((resp) => handleRepo(resp));
+// fetch('https://api.github.com/users/jchojna/repos')
+//   .then((resp) => resp.json())
+//   .then((resp) => handleRepo(resp));
 
 //#endregion
 
 //#region [ Horizon ] EVENT LISTENERS
 
-introSkip.addEventListener('click', skipIntro);
 // MENU AND NAVIGATION
 window.addEventListener('resize', updateSectionsOffsets);
 pageHeader.addEventListener('scroll', handleIntroBox);
@@ -1961,7 +1657,7 @@ const handleFastScroll = (e) => {
     scrollTimeoutId = null;
     scrollTotal = 0;
   } */
-  if (window.innerWidth < mediaLg) return false;
+  if (window.innerWidth < media.lg) return false;
   if (flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
   if (!flags.isFastScroll) return false;
