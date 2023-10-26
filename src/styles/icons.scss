@@ -17,7 +17,6 @@
   }
 
   @media only screen and (min-width: $media-sm) {
-
     & {
       grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
       margin: 20px $offset-right-sm 0 $offset-left-sm;
@@ -30,7 +29,6 @@
   }
 
   @media only screen and (min-width: $media-md) {
-
     & {
       grid-template-columns: repeat(12, 1fr);
       margin: 0;
@@ -47,7 +45,6 @@
   }
 
   @media only screen and (min-width: $media-lg) {
-
     &--contact {
       justify-content: start;
     }
@@ -63,31 +60,52 @@
     position: relative;
 
     &--about {
-      background-color: rgba($color: $color-about-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-about-dark,
+        $alpha: $background-opacity
+      );
       fill: $color-about-light;
     }
     &--hydrapp {
-      background-color: rgba($color: $color-hydrapp-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-hydrapp-dark,
+        $alpha: $background-opacity
+      );
       fill: $color-hydrapp-shadow;
     }
     &--tasktimer {
-      background-color: rgba($color: $color-tasktimer-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-tasktimer-dark,
+        $alpha: $background-opacity
+      );
       fill: $color-tasktimer-shadow;
     }
     &--portfolio {
-      background-color: rgba($color: $color-portfolio-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-portfolio-dark,
+        $alpha: $background-opacity
+      );
       fill: $color-portfolio-shadow;
     }
     &--archviz {
-      background-color: rgba($color: $color-archviz-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-archviz-dark,
+        $alpha: $background-opacity
+      );
       fill: $color-archviz-shadow;
     }
     &--quotes {
-      background-color: rgba($color: $color-quotes-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-quotes-dark,
+        $alpha: $background-opacity
+      );
       fill: $color-quotes-shadow;
     }
     &--contact {
-      background-color: rgba($color: $color-contact-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-contact-dark,
+        $alpha: $background-opacity
+      );
       fill: $color-contact;
     }
 
@@ -106,12 +124,18 @@
 
     @mixin aboutIcon {
       fill: $color-about;
-      background-color: rgba($color: $color-about-shadow, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-about-shadow,
+        $alpha: $background-opacity
+      );
     }
 
     @mixin contactIcon {
       fill: $color-contact-light;
-      background-color: rgba($color: $color-contact-shadow, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-contact-shadow,
+        $alpha: $background-opacity
+      );
     }
 
     &--link {
@@ -132,36 +156,55 @@
         transition: border-width $button-hover;
       }
 
-      &:active::before { @include shadow; }
+      &:active::before {
+        @include shadow;
+      }
     }
 
     &--link.icons__logo--about {
-      &::before { @include aboutShadow; }
-      &:active { @include aboutIcon; }
+      &::before {
+        @include aboutShadow;
+      }
+      &:active {
+        @include aboutIcon;
+      }
     }
 
     &--link.icons__logo--contact {
-      &::before { @include contactShadow; }
-      &:active { @include contactIcon; }
+      &::before {
+        @include contactShadow;
+      }
+      &:active {
+        @include contactIcon;
+      }
     }
 
     @media only screen and (min-width: $media-md) {
-
       &--link {
         &:focus::before,
-        &:hover::before { @include shadow; }
+        &:hover::before {
+          @include shadow;
+        }
       }
 
       &--link.icons__logo--about {
-        &::before { @include aboutShadow; }
+        &::before {
+          @include aboutShadow;
+        }
         &:focus,
-        &:hover { @include aboutIcon; }
+        &:hover {
+          @include aboutIcon;
+        }
       }
 
       &--link.icons__logo--contact {
-        &::before { @include contactShadow; }
+        &::before {
+          @include contactShadow;
+        }
         &:focus,
-        &:hover { @include contactIcon; }
+        &:hover {
+          @include contactIcon;
+        }
       }
     }
   }
@@ -172,15 +215,26 @@
     text-transform: uppercase;
     word-break: break-all;
 
-    &--about         { color: $color-about-white; }
-    &--tasktimer     { color: $color-tasktimer-shadow; }
-    &--portfolio     { color: $color-portfolio-shadow; }
-    &--hydrapp       { color: $color-hydrapp-shadow; }
-    &--archviz       { color: $color-archviz-shadow; }
-    &--quotes        { color: $color-quotes-shadow; }
+    &--about {
+      color: $color-about-white;
+    }
+    &--tasktimer {
+      color: $color-tasktimer-shadow;
+    }
+    &--portfolio {
+      color: $color-portfolio-shadow;
+    }
+    &--hydrapp {
+      color: $color-hydrapp-shadow;
+    }
+    &--archviz {
+      color: $color-archviz-shadow;
+    }
+    &--quotes {
+      color: $color-quotes-shadow;
+    }
 
     @media only screen and (min-width: $media-lg) {
-
       & {
         font-size: 0.75em;
       }

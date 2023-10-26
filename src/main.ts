@@ -1,3 +1,5 @@
+import './main.scss';
+
 //#region [ Horizon ] HELPER FUNCTIONS
 
 const findFirstParentWithClass = (element, className) => {
@@ -5,27 +7,29 @@ const findFirstParentWithClass = (element, className) => {
     element = element.parentNode;
   }
   return element;
-}
+};
 
 const getCurrentMedia = () => {
   return window.innerWidth >= mediaLg
-  ? 'mediaLg' : window.innerWidth >= mediaMd
-  ? 'mediaMd' : window.innerWidth >= mediaSm
-  ? 'mediaSm' : 'mediaXs';
-}
+    ? 'mediaLg'
+    : window.innerWidth >= mediaMd
+    ? 'mediaMd'
+    : window.innerWidth >= mediaSm
+    ? 'mediaSm'
+    : 'mediaXs';
+};
 
 const getMenuLayout = () => {
   return window.innerWidth >= mediaLg ? 'side' : 'burger';
-}
+};
 
 const handleWindowResize = () => {
-
   const menuLayout = getMenuLayout();
   const media = getCurrentMedia();
 
   // update top margin only on large screen devices
   if (media === 'mediaLg') {
-    [...sectionContainers].forEach(container => {
+    [...sectionContainers].forEach((container) => {
       handleTopMargins(container, minTopMargin);
     });
   }
@@ -42,10 +46,12 @@ const handleWindowResize = () => {
     pageHeader.classList.add('pageHeader--intro');
     menu.classList.add('menu--intro');
     navigation.classList.remove('navigation--visible');
-    
+
     // update menu items heights
-    [...menuItems].forEach((item, index) => items[index].height = item.clientHeight);
-    [...navigation.children].forEach(child => {
+    [...menuItems].forEach(
+      (item, index) => (items[index].height = item.clientHeight)
+    );
+    [...navigation.children].forEach((child) => {
       child.classList.remove('navigation__button--hidden');
     });
 
@@ -60,7 +66,7 @@ const handleWindowResize = () => {
     introBox.classList.remove('visuals__introBox--content');
     menuIndicator.classList.remove('pageHeader__indicator--visible');
     menuIndicator.style.top = 0;
-    
+
     // collapse accordion sections
     handleAccordion([...resumeSubtabs]);
     handleAccordion([...resumeTabs]);
@@ -72,13 +78,12 @@ const handleWindowResize = () => {
     handleIntroBox();
 
     switch (menuLayout) {
-
       // load configuration for large screens
       case 'side':
         const currentId = sections[lastMenuItemIndex].id;
 
         // change menu items to be in a static position
-        [...menuItems].forEach(item => {
+        [...menuItems].forEach((item) => {
           item.classList.remove('menu__item--mobileHeader');
           item.classList.add('menu__item--visible');
           item.classList.remove('menu__item--minimized');
@@ -91,8 +96,10 @@ const handleWindowResize = () => {
 
           button.style.width = '';
           index !== lastMenuItemIndex
-          ? menuButtons[index].classList.remove(`menu__button--intro-${currentId}`)
-          : false;
+            ? menuButtons[index].classList.remove(
+                `menu__button--intro-${currentId}`
+              )
+            : false;
         });
 
         // handle backgrounds
@@ -100,18 +107,21 @@ const handleWindowResize = () => {
         menuBottomBackground.style.height = '';
         menuUpperBackground.classList.remove('visuals__background--animated');
         menuBottomBackground.classList.remove('visuals__background--animated');
-        menuUpperBackground.classList.remove(`visuals__background--${currentId}`);
+        menuUpperBackground.classList.remove(
+          `visuals__background--${currentId}`
+        );
 
         // handle burger button appearance
         burgerButton.classList.remove('burgerButton--visible');
         burgerButton.classList.remove(`burgerButton--${currentId}`);
 
-      break;
+        break;
 
       // load configuration for small and medium screens
       case 'burger':
-
-        [...sectionContainers].forEach(container => container.style.marginTop = '');
+        [...sectionContainers].forEach(
+          (container) => (container.style.marginTop = '')
+        );
         // handle menu buttons colors
         [...menuButtons].forEach((button, index) => {
           const currentId = sections[lastMenuItemIndex].id;
@@ -128,8 +138,9 @@ const handleWindowResize = () => {
         menuUpperBackground.classList.remove('visuals__background--hidden');
         menuBottomBackground.classList.remove('visuals__background--hidden');
 
-      break;
-      default: break;
+        break;
+      default:
+        break;
     }
   }
 
@@ -137,100 +148,104 @@ const handleWindowResize = () => {
     flags.media = media;
 
     switch (media) {
-
       case 'mediaMd':
       case 'mediaSm':
         // expand other projects accordion section
         handleAccordion([...otherProjectsTabs], undefined, 'all');
-      break;
-      
+        break;
+
       case 'mediaXs':
         // collapse other projects accordion section
         handleAccordion([...otherProjectsTabs]);
-      break;
+        break;
 
-      default: break;   
+      default:
+        break;
     }
   }
-}
+};
 
 const handleUserActivity = () => {
   if (flags.shouldSectionsBeUpdated) updateSectionsOffsets();
   if (!flags.isScrollEnabled) flags.isScrollEnabled = true;
-}
+};
 
 const removeTransitionsOnEvent = (e, element, classname) => {
   if (e) {
     !element.classList.contains(`${classname}--noTransition`)
-    ? element.classList.add(`${classname}--noTransition`)
-    : false;
+      ? element.classList.add(`${classname}--noTransition`)
+      : false;
   } else {
     element.classList.contains(`${classname}--noTransition`)
-    ? element.classList.remove(`${classname}--noTransition`)
-    : false;
+      ? element.classList.remove(`${classname}--noTransition`)
+      : false;
   }
-}
+};
 
 const updateMenuItemsOffsets = () => {
   if (flags.isMobileHeader) return false;
-  [...items].forEach(item => {
+  [...items].forEach((item) => {
     item.offset = item.node.offsetTop + menu.offsetTop;
   });
-}
+};
 
 const updateSectionsOffsets = () => {
   [...sections].forEach((section, index) => {
     section.offset = pageSections[index].offsetTop;
   });
   flags.shouldSectionsBeUpdated = false;
-}
+};
 
 const getCurrentItemIndex = (cursorYPosition) => {
-  return items.length - 1 - [...items]
-  .map(item => item.offset)
-  .reverse()
-  .findIndex(offset => cursorYPosition >= offset);
-}
+  return (
+    items.length -
+    1 -
+    [...items]
+      .map((item) => item.offset)
+      .reverse()
+      .findIndex((offset) => cursorYPosition >= offset)
+  );
+};
 
 const getCurrentSectionIndex = (scrollOffset) => {
-  const currentOffset = window.innerWidth >= mediaLg
-  ? pageContainer.scrollTop
-  : window.pageYOffset;
+  const currentOffset =
+    window.innerWidth >= mediaLg ? pageContainer.scrollTop : window.pageYOffset;
 
-  return sections.length - 1 - [...sections]
-    .map(section => section.offset)
-    .reverse()
-    .findIndex(offset => currentOffset >= offset - scrollOffset);
-}
+  return (
+    sections.length -
+    1 -
+    [...sections]
+      .map((section) => section.offset)
+      .reverse()
+      .findIndex((offset) => currentOffset >= offset - scrollOffset)
+  );
+};
 
 const getCurrentNavigationIndex = () => {
   const navigationOffset = navigation.offsetTop + navigation.clientHeight / 2;
   return getCurrentSectionIndex(navigationOffset);
-}
+};
 
 const getCurrentItemOffset = () => {
-  
   updateMenuItemsOffsets();
   const currentYOffset = items[lastMenuItemIndex].offset;
   const viewOffset = pageHeader.scrollTop;
   return currentYOffset - viewOffset;
-}
+};
 
 const handleTopMargins = (element, distance) => {
-  
   // this functionality I found more reasonable to be handled in JS,
   // because of expandable content inside section containers
   // distorting and complicating content layout
   const margin = (window.innerHeight - element.clientHeight) / 2;
   element.style.marginTop = `${margin > distance ? margin : distance}px`;
-}
+};
 
 const addAccordionEvents = (buttons, tabs) => {
   [...buttons].forEach((button, index) => {
-    button.addEventListener('click', () =>
-    handleAccordion([...tabs], index));
+    button.addEventListener('click', () => handleAccordion([...tabs], index));
   });
-}
+};
 
 // assign size and position of one element to another
 const setSizeAndPosition = (element, target, size) => {
@@ -238,7 +253,7 @@ const setSizeAndPosition = (element, target, size) => {
   element.style.left = `${target.offsetLeft}px`;
   element.style.width = size ? `${size}px` : `${target.clientWidth}px`;
   element.style.height = size ? `${size}px` : `${target.clientHeight}px`;
-}
+};
 
 //#endregion
 
@@ -247,13 +262,13 @@ const setSizeAndPosition = (element, target, size) => {
 const setIntroLoaderPosition = () => {
   introLoader.style.top = `${introLoader.offsetTop}px`;
   introLoader.style.left = `${introLoader.offsetLeft}px`;
-}
+};
 
 const loadIntroContent = () => {
-  
-  [...introText].forEach(char => {
-    const gridItem = char !== ' '
-    ? `<li
+  [...introText].forEach((char) => {
+    const gridItem =
+      char !== ' '
+        ? `<li
         class="grid__item grid__item--js"
         style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
       >
@@ -278,7 +293,7 @@ const loadIntroContent = () => {
 
 
       </li>`
-    : `<li
+        : `<li
         class="grid__item grid__item--js"
         style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
       >
@@ -286,22 +301,23 @@ const loadIntroContent = () => {
       </li>`;
     introGrid.insertAdjacentHTML('beforeend', gridItem);
   });
-}
+};
 
 const handleIntroLoader = () => {
   introLoader.classList.add('intro__loader--transition');
   introLoader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
   setSizeAndPosition(introLoader, endingBefore, introItemHeight);
-}
+};
 
 const handleIntroAnimation = () => {
-  
   let charIndex = 0;
   const charTotal = introText.length;
-  let maxColNum = window.innerWidth >= mediaLg
-  ? charTotal : window.innerWidth >= mediaMd
-  ? charTotal / 2
-  : charTotal / 3;
+  let maxColNum =
+    window.innerWidth >= mediaLg
+      ? charTotal
+      : window.innerWidth >= mediaMd
+      ? charTotal / 2
+      : charTotal / 3;
   let minColNum = 6;
   const rowGap = 2;
   let gridTopMargin = null;
@@ -312,31 +328,29 @@ const handleIntroAnimation = () => {
   const introSecondTimeoutInterval = loadCharInterval * charTotal + 1000;
   const introGridViewInterval = 2000;
   const inBetweenTransition = 500;
-  
+
   // set position of ending elements
   const setEndings = (index) => {
     if (index < charTotal) {
       const beforeChild = introGrid.children[0];
       const afterChild = introGrid.children[index];
-      var endingBeforeTop  = beforeChild.offsetTop;
+      var endingBeforeTop = beforeChild.offsetTop;
       var endingBeforeLeft = beforeChild.offsetLeft - introItemWidth;
-      var endingAfterTop   = afterChild.offsetTop;
-      var endingAfterLeft  = afterChild.offsetLeft;
-
+      var endingAfterTop = afterChild.offsetTop;
+      var endingAfterLeft = afterChild.offsetLeft;
     } else {
       const prevAfterChildOffset = introGrid.children[index - 1].offsetLeft;
       var endingAfterLeft = prevAfterChildOffset + introItemWidth;
     }
 
-    endingBefore.style.top  = `${endingBeforeTop}px`;
+    endingBefore.style.top = `${endingBeforeTop}px`;
     endingBefore.style.left = `${endingBeforeLeft}px`;
-    endingAfter.style.top   = `${endingAfterTop}px`;
-    endingAfter.style.left  = `${endingAfterLeft}px`;
-  }
+    endingAfter.style.top = `${endingAfterTop}px`;
+    endingAfter.style.left = `${endingAfterLeft}px`;
+  };
 
   // show consecutive characters of intro text
   const loadChar = () => {
-
     if (charIndex < charTotal) {
       const currentItem = introGrid.children[charIndex];
       currentItem.style.width = `${introItemWidth}px`;
@@ -344,31 +358,29 @@ const handleIntroAnimation = () => {
       currentItem.classList.add('grid__item--visible');
       setEndings(charIndex);
       charIndex++;
-
     } else {
       setEndings(charIndex);
       clearInterval(introCharIntervalId);
     }
-  }
+  };
 
   // animate characters position on introGrid change
   const handleChars = (chars, isInitial) => {
-
     if (isInitial) {
       [...chars].forEach((char, index) => {
-        const {offsetTop, offsetLeft} = introGrid.children[index];
+        const { offsetTop, offsetLeft } = introGrid.children[index];
         char.style.top = `${offsetTop}px`;
         char.style.left = `${offsetLeft}px`;
         char.style.width = `${introItemWidth}px`;
         char.style.height = `${introItemHeight}px`;
         char.classList.add('grid__char--transition');
       });
-
     } else {
       [...chars].forEach((char, index) => {
-        const bias = maxColNum - minColNum < minColNum
-        ? minColNum - (maxColNum - minColNum)
-        : 0;
+        const bias =
+          maxColNum - minColNum < minColNum
+            ? minColNum - (maxColNum - minColNum)
+            : 0;
 
         if (index >= maxColNum - bias) {
           const { offsetTop, offsetLeft } = introGrid.children[index];
@@ -381,14 +393,14 @@ const handleIntroAnimation = () => {
         }
       });
     }
-  }
+  };
 
   // calculate introGrid's gaps and items paddings
   const getColGap = () => {
     const rowNum = charTotal / minColNum;
-    const gridHeight = (rowNum * introItemHeight) + ((rowNum - 1) * rowGap);
-    return (gridHeight - (minColNum * introItemWidth)) / (minColNum - 1);
-  }
+    const gridHeight = rowNum * introItemHeight + (rowNum - 1) * rowGap;
+    return (gridHeight - minColNum * introItemWidth) / (minColNum - 1);
+  };
 
   // set introGrid's top margin
   const updateTopMargin = () => {
@@ -398,7 +410,7 @@ const handleIntroAnimation = () => {
       gridTopMargin = topMargin;
       introGrid.style.marginTop = `${gridTopMargin}px`;
     }
-  }
+  };
 
   // configure introGrid on start
   introGrid.classList.add('grid--visible');
@@ -418,7 +430,6 @@ const handleIntroAnimation = () => {
   clearTimeout(introThirdTimeoutId);
   clearTimeout(introForthTimeoutId);
   introFirstTimeoutId = setTimeout(() => {
-
     introSkip.classList.add('intro__skip--visible');
 
     // show ending elements
@@ -432,10 +443,9 @@ const handleIntroAnimation = () => {
       loadChar();
       updateTopMargin();
     }, loadCharInterval);
-    
+
     // SECOND TIMEOUT
     introSecondTimeoutId = setTimeout(() => {
-
       // assign fixed positioning to svg elements
       const gridChars = document.querySelectorAll('.grid__char--js');
       endingAfter.classList.remove('intro__ending--visible');
@@ -453,7 +463,6 @@ const handleIntroAnimation = () => {
           introGrid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
           handleChars(gridChars, false);
           updateTopMargin();
-
         } else {
           // when interval ends
           clearInterval(introCharIntervalId);
@@ -466,7 +475,7 @@ const handleIntroAnimation = () => {
             opacity ${inBetweenTransition}ms ${delay}ms,
             visibility 0s ${delay}ms
           `;
-          
+
           // THIRD TIMEOUT
           introThirdTimeoutId = setTimeout(() => {
             introSkip.classList.remove('intro__skip--visible');
@@ -475,12 +484,11 @@ const handleIntroAnimation = () => {
             introLoader.style.transitionDuration = `${inBetweenTransition}ms`;
             introGrid.classList.remove('grid--visible');
             setSizeAndPosition(introLoader, introBox);
-            
+
             // FORTH TIMEOUT
             introForthTimeoutId = setTimeout(() => {
-
               // activeate menu items
-              [...menuItems].forEach(item => {
+              [...menuItems].forEach((item) => {
                 item.classList.add('menu__item--active');
               });
 
@@ -498,7 +506,7 @@ const handleIntroAnimation = () => {
       }, translateCharInterval);
     }, introSecondTimeoutInterval);
   }, introFirstTimeoutInterval);
-}
+};
 
 const skipIntro = () => {
   // mainly as a fallback against unpredicted animation fail and crash
@@ -514,7 +522,7 @@ const skipIntro = () => {
   introForthTimeoutId = null;
   introCharIntervalId = null;
 
-  [...menuItems].forEach(item => {
+  [...menuItems].forEach((item) => {
     item.classList.add('menu__item--active');
   });
 
@@ -522,20 +530,18 @@ const skipIntro = () => {
   introSkip.classList.remove('intro__skip--visible');
   pageHeader.classList.add('pageHeader--visible');
   visuals.classList.add('visuals--visible');
-}
+};
 
 //#endregion
 
 //#region [ Horizon ] MENU
 
 const handleIntroMenu = (e) => {
-
   if (flags.isMenuTransforming) return false;
   if (!flags.isIntroMode) return false;
 
   // handle intro menu on mouse event
   if (e && e.type === 'mousemove' && window.innerWidth >= mediaLg) {
-
     const viewOffset = pageHeader.scrollTop;
     const currentItemIndex = getCurrentItemIndex(e.clientY + viewOffset);
     if (currentItemIndex >= items.length) return false;
@@ -545,12 +551,12 @@ const handleIntroMenu = (e) => {
     handleMenuItemColor(lastMenuItemIndex, 'activate');
     handleIntroBox();
 
-  // handle intro menu on page load
+    // handle intro menu on page load
   } else {
     handleIntroBox();
     handleMenuItemColor(lastMenuItemIndex, 'activate');
   }
-}
+};
 
 const handleMenuItemColor = (index, action) => {
   const id = sections[index].id;
@@ -558,15 +564,13 @@ const handleMenuItemColor = (index, action) => {
   if (action === 'activate') {
     menuButtons[index].classList.add(`menu__button--intro-${id}`);
     introBox.classList.add(`visuals__introBox--${id}`);
-
   } else if (action === 'deactivate') {
     menuButtons[index].classList.remove(`menu__button--intro-${id}`);
     introBox.classList.remove(`visuals__introBox--${id}`);
   }
-}
+};
 
 const handleIntroMenuItemClick = (e) => {
-
   if (!flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
 
@@ -576,13 +580,13 @@ const handleIntroMenuItemClick = (e) => {
 
   //#region [ Horizon ] ON MOBILE DEVICES
   if (window.innerWidth < mediaLg) {
-
     const windowHeight = window.innerHeight;
     const clickedintroItemHeight = items[activeIndex].height;
     const clickedItemOffset = items[activeIndex].offset;
     const clickedElementId = sections[activeIndex].id;
     const viewOffset = pageHeader.scrollTop;
-    const upperBackgroundHeight = clickedintroItemHeight + clickedItemOffset - viewOffset;
+    const upperBackgroundHeight =
+      clickedintroItemHeight + clickedItemOffset - viewOffset;
     const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
 
     // change items colors and set introbox position
@@ -614,20 +618,21 @@ const handleIntroMenuItemClick = (e) => {
     // set backgrounds startings heights
     menuUpperBackground.style.height = `${upperBackgroundHeight}px`;
     menuBottomBackground.style.height = `${bottomBackgroundHeight}px`;
-    
+
     //#region TIMEOUTS
     const firstTimeoutId = setTimeout(() => {
-      
       const upwardsOffset = clickedItemOffset;
-      const downwardsOffset = windowHeight - clickedItemOffset - clickedintroItemHeight;
+      const downwardsOffset =
+        windowHeight - clickedItemOffset - clickedintroItemHeight;
 
       // set translated position of menu items
       [...menuItems].forEach((item, index) => {
         const currentItemOffset = items[index].offset;
 
-        item.style.top = index <= activeIndex
-        ? `${currentItemOffset - upwardsOffset}px`
-        : `${currentItemOffset + downwardsOffset}px`;
+        item.style.top =
+          index <= activeIndex
+            ? `${currentItemOffset - upwardsOffset}px`
+            : `${currentItemOffset + downwardsOffset}px`;
         item.classList.add('menu__item--animated');
       });
 
@@ -651,17 +656,18 @@ const handleIntroMenuItemClick = (e) => {
       clearTimeout(firstTimeoutId);
 
       const secondTimeoutId = setTimeout(() => {
-
         // handle menu items
         [...menuItems].forEach((item, index) => {
           const sectionId = sections[index].id;
-          
+
           if (index !== activeIndex) {
             item.classList.remove('menu__item--visible');
             item.classList.add('menu__item--minimized');
             item.style.top = 0;
             items[index].width = menuButtons[index].clientWidth;
-            menuButtons[index].classList.add(`menu__button--intro-${sectionId}`);
+            menuButtons[index].classList.add(
+              `menu__button--intro-${sectionId}`
+            );
           }
           item.classList.remove('menu__item--animated');
           menuButtons[index].style.width = '100%';
@@ -669,7 +675,9 @@ const handleIntroMenuItemClick = (e) => {
 
         // handle introBox and menu background
         introBox.classList.remove('visuals__introBox--visible');
-        menuUpperBackground.classList.add(`visuals__background--${clickedElementId}`);
+        menuUpperBackground.classList.add(
+          `visuals__background--${clickedElementId}`
+        );
 
         // show burger button
         burgerButton.classList.add('burgerButton--visible');
@@ -685,10 +693,8 @@ const handleIntroMenuItemClick = (e) => {
 
     //#endregion
 
-  //#region [ Horizon ] ON LARGE SCREEN DEVICES
-
+    //#region [ Horizon ] ON LARGE SCREEN DEVICES
   } else if (window.innerWidth >= mediaLg) {
-
     flags.isScrollEnabled = false;
     flags.isIntroMode = false;
     currentNavigationIndex = activeIndex;
@@ -706,7 +712,6 @@ const handleIntroMenuItemClick = (e) => {
 
     //#region TIMEOUTS
     const firstTimeoutId = setTimeout(() => {
-
       // move introBox to the left and make indicator thiner
       introBox.classList.remove('visuals__introBox--centered');
       introBox.classList.add('visuals__introBox--fullWindow');
@@ -725,7 +730,6 @@ const handleIntroMenuItemClick = (e) => {
 
       // SECOND TIMEOUT
       const secondTimeoutId = setTimeout(() => {
-
         // add smooth scrolling to page container
         pageContainer.classList.add('pageContainer--smooth');
 
@@ -737,24 +741,24 @@ const handleIntroMenuItemClick = (e) => {
         introBox.classList.remove('visuals__introBox--visible');
 
         // add transition effects to navigation buttons
-        [...navigation.children].forEach(child =>
-          child.classList.add('navigation__button--animated'));
+        [...navigation.children].forEach((child) =>
+          child.classList.add('navigation__button--animated')
+        );
 
         // handle global flags
         flags.isMenuTransforming = false;
         flags.isIntroMode = false;
 
-        clearTimeout(secondTimeoutId)
+        clearTimeout(secondTimeoutId);
       }, secondTimeoutLg);
-      clearTimeout(firstTimeoutId)
+      clearTimeout(firstTimeoutId);
     }, firstTimeoutLg);
     //#endregion
   }
   //#endregion
-}
+};
 
 const handleMenuItemClick = (e) => {
-
   // works only in content view on desktop devices
   if (flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
@@ -776,13 +780,12 @@ const handleMenuItemClick = (e) => {
   handleNavOnClick(currentNavigationIndex, 'activate');
   handleMenuItemColor(currentNavigationIndex, 'activate');
   handleMenuShadows(currentNavigationIndex, 'deactivate');
-}
+};
 
 const handleBurgerButton = () => {
-
   if (flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
-  
+
   const windowHeight = window.innerHeight;
   const activeintroItemHeight = items[lastMenuItemIndex].height;
   const activeItemOffset = items[lastMenuItemIndex].offset;
@@ -790,7 +793,8 @@ const handleBurgerButton = () => {
   const upperBackgroundHeight = activeintroItemHeight + activeItemOffset;
   const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
   const upwardsOffset = activeItemOffset;
-  const downwardsOffset = windowHeight - activeItemOffset - activeintroItemHeight;
+  const downwardsOffset =
+    windowHeight - activeItemOffset - activeintroItemHeight;
 
   flags.isMenuTransforming = true;
   flags.isIntroMode = true;
@@ -804,16 +808,17 @@ const handleBurgerButton = () => {
     const currentId = sections[index].id;
 
     item.classList.add('menu__item--visible');
-    item.style.top = index <= lastMenuItemIndex
-    ? `${currentItemOffset - upwardsOffset}px`
-    : `${currentItemOffset + downwardsOffset}px`;
+    item.style.top =
+      index <= lastMenuItemIndex
+        ? `${currentItemOffset - upwardsOffset}px`
+        : `${currentItemOffset + downwardsOffset}px`;
 
     menuButtons[index].style.width = `${items[index].width}px`;
     item.classList.remove('menu__item--minimized');
 
     index !== lastMenuItemIndex
-    ? menuButtons[index].classList.remove(`menu__button--intro-${currentId}`)
-    : false;
+      ? menuButtons[index].classList.remove(`menu__button--intro-${currentId}`)
+      : false;
   });
 
   // set appearance of introBox and background
@@ -824,7 +829,6 @@ const handleBurgerButton = () => {
 
   //#region TIMEOUTS
   const firstTimeoutId = setTimeout(() => {
-
     // set menu items default position
     [...menuItems].forEach((item, index) => {
       item.style.top = `${items[index].offset}px`;
@@ -846,7 +850,6 @@ const handleBurgerButton = () => {
 
     // SECOND TIMEOUT
     const secondTimeoutId = setTimeout(() => {
-      
       // navigate to top
       navigateToSection(0);
 
@@ -855,7 +858,7 @@ const handleBurgerButton = () => {
       pageContainer.classList.remove('pageContainer--visible');
 
       // handle menu items
-      [...menuItems].forEach(item => {
+      [...menuItems].forEach((item) => {
         item.classList.remove('menu__item--mobileHeader');
         item.classList.remove('menu__item--animated');
       });
@@ -866,28 +869,28 @@ const handleBurgerButton = () => {
       menuBottomBackground.classList.remove('visuals__background--animated');
       menuUpperBackground.style.height = '100%';
       menuBottomBackground.style.height = '100%';
-      
+
       flags.isMenuTransforming = false;
       clearTimeout(secondTimeoutId);
-
     }, secondTimeoutXs);
   }, firstTimeoutXs);
   //#endregion
-}
+};
 
 const handleMenuOnScroll = () => {
-
   if (flags.isScrollEnabled) {
-
     // handle indicator and active menu item on section change
     const newMenuItemIndex = getCurrentSectionIndex(0);
 
     if (newMenuItemIndex !== lastMenuItemIndex) {
-
       const prevId = sections[lastMenuItemIndex].id;
-      menuButtons[lastMenuItemIndex].classList.remove(`menu__button--intro-${prevId}`);
+      menuButtons[lastMenuItemIndex].classList.remove(
+        `menu__button--intro-${prevId}`
+      );
       menuButtons[lastMenuItemIndex].classList.remove('menu__button--active');
-      introBox.classList.remove(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
+      introBox.classList.remove(
+        `visuals__introBox--${sections[lastMenuItemIndex].id}`
+      );
       handleMenuShadows(lastMenuItemIndex, 'activate');
 
       // index change
@@ -895,7 +898,9 @@ const handleMenuOnScroll = () => {
 
       menuButtons[lastMenuItemIndex].classList.add('menu__button--active');
       menuButtons[lastMenuItemIndex].focus();
-      introBox.classList.add(`visuals__introBox--${sections[lastMenuItemIndex].id}`);
+      introBox.classList.add(
+        `visuals__introBox--${sections[lastMenuItemIndex].id}`
+      );
       handleMenuIndicator();
       handleMenuShadows(lastMenuItemIndex, 'deactivate');
     }
@@ -905,7 +910,7 @@ const handleMenuOnScroll = () => {
       const singleItemOffset = items[index].offset;
       const currentSingleItemIndex = items[index].currentSectionIndex;
       const newSingleItemIndex = getCurrentSectionIndex(singleItemOffset);
-      
+
       if (newSingleItemIndex !== currentSingleItemIndex) {
         const currentId = sections[currentSingleItemIndex].id;
         const newId = sections[newSingleItemIndex].id;
@@ -915,7 +920,7 @@ const handleMenuOnScroll = () => {
       }
     });
   }
-}
+};
 
 const handleMenuButtonChange = (index) => {
   if (flags.shouldSectionsBeUpdated) updateSectionsOffsets();
@@ -926,10 +931,9 @@ const handleMenuButtonChange = (index) => {
     handleMenuButtons(lastMenuItemIndex, 'activate');
     handleMenuIndicator();
   }
-}
+};
 
 const handleMenuButtons = (activeIndex, action) => {
-
   // add new appearance
   if (action === 'activate') {
     const currentId = sections[activeIndex].id;
@@ -944,9 +948,8 @@ const handleMenuButtons = (activeIndex, action) => {
       }
     });
 
-  // remove current appearance
+    // remove current appearance
   } else if (action === 'deactivate') {
-
     [...menuButtons].forEach((button, buttonIndex) => {
       const currentId = sections[items[buttonIndex].currentSectionIndex].id;
       button.classList.remove(`menu__button--${currentId}`);
@@ -957,10 +960,9 @@ const handleMenuButtons = (activeIndex, action) => {
       }
     });
   }
-}
+};
 
 const handleMobileHeader = () => {
-
   if (window.innerWidth >= mediaLg) return false;
   if (flags.isIntroMode) return false;
   if (window.pageYOffset <= 0) return false;
@@ -974,7 +976,6 @@ const handleMobileHeader = () => {
       introBox.classList.remove(`visuals__introBox--${currentId}`);
       burgerButton.classList.remove(`burgerButton--${currentId}`);
       menuUpperBackground.classList.remove(`visuals__background--${currentId}`);
-
     } else if (action === 'deactivate') {
       menuItems[index].classList.add('menu__item--visible');
 
@@ -982,7 +983,7 @@ const handleMobileHeader = () => {
       burgerButton.classList.add(`burgerButton--${currentId}`);
       menuUpperBackground.classList.add(`visuals__background--${currentId}`);
     }
-  }
+  };
   const newActiveSectionIndex = getCurrentSectionIndex(0);
 
   // when index changes
@@ -990,44 +991,41 @@ const handleMobileHeader = () => {
     handleHeader(lastMenuItemIndex, 'activate');
     lastMenuItemIndex = newActiveSectionIndex;
     handleHeader(lastMenuItemIndex, 'deactivate');
-  } 
-}
+  }
+};
 
 const handleIntroBox = (e) => {
-  
-  if(!flags.isIntroMode) return false;
+  if (!flags.isIntroMode) return false;
   removeTransitionsOnEvent(e, introBox, 'visuals__introBox');
   introBox.style.top = `${getCurrentItemOffset()}px`;
-}
+};
 
 const handleMenuIndicator = (e) => {
-  
-  if(flags.isIntroMode) return false;
+  if (flags.isIntroMode) return false;
   if (flags.media === 'mediaXs') return false;
   removeTransitionsOnEvent(e, menuIndicator, 'pageHeader__indicator');
   menuIndicator.style.top = `${getCurrentItemOffset()}px`;
-}
+};
 
 const handleMenuShadows = (index, action) => {
-
   if (index === 'all') {
-    [...menuShadows].forEach(shadow => action === 'activate'
-    ? shadow.classList.add('menuSvg__shadow--visible')
-    : shadow.classList.remove('menuSvg__shadow--visible'));
-
+    [...menuShadows].forEach((shadow) =>
+      action === 'activate'
+        ? shadow.classList.add('menuSvg__shadow--visible')
+        : shadow.classList.remove('menuSvg__shadow--visible')
+    );
   } else {
     action === 'activate'
-    ? menuShadows[index].classList.add('menuSvg__shadow--visible')
-    : menuShadows[index].classList.remove('menuSvg__shadow--visible');
+      ? menuShadows[index].classList.add('menuSvg__shadow--visible')
+      : menuShadows[index].classList.remove('menuSvg__shadow--visible');
   }
-}
+};
 
 //#endregion
 
 //#region [ Horizon ] NAVIGATION
 
 const handleBackButton = () => {
-
   if (flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
 
@@ -1060,27 +1058,27 @@ const handleBackButton = () => {
   navigation.classList.remove('navigation--visible');
 
   // remove transition effects from navigation buttons
-  [...navigation.children].forEach(child => {
+  [...navigation.children].forEach((child) => {
     child.classList.remove('navigation__button--animated');
     child.classList.remove(`navigation__button--${currentId}`);
   });
 
   // change colors of menu items to default
   handleMenuButtons(lastMenuItemIndex, 'deactivate');
-  menuButtons[lastMenuItemIndex].classList.add(`menu__button--intro-${currentId}`);
+  menuButtons[lastMenuItemIndex].classList.add(
+    `menu__button--intro-${currentId}`
+  );
   handleMenuShadows(lastMenuItemIndex, 'activate');
-  
+
   // FIRST TIMEOUT
   const firstTimeoutId = setTimeout(() => {
-
     // handle introBox
     handleIntroBox();
     introBox.classList.remove('visuals__introBox--halfWindow');
     clearTimeout(firstTimeoutId);
-    
+
     // SECOND TIMEOUT
     const secondTimeoutId = setTimeout(() => {
-
       // handle introBox
       introBox.classList.remove('visuals__introBox--content');
 
@@ -1093,31 +1091,26 @@ const handleBackButton = () => {
       // handle global flags
       flags.isMenuTransforming = false;
       clearTimeout(secondTimeoutId);
-
     }, secondTimeoutLg);
   }, firstTimeoutLg);
-}
+};
 
 const handlePrevNextButtonsVisibility = (index, action) => {
-
   const lastElementIndex = sections.length - 1;
   if (index === 0 || index === lastElementIndex) {
-
     if (action === 'hide') {
       index === 0
-      ? navigationPrevButton.classList.add('navigation__button--hidden')
-      : navigationNextButton.classList.add('navigation__button--hidden');
-
+        ? navigationPrevButton.classList.add('navigation__button--hidden')
+        : navigationNextButton.classList.add('navigation__button--hidden');
     } else if (action === 'show') {
       index === 0
-      ? navigationPrevButton.classList.remove('navigation__button--hidden')
-      : navigationNextButton.classList.remove('navigation__button--hidden');
+        ? navigationPrevButton.classList.remove('navigation__button--hidden')
+        : navigationNextButton.classList.remove('navigation__button--hidden');
     }
   }
-}
+};
 
 const handleNavOnScroll = () => {
-
   if (flags.isIntroMode) return false;
 
   const updatedNavigationIndex = getCurrentNavigationIndex();
@@ -1141,7 +1134,7 @@ const handleNavOnScroll = () => {
       handlePrevNextButtonsVisibility(currentNavigationIndex, 'hide');
     }
   }
-}
+};
 
 const handleNavOnClick = (index, action) => {
   const currentId = sections[index].id;
@@ -1152,30 +1145,27 @@ const handleNavOnClick = (index, action) => {
     }
     handlePrevNextButtonsVisibility(index, 'hide');
 
-  // add new appearance
+    // add new appearance
   } else if (action === 'deactivate') {
     for (let child of navigation.children) {
       child.classList.remove(`navigation__button--${currentId}`);
     }
     handlePrevNextButtonsVisibility(index, 'show');
   }
-}
+};
 
 const navigateToSection = (e) => {
-
   if (flags.shouldSectionsBeUpdated) updateSectionsOffsets();
   let targetIndex = e;
 
   // get target index
   if (e.target === navigationPrevButton) {
-    if (targetIndex = currentNavigationIndex > 0) {
+    if ((targetIndex = currentNavigationIndex > 0)) {
       targetIndex = --currentNavigationIndex;
       flags.isScrollEnabled = true;
     } else return false;
-
   } else if (e.target === navigationNextButton) {
-
-    if (targetIndex = currentNavigationIndex < pageSections.length - 1) {
+    if ((targetIndex = currentNavigationIndex < pageSections.length - 1)) {
       targetIndex = ++currentNavigationIndex;
       flags.isScrollEnabled = true;
     } else return false;
@@ -1185,114 +1175,123 @@ const navigateToSection = (e) => {
   if (window.innerWidth >= mediaLg) {
     const sectionOffset = sections[targetIndex].offset;
     pageContainer.scrollTo(0, sectionOffset);
-
   } else {
     const sectionOffset = sections[targetIndex].offset;
     window.scrollTo(0, sectionOffset);
   }
-}
+};
 
 //#endregion
 
 //#region [ Horizon ] MAIN CONTENT
 
 const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
-
   tabs.forEach((tab, index) => {
     const container = tab.querySelector('[class*=container]');
     const content = container.firstElementChild;
     const button = tab.querySelector('[class*="button"]');
     const mark = tab.querySelector('[class*="mark"]');
 
-
     // when specific tab is being clicked
     if (clickedIndex !== undefined) {
       const subtab = /subtab/.test(button.className);
-      const isDisabled = /other/.test(tab.className) && flags.media !== 'mediaXs';
+      const isDisabled =
+        /other/.test(tab.className) && flags.media !== 'mediaXs';
       if (isDisabled) return false;
 
       // handle clicked tab
       if (clickedIndex === index) {
         const height = container.style.height;
         // apply transition effect
-        if (!container.classList.contains('rollable')) container.classList.add('rollable');
+        if (!container.classList.contains('rollable'))
+          container.classList.add('rollable');
         // apply transformations
         if (height === 0 || height === '0px') {
           container.style.height = `${content.clientHeight}px`;
           button.classList.add(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.add('mark--unrolled');
-
         } else {
           container.style.height = 0;
-          button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
+          button.classList.remove(
+            `${subtab ? 'sub' : ''}tab__button--unrolled`
+          );
           mark.classList.remove('mark--unrolled');
         }
 
         // when subtab clicked
         if (subtab) {
-          const parentContainer = findFirstParentWithClass(container.parentNode, 'container');
-          const subtabsHeaders = parentContainer.querySelectorAll('.subtab__header');
-          const subtabsContainers = parentContainer.querySelectorAll('[class*=container]');
+          const parentContainer = findFirstParentWithClass(
+            container.parentNode,
+            'container'
+          );
+          const subtabsHeaders =
+            parentContainer.querySelectorAll('.subtab__header');
+          const subtabsContainers =
+            parentContainer.querySelectorAll('[class*=container]');
           const isUnrolled = mark.classList.contains('mark--unrolled');
-          
-          const clickedSubtabsContainerHeight = container.firstElementChild.clientHeight;
-          const subtabsHeadersHeights = [...subtabsHeaders]
-          .reduce((acc, curr) => acc + curr.clientHeight, 0);
 
-          let height = 0;          
+          const clickedSubtabsContainerHeight =
+            container.firstElementChild.clientHeight;
+          const subtabsHeadersHeights = [...subtabsHeaders].reduce(
+            (acc, curr) => acc + curr.clientHeight,
+            0
+          );
+
+          let height = 0;
           if (flags.media === 'mediaLg') {
             height = isUnrolled ? clickedSubtabsContainerHeight : 0;
-
           } else {
-            height = [...subtabsContainers]
-            .reduce((acc, curr) => curr.style.height === '0px'
-            ? acc : acc + curr.firstElementChild.clientHeight, 0);
+            height = [...subtabsContainers].reduce(
+              (acc, curr) =>
+                curr.style.height === '0px'
+                  ? acc
+                  : acc + curr.firstElementChild.clientHeight,
+              0
+            );
           }
-          
+
           height += subtabsHeadersHeights;
           parentContainer.style.height = `${height}px`;
         }
         flags.shouldSectionsBeUpdated = true;
 
-      // handle not clicked elements
+        // handle not clicked elements
       } else {
         // collapse other tabs only on large screens
         if (flags.media === 'mediaLg') {
           container.style.height = 0;
-          button.classList.remove(`${subtab ? 'sub' : ''}tab__button--unrolled`);
+          button.classList.remove(
+            `${subtab ? 'sub' : ''}tab__button--unrolled`
+          );
           mark.classList.remove('mark--unrolled');
         }
       }
 
-    // handle elements on page load or media breakpoint
+      // handle elements on page load or media breakpoint
     } else {
       if (index !== excludeIndex && excludeIndex !== 'all') {
         container.style.height = 0;
         mark.classList.remove('mark--unrolled');
         button.classList.remove('tab__button--unrolled');
-
       } else if (excludeIndex === 'all') {
         container.style.height = '';
 
         if (flags.media === 'mediaSm') {
           mark.classList.add('mark--unrolled');
           button.classList.add('tab__button--unrolled');
-
         } else {
           mark.classList.remove('mark--unrolled');
           button.classList.remove('tab__button--unrolled');
         }
-
       } else {
         container.style.height = `${content.clientHeight}px`;
         mark.classList.add('mark--unrolled');
         button.classList.add('tab__button--unrolled');
         container.classList.add('rollable');
-
       }
     }
   });
-}
+};
 
 const handleRepo = (repos) => {
   const statsCreated = document.querySelectorAll('.stats__value--js-created');
@@ -1303,12 +1302,15 @@ const handleRepo = (repos) => {
     'hydrApp',
     'portfolio-page',
     'archviz-website',
-    'homepage-gulp'];
+    'homepage-gulp',
+  ];
   //: FORMAT FETCHED DATES                                             ://
-  const getFormattedDate = (date) => date.slice(0,10).split('-').reverse().join('-');
+  const getFormattedDate = (date) =>
+    date.slice(0, 10).split('-').reverse().join('-');
   //: FILTER SPECIFIC REPOS                                            ://
-  const reposFiltered = [...reposIds].map(id =>
-    [...repos].filter(repo => repo.name === id)[0]);
+  const reposFiltered = [...reposIds].map(
+    (id) => [...repos].filter((repo) => repo.name === id)[0]
+  );
   //: ASSIGN FETCHED DATA TO EACH REPOS                                ://
   for (let i = 0; i < reposFiltered.length; i++) {
     const createdTime = getFormattedDate(reposFiltered[i].created_at);
@@ -1318,10 +1320,10 @@ const handleRepo = (repos) => {
     statsUpdated[i].innerHTML = updatedTime;
     //. ASSIGN NUMBER OF TOTAL COMMITS                            .//
     fetch(reposFiltered[i].contributors_url)
-    .then(resp => resp.json())
-    .then(resp => statsCommits[i].innerHTML = resp[0].contributions);
-  }    
-}
+      .then((resp) => resp.json())
+      .then((resp) => (statsCommits[i].innerHTML = resp[0].contributions));
+  }
+};
 
 const reduceContent = (data, container, available, parent) => {
   // recursive function handling reduced content creation
@@ -1330,31 +1332,33 @@ const reduceContent = (data, container, available, parent) => {
   // container - node which got empty in order to receive reduced content
   // available - available space to contain reduced content
   // parent - root container to obtain current content height at the time
-  
+
   // if cloned content does not contain any children nodes
   if (data.children.length === 0) {
-
     // create array of particular words
-    const wordsArray = data.html.slice().split(' ').filter(elem => elem !== '');
+    const wordsArray = data.html
+      .slice()
+      .split(' ')
+      .filter((elem) => elem !== '');
     const reducedArray = [...wordsArray];
 
     // remove words starting from the end until content fits space
     for (let i = 0; i < wordsArray.length; i++) {
       reducedArray.pop();
-      container.innerHTML = reducedArray.length === 0
-        ? ''
-        : `${reducedArray.join(' ')} <span class='dots'>...</span>`;
+      container.innerHTML =
+        reducedArray.length === 0
+          ? ''
+          : `${reducedArray.join(' ')} <span class='dots'>...</span>`;
       if (parent.clientHeight <= available) break;
     }
 
-  // if cloned content contains children nodes
+    // if cloned content contains children nodes
   } else {
-
     // empty textContent of each childNode
-    [...container.children].forEach(child => child.textContent = '');
+    [...container.children].forEach((child) => (child.textContent = ''));
 
     // create array of each node's html content
-    const nodesArray = data.children.map(child => child.html);
+    const nodesArray = data.children.map((child) => child.html);
 
     // add consectuive nodes content until it extends available space
     for (let i = 0; i < container.children.length; i++) {
@@ -1363,44 +1367,47 @@ const reduceContent = (data, container, available, parent) => {
       containerNode.innerHTML = nodesArray[i];
 
       if (parent.clientHeight > available) {
-
         // repeat the operations on particular nodes
         reduceContent(dataNode, containerNode, available, parent);
 
         // remove unnecessary empty nodes outside available space
-        [...container.children].forEach(child => {
+        [...container.children].forEach((child) => {
           if (child.innerHTML === '') child.parentNode.removeChild(child);
         });
         break;
       }
     }
   }
-}
+};
 
 const handleExpandableContent = (contents) => {
-
   // aquire html and children of every children node and its own children
   const getChildren = (content) => {
     let array = [];
-    [...content.children].forEach(child => array = [...array, {
-      html: child.innerHTML,
-      children: getChildren(child)
-    }]);
+    [...content.children].forEach(
+      (child) =>
+        (array = [
+          ...array,
+          {
+            html: child.innerHTML,
+            children: getChildren(child),
+          },
+        ])
+    );
     return array;
-  }
+  };
 
   // empty content of every node, including the nested ones
   const emptyContent = (content) => {
     if (content.children.length === 0) {
       content.textContent = '';
     } else {
-      [...content.children].forEach(child => emptyContent(child));
+      [...content.children].forEach((child) => emptyContent(child));
     }
-  }
+  };
 
   // clone content data to an array of objects and empty node
-  [...contents].forEach(content => {
-
+  [...contents].forEach((content) => {
     // copy original content node and hide it
     const wrapper = document.createElement('div');
     wrapper.className = 'wrapper';
@@ -1413,11 +1420,14 @@ const handleExpandableContent = (contents) => {
     // wrap content and content copy inside a wrapper
     content.parentNode.insertBefore(wrapper, content);
     wrapper.append(content, contentCopy);
-    contentData = [...contentData, {
-      fullHeight: content.clientHeight,
-      html: content.innerHTML,
-      children: getChildren(content)
-    }];
+    contentData = [
+      ...contentData,
+      {
+        fullHeight: content.clientHeight,
+        html: content.innerHTML,
+        children: getChildren(content),
+      },
+    ];
 
     // empty content of original content node
     emptyContent(content);
@@ -1431,27 +1441,28 @@ const handleExpandableContent = (contents) => {
 
     // get available space for reduced content
     content.style.height = '100%';
-    contentData[index].availableHeight = window.innerWidth >= mediaLg
-    ? content.classList.contains('js-minHeight')
-      ? minDesktopHeight
-      : content.clientHeight
-    : minMobileHeight;
+    contentData[index].availableHeight =
+      window.innerWidth >= mediaLg
+        ? content.classList.contains('js-minHeight')
+          ? minDesktopHeight
+          : content.clientHeight
+        : minMobileHeight;
     const { availableHeight, fullHeight, html } = currentContentData;
 
     // check if content fits available space
     if (availableHeight >= fullHeight) {
       content.innerHTML = html;
-
     } else {
       content.parentNode.classList.add('collapsed');
 
       // show read more button and update available space
       readMoreButtons[index].classList.add('tab__readMore--visible');
-      contentData[index].availableHeight = window.innerWidth >= mediaLg
-      ? content.classList.contains('js-minHeight')
-        ? minDesktopHeight
-        : content.clientHeight
-      : minMobileHeight;
+      contentData[index].availableHeight =
+        window.innerWidth >= mediaLg
+          ? content.classList.contains('js-minHeight')
+            ? minDesktopHeight
+            : content.clientHeight
+          : minMobileHeight;
       const { availableHeight } = currentContentData;
 
       // reduce content using recursive function
@@ -1459,10 +1470,9 @@ const handleExpandableContent = (contents) => {
       content.parentNode.style.height = `${availableHeight}px`;
     }
   });
-}
+};
 
 const handleReadMore = (e) => {
-
   const { index, parentNode } = e.target;
   const wrapper = parentNode.querySelector('.wrapper');
   const expandableNode = parentNode.querySelector('.js-expandable');
@@ -1472,32 +1482,36 @@ const handleReadMore = (e) => {
 
   // expand tab
   if (wrapper.classList.contains('collapsed')) {
-
     // reduce content using recursive function
     wrapper.style.height = `${contentData[index].fullHeight}px`;
     expandableNode.classList.add('expandableHidden');
     expandableNode.classList.remove('expandableVisible');
     expandedNode.classList.remove('expandedHidden');
     expandedNode.classList.add('expandedVisible');
-    
+
     e.target.innerHTML = 'Show Less';
     wrapper.classList.remove('collapsed');
 
-  // collapse tab
-  } else {    
+    // collapse tab
+  } else {
     expandableNode.style.height = '';
     wrapper.style.height = `${contentData[index].availableHeight}px`;
     expandableNode.classList.remove('expandableHidden');
     expandableNode.classList.add('expandableVisible');
     expandedNode.classList.add('expandedHidden');
     expandedNode.classList.remove('expandedVisible');
-    reduceContent(currentContentData, expandableNode, availableHeight, expandableNode);
-    
+    reduceContent(
+      currentContentData,
+      expandableNode,
+      availableHeight,
+      expandableNode
+    );
+
     e.target.innerHTML = 'Read More';
     wrapper.classList.add('collapsed');
   }
   flags.shouldSectionsBeUpdated = true;
-}
+};
 
 //#endregion
 
@@ -1522,25 +1536,24 @@ const validateForm = (e) => {
     }
   };
 
-  const formSubmitVal  = formSubmitButton.value;
-  const userNameVal    = userName.value;
-  const userEmailVal   = userEmail.value;
-  const userPhoneVal   = userPhone.value;
-  const userTitleVal   = userTitle.value;
+  const formSubmitVal = formSubmitButton.value;
+  const userNameVal = userName.value;
+  const userEmailVal = userEmail.value;
+  const userPhoneVal = userPhone.value;
+  const userTitleVal = userTitle.value;
   const userMessageVal = userMessage.value;
   const data = JSON.stringify({
-    'submit': formSubmitVal,
-    'userName': userNameVal,
-    'userEmail': userEmailVal,
-    'userPhone': userPhoneVal,
-    'userTitle': userTitleVal,
-    'userMessage': userMessageVal
+    submit: formSubmitVal,
+    userName: userNameVal,
+    userEmail: userEmailVal,
+    userPhone: userPhoneVal,
+    userTitle: userTitleVal,
+    userMessage: userMessageVal,
   });
   xhr.send(data);
-}
+};
 
 const handleAlerts = (data, isFailed) => {
-
   const margin = window.innerWidth >= mediaLg ? 20 : 5;
   let heightTotal = margin;
   let delay = 0;
@@ -1566,26 +1579,29 @@ const handleAlerts = (data, isFailed) => {
 
     // update alert boxes below
     if (e.target) {
-      visibleAlerts = visibleAlerts.filter(alert => alert.button.index !== index);
+      visibleAlerts = visibleAlerts.filter(
+        (alert) => alert.button.index !== index
+      );
       visibleAlerts
-      .filter(alert => alert.button.index >= index)
-      .forEach(alert => {
-        const { offsetTop, clientHeight } = alert.box;
-        alert.box.style.top = `${offsetTop - clientHeight - margin}px`;
-        alert.button.index--;
-      });
+        .filter((alert) => alert.button.index >= index)
+        .forEach((alert) => {
+          const { offsetTop, clientHeight } = alert.box;
+          alert.box.style.top = `${offsetTop - clientHeight - margin}px`;
+          alert.button.index--;
+        });
     }
 
     // clear timeout and event listener
     clearTimeout(self.alertTimeoutId);
     self.alertTimeoutId = null;
     self.removeEventListener('click', quitAlertBox);
-  }
+  };
 
   // handle active alerts
-  const alerts = isFailed ? ['failure'] : Object.keys(data).filter(key => data[key]);
+  const alerts = isFailed
+    ? ['failure']
+    : Object.keys(data).filter((key) => data[key]);
   [...alerts].forEach((alert, index) => {
-
     // select elements
     const alertBox = document.querySelector(`.alerts__box--js-${alert}`);
     const alertButton = document.querySelector(`.alerts__button--js-${alert}`);
@@ -1615,10 +1631,13 @@ const handleAlerts = (data, isFailed) => {
     alertButton.addEventListener('click', quitAlertBox);
 
     // create array of alert objects
-    visibleAlerts = [...visibleAlerts, {
-      box: alertBox,
-      button: alertButton
-    }];
+    visibleAlerts = [
+      ...visibleAlerts,
+      {
+        box: alertBox,
+        button: alertButton,
+      },
+    ];
 
     // handle inputs appearance
     switch (alert) {
@@ -1637,42 +1656,44 @@ const handleAlerts = (data, isFailed) => {
         handleInputStyle(userPhone, true);
         handleInputStyle(userMessage, true);
         break;
-      default: break;
+      default:
+        break;
     }
   });
-}
+};
 
 const handleInputStyle = (input, isValid) => {
   if (isValid) {
     if (input.classList.contains('form__input--invalid'))
-    input.classList.remove('form__input--invalid');
+      input.classList.remove('form__input--invalid');
   } else {
     if (!input.classList.contains('form__input--invalid'))
-    input.classList.add('form__input--invalid');
+      input.classList.add('form__input--invalid');
   }
-}
+};
 
 const validateEmail = (e) => {
   const self = e.target;
   self.value.match(/^\S+@\S+\.\S+$/)
-  ? handleInputStyle(self, true)
-  : handleInputStyle(self, false);
-}
+    ? handleInputStyle(self, true)
+    : handleInputStyle(self, false);
+};
 
 const validatePhone = (e) => {
   const self = e.target;
-  self.value.match(/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{3}$/i)
-  || self.value.length === 0
-  ? handleInputStyle(self, true)
-  : handleInputStyle(self, false);
-}
+  self.value.match(
+    /^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{3}$/i
+  ) || self.value.length === 0
+    ? handleInputStyle(self, true)
+    : handleInputStyle(self, false);
+};
 
 const validateMessage = (e) => {
   const self = e.target;
   self.value.length > 0
-  ? handleInputStyle(self, true)
-  : handleInputStyle(self, false);
-}
+    ? handleInputStyle(self, true)
+    : handleInputStyle(self, false);
+};
 
 //#endregion
 
@@ -1684,8 +1705,8 @@ const flags = {
   isScrollEnabled: false,
   isMobileHeader: false,
   media: null,
-  menuLayout: null
-}
+  menuLayout: null,
+};
 const mediaSm = 380;
 const mediaMd = 768;
 const mediaLg = 1200;
@@ -1711,8 +1732,8 @@ const secondTimeoutLg = 500;
 
 let introText = 'jakub chojna frontend projects';
 
-const introItemWidth = window.innerWidth >= mediaLg
-? 35 : window.innerWidth >= mediaMd ? 35 : 20;
+const introItemWidth =
+  window.innerWidth >= mediaLg ? 35 : window.innerWidth >= mediaMd ? 35 : 20;
 const introItemHeight = 2 * introItemWidth;
 
 const intro = document.querySelector('.intro--js');
@@ -1728,8 +1749,12 @@ const pageHeader = document.querySelector('.pageHeader--js');
 const visuals = document.querySelector('.visuals--js');
 const introBox = document.querySelector('.visuals__introBox--js');
 const menuIndicator = document.querySelector('.pageHeader__indicator--js');
-const menuUpperBackground = document.querySelector('.visuals__background--js-upper');
-const menuBottomBackground = document.querySelector('.visuals__background--js-bottom');
+const menuUpperBackground = document.querySelector(
+  '.visuals__background--js-upper'
+);
+const menuBottomBackground = document.querySelector(
+  '.visuals__background--js-bottom'
+);
 const burgerButton = document.querySelector('.burgerButton--js');
 const menu = document.querySelector('.menu--js');
 const menuItems = document.querySelectorAll('.menu__item--js');
@@ -1739,9 +1764,15 @@ const menuLabels = document.querySelectorAll('.label--js');
 //#endregion
 //#region [ Horizon ] VARIABLES - NAVIGATION
 const navigation = document.querySelector('.navigation--js');
-const navigationBackButton = document.querySelector('.navigation__button--js-back');
-const navigationPrevButton = document.querySelector('.navigation__button--js-prev');
-const navigationNextButton = document.querySelector('.navigation__button--js-next');
+const navigationBackButton = document.querySelector(
+  '.navigation__button--js-back'
+);
+const navigationPrevButton = document.querySelector(
+  '.navigation__button--js-prev'
+);
+const navigationNextButton = document.querySelector(
+  '.navigation__button--js-next'
+);
 let currentNavigationIndex = null;
 //#endregion
 //#region [ Horizon ] VARIABLES - MAIN CONTENT
@@ -1752,25 +1783,33 @@ const minTopMargin = 30;
 const resumeTabs = document.querySelectorAll('.tab--js-resume');
 const resumeButtons = document.querySelectorAll('.tab__button--js-resume');
 const resumeSubtabs = document.querySelectorAll('.subtab--js-resume');
-const resumeSubButtons = document.querySelectorAll('.subtab__button--js-resume');
+const resumeSubButtons = document.querySelectorAll(
+  '.subtab__button--js-resume'
+);
 const tasktimerTabs = document.querySelectorAll('.tab--js-tasktimer');
-const tasktimerButtons = document.querySelectorAll('.tab__button--js-tasktimer');
+const tasktimerButtons = document.querySelectorAll(
+  '.tab__button--js-tasktimer'
+);
 const portfolioTabs = document.querySelectorAll('.tab--js-portfolio');
-const portfolioButtons = document.querySelectorAll('.tab__button--js-portfolio');
+const portfolioButtons = document.querySelectorAll(
+  '.tab__button--js-portfolio'
+);
 const hydrappTabs = document.querySelectorAll('.tab--js-hydrapp');
 const hydrappButtons = document.querySelectorAll('.tab__button--js-hydrapp');
 const quotesTabs = document.querySelectorAll('.tab--js-quotes');
 const quotesButtons = document.querySelectorAll('.tab__button--js-quotes');
 
 const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
-const otherProjectsButtons = document.querySelectorAll('.tab__button--js-other');
+const otherProjectsButtons = document.querySelectorAll(
+  '.tab__button--js-other'
+);
 const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
 
 const sections = [...pageSections].map((section, index) => ({
   index,
   id: section.id,
   node: section,
-  offset: section.offsetTop
+  offset: section.offsetTop,
 }));
 
 const items = [...menuItems].map((item, index) => ({
@@ -1778,7 +1817,7 @@ const items = [...menuItems].map((item, index) => ({
   node: item,
   offset: item.offsetTop + menu.offsetTop,
   height: item.clientHeight,
-  currentSectionIndex: getCurrentSectionIndex(item.offsetTop + menu.offsetTop)
+  currentSectionIndex: getCurrentSectionIndex(item.offsetTop + menu.offsetTop),
 }));
 //#endregion
 //#region [ Horizon ] VARIABLES - CONTACT FORM
@@ -1834,7 +1873,7 @@ window.onload = () => {
 
   // set each section's container top margin
   if (flags.media === 'mediaLg') {
-    [...sectionContainers].forEach(container => {
+    [...sectionContainers].forEach((container) => {
       handleTopMargins(container, minTopMargin);
     });
   }
@@ -1842,8 +1881,8 @@ window.onload = () => {
 
 // fetch github api
 fetch('https://api.github.com/users/jchojna/repos')
-  .then(resp => resp.json())
-  .then(resp => handleRepo(resp));
+  .then((resp) => resp.json())
+  .then((resp) => handleRepo(resp));
 
 //#endregion
 
@@ -1898,9 +1937,13 @@ addAccordionEvents(otherProjectsButtons, otherProjectsTabs);
 
 //#region [ Horizon ] EVENTS - CONTACT FORM
 // SAVE FORM INPUTS VALUES TO LOCAL STORAGE
-[...formInputs].forEach(input => {
-  input.addEventListener('keyup', (e) => localStorage.setItem(e.target.id, e.target.value));
-  input.value = localStorage.getItem(input.id) ? localStorage.getItem(input.id) : '';
+[...formInputs].forEach((input) => {
+  input.addEventListener('keyup', (e) =>
+    localStorage.setItem(e.target.id, e.target.value)
+  );
+  input.value = localStorage.getItem(input.id)
+    ? localStorage.getItem(input.id)
+    : '';
 });
 
 formSubmitButton.addEventListener('click', validateForm);
@@ -1912,7 +1955,6 @@ userMessage.addEventListener('keyup', validateMessage);
 //#region UNUSED
 
 const handleFastScroll = (e) => {
-
   // function resetting timeout and scroll accumulator
   /* const reset = () => {
     clearTimeout(scrollTimeoutId);
@@ -1931,7 +1973,7 @@ const handleFastScroll = (e) => {
         pageContainer.scrollTo(0, nextsectionOffset);
       }
     }
-  }
+  };
   // when scrolling down
   /* if (e.deltaY > 0) {
     scrollTotal += 1;
@@ -1953,11 +1995,10 @@ const handleFastScroll = (e) => {
     //e.preventDefault();
     flags.isScrollEnabled = false;
 
-    if (!isFastScroll)
-    navigateToSection(++lastMenuItemIndex);
+    if (!isFastScroll) navigateToSection(++lastMenuItemIndex);
 
     //goToNextSection();
   }
-}
+};
 
 //#endregion
