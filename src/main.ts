@@ -1,3 +1,48 @@
+// @ts-nocheck
+
+import {
+  flags,
+  media,
+  introLoader,
+  introBox,
+  menu,
+  menuItems,
+  pageHeader,
+  pageContainer,
+  pageSections,
+  sections,
+  menuButtons,
+  menuObj,
+  menuIndicator,
+  menuUpperBackground,
+  menuBottomBackground,
+  navigation,
+  navigationPrevButton,
+  navigationNextButton,
+  navigationBackButton,
+  burgerButton,
+  firstTimeoutLg,
+  firstTimeoutXs,
+  secondTimeoutLg,
+  secondTimeoutXs,
+} from './scripts/variables';
+import {
+  setIntroLoaderPosition,
+  loadIntroContent,
+  handleIntroLoader,
+  handleIntroAnimation,
+} from './scripts/intro';
+import {
+  handleMenuButtons,
+  handleMenuShadows,
+  handleIntroMenu,
+  handleIntroBox,
+  handleMenuIndicator,
+  handleIntroMenuItemClick,
+  handleMenuItemClick,
+} from './scripts/menu';
+import { handleRepo } from './scripts/repoStats';
+
 import './main.scss';
 
 //#region [ Horizon ] HELPER FUNCTIONS
@@ -643,38 +688,6 @@ const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
   });
 };
 
-const handleRepo = (repos) => {
-  const statsCreated = document.querySelectorAll('.stats__value--js-created');
-  const statsUpdated = document.querySelectorAll('.stats__value--js-updated');
-  const statsCommits = document.querySelectorAll('.stats__value--js-commits');
-  const reposIds = [
-    'task-timer',
-    'hydrApp',
-    'portfolio-page',
-    'archviz-website',
-    'homepage-gulp',
-  ];
-  //: FORMAT FETCHED DATES                                             ://
-  const getFormattedDate = (date) =>
-    date.slice(0, 10).split('-').reverse().join('-');
-  //: FILTER SPECIFIC REPOS                                            ://
-  const reposFiltered = [...reposIds].map(
-    (id) => [...repos].filter((repo) => repo.name === id)[0]
-  );
-  //: ASSIGN FETCHED DATA TO EACH REPOS                                ://
-  for (let i = 0; i < reposFiltered.length; i++) {
-    const createdTime = getFormattedDate(reposFiltered[i].created_at);
-    const updatedTime = getFormattedDate(reposFiltered[i].updated_at);
-    //. ASSIGN DATES                                              .//
-    statsCreated[i].innerHTML = createdTime;
-    statsUpdated[i].innerHTML = updatedTime;
-    //. ASSIGN NUMBER OF TOTAL COMMITS                            .//
-    fetch(reposFiltered[i].contributors_url)
-      .then((resp) => resp.json())
-      .then((resp) => (statsCommits[i].innerHTML = resp[0].contributions));
-  }
-};
-
 const reduceContent = (data, container, available, parent) => {
   // recursive function handling reduced content creation
   // it can handle both plain text and nested elements like lists
@@ -1051,48 +1064,6 @@ const validateMessage = (e) => {
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-import {
-  flags,
-  media,
-  introLoader,
-  introBox,
-  menu,
-  menuItems,
-  pageHeader,
-  pageContainer,
-  pageSections,
-  sections,
-  menuButtons,
-  menuObj,
-  menuIndicator,
-  menuUpperBackground,
-  menuBottomBackground,
-  navigation,
-  navigationPrevButton,
-  navigationNextButton,
-  navigationBackButton,
-  burgerButton,
-  firstTimeoutLg,
-  firstTimeoutXs,
-  secondTimeoutLg,
-  secondTimeoutXs,
-} from './scripts/variables';
-import {
-  setIntroLoaderPosition,
-  loadIntroContent,
-  handleIntroLoader,
-  handleIntroAnimation,
-} from './scripts/intro';
-import {
-  handleMenuButtons,
-  handleMenuShadows,
-  handleIntroMenu,
-  handleIntroBox,
-  handleMenuIndicator,
-  handleIntroMenuItemClick,
-  handleMenuItemClick,
-} from './scripts/menu';
-
 let scrollTimeoutId = null;
 let scrollTotal = 0;
 
@@ -1193,10 +1164,7 @@ window.onload = () => {
 //   .then((resp) => resp.json())
 //   .then((resp) => handleRepo(resp));
 
-//#endregion
-
-//#region [ Horizon ] EVENT LISTENERS
-
+// EVENT LISTENERS
 // MENU AND NAVIGATION
 window.addEventListener('resize', updateSectionsOffsets);
 pageHeader.addEventListener('scroll', handleIntroBox);
@@ -1258,9 +1226,6 @@ formSubmitButton.addEventListener('click', validateForm);
 userEmail.addEventListener('keyup', validateEmail);
 userPhone.addEventListener('keyup', validatePhone);
 userMessage.addEventListener('keyup', validateMessage);
-//#endregion
-
-//#region UNUSED
 
 const handleFastScroll = (e) => {
   // function resetting timeout and scroll accumulator
@@ -1310,5 +1275,3 @@ const handleFastScroll = (e) => {
     //goToNextSection();
   }
 };
-
-//#endregion

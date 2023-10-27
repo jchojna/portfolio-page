@@ -12,6 +12,7 @@ import {
   menuIndicator,
   menuUpperBackground,
   menuBottomBackground,
+  navigation,
   firstTimeoutLg,
   firstTimeoutXs,
   secondTimeoutLg,
@@ -27,19 +28,6 @@ import {
 } from '../main';
 
 const menuShadows = document.querySelectorAll('.menuSvg__shadow--js');
-const menuLabels = document.querySelectorAll('.label--js');
-//#endregion
-//#region [ Horizon ] VARIABLES - NAVIGATION
-const navigation = document.querySelector('.navigation--js');
-const navigationBackButton = document.querySelector(
-  '.navigation__button--js-back'
-);
-const navigationPrevButton = document.querySelector(
-  '.navigation__button--js-prev'
-);
-const navigationNextButton = document.querySelector(
-  '.navigation__button--js-next'
-);
 
 const getCurrentItemIndex = (cursorYPosition) => {
   return (
