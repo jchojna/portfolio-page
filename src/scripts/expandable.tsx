@@ -106,7 +106,8 @@ const reduceContent = (data, container, available, parent) => {
   }
 };
 
-export const handleExpandableContent = (contents) => {
+export const handleExpandableContent = () => {
+  const expandableContent = document.querySelectorAll('.js-expandable');
   // aquire html and children of every children node and its own children
   const getChildren = (content) => {
     let array = [];
@@ -133,7 +134,7 @@ export const handleExpandableContent = (contents) => {
   };
 
   // clone content data to an array of objects and empty node
-  [...contents].forEach((content) => {
+  [...expandableContent].forEach((content) => {
     // copy original content node and hide it
     const wrapper = document.createElement('div');
     wrapper.className = 'wrapper';
@@ -160,7 +161,7 @@ export const handleExpandableContent = (contents) => {
   });
 
   // add data from content database to empty content
-  [...contents].forEach((content, index) => {
+  [...expandableContent].forEach((content, index) => {
     const currentContentData = contentData[index];
     const minMobileHeight = 300;
     const minDesktopHeight = 200;

@@ -1,85 +1,56 @@
 // @ts-nocheck
 
+import { addAccordionEvents, handleAccordion } from './scripts/accordion';
+import { handleBurgerButton } from './scripts/burgerButton';
+import { addFormEvents } from './scripts/contactForm';
 import {
-  flags,
-  media,
-  introLoader,
-  introBox,
-  menu,
-  menuItems,
-  pageHeader,
-  pageContainer,
-  pageSections,
-  sections,
-  menuButtons,
-  menuObj,
-  menuIndicator,
-  menuUpperBackground,
-  menuBottomBackground,
-  navigation,
-  burgerButton,
-  firstTimeoutLg,
-  firstTimeoutXs,
-  secondTimeoutLg,
-  secondTimeoutXs,
-  sectionContainers,
-  otherProjectsTabs,
-  resumeTabs,
-  resumeSubtabs,
-  tasktimerTabs,
-  portfolioTabs,
-  hydrappTabs,
-  quotesTabs,
-} from './scripts/variables';
+  addReadMoreEvent,
+  handleExpandableContent,
+} from './scripts/expandable';
 import {
-  setIntroLoaderPosition,
-  loadIntroContent,
-  handleIntroLoader,
   handleIntroAnimation,
+  handleIntroLoader,
+  loadIntroContent,
+  setIntroLoaderPosition,
 } from './scripts/intro';
 import {
-  handleMenuShadows,
-  handleIntroMenu,
   handleIntroBox,
-  handleMenuIndicator,
+  handleIntroMenu,
   handleIntroMenuItemClick,
+  handleMenuIndicator,
   handleMenuItemClick,
   handleMenuOnScroll,
 } from './scripts/menu';
-import { handleRepo } from './scripts/repoStats';
-import { handleAccordion, addAccordionEvents } from './scripts/accordion';
+import { handleMobileHeader } from './scripts/mobileHeader';
 import {
-  validateForm,
-  validateEmail,
-  validatePhone,
-  validateMessage,
-  addFormEvents,
-} from './scripts/contactForm';
-import {
-  handleExpandableContent,
-  addReadMoreEvent,
-} from './scripts/expandable';
-import { handleBurgerButton } from './scripts/burgerButton';
+  addNavigationEvents,
+  getCurrentSectionIndex,
+  handleNavOnScroll,
+} from './scripts/navigation';
 import {
   handleWindowResize,
-  handleTopMargins,
-  setMediaFlags,
   setContainersMargins,
+  setMediaFlags,
 } from './scripts/resize';
-import {
-  handleBackButton,
-  navigateToSection,
-  addNavigationEvents,
-  handleNavOnScroll,
-  getCurrentSectionIndex,
-} from './scripts/navigation';
 import { handleUserActivity, updateSectionsOffsets } from './scripts/sections';
-import { handleMobileHeader } from './scripts/mobileHeader';
+import {
+  burgerButton,
+  flags,
+  hydrappTabs,
+  menu,
+  menuButtons,
+  menuItems,
+  otherProjectsTabs,
+  pageContainer,
+  pageHeader,
+  portfolioTabs,
+  quotesTabs,
+  resumeSubtabs,
+  resumeTabs,
+  tasktimerTabs,
+} from './scripts/variables';
 
 import './main.scss';
-
-let scrollTimeoutId = null;
-let scrollTotal = 0;
 
 const resumeButtons = document.querySelectorAll('.tab__button--js-resume');
 const resumeSubButtons = document.querySelectorAll(
@@ -93,7 +64,6 @@ const portfolioButtons = document.querySelectorAll(
 );
 const hydrappButtons = document.querySelectorAll('.tab__button--js-hydrapp');
 const quotesButtons = document.querySelectorAll('.tab__button--js-quotes');
-
 const otherProjectsButtons = document.querySelectorAll(
   '.tab__button--js-other'
 );
@@ -108,8 +78,6 @@ export const items = [...menuItems].map((item, index) => ({
 
 const formInputs = document.querySelectorAll('.form__input--js');
 
-const expandableContent = document.querySelectorAll('.js-expandable');
-
 ////////////////////////////////////////////////////////////////////////////////
 // page load with no animation intro
 // intro.classList.add('intro--hidden');
@@ -120,9 +88,13 @@ const expandableContent = document.querySelectorAll('.js-expandable');
 ////////////////////////////////////////////////////////////////////////////////
 
 setMediaFlags();
-setIntroLoaderPosition(introLoader);
+setIntroLoaderPosition();
 loadIntroContent();
 handleIntroMenu();
+handleIntroAnimation();
+handleIntroLoader();
+handleExpandableContent();
+setContainersMargins();
 
 // handle page's accordions
 handleAccordion([...resumeSubtabs]);
@@ -131,19 +103,11 @@ handleAccordion([...tasktimerTabs]);
 handleAccordion([...portfolioTabs]);
 handleAccordion([...hydrappTabs]);
 handleAccordion([...quotesTabs]);
-
 if (flags.media === 'mediaXs') {
   handleAccordion([...otherProjectsTabs]);
 } else {
   handleAccordion([...otherProjectsTabs], undefined, 'all');
 }
-
-// collapse expandable content on page load
-handleIntroAnimation();
-handleIntroLoader();
-handleExpandableContent(expandableContent);
-
-setContainersMargins();
 
 // fetch github api
 // fetch('https://api.github.com/users/jchojna/repos')
@@ -170,7 +134,6 @@ burgerButton.addEventListener('click', handleBurgerButton);
 // add event handling mobile header appearance
 window.addEventListener('scroll', handleMobileHeader);
 
-// MAIN CONTENT
 pageContainer.addEventListener('mousedown', handleUserActivity);
 pageContainer.addEventListener('touchstart', handleUserActivity);
 pageContainer.addEventListener('wheel', handleUserActivity);
