@@ -13,8 +13,9 @@ import {
   pageHeader,
   pageContainer,
 } from './variables';
-import { items, navigateToSection } from '../main';
+import { items } from '../main';
 import { handleMenuShadows } from './menu';
+import { navigateToSection } from './navigation';
 
 export const handleBurgerButton = () => {
   if (flags.isIntroMode) return false;

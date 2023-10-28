@@ -55,15 +55,6 @@ export const menuLabels = document.querySelectorAll('.label--js');
 //#endregion
 //#region [ Horizon ] VARIABLES - NAVIGATION
 export const navigation = document.querySelector('.navigation--js');
-export const navigationBackButton = document.querySelector(
-  '.navigation__button--js-back'
-);
-export const navigationPrevButton = document.querySelector(
-  '.navigation__button--js-prev'
-);
-export const navigationNextButton = document.querySelector(
-  '.navigation__button--js-next'
-);
 
 export const firstTimeoutXs = 300;
 export const secondTimeoutXs = 600;

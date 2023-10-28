@@ -20,12 +20,11 @@ import {
   burgerButton,
 } from './variables';
 import { removeTransitionsOnEvent } from './utils';
+import { items, updateSectionsOffsets } from '../main';
 import {
-  items,
-  updateSectionsOffsets,
   handlePrevNextButtonsVisibility,
   navigateToSection,
-} from '../main';
+} from './navigation';
 
 const menuShadows = document.querySelectorAll('.menuSvg__shadow--js');
 

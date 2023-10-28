@@ -1,3 +1,10 @@
+const userName = document.querySelector('.form__input--js-name');
+const userEmail = document.querySelector('.form__input--js-email');
+const userPhone = document.querySelector('.form__input--js-phone');
+const userTitle = document.querySelector('.form__input--js-title');
+const userMessage = document.querySelector('.form__input--js-message');
+const formSubmitButton = document.querySelector('.form__submit--js');
+
 export const validateEmail = (e) => {
   const self = e.target;
   self.value.match(/^\S+@\S+\.\S+$/)
@@ -174,4 +181,11 @@ const handleInputStyle = (input, isValid) => {
     if (!input.classList.contains('form__input--invalid'))
       input.classList.add('form__input--invalid');
   }
+};
+
+export const addFormEvents = () => {
+  formSubmitButton.addEventListener('click', validateForm);
+  userEmail.addEventListener('keyup', validateEmail);
+  userPhone.addEventListener('keyup', validatePhone);
+  userMessage.addEventListener('keyup', validateMessage);
 };
