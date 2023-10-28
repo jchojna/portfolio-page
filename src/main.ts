@@ -43,6 +43,16 @@ import {
 } from './scripts/menu';
 import { handleRepo } from './scripts/repoStats';
 import { handleAccordion } from './scripts/accordion';
+import {
+  validateForm,
+  validateEmail,
+  validatePhone,
+  validateMessage,
+} from './scripts/contactForm';
+import {
+  handleExpandableContent,
+  addReadMoreEvent,
+} from './scripts/expandable';
 
 import './main.scss';
 
@@ -248,10 +258,6 @@ const addAccordionEvents = (buttons, tabs) => {
     button.addEventListener('click', () => handleAccordion([...tabs], index));
   });
 };
-
-//#endregion
-
-//#region [ Horizon ] NAVIGATION
 
 const handleBackButton = () => {
   if (flags.isIntroMode) return false;
@@ -568,382 +574,6 @@ export const navigateToSection = (e) => {
   }
 };
 
-//#endregion
-
-//#region [ Horizon ] MAIN CONTENT
-
-const reduceContent = (data, container, available, parent) => {
-  // recursive function handling reduced content creation
-  // it can handle both plain text and nested elements like lists
-  // data - content to be reduced
-  // container - node which got empty in order to receive reduced content
-  // available - available space to contain reduced content
-  // parent - root container to obtain current content height at the time
-
-  // if cloned content does not contain any children nodes
-  if (data.children.length === 0) {
-    // create array of particular words
-    const wordsArray = data.html
-      .slice()
-      .split(' ')
-      .filter((elem) => elem !== '');
-    const reducedArray = [...wordsArray];
-
-    // remove words starting from the end until content fits space
-    for (let i = 0; i < wordsArray.length; i++) {
-      reducedArray.pop();
-      container.innerHTML =
-        reducedArray.length === 0
-          ? ''
-          : `${reducedArray.join(' ')} <span class='dots'>...</span>`;
-      if (parent.clientHeight <= available) break;
-    }
-
-    // if cloned content contains children nodes
-  } else {
-    // empty textContent of each childNode
-    [...container.children].forEach((child) => (child.textContent = ''));
-
-    // create array of each node's html content
-    const nodesArray = data.children.map((child) => child.html);
-
-    // add consectuive nodes content until it extends available space
-    for (let i = 0; i < container.children.length; i++) {
-      const dataNode = data.children[i];
-      const containerNode = container.children[i];
-      containerNode.innerHTML = nodesArray[i];
-
-      if (parent.clientHeight > available) {
-        // repeat the operations on particular nodes
-        reduceContent(dataNode, containerNode, available, parent);
-
-        // remove unnecessary empty nodes outside available space
-        [...container.children].forEach((child) => {
-          if (child.innerHTML === '') child.parentNode.removeChild(child);
-        });
-        break;
-      }
-    }
-  }
-};
-
-const handleExpandableContent = (contents) => {
-  // aquire html and children of every children node and its own children
-  const getChildren = (content) => {
-    let array = [];
-    [...content.children].forEach(
-      (child) =>
-        (array = [
-          ...array,
-          {
-            html: child.innerHTML,
-            children: getChildren(child),
-          },
-        ])
-    );
-    return array;
-  };
-
-  // empty content of every node, including the nested ones
-  const emptyContent = (content) => {
-    if (content.children.length === 0) {
-      content.textContent = '';
-    } else {
-      [...content.children].forEach((child) => emptyContent(child));
-    }
-  };
-
-  // clone content data to an array of objects and empty node
-  [...contents].forEach((content) => {
-    // copy original content node and hide it
-    const wrapper = document.createElement('div');
-    wrapper.className = 'wrapper';
-    const contentCopy = content.cloneNode(true);
-    contentCopy.classList.remove('js-expandable');
-    contentCopy.classList.add('js-expanded');
-    contentCopy.classList.add('expandedHidden');
-    content.classList.add('expandableVisible');
-
-    // wrap content and content copy inside a wrapper
-    content.parentNode.insertBefore(wrapper, content);
-    wrapper.append(content, contentCopy);
-    contentData = [
-      ...contentData,
-      {
-        fullHeight: content.clientHeight,
-        html: content.innerHTML,
-        children: getChildren(content),
-      },
-    ];
-
-    // empty content of original content node
-    emptyContent(content);
-  });
-
-  // add data from content database to empty content
-  [...contents].forEach((content, index) => {
-    const currentContentData = contentData[index];
-    const minMobileHeight = 300;
-    const minDesktopHeight = 200;
-
-    // get available space for reduced content
-    content.style.height = '100%';
-    contentData[index].availableHeight =
-      window.innerWidth >= media.lg
-        ? content.classList.contains('js-minHeight')
-          ? minDesktopHeight
-          : content.clientHeight
-        : minMobileHeight;
-    const { availableHeight, fullHeight, html } = currentContentData;
-
-    // check if content fits available space
-    if (availableHeight >= fullHeight) {
-      content.innerHTML = html;
-    } else {
-      content.parentNode.classList.add('collapsed');
-
-      // show read more button and update available space
-      readMoreButtons[index].classList.add('tab__readMore--visible');
-      contentData[index].availableHeight =
-        window.innerWidth >= media.lg
-          ? content.classList.contains('js-minHeight')
-            ? minDesktopHeight
-            : content.clientHeight
-          : minMobileHeight;
-      const { availableHeight } = currentContentData;
-
-      // reduce content using recursive function
-      reduceContent(currentContentData, content, availableHeight, content);
-      content.parentNode.style.height = `${availableHeight}px`;
-    }
-  });
-};
-
-const handleReadMore = (e) => {
-  const { index, parentNode } = e.target;
-  const wrapper = parentNode.querySelector('.wrapper');
-  const expandableNode = parentNode.querySelector('.js-expandable');
-  const expandedNode = document.querySelectorAll('.js-expanded')[index];
-  const currentContentData = contentData[index];
-  const { availableHeight } = currentContentData;
-
-  // expand tab
-  if (wrapper.classList.contains('collapsed')) {
-    // reduce content using recursive function
-    wrapper.style.height = `${contentData[index].fullHeight}px`;
-    expandableNode.classList.add('expandableHidden');
-    expandableNode.classList.remove('expandableVisible');
-    expandedNode.classList.remove('expandedHidden');
-    expandedNode.classList.add('expandedVisible');
-
-    e.target.innerHTML = 'Show Less';
-    wrapper.classList.remove('collapsed');
-
-    // collapse tab
-  } else {
-    expandableNode.style.height = '';
-    wrapper.style.height = `${contentData[index].availableHeight}px`;
-    expandableNode.classList.remove('expandableHidden');
-    expandableNode.classList.add('expandableVisible');
-    expandedNode.classList.add('expandedHidden');
-    expandedNode.classList.remove('expandedVisible');
-    reduceContent(
-      currentContentData,
-      expandableNode,
-      availableHeight,
-      expandableNode
-    );
-
-    e.target.innerHTML = 'Read More';
-    wrapper.classList.add('collapsed');
-  }
-  flags.shouldSectionsBeUpdated = true;
-};
-
-//#endregion
-
-//#region [ Horizon ] CONTACT FORM
-
-const validateForm = (e) => {
-  e.preventDefault();
-  const xhr = new XMLHttpRequest();
-  const url = 'form.php';
-
-  // backend validation => send form using ajax request
-  xhr.open('POST', url, true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      var jsonData = JSON.parse(xhr.response);
-      if (xhr.status === 200) {
-        handleAlerts(jsonData, false);
-      } else {
-        handleAlerts(jsonData, true);
-      }
-    }
-  };
-
-  const formSubmitVal = formSubmitButton.value;
-  const userNameVal = userName.value;
-  const userEmailVal = userEmail.value;
-  const userPhoneVal = userPhone.value;
-  const userTitleVal = userTitle.value;
-  const userMessageVal = userMessage.value;
-  const data = JSON.stringify({
-    submit: formSubmitVal,
-    userName: userNameVal,
-    userEmail: userEmailVal,
-    userPhone: userPhoneVal,
-    userTitle: userTitleVal,
-    userMessage: userMessageVal,
-  });
-  xhr.send(data);
-};
-
-const handleAlerts = (data, isFailed) => {
-  const margin = window.innerWidth >= media.lg ? 20 : 5;
-  let heightTotal = margin;
-  let delay = 0;
-  const delayInterval = 60;
-  const alertTimeoutInterval = 5000;
-  const transitionTime = 250;
-  let visibleAlerts = [];
-
-  // close alert box
-  const quitAlertBox = (e) => {
-    const self = e.target ? e.target : e;
-    const { parentNode, index } = self;
-
-    // hide clicked alert box
-    parentNode.style.top = `${parentNode.clientHeight * -1}px`;
-    parentNode.classList.remove('alerts__box--visible');
-    delay = index * delayInterval;
-    parentNode.style.transition = `
-      top ${transitionTime}ms ${delay + transitionTime}ms,
-      visibility 0s ${delay + transitionTime * 2}ms,
-      width ${transitionTime}ms ${delay}ms
-    `;
-
-    // update alert boxes below
-    if (e.target) {
-      visibleAlerts = visibleAlerts.filter(
-        (alert) => alert.button.index !== index
-      );
-      visibleAlerts
-        .filter((alert) => alert.button.index >= index)
-        .forEach((alert) => {
-          const { offsetTop, clientHeight } = alert.box;
-          alert.box.style.top = `${offsetTop - clientHeight - margin}px`;
-          alert.button.index--;
-        });
-    }
-
-    // clear timeout and event listener
-    clearTimeout(self.alertTimeoutId);
-    self.alertTimeoutId = null;
-    self.removeEventListener('click', quitAlertBox);
-  };
-
-  // handle active alerts
-  const alerts = isFailed
-    ? ['failure']
-    : Object.keys(data).filter((key) => data[key]);
-  [...alerts].forEach((alert, index) => {
-    // select elements
-    const alertBox = document.querySelector(`.alerts__box--js-${alert}`);
-    const alertButton = document.querySelector(`.alerts__button--js-${alert}`);
-
-    // handle appearance of alert boxes
-    const alertBoxHeight = alertBox.clientHeight;
-    alertBox.style.top = `${heightTotal}px`;
-    alertBox.style.transition = `
-      top ${transitionTime}ms ${delay}ms,
-      visibility 0s,
-      width ${transitionTime}ms ${delay + transitionTime}ms
-    `;
-    heightTotal += alertBoxHeight + margin;
-    delay += delayInterval;
-    alertBox.classList.add('alerts__box--visible');
-
-    // clear timeout and event
-    clearTimeout(alertButton.alertTimeoutId);
-    alertButton.alertTimeoutId = null;
-    alertButton.removeEventListener('click', quitAlertBox);
-
-    // set timeout and event
-    alertButton.alertTimeoutId = setTimeout(() => {
-      quitAlertBox(alertButton);
-    }, alertTimeoutInterval);
-    alertButton.index = index;
-    alertButton.addEventListener('click', quitAlertBox);
-
-    // create array of alert objects
-    visibleAlerts = [
-      ...visibleAlerts,
-      {
-        box: alertBox,
-        button: alertButton,
-      },
-    ];
-
-    // handle inputs appearance
-    switch (alert) {
-      case 'emptyEmailError':
-      case 'invalidEmailError':
-        handleInputStyle(userEmail, false);
-        break;
-      case 'phoneError':
-        handleInputStyle(userPhone, false);
-        break;
-      case 'messageError':
-        handleInputStyle(userMessage, false);
-        break;
-      case 'success':
-        handleInputStyle(userEmail, true);
-        handleInputStyle(userPhone, true);
-        handleInputStyle(userMessage, true);
-        break;
-      default:
-        break;
-    }
-  });
-};
-
-const handleInputStyle = (input, isValid) => {
-  if (isValid) {
-    if (input.classList.contains('form__input--invalid'))
-      input.classList.remove('form__input--invalid');
-  } else {
-    if (!input.classList.contains('form__input--invalid'))
-      input.classList.add('form__input--invalid');
-  }
-};
-
-const validateEmail = (e) => {
-  const self = e.target;
-  self.value.match(/^\S+@\S+\.\S+$/)
-    ? handleInputStyle(self, true)
-    : handleInputStyle(self, false);
-};
-
-const validatePhone = (e) => {
-  const self = e.target;
-  self.value.match(
-    /^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{3}$/i
-  ) || self.value.length === 0
-    ? handleInputStyle(self, true)
-    : handleInputStyle(self, false);
-};
-
-const validateMessage = (e) => {
-  const self = e.target;
-  self.value.length > 0
-    ? handleInputStyle(self, true)
-    : handleInputStyle(self, false);
-};
-
-//#endregion
-
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -977,7 +607,6 @@ const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
 const otherProjectsButtons = document.querySelectorAll(
   '.tab__button--js-other'
 );
-const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
 
 export const items = [...menuItems].map((item, index) => ({
   index,
@@ -986,7 +615,7 @@ export const items = [...menuItems].map((item, index) => ({
   height: item.clientHeight,
   currentSectionIndex: getCurrentSectionIndex(item.offsetTop + menu.offsetTop),
 }));
-//#endregion
+
 //#region [ Horizon ] VARIABLES - CONTACT FORM
 const formInputs = document.querySelectorAll('.form__input--js');
 const userName = document.querySelector('.form__input--js-name');
@@ -996,7 +625,6 @@ const userTitle = document.querySelector('.form__input--js-title');
 const userMessage = document.querySelector('.form__input--js-message');
 const formSubmitButton = document.querySelector('.form__submit--js');
 
-let contentData = [];
 const expandableContent = document.querySelectorAll('.js-expandable');
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1048,8 +676,6 @@ window.onload = () => {
 //   .then((resp) => resp.json())
 //   .then((resp) => handleRepo(resp));
 
-// EVENT LISTENERS
-// MENU AND NAVIGATION
 window.addEventListener('resize', updateSectionsOffsets);
 pageHeader.addEventListener('scroll', handleIntroBox);
 window.addEventListener('resize', handleIntroBox);
@@ -1089,13 +715,8 @@ addAccordionEvents(hydrappButtons, hydrappTabs);
 addAccordionEvents(quotesButtons, quotesTabs);
 addAccordionEvents(otherProjectsButtons, otherProjectsTabs);
 
-[...readMoreButtons].forEach((button, index) => {
-  button.index = index;
-  button.addEventListener('click', handleReadMore);
-});
-//#endregion
+addReadMoreEvent();
 
-//#region [ Horizon ] EVENTS - CONTACT FORM
 // SAVE FORM INPUTS VALUES TO LOCAL STORAGE
 [...formInputs].forEach((input) => {
   input.addEventListener('keyup', (e) =>
@@ -1110,52 +731,3 @@ formSubmitButton.addEventListener('click', validateForm);
 userEmail.addEventListener('keyup', validateEmail);
 userPhone.addEventListener('keyup', validatePhone);
 userMessage.addEventListener('keyup', validateMessage);
-
-const handleFastScroll = (e) => {
-  // function resetting timeout and scroll accumulator
-  /* const reset = () => {
-    clearTimeout(scrollTimeoutId);
-    scrollTimeoutId = null;
-    scrollTotal = 0;
-  } */
-  if (window.innerWidth < media.lg) return false;
-  if (flags.isIntroMode) return false;
-  if (flags.isMenuTransforming) return false;
-  if (!flags.isFastScroll) return false;
-
-  const goToNextSection = () => {
-    if (menuObj.lastMenuItemIndex < pageSections.length - 1) {
-      if (
-        pageContainer.scrollTop >= sections[menuObj.lastMenuItemIndex].offset
-      ) {
-        const nextsectionOffset = sections[++menuObj.lastMenuItemIndex].offset;
-        pageContainer.scrollTo(0, nextsectionOffset);
-      }
-    }
-  };
-  // when scrolling down
-  /* if (e.deltaY > 0) {
-    scrollTotal += 1;
-    if (scrollTimeoutId === null) {
-      scrollTimeoutId = setTimeout(() => {
-        if (scrollTotal >= 8) {
-          goToNextSection();
-          reset();
-        } else {
-          reset();
-        }
-      }, 100);
-    }
-    // when scrolling up
-  } else {
-    reset();
-  } */
-  if (e.deltaY > 0) {
-    //e.preventDefault();
-    flags.isScrollEnabled = false;
-
-    if (!isFastScroll) navigateToSection(++lastMenuItemIndex);
-
-    //goToNextSection();
-  }
-};
