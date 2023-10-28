@@ -20,11 +20,13 @@ import {
   burgerButton,
 } from './variables';
 import { removeTransitionsOnEvent } from './utils';
-import { items, updateSectionsOffsets } from '../main';
+import { items } from '../main';
 import {
   handlePrevNextButtonsVisibility,
   navigateToSection,
+  getCurrentSectionIndex,
 } from './navigation';
+import { updateSectionsOffsets } from './sections';
 
 const menuShadows = document.querySelectorAll('.menuSvg__shadow--js');
 
@@ -377,5 +379,54 @@ export const handleMenuShadows = (index, action) => {
     action === 'activate'
       ? menuShadows[index].classList.add('menuSvg__shadow--visible')
       : menuShadows[index].classList.remove('menuSvg__shadow--visible');
+  }
+};
+
+export const handleMenuOnScroll = () => {
+  if (flags.isScrollEnabled) {
+    // handle indicator and active menu item on section change
+    const newMenuItemIndex = getCurrentSectionIndex(0);
+
+    if (newMenuItemIndex !== menuObj.lastMenuItemIndex) {
+      const prevId = sections[menuObj.lastMenuItemIndex].id;
+      menuButtons[menuObj.lastMenuItemIndex].classList.remove(
+        `menu__button--intro-${prevId}`
+      );
+      menuButtons[menuObj.lastMenuItemIndex].classList.remove(
+        'menu__button--active'
+      );
+      introBox.classList.remove(
+        `visuals__introBox--${sections[menuObj.lastMenuItemIndex].id}`
+      );
+      handleMenuShadows(menuObj.lastMenuItemIndex, 'activate');
+
+      // index change
+      menuObj.lastMenuItemIndex = newMenuItemIndex;
+
+      menuButtons[menuObj.lastMenuItemIndex].classList.add(
+        'menu__button--active'
+      );
+      menuButtons[menuObj.lastMenuItemIndex].focus();
+      introBox.classList.add(
+        `visuals__introBox--${sections[menuObj.lastMenuItemIndex].id}`
+      );
+      handleMenuIndicator();
+      handleMenuShadows(menuObj.lastMenuItemIndex, 'deactivate');
+    }
+
+    // handle all menu items appearance on local id change
+    [...menuButtons].forEach((button, index) => {
+      const singleItemOffset = items[index].offset;
+      const currentSingleItemIndex = items[index].currentSectionIndex;
+      const newSingleItemIndex = getCurrentSectionIndex(singleItemOffset);
+
+      if (newSingleItemIndex !== currentSingleItemIndex) {
+        const currentId = sections[currentSingleItemIndex].id;
+        const newId = sections[newSingleItemIndex].id;
+        button.classList.remove(`menu__button--${currentId}`);
+        items[index].currentSectionIndex = newSingleItemIndex;
+        button.classList.add(`menu__button--${newId}`);
+      }
+    });
   }
 };

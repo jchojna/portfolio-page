@@ -114,3 +114,9 @@ export const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
     }
   });
 };
+
+export const addAccordionEvents = (buttons, tabs) => {
+  [...buttons].forEach((button, index) => {
+    button.addEventListener('click', () => handleAccordion([...tabs], index));
+  });
+};

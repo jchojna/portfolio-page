@@ -17,6 +17,7 @@ import {
   secondTimeoutLg,
 } from './variables';
 import { handleMenuButtons, handleMenuShadows, handleIntroBox } from './menu';
+import { updateSectionsOffsets } from './sections';
 
 const navigationBackButton = document.querySelector(
   '.navigation__button--js-back'

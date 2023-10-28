@@ -44,9 +44,10 @@ import {
   handleMenuIndicator,
   handleIntroMenuItemClick,
   handleMenuItemClick,
+  handleMenuOnScroll,
 } from './scripts/menu';
 import { handleRepo } from './scripts/repoStats';
-import { handleAccordion } from './scripts/accordion';
+import { handleAccordion, addAccordionEvents } from './scripts/accordion';
 import {
   validateForm,
   validateEmail,
@@ -72,116 +73,14 @@ import {
   handleNavOnScroll,
   getCurrentSectionIndex,
 } from './scripts/navigation';
+import { handleUserActivity, updateSectionsOffsets } from './scripts/sections';
+import { handleMobileHeader } from './scripts/mobileHeader';
 
 import './main.scss';
-
-const handleUserActivity = () => {
-  if (flags.shouldSectionsBeUpdated) updateSectionsOffsets();
-  if (!flags.isScrollEnabled) flags.isScrollEnabled = true;
-};
-
-export const updateSectionsOffsets = () => {
-  [...sections].forEach((section, index) => {
-    section.offset = pageSections[index].offsetTop;
-  });
-  flags.shouldSectionsBeUpdated = false;
-};
-
-const addAccordionEvents = (buttons, tabs) => {
-  [...buttons].forEach((button, index) => {
-    button.addEventListener('click', () => handleAccordion([...tabs], index));
-  });
-};
-
-const handleMenuOnScroll = () => {
-  if (flags.isScrollEnabled) {
-    // handle indicator and active menu item on section change
-    const newMenuItemIndex = getCurrentSectionIndex(0);
-
-    if (newMenuItemIndex !== menuObj.lastMenuItemIndex) {
-      const prevId = sections[menuObj.lastMenuItemIndex].id;
-      menuButtons[menuObj.lastMenuItemIndex].classList.remove(
-        `menu__button--intro-${prevId}`
-      );
-      menuButtons[menuObj.lastMenuItemIndex].classList.remove(
-        'menu__button--active'
-      );
-      introBox.classList.remove(
-        `visuals__introBox--${sections[menuObj.lastMenuItemIndex].id}`
-      );
-      handleMenuShadows(menuObj.lastMenuItemIndex, 'activate');
-
-      // index change
-      menuObj.lastMenuItemIndex = newMenuItemIndex;
-
-      menuButtons[menuObj.lastMenuItemIndex].classList.add(
-        'menu__button--active'
-      );
-      menuButtons[menuObj.lastMenuItemIndex].focus();
-      introBox.classList.add(
-        `visuals__introBox--${sections[menuObj.lastMenuItemIndex].id}`
-      );
-      handleMenuIndicator();
-      handleMenuShadows(menuObj.lastMenuItemIndex, 'deactivate');
-    }
-
-    // handle all menu items appearance on local id change
-    [...menuButtons].forEach((button, index) => {
-      const singleItemOffset = items[index].offset;
-      const currentSingleItemIndex = items[index].currentSectionIndex;
-      const newSingleItemIndex = getCurrentSectionIndex(singleItemOffset);
-
-      if (newSingleItemIndex !== currentSingleItemIndex) {
-        const currentId = sections[currentSingleItemIndex].id;
-        const newId = sections[newSingleItemIndex].id;
-        button.classList.remove(`menu__button--${currentId}`);
-        items[index].currentSectionIndex = newSingleItemIndex;
-        button.classList.add(`menu__button--${newId}`);
-      }
-    });
-  }
-};
-
-const handleMobileHeader = () => {
-  if (window.innerWidth >= media.lg) return false;
-  if (flags.isIntroMode) return false;
-  if (window.pageYOffset <= 0) return false;
-
-  const handleHeader = (index, action) => {
-    const currentId = sections[index].id;
-
-    if (action === 'activate') {
-      menuItems[index].classList.remove('menu__item--visible');
-
-      introBox.classList.remove(`visuals__introBox--${currentId}`);
-      burgerButton.classList.remove(`burgerButton--${currentId}`);
-      menuUpperBackground.classList.remove(`visuals__background--${currentId}`);
-    } else if (action === 'deactivate') {
-      menuItems[index].classList.add('menu__item--visible');
-
-      introBox.classList.add(`visuals__introBox--${currentId}`);
-      burgerButton.classList.add(`burgerButton--${currentId}`);
-      menuUpperBackground.classList.add(`visuals__background--${currentId}`);
-    }
-  };
-  const newActiveSectionIndex = getCurrentSectionIndex(0);
-
-  // when index changes
-  if (newActiveSectionIndex !== menuObj.lastMenuItemIndex) {
-    handleHeader(menuObj.lastMenuItemIndex, 'activate');
-    menuObj.lastMenuItemIndex = newActiveSectionIndex;
-    handleHeader(menuObj.lastMenuItemIndex, 'deactivate');
-  }
-};
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
 
 let scrollTimeoutId = null;
 let scrollTotal = 0;
 
-//#region [ Horizon ] VARIABLES - MAIN CONTENT
 const resumeButtons = document.querySelectorAll('.tab__button--js-resume');
 const resumeSubButtons = document.querySelectorAll(
   '.subtab__button--js-resume'
@@ -240,13 +139,11 @@ if (flags.media === 'mediaXs') {
 }
 
 // collapse expandable content on page load
-window.onload = () => {
-  handleIntroAnimation();
-  handleIntroLoader();
-  handleExpandableContent(expandableContent);
+handleIntroAnimation();
+handleIntroLoader();
+handleExpandableContent(expandableContent);
 
-  setContainersMargins();
-};
+setContainersMargins();
 
 // fetch github api
 // fetch('https://api.github.com/users/jchojna/repos')
