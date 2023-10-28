@@ -1,4 +1,4 @@
-import { media } from './variables';
+import { flags, media } from './variables';
 
 const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
 let contentData = [];
