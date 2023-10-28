@@ -25,6 +25,14 @@ import {
   firstTimeoutXs,
   secondTimeoutLg,
   secondTimeoutXs,
+  sectionContainers,
+  otherProjectsTabs,
+  resumeTabs,
+  resumeSubtabs,
+  tasktimerTabs,
+  portfolioTabs,
+  hydrappTabs,
+  quotesTabs,
 } from './scripts/variables';
 import {
   setIntroLoaderPosition,
@@ -54,164 +62,14 @@ import {
   addReadMoreEvent,
 } from './scripts/expandable';
 import { handleBurgerButton } from './scripts/burgerButton';
+import {
+  handleWindowResize,
+  handleTopMargins,
+  setMediaFlags,
+  setContainersMargins,
+} from './scripts/resize';
 
 import './main.scss';
-
-const getCurrentMedia = () => {
-  return window.innerWidth >= media.lg
-    ? 'mediaLg'
-    : window.innerWidth >= media.md
-    ? 'mediaMd'
-    : window.innerWidth >= media.sm
-    ? 'mediaSm'
-    : 'mediaXs';
-};
-
-const getMenuLayout = () => {
-  return window.innerWidth >= media.lg ? 'side' : 'burger';
-};
-
-const handleWindowResize = () => {
-  const menuLayout = getMenuLayout();
-  const media = getCurrentMedia();
-
-  // update top margin only on large screen devices
-  if (media === 'mediaLg') {
-    [...sectionContainers].forEach((container) => {
-      handleTopMargins(container, minTopMargin);
-    });
-  }
-
-  // handle changes on breakpoint
-  if (menuLayout !== flags.menuLayout) {
-    flags.menuLayout = menuLayout;
-    flags.isMobileHeader = false;
-    flags.isIntroMode = true;
-
-    // handle main containers
-    pageContainer.classList.remove('pageContainer--visible');
-    pageContainer.classList.remove('pageContainer--smooth');
-    pageHeader.classList.add('pageHeader--intro');
-    menu.classList.add('menu--intro');
-    navigation.classList.remove('navigation--visible');
-
-    // update menu items heights
-    [...menuItems].forEach(
-      (item, index) => (items[index].height = item.clientHeight)
-    );
-    [...navigation.children].forEach((child) => {
-      child.classList.remove('navigation__button--hidden');
-    });
-
-    // show all menu shadows
-    handleMenuShadows('all', 'activate');
-
-    // handle introBox and menu indicator
-    introBox.classList.add('visuals__introBox--visible');
-    introBox.classList.add('visuals__introBox--centered');
-    introBox.classList.remove('visuals__introBox--fullWindow');
-    introBox.classList.remove('visuals__introBox--halfWindow');
-    introBox.classList.remove('visuals__introBox--content');
-    menuIndicator.classList.remove('pageHeader__indicator--visible');
-    menuIndicator.style.top = 0;
-
-    // collapse accordion sections
-    handleAccordion([...resumeSubtabs]);
-    handleAccordion([...resumeTabs]);
-    handleAccordion([...tasktimerTabs]);
-    handleAccordion([...portfolioTabs]);
-    handleAccordion([...hydrappTabs]);
-    handleAccordion([...quotesTabs]);
-
-    handleIntroBox();
-
-    switch (menuLayout) {
-      // load configuration for large screens
-      case 'side':
-        const currentId = sections[menuObj.lastMenuItemIndex].id;
-
-        // change menu items to be in a static position
-        [...menuItems].forEach((item) => {
-          item.classList.remove('menu__item--mobileHeader');
-          item.classList.add('menu__item--visible');
-          item.classList.remove('menu__item--minimized');
-          item.style.top = '';
-        });
-
-        // handle menu buttons colors
-        [...menuButtons].forEach((button, index) => {
-          const currentId = sections[index].id;
-
-          button.style.width = '';
-          index !== menuObj.lastMenuItemIndex
-            ? menuButtons[index].classList.remove(
-                `menu__button--intro-${currentId}`
-              )
-            : false;
-        });
-
-        // handle backgrounds
-        menuUpperBackground.style.height = '';
-        menuBottomBackground.style.height = '';
-        menuUpperBackground.classList.remove('visuals__background--animated');
-        menuBottomBackground.classList.remove('visuals__background--animated');
-        menuUpperBackground.classList.remove(
-          `visuals__background--${currentId}`
-        );
-
-        // handle burger button appearance
-        burgerButton.classList.remove('burgerButton--visible');
-        burgerButton.classList.remove(`burgerButton--${currentId}`);
-
-        break;
-
-      // load configuration for small and medium screens
-      case 'burger':
-        [...sectionContainers].forEach(
-          (container) => (container.style.marginTop = '')
-        );
-        // handle menu buttons colors
-        [...menuButtons].forEach((button, index) => {
-          const currentId = sections[menuObj.lastMenuItemIndex].id;
-          button.classList.remove(`menu__button--${currentId}`);
-
-          if (index === menuObj.lastMenuItemIndex) {
-            button.classList.remove('menu__button--active');
-            button.classList.add(`menu__button--intro-${currentId}`);
-          }
-        });
-        introBox.classList.add('visuals__introBox--content');
-
-        // handle bacground appearance
-        menuUpperBackground.classList.remove('visuals__background--hidden');
-        menuBottomBackground.classList.remove('visuals__background--hidden');
-
-        break;
-      default:
-        break;
-    }
-  }
-
-  if (media !== flags.media) {
-    flags.media = media;
-
-    switch (media) {
-      case 'mediaMd':
-      case 'mediaSm':
-        // expand other projects accordion section
-        handleAccordion([...otherProjectsTabs], undefined, 'all');
-        break;
-
-      case 'mediaXs':
-        // collapse other projects accordion section
-        handleAccordion([...otherProjectsTabs]);
-        break;
-
-      default:
-        break;
-    }
-  }
-};
 
 const handleUserActivity = () => {
   if (flags.shouldSectionsBeUpdated) updateSectionsOffsets();
@@ -244,14 +102,6 @@ const getCurrentSectionIndex = (scrollOffset) => {
 const getCurrentNavigationIndex = () => {
   const navigationOffset = navigation.offsetTop + navigation.clientHeight / 2;
   return getCurrentSectionIndex(navigationOffset);
-};
-
-const handleTopMargins = (element, distance) => {
-  // this functionality I found more reasonable to be handled in JS,
-  // because of expandable content inside section containers
-  // distorting and complicating content layout
-  const margin = (window.innerHeight - element.clientHeight) / 2;
-  element.style.marginTop = `${margin > distance ? margin : distance}px`;
 };
 
 const addAccordionEvents = (buttons, tabs) => {
@@ -489,28 +339,19 @@ let scrollTimeoutId = null;
 let scrollTotal = 0;
 
 //#region [ Horizon ] VARIABLES - MAIN CONTENT
-const sectionContainers = document.querySelectorAll('.section__container--js');
-const minTopMargin = 30;
-const resumeTabs = document.querySelectorAll('.tab--js-resume');
 const resumeButtons = document.querySelectorAll('.tab__button--js-resume');
-const resumeSubtabs = document.querySelectorAll('.subtab--js-resume');
 const resumeSubButtons = document.querySelectorAll(
   '.subtab__button--js-resume'
 );
-const tasktimerTabs = document.querySelectorAll('.tab--js-tasktimer');
 const tasktimerButtons = document.querySelectorAll(
   '.tab__button--js-tasktimer'
 );
-const portfolioTabs = document.querySelectorAll('.tab--js-portfolio');
 const portfolioButtons = document.querySelectorAll(
   '.tab__button--js-portfolio'
 );
-const hydrappTabs = document.querySelectorAll('.tab--js-hydrapp');
 const hydrappButtons = document.querySelectorAll('.tab__button--js-hydrapp');
-const quotesTabs = document.querySelectorAll('.tab--js-quotes');
 const quotesButtons = document.querySelectorAll('.tab__button--js-quotes');
 
-const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
 const otherProjectsButtons = document.querySelectorAll(
   '.tab__button--js-other'
 );
@@ -543,8 +384,7 @@ const expandableContent = document.querySelectorAll('.js-expandable');
 // page load with no animation intro
 ////////////////////////////////////////////////////////////////////////////////
 
-flags.media = getCurrentMedia();
-flags.menuLayout = getMenuLayout();
+setMediaFlags();
 
 setIntroLoaderPosition(introLoader);
 loadIntroContent();
@@ -570,12 +410,7 @@ window.onload = () => {
   handleIntroLoader();
   handleExpandableContent(expandableContent);
 
-  // set each section's container top margin
-  if (flags.media === 'mediaLg') {
-    [...sectionContainers].forEach((container) => {
-      handleTopMargins(container, minTopMargin);
-    });
-  }
+  setContainersMargins();
 };
 
 // fetch github api

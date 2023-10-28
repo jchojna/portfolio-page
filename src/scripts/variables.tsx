@@ -69,3 +69,12 @@ export const firstTimeoutXs = 300;
 export const secondTimeoutXs = 600;
 export const firstTimeoutLg = 500;
 export const secondTimeoutLg = 500;
+
+export const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
+
+export const resumeTabs = document.querySelectorAll('.tab--js-resume');
+export const resumeSubtabs = document.querySelectorAll('.subtab--js-resume');
+export const tasktimerTabs = document.querySelectorAll('.tab--js-tasktimer');
+export const portfolioTabs = document.querySelectorAll('.tab--js-portfolio');
+export const hydrappTabs = document.querySelectorAll('.tab--js-hydrapp');
+export const quotesTabs = document.querySelectorAll('.tab--js-quotes');
