@@ -1,18 +1,22 @@
 import { flags } from './variables';
 
-const findFirstParentWithClass = (element, className) => {
+const findFirstParentWithClass = (element: HTMLElement, className: string) => {
   while (element.tagName !== 'HTML' && !element.classList.contains(className)) {
-    element = element.parentNode;
+    element = element.parentNode as HTMLElement;
   }
   return element;
 };
 
-export const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
+export const handleAccordion = (
+  tabs: HTMLElement[],
+  clickedIndex?: number,
+  excludeIndex?: number | string
+) => {
   tabs.forEach((tab, index) => {
-    const container = tab.querySelector('[class*=container]');
-    const content = container.firstElementChild;
-    const button = tab.querySelector('[class*="button"]');
-    const mark = tab.querySelector('[class*="mark"]');
+    const container: HTMLElement = tab.querySelector('[class*=container]')!;
+    const content: Element | null = container.firstElementChild;
+    const button: HTMLElement = tab.querySelector('[class*="button"]')!;
+    const mark: HTMLElement = tab.querySelector('[class*="mark"]')!;
 
     // when specific tab is being clicked
     if (clickedIndex !== undefined) {
@@ -23,17 +27,17 @@ export const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
 
       // handle clicked tab
       if (clickedIndex === index) {
-        const height = container.style.height;
+        const height: string = container.style.height;
         // apply transition effect
         if (!container.classList.contains('rollable'))
           container.classList.add('rollable');
         // apply transformations
-        if (height === 0 || height === '0px') {
+        if (height === '0px' && content) {
           container.style.height = `${content.clientHeight}px`;
           button.classList.add(`${subtab ? 'sub' : ''}tab__button--unrolled`);
           mark.classList.add('mark--unrolled');
         } else {
-          container.style.height = 0;
+          container.style.height = '0px';
           button.classList.remove(
             `${subtab ? 'sub' : ''}tab__button--unrolled`
           );
@@ -41,19 +45,20 @@ export const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
         }
 
         // when subtab clicked
-        if (subtab) {
+        if (subtab && container.parentNode) {
           const parentContainer = findFirstParentWithClass(
-            container.parentNode,
+            container.parentNode as HTMLElement,
             'container'
           );
           const subtabsHeaders =
             parentContainer.querySelectorAll('.subtab__header');
-          const subtabsContainers =
+          const subtabsContainers: NodeListOf<HTMLElement> =
             parentContainer.querySelectorAll('[class*=container]');
           const isUnrolled = mark.classList.contains('mark--unrolled');
 
-          const clickedSubtabsContainerHeight =
-            container.firstElementChild.clientHeight;
+          const clickedSubtabsContainerHeight = container.firstElementChild
+            ? container.firstElementChild.clientHeight
+            : 0;
           const subtabsHeadersHeights = [...subtabsHeaders].reduce(
             (acc, curr) => acc + curr.clientHeight,
             0
@@ -63,13 +68,15 @@ export const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
           if (flags.media === 'mediaLg') {
             height = isUnrolled ? clickedSubtabsContainerHeight : 0;
           } else {
-            height = [...subtabsContainers].reduce(
-              (acc, curr) =>
-                curr.style.height === '0px'
+            height = [...subtabsContainers].reduce((acc, curr) => {
+              if (curr.firstElementChild) {
+                return curr.style.height === '0px'
                   ? acc
-                  : acc + curr.firstElementChild.clientHeight,
-              0
-            );
+                  : acc + curr.firstElementChild.clientHeight;
+              } else {
+                return acc;
+              }
+            }, 0);
           }
 
           height += subtabsHeadersHeights;
@@ -81,7 +88,7 @@ export const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
       } else {
         // collapse other tabs only on large screens
         if (flags.media === 'mediaLg') {
-          container.style.height = 0;
+          container.style.height = '0px';
           button.classList.remove(
             `${subtab ? 'sub' : ''}tab__button--unrolled`
           );
@@ -92,7 +99,7 @@ export const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
       // handle elements on page load or media breakpoint
     } else {
       if (index !== excludeIndex && excludeIndex !== 'all') {
-        container.style.height = 0;
+        container.style.height = '0px';
         mark.classList.remove('mark--unrolled');
         button.classList.remove('tab__button--unrolled');
       } else if (excludeIndex === 'all') {
@@ -106,7 +113,7 @@ export const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
           button.classList.remove('tab__button--unrolled');
         }
       } else {
-        container.style.height = `${content.clientHeight}px`;
+        container.style.height = `${content ? content.clientHeight : 0}px`;
         mark.classList.add('mark--unrolled');
         button.classList.add('tab__button--unrolled');
         container.classList.add('rollable');
@@ -115,7 +122,10 @@ export const handleAccordion = (tabs, clickedIndex, excludeIndex) => {
   });
 };
 
-export const addAccordionEvents = (buttons, tabs) => {
+export const addAccordionEvents = (
+  buttons: NodeListOf<Element>,
+  tabs: NodeListOf<HTMLElement>
+) => {
   [...buttons].forEach((button, index) => {
     button.addEventListener('click', () => handleAccordion([...tabs], index));
   });

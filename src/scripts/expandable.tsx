@@ -1,9 +1,16 @@
 import { flags, media } from './variables';
 
+type ContentData = {
+  fullHeight?: number;
+  availableHeight?: number;
+  html: string;
+  children: any;
+};
 const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
-let contentData = [];
+let contentData: ContentData[] = [];
 
-export const handleReadMore = (e) => {
+export const handleReadMore = (e: Event) => {
+  if (!e.target) return;
   const { index, parentNode } = e.target;
   const wrapper = parentNode.querySelector('.wrapper');
   const expandableNode = parentNode.querySelector('.js-expandable');
@@ -109,8 +116,8 @@ const reduceContent = (data, container, available, parent) => {
 export const handleExpandableContent = () => {
   const expandableContent = document.querySelectorAll('.js-expandable');
   // aquire html and children of every children node and its own children
-  const getChildren = (content) => {
-    let array = [];
+  const getChildren = (content: HTMLElement) => {
+    let array: ContentData[] = [];
     [...content.children].forEach(
       (child) =>
         (array = [
@@ -138,7 +145,7 @@ export const handleExpandableContent = () => {
     // copy original content node and hide it
     const wrapper = document.createElement('div');
     wrapper.className = 'wrapper';
-    const contentCopy = content.cloneNode(true);
+    const contentCopy = content.cloneNode(true) as Element;
     contentCopy.classList.remove('js-expandable');
     contentCopy.classList.add('js-expanded');
     contentCopy.classList.add('expandedHidden');

@@ -41,7 +41,7 @@ const getCurrentItemIndex = (cursorYPosition) => {
   );
 };
 
-export const handleIntroMenu = (e) => {
+export const handleIntroMenu = (e: MouseEvent) => {
   if (flags.isMenuTransforming) return false;
   if (!flags.isIntroMode) return false;
 

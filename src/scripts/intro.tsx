@@ -2,17 +2,18 @@ import {
   media,
   intro,
   introLoader,
-  introGrid,
   introBox,
   menuItems,
   pageHeader,
 } from './variables';
 
 let introText = 'jakub chojna frontend projects';
+const intro = document.querySelector('.intro--js');
+const introLoader = document.getElementById('intro_loader');
 const introItemWidth =
   window.innerWidth >= media.lg ? 35 : window.innerWidth >= media.md ? 35 : 20;
 const introItemHeight = 2 * introItemWidth;
-
+const introGrid = document.querySelector('.grid--js');
 const introSkip = document.querySelector('.intro__skip--js');
 const visuals = document.querySelector('.visuals--js');
 

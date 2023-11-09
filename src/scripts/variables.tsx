@@ -1,4 +1,4 @@
-export const flags = {
+export const flags: Flags = {
   isIntroMode: true,
   isMenuTransforming: false,
   shouldSectionsBeUpdated: false,
@@ -7,65 +7,69 @@ export const flags = {
   media: null,
   menuLayout: null,
 };
-
-export const media = {
+export const media: Media = {
   sm: 380,
   md: 768,
   lg: 1200,
 };
-
 export const menuObj = {
   lastMenuItemIndex: 0,
   currentNavigationIndex: null,
 };
-
 // intro
-export const intro = document.querySelector('.intro--js');
-export const introLoader = document.getElementById('intro_loader');
-export let introGrid = document.querySelector('.grid--js');
-export const introBox = document.querySelector('.visuals__introBox--js');
-
+export const introBox: HTMLElement = document.querySelector(
+  '.visuals__introBox--js'
+)!;
 // menu
-export const menu = document.querySelector('.menu--js');
-export const menuItems = document.querySelectorAll('.menu__item--js');
-export const pageHeader = document.querySelector('.pageHeader--js');
-
-export const pageContainer = document.querySelector('.pageContainer--js');
-export const pageSections = document.querySelectorAll('.section--js');
-export const sections = [...pageSections].map((section, index) => ({
+export const menu: HTMLElement = document.querySelector('.menu--js')!;
+export const menuItems: NodeListOf<HTMLElement> =
+  document.querySelectorAll('.menu__item--js');
+export const menuButtons: NodeListOf<HTMLElement> =
+  document.querySelectorAll('.menu__button--js');
+export const menuIndicator: HTMLElement = document.querySelector(
+  '.pageHeader__indicator--js'
+)!;
+export const menuUpperBackground: HTMLElement = document.querySelector(
+  '.visuals__background--js-upper'
+)!;
+export const menuBottomBackground: HTMLElement = document.querySelector(
+  '.visuals__background--js-bottom'
+)!;
+// navigation
+export const burgerButton: HTMLElement =
+  document.querySelector('.burgerButton--js')!;
+export const navigation: HTMLElement =
+  document.querySelector('.navigation--js')!;
+// sections
+export const pageHeader: HTMLElement =
+  document.querySelector('.pageHeader--js')!;
+export const pageContainer: HTMLElement =
+  document.querySelector('.pageContainer--js')!;
+export const pageSections: NodeListOf<HTMLElement> =
+  document.querySelectorAll('.section--js');
+export const sections: Section[] = [...pageSections].map((section, index) => ({
   index,
   id: section.id,
   node: section,
   offset: section.offsetTop,
 }));
-export const menuButtons = document.querySelectorAll('.menu__button--js');
-export const menuIndicator = document.querySelector(
-  '.pageHeader__indicator--js'
-);
-
-export const menuUpperBackground = document.querySelector(
-  '.visuals__background--js-upper'
-);
-export const menuBottomBackground = document.querySelector(
-  '.visuals__background--js-bottom'
-);
-export const burgerButton = document.querySelector('.burgerButton--js');
-export const menuShadows = document.querySelectorAll('.menuSvg__shadow--js');
-export const menuLabels = document.querySelectorAll('.label--js');
-//#endregion
-//#region [ Horizon ] VARIABLES - NAVIGATION
-export const navigation = document.querySelector('.navigation--js');
-
-export const firstTimeoutXs = 300;
-export const secondTimeoutXs = 600;
-export const firstTimeoutLg = 500;
-export const secondTimeoutLg = 500;
-
-export const otherProjectsTabs = document.querySelectorAll('.tab--js-other');
-
-export const resumeTabs = document.querySelectorAll('.tab--js-resume');
-export const resumeSubtabs = document.querySelectorAll('.subtab--js-resume');
-export const tasktimerTabs = document.querySelectorAll('.tab--js-tasktimer');
-export const portfolioTabs = document.querySelectorAll('.tab--js-portfolio');
-export const hydrappTabs = document.querySelectorAll('.tab--js-hydrapp');
-export const quotesTabs = document.querySelectorAll('.tab--js-quotes');
+// timeouts
+export const firstTimeoutXs: number = 300;
+export const secondTimeoutXs: number = 600;
+export const firstTimeoutLg: number = 500;
+export const secondTimeoutLg: number = 500;
+// tabs
+export const resumeTabs: NodeListOf<HTMLElement> =
+  document.querySelectorAll('.tab--js-resume');
+export const resumeSubtabs: NodeListOf<HTMLElement> =
+  document.querySelectorAll('.subtab--js-resume');
+export const tasktimerTabs: NodeListOf<HTMLElement> =
+  document.querySelectorAll('.tab--js-tasktimer');
+export const portfolioTabs: NodeListOf<HTMLElement> =
+  document.querySelectorAll('.tab--js-portfolio');
+export const hydrappTabs: NodeListOf<HTMLElement> =
+  document.querySelectorAll('.tab--js-hydrapp');
+export const quotesTabs: NodeListOf<HTMLElement> =
+  document.querySelectorAll('.tab--js-quotes');
+export const otherProjectsTabs: NodeListOf<HTMLElement> =
+  document.querySelectorAll('.tab--js-other');

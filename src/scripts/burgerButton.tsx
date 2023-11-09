@@ -21,14 +21,15 @@ export const handleBurgerButton = () => {
   if (flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
 
-  const windowHeight = window.innerHeight;
-  const activeintroItemHeight = items[menuObj.lastMenuItemIndex].height;
-  const activeItemOffset = items[menuObj.lastMenuItemIndex].offset;
-  const activeId = sections[menuObj.lastMenuItemIndex].id;
-  const upperBackgroundHeight = activeintroItemHeight + activeItemOffset;
-  const bottomBackgroundHeight = windowHeight - upperBackgroundHeight;
-  const upwardsOffset = activeItemOffset;
-  const downwardsOffset =
+  const windowHeight: number = window.innerHeight;
+  const activeintroItemHeight: number = items[menuObj.lastMenuItemIndex].height;
+  const activeItemOffset: number = items[menuObj.lastMenuItemIndex].offset;
+  const activeId: string = sections[menuObj.lastMenuItemIndex].id;
+  const upperBackgroundHeight: number =
+    activeintroItemHeight + activeItemOffset;
+  const bottomBackgroundHeight: number = windowHeight - upperBackgroundHeight;
+  const upwardsOffset: number = activeItemOffset;
+  const downwardsOffset: number =
     windowHeight - activeItemOffset - activeintroItemHeight;
 
   flags.isMenuTransforming = true;

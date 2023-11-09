@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { addAccordionEvents, handleAccordion } from './scripts/accordion';
 import { handleBurgerButton } from './scripts/burgerButton';
 import { addFormEvents } from './scripts/contactForm';
@@ -52,7 +50,9 @@ import {
 
 import './main.scss';
 
-const resumeButtons = document.querySelectorAll('.tab__button--js-resume');
+const resumeButtons: NodeListOf<Element> = document.querySelectorAll(
+  '.tab__button--js-resume'
+);
 const resumeSubButtons = document.querySelectorAll(
   '.subtab__button--js-resume'
 );
@@ -68,15 +68,16 @@ const otherProjectsButtons = document.querySelectorAll(
   '.tab__button--js-other'
 );
 
-export const items = [...menuItems].map((item, index) => ({
+export const items: Item[] = [...menuItems].map((item, index) => ({
   index,
   node: item,
-  offset: item.offsetTop + menu.offsetTop,
+  offset: item.offsetTop + item.offsetTop,
   height: item.clientHeight,
   currentSectionIndex: getCurrentSectionIndex(item.offsetTop + menu.offsetTop),
 }));
 
-const formInputs = document.querySelectorAll('.form__input--js');
+const formInputs: NodeListOf<HTMLInputElement> =
+  document.querySelectorAll('.form__input--js');
 
 ////////////////////////////////////////////////////////////////////////////////
 // page load with no animation intro
@@ -90,7 +91,7 @@ const formInputs = document.querySelectorAll('.form__input--js');
 setMediaFlags();
 setIntroLoaderPosition();
 loadIntroContent();
-handleIntroMenu();
+handleIntroMenu(event);
 handleIntroAnimation();
 handleIntroLoader();
 handleExpandableContent();
@@ -154,12 +155,11 @@ addReadMoreEvent();
 
 // SAVE FORM INPUTS VALUES TO LOCAL STORAGE
 [...formInputs].forEach((input) => {
-  input.addEventListener('keyup', (e) =>
-    localStorage.setItem(e.target.id, e.target.value)
-  );
-  input.value = localStorage.getItem(input.id)
-    ? localStorage.getItem(input.id)
-    : '';
+  input.addEventListener('keyup', (event) => {
+    const target = event.target as HTMLInputElement;
+    target && localStorage.setItem(target.id, target.value);
+  });
+  input.value = localStorage.getItem(input.id) || '';
 });
 
 addFormEvents();
