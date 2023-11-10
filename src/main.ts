@@ -92,7 +92,7 @@ const formInputs: NodeListOf<HTMLInputElement> =
 setMediaFlags();
 setIntroLoaderPosition();
 loadIntroContent();
-handleIntroMenu(event);
+handleIntroMenu();
 handleIntroAnimation();
 handleIntroLoader();
 handleExpandableContent();

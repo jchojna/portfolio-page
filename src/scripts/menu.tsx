@@ -30,7 +30,7 @@ import { updateSectionsOffsets } from './sections';
 
 const menuShadows = document.querySelectorAll('.menuSvg__shadow--js');
 
-const getCurrentItemIndex = (cursorYPosition) => {
+const getCurrentItemIndex = (cursorYPosition: number) => {
   return (
     items.length -
     1 -
@@ -41,7 +41,7 @@ const getCurrentItemIndex = (cursorYPosition) => {
   );
 };
 
-export const handleIntroMenu = (e: MouseEvent) => {
+export const handleIntroMenu = (e?: MouseEvent) => {
   if (flags.isMenuTransforming) return false;
   if (!flags.isIntroMode) return false;
 
@@ -63,7 +63,7 @@ export const handleIntroMenu = (e: MouseEvent) => {
   }
 };
 
-const handleMenuItemColor = (index, action) => {
+const handleMenuItemColor = (index: number, action: string) => {
   const id = sections[index].id;
 
   if (action === 'activate') {
@@ -75,7 +75,7 @@ const handleMenuItemColor = (index, action) => {
   }
 };
 
-const handleNavOnClick = (index, action) => {
+const handleNavOnClick = (index: number, action: string) => {
   const currentId = sections[index].id;
   // remove current appearance
   if (action === 'activate') {
@@ -93,11 +93,12 @@ const handleNavOnClick = (index, action) => {
   }
 };
 
-export const handleIntroMenuItemClick = (e) => {
+export const handleIntroMenuItemClick = (e: Event) => {
   if (!flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
 
-  const activeIndex = e.target.index;
+  const target = e.target as TargetWithIndex;
+  const activeIndex = target.index;
   flags.isMenuTransforming = true;
   updateSectionsOffsets();
 
@@ -161,11 +162,11 @@ export const handleIntroMenuItemClick = (e) => {
 
       // set position of introBox
       introBox.classList.add('visuals__introBox--content');
-      introBox.style.top = 0;
+      introBox.style.top = '0px';
 
       // handle menu background
       menuUpperBackground.style.height = `${clickedintroItemHeight}px`;
-      menuBottomBackground.style.height = 0;
+      menuBottomBackground.style.height = '0px';
       menuUpperBackground.classList.add('visuals__background--animated');
       menuBottomBackground.classList.add('visuals__background--animated');
 
@@ -173,7 +174,7 @@ export const handleIntroMenuItemClick = (e) => {
       pageHeader.classList.remove('pageHeader--intro');
 
       // hide all menu shadows
-      handleMenuShadows('all', 'deactivate');
+      handleMenuShadows(-2, 'deactivate');
 
       navigateToSection(activeIndex);
       clearTimeout(firstTimeoutId);
@@ -186,7 +187,7 @@ export const handleIntroMenuItemClick = (e) => {
           if (index !== activeIndex) {
             item.classList.remove('menu__item--visible');
             item.classList.add('menu__item--minimized');
-            item.style.top = 0;
+            item.style.top = '0px';
             items[index].width = menuButtons[index].clientWidth;
             menuButtons[index].classList.add(
               `menu__button--intro-${sectionId}`
@@ -222,7 +223,7 @@ export const handleIntroMenuItemClick = (e) => {
     flags.isIntroMode = false;
     menuObj.currentNavigationIndex = activeIndex;
     // handle introBox
-    introBox.style.top = 0;
+    introBox.style.top = '0px';
     introBox.classList.add('visuals__introBox--content');
     introBox.classList.add('visuals__introBox--halfWindow');
     // handle menu indicator
@@ -281,13 +282,14 @@ export const handleIntroMenuItemClick = (e) => {
   //#endregion
 };
 
-export const handleMenuItemClick = (e) => {
+export const handleMenuItemClick = (e: Event) => {
   // works only in content view on desktop devices
   if (flags.isIntroMode) return false;
   if (flags.isMenuTransforming) return false;
   if (window.innerWidth < media.lg) return false;
 
-  const activeIndex = e.target.index;
+  const target = e.target as TargetWithIndex;
+  const activeIndex = target.index;
   flags.isScrollEnabled = false;
 
   // navigate to selected section
@@ -305,7 +307,7 @@ export const handleMenuItemClick = (e) => {
   handleMenuShadows(menuObj.currentNavigationIndex, 'deactivate');
 };
 
-const handleMenuButtonChange = (index) => {
+const handleMenuButtonChange = (index: number) => {
   if (flags.shouldSectionsBeUpdated) updateSectionsOffsets();
 
   if (menuObj.lastMenuItemIndex !== index) {
@@ -316,7 +318,7 @@ const handleMenuButtonChange = (index) => {
   }
 };
 
-export const handleMenuButtons = (activeIndex, action) => {
+export const handleMenuButtons = (activeIndex: number, action: string) => {
   // add new appearance
   if (action === 'activate') {
     const currentId = sections[activeIndex].id;
@@ -355,21 +357,20 @@ const getCurrentItemOffset = () => {
   return currentYOffset - viewOffset;
 };
 
-export const handleIntroBox = (e) => {
-  if (!flags.isIntroMode) return false;
-  removeTransitionsOnEvent(e, introBox, 'visuals__introBox');
+export const handleIntroBox = (e?: Event): void => {
+  if (!flags.isIntroMode) return;
+  if (e) removeTransitionsOnEvent(e, introBox, 'visuals__introBox');
   introBox.style.top = `${getCurrentItemOffset()}px`;
 };
 
-export const handleMenuIndicator = (e) => {
-  if (flags.isIntroMode) return false;
-  if (flags.media === 'mediaXs') return false;
+export const handleMenuIndicator = (e?: Event): void => {
+  if (flags.isIntroMode || flags.media === 'mediaXs' || !e) return;
   removeTransitionsOnEvent(e, menuIndicator, 'pageHeader__indicator');
   menuIndicator.style.top = `${getCurrentItemOffset()}px`;
 };
 
-export const handleMenuShadows = (index, action) => {
-  if (index === 'all') {
+export const handleMenuShadows = (index: number, action: string) => {
+  if (index === -2) {
     [...menuShadows].forEach((shadow) =>
       action === 'activate'
         ? shadow.classList.add('menuSvg__shadow--visible')

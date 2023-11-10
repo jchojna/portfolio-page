@@ -15,7 +15,7 @@ type Item = {
   offset: number;
   height: number;
   currentSectionIndex: number;
-  width: number;
+  width?: number;
 };
 
 type Media = {
@@ -41,3 +41,10 @@ type Alert = {
 };
 
 type ReadMoreButton = HTMLElement & { index: number; innerHTML: string };
+
+type MenuObj = {
+  lastMenuItemIndex: number;
+  currentNavigationIndex: number;
+};
+
+type TargetWithIndex = EventTarget & { index: number };

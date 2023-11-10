@@ -95,7 +95,7 @@ export const handleWindowResize = () => {
     });
 
     // show all menu shadows
-    handleMenuShadows('all', 'activate');
+    handleMenuShadows(-2, 'activate');
 
     // handle introBox and menu indicator
     introBox.classList.add('visuals__introBox--visible');
@@ -114,7 +114,7 @@ export const handleWindowResize = () => {
     handleAccordion([...hydrappTabs]);
     handleAccordion([...quotesTabs]);
 
-    handleIntroBox(event);
+    handleIntroBox();
 
     switch (menuLayout) {
       // load configuration for large screens

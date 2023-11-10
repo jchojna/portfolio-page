@@ -3,7 +3,7 @@ export const flags: Flags = {
   isMenuTransforming: false,
   shouldSectionsBeUpdated: false,
   isScrollEnabled: false,
-  isFastScroll: true,
+  isFastScroll: false,
   isMobileHeader: false,
   media: null,
   menuLayout: null,
@@ -13,7 +13,7 @@ export const media: Media = {
   md: 768,
   lg: 1200,
 };
-export const menuObj = {
+export const menuObj: MenuObj = {
   lastMenuItemIndex: 0,
   currentNavigationIndex: 0,
 };
@@ -25,7 +25,7 @@ export const introBox: HTMLElement = document.querySelector(
 export const menu: HTMLElement = document.querySelector('.menu--js')!;
 export const menuItems: NodeListOf<HTMLElement> =
   document.querySelectorAll('.menu__item--js');
-export const menuButtons: NodeListOf<HTMLElement> =
+export const menuButtons: NodeListOf<HTMLElement & { index: number }> =
   document.querySelectorAll('.menu__button--js');
 export const menuIndicator: HTMLElement = document.querySelector(
   '.pageHeader__indicator--js'

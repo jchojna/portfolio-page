@@ -80,7 +80,7 @@ export const handleBurgerButton = (): void => {
     burgerButton.classList.remove(`burgerButton--${activeId}`);
 
     // show all menu shadows
-    handleMenuShadows('all', 'activate');
+    handleMenuShadows(-2, 'activate');
 
     clearTimeout(firstTimeoutId);
 
