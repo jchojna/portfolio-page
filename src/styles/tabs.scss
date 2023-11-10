@@ -5,12 +5,20 @@
 .subtab {
   position: relative;
   margin-top: 30px;
-  
-  &--profiles { grid-area: profiles; }
-  &--working { grid-area: working; }
-  &--knowing { grid-area: knowing; }
-  &--learning { grid-area: learning; }
-  
+
+  &--profiles {
+    grid-area: profiles;
+  }
+  &--working {
+    grid-area: working;
+  }
+  &--knowing {
+    grid-area: knowing;
+  }
+  &--learning {
+    grid-area: learning;
+  }
+
   &--resume {
     color: $color-resume-diff;
   }
@@ -30,7 +38,7 @@
   &--languages {
     grid-area: languages;
   }
-  
+
   &--description,
   &--features {
     display: flex;
@@ -57,7 +65,7 @@
     overflow: initial;
     text-transform: lowercase;
   }
-  
+
   &--other {
     color: $color-other-diff;
   }
@@ -68,14 +76,13 @@
   }
 
   @media only screen and (min-width: $media-md) {
-
     & {
       margin-top: 0;
 
       &--description {
         padding-right: 20px;
       }
-      
+
       &--features {
         padding-right: 20px;
       }
@@ -91,12 +98,10 @@
         justify-content: space-between;
 
         &:hover {
-          
           & .mark {
             background-color: $color-other-diff;
             height: 100px;
-            transition:
-              background-color $tabHeader-time,
+            transition: background-color $tabHeader-time,
               height $tabHeader-time $tabHeader-time ease-out,
               width $tabHeader-time ease-in;
             width: $separator-width;
@@ -105,15 +110,12 @@
           & .tab__button--other {
             color: $color-other-diff;
             padding-left: $otherHeading-size-lg;
-            transition:
-              color $tabHeader-time,
-              padding-left $tabHeader-time;
+            transition: color $tabHeader-time, padding-left $tabHeader-time;
           }
 
           & .tab__description--other {
             color: $color-other-white;
-            transition:
-              color $tabHeader-time;
+            transition: color $tabHeader-time;
           }
         }
       }
@@ -137,18 +139,27 @@
       font-size: $features-category-size-xs;
     }
 
-    &--hydrapp   { color: $color-hydrapp-white; }
-    &--tasktimer { color: $color-tasktimer-white; }
-    &--portfolio { color: $color-portfolio-white; }
-    &--archviz   { color: $color-archviz-white; }
-    &--quotes    { color: $color-quotes-white; }
-    
+    &--hydrapp {
+      color: $color-hydrapp-white;
+    }
+    &--tasktimer {
+      color: $color-tasktimer-white;
+    }
+    &--portfolio {
+      color: $color-portfolio-white;
+    }
+    &--archviz {
+      color: $color-archviz-white;
+    }
+    &--quotes {
+      color: $color-quotes-white;
+    }
+
     &--other {
       font-size: $otherHeading-size-xs;
     }
 
     @media only screen and (min-width: $media-md) {
-  
       & {
         font-size: $tabHeader-size-lg;
 
@@ -173,51 +184,64 @@
     text-transform: uppercase;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width:  $separator-width;
+      width: $separator-width;
       height: 110px;
     }
 
     &--about {
       color: $color-about-diff;
-      &::before { background-color: $color-about-diff; }
+      &::before {
+        background-color: $color-about-diff;
+      }
     }
     &--aboutMe {
       display: none;
     }
     &--resume {
       color: $color-resume-diff;
-      &::before { background-color: $color-resume-diff; }
+      &::before {
+        background-color: $color-resume-diff;
+      }
     }
     &--tasktimer {
       color: $color-tasktimer-diff;
-      &::before { background-color: $color-tasktimer-diff; }
+      &::before {
+        background-color: $color-tasktimer-diff;
+      }
     }
     &--portfolio {
       color: $color-portfolio-diff;
-      &::before { background-color: $color-portfolio-diff; }
+      &::before {
+        background-color: $color-portfolio-diff;
+      }
     }
     &--hydrapp {
       color: $color-hydrapp-diff;
-      &::before { background-color: $color-hydrapp-diff; }
+      &::before {
+        background-color: $color-hydrapp-diff;
+      }
     }
     &--archviz {
       color: $color-archviz-diff;
-      &::before { background-color: $color-archviz-diff; }
+      &::before {
+        background-color: $color-archviz-diff;
+      }
     }
     &--quotes {
       color: $color-quotes-diff;
-      &::before { background-color: $color-quotes-diff; }
+      &::before {
+        background-color: $color-quotes-diff;
+      }
     }
     &--other {
       display: none;
     }
 
     @media only screen and (min-width: $media-md) {
-
       & {
         font-size: $tabHeading-size-lg;
         padding: 0;
@@ -285,15 +309,12 @@
     }
 
     @media only screen and (min-width: $media-sm) {
-
       & {
-
         &--about {
           margin: 0 $offset-right-sm 20px $offset-left-sm;
         }
 
         &--other {
-    
           &.tab__description--small {
             margin: 0 $offset-right-sm 10px $offset-left-sm;
           }
@@ -302,7 +323,6 @@
     }
 
     @media only screen and (min-width: $media-md) {
-
       & {
         margin: 0;
         line-height: 1.6;
@@ -314,7 +334,6 @@
     }
 
     @media only screen and (min-width: $media-lg) {
-
       &--about {
         padding-top: 0;
       }
@@ -333,8 +352,7 @@
     position: relative;
     text-align: left;
     text-transform: uppercase;
-    transition:
-      color $button-hover,
+    transition: color $button-hover,
       padding-left $button-hover $button-hover ease-out;
     width: 100%;
 
@@ -347,7 +365,7 @@
       margin-top: $features-category-size-xs;
       padding-left: $features-category-size-xs + $tabGap-xs;
     }
-    
+
     &--hydrapp {
       color: $color-hydrapp-light;
     }
@@ -357,7 +375,7 @@
     &--portfolio {
       color: $color-portfolio-light;
     }
-    
+
     &--other {
       color: $color-other-shadow;
       height: $otherHeading-size-xs;
@@ -366,38 +384,51 @@
     &--unrolled {
       color: inherit;
       padding-left: $tabHeader-size-xs;
-      transition:
-        color $button-hover,
-        padding-left $button-hover ease-in;
+      transition: color $button-hover, padding-left $button-hover ease-in;
     }
 
     @media only screen and (min-width: $media-md) {
-
       & {
         height: $tabHeader-size-lg;
-        margin-top: $tabHeader-size-lg / 2;
+        margin-top: calc($tabHeader-size-lg / 2);
         padding-left: $tabHeader-size-lg + $tabGap-xs;
 
         &--resume:focus,
-        &--resume:hover { color: $color-resume-diff; }
+        &--resume:hover {
+          color: $color-resume-diff;
+        }
         &--resume:focus .mark--resume,
-        &--resume:hover .mark--resume { background-color: $color-resume-diff; }
+        &--resume:hover .mark--resume {
+          background-color: $color-resume-diff;
+        }
 
         &--hydrapp:focus,
-        &--hydrapp:hover { color: $color-hydrapp-white; }
+        &--hydrapp:hover {
+          color: $color-hydrapp-white;
+        }
         &--hydrapp:focus .mark--hydrapp,
-        &--hydrapp:hover .mark--hydrapp { background-color: $color-hydrapp-white; }
+        &--hydrapp:hover .mark--hydrapp {
+          background-color: $color-hydrapp-white;
+        }
 
         &--tasktimer:focus,
-        &--tasktimer:hover { color: $color-tasktimer-white; }
+        &--tasktimer:hover {
+          color: $color-tasktimer-white;
+        }
         &--tasktimer:focus .mark--tasktimer,
-        &--tasktimer:hover .mark--tasktimer { background-color: $color-tasktimer-white; }
+        &--tasktimer:hover .mark--tasktimer {
+          background-color: $color-tasktimer-white;
+        }
 
         &--portfolio:focus,
-        &--portfolio:hover { color: $color-portfolio-white; }
+        &--portfolio:hover {
+          color: $color-portfolio-white;
+        }
         &--portfolio:focus .mark--portfolio,
-        &--portfolio:hover .mark--portfolio { background-color: $color-portfolio-white; }
-      
+        &--portfolio:hover .mark--portfolio {
+          background-color: $color-portfolio-white;
+        }
+
         &--category {
           height: $features-category-size-lg;
           margin-top: $features-category-size-xs;
@@ -491,48 +522,73 @@
       color: $color-other-white;
     }
 
-    &--resume:active { @include resumeReadMore };
-    &--hydrapp:active { @include hydrappReadMore };
-    &--tasktimer:active { @include tasktimerReadMore };
-    &--portfolio:active { @include portfolioReadMore };
-    &--archviz:active { @include archvizReadMore };
-    &--quotes:active { @include quotesReadMore };
-    &--other:active { @include otherReadMore };
+    &--resume:active {
+      @include resumeReadMore;
+    }
+    &--hydrapp:active {
+      @include hydrappReadMore;
+    }
+    &--tasktimer:active {
+      @include tasktimerReadMore;
+    }
+    &--portfolio:active {
+      @include portfolioReadMore;
+    }
+    &--archviz:active {
+      @include archvizReadMore;
+    }
+    &--quotes:active {
+      @include quotesReadMore;
+    }
+    &--other:active {
+      @include otherReadMore;
+    }
 
     @media only screen and (min-width: $media-sm) {
-
       & {
         margin: 10px $offset-right-sm 10px $offset-left-sm;
       }
     }
 
     @media only screen and (min-width: $media-md) {
-
       & {
         margin: 0;
         margin-top: 10px;
       }
 
       &--resume:focus,
-      &--resume:hover { @include resumeReadMore };
+      &--resume:hover {
+        @include resumeReadMore;
+      }
       &--hydrapp:focus,
-      &--hydrapp:hover { @include hydrappReadMore };
+      &--hydrapp:hover {
+        @include hydrappReadMore;
+      }
       &--tasktimer:focus,
-      &--tasktimer:hover { @include tasktimerReadMore };
+      &--tasktimer:hover {
+        @include tasktimerReadMore;
+      }
       &--portfolio:focus,
-      &--portfolio:hover { @include portfolioReadMore };
+      &--portfolio:hover {
+        @include portfolioReadMore;
+      }
       &--archviz:focus,
-      &--archviz:hover { @include archvizReadMore };
+      &--archviz:hover {
+        @include archvizReadMore;
+      }
       &--quotes:focus,
-      &--quotes:hover { @include quotesReadMore };
+      &--quotes:hover {
+        @include quotesReadMore;
+      }
       &--other:focus,
-      &--other:hover { @include otherReadMore };
+      &--other:hover {
+        @include otherReadMore;
+      }
     }
   }
 }
 
 .subtab {
-
   &--resume {
     margin-left: $separator-width + $tabGap-xs;
     margin-top: 0;
@@ -549,7 +605,6 @@
   }
 
   &__button {
-
     &--resume {
       color: $color-resume-dark;
       margin-top: 20px;
@@ -561,9 +616,7 @@
   }
 
   @media only screen and (min-width: $media-sm) {
-
     & {
-
       &--resume {
         margin-left: $separator-width + $tabGap-sm;
       }
@@ -571,11 +624,8 @@
   }
 
   @media only screen and (min-width: $media-md) {
-
     & {
-
       &__header {
-
         &--resume {
           font-size: $tabHeader-size-lg;
         }

@@ -6,7 +6,6 @@
 }
 
 @media only screen and (min-width: $media-lg) {
-
   .navigation {
     bottom: 100px;
     display: block;
@@ -22,36 +21,35 @@
       visibility: visible;
       transition: opacity 0.5s, visibility 0s;
     }
-  
+
     &:hover &__button {
       transition: transform $navigation-time $navigation-time-rotate;
-  
+
       &--prev {
         transform: translateY($navigation-offset * -2);
       }
-    
+
       &--back {
         transform: translateY($navigation-offset * -1);
       }
     }
-  
+
     &:hover &__icon {
-      transform: rotate(45deg) translate3d( 0, 0, 1px);
+      transform: rotate(45deg) translate3d(0, 0, 1px);
       transition: border-color $navigation-time, transform $navigation-time;
     }
-  
+
     &:hover &__icon--back {
-      border-width: $navigation-size-back / 2;
+      border-width: calc($navigation-size-back / 2);
       height: $navigation-size-back;
       width: $navigation-size-back;
-      transition:
-        border-color $navigation-time,
+      transition: border-color $navigation-time,
         border-width $navigation-time $navigation-time-rotate,
         height $navigation-time $navigation-time-rotate,
         transform $navigation-time,
         width $navigation-time $navigation-time-rotate;
     }
-    
+
     &__button {
       @include button;
       @include flex-center;
@@ -61,11 +59,10 @@
       width: $navigation-size-button;
 
       &--animated {
-        transition:
-          border-color $navigation-time,
+        transition: border-color $navigation-time,
           transform $navigation-time $navigation-time-delay;
       }
-  
+
       &--about {
         border-color: $color-about-diff;
         &:hover {
@@ -120,7 +117,7 @@
           border-color: $color-contact-diff-dark;
         }
       }
-  
+
       &--prev,
       &--next {
         height: 100%;
@@ -129,38 +126,38 @@
         top: 0;
         width: 100%;
       }
-  
+
       &--hidden {
         visibility: hidden;
       }
     }
-    
+
     &__icon {
       border-color: inherit;
       border-style: solid;
       border-width: 0;
       pointer-events: none;
-      transition:
-        border-color $navigation-time,
-        transform $navigation-time $navigation-time-delay + $navigation-time-rotate;
+      transition: border-color $navigation-time,
+        transform $navigation-time $navigation-time-delay +
+          $navigation-time-rotate;
       height: $navigation-size-arrows;
       width: $navigation-size-arrows;
-  
+
       &--back {
-        border-width: $navigation-size-arrows / 2;
-        transition:
-          border-color $navigation-time,
+        border-width: calc($navigation-size-arrows / 2);
+        transition: border-color $navigation-time,
           border-width $navigation-time $navigation-time-delay,
           height $navigation-time $navigation-time-delay,
-          transform $navigation-time $navigation-time-delay + $navigation-time-rotate,
+          transform $navigation-time $navigation-time-delay +
+            $navigation-time-rotate,
           width $navigation-time $navigation-time-delay;
       }
-  
+
       &--prev {
         border-left-width: $navigation-border-arrow;
         border-top-width: $navigation-border-arrow;
       }
-    
+
       &--next {
         border-bottom-width: $navigation-border-arrow;
         border-right-width: $navigation-border-arrow;
