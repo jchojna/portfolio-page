@@ -1,32 +1,28 @@
-import {
-  media,
-  intro,
-  introLoader,
-  introBox,
-  menuItems,
-  pageHeader,
-} from './variables';
+import { media, introBox, menuItems, pageHeader } from './variables';
 
 let introText = 'jakub chojna frontend projects';
-const intro = document.querySelector('.intro--js');
-const introLoader = document.getElementById('intro_loader');
+const intro = document.querySelector('.intro--js')!;
+const introLoader = document.getElementById('intro_loader')!;
 const introItemWidth =
   window.innerWidth >= media.lg ? 35 : window.innerWidth >= media.md ? 35 : 20;
 const introItemHeight = 2 * introItemWidth;
-const introGrid = document.querySelector('.grid--js');
-const introSkip = document.querySelector('.intro__skip--js');
-const visuals = document.querySelector('.visuals--js');
+const introGrid = document.querySelector('.grid--js')! as HTMLElement;
+const introSkip = document.querySelector('.intro__skip--js')!;
+const visuals = document.querySelector('.visuals--js')!;
+const endingBefore = document.querySelector(
+  '.intro__ending--js-before'
+)! as HTMLElement;
+const endingAfter = document.querySelector(
+  '.intro__ending--js-after'
+)! as HTMLElement;
 
 // intro
-let introFirstTimeoutId = null;
-let introSecondTimeoutId = null;
-let introThirdTimeoutId = null;
-let introForthTimeoutId = null;
-let introCharIntervalId = null;
+let introFirstTimeoutId: TimeoutId = undefined;
+let introSecondTimeoutId: TimeoutId = undefined;
+let introThirdTimeoutId: TimeoutId = undefined;
+let introForthTimeoutId: TimeoutId = undefined;
+let introCharIntervalId: TimeoutId = undefined;
 const introFirstTimeoutInterval = 600;
-
-const endingBefore = document.querySelector('.intro__ending--js-before');
-const endingAfter = document.querySelector('.intro__ending--js-after');
 
 export const setIntroLoaderPosition = () => {
   introLoader.style.top = `${introLoader.offsetTop}px`;
@@ -41,9 +37,6 @@ export const loadIntroContent = () => {
         class="grid__item grid__item--js"
         style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
       >
-
-
-
         <div class="grid__char grid__char--js">
           <svg
             class="grid__svg grid__svg--js-char"
@@ -58,9 +51,6 @@ export const loadIntroContent = () => {
             <use href="assets/svg/letters.svg#${char}-shadow"></use>
           </svg>
         </div>
-
-
-
       </li>`
         : `<li
         class="grid__item grid__item--js"
@@ -73,7 +63,11 @@ export const loadIntroContent = () => {
 };
 
 // assign size and position of one element to another
-const setSizeAndPosition = (element, target, size) => {
+const setSizeAndPosition = (
+  element: HTMLElement,
+  target: HTMLElement,
+  size?: number
+) => {
   element.style.top = `${target.offsetTop}px`;
   element.style.left = `${target.offsetLeft}px`;
   element.style.width = size ? `${size}px` : `${target.clientWidth}px`;
@@ -97,7 +91,7 @@ export const handleIntroAnimation = () => {
       : charTotal / 3;
   let minColNum = 6;
   const rowGap = 2;
-  let gridTopMargin = null;
+  let gridTopMargin: number | null = null;
 
   // intervals
   const loadCharInterval = 25; //30
@@ -107,17 +101,30 @@ export const handleIntroAnimation = () => {
   const inBetweenTransition = 500;
 
   // set position of ending elements
-  const setEndings = (index) => {
+  const setEndings = (index: number) => {
+    let endingBeforeTop: number | undefined = undefined;
+    let endingBeforeLeft: number | undefined = undefined;
+    let endingAfterTop: number | undefined = undefined;
+    let endingAfterLeft: number | undefined = undefined;
+
     if (index < charTotal) {
       const beforeChild = introGrid.children[0];
       const afterChild = introGrid.children[index];
-      var endingBeforeTop = beforeChild.offsetTop;
-      var endingBeforeLeft = beforeChild.offsetLeft - introItemWidth;
-      var endingAfterTop = afterChild.offsetTop;
-      var endingAfterLeft = afterChild.offsetLeft;
+      if (beforeChild instanceof HTMLElement) {
+        endingBeforeTop = beforeChild.offsetTop;
+        endingBeforeLeft = beforeChild.offsetLeft - introItemWidth;
+      }
+      if (afterChild instanceof HTMLElement) {
+        endingAfterTop = afterChild.offsetTop;
+        endingAfterLeft = afterChild.offsetLeft;
+      }
     } else {
-      const prevAfterChildOffset = introGrid.children[index - 1].offsetLeft;
-      var endingAfterLeft = prevAfterChildOffset + introItemWidth;
+      const prevAfterChild = introGrid.children[index - 1];
+      let prevAfterChildOffset: number = 0;
+      if (prevAfterChild instanceof HTMLElement) {
+        prevAfterChildOffset = prevAfterChild.offsetLeft;
+      }
+      endingAfterLeft = prevAfterChildOffset + introItemWidth;
     }
 
     endingBefore.style.top = `${endingBeforeTop}px`;
@@ -130,8 +137,10 @@ export const handleIntroAnimation = () => {
   const loadChar = () => {
     if (charIndex < charTotal) {
       const currentItem = introGrid.children[charIndex];
-      currentItem.style.width = `${introItemWidth}px`;
-      currentItem.style.height = `${introItemHeight}px`;
+      if (currentItem instanceof HTMLElement) {
+        currentItem.style.width = `${introItemWidth}px`;
+        currentItem.style.height = `${introItemHeight}px`;
+      }
       currentItem.classList.add('grid__item--visible');
       setEndings(charIndex);
       charIndex++;
@@ -142,10 +151,12 @@ export const handleIntroAnimation = () => {
   };
 
   // animate characters position on introGrid change
-  const handleChars = (chars, isInitial) => {
+  const handleChars = (chars: NodeListOf<HTMLElement>, isInitial: boolean) => {
     if (isInitial) {
       [...chars].forEach((char, index) => {
-        const { offsetTop, offsetLeft } = introGrid.children[index];
+        const { offsetTop, offsetLeft } = introGrid.children[
+          index
+        ] as HTMLElement;
         char.style.top = `${offsetTop}px`;
         char.style.left = `${offsetLeft}px`;
         char.style.width = `${introItemWidth}px`;
@@ -160,7 +171,9 @@ export const handleIntroAnimation = () => {
             : 0;
 
         if (index >= maxColNum - bias) {
-          const { offsetTop, offsetLeft } = introGrid.children[index];
+          const { offsetTop, offsetLeft } = introGrid.children[
+            index
+          ] as HTMLElement;
           char.style.top = `${offsetTop}px`;
           char.style.left = `${offsetLeft}px`;
 
@@ -224,7 +237,9 @@ export const handleIntroAnimation = () => {
     // SECOND TIMEOUT
     introSecondTimeoutId = setTimeout(() => {
       // assign fixed positioning to svg elements
-      const gridChars = document.querySelectorAll('.grid__char--js');
+      const gridChars = document.querySelectorAll(
+        '.grid__char--js'
+      ) as NodeListOf<HTMLElement>;
       endingAfter.classList.remove('intro__ending--visible');
       endingBefore.classList.remove('intro__ending--visible');
       handleChars(gridChars, true);
@@ -293,11 +308,11 @@ export const skipIntro = () => {
   clearTimeout(introThirdTimeoutId);
   clearTimeout(introForthTimeoutId);
   clearInterval(introCharIntervalId);
-  introFirstTimeoutId = null;
-  introSecondTimeoutId = null;
-  introThirdTimeoutId = null;
-  introForthTimeoutId = null;
-  introCharIntervalId = null;
+  introFirstTimeoutId = undefined;
+  introSecondTimeoutId = undefined;
+  introThirdTimeoutId = undefined;
+  introForthTimeoutId = undefined;
+  introCharIntervalId = undefined;
 
   [...menuItems].forEach((item) => {
     item.classList.add('menu__item--active');

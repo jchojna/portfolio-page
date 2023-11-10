@@ -1,34 +1,48 @@
-const userName = document.querySelector('.form__input--js-name');
-const userEmail = document.querySelector('.form__input--js-email');
-const userPhone = document.querySelector('.form__input--js-phone');
-const userTitle = document.querySelector('.form__input--js-title');
-const userMessage = document.querySelector('.form__input--js-message');
-const formSubmitButton = document.querySelector('.form__submit--js');
+import { media } from './variables';
 
-export const validateEmail = (e) => {
-  const self = e.target;
-  self.value.match(/^\S+@\S+\.\S+$/)
-    ? handleInputStyle(self, true)
-    : handleInputStyle(self, false);
+const userName = document.querySelector(
+  '.form__input--js-name'
+)! as HTMLInputElement;
+const userEmail = document.querySelector(
+  '.form__input--js-email'
+)! as HTMLInputElement;
+const userPhone = document.querySelector(
+  '.form__input--js-phone'
+)! as HTMLInputElement;
+const userTitle = document.querySelector(
+  '.form__input--js-title'
+)! as HTMLInputElement;
+const userMessage = document.querySelector(
+  '.form__input--js-message'
+)! as HTMLInputElement;
+const formSubmitButton = document.querySelector(
+  '.form__submit--js'
+)! as HTMLInputElement;
+
+export const validateEmail = (e: Event) => {
+  const input = e.target as HTMLInputElement;
+  input.value.match(/^\S+@\S+\.\S+$/)
+    ? handleInputStyle(input, true)
+    : handleInputStyle(input, false);
 };
 
-export const validatePhone = (e) => {
-  const self = e.target;
-  self.value.match(
+export const validatePhone = (e: Event) => {
+  const input = e.target as HTMLInputElement;
+  input.value.match(
     /^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{3}$/i
-  ) || self.value.length === 0
-    ? handleInputStyle(self, true)
-    : handleInputStyle(self, false);
+  ) || input.value.length === 0
+    ? handleInputStyle(input, true)
+    : handleInputStyle(input, false);
 };
 
-export const validateMessage = (e) => {
-  const self = e.target;
-  self.value.length > 0
-    ? handleInputStyle(self, true)
-    : handleInputStyle(self, false);
+export const validateMessage = (e: Event) => {
+  const input = e.target as HTMLInputElement;
+  input.value.length > 0
+    ? handleInputStyle(input, true)
+    : handleInputStyle(input, false);
 };
 
-export const validateForm = (e) => {
+export const validateForm = (e: Event) => {
   e.preventDefault();
   const xhr = new XMLHttpRequest();
   const url = 'form.php';
@@ -64,18 +78,18 @@ export const validateForm = (e) => {
   xhr.send(data);
 };
 
-const handleAlerts = (data, isFailed) => {
+const handleAlerts = (data: string, isFailed: boolean) => {
   const margin = window.innerWidth >= media.lg ? 20 : 5;
   let heightTotal = margin;
   let delay = 0;
   const delayInterval = 60;
   const alertTimeoutInterval = 5000;
   const transitionTime = 250;
-  let visibleAlerts = [];
+  let visibleAlerts: Alert[] = [];
 
   // close alert box
-  const quitAlertBox = (e) => {
-    const self = e.target ? e.target : e;
+  const quitAlertBox = (e: Event) => {
+    const self: AlertButton = e.target ? e.target : e;
     const { parentNode, index } = self;
 
     // hide clicked alert box
@@ -114,17 +128,23 @@ const handleAlerts = (data, isFailed) => {
     : Object.keys(data).filter((key) => data[key]);
   [...alerts].forEach((alert, index) => {
     // select elements
-    const alertBox = document.querySelector(`.alerts__box--js-${alert}`);
-    const alertButton = document.querySelector(`.alerts__button--js-${alert}`);
+    const alertBox = document.querySelector(
+      `.alerts__box--js-${alert}`
+    )! as HTMLElement;
+    const alertButton: AlertButton = document.querySelector(
+      `.alerts__button--js-${alert}`
+    )!;
 
     // handle appearance of alert boxes
     const alertBoxHeight = alertBox.clientHeight;
-    alertBox.style.top = `${heightTotal}px`;
-    alertBox.style.transition = `
-      top ${transitionTime}ms ${delay}ms,
-      visibility 0s,
-      width ${transitionTime}ms ${delay + transitionTime}ms
-    `;
+    if (alertBox instanceof HTMLElement) {
+      alertBox.style.top = `${heightTotal}px`;
+      alertBox.style.transition = `
+        top ${transitionTime}ms ${delay}ms,
+        visibility 0s,
+        width ${transitionTime}ms ${delay + transitionTime}ms
+      `;
+    }
     heightTotal += alertBoxHeight + margin;
     delay += delayInterval;
     alertBox.classList.add('alerts__box--visible');
@@ -173,7 +193,7 @@ const handleAlerts = (data, isFailed) => {
   });
 };
 
-const handleInputStyle = (input, isValid) => {
+const handleInputStyle = (input: HTMLInputElement, isValid: boolean) => {
   if (isValid) {
     if (input.classList.contains('form__input--invalid'))
       input.classList.remove('form__input--invalid');

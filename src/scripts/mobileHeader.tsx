@@ -10,12 +10,12 @@ import {
 } from './variables';
 import { getCurrentSectionIndex } from './navigation';
 
-export const handleMobileHeader = () => {
-  if (window.innerWidth >= media.lg) return false;
-  if (flags.isIntroMode) return false;
-  if (window.pageYOffset <= 0) return false;
+export const handleMobileHeader = (): void => {
+  if (window.innerWidth >= media.lg) return;
+  if (flags.isIntroMode) return;
+  if (window.pageYOffset <= 0) return;
 
-  const handleHeader = (index, action) => {
+  const handleHeader = (index: number, action: string): void => {
     const currentId = sections[index].id;
 
     if (action === 'activate') {

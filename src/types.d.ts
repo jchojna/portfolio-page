@@ -3,9 +3,10 @@ type Flags = {
   isMenuTransforming: boolean;
   shouldSectionsBeUpdated: boolean;
   isScrollEnabled: boolean;
+  isFastScroll: boolean;
   isMobileHeader: boolean;
   media: string | null;
-  menuLayout: number | null;
+  menuLayout: string | null;
 };
 
 type Item = {
@@ -14,6 +15,7 @@ type Item = {
   offset: number;
   height: number;
   currentSectionIndex: number;
+  width: number;
 };
 
 type Media = {
@@ -28,3 +30,14 @@ type Section = {
   node: HTMLElement;
   offset: number;
 };
+
+type TimeoutId = string | number | NodeJS.Timeout | undefined;
+
+type AlertButton = HTMLElement & { index: number; alertTimeoutId: NodeTimeout };
+
+type Alert = {
+  box: HTMLElement;
+  button: AlertButton;
+};
+
+type ReadMoreButton = HTMLElement & { index: number; innerHTML: string };

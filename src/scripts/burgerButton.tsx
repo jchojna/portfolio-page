@@ -17,9 +17,9 @@ import { items } from '../main';
 import { handleMenuShadows } from './menu';
 import { navigateToSection } from './navigation';
 
-export const handleBurgerButton = () => {
-  if (flags.isIntroMode) return false;
-  if (flags.isMenuTransforming) return false;
+export const handleBurgerButton = (): void => {
+  if (flags.isIntroMode) return;
+  if (flags.isMenuTransforming) return;
 
   const windowHeight: number = window.innerHeight;
   const activeintroItemHeight: number = items[menuObj.lastMenuItemIndex].height;

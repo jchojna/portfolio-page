@@ -26,7 +26,9 @@ import { items } from '../main';
 import { handleMenuShadows, handleIntroBox } from './menu';
 import { handleAccordion } from './accordion';
 
-const sectionContainers = document.querySelectorAll('.section__container--js');
+const sectionContainers: NodeListOf<HTMLElement> = document.querySelectorAll(
+  '.section__container--js'
+);
 const minTopMargin = 30;
 
 const getCurrentMedia = () => {
@@ -39,7 +41,7 @@ const getCurrentMedia = () => {
     : 'mediaXs';
 };
 
-export const handleTopMargins = (element, distance) => {
+export const handleTopMargins = (element: HTMLElement, distance: number) => {
   // this functionality I found more reasonable to be handled in JS,
   // because of expandable content inside section containers
   // distorting and complicating content layout
@@ -56,7 +58,7 @@ export const setContainersMargins = () => {
   }
 };
 
-const getMenuLayout = () => {
+const getMenuLayout = (): string => {
   return window.innerWidth >= media.lg ? 'side' : 'burger';
 };
 
@@ -102,7 +104,7 @@ export const handleWindowResize = () => {
     introBox.classList.remove('visuals__introBox--halfWindow');
     introBox.classList.remove('visuals__introBox--content');
     menuIndicator.classList.remove('pageHeader__indicator--visible');
-    menuIndicator.style.top = 0;
+    menuIndicator.style.top = '0px';
 
     // collapse accordion sections
     handleAccordion([...resumeSubtabs]);
@@ -112,7 +114,7 @@ export const handleWindowResize = () => {
     handleAccordion([...hydrappTabs]);
     handleAccordion([...quotesTabs]);
 
-    handleIntroBox();
+    handleIntroBox(event);
 
     switch (menuLayout) {
       // load configuration for large screens

@@ -47,6 +47,7 @@ import {
   resumeTabs,
   tasktimerTabs,
 } from './scripts/variables';
+import { handleRepo } from './scripts/repoStats';
 
 import './main.scss';
 

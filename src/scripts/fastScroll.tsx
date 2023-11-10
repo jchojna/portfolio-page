@@ -1,4 +1,15 @@
-const handleFastScroll = (e) => {
+import {
+  flags,
+  media,
+  menuObj,
+  pageSections,
+  pageContainer,
+  sections,
+} from './variables';
+import { navigateToSection } from './navigation';
+
+// @ts-ignore
+const handleFastScroll = (e: WheelEvent) => {
   // function resetting timeout and scroll accumulator
   /* const reset = () => {
     clearTimeout(scrollTimeoutId);
@@ -10,6 +21,7 @@ const handleFastScroll = (e) => {
   if (flags.isMenuTransforming) return false;
   if (!flags.isFastScroll) return false;
 
+  // @ts-ignore
   const goToNextSection = () => {
     if (menuObj.lastMenuItemIndex < pageSections.length - 1) {
       if (
@@ -41,7 +53,7 @@ const handleFastScroll = (e) => {
     //e.preventDefault();
     flags.isScrollEnabled = false;
 
-    if (!isFastScroll) navigateToSection(++lastMenuItemIndex);
+    if (!flags.isFastScroll) navigateToSection(++menuObj.lastMenuItemIndex);
 
     //goToNextSection();
   }

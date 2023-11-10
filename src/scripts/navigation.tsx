@@ -21,13 +21,13 @@ import { updateSectionsOffsets } from './sections';
 
 const navigationBackButton = document.querySelector(
   '.navigation__button--js-back'
-);
+)!;
 const navigationPrevButton = document.querySelector(
   '.navigation__button--js-prev'
-);
+)!;
 const navigationNextButton = document.querySelector(
   '.navigation__button--js-next'
-);
+)!;
 
 export const handleBackButton = () => {
   if (flags.isIntroMode) return false;
@@ -77,7 +77,7 @@ export const handleBackButton = () => {
   // FIRST TIMEOUT
   const firstTimeoutId = setTimeout(() => {
     // handle introBox
-    handleIntroBox();
+    handleIntroBox(event);
     introBox.classList.remove('visuals__introBox--halfWindow');
     clearTimeout(firstTimeoutId);
 
@@ -99,7 +99,10 @@ export const handleBackButton = () => {
   }, firstTimeoutLg);
 };
 
-export const handlePrevNextButtonsVisibility = (index, action) => {
+export const handlePrevNextButtonsVisibility = (
+  index: number,
+  action: string
+) => {
   const lastElementIndex = sections.length - 1;
   if (index === 0 || index === lastElementIndex) {
     if (action === 'hide') {
@@ -114,21 +117,20 @@ export const handlePrevNextButtonsVisibility = (index, action) => {
   }
 };
 
+// @ts-ignore
 export const navigateToSection = (e) => {
   if (flags.shouldSectionsBeUpdated) updateSectionsOffsets();
-  let targetIndex = e;
+  let targetIndex: number = e;
 
   // get target index
   if (e.target === navigationPrevButton) {
-    if ((targetIndex = menuObj.currentNavigationIndex > 0)) {
-      targetIndex = --menuObj.currentNavigationIndex;
+    if (menuObj.currentNavigationIndex > 0) {
+      targetIndex = menuObj.currentNavigationIndex - 1;
       flags.isScrollEnabled = true;
     } else return false;
   } else if (e.target === navigationNextButton) {
-    if (
-      (targetIndex = menuObj.currentNavigationIndex < pageSections.length - 1)
-    ) {
-      targetIndex = ++menuObj.currentNavigationIndex;
+    if (menuObj.currentNavigationIndex < pageSections.length - 1) {
+      targetIndex = menuObj.currentNavigationIndex + 1;
       flags.isScrollEnabled = true;
     } else return false;
   }
@@ -149,7 +151,7 @@ export const addNavigationEvents = () => {
   navigationBackButton.addEventListener('click', handleBackButton);
 };
 
-export const getCurrentSectionIndex = (scrollOffset) => {
+export const getCurrentSectionIndex = (scrollOffset: number): number => {
   const currentOffset =
     window.innerWidth >= media.lg
       ? pageContainer.scrollTop

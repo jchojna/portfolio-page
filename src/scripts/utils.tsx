@@ -1,4 +1,8 @@
-export const removeTransitionsOnEvent = (e, element, classname) => {
+export const removeTransitionsOnEvent = (
+  e: Event,
+  element: HTMLElement,
+  classname: string
+) => {
   if (e) {
     !element.classList.contains(`${classname}--noTransition`)
       ? element.classList.add(`${classname}--noTransition`)

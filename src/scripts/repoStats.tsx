@@ -1,4 +1,4 @@
-export const handleRepo = (repos) => {
+export const handleRepo = (repos: any[]) => {
   const statsCreated = document.querySelectorAll('.stats__value--js-created');
   const statsUpdated = document.querySelectorAll('.stats__value--js-updated');
   const statsCommits = document.querySelectorAll('.stats__value--js-commits');
@@ -10,7 +10,7 @@ export const handleRepo = (repos) => {
     'homepage-gulp',
   ];
   //: FORMAT FETCHED DATES                                             ://
-  const getFormattedDate = (date) =>
+  const getFormattedDate = (date: string) =>
     date.slice(0, 10).split('-').reverse().join('-');
   //: FILTER SPECIFIC REPOS                                            ://
   const reposFiltered = [...reposIds].map(

@@ -4,19 +4,26 @@ type ContentData = {
   fullHeight?: number;
   availableHeight?: number;
   html: string;
-  children: any;
+  children: ContentData[];
 };
-const readMoreButtons = document.querySelectorAll('.tab__readMore--js');
+const readMoreButtons = document.querySelectorAll(
+  '.tab__readMore--js'
+) as NodeListOf<ReadMoreButton>;
 let contentData: ContentData[] = [];
 
 export const handleReadMore = (e: Event) => {
   if (!e.target) return;
-  const { index, parentNode } = e.target;
-  const wrapper = parentNode.querySelector('.wrapper');
-  const expandableNode = parentNode.querySelector('.js-expandable');
+  const target = e.target as ReadMoreButton;
+  const { index, parentNode } = target;
+  if (!parentNode) return;
+  const wrapper = parentNode.querySelector('.wrapper')! as HTMLElement;
+  const expandableNode = parentNode.querySelector(
+    '.js-expandable'
+  )! as HTMLElement;
   const expandedNode = document.querySelectorAll('.js-expanded')[index];
   const currentContentData = contentData[index];
   const { availableHeight } = currentContentData;
+  if (!availableHeight) return;
 
   // expand tab
   if (wrapper.classList.contains('collapsed')) {
@@ -27,7 +34,7 @@ export const handleReadMore = (e: Event) => {
     expandedNode.classList.remove('expandedHidden');
     expandedNode.classList.add('expandedVisible');
 
-    e.target.innerHTML = 'Show Less';
+    target.innerHTML = 'Show Less';
     wrapper.classList.remove('collapsed');
 
     // collapse tab
@@ -45,7 +52,7 @@ export const handleReadMore = (e: Event) => {
       expandableNode
     );
 
-    e.target.innerHTML = 'Read More';
+    target.innerHTML = 'Read More';
     wrapper.classList.add('collapsed');
   }
   flags.shouldSectionsBeUpdated = true;
@@ -58,7 +65,12 @@ export const addReadMoreEvent = () => {
   });
 };
 
-const reduceContent = (data, container, available, parent) => {
+const reduceContent = (
+  data: ContentData,
+  container: Element,
+  available: number,
+  parent: Element
+) => {
   // recursive function handling reduced content creation
   // it can handle both plain text and nested elements like lists
   // data - content to be reduced
@@ -105,7 +117,9 @@ const reduceContent = (data, container, available, parent) => {
 
         // remove unnecessary empty nodes outside available space
         [...container.children].forEach((child) => {
-          if (child.innerHTML === '') child.parentNode.removeChild(child);
+          if (child.innerHTML === '' && child.parentNode) {
+            child.parentNode.removeChild(child);
+          }
         });
         break;
       }
@@ -114,11 +128,13 @@ const reduceContent = (data, container, available, parent) => {
 };
 
 export const handleExpandableContent = () => {
-  const expandableContent = document.querySelectorAll('.js-expandable');
+  const expandableContent: NodeListOf<HTMLElement> =
+    document.querySelectorAll('.js-expandable');
   // aquire html and children of every children node and its own children
   const getChildren = (content: HTMLElement) => {
     let array: ContentData[] = [];
-    [...content.children].forEach(
+    const contentChildren = content.children as HTMLCollectionOf<HTMLElement>;
+    [...contentChildren].forEach(
       (child) =>
         (array = [
           ...array,
@@ -132,7 +148,7 @@ export const handleExpandableContent = () => {
   };
 
   // empty content of every node, including the nested ones
-  const emptyContent = (content) => {
+  const emptyContent = (content: Element) => {
     if (content.children.length === 0) {
       content.textContent = '';
     } else {
@@ -152,7 +168,7 @@ export const handleExpandableContent = () => {
     content.classList.add('expandableVisible');
 
     // wrap content and content copy inside a wrapper
-    content.parentNode.insertBefore(wrapper, content);
+    if (content.parentNode) content.parentNode.insertBefore(wrapper, content);
     wrapper.append(content, contentCopy);
     contentData = [
       ...contentData,
@@ -183,10 +199,14 @@ export const handleExpandableContent = () => {
         : minMobileHeight;
     const { availableHeight, fullHeight, html } = currentContentData;
 
+    if (!availableHeight || !fullHeight) return;
     // check if content fits available space
     if (availableHeight >= fullHeight) {
       content.innerHTML = html;
-    } else {
+    } else if (
+      content.parentNode &&
+      content.parentNode instanceof HTMLElement
+    ) {
       content.parentNode.classList.add('collapsed');
 
       // show read more button and update available space
@@ -199,6 +219,7 @@ export const handleExpandableContent = () => {
           : minMobileHeight;
       const { availableHeight } = currentContentData;
 
+      if (!availableHeight) return;
       // reduce content using recursive function
       reduceContent(currentContentData, content, availableHeight, content);
       content.parentNode.style.height = `${availableHeight}px`;

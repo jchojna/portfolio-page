@@ -3,6 +3,7 @@ export const flags: Flags = {
   isMenuTransforming: false,
   shouldSectionsBeUpdated: false,
   isScrollEnabled: false,
+  isFastScroll: true,
   isMobileHeader: false,
   media: null,
   menuLayout: null,
@@ -14,7 +15,7 @@ export const media: Media = {
 };
 export const menuObj = {
   lastMenuItemIndex: 0,
-  currentNavigationIndex: null,
+  currentNavigationIndex: 0,
 };
 // intro
 export const introBox: HTMLElement = document.querySelector(
