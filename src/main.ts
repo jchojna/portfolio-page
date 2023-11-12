@@ -1,6 +1,5 @@
 import { addAccordionEvents, handleAccordion } from './scripts/accordion';
 import { handleBurgerButton } from './scripts/burgerButton';
-import { addFormEvents } from './scripts/contactForm';
 import {
   addReadMoreEvent,
   handleExpandableContent,
@@ -162,5 +161,3 @@ addReadMoreEvent();
   });
   input.value = localStorage.getItem(input.id) || '';
 });
-
-addFormEvents();
