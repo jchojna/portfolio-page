@@ -1,72 +1,6 @@
-@import 'variables.scss';
-@import 'mixins.scss';
-
-.pageHeader {
-  align-items: flex-start;
-  display: flex;
-  height: 100%;
-  left: 0;
-  min-height: 100vh;
-  overflow: auto;
-  opacity: 0;
-  padding: $mobile-menu-offset-top 0;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  visibility: hidden;
-  width: 100%;
-  z-index: 4;
-
-  &--visible {
-    opacity: 1;
-    transition: opacity 1s;
-    visibility: visible;
-  }
-
-  &--intro {
-    pointer-events: all;
-  }
-
-  @media only screen and (min-width: $media-lg) {
-    & {
-      box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
-
-      &__indicator {
-        background-color: #fff;
-        left: 0;
-        height: $menu-item-height-lg;
-        position: fixed;
-        right: calc(100vw - #{$menu-item-height-lg});
-        top: -$menu-item-height-lg;
-        visibility: hidden;
-        z-index: -1;
-
-        &--visible {
-          visibility: visible;
-        }
-
-        &--animated {
-          transition: left $menu-lg-second-timeout 0.3s,
-            right $menu-lg-second-timeout, top $time-switch;
-        }
-
-        &--narrowed {
-          right: calc(100vw - (#{$menu-item-height-lg} / 3));
-        }
-
-        &--centered {
-          background-color: $intro-link-color;
-          left: calc(50vw + 10px);
-          right: calc(50vw - 10px);
-        }
-
-        &--noTransition {
-          transition: none;
-        }
-      }
-    }
-  }
-}
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+@import '../styles/animations.scss';
 
 .menu {
   width: 100%;
@@ -88,7 +22,7 @@
     }
   }
 
-  &__list {
+  .menuList {
     display: grid;
     list-style-type: none;
     margin: 0;
@@ -97,14 +31,14 @@
     width: 100%;
   }
 
-  &__item {
+  .menuItem {
     align-items: flex-start;
     display: flex;
     height: $menu-item-height;
     overflow: hidden;
     padding-right: 10px;
     pointer-events: none;
-    visibility: hidden;
+    // visibility: hidden;
     width: 100%;
 
     &--active {
@@ -133,8 +67,9 @@
     }
   }
 
-  &__button {
+  .menuButton {
     @include button;
+
     display: flex;
     fill: $intro-link-color;
     height: $menu-item-height;
@@ -300,87 +235,40 @@
       width: 100%;
     }
   }
-}
 
-.burgerButton {
-  @include button;
-  @include flex-center;
-  height: $menu-item-height;
-  left: 0;
-  pointer-events: all;
-  position: fixed;
-  top: 0;
-  transition: visibility 0s;
-  visibility: hidden;
-  width: $menu-item-height;
+  .menuSvg {
+    @include flex-center;
 
-  &--visible {
-    visibility: visible;
-  }
-
-  &--about {
-    fill: $color-about;
-  }
-  &--resume {
-    fill: $color-resume;
-  }
-  &--tasktimer {
-    fill: $color-tasktimer;
-  }
-  &--portfolio {
-    fill: $color-portfolio;
-  }
-  &--hydrapp {
-    fill: $color-hydrapp;
-  }
-  &--archviz {
-    fill: $color-archviz;
-  }
-  &--quotes {
-    fill: $color-quotes;
-  }
-  &--other {
-    fill: $color-other;
-  }
-  &--contact {
-    fill: $color-contact;
-  }
-
-  &__svg {
-    width: 100%;
-  }
-}
-
-.menuSvg {
-  @include flex-center;
-  pointer-events: none;
-  position: relative;
-
-  &__text {
-    height: $menu-item-height;
-  }
-
-  &__shadow {
-    fill: $intro-background-color;
     height: 100%;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    transition: opacity 0.3s, visibility 0s 0.3s;
-    visibility: hidden;
-    width: 100%;
+    pointer-events: none;
+    position: relative;
 
-    &--visible {
-      opacity: $svg-opacity;
-      transition: opacity 0.3s, visibility 0s;
-      visibility: visible;
+    .menuSvgText {
+      height: 100%;
     }
-  }
 
-  @media only screen and (min-width: $media-lg) {
-    &__text {
-      height: $menu-item-height-lg;
+    .menuSvgShadow {
+      fill: $intro-background-color;
+      height: 100%;
+      left: 0;
+      // opacity: 0;
+      position: absolute;
+      top: 0;
+      transition: opacity 0.3s, visibility 0s 0.3s;
+      // visibility: hidden;
+      width: 100%;
+
+      &--visible {
+        opacity: $svg-opacity;
+        transition: opacity 0.3s, visibility 0s;
+        visibility: visible;
+      }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+      &__text {
+        height: $menu-item-height-lg;
+      }
     }
   }
 }
