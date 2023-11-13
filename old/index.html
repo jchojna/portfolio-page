@@ -1,0 +1,3447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jakub Chojna | Frontend Portfolio</title>
+    <meta
+      name="description"
+      content="I am a Frontend Developer, an Architect, a 3d Visualizer and this is my frontend portfolio website"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="assets/icons/icon-192x192.png"
+    />
+    <!-- #region [ Horizon ] OPEN GRAPH -->
+    <meta property="og:title" content="Jakub Chojna | Frontend Portfolio" />
+    <meta
+      property="og:description"
+      content="I am a Frontend Developer, an Architect, a 3d Visualizer and this is my frontend portfolio website"
+    />
+    <meta property="og:url" content="http://frontend.jakubchojna.pl/" />
+    <meta
+      property="og:image"
+      content="http://frontend.jakubchojna.pl/assets/img/cover.png"
+    />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="600" />
+  </head>
+  <body>
+    <!-- #region [ Horizon ] HEADER -->
+    <header class="pageHeader pageHeader--intro pageHeader--js">
+      <h1 class="pageHeader__heading visuallyhidden">
+        Jakub Chojna - Frontent Portfolio
+      </h1>
+      <!-- #region [ Horizon ] MAIN MENU -->
+      <nav class="menu menu--intro menu--js">
+        <h2 class="menu__heading visuallyhidden">Main Menu</h2>
+        <ul class="menu__list menu__list--js">
+          <!-- ABOUT -->
+          <li class="menu__item menu__item--visible menu__item--js">
+            <button class="menu__button menu__button--js">
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 263 100">
+                  <use href="assets/svg/menu.svg#about"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 263 100"
+                >
+                  <use href="assets/svg/menu.svg#about-shadow"></use>
+                </svg>
+              </div>
+            </button>
+          </li>
+          <!-- RESUME -->
+          <li class="menu__item menu__item--visible menu__item--js">
+            <button class="menu__button menu__button--js">
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 328 100">
+                  <use href="assets/svg/menu.svg#resume"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 328 100"
+                >
+                  <use href="assets/svg/menu.svg#resume-shadow"></use>
+                </svg>
+              </div>
+            </button>
+          </li>
+          <!-- TASKTIMER -->
+          <li class="menu__item menu__item--visible menu__item--js">
+            <button class="menu__button menu__button--js">
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 450 100">
+                  <use href="assets/svg/menu.svg#tasktimer"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 450 100"
+                >
+                  <use href="assets/svg/menu.svg#tasktimer-shadow"></use>
+                </svg>
+              </div>
+            </button>
+          </li>
+          <!-- HYDRAPP -->
+          <li class="menu__item menu__item--visible menu__item--js">
+            <button class="menu__button menu__button--js">
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 375 100">
+                  <use href="assets/svg/menu.svg#hydrapp"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 375 100"
+                >
+                  <use href="assets/svg/menu.svg#hydrapp-shadow"></use>
+                </svg>
+              </div>
+            </button>
+          </li>
+          <!-- PORTFOLIO -->
+          <li class="menu__item menu__item--visible menu__item--js">
+            <button class="menu__button menu__button--js">
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 428 100">
+                  <use href="assets/svg/menu.svg#portfolio"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 428 100"
+                >
+                  <use href="assets/svg/menu.svg#portfolio-shadow"></use>
+                </svg>
+              </div>
+            </button>
+          </li>
+          <!-- ARCHVIZ -->
+          <li class="menu__item menu__item--visible menu__item--js">
+            <button class="menu__button menu__button--js">
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 352 100">
+                  <use href="assets/svg/menu.svg#archviz"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 352 100"
+                >
+                  <use href="assets/svg/menu.svg#archviz-shadow"></use>
+                </svg>
+              </div>
+            </button>
+          </li>
+          <!-- QUOTES -->
+          <li class="menu__item menu__item--visible menu__item--js">
+            <button class="menu__button menu__button--js">
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 299 100">
+                  <use href="assets/svg/menu.svg#quotes"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 299 100"
+                >
+                  <use href="assets/svg/menu.svg#quotes-shadow"></use>
+                </svg>
+              </div>
+            </button>
+          </li>
+          <!-- OTHER -->
+          <li class="menu__item menu__item--visible menu__item--js">
+            <button class="menu__button menu__button--js">
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 248 100">
+                  <use href="assets/svg/menu.svg#other"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 248 100"
+                >
+                  <use href="assets/svg/menu.svg#other-shadow"></use>
+                </svg>
+              </div>
+            </button>
+          </li>
+          <!-- CONTACT -->
+          <li class="menu__item menu__item--visible menu__item--js">
+            <button class="menu__button menu__button--js">
+              <div class="menuSvg">
+                <svg class="menuSvg__text" viewBox="0 0 355 100">
+                  <use href="assets/svg/menu.svg#contact"></use>
+                </svg>
+                <svg
+                  class="menuSvg__shadow menuSvg__shadow--visible menuSvg__shadow--js"
+                  viewBox="0 0 355 100"
+                >
+                  <use href="assets/svg/menu.svg#contact-shadow"></use>
+                </svg>
+              </div>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <!-- #endregion -->
+
+      <!-- #region [ Horizon ] NAVIGATION -->
+      <nav class="navigation navigation--js">
+        <h2 class="navigation__heading visuallyhidden">Navigation</h2>
+        <button
+          class="navigation__button navigation__button--prev navigation__button--js-prev"
+        >
+          <span class="navigation__icon navigation__icon--prev"></span>
+        </button>
+        <button
+          class="navigation__button navigation__button--next navigation__button--js-next"
+        >
+          <span class="navigation__icon navigation__icon--next"></span>
+        </button>
+        <button
+          class="navigation__button navigation__button--back navigation__button--js-back"
+        >
+          <span class="navigation__icon navigation__icon--back"></span>
+        </button>
+      </nav>
+      <!-- #endregion -->
+
+      <!-- #region [ Horizon ] BURGER BUTTON -->
+      <button class="burgerButton burgerButton--js">
+        <svg class="burgerButton__svg" viewBox="0 0 100 100">
+          <rect x="20" y="20" width="60" height="10"></rect>
+          <rect x="20" y="45" width="60" height="10"></rect>
+          <rect x="20" y="70" width="60" height="10"></rect>
+        </svg>
+      </button>
+      <!-- #endregion -->
+
+      <!-- #region [ Horizon ] INDICATOR -->
+      <div class="pageHeader__indicator pageHeader__indicator--js"></div>
+      <!-- #endregion -->
+    </header>
+    <!-- #endregion -->
+
+    <!-- #region [ Horizon ] INTRO -->
+    <div class="intro intro--js">
+      <div id="intro_loader" class="intro__loader"></div>
+      <div class="intro__ending intro__ending--js-before"></div>
+      <ul class="grid grid--js"></ul>
+      <div class="intro__ending intro__ending--js-after"></div>
+      <button class="intro__skip intro__skip--js">Skip Intro</button>
+    </div>
+    <!-- #endregion -->
+
+    <!-- #region [ Horizon ] VISUAL ELEMENTS -->
+    <section class="visuals visuals--js">
+      <h2 class="visuals__heading visuallyhidden">Visual elements</h2>
+      <!-- MENU BACKGROUND -->
+      <div
+        class="visuals__background visuals__background--upper visuals__background--js-upper"
+      ></div>
+      <div
+        class="visuals__background visuals__background--bottom visuals__background--js-bottom"
+      ></div>
+      <!-- INTROBOX -->
+      <div
+        class="visuals__introBox visuals__introBox--centered visuals__introBox--visible visuals__introBox--js"
+      ></div>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region [ Horizon ] MAIN CONTENT -->
+    <main class="pageContainer pageContainer--js">
+      <!-- #region [ Horizon ] ABOUT -->
+      <article id="about" class="section section--about section--js">
+        <div
+          class="section__container section__container--about section__container--js"
+        >
+          <h2
+            class="section__heading section__heading--large section__heading--about"
+          >
+            Hello there!
+          </h2>
+          <img
+            src="assets/img/photo.jpg"
+            class="section__photo"
+            alt="Photo of Jakub Chojna"
+          />
+          <!-- #region [ Horizon ] PERSONAL INFO -->
+          <section class="tab tab--description">
+            <h3 class="tab__heading tab__heading--about tab__heading--aboutMe">
+              About Me
+            </h3>
+            <p class="tab__description tab__description--about">
+              My name is Jakub and I’m a Frontend Developer, a 3d Graphic
+              Artist, an Architect and a keen road cycling fan.
+            </p>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PERSONAL PROFILES -->
+          <section class="tab tab--profiles">
+            <h3 class="tab__heading tab__heading--about tab__heading--profiles">
+              Personal Profiles
+            </h3>
+            <ul class="icons icons--profiles">
+              <!-- GITHUB -->
+              <li class="icons__item">
+                <a
+                  href="https://github.com/jchojna"
+                  class="icons__logo icons__logo--about icons__logo--link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="Github profile"
+                >
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#github"></use>
+                  </svg>
+                </a>
+                <span class="icons__name icons__name--about">Github</span>
+              </li>
+              <!-- LINKEDIN -->
+              <li class="icons__item">
+                <a
+                  href="https://linkedin.com/in/jakub-chojna/"
+                  class="icons__logo icons__logo--about icons__logo--link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="LinkedIn profile"
+                >
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#linkedin"></use>
+                  </svg>
+                </a>
+                <span class="icons__name icons__name--about">LinkedIn</span>
+              </li>
+              <!-- CODEWARS -->
+              <li class="icons__item">
+                <a
+                  href="https://www.codewars.com/users/jchojna/"
+                  class="icons__logo icons__logo--about icons__logo--link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="Codewars profile"
+                >
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#codewars"></use>
+                  </svg>
+                </a>
+                <span class="icons__name icons__name--about">CodeWars</span>
+              </li>
+              <!-- E-MAIL -->
+              <li class="icons__item">
+                <a
+                  href="mailto:frontend@jakubchojna.pl"
+                  class="icons__logo icons__logo--about icons__logo--link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                >
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#email"></use>
+                  </svg>
+                </a>
+                <span class="icons__name icons__name--about">E-Mail</span>
+              </li>
+              <!-- RESUME -->
+              <li class="icons__item">
+                <a
+                  href="assets/pdf/resume.pdf"
+                  class="icons__logo icons__logo--about icons__logo--link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="Jakub Chojna Resume"
+                >
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#resume"></use>
+                  </svg>
+                </a>
+                <span class="icons__name icons__name--about">Resume</span>
+              </li>
+            </ul>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] WORKING KNOWLEDGE -->
+          <section class="tab tab--working">
+            <h3 class="tab__heading tab__heading--about tab__heading--working">
+              Working knowledge
+            </h3>
+            <ul class="icons icons--working">
+              <!-- HTML -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#html-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#html-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#html-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">html</span>
+              </li>
+              <!-- CSS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#css-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#css-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#css-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">css</span>
+              </li>
+              <!-- JAVASCRIPT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#javascript-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#javascript-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#javascript-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">javascript</span>
+              </li>
+              <!-- SASS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#sass"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">sass</span>
+              </li>
+              <!-- BEM -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#bem"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">bem</span>
+              </li>
+              <!-- REACT.JS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#react"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">react.js</span>
+              </li>
+              <!-- GIT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#git"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">git</span>
+              </li>
+              <!-- VISUAL STUDIO CODE -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#vscode-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#vscode-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#vscode-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">vs code</span>
+              </li>
+              <!-- FIGMA -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#figma-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#figma-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#figma-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">figma</span>
+              </li>
+              <!-- ILLUSTRATOR -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#illustrator"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">illustrator</span>
+              </li>
+              <!-- PHOTOSHOP -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#photoshop"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">photoshop</span>
+              </li>
+            </ul>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] KNOW SOMETHING ABOUT  -->
+          <section class="tab tab--knowing">
+            <h3 class="tab__heading tab__heading--about tab__heading--knowing">
+              Know something about
+            </h3>
+            <ul class="icons icons--knowing">
+              <!-- REDUX -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#redux"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">redux</span>
+              </li>
+              <!-- NPM -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#npm"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">npm</span>
+              </li>
+              <!-- FETCH API / AJAX -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#ajax"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">api / ajax</span>
+              </li>
+              <!-- GULP -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#gulp"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">gulp</span>
+              </li>
+              <!-- JEST -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#jest"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">jest</span>
+              </li>
+              <!-- BOOTSTRAP -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#bootstrap"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">bootstrap</span>
+              </li>
+              <!-- WORDPRESS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#wordpress"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">wordpress</span>
+              </li>
+            </ul>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] WANT TO LEARN -->
+          <section class="tab tab--learning">
+            <h3 class="tab__heading tab__heading--about tab__heading--learning">
+              Want to learn
+            </h3>
+            <ul class="icons icons--learning">
+              <!-- NODE.JS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#nodejs"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">node.js</span>
+              </li>
+              <!-- EMOTION -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#emotion"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">emotion</span>
+              </li>
+              <!-- GRAPHQL -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#graphql"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">graphql</span>
+              </li>
+              <!-- D3.JS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#d3js-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#d3js-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#d3js-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">d3.js</span>
+              </li>
+              <!-- PT.JS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#p5js"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">p5.js</span>
+              </li>
+              <!-- THREE.JS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#threejs"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">three.js</span>
+              </li>
+              <!-- ELECTRON -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#electron"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">electron</span>
+              </li>
+              <!-- WEBSOCKET -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#websocket"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">websocket</span>
+              </li>
+              <!-- TYPESCRIPT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#typescript"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">typescript</span>
+              </li>
+              <!-- ENZYME -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#enzyme"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">enzyme</span>
+              </li>
+              <!-- NEXT.JS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#nextjs"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">next.js</span>
+              </li>
+              <!-- GATSBY -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--about">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#gatsby"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--about">gatsby</span>
+              </li>
+            </ul>
+          </section>
+          <!-- #endregion -->
+        </div>
+      </article>
+      <!-- #endregion -->
+
+      <!-- #region [ Horizon ] RESUME -->
+      <article id="resume" class="section section--resume section--js">
+        <div
+          class="section__container section__container--resume section__container--js"
+        >
+          <h2
+            class="section__heading section__heading--large section__heading--resume"
+          >
+            Jakub Chojna
+          </h2>
+
+          <!-- #region [ Horizon ] LOGO -->
+          <div class="logo logo--resume">
+            <svg class="logo__base logo__base--resume" viewBox="0 0 512 512">
+              <use href="assets/svg/logos.svg#resume-base"></use>
+            </svg>
+            <svg
+              class="logo__shadow logo__shadow--resume"
+              viewBox="0 0 512 512"
+            >
+              <use href="assets/svg/logos.svg#resume-shadow"></use>
+            </svg>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PERSONAL INFO -->
+          <section class="tab tab--resume tab--info">
+            <h3 class="tab__heading tab__heading--resume">Personal Info</h3>
+            <div class="tab__wrapper js-expandable js-minHeight">
+              <p class="tab__description tab__description--resume">
+                As an architect I have a background in programming parametric
+                architecture using tools like Grasshopper and Kangaroo. Long
+                experience in 3d graphic and architectural visualization
+                industry had a strong impact on my sense of aesthetics and
+                visual composition. I also had an encounter with motion design
+                and compositing. During my one year stay in Slovenia, I had an
+                opportunity to work in English-speaking environment. As an
+                individual, I think I would describe myself as a self-taught,
+                multipotentialite person with a certain dose of perfectionism.
+              </p>
+              <p class="tab__description tab__description--resume">
+                After I had created my first personal portfolio website in
+                Wordpress, I decided to take my chances in frontend development
+                about one year ago and learn it after hours. I have taken some
+                online courses, but first of all I focused on writing my own
+                projects and learning by practice. I tried to avoid using
+                external libraries where I possibly could while writing the
+                code, to get better understanding of HTML, CSS and JS basics.
+                What I like about frontend web development is an endless process
+                of learning, logical and analytical thinking and that it enables
+                me to connect my previous experience backgrounds at some level.
+              </p>
+            </div>
+            <button
+              class="tab__readMore tab__readMore--resume tab__readMore--js"
+            >
+              Read more
+            </button>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROFESSIONAL EXPERIENCE -->
+          <section class="tab tab--resume tab--experience tab--js-resume">
+            <h3 class="tab__header tab__header--resume">
+              <button
+                class="tab__button tab__button--resume tab__button--js-resume"
+              >
+                <span class="mark mark--resume"></span>
+                <span>Experience</span>
+              </button>
+            </h3>
+            <div class="container">
+              <div class="content">
+                <!-- #region [ Horizon ] ARCHITECTURE -->
+                <section class="subtab subtab--resume subtab--js-resume">
+                  <h4 class="subtab__header subtab__header--resume">
+                    <button
+                      class="subtab__button subtab__button--resume subtab__button--js-resume"
+                    >
+                      <span class="mark mark--resume"></span>
+                      <span>Architecture</span>
+                    </button>
+                  </h4>
+                  <div class="container">
+                    <ul class="content__list">
+                      <li
+                        class="content__item content__item--resume content__item--experience"
+                      >
+                        <p class="content__title content__title--experience">
+                          2017 - present
+                        </p>
+                        <p
+                          class="content__description content__description--primary"
+                        >
+                          Freelance Architect
+                        </p>
+                        <p
+                          class="content__description content__description--secondary"
+                        >
+                          self-employed
+                        </p>
+                        <p
+                          class="content__description content__description--additional"
+                        >
+                          Remote
+                        </p>
+                      </li>
+                      <li
+                        class="content__item content__item--resume content__item--experience"
+                      >
+                        <p class="content__title content__title--experience">
+                          2018
+                        </p>
+                        <p
+                          class="content__description content__description--primary"
+                        >
+                          Architect / 3d Visualizer
+                        </p>
+                        <p
+                          class="content__description content__description--secondary"
+                        >
+                          Svet Vmes
+                        </p>
+                        <p
+                          class="content__description content__description--additional"
+                        >
+                          Ljubljana, Slovenia
+                        </p>
+                      </li>
+                      <li
+                        class="content__item content__item--resume content__item--experience"
+                      >
+                        <p class="content__title content__title--experience">
+                          2015 - 2017
+                        </p>
+                        <p
+                          class="content__description content__description--primary"
+                        >
+                          Architect / 3d Visualizer
+                        </p>
+                        <p
+                          class="content__description content__description--secondary"
+                        >
+                          Mofo Architekci
+                        </p>
+                        <p
+                          class="content__description content__description--additional"
+                        >
+                          Warsaw, Poland
+                        </p>
+                      </li>
+                      <li
+                        class="content__item content__item--resume content__item--experience"
+                      >
+                        <p class="content__title content__title--experience">
+                          2011 - 2013
+                        </p>
+                        <p
+                          class="content__description content__description--primary"
+                        >
+                          Architect
+                        </p>
+                        <p
+                          class="content__description content__description--secondary"
+                        >
+                          Activum Projektowanie
+                        </p>
+                        <p
+                          class="content__description content__description--additional"
+                        >
+                          Warsaw, Poland
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+                <!-- #endregion -->
+                <!-- #region [ Horizon ] 3D GRAPHICS -->
+                <section class="subtab subtab--resume subtab--js-resume">
+                  <h4 class="subtab__header subtab__header--resume">
+                    <button
+                      class="subtab__button subtab__button--resume subtab__button--js-resume"
+                    >
+                      <span class="mark mark--resume"></span>
+                      <span>3d Graphics</span>
+                    </button>
+                  </h4>
+                  <div class="container">
+                    <ul class="content__list">
+                      <li
+                        class="content__item content__item--resume content__item--experience"
+                      >
+                        <p class="content__title content__title--experience">
+                          2008 - present
+                        </p>
+                        <p
+                          class="content__description content__description--primary"
+                        >
+                          Freelance 3d Visualizer
+                        </p>
+                        <p
+                          class="content__description content__description--secondary"
+                        >
+                          self-employed
+                        </p>
+                        <p
+                          class="content__description content__description--additional"
+                        >
+                          Remote
+                        </p>
+                      </li>
+                      <li
+                        class="content__item content__item--resume content__item--experience"
+                      >
+                        <p class="content__title content__title--experience">
+                          2010 - 2013
+                        </p>
+                        <p
+                          class="content__description content__description--primary"
+                        >
+                          3d software tutor
+                        </p>
+                        <p
+                          class="content__description content__description--secondary"
+                        >
+                          Euro Info Group
+                        </p>
+                        <p
+                          class="content__description content__description--additional"
+                        >
+                          Warsaw, Poland
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+                <!-- #endregion -->
+                <!-- #region [ Horizon ] FRONTEND WEB DEV -->
+                <section class="subtab subtab--resume subtab--js-resume">
+                  <h4 class="subtab__header subtab__header--resume">
+                    <button
+                      class="subtab__button subtab__button--resume subtab__button--js-resume"
+                    >
+                      <span class="mark mark--resume"></span>
+                      <span>Frontend Web Dev</span>
+                    </button>
+                  </h4>
+                  <div class="container">
+                    <ul class="content__list">
+                      <li
+                        class="content__item content__item--resume content__item--frontend"
+                      >
+                        <p
+                          class="content__title content__title--experience content__title--fullWidth"
+                        >
+                          No professional experience yet ...
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+                <!-- #endregion -->
+              </div>
+            </div>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] EDUCATION -->
+          <section class="tab tab--resume tab--education tab--js-resume">
+            <h3 class="tab__header tab__header--resume">
+              <button
+                class="tab__button tab__button--resume tab__button--js-resume"
+              >
+                <span class="mark mark--resume"></span>
+                <span>Education</span>
+              </button>
+            </h3>
+            <div class="container">
+              <ul class="content__list">
+                <li
+                  class="content__item content__item--resume content__item--education"
+                >
+                  <p class="content__title">2011 - 2014</p>
+                  <p class="content__description content__description--primary">
+                    Warsaw University of Technology
+                  </p>
+                  <p
+                    class="content__description content__description--secondary"
+                  >
+                    Faculty of Architecture
+                  </p>
+                  <p
+                    class="content__description content__description--additional"
+                  >
+                    Master's Degree
+                  </p>
+                </li>
+                <li
+                  class="content__item content__item--resume content__item--education"
+                >
+                  <p class="content__title">2006 - 2010</p>
+                  <p class="content__description content__description--primary">
+                    Warsaw University of Technology
+                  </p>
+                  <p
+                    class="content__description content__description--secondary"
+                  >
+                    Faculty of Architecture
+                  </p>
+                  <p
+                    class="content__description content__description--additional"
+                  >
+                    Bachelor's Degree
+                  </p>
+                </li>
+                <li
+                  class="content__item content__item--resume content__item--education"
+                >
+                  <p class="content__title">2003 - 2006</p>
+                  <p class="content__description content__description--primary">
+                    Joachim Lelewel High School No. XLI
+                  </p>
+                  <p
+                    class="content__description content__description--secondary"
+                  >
+                    Mathematics - Physics profile
+                  </p>
+                  <p
+                    class="content__description content__description--additional"
+                  >
+                    Warsaw, Poland
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] LANGUAGES -->
+          <section class="tab tab--resume tab--languages tab--js-resume">
+            <h3 class="tab__header tab__header--resume">
+              <button
+                class="tab__button tab__button--resume tab__button--js-resume"
+              >
+                <span class="mark mark--resume"></span>
+                <span>Languages</span>
+              </button>
+            </h3>
+            <div class="container">
+              <ul class="content__list">
+                <li
+                  class="content__item content__item--resume content__item--languages"
+                >
+                  <p class="content__title">English</p>
+                  <p
+                    class="content__description content__description--secondary"
+                  >
+                    Proficient
+                  </p>
+                </li>
+                <li
+                  class="content__item content__item--resume content__item--languages"
+                >
+                  <p class="content__title">German</p>
+                  <p
+                    class="content__description content__description--secondary"
+                  >
+                    Elementary
+                  </p>
+                </li>
+                <li
+                  class="content__item content__item--resume content__item--languages"
+                >
+                  <p class="content__title">Polish</p>
+                  <p
+                    class="content__description content__description--secondary"
+                  >
+                    Native
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <!-- #endregion -->
+        </div>
+      </article>
+      <!-- #endregion -->
+
+      <!-- #region [ Horizon ] TASKTIMER -->
+      <article id="tasktimer" class="section section--tasktimer section--js">
+        <div
+          class="section__container section__container--tasktimer section__container--js"
+        >
+          <h2 class="section__heading section__heading--tasktimer">
+            “get things done on time with taskTimer app”
+          </h2>
+          <!-- #region [ Horizon ] LOGO -->
+          <div class="logo logo--tasktimer">
+            <svg class="logo__base logo__base--tasktimer" viewBox="0 0 512 612">
+              <use href="assets/svg/logos.svg#tasktimer-base"></use>
+            </svg>
+            <svg
+              class="logo__letter logo__letter--tasktimer"
+              viewBox="0 0 512 612"
+            >
+              <use href="assets/svg/logos.svg#tasktimer-letter"></use>
+            </svg>
+            <svg
+              class="logo__shadow logo__shadow--tasktimerBase"
+              viewBox="0 0 512 612"
+            >
+              <use href="assets/svg/logos.svg#tasktimer-shadow-base"></use>
+            </svg>
+            <svg
+              class="logo__shadow logo__shadow--tasktimerLetter"
+              viewBox="0 0 512 612"
+            >
+              <use href="assets/svg/logos.svg#tasktimer-shadow-letter"></use>
+            </svg>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT DESCRIPTION -->
+          <section class="tab tab--description">
+            <h3 class="tab__heading tab__heading--tasktimer">About Project</h3>
+            <div class="tab__wrapper js-expandable">
+              <p class="tab__description tab__description--tasktimer">
+                You could say it's just another Pomodoro Clock react app, but
+                this one is a little bit more complex and playful. I tried to
+                make it look more like a board game with cards, interactive and
+                entertaining. The app can handle multiple tasks going on at the
+                same time, even though it may not be too practical to work on
+                many tasks simultaneously, but it’s nice to see them all in
+                action anyway:)
+              </p>
+              <p class="tab__description tab__description--tasktimer">
+                For GIT training purposes, the app has started being developed
+                in multiple phases:
+              </p>
+              <!-- DEVELOPMENT PROCESS -->
+              <ul class="features features--tasktimer features--description">
+                <li class="features__item features__item--description">
+                  as a static page (static-page branch)
+                </li>
+                <li class="features__item features__item--description">
+                  as vanilla JS app using document.createElement (vanilla
+                  branch)
+                </li>
+                <li class="features__item features__item--description">
+                  as vanilla JS to react.js rewriting phase with use of
+                  React.createElement, but no JSX yet (react-no-jsx branch)
+                </li>
+                <li class="features__item features__item--description">
+                  previous and simpler version of the app created using
+                  create-react-app seed is located on react-simple branch
+                </li>
+                <li class="features__item features__item--description">
+                  app’s version on master branch is still being developed as the
+                  main app
+                </li>
+              </ul>
+            </div>
+            <button
+              class="tab__readMore tab__readMore--tasktimer tab__readMore--js"
+            >
+              Read more
+            </button>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT FEATURES -->
+          <section class="tab tab--features">
+            <h3 class="tab__heading tab__heading--tasktimer">Features</h3>
+            <div class="tab__wrapper">
+              <!-- #region [ Horizon ] FUNCTIONALITY -->
+              <section
+                class="tab tab--category tab--tasktimer tab--js-tasktimer"
+              >
+                <h4
+                  class="tab__header tab__header--category tab__header--tasktimer"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--tasktimer tab__button--js-tasktimer"
+                  >
+                    <span class="mark mark--category mark--tasktimer"></span>
+                    <span>Functionality</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--tasktimer content">
+                    <li class="features__item">
+                      adding / removing users with unique logins and secured by
+                      password
+                    </li>
+                    <li class="features__item">
+                      'remember me' functionality when user logs in / signs in
+                    </li>
+                    <li class="features__item">
+                      user editing section allowing to change user's login,
+                      password, log out or remove user's profile
+                    </li>
+                    <li class="features__item">
+                      creating / editing / removing tasks
+                    </li>
+                    <li class="features__item">
+                      user can specify a task name, time to finish the task and
+                      maximum break time
+                    </li>
+                    <li class="features__item">
+                      all inputs have validation rules applied to them
+                    </li>
+                    <li class="features__item">
+                      work and break time countdown available for multiple cards
+                      simultaneously
+                    </li>
+                    <li class="features__item">
+                      two display modes for work and break phases showing either
+                      elapsed or remaining time
+                    </li>
+                    <li class="features__item">
+                      progress bars with percentage values indicates elapsed or
+                      remaining time as well, depending on the current display
+                      mode
+                    </li>
+                    <li class="features__item">
+                      card’s outro mode appears on task finish or when the
+                      maximum break time gets exceeded, summarizing that given
+                      task’s stats
+                    </li>
+                    <li class="features__item">
+                      drag and drop functionality for task cards with transition
+                      effects
+                    </li>
+                    <li class="features__item">
+                      cards can be minimized to more concise form and display
+                      only the task name
+                    </li>
+                    <li class="features__item">
+                      stats section for all finished tasks
+                    </li>
+                    <li class="features__item">
+                      data stored in local storage as Json format
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] VISUAL APPEARANCE -->
+              <section
+                class="tab tab--category tab--tasktimer tab--js-tasktimer"
+              >
+                <h4
+                  class="tab__header tab__header--category tab__header--tasktimer"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--tasktimer tab__button--js-tasktimer"
+                  >
+                    <span class="mark mark--category mark--tasktimer"></span>
+                    <span>Visual Appearance</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--tasktimer content">
+                    <li class="features__item">
+                      intro animation is based on SVG logo with masking applied
+                      to casted shadow
+                    </li>
+                    <li class="features__item">
+                      shadow’s spiral trajectory is calculated using
+                      trigonometric functions
+                    </li>
+                    <li class="features__item">
+                      all tasks form grid of elements resembling cards laid out
+                      on a game board rotating 180 degrees on every status
+                      change
+                    </li>
+                    <li class="features__item">
+                      app is fully responsive with grid of cards adjusting to
+                      viewport size
+                    </li>
+                    <li class="features__item">
+                      all cards are minimized by default on mobile devices due
+                      to accessibility reasons
+                    </li>
+                    <li class="features__item">
+                      project’s mockup was created in Figma
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] TO BE IMPLEMENTED -->
+              <section
+                class="tab tab--category tab--tasktimer tab--js-tasktimer"
+              >
+                <h4
+                  class="tab__header tab__header--category tab__header--tasktimer"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--tasktimer tab__button--js-tasktimer"
+                  >
+                    <span class="mark mark--category mark--tasktimer"></span>
+                    <span>To be implemented</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--tasktimer content">
+                    <li class="features__item">
+                      full keyboard support for an entire app
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+            </div>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT LINKS -->
+          <div class="repoLinks repoLinks--tasktimer">
+            <a
+              href="https://github.com/jchojna/task-timer"
+              class="repoLinks__link repoLinks__link--tasktimer"
+              target="_blank"
+              rel="nofollow noreferrer"
+              aria-label="TaskTimer app code"
+            >
+              Code
+            </a>
+            <a
+              href="https://jchojna.github.io/task-timer/"
+              class="repoLinks__link repoLinks__link--tasktimer"
+              target="_blank"
+              rel="nofollow noreferrer"
+              aria-label="TaskTimer app demo"
+            >
+              Demo
+            </a>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] STATS -->
+          <section class="tab tab--stats">
+            <h3 class="tab__heading tab__heading--tasktimer">
+              Project Details
+            </h3>
+            <table class="stats stats--tasktimer">
+              <thead class="stats__header">
+                <tr>
+                  <th scope="col">category</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              <tbody class="stats__body">
+                <tr class="stats__row">
+                  <td class="stats__category">Created:</td>
+                  <td class="stats__value stats__value--js-created"></td>
+                </tr>
+                <tr class="stats__row">
+                  <td class="stats__category">Last update:</td>
+                  <td class="stats__value stats__value--js-updated"></td>
+                </tr>
+                <tr class="stats__row">
+                  <td class="stats__category">Total commits:</td>
+                  <td class="stats__value stats__value--js-commits"></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] TECHNOLOGIES USED -->
+          <section class="tab tab--technologies">
+            <h3
+              class="tab__heading tab__heading--technologies tab__heading--tasktimer"
+            >
+              Technologies Used
+            </h3>
+            <ul class="icons">
+              <!-- HTML -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--tasktimer">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#html-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#html-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#html-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--tasktimer">html</span>
+              </li>
+              <!-- CSS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--tasktimer">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#css-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#css-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#css-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--tasktimer">css</span>
+              </li>
+              <!-- JAVASCRIPT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--tasktimer">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#javascript-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#javascript-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#javascript-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--tasktimer"
+                  >javascript</span
+                >
+              </li>
+              <!-- SASS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--tasktimer">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#sass"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--tasktimer">sass</span>
+              </li>
+              <!-- BEM -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--tasktimer">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#bem"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--tasktimer">bem</span>
+              </li>
+              <!-- REACT.JS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--tasktimer">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#react"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--tasktimer">react.js</span>
+              </li>
+              <!-- GIT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--tasktimer">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#git"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--tasktimer">git</span>
+              </li>
+              <!-- VISUAL STUDIO CODE -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--tasktimer">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#vscode-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#vscode-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#vscode-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--tasktimer">vs code</span>
+              </li>
+              <!-- FIGMA -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--tasktimer">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#figma-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#figma-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#figma-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--tasktimer">figma</span>
+              </li>
+              <!-- ILLUSTRATOR -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--tasktimer">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#illustrator"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--tasktimer"
+                  >illustrator</span
+                >
+              </li>
+            </ul>
+          </section>
+          <!-- #endregion -->
+        </div>
+      </article>
+      <!-- #endregion -->
+
+      <!-- #region [ Horizon ] HYDRAPP -->
+      <article id="hydrapp" class="section section--hydrapp section--js">
+        <div
+          class="section__container section__container--hydrapp section__container--js"
+        >
+          <h2 class="section__heading section__heading--hydrapp">
+            “track water consumption with hydrApp”
+          </h2>
+          <!-- #region [ Horizon ] LOGO -->
+          <div class="logo logo--hydrapp">
+            <svg class="logo__base logo__base--hydrapp" viewBox="0 0 100 100">
+              <use href="assets/svg/logos.svg#hydrapp-base"></use>
+            </svg>
+            <svg
+              class="logo__shadow logo__shadow--hydrapp"
+              viewBox="0 0 100 100"
+            >
+              <use href="assets/svg/logos.svg#hydrapp-shadow"></use>
+            </svg>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT DESCRIPTION -->
+          <section class="tab tab--description">
+            <h3 class="tab__heading tab__heading--hydrapp">About Project</h3>
+            <div class="tab__wrapper js-expandable">
+              <p class="tab__description tab__description--hydrapp">
+                Simple yet useful app for daily tracking of water consumption.
+                User can quickly get to basic app’s functionality and add (or
+                remove) next glass of drank water what may help with not
+                forgetting about this really important activity, especially
+                during hot summer.. There’s also an archive section with an
+                editable history entries divided on weeks, to have an overall
+                insight into water consumption tendency. On top of that, user is
+                able to change his account settings and view his or other users
+                stats. I added some level of gamification in form of points
+                collected by every user for 'minimum water' streaks. There is
+                also an overall ranking of users, dynamically reacting to any
+                change in users stats.
+              </p>
+            </div>
+            <button
+              class="tab__readMore tab__readMore--hydrapp tab__readMore--js"
+            >
+              Read more
+            </button>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT FEATURES -->
+          <section class="tab tab--features">
+            <h3 class="tab__heading tab__heading--hydrapp">Features</h3>
+            <div class="tab__wrapper">
+              <!-- #region [ Horizon ] FUNCTIONALITY -->
+              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
+                <h4
+                  class="tab__header tab__header--category tab__header--hydrapp"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp"
+                  >
+                    <span class="mark mark--category mark--hydrapp"></span>
+                    <span>Functionality</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--hydrapp content">
+                    <li class="features__item">
+                      editable archive section with a list of days divided on
+                      weeks
+                    </li>
+                    <li class="features__item">new archive's entry creator</li>
+                    <li class="features__item">
+                      weeks calendar is automatically updated after adding or
+                      removing an entry
+                    </li>
+                    <li class="features__item">burger button menu</li>
+                    <li class="features__item">
+                      stats section displaying results of each user
+                    </li>
+                    <li class="features__item">
+                      calculated current and longest user's streak
+                    </li>
+                    <li class="features__item">
+                      ranking of users based on highest point score
+                    </li>
+                    <li class="features__item">
+                      settings section allowing to log out, remove account or
+                      edit profile settings
+                    </li>
+                    <li class="features__item">
+                      data stored in local storage as Json format
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] VISUAL APPEARANCE -->
+              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
+                <h4
+                  class="tab__header tab__header--category tab__header--hydrapp"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp"
+                  >
+                    <span class="mark mark--category mark--hydrapp"></span>
+                    <span>Visual Appearance</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--hydrapp content">
+                    <li class="features__item">intro animation</li>
+                    <li class="features__item">
+                      animated graphical representation of water
+                    </li>
+                    <li class="features__item">
+                      animated counter displaying amount of consumed water
+                    </li>
+                    <li class="features__item">
+                      emoji icons indicating current level of consumed level of
+                      water on a given day
+                    </li>
+                    <li class="features__item">
+                      animated icons and buttons and smooth transitions between
+                      sections
+                    </li>
+                    <li class="features__item">responsiveness</li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] TO BE IMPLEMENTED -->
+              <section class="tab tab--category tab--hydrapp tab--js-hydrapp">
+                <h4
+                  class="tab__header tab__header--category tab__header--hydrapp"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--hydrapp tab__button--js-hydrapp"
+                  >
+                    <span class="mark mark--category mark--hydrapp"></span>
+                    <span>To Be Implemented</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--hydrapp content">
+                    <li class="features__item">
+                      calculating optimal amount of water based on the user’s
+                      weight
+                    </li>
+                    <li class="features__item">
+                      fetching data about weather conditions in user’s location
+                      from external API and recalculating minimum amount of
+                      water to be consumed
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+            </div>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT LINKS -->
+          <div class="repoLinks repoLinks--hydrapp">
+            <a
+              href="https://github.com/jchojna/hydrApp"
+              class="repoLinks__link repoLinks__link--hydrapp"
+              target="_blank"
+              rel="nofollow noreferrer"
+              aria-label="HydrApp code"
+            >
+              Code
+            </a>
+            <a
+              href="https://jchojna.github.io/hydrApp/"
+              class="repoLinks__link repoLinks__link--hydrapp"
+              target="_blank"
+              rel="nofollow noreferrer"
+              aria-label="HydrApp demo"
+            >
+              Demo
+            </a>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] STATS -->
+          <section class="tab tab--stats">
+            <h3 class="tab__heading tab__heading--hydrapp">Project Details</h3>
+            <table class="stats stats--hydrapp">
+              <thead class="stats__header">
+                <tr>
+                  <th scope="col">category</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              <tbody class="stats__body">
+                <tr class="stats__row">
+                  <td class="stats__category">Created:</td>
+                  <td class="stats__value stats__value--js-created"></td>
+                </tr>
+                <tr class="stats__row">
+                  <td class="stats__category">Last update:</td>
+                  <td class="stats__value stats__value--js-updated"></td>
+                </tr>
+                <tr class="stats__row">
+                  <td class="stats__category">Total commits:</td>
+                  <td class="stats__value stats__value--js-commits"></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] TECHNOLOGIES USED -->
+          <section class="tab tab--technologies">
+            <h3
+              class="tab__heading tab__heading--technologies tab__heading--hydrapp"
+            >
+              Technologies Used
+            </h3>
+            <ul class="icons">
+              <!-- HTML -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#html-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#html-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#html-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">html</span>
+              </li>
+              <!-- CSS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#css-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#css-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#css-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">css</span>
+              </li>
+              <!-- JAVASCRIPT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#javascript-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#javascript-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#javascript-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">javascript</span>
+              </li>
+              <!-- SASS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#sass"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">sass</span>
+              </li>
+              <!-- BEM -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#bem"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">bem</span>
+              </li>
+              <!-- GIT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#git"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">git</span>
+              </li>
+              <!-- VISUAL STUDIO CODE -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#vscode-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#vscode-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#vscode-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp">vs code</span>
+              </li>
+              <!-- ILLUSTRATOR -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--hydrapp">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#illustrator"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--hydrapp"
+                  >illustrator</span
+                >
+              </li>
+            </ul>
+          </section>
+          <!-- #endregion -->
+        </div>
+      </article>
+      <!-- #endregion -->
+
+      <!-- #region [ Horizon ] PORTFOLIO -->
+      <article id="portfolio" class="section section--portfolio section--js">
+        <div
+          class="section__container section__container--portfolio section__container--js"
+        >
+          <h2 class="section__heading section__heading--portfolio">
+            “this portfolio website...”
+          </h2>
+          <!-- #region [ Horizon ] LOGO -->
+          <div class="logo logo--portfolio">
+            <svg class="logo__base logo__base--portfolio" viewBox="0 0 512 512">
+              <use href="assets/svg/logos.svg#portfolio-base"></use>
+            </svg>
+            <svg
+              class="logo__shadow logo__shadow--portfolio"
+              viewBox="0 0 512 512"
+            >
+              <use href="assets/svg/logos.svg#portfolio-shadow"></use>
+            </svg>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT DESCRIPTION -->
+          <section class="tab tab--description">
+            <h3 class="tab__heading tab__heading--portfolio">About Project</h3>
+            <div class="tab__wrapper js-expandable">
+              <p class="tab__description tab__description--portfolio">
+                This project you have already started exploring and it’s what
+                you are viewing right now. It presents five most representative
+                frontend projects of mine (including itself) placed in separate
+                sections, starting from the ones I am proud of the most. In
+                addition, the other section contains a few more straightforward
+                and exercise projects I created in the beginning of my frontend
+                journey.
+              </p>
+              <p class="tab__description tab__description--portfolio">
+                I tried to emphasize creative and dynamic character of this SPA
+                website mostly by providing noticeable level of interaction with
+                a visual output and quite many animated elements. At the same
+                time, I tried not to cross the line of exaggeration regarding
+                transforming elements and kept my eye on performance aspect so
+                the transitions would appear relatively smooth.
+              </p>
+              <p class="tab__description tab__description--portfolio">
+                In order to distinguish one section from another I assumed a
+                design rule, that each section has its own independent color
+                palette. Because of many color shades in every section, there is
+                68 colors in total on this page and it’s one of those moments
+                when SCSS comes in handy… In this project I decided not to use
+                any javascript frameworks, just vanilla JS.
+              </p>
+            </div>
+            <button
+              class="tab__readMore tab__readMore--portfolio tab__readMore--js"
+            >
+              Read more
+            </button>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT FEATURES -->
+          <section class="tab tab--features">
+            <h3 class="tab__heading tab__heading--portfolio">Features</h3>
+            <div class="tab__wrapper">
+              <!-- #region [ Horizon ] FUNCTIONALITY -->
+              <section
+                class="tab tab--category tab--portfolio tab--js-portfolio"
+              >
+                <h4
+                  class="tab__header tab__header--category tab__header--portfolio"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio"
+                  >
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Functionality</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      website fetches my github repositories data using github
+                      API and searches for total number of commits, date of
+                      creation and last modification of each repo
+                    </li>
+                    <li class="features__item">
+                      expandable content functionality implemented by using
+                      recursive functions and a global object. It is applicable
+                      for plain text and more complex, nested elements like
+                      lists of items or lists inside another ones
+                    </li>
+                    <li class="features__item">
+                      accordion elements handling nested content
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] INTERACTION -->
+              <section
+                class="tab tab--category tab--portfolio tab--js-portfolio"
+              >
+                <h4
+                  class="tab__header tab__header--category tab__header--portfolio"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio"
+                  >
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Interaction</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      menu links appearance depends on currently displayed
+                      section
+                    </li>
+                    <li class="features__item">
+                      smooth scroll to the next section when user scrolls down
+                      fast enough
+                    </li>
+                    <li class="features__item">
+                      animated graphic elements serve as additional visual
+                      indicator
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] INTRO ANIMATION -->
+              <section
+                class="tab tab--category tab--portfolio tab--js-portfolio"
+              >
+                <h4
+                  class="tab__header tab__header--category tab__header--portfolio"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio"
+                  >
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Intro Animation</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      created with extensive use of setTimeout callback
+                      functions (because of a little callback hell, I want to
+                      rewrite this part using Promises)
+                    </li>
+                    <li class="features__item">
+                      transitions are mainly controlled with JS because of
+                      dynamically changing elements in the viewport
+                    </li>
+                    <li class="features__item">
+                      animated text is composed of SVG letters, but the output
+                      is based on simple string input
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] VISUAL APPEARANCE -->
+              <section
+                class="tab tab--category tab--portfolio tab--js-portfolio"
+              >
+                <h4
+                  class="tab__header tab__header--category tab__header--portfolio"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio"
+                  >
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Visual Appearance</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      colors applied using SCSS variables
+                    </li>
+                    <li class="features__item">
+                      each section has its own dedicated logo, being an SVG
+                      graphic element
+                    </li>
+                    <li class="features__item">grids of multiple SVG icons</li>
+                    <li class="features__item">
+                      animated elements and transitions emphasizes creative and
+                      dynamic look of the website
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] RESPONSIVENESS -->
+              <section
+                class="tab tab--category tab--portfolio tab--js-portfolio"
+              >
+                <h4
+                  class="tab__header tab__header--category tab__header--portfolio"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio"
+                  >
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Responsiveness</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      website layout based on CSS Grid (grid-areas mostly)
+                    </li>
+                    <li class="features__item">
+                      different behavior of menu/content transition for mobile
+                      and tablet/desktop devices
+                    </li>
+                    <li class="features__item">
+                      animated navigation buttons on tablets and large screen
+                      devices and burger button on mobiles
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] CONTACT FORM -->
+              <section
+                class="tab tab--category tab--portfolio tab--js-portfolio"
+              >
+                <h4
+                  class="tab__header tab__header--category tab__header--portfolio"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio"
+                  >
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Contact Form</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      supported with frontend and backend validation
+                    </li>
+                    <li class="features__item">
+                      AJAX request written in vanilla JS
+                    </li>
+                    <li class="features__item">
+                      mail sending functionality based on phpmailer class
+                    </li>
+                    <li class="features__item">
+                      server responses and backend validation result displayed
+                      as animated alert boxes
+                    </li>
+                    <li class="features__item">
+                      Local storage support for contact form inputs
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] OVERALL -->
+              <section
+                class="tab tab--category tab--portfolio tab--js-portfolio"
+              >
+                <h4
+                  class="tab__header tab__header--category tab__header--portfolio"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio"
+                  >
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>Overall</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      project’s precise mockup created in Figma
+                    </li>
+                    <li class="features__item">
+                      website seed by yeoman - generator webapp
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+              <!-- #region [ Horizon ] TO BE IMPLEMENTED -->
+              <section
+                class="tab tab--category tab--portfolio tab--js-portfolio"
+              >
+                <h4
+                  class="tab__header tab__header--category tab__header--portfolio"
+                >
+                  <button
+                    class="tab__button tab__button--category tab__button--portfolio tab__button--js-portfolio"
+                  >
+                    <span class="mark mark--category mark--portfolio"></span>
+                    <span>To Be Implemented</span>
+                  </button>
+                </h4>
+                <div class="container">
+                  <ul class="features features--portfolio content">
+                    <li class="features__item">
+                      Bonus functionality allowing to generate and display intro
+                      animation with content based on the string input provided
+                      by the user
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <!-- #endregion -->
+            </div>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT LINKS -->
+          <div class="repoLinks repoLinks--portfolio">
+            <a
+              href="https://github.com/jchojna/portfolio-page"
+              class="repoLinks__link repoLinks__link--portfolio"
+              target="_blank"
+              rel="nofollow noreferrer"
+              aria-label="Portfolio page code"
+            >
+              Code
+            </a>
+            <a
+              href="https://jchojna.github.io/portfolio-page/"
+              class="repoLinks__link repoLinks__link--portfolio"
+              target="_blank"
+              rel="nofollow noreferrer"
+              aria-label="Portfolio page demo"
+            >
+              Demo
+            </a>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] STATS -->
+          <section class="tab tab--stats">
+            <h3 class="tab__heading tab__heading--portfolio">
+              Project Details
+            </h3>
+            <table class="stats stats--portfolio">
+              <thead class="stats__header">
+                <tr>
+                  <th scope="col">category</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              <tbody class="stats__body">
+                <tr class="stats__row">
+                  <td class="stats__category">Created:</td>
+                  <td class="stats__value stats__value--js-created"></td>
+                </tr>
+                <tr class="stats__row">
+                  <td class="stats__category">Last update:</td>
+                  <td class="stats__value stats__value--js-updated"></td>
+                </tr>
+                <tr class="stats__row">
+                  <td class="stats__category">Total commits:</td>
+                  <td class="stats__value stats__value--js-commits"></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] TECHNOLOGIES USED -->
+          <section class="tab tab--technologies">
+            <h3
+              class="tab__heading tab__heading--technologies tab__heading--portfolio"
+            >
+              Technologies Used
+            </h3>
+            <ul class="icons">
+              <!-- HTML -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--portfolio">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#html-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#html-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#html-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--portfolio">html</span>
+              </li>
+              <!-- CSS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--portfolio">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#css-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#css-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#css-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--portfolio">css</span>
+              </li>
+              <!-- JAVASCRIPT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--portfolio">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#javascript-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#javascript-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#javascript-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--portfolio"
+                  >javascript</span
+                >
+              </li>
+              <!-- SASS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--portfolio">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#sass"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--portfolio">sass</span>
+              </li>
+              <!-- BEM -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--portfolio">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#bem"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--portfolio">bem</span>
+              </li>
+              <!-- PHP -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--portfolio">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#php"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--portfolio">php</span>
+              </li>
+              <!-- GIT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--portfolio">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#git"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--portfolio">git</span>
+              </li>
+              <!-- VISUAL STUDIO CODE -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--portfolio">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#vscode-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#vscode-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#vscode-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--portfolio">vs code</span>
+              </li>
+              <!-- FIGMA -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--portfolio">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#figma-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#figma-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#figma-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--portfolio">figma</span>
+              </li>
+              <!-- ILLUSTRATOR -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--portfolio">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#illustrator"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--portfolio"
+                  >illustrator</span
+                >
+              </li>
+            </ul>
+          </section>
+          <!-- #endregion -->
+        </div>
+      </article>
+      <!-- #endregion -->
+
+      <!-- #region [ Horizon ] ARCHVIZ -->
+      <article id="archviz" class="section section--archviz section--js">
+        <div
+          class="section__container section__container--archviz section__container--js"
+        >
+          <h2 class="section__heading section__heading--archviz">
+            “personal portfolio with my architectural visulizations”
+          </h2>
+          <!-- #region [ Horizon ] LOGO -->
+          <div class="logo logo--archviz">
+            <svg class="logo__base logo__base--archviz" viewBox="0 0 512 512">
+              <use href="assets/svg/logos.svg#archviz-base"></use>
+            </svg>
+            <svg
+              class="logo__shadow logo__shadow--archviz"
+              viewBox="0 0 512 512"
+            >
+              <use href="assets/svg/logos.svg#archviz-shadow"></use>
+            </svg>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT DESCRIPTION -->
+          <section class="tab tab--description">
+            <h3 class="tab__heading tab__heading--archviz">About Project</h3>
+            <div class="tab__wrapper js-expandable">
+              <p class="tab__description tab__description--archviz">
+                The main idea for this project was to compromise a large amount
+                of high quality pictures with page load performance. Because of
+                that I decided to create SVG placeholders for every image as a
+                starting content and load the raster images progressively,
+                taking into account their actual visibility on the screen and
+                using lazy loading functionality.
+              </p>
+              <p class="tab__description tab__description--archviz">
+                I decided not to use any external libraries and write all the
+                functions by myself (exception: throttle function from
+                Underscore.js). All the visualizations used on this website were
+                created by me, while I have been working as an architectural
+                visualizer.
+              </p>
+            </div>
+            <button
+              class="tab__readMore tab__readMore--archviz tab__readMore--js"
+            >
+              Read more
+            </button>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT FEATURES -->
+          <section class="tab tab--features">
+            <h3 class="tab__heading tab__heading--archviz">Features</h3>
+            <ul class="features features--archviz js-expandable">
+              <li class="features__item">
+                Responsive grid of images written in JS. Each row's height
+                depends on an aspect ratios of the neighboring images located in
+                a particular row and taking the whole width of the container
+              </li>
+              <li class="features__item">
+                Sprite map of SVG placeholders for every visualization loaded up
+                as starting content to improve perceived performance of the page
+                load and set grid layout for images
+              </li>
+              <li class="features__item">
+                Lazy loading for grid images and gallery pictures (recursive
+                function)
+              </li>
+              <li class="features__item">
+                Responsive slider gallery of images
+              </li>
+              <li class="features__item">
+                Two display modes in gallery view (image and SVG placeholder
+                modes)
+              </li>
+              <li class="features__item">
+                Fully functional contact form with checkbox verification and
+                backend validation
+              </li>
+              <li class="features__item">Simple accordions in about section</li>
+              <li class="features__item">Page pre-loader</li>
+              <li class="features__item">
+                Improved content accessibility according to WCAG
+              </li>
+              <li class="features__item">
+                TO BE IMPLEMENTED: More detailed and animated page pre-loader
+                containing website’s SVG logo
+              </li>
+            </ul>
+            <button
+              class="tab__readMore tab__readMore--archviz tab__readMore--js"
+            >
+              Read more
+            </button>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT LINKS -->
+          <div class="repoLinks repoLinks--archviz">
+            <a
+              href="https://github.com/jchojna/archviz-website"
+              class="repoLinks__link repoLinks__link--archviz"
+              target="_blank"
+              rel="nofollow noreferrer"
+              aria-label="Archviz website code"
+            >
+              Code
+            </a>
+            <a
+              href="https://jakubchojna.pl/"
+              class="repoLinks__link repoLinks__link--archviz"
+              target="_blank"
+              rel="nofollow noreferrer"
+              aria-label="Archviz website demo"
+            >
+              Demo
+            </a>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] STATS -->
+          <section class="tab tab--stats">
+            <h3 class="tab__heading tab__heading--archviz">Project Details</h3>
+            <table class="stats stats--archviz">
+              <thead class="stats__header">
+                <tr>
+                  <th scope="col">category</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              <tbody class="stats__body">
+                <tr class="stats__row">
+                  <td class="stats__category">Created:</td>
+                  <td class="stats__value stats__value--js-created"></td>
+                </tr>
+                <tr class="stats__row">
+                  <td class="stats__category">Last update:</td>
+                  <td class="stats__value stats__value--js-updated"></td>
+                </tr>
+                <tr class="stats__row">
+                  <td class="stats__category">Total commits:</td>
+                  <td class="stats__value stats__value--js-commits"></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] TECHNOLOGIES USED -->
+          <section class="tab tab--technologies">
+            <h3
+              class="tab__heading tab__heading--technologies tab__heading--archviz"
+            >
+              Technologies Used
+            </h3>
+            <ul class="icons">
+              <!-- HTML -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--archviz">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#html-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#html-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#html-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--archviz">html</span>
+              </li>
+              <!-- CSS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--archviz">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#css-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#css-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#css-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--archviz">css</span>
+              </li>
+              <!-- JAVASCRIPT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--archviz">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#javascript-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#javascript-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#javascript-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--archviz">javascript</span>
+              </li>
+              <!-- SASS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--archviz">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#sass"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--archviz">sass</span>
+              </li>
+              <!-- BEM -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--archviz">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#bem"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--archviz">bem</span>
+              </li>
+              <!-- PHP -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--archviz">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#php"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--archviz">php</span>
+              </li>
+              <!-- GIT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--archviz">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#git"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--archviz">git</span>
+              </li>
+              <!-- VISUAL STUDIO CODE -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--archviz">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#vscode-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#vscode-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#vscode-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--archviz">vs code</span>
+              </li>
+              <!-- PHOTOSHOP -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--archviz">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#photoshop"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--archviz">photoshop</span>
+              </li>
+            </ul>
+          </section>
+          <!-- #endregion -->
+        </div>
+      </article>
+      <!-- #endregion -->
+
+      <!-- #region [ Horizon ] QUOTES -->
+      <article id="quotes" class="section section--quotes section--js">
+        <div
+          class="section__container section__container--quotes section__container--js"
+        >
+          <h2 class="section__heading section__heading--quotes">
+            “collection of useful and funny quotes”
+          </h2>
+          <!-- #region [ Horizon ] LOGO -->
+          <div class="logo logo--quotes">
+            <svg class="logo__base logo__base--quotes" viewBox="0 0 512 512">
+              <use href="assets/svg/logos.svg#quotes-base"></use>
+            </svg>
+            <svg
+              class="logo__shadow logo__shadow--quotes"
+              viewBox="0 0 512 512"
+            >
+              <use href="assets/svg/logos.svg#quotes-shadow"></use>
+            </svg>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT DESCRIPTION -->
+          <section class="tab tab--description">
+            <h3 class="tab__heading tab__heading--quotes">About Project</h3>
+            <p class="tab__description tab__description--quotes js-expandable">
+              Quotes collection containing nice pictures and many useful and
+              funny quotes. In this is simple MPA website I wanted to keep
+              perceived continuity, when user navigates between different pages
+              and make it look more like a simple app. All the pictures used in
+              this project has been taken and post-processed by myself during my
+              one year stay in Slovenia.
+            </p>
+            <button
+              class="tab__readMore tab__readMore--quotes tab__readMore--js"
+            >
+              Read more
+            </button>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT FEATURES -->
+          <section class="tab tab--features">
+            <h3 class="tab__heading tab__heading--quotes">Features</h3>
+            <ul class="features features--quotes js-expandable">
+              <li class="features__item">random quote functionality</li>
+              <li class="features__item">simple and basic PWA</li>
+              <li class="features__item">
+                keyboard support for navigating between pages
+              </li>
+              <li class="features__item">burger button menu</li>
+              <li class="features__item">animated SVG icons</li>
+              <li class="features__item">
+                transition effect for grid of images with delays applied using
+                SCSS loop
+              </li>
+              <li class="features__item">
+                responsive layout and grid of images
+              </li>
+              <li class="features__item">
+                local storage support for contact form’s inputs
+              </li>
+              <li class="features__item">contact form’s HTML validation</li>
+              <li class="features__item">checkboxes validation and alerts</li>
+              <li class="features__item">
+                TO BE IMPLEMENTED: contact form JS validation and functionality
+              </li>
+            </ul>
+            <button
+              class="tab__readMore tab__readMore--quotes tab__readMore--js"
+            >
+              Read more
+            </button>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] PROJECT LINKS -->
+          <div class="repoLinks repoLinks--quotes">
+            <a
+              href="https://github.com/jchojna/homepage-gulp"
+              class="repoLinks__link repoLinks__link--quotes"
+              target="_blank"
+              rel="nofollow noreferrer"
+              aria-label="Quotes website code"
+            >
+              Code
+            </a>
+            <a
+              href="https://jchojna.github.io/homepage-gulp/"
+              class="repoLinks__link repoLinks__link--quotes"
+              target="_blank"
+              rel="nofollow noreferrer"
+              aria-label="Quotes website demo"
+            >
+              Demo
+            </a>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] STATS -->
+          <section class="tab tab--stats">
+            <h3 class="tab__heading tab__heading--quotes">Project Details</h3>
+            <table class="stats stats--quotes">
+              <thead class="stats__header">
+                <tr>
+                  <th scope="col">category</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              <tbody class="stats__body">
+                <tr class="stats__row">
+                  <td class="stats__category">Created:</td>
+                  <td class="stats__value stats__value--js-created"></td>
+                </tr>
+                <tr class="stats__row">
+                  <td class="stats__category">Last update:</td>
+                  <td class="stats__value stats__value--js-updated"></td>
+                </tr>
+                <tr class="stats__row">
+                  <td class="stats__category">Total commits:</td>
+                  <td class="stats__value stats__value--js-commits"></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] TECHNOLOGIES USED -->
+          <section class="tab tab--technologies">
+            <h3
+              class="tab__heading tab__heading--technologies tab__heading--quotes"
+            >
+              Technologies Used
+            </h3>
+            <ul class="icons">
+              <!-- HTML -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--quotes">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#html-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#html-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#html-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--quotes">html</span>
+              </li>
+              <!-- CSS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--quotes">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#css-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#css-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#css-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--quotes">css</span>
+              </li>
+              <!-- JAVASCRIPT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--quotes">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#javascript-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#javascript-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#javascript-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--quotes">javascript</span>
+              </li>
+              <!-- SASS -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--quotes">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#sass"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--quotes">sass</span>
+              </li>
+              <!-- BEM -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--quotes">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#bem"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--quotes">bem</span>
+              </li>
+              <!-- GIT -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--quotes">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#git"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--quotes">git</span>
+              </li>
+              <!-- VISUAL STUDIO CODE -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--quotes">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#vscode-1"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded1"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#vscode-2"></use>
+                  </svg>
+                  <svg
+                    class="icons__svg icons__svg--faded2"
+                    viewBox="0 0 200 200"
+                  >
+                    <use href="assets/svg/icons.svg#vscode-3"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--quotes">vs code</span>
+              </li>
+              <!-- PHOTOSHOP -->
+              <li class="icons__item">
+                <div class="icons__logo icons__logo--quotes">
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#photoshop"></use>
+                  </svg>
+                </div>
+                <span class="icons__name icons__name--quotes">photoshop</span>
+              </li>
+            </ul>
+          </section>
+          <!-- #endregion -->
+        </div>
+      </article>
+      <!-- #endregion -->
+
+      <!-- #region [ Horizon ] OTHER -->
+      <article id="other" class="section section--other section--js">
+        <div
+          class="section__container section__container--other section__container--js"
+        >
+          <h2 class="section__heading section__heading--other">
+            “other simple training projects ...”
+          </h2>
+          <!-- #region [ Horizon ] PROJECTS DESCRIPTION -->
+          <section class="tab tab--description">
+            <h3 class="tab__heading tab__heading--other">About Projects</h3>
+            <p class="tab__description tab__description--other js-expandable">
+              This section contains all the training projects, which are either
+              just starting to take shape or had stopped being developed at some
+              point. I decided to share them anyway to show my very first steps
+              in frontend development or present some quick exercise projects,
+              but keep in mind that most of them hasn’t been updated for a long
+              time and the code doesn’t always reflect my current level of
+              advancement.
+            </p>
+            <button
+              class="tab__readMore tab__readMore--other tab__readMore--js"
+            >
+              Read more
+            </button>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] LOGO -->
+          <div class="logo logo--other">
+            <svg class="logo__base logo__base--other" viewBox="0 0 569 512">
+              <use href="assets/svg/logos.svg#other-base"></use>
+            </svg>
+            <svg class="logo__shadow logo__shadow--other" viewBox="0 0 569 512">
+              <use href="assets/svg/logos.svg#other-shadow"></use>
+            </svg>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] OTHER REPOS -->
+          <div class="section__repos">
+            <!-- #region [ Horizon ] SCORE TABLE -->
+            <section class="tab tab--other tab--js-other">
+              <h3 class="tab__header tab__header--other">
+                <button
+                  class="tab__button tab__button--other tab__button--js-other"
+                >
+                  <span class="mark mark--other"></span>
+                  <span>Score Table</span>
+                </button>
+              </h3>
+              <div class="container">
+                <div class="content content--other">
+                  <p
+                    class="tab__description tab__description--other tab__description--small"
+                  >
+                    Quick exercise project in react.js after a little time off
+                    JS frameworks.
+                  </p>
+                  <div class="repoLinks repoLinks--other">
+                    <a
+                      href="https://github.com/jchojna/scoretable"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      aria-label="ScoreTable app code"
+                    >
+                      Code
+                    </a>
+                    <a
+                      href="https://jchojna.github.io/scoretable/"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      aria-label="ScoreTable app demo"
+                    >
+                      Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- #endregion -->
+            <!-- #region [ Horizon ] DRUM MACHINE -->
+            <section class="tab tab--other tab--js-other">
+              <h3 class="tab__header tab__header--other">
+                <button
+                  class="tab__button tab__button--other tab__button--js-other"
+                >
+                  <span class="mark mark--other"></span>
+                  <span>Drum Machine</span>
+                </button>
+              </h3>
+              <div class="container">
+                <div class="content content--other">
+                  <p
+                    class="tab__description tab__description--other tab__description--small"
+                  >
+                    My first app created in react.js. and it’s actually audible
+                  </p>
+                  <div class="repoLinks repoLinks--other">
+                    <a
+                      href="https://github.com/jchojna/drum-machine"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      aria-label="Drum Machine app code"
+                    >
+                      Code
+                    </a>
+                    <a
+                      href="https://jchojna.github.io/drum-machine/"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      aria-label="Drum Machine app demo"
+                    >
+                      Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- #endregion -->
+            <!-- #region [ Horizon ] POMODORO CLOCK -->
+            <section class="tab tab--other tab--js-other">
+              <h3 class="tab__header tab__header--other">
+                <button
+                  class="tab__button tab__button--other tab__button--js-other"
+                >
+                  <span class="mark mark--other"></span>
+                  <span>Pomodoro</span>
+                </button>
+              </h3>
+              <div class="container">
+                <div class="content content--other">
+                  <p
+                    class="tab__description tab__description--other tab__description--small"
+                  >
+                    My first encounter with time intervals in react.js.
+                  </p>
+                  <div class="repoLinks repoLinks--other">
+                    <a
+                      href="https://github.com/jchojna/pomodoro-clock"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      aria-label="Pomodoro Clock app code"
+                    >
+                      Code
+                    </a>
+                    <a
+                      href="https://github.com/jchojna/pomodoro-clock"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      aria-label="Pomodoro Clock app demo"
+                    >
+                      Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- #endregion -->
+            <!-- #region [ Horizon ] SIMPLE NOTE -->
+            <section class="tab tab--other tab--js-other">
+              <h3 class="tab__header tab__header--other">
+                <button
+                  class="tab__button tab__button--other tab__button--js-other"
+                >
+                  <span class="mark mark--other"></span>
+                  <span>Simple Note</span>
+                </button>
+              </h3>
+              <div class="container">
+                <div class="content content--other">
+                  <p
+                    class="tab__description tab__description--other tab__description--small"
+                  >
+                    Plain text editor with local storage support
+                  </p>
+                  <div class="repoLinks repoLinks--other">
+                    <a
+                      href="https://github.com/jchojna/simple-note"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      aria-label="Simple Note code"
+                    >
+                      Code
+                    </a>
+                    <a
+                      href="https://jchojna.github.io/simple-note/"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      aria-label="Simple Note demo"
+                    >
+                      Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- #endregion -->
+            <!-- #region [ Horizon ] CALCULATOR -->
+            <section class="tab tab--other tab--js-other">
+              <h3 class="tab__header tab__header--other">
+                <button
+                  class="tab__button tab__button--other tab__button--js-other"
+                >
+                  <span class="mark mark--other"></span>
+                  <span>Calculator</span>
+                </button>
+              </h3>
+              <div class="container">
+                <div class="content content--other">
+                  <p
+                    class="tab__description tab__description--other tab__description--small"
+                  >
+                    Simple calculator, but unfortunately not fully functional at
+                    the moment
+                  </p>
+                  <div class="repoLinks repoLinks--other">
+                    <a
+                      href="https://github.com/jchojna/calculator"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      aria-label="Calculator app code"
+                    >
+                      Code
+                    </a>
+                    <a
+                      href="https://github.com/jchojna/calculator"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      aria-label="Calculator app demo"
+                    >
+                      Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- #endregion -->
+            <!-- #region [ Horizon ] PREVIOUS PORTFOLIO PAGE -->
+            <section class="tab tab--other tab--js-other">
+              <h3 class="tab__header tab__header--other">
+                <button
+                  class="tab__button tab__button--other tab__button--js-other"
+                >
+                  <span class="mark mark--other"></span>
+                  <span>Portfolio</span>
+                </button>
+              </h3>
+              <div class="container">
+                <div class="content content--other">
+                  <p
+                    class="tab__description tab__description--other tab__description--small"
+                  >
+                    My previous temporary portfolio webpage developed according
+                    to some finished project in Figma
+                  </p>
+                  <div class="repoLinks repoLinks--other">
+                    <a
+                      href="https://github.com/jchojna/jchojna.github.io"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      aria-label="Portfolio Sketch code"
+                    >
+                      Code
+                    </a>
+                    <a
+                      href="https://jchojna.github.io/"
+                      class="repoLinks__link repoLinks__link--other"
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      aria-label="Portfolio Sketch demo"
+                    >
+                      Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- #endregion -->
+          </div>
+          <!-- #endregion -->
+        </div>
+      </article>
+      <!-- #endregion -->
+
+      <!-- #region [ Horizon ] CONTACT -->
+      <article id="contact" class="section section--contact section--js">
+        <div
+          class="section__container section__container--contact section__container--js"
+        >
+          <h2 class="section__heading section__heading--contact">
+            “Feel free to contact me! I’m open for new
+            <span class="breakable">opportunities</span>
+            ”
+          </h2>
+          <!-- #region [ Horizon ] LOGO -->
+          <div class="logo logo--contact">
+            <svg class="logo__base logo__base--contact" viewBox="0 0 512 512">
+              <use href="assets/svg/logos.svg#contact-base"></use>
+            </svg>
+            <svg
+              class="logo__shadow logo__shadow--contact"
+              viewBox="0 0 512 512"
+            >
+              <use href="assets/svg/logos.svg#contact-shadow"></use>
+            </svg>
+          </div>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] SOCIAL MEDIA PROFILES -->
+          <section class="tab tab--social">
+            <h3 class="tab__heading tab__heading--contact visuallyhidden">
+              Social Media Profiles
+            </h3>
+            <ul class="icons icons--contact">
+              <!-- GITHUB -->
+              <li class="icons__item">
+                <a
+                  href="https://github.com/jchojna"
+                  class="icons__logo icons__logo--contact icons__logo--link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="Github profile"
+                >
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#github"></use>
+                  </svg>
+                </a>
+              </li>
+              <!-- LINKEDIN -->
+              <li class="icons__item">
+                <a
+                  href="https://linkedin.com/in/jakub-chojna/"
+                  class="icons__logo icons__logo--contact icons__logo--link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="LinkedIn profile"
+                >
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#linkedin"></use>
+                  </svg>
+                </a>
+              </li>
+              <!-- CODEWARS -->
+              <li class="icons__item">
+                <a
+                  href="https://www.codewars.com/users/jchojna/"
+                  class="icons__logo icons__logo--contact icons__logo--link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="Codewars profile"
+                >
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#codewars"></use>
+                  </svg>
+                </a>
+              </li>
+              <!-- FACEBOOK -->
+              <li class="icons__item">
+                <a
+                  href="https://www.facebook.com/jakub.chojna"
+                  class="icons__logo icons__logo--contact icons__logo--link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="Facebook profile"
+                >
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#facebook"></use>
+                  </svg>
+                </a>
+              </li>
+              <!-- BEHANCE -->
+              <li class="icons__item">
+                <a
+                  href="https://www.behance.net/jakubchojna"
+                  class="icons__logo icons__logo--contact icons__logo--link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  aria-label="Behance profile"
+                >
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#behance"></use>
+                  </svg>
+                </a>
+              </li>
+              <!-- E-MAIL -->
+              <li class="icons__item">
+                <a
+                  href="mailto:frontend@jakubchojna.pl"
+                  class="icons__logo icons__logo--contact icons__logo--link"
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                >
+                  <svg class="icons__svg" viewBox="0 0 200 200">
+                    <use href="assets/svg/icons.svg#email"></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </section>
+          <!-- #endregion -->
+          <!-- #region [ Horizon ] CONTACT FOOTER -->
+          <footer class="footer">
+            <h2 class="footer__heading visuallyhidden">Page Footer</h2>
+            <p class="footer__text">
+              Copyright &copy; 2020 Jakub Chojna. All rights reserved. Website
+              designed and developed by Jakub Chojna
+            </p>
+          </footer>
+          <!-- #endregion -->
+        </div>
+      </article>
+      <!-- #endregion -->
+    </main>
+    <!-- #endregion -->
+    <script type="module" src="/src/main.ts"></script>
+    <script
+      type="text/javascript"
+      src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
+    ></script>
+    <script type="text/javascript">
+      (function ($) {
+        window.fnames = new Array();
+        window.ftypes = new Array();
+        fnames[6] = 'TITLE';
+        ftypes[6] = 'text';
+        fnames[8] = 'MESSAGE';
+        ftypes[8] = 'text';
+        fnames[1] = 'FNAME';
+        ftypes[1] = 'text';
+        fnames[0] = 'EMAIL';
+        ftypes[0] = 'email';
+        fnames[4] = 'PHONE';
+        ftypes[4] = 'phone';
+        fnames[2] = 'LNAME';
+        ftypes[2] = 'text';
+        fnames[3] = 'ADDRESS';
+        ftypes[3] = 'address';
+        fnames[5] = 'BIRTHDAY';
+        ftypes[5] = 'birthday';
+        fnames[7] = 'NAME';
+        ftypes[7] = 'text';
+      })(jQuery);
+      var $mcj = jQuery.noConflict(true);
+    </script>
+  </body>
+</html>
