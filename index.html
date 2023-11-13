@@ -3307,155 +3307,6 @@
             </svg>
           </div>
           <!-- #endregion -->
-          <!-- #region [ Horizon ] CONTACT FORM -->
-          <form class="form" autocomplete="false">
-            <!-- #region [ Horizon ] NAME -->
-            <div class="form__tab form__tab--name">
-              <input
-                id="name"
-                name="name"
-                class="form__input form__input--name form__input--js form__input--js-name"
-                placeholder="Your name:"
-                spellcheck="false"
-              />
-              <div class="mark mark--contact"></div>
-              <label for="name" class="form__label form__label--name">
-                Name
-              </label>
-            </div>
-            <!-- #endregion -->
-            <!-- #region [ Horizon ] EMAIL -->
-            <div class="form__tab form__tab--email">
-              <input
-                id="email"
-                name="email"
-                class="form__input form__input--email form__input--js form__input--js-email"
-                placeholder="Your e-mail:"
-                spellcheck="false"
-              />
-              <div class="mark mark--contact"></div>
-              <label for="email" class="form__label form__label--email">
-                E-mail
-              </label>
-            </div>
-            <!-- #endregion -->
-            <!-- #region [ Horizon ] PHONE -->
-            <div class="form__tab form__tab--phone">
-              <input
-                id="phone"
-                name="phone"
-                class="form__input form__input--phone form__input--js form__input--js-phone"
-                placeholder="Your phone number:"
-                spellcheck="false"
-              />
-              <div class="mark mark--contact"></div>
-              <label for="phone" class="form__label form__label--phone">
-                Phone
-              </label>
-            </div>
-            <!-- #endregion -->
-            <!-- #region [ Horizon ] TITLE -->
-            <div class="form__tab form__tab--title">
-              <input
-                id="title"
-                name="title"
-                class="form__input form__input--title form__input--js form__input--js-title"
-                placeholder="Title of your message:"
-                spellcheck="false"
-              />
-              <div class="mark mark--contact"></div>
-              <label for="title" class="form__label form__label--title">
-                Title
-              </label>
-            </div>
-            <!-- #endregion -->
-            <!-- #region [ Horizon ] MESSAGE -->
-            <div class="form__tab form__tab--message">
-              <textarea
-                id="message"
-                name="message"
-                class="form__input form__input--message form__input--js form__input--js-message"
-                placeholder="Type in your message:"
-                autocomplete="off"
-                spellcheck="false"
-              ></textarea>
-              <div class="mark mark--contact"></div>
-              <label for="message" class="form__label form__label--message">
-                Message
-              </label>
-            </div>
-            <!-- #endregion -->
-            <!-- #region [ Horizon ] SUBMIT BUTTON -->
-            <button class="form__submit form__submit--js">Send</button>
-            <!-- #endregion -->
-          </form>
-          <!-- #endregion -->
-          <!-- #region [ Horizon ] ALERTS -->
-          <ul class="alerts">
-            <li
-              class="alerts__box alerts__box--error alerts__box--js-emptyEmailError"
-            >
-              <p class="alerts__text">You need to enter your e-mail address!</p>
-              <button class="alerts__button alerts__button--js-emptyEmailError">
-                <svg class="alerts__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/icons.svg#close"></use>
-                </svg>
-              </button>
-            </li>
-            <li
-              class="alerts__box alerts__box--error alerts__box--js-invalidEmailError"
-            >
-              <p class="alerts__text">E-mail format is not correct!</p>
-              <button
-                class="alerts__button alerts__button--js-invalidEmailError"
-              >
-                <svg class="alerts__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/icons.svg#close"></use>
-                </svg>
-              </button>
-            </li>
-            <li
-              class="alerts__box alerts__box--error alerts__box--js-messageError"
-            >
-              <p class="alerts__text">Please type your message!</p>
-              <button class="alerts__button alerts__button--js-messageError">
-                <svg class="alerts__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/icons.svg#close"></use>
-                </svg>
-              </button>
-            </li>
-            <li
-              class="alerts__box alerts__box--error alerts__box--js-phoneError"
-            >
-              <p class="alerts__text">Phone format is not correct!</p>
-              <button class="alerts__button alerts__button--js-phoneError">
-                <svg class="alerts__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/icons.svg#close"></use>
-                </svg>
-              </button>
-            </li>
-            <li class="alerts__box alerts__box--error alerts__box--js-failure">
-              <p class="alerts__text">Something went wrong! Try again later!</p>
-              <button class="alerts__button alerts__button--js-failure">
-                <svg class="alerts__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/icons.svg#close"></use>
-                </svg>
-              </button>
-            </li>
-            <li
-              class="alerts__box alerts__box--success alerts__box--js-success"
-            >
-              <p class="alerts__text">
-                Thank you for sending me a message! I'll get back to you soon
-              </p>
-              <button class="alerts__button alerts__button--js-success">
-                <svg class="alerts__svg" viewBox="0 0 200 200">
-                  <use href="assets/svg/icons.svg#close"></use>
-                </svg>
-              </button>
-            </li>
-          </ul>
-          <!-- #endregion -->
           <!-- #region [ Horizon ] SOCIAL MEDIA PROFILES -->
           <section class="tab tab--social">
             <h3 class="tab__heading tab__heading--contact visuallyhidden">
@@ -3563,5 +3414,34 @@
     </main>
     <!-- #endregion -->
     <script type="module" src="/src/main.ts"></script>
+    <script
+      type="text/javascript"
+      src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
+    ></script>
+    <script type="text/javascript">
+      (function ($) {
+        window.fnames = new Array();
+        window.ftypes = new Array();
+        fnames[6] = 'TITLE';
+        ftypes[6] = 'text';
+        fnames[8] = 'MESSAGE';
+        ftypes[8] = 'text';
+        fnames[1] = 'FNAME';
+        ftypes[1] = 'text';
+        fnames[0] = 'EMAIL';
+        ftypes[0] = 'email';
+        fnames[4] = 'PHONE';
+        ftypes[4] = 'phone';
+        fnames[2] = 'LNAME';
+        ftypes[2] = 'text';
+        fnames[3] = 'ADDRESS';
+        ftypes[3] = 'address';
+        fnames[5] = 'BIRTHDAY';
+        ftypes[5] = 'birthday';
+        fnames[7] = 'NAME';
+        ftypes[7] = 'text';
+      })(jQuery);
+      var $mcj = jQuery.noConflict(true);
+    </script>
   </body>
 </html>
