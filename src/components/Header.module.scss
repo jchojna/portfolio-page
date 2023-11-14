@@ -1,0 +1,71 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+@import '../styles/animations.scss';
+
+.pageHeader {
+  align-items: flex-start;
+  display: flex;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  min-height: 100vh;
+  overflow: auto;
+  opacity: 0;
+  padding: $mobile-menu-offset-top 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  z-index: 4;
+
+  &.visible {
+    opacity: 1;
+    transition: opacity 1s;
+    visibility: visible;
+  }
+
+  &.intro {
+    pointer-events: all;
+  }
+
+  @media only screen and (min-width: $media-lg) {
+    & {
+      box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
+
+      &__indicator {
+        background-color: #fff;
+        left: 0;
+        height: $menu-item-height-lg;
+        position: fixed;
+        right: calc(100vw - #{$menu-item-height-lg});
+        top: -$menu-item-height-lg;
+        visibility: hidden;
+        z-index: -1;
+
+        &--visible {
+          visibility: visible;
+        }
+
+        &--animated {
+          transition: left $menu-lg-second-timeout 0.3s,
+            right $menu-lg-second-timeout, top $time-switch;
+        }
+
+        &--narrowed {
+          right: calc(100vw - (#{$menu-item-height-lg} / 3));
+        }
+
+        &--centered {
+          background-color: $intro-link-color;
+          left: calc(50vw + 10px);
+          right: calc(50vw - 10px);
+        }
+
+        &--noTransition {
+          transition: none;
+        }
+      }
+    }
+  }
+}
