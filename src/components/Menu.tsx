@@ -2,48 +2,46 @@ import clsx from 'clsx';
 import { useState } from 'react';
 
 import { menuItems } from '../content/menu';
-
-import menuSvg from '../assets/svg/menu.svg';
+import MenuButton from './MenuButton';
 
 import classes from './Menu.module.scss';
 
-const Menu = ({ isIntroVisible }) => {
-  const [lastHovered, setLastHovered] = useState<number>(0);
+type MenuProps = {
+  isIntro: boolean;
+  setIntro: (isIntro: boolean) => void;
+};
+
+const Menu = ({ isIntro, setIntro }: MenuProps) => {
+  const [hoveredItem, setHoveredItem] = useState<number>(0);
+  const [activeItem, setActiveItem] = useState<number | null>(null);
+
   const menuClass = clsx({
     [classes.menu]: true,
-    [classes.intro]: isIntroVisible,
+    [classes.intro]: isIntro,
   });
+
+  const handleItemClick = (index: number) => {
+    setActiveItem(index);
+    setIntro(false);
+  };
 
   return (
     <nav className={menuClass}>
       <ul className={classes.menuList}>
-        {lastHovered}
         {menuItems.map(({ label, width }, index) => {
-          const viewBox = `0 0 ${width} 100`;
-          const buttonClass = clsx(
-            classes.menuButton,
-            classes[label],
-            classes.intro
-          );
           return (
             <li
-              key={label}
+              key={index}
               className={classes.menuItem}
-              onMouseEnter={() => setLastHovered(index)}
+              onMouseEnter={() => setHoveredItem(index)}
+              onClick={() => handleItemClick(index)}
             >
-              <button className={buttonClass}>
-                <div className={classes.menuSvg}>
-                  <svg className={classes.menuSvgText} viewBox={viewBox}>
-                    <use href={`${menuSvg}#${label}`}></use>
-                  </svg>
-                  <svg
-                    className={clsx(classes.menuSvgShadow, classes.visible)}
-                    viewBox={viewBox}
-                  >
-                    <use href={`${menuSvg}#${label}-shadow`}></use>
-                  </svg>
-                </div>
-              </button>
+              <MenuButton
+                label={label}
+                width={width}
+                isHovered={hoveredItem === index}
+                isActive={activeItem === index}
+              />
             </li>
           );
         })}

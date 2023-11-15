@@ -8,17 +8,17 @@
   pointer-events: none;
   position: fixed;
   top: 0;
-  // visibility: hidden;
+  visibility: hidden;
   width: 100%;
   z-index: 3;
 
-  &--visible {
+  &.visible {
     visibility: visible;
   }
 
   @media only screen and (min-width: $media-lg) {
     & {
-      z-index: -1;
+      // z-index: -1;
     }
   }
 

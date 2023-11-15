@@ -5,19 +5,20 @@ import Menu from './Menu';
 import classes from './Header.module.scss';
 
 type Header = {
-  isIntroVisible: boolean;
+  isIntro: boolean;
+  setIntro: (isIntro: boolean) => void;
 };
 
-const Header = ({ isIntroVisible }: Header) => {
+const Header = ({ isIntro, setIntro }: Header) => {
   const headerClass = clsx({
     [classes.pageHeader]: true,
     [classes.visible]: true,
-    [classes.intro]: isIntroVisible,
+    [classes.intro]: isIntro,
   });
 
   return (
     <div className={headerClass}>
-      <Menu isIntroVisible={isIntroVisible} />
+      <Menu isIntro={isIntro} setIntro={setIntro} />
     </div>
   );
 };
