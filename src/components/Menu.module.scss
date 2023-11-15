@@ -4,6 +4,7 @@
 
 .menu {
   width: 100%;
+  pointer-events: all;
   position: relative;
 
   @media only screen and (min-width: $media-lg) {

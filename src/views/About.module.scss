@@ -1,0 +1,150 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.section {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding-bottom: 50px;
+  position: relative;
+  scroll-snap-align: start;
+  width: 100%;
+
+  &.about {
+    background-color: $color-about;
+  }
+
+  @media only screen and (min-width: $media-lg) {
+    & {
+      justify-content: flex-start;
+    }
+  }
+
+  .container {
+    align-items: start;
+    display: grid;
+    margin: 0 $offset-right-sm;
+    width: 100%;
+
+    &.about {
+      grid-template-areas:
+        'photography'
+        'heading    '
+        'description'
+        'profiles   '
+        'working    '
+        'knowing    '
+        'learning   ';
+    }
+
+    @media only screen and (min-width: $media-md) {
+      & {
+        gap: $gridGap;
+        max-width: $container-size;
+        min-height: $container-size;
+
+        &.about {
+          grid-template-areas:
+            'heading     photography'
+            'description photography'
+            'profiles    photography'
+            'working     working    '
+            'knowing     knowing    '
+            'learning    learning   ';
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto 1fr repeat(4, auto);
+        }
+      }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+      & {
+        //margin-left: calc((100vw - #{$container-size}) / 2);
+        margin-left: 500px;
+      }
+    }
+  }
+
+  .heading {
+    border-left: $separator-width solid transparent;
+    color: #fff;
+    font-size: 60px;
+    grid-area: heading;
+    line-height: 1.2;
+    margin: 0 $offset-right-xs 0 0;
+    margin-top: -60px;
+    padding: 30px 10px 30px 20px;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+
+    &.large {
+      font-size: 72px;
+      line-height: 1;
+    }
+
+    &.about {
+      border-color: $color-about-diff;
+      color: $color-about-light;
+    }
+
+    @media only screen and (min-width: $media-md) {
+      & {
+        border: none;
+        font-size: 72px;
+        margin: $menu-item-height + $offset-right-sm 0;
+        max-width: 60%;
+        min-width: 380px;
+        padding: 0;
+        width: 100%;
+
+        &.about {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+      & {
+        margin: 0;
+        margin-bottom: 20px;
+        max-width: none;
+      }
+    }
+  }
+
+  .photo {
+    grid-area: photography;
+    justify-self: end;
+    margin-top: $menu-item-height;
+    margin-right: $offset-right-sm * -1;
+    max-width: 500px;
+    width: 100%;
+    z-index: 1;
+
+    @media only screen and (min-width: $media-md) {
+      & {
+        margin-right: 0;
+        margin-top: $menu-item-height + $offset-right-sm;
+      }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+      & {
+        margin: 0;
+        max-width: 350px;
+      }
+    }
+  }
+
+  .svg {
+    display: none;
+  }
+}
+
+.contactDetails {
+  display: flex;
+  gap: 6px;
+  list-style-type: none;
+}

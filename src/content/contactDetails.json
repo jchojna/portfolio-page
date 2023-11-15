@@ -1,0 +1,32 @@
+[
+  {
+    "id": "github",
+    "name": "Github",
+    "url": "https://github.com/jchojna",
+    "ariaLabel": "Github profile"
+  },
+  {
+    "id": "linkedin",
+    "name": "LinkedIn",
+    "url": "https://linkedin.com/in/jchojna/",
+    "ariaLabel": "LinkedIn profile"
+  },
+  {
+    "id": "codewars",
+    "name": "Codewars",
+    "url": "https://codewars.com/users/jchojna",
+    "ariaLabel": "CodeWars profile"
+  },
+  {
+    "id": "email",
+    "name": "E-mail",
+    "url": "mailto:frontend@jakubchojna.pl",
+    "ariaLabel": "E-mail"
+  },
+  {
+    "id": "resume",
+    "name": "Resume",
+    "url": "assets/pdf/resume.pdf",
+    "ariaLabel": "Resume pdf file"
+  }
+]

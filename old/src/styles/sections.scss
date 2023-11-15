@@ -1,44 +1,6 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
-.pageContainer {
-  background-color: $intro-background-color;
-  overflow: hidden;
-  position: relative;
-  visibility: hidden;
-  width: 100%;
-
-  &--visible {
-    visibility: visible;
-  }
-  
-  @media only screen and (min-width: $media-lg) {
-
-    & {
-      overflow: auto;
-      position: fixed;
-      top: 0;
-      left: 100vw;
-      width: 100%;
-      height: 100%;
-      transition:
-        left $menu-lg-second-timeout,
-        visibility 0s $menu-lg-second-timeout;
-      scroll-snap-type: y mandatory;
-
-      &--visible {
-        left: 0;
-        visibility: visible;
-        transition: left $menu-lg-second-timeout, visibility 0s;
-      }
-
-      &--smooth {
-        scroll-behavior: smooth;
-      }
-    }
-  }
-}
-
 .section {
   align-items: flex-start;
   display: flex;
@@ -79,11 +41,10 @@
   }
 
   @media only screen and (min-width: $media-lg) {
-
     & {
       justify-content: flex-start;
-    }      
-  }   
+    }
+  }
 
   &__container {
     align-items: start;
@@ -93,23 +54,23 @@
 
     &--about {
       grid-template-areas:
-      "photography"
-      "heading    "
-      "description"
-      "profiles   "
-      "working    "
-      "knowing    "
-      "learning   ";
+        'photography'
+        'heading    '
+        'description'
+        'profiles   '
+        'working    '
+        'knowing    '
+        'learning   ';
     }
 
     &--resume {
       grid-template-areas:
-      "logo      "
-      "heading   "
-      "info      "
-      "experience"
-      "education "
-      "languages ";
+        'logo      '
+        'heading   '
+        'info      '
+        'experience'
+        'education '
+        'languages ';
     }
 
     &--tasktimer,
@@ -118,48 +79,46 @@
     &--archviz,
     &--quotes {
       grid-template-areas:
-      "logo        "
-      "heading     "
-      "description "
-      "features    "
-      "technologies"
-      "stats       "
-      "repoLinks   ";
+        'logo        '
+        'heading     '
+        'description '
+        'features    '
+        'technologies'
+        'stats       '
+        'repoLinks   ';
     }
 
     &--other {
       grid-template-areas:
-      "logo       "
-      "heading    "
-      "description"
-      "otherRepos ";
+        'logo       '
+        'heading    '
+        'description'
+        'otherRepos ';
     }
 
     &--contact {
       grid-template-areas:
-      "logo   "
-      "heading"
-      "form   "
-      "social "
-      "footer ";
+        'logo   '
+        'heading'
+        'form   '
+        'social '
+        'footer ';
     }
 
     @media only screen and (min-width: $media-md) {
-
       & {
-
         gap: $gridGap;
         max-width: $container-size;
         min-height: $container-size;
 
         &--about {
           grid-template-areas:
-          "heading     photography"
-          "description photography"
-          "profiles    photography"
-          "working     working    "
-          "knowing     knowing    "
-          "learning    learning   ";
+            'heading     photography'
+            'description photography'
+            'profiles    photography'
+            'working     working    '
+            'knowing     knowing    '
+            'learning    learning   ';
           grid-template-columns: 1fr 1fr;
           grid-template-rows: auto 1fr repeat(4, auto);
         }
@@ -167,11 +126,11 @@
         &--resume {
           align-content: start;
           grid-template-areas:
-          "heading   "
-          "info      "
-          "experience"
-          "education "
-          "languages ";
+            'heading   '
+            'info      '
+            'experience'
+            'education '
+            'languages ';
         }
 
         &--tasktimer,
@@ -180,19 +139,19 @@
         &--archviz,
         &--quotes {
           grid-template-areas:
-          "heading      heading     "
-          "description  features    "
-          "technologies technologies"
-          "stats        repoLinks   ";
+            'heading      heading     '
+            'description  features    '
+            'technologies technologies'
+            'stats        repoLinks   ';
           grid-template-columns: 1fr 1fr;
           grid-template-rows: auto 1fr repeat(2, auto);
         }
 
         &--other {
           grid-template-areas:
-          "heading    "
-          "description"
-          "otherRepos ";
+            'heading    '
+            'description'
+            'otherRepos ';
           grid-template-rows: auto 1fr auto;
         }
 
@@ -200,24 +159,23 @@
           align-content: stretch;
           align-items: center;
           grid-template-areas:
-          "heading"
-          "form   "
-          "social "
-          "footer ";
+            'heading'
+            'form   '
+            'social '
+            'footer ';
           grid-template-rows: auto 1fr;
         }
       }
     }
 
     @media only screen and (min-width: $media-lg) {
-
       & {
         //margin-left: calc((100vw - #{$container-size}) / 2);
         margin-left: 500px;
-      }      
+      }
     }
   }
-  
+
   &__heading {
     border-left: $separator-width solid transparent;
     color: #fff;
@@ -273,9 +231,8 @@
       border-color: $color-contact-diff;
       color: $color-contact-light;
     }
-    
-    @media only screen and (min-width: $media-md) {
 
+    @media only screen and (min-width: $media-md) {
       & {
         border: none;
         font-size: 72px;
@@ -291,9 +248,8 @@
         }
       }
     }
-    
-    @media only screen and (min-width: $media-lg) {
 
+    @media only screen and (min-width: $media-lg) {
       & {
         margin: 0;
         margin-bottom: 20px;
@@ -301,7 +257,7 @@
       }
     }
   }
-  
+
   &__photo {
     grid-area: photography;
     justify-self: end;
@@ -312,7 +268,6 @@
     z-index: 1;
 
     @media only screen and (min-width: $media-md) {
-
       & {
         margin-right: 0;
         margin-top: $menu-item-height + $offset-right-sm;
@@ -320,7 +275,6 @@
     }
 
     @media only screen and (min-width: $media-lg) {
-
       & {
         margin: 0;
         max-width: 350px;
@@ -331,7 +285,7 @@
   &__svg {
     display: none;
   }
-  
+
   &__repos {
     grid-area: otherRepos;
     justify-self: start;
@@ -339,7 +293,6 @@
     max-width: 500px;
 
     @media only screen and (min-width: $media-md) {
-
       & {
         display: grid;
         gap: $tabGap-xs;
@@ -356,7 +309,7 @@
   display: flex;
   margin: 20px $offset-right-xs 0 $offset-left-xs;
   padding-bottom: 10px;
-  
+
   &--tasktimer {
     color: $color-tasktimer-shadow;
     border-color: $color-tasktimer-shadow;
@@ -401,14 +354,12 @@
   }
 
   @media only screen and (min-width: $media-sm) {
-
     & {
       margin: 20px $offset-right-sm 0 $offset-left-sm;
     }
   }
 
   @media only screen and (min-width: $media-md) {
-
     & {
       margin: 0;
       margin-top: 10px;
@@ -425,19 +376,31 @@
   grid-template-columns: repeat(2, 1fr);
   margin: 0.5em $offset-right-xs 0 $offset-left-xs;
 
-  &--about     { border-color: $color-about-diff; }
-  &--tasktimer { border-color: $color-tasktimer-diff; }
-  &--portfolio { border-color: $color-portfolio-diff; }
-  &--hydrapp   { border-color: $color-hydrapp-diff; }
-  &--archviz   { border-color: $color-archviz-diff; }
-  &--quotes    { border-color: $color-quotes-diff; }
+  &--about {
+    border-color: $color-about-diff;
+  }
+  &--tasktimer {
+    border-color: $color-tasktimer-diff;
+  }
+  &--portfolio {
+    border-color: $color-portfolio-diff;
+  }
+  &--hydrapp {
+    border-color: $color-hydrapp-diff;
+  }
+  &--archviz {
+    border-color: $color-archviz-diff;
+  }
+  &--quotes {
+    border-color: $color-quotes-diff;
+  }
   &--other {
     font-size: 1.5em;
     margin: 0.5em $offset-right-xs 0 $offset-left-xs;
   }
 
   &__link {
-    @include button;  
+    @include button;
     @include flex-center;
     min-width: 50px;
     padding: 0.4em 0.5em;
@@ -456,32 +419,50 @@
     }
 
     &--hydrapp {
-      background-color: rgba($color: $color-hydrapp-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-hydrapp-dark,
+        $alpha: $background-opacity
+      );
       color: $color-hydrapp-light;
     }
 
     &--tasktimer {
-      background-color: rgba($color: $color-tasktimer-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-tasktimer-dark,
+        $alpha: $background-opacity
+      );
       color: $color-tasktimer-light;
     }
 
     &--portfolio {
-      background-color: rgba($color: $color-portfolio-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-portfolio-dark,
+        $alpha: $background-opacity
+      );
       color: $color-portfolio-light;
     }
 
     &--archviz {
-      background-color: rgba($color: $color-archviz-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-archviz-dark,
+        $alpha: $background-opacity
+      );
       color: $color-archviz-light;
     }
 
     &--quotes {
-      background-color: rgba($color: $color-quotes-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-quotes-dark,
+        $alpha: $background-opacity
+      );
       color: $color-quotes-light;
     }
 
     &--other {
-      background-color: rgba($color: $color-other-dark, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-other-dark,
+        $alpha: $background-opacity
+      );
       color: $color-other-light;
     }
 
@@ -490,41 +471,71 @@
       border-top-width: 10px;
     }
 
-    @mixin hydrappButtonShadow { border-color: $color-hydrapp-shadow; }
-    @mixin tasktimerButtonShadow { border-color: $color-tasktimer-shadow; }
-    @mixin portfolioButtonShadow { border-color: $color-portfolio-shadow; }
-    @mixin archvizButtonShadow { border-color: $color-archviz-shadow; }
-    @mixin quotesButtonShadow { border-color: $color-quotes-shadow; }
-    @mixin otherButtonShadow { border-color: $color-other-shadow; }
+    @mixin hydrappButtonShadow {
+      border-color: $color-hydrapp-shadow;
+    }
+    @mixin tasktimerButtonShadow {
+      border-color: $color-tasktimer-shadow;
+    }
+    @mixin portfolioButtonShadow {
+      border-color: $color-portfolio-shadow;
+    }
+    @mixin archvizButtonShadow {
+      border-color: $color-archviz-shadow;
+    }
+    @mixin quotesButtonShadow {
+      border-color: $color-quotes-shadow;
+    }
+    @mixin otherButtonShadow {
+      border-color: $color-other-shadow;
+    }
 
     @mixin hydrappButton {
       color: $color-hydrapp;
-      background-color: rgba($color: $color-hydrapp-shadow, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-hydrapp-shadow,
+        $alpha: $background-opacity
+      );
     }
-    
+
     @mixin tasktimerButton {
       color: $color-tasktimer;
-      background-color: rgba($color: $color-tasktimer-shadow, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-tasktimer-shadow,
+        $alpha: $background-opacity
+      );
     }
-    
+
     @mixin portfolioButton {
       color: $color-portfolio;
-      background-color: rgba($color: $color-portfolio-shadow, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-portfolio-shadow,
+        $alpha: $background-opacity
+      );
     }
-    
+
     @mixin archvizButton {
       color: $color-archviz;
-      background-color: rgba($color: $color-archviz-shadow, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-archviz-shadow,
+        $alpha: $background-opacity
+      );
     }
-    
+
     @mixin quotesButton {
       color: $color-quotes;
-      background-color: rgba($color: $color-quotes-shadow, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-quotes-shadow,
+        $alpha: $background-opacity
+      );
     }
-    
+
     @mixin otherButton {
       color: $color-other;
-      background-color: rgba($color: $color-other-shadow, $alpha: $background-opacity);
+      background-color: rgba(
+        $color: $color-other-shadow,
+        $alpha: $background-opacity
+      );
     }
 
     &::before {
@@ -540,92 +551,141 @@
       transition: border-width $button-hover;
     }
 
-    &:active::before { @include buttonShadow; }
+    &:active::before {
+      @include buttonShadow;
+    }
 
     &--hydrapp {
-      &::before { @include hydrappButtonShadow; }
-      &:active { @include hydrappButton; }
+      &::before {
+        @include hydrappButtonShadow;
+      }
+      &:active {
+        @include hydrappButton;
+      }
     }
 
     &--tasktimer {
-      &::before { @include tasktimerButtonShadow; }
-      &:active { @include tasktimerButton; }
+      &::before {
+        @include tasktimerButtonShadow;
+      }
+      &:active {
+        @include tasktimerButton;
+      }
     }
 
     &--portfolio {
-      &::before { @include portfolioButtonShadow; }
-      &:active { @include portfolioButton; }
+      &::before {
+        @include portfolioButtonShadow;
+      }
+      &:active {
+        @include portfolioButton;
+      }
     }
 
     &--archviz {
-      &::before { @include archvizButtonShadow; }
-      &:active { @include archvizButton; }
+      &::before {
+        @include archvizButtonShadow;
+      }
+      &:active {
+        @include archvizButton;
+      }
     }
 
     &--quotes {
-      &::before { @include quotesButtonShadow; }
-      &:active { @include quotesButton; }
+      &::before {
+        @include quotesButtonShadow;
+      }
+      &:active {
+        @include quotesButton;
+      }
     }
 
     &--other {
-      &::before { @include otherButtonShadow; }
-      &:active { @include otherButton; }
+      &::before {
+        @include otherButtonShadow;
+      }
+      &:active {
+        @include otherButton;
+      }
     }
 
     @media only screen and (min-width: $media-md) {
-
       & {
         &:focus::before,
-        &:hover::before { @include buttonShadow; }
+        &:hover::before {
+          @include buttonShadow;
+        }
       }
 
       &--hydrapp {
-        &::before { @include hydrappButtonShadow; }
+        &::before {
+          @include hydrappButtonShadow;
+        }
         &:focus,
-        &:hover { @include hydrappButton; }
+        &:hover {
+          @include hydrappButton;
+        }
       }
 
       &--tasktimer {
-        &::before { @include tasktimerButtonShadow; }
+        &::before {
+          @include tasktimerButtonShadow;
+        }
         &:focus,
-        &:hover { @include tasktimerButton; }
+        &:hover {
+          @include tasktimerButton;
+        }
       }
 
       &--portfolio {
-        &::before { @include portfolioButtonShadow; }
+        &::before {
+          @include portfolioButtonShadow;
+        }
         &:focus,
-        &:hover { @include portfolioButton; }
+        &:hover {
+          @include portfolioButton;
+        }
       }
 
       &--archviz {
-        &::before { @include archvizButtonShadow; }
+        &::before {
+          @include archvizButtonShadow;
+        }
         &:focus,
-        &:hover { @include archvizButton; }
+        &:hover {
+          @include archvizButton;
+        }
       }
 
       &--quotes {
-        &::before { @include quotesButtonShadow; }
+        &::before {
+          @include quotesButtonShadow;
+        }
         &:focus,
-        &:hover { @include quotesButton; }
+        &:hover {
+          @include quotesButton;
+        }
       }
 
       &--other {
-        &::before { @include otherButtonShadow; }
+        &::before {
+          @include otherButtonShadow;
+        }
         &:focus,
-        &:hover { @include otherButton; }
+        &:hover {
+          @include otherButton;
+        }
       }
     }
   }
-  
-  @media only screen and (min-width: $media-sm) {
 
+  @media only screen and (min-width: $media-sm) {
     & {
       margin: 0.5em $offset-right-sm 0 $offset-left-sm;
     }
   }
-  
-  @media only screen and (min-width: $media-md) {
 
+  @media only screen and (min-width: $media-md) {
     & {
       margin: 0;
       margin-top: 15px;
@@ -647,9 +707,8 @@
   &__text {
     margin: 0;
   }
-  
-  @media only screen and (min-width: $media-md) {
 
+  @media only screen and (min-width: $media-md) {
     & {
       margin: 0;
       text-align: left;

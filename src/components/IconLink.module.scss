@@ -1,0 +1,167 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+@mixin shadow {
+  border-left-width: 8px;
+  border-top-width: 8px;
+}
+
+@mixin aboutShadow {
+  border-color: $color-about-shadow;
+}
+
+@mixin contactShadow {
+  border-color: $color-contact-shadow;
+}
+
+@mixin aboutIcon {
+  fill: $color-about;
+  background-color: rgba(
+    $color: $color-about-shadow,
+    $alpha: $background-opacity
+  );
+}
+
+@mixin contactIcon {
+  fill: $color-contact-light;
+  background-color: rgba(
+    $color: $color-contact-shadow,
+    $alpha: $background-opacity
+  );
+}
+
+.icon {
+  @include flex-center;
+
+  flex-direction: column;
+
+  .link {
+    @include flex-center;
+
+    outline: none;
+    position: relative;
+    transition: background-color $button-hover, fill $button-hover;
+    width: 50px;
+
+    &::before {
+      border-style: solid;
+      border-width: 0;
+      bottom: 0;
+      content: '';
+      left: 0;
+      opacity: 0.6;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: border-width $button-hover;
+    }
+
+    &:active::before {
+      @include shadow;
+    }
+
+    @media only screen and (min-width: $media-md) {
+      &:focus::before,
+      &:hover::before {
+        @include shadow;
+      }
+    }
+  }
+
+  .name {
+    font-size: 10px;
+    margin: 2px 0 4px;
+    text-transform: uppercase;
+    word-break: break-all;
+
+    @media only screen and (min-width: $media-lg) {
+      & {
+        font-size: 0.75em;
+      }
+    }
+  }
+
+  .svg {
+    width: 100%;
+
+    &--faded1,
+    &--faded2 {
+      height: 100%;
+      left: 0;
+      opacity: 0.75;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    &--faded2 {
+      opacity: 0.5;
+    }
+  }
+
+  &.about {
+    .link {
+      background-color: rgba(
+        $color: $color-about-dark,
+        $alpha: $background-opacity
+      );
+      fill: $color-about-light;
+      &::before {
+        @include aboutShadow;
+      }
+      &:active {
+        @include aboutIcon;
+      }
+    }
+
+    .name {
+      color: $color-about-white;
+    }
+  }
+
+  &.contact {
+    .link {
+      background-color: rgba(
+        $color: $color-contact-dark,
+        $alpha: $background-opacity
+      );
+      fill: $color-contact;
+      &::before {
+        @include contactShadow;
+      }
+      &:active {
+        @include contactIcon;
+      }
+    }
+
+    .name {
+      color: $color-quotes-shadow;
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
+    &.about {
+      .link {
+        &::before {
+          @include aboutShadow;
+        }
+        &:focus,
+        &:hover {
+          @include aboutIcon;
+        }
+      }
+    }
+
+    &.contact {
+      .link {
+        &::before {
+          @include contactShadow;
+        }
+        &:focus,
+        &:hover {
+          @include contactIcon;
+        }
+      }
+    }
+  }
+}

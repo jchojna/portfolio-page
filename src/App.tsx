@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import clsx from 'clsx';
 
 import Header from './components/Header';
 import Visuals from './components/Visuals';
@@ -8,20 +9,27 @@ import About from './views/About';
 // import Project from './views/Project';
 // import Contact from './views/Contact';
 
-import styles from './App.module.scss';
+import classes from './App.module.scss';
 
 function App() {
   const [isIntro, setIntro] = useState<boolean>(true);
 
+  const sectionsClass = clsx({
+    [classes.sections]: true,
+    [classes.visible]: !isIntro,
+  });
+
   return (
-    <div className={styles.container}>
+    <div className={classes.app}>
       <Header isIntro={isIntro} setIntro={setIntro} />
       <Visuals isIntro={isIntro} />
       {/* <Animation /> */}
-      <About />
-      {/* <Resume /> */}
-      {/* <Project /> */}
-      {/* <Contact /> */}
+      <div className={sectionsClass}>
+        <About />
+        {/* <Resume /> */}
+        {/* <Project /> */}
+        {/* <Contact /> */}
+      </div>
     </div>
   );
 }
