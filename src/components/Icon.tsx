@@ -1,28 +1,27 @@
 import clsx from 'clsx';
 
+import icons from '../assets/svg/icons.svg';
+
 import classes from './Icon.module.scss';
 
-const Icon = ({ view }) => {
+const Icon = ({ details, view }) => {
+  const { name, totalSVG } = details;
+  const svgArray = Array.from({ length: totalSVG }, (_, index) => index + 1);
+
   return (
     <li className={clsx(classes.item, classes[view])}>
       <div className={classes.icon}>
-        <svg className={classes.svg} viewBox="0 0 200 200">
-          <use href="assets/svg/icons.svg#html-1"></use>
-        </svg>
-        <svg
-          className={clsx(classes.svg, classes.faded1)}
-          viewBox="0 0 200 200"
-        >
-          <use href="assets/svg/icons.svg#html-2"></use>
-        </svg>
-        <svg
-          className={clsx(classes.svg, classes.faded2)}
-          viewBox="0 0 200 200"
-        >
-          <use href="assets/svg/icons.svg#html-3"></use>
-        </svg>
+        {svgArray.map((svg) => (
+          <svg
+            key={svg}
+            className={clsx(classes.svg, svg > 1 && classes[`faded${svg - 1}`])}
+            viewBox="0 0 200 200"
+          >
+            <use href={`${icons}#${name}-${svg}`}></use>
+          </svg>
+        ))}
       </div>
-      <span className={classes.name}>html</span>
+      <span className={classes.name}>{name}</span>
     </li>
   );
 };

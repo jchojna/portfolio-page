@@ -24,37 +24,31 @@
   .container {
     align-items: start;
     display: grid;
+    grid-template-areas:
+      'photography'
+      'heading    '
+      'description'
+      'profiles   '
+      'working    '
+      'knowing    '
+      'learning   ';
     margin: 0 $offset-right-sm;
     width: 100%;
-
-    &.about {
-      grid-template-areas:
-        'photography'
-        'heading    '
-        'description'
-        'profiles   '
-        'working    '
-        'knowing    '
-        'learning   ';
-    }
 
     @media only screen and (min-width: $media-md) {
       & {
         gap: $gridGap;
+        grid-template-areas:
+          'heading     photography'
+          'description photography'
+          'profiles    photography'
+          'working     working    '
+          'knowing     knowing    '
+          'learning    learning   ';
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr repeat(4, auto);
         max-width: $container-size;
         min-height: $container-size;
-
-        &.about {
-          grid-template-areas:
-            'heading     photography'
-            'description photography'
-            'profiles    photography'
-            'working     working    '
-            'knowing     knowing    '
-            'learning    learning   ';
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: auto 1fr repeat(4, auto);
-        }
       }
     }
 
@@ -141,10 +135,15 @@
   .svg {
     display: none;
   }
-}
 
-.icons {
-  display: flex;
-  gap: 6px;
-  list-style-type: none;
+  .iconsGroup {
+    .title {
+    }
+  }
+
+  .icons {
+    display: flex;
+    gap: 6px;
+    list-style-type: none;
+  }
 }

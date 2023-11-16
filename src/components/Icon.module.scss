@@ -1,9 +1,12 @@
 @import '../styles/variables.scss';
 @import '../styles/mixins.scss';
 
-$size-icon: 100px;
+$size-icon: 50px;
 
 .item {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   height: $size-icon;
   min-width: $size-icon;
   width: $size-icon;
