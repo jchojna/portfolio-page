@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 
+import Icon from '../components/Icon';
 import IconLink from '../components/IconLink';
 
 import about from '../content/about.json';
@@ -18,7 +19,7 @@ const About = () => {
         <section className="tab description">
           <p className="tab__description about">{about.description}</p>
         </section>
-        <div className={classes.contactDetails}>
+        <div className={classes.icons}>
           {contactDetails.map((details) => (
             <IconLink details={details} view="about" />
           ))}
@@ -28,8 +29,8 @@ const About = () => {
           <h3 className="tab__heading tab__heading--about tab__heading--working">
             Working knowledge
           </h3>
-          <ul className="icons icons--working">
-            {/* HTML */}
+          <ul className={classes.icons}>
+            <Icon view="about" />
             <li className="icons__item">
               <div className="icons__logo icons__logo--about">
                 <svg className="icons__svg" viewBox="0 0 200 200">

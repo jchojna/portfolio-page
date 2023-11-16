@@ -11,3 +11,32 @@
   outline: none;
   padding: 0;
 }
+
+@mixin shadow {
+  border-left-width: 8px;
+  border-top-width: 8px;
+}
+
+@mixin aboutShadow {
+  border-color: $color-about-shadow;
+}
+
+@mixin contactShadow {
+  border-color: $color-contact-shadow;
+}
+
+@mixin aboutIcon {
+  fill: $color-about;
+  background-color: rgba(
+    $color: $color-about-shadow,
+    $alpha: $background-opacity
+  );
+}
+
+@mixin contactIcon {
+  fill: $color-contact-light;
+  background-color: rgba(
+    $color: $color-contact-shadow,
+    $alpha: $background-opacity
+  );
+}
