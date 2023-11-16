@@ -12,7 +12,7 @@ type MenuProps = {
 };
 
 const Menu = ({ isIntro, setIntro }: MenuProps) => {
-  const [hoveredItem, setHoveredItem] = useState<number>(0);
+  const [hoveredItem, setHoveredItem] = useState<number | null>(0);
   const [activeItem, setActiveItem] = useState<number | null>(null);
 
   const menuClass = clsx({
@@ -34,6 +34,7 @@ const Menu = ({ isIntro, setIntro }: MenuProps) => {
               key={index}
               className={classes.menuItem}
               onMouseEnter={() => setHoveredItem(index)}
+              onMouseLeave={() => !isIntro && setHoveredItem(null)}
               onClick={() => handleItemClick(index)}
             >
               <MenuButton

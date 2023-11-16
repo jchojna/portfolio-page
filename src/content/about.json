@@ -1,7 +1,7 @@
 {
   "title": "Hello there!",
   "description": "My name is Jakub and I’m a Frontend Developer, a 3d Graphic Artist, an Architect and a keen road cycling fan.",
-  "goodKnowledge": {
+  "highLevel": {
     "title": "Working knowledge",
     "tech": [
       {
@@ -50,7 +50,7 @@
       }
     ]
   },
-  "mediumKnowledge": {
+  "mediumLevel": {
     "title": "Know something about",
     "tech": [
       {
@@ -83,7 +83,7 @@
       }
     ]
   },
-  "lowKnowledge": {
+  "lowLevel": {
     "title": "Want to learn",
     "tech": [
       {

@@ -16,40 +16,44 @@ const About = () => {
           {about.title}
         </h2>
 
-        <img src="assets/img/photo.jpg" className="photo" alt="My photo" />
+        <img
+          src="assets/img/photo.jpg"
+          className={classes.photo}
+          alt="My photo"
+        />
 
-        <section className="tab description">
+        <section className={classes.description}>
           <p className="tab__description about">{about.description}</p>
         </section>
 
-        <div className={classes.icons}>
+        <div className={classes.contactDetails}>
           {contactDetails.map((details) => (
             <IconLink details={details} view="about" />
           ))}
         </div>
 
-        <div className={classes.iconsGroup}>
-          <h3 className={classes.title}>{about.goodKnowledge.title}</h3>
+        <div className={clsx(classes.iconsGroup, classes.high)}>
+          <h3 className={classes.title}>{about.highLevel.title}</h3>
           <ul className={classes.icons}>
-            {about.goodKnowledge.tech.map((details) => (
+            {about.highLevel.tech.map((details) => (
               <Icon details={details} view="about" />
             ))}
           </ul>
         </div>
 
-        <div className={classes.iconsGroup}>
-          <h3 className={classes.title}>{about.mediumKnowledge.title}</h3>
+        <div className={clsx(classes.iconsGroup, classes.medium)}>
+          <h3 className={classes.title}>{about.mediumLevel.title}</h3>
           <ul className={classes.icons}>
-            {about.mediumKnowledge.tech.map((details) => (
+            {about.mediumLevel.tech.map((details) => (
               <Icon details={details} view="about" />
             ))}
           </ul>
         </div>
 
-        <div className={classes.iconsGroup}>
-          <h3 className={classes.title}>{about.lowKnowledge.title}</h3>
+        <div className={clsx(classes.iconsGroup, classes.low)}>
+          <h3 className={classes.title}>{about.lowLevel.title}</h3>
           <ul className={classes.icons}>
-            {about.lowKnowledge.tech.map((details) => (
+            {about.lowLevel.tech.map((details) => (
               <Icon details={details} view="about" />
             ))}
           </ul>
