@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { useRef, useState } from 'react';
 
 import classes from './NestedAccordion.module.scss';
 
@@ -27,10 +28,32 @@ const AccordionItem = ({ itemLabel, items }) => {
 };
 
 const Accordion = ({ accordionLabel, items }) => {
+  const [isExpanded, setIsExpanded] = useState<boolean>(true);
+
+  const accordionRef = useRef(null);
+  const accordionLabelRef = useRef(null);
+  const accordionItemsRef = useRef(null);
+
+  const handleAccordionClick = () => {
+    const labelHeight = accordionLabelRef.current.clientHeight;
+    const itemsHeight = accordionItemsRef.current.clientHeight;
+
+    accordionRef.current.style.height = isExpanded
+      ? `${labelHeight}px`
+      : `${labelHeight + itemsHeight + 20}px`;
+    setIsExpanded((prevState) => !prevState);
+  };
+
   return (
-    <div className={classes.accordion}>
-      <p className={classes.accordionLabel}>{accordionLabel}</p>
-      <div className={classes.accordionItems}>
+    <div ref={accordionRef} className={classes.accordion}>
+      <button
+        ref={accordionLabelRef}
+        className={classes.accordionLabel}
+        onClick={handleAccordionClick}
+      >
+        {accordionLabel}
+      </button>
+      <div ref={accordionItemsRef} className={classes.accordionItems}>
         {items.map((item, index) => {
           const { itemLabel, items } = item;
           return itemLabel ? (
