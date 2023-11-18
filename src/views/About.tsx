@@ -27,16 +27,16 @@ const About = () => {
         </section>
 
         <div className={classes.contactDetails}>
-          {contactDetails.map((details) => (
-            <IconLink details={details} view="about" />
+          {contactDetails.map((details, index) => (
+            <IconLink key={index} details={details} view="about" />
           ))}
         </div>
 
         <div className={clsx(classes.iconsGroup, classes.high)}>
           <h3 className={classes.title}>{about.highLevel.title}</h3>
           <ul className={classes.icons}>
-            {about.highLevel.tech.map((details) => (
-              <Icon details={details} view="about" />
+            {about.highLevel.tech.map((details, index) => (
+              <Icon key={index} details={details} view="about" />
             ))}
           </ul>
         </div>
@@ -44,8 +44,8 @@ const About = () => {
         <div className={clsx(classes.iconsGroup, classes.medium)}>
           <h3 className={classes.title}>{about.mediumLevel.title}</h3>
           <ul className={classes.icons}>
-            {about.mediumLevel.tech.map((details) => (
-              <Icon details={details} view="about" />
+            {about.mediumLevel.tech.map((details, index) => (
+              <Icon key={index} details={details} view="about" />
             ))}
           </ul>
         </div>
@@ -53,8 +53,8 @@ const About = () => {
         <div className={clsx(classes.iconsGroup, classes.low)}>
           <h3 className={classes.title}>{about.lowLevel.title}</h3>
           <ul className={classes.icons}>
-            {about.lowLevel.tech.map((details) => (
-              <Icon details={details} view="about" />
+            {about.lowLevel.tech.map((details, index) => (
+              <Icon key={index} details={details} view="about" />
             ))}
           </ul>
         </div>

@@ -1,0 +1,67 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .accordionLabel {
+    color: $color-resume-dark;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .accordionItems {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.itemLabel {
+  color: $color-resume-dark;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.properties {
+  display: flex;
+  gap: 20px;
+
+  .property {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0;
+
+    &-2,
+    &-3 {
+      border-left: $separator-width solid $color-resume-dark;
+      padding-left: 20px;
+    }
+
+    &-3 {
+      color: $color-resume-dark;
+    }
+
+    @media only screen and (min-width: $media-sm) {
+    }
+
+    @media only screen and (min-width: $media-md) {
+    }
+  }
+}
+
+.rollable {
+  transition: height $accordion-time;
+}

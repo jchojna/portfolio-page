@@ -2,15 +2,8 @@
 @import '../styles/mixins.scss';
 
 .section {
-  align-items: flex-start;
+  @include section;
   background-color: $color-about;
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-  padding-bottom: 50px;
-  position: relative;
-  scroll-snap-align: start;
-  width: 100%;
 
   @media only screen and (min-width: $media-lg) {
     & {

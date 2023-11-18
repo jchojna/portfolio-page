@@ -1,0 +1,7 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.section {
+  @include section;
+  background-color: $color-resume;
+}

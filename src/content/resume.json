@@ -1,0 +1,108 @@
+{
+  "title": "Jakub Chojna",
+  "info": {
+    "heading": "Personal Info",
+    "description": "As an architect I have a background in programming parametric architecture using tools like Grasshopper and Kangaroo. Long experience in 3d graphic and architectural visualization industry ad a strong impact on my sense of aesthetics and visual composition. I also had an encounter with motion design and compositing. During my one year stay in Slovenia, I had an opportunity to work in English-speaking environment. As an individual, I think I would describe myself as a self-taught, multipotentialite person with a certain dose of perfectionism. After I had created my first personal portfolio website in Wordpress, I decided to take my chances in frontend development about one year ago and learn it after hours. I have taken some online courses, but first of all I focused on writing my own projects and learning by practice. I tried to avoid using external libraries where I possibly could while writing the code, to get better understanding of HTML, CSS and JS basics. What I like about frontend web development is an endless process of learning, logical and analytical thinking and that it enables me to connect my previous experience backgrounds at some level."
+  },
+  "resume": [
+    {
+      "accordionLabel": "Experience",
+      "items": [
+        {
+          "accordionLabel": "Architecture",
+          "items": [
+            {
+              "itemLabel": "2017 - present",
+              "items": ["Freelance Architect", "self-employed", "Remote"]
+            },
+            {
+              "itemLabel": "2018",
+              "items": [
+                "Architect / 3d Visualizer",
+                "Svet Vmes",
+                "Ljubljana, Slovenia"
+              ]
+            },
+            {
+              "itemLabel": "2015 - 2017",
+              "items": [
+                "Architect / 3d Visualizer",
+                "Mofo Architekci",
+                "Warsaw, Poland"
+              ]
+            }
+          ]
+        },
+        {
+          "accordionLabel": "3d Graphics",
+          "items": [
+            {
+              "itemLabel": "2008 - present",
+              "items": ["Freelance 3d Visualizer", "self-employed", "Remote"]
+            },
+            {
+              "itemLabel": "2010 - 2013",
+              "items": [
+                "3d software tutor",
+                "Euro Info Group",
+                "Warsaw, Poland"
+              ]
+            }
+          ]
+        },
+        {
+          "accordionLabel": "Frontend Development",
+          "items": [
+            {
+              "itemLabel": "2020 - 2023",
+              "items": ["Frontend Developer", "Appsilon", "Remote"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "accordionLabel": "Education",
+      "items": [
+        {
+          "itemLabel": "2011 - 2014",
+          "items": [
+            "Warsaw University of Technology",
+            "Faculty of Architecture",
+            "Master's Degree"
+          ]
+        },
+        {
+          "itemLabel": "2006 - 2010",
+          "items": [
+            "Warsaw University of Technology",
+            "Faculty of Architecture",
+            "Bachelor's Degree"
+          ]
+        },
+        {
+          "itemLabel": "2003 - 2006",
+          "items": [
+            "Joachim Lelewel High School No. XLI",
+            "Mathematics - Physics profile",
+            "Warsaw, Poland"
+          ]
+        }
+      ]
+    },
+    {
+      "accordionLabel": "Languages",
+      "items": [
+        {
+          "items": ["English", "Proficient"]
+        },
+        {
+          "items": ["German", "Elementary"]
+        },
+        {
+          "items": ["Polish", "Native"]
+        }
+      ]
+    }
+  ]
+}

@@ -40,3 +40,14 @@
     $alpha: $background-opacity
   );
 }
+
+@mixin section {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding-bottom: 50px;
+  position: relative;
+  scroll-snap-align: start;
+  width: 100%;
+}
