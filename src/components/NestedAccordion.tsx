@@ -1,12 +1,12 @@
 import clsx from 'clsx';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import classes from './NestedAccordion.module.scss';
 
-const ItemProperties = ({ items }) => {
+const ItemProperties = ({ items }: ItemPropertiesProps) => {
   return (
     <div className={classes.properties}>
-      {items.map((item, index) => (
+      {items.map((item, index: number) => (
         <p
           key={index}
           className={clsx(classes.property, classes[`property-${index + 1}`])}
@@ -18,7 +18,7 @@ const ItemProperties = ({ items }) => {
   );
 };
 
-const AccordionItem = ({ itemLabel, items }) => {
+const AccordionItem = ({ itemLabel, items }: AccordionItemProps) => {
   return (
     <div className={classes.item}>
       <p className={classes.itemLabel}>{itemLabel}</p>
@@ -27,39 +27,64 @@ const AccordionItem = ({ itemLabel, items }) => {
   );
 };
 
-const Accordion = ({ accordionLabel, items }) => {
-  const [isExpanded, setIsExpanded] = useState<boolean>(true);
+const Accordion = ({
+  accordionLabel,
+  items,
+  isExpanded,
+  setExpanded,
+}: AccordionProps) => {
+  const accordionRef = useRef<HTMLDivElement | null>(null);
+  const accordionLabelRef = useRef<HTMLButtonElement | null>(null);
+  const accordionItemsRef = useRef<HTMLDivElement | null>(null);
 
-  const accordionRef = useRef(null);
-  const accordionLabelRef = useRef(null);
-  const accordionItemsRef = useRef(null);
+  useEffect(() => {
+    // collapse all accordions on start
+    if (accordionLabelRef.current !== null && accordionRef.current !== null) {
+      const labelHeight = accordionLabelRef.current.clientHeight;
+      accordionRef.current.style.height = `${labelHeight}px`;
+    }
+  }, []);
 
-  const handleAccordionClick = () => {
+  useEffect(() => {
+    if (
+      accordionLabelRef.current === null ||
+      accordionItemsRef.current === null ||
+      accordionRef.current === null
+    )
+      return;
     const labelHeight = accordionLabelRef.current.clientHeight;
     const itemsHeight = accordionItemsRef.current.clientHeight;
-
-    accordionRef.current.style.height = isExpanded
+    accordionRef.current.style.height = !isExpanded
       ? `${labelHeight}px`
       : `${labelHeight + itemsHeight + 20}px`;
-    setIsExpanded((prevState) => !prevState);
-  };
+  }, [isExpanded]);
 
   return (
     <div ref={accordionRef} className={classes.accordion}>
       <button
         ref={accordionLabelRef}
         className={classes.accordionLabel}
-        onClick={handleAccordionClick}
+        onClick={() => setExpanded(isExpanded ? null : accordionLabel)}
       >
         {accordionLabel}
       </button>
       <div ref={accordionItemsRef} className={classes.accordionItems}>
         {items.map((item, index) => {
-          const { itemLabel, items } = item;
-          return itemLabel ? (
-            <AccordionItem key={index} itemLabel={itemLabel} items={items} />
+          // const { itemLabel, items } = item;
+          return item.accordionLabel ? (
+            <Accordion
+              key={index}
+              accordionLabel={item.accordionLabel}
+              items={item.items}
+            />
+          ) : item.itemLabel ? (
+            <AccordionItem
+              key={index}
+              itemLabel={item.itemLabel}
+              items={item.items}
+            />
           ) : (
-            <ItemProperties key={index} items={items} />
+            <ItemProperties key={index} items={item.items} />
           );
         })}
       </div>
@@ -67,25 +92,29 @@ const Accordion = ({ accordionLabel, items }) => {
   );
 };
 
-const NestedAccordion = ({ content }) => {
+const NestedAccordion = ({ content }: NestedAccordionProps) => {
+  const [expanded, setExpanded] = useState<string | null>(null);
   const [experience, education, languages] = content;
+
   return (
-    <div>
-      {/* Experience */}
-      {/* <div className={classes.accordion}>
-        <p>{experience.label}</p>
-        {experience.items.map((content, index) => (
-          <Accordion label={experience.label} items={experience.items} />
-        ))}
-      </div> */}
-      {/* Education */}
+    <div className={classes.accordions}>
+      <Accordion
+        accordionLabel={experience.accordionLabel}
+        items={experience.items}
+        isExpanded={expanded === experience.accordionLabel}
+        setExpanded={setExpanded}
+      />
       <Accordion
         accordionLabel={education.accordionLabel}
         items={education.items}
+        isExpanded={expanded === education.accordionLabel}
+        setExpanded={setExpanded}
       />
       <Accordion
         accordionLabel={languages.accordionLabel}
         items={languages.items}
+        isExpanded={expanded === languages.accordionLabel}
+        setExpanded={setExpanded}
       />
     </div>
   );
