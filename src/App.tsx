@@ -21,11 +21,11 @@ function App() {
 
   return (
     <div className={classes.app}>
-      {/* <Header isIntro={isIntro} setIntro={setIntro} /> */}
-      {/* <Visuals isIntro={isIntro} /> */}
+      <Header isIntro={isIntro} setIntro={setIntro} />
+      <Visuals isIntro={isIntro} />
       {/* <Animation /> */}
       <div className={sectionsClass}>
-        {/* <About /> */}
+        <About />
         <Resume />
         {/* <Project /> */}
         {/* <Contact /> */}

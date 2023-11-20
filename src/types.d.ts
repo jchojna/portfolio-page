@@ -3,18 +3,17 @@ type ItemPropertiesProps = {
 };
 
 type AccordionItemProps = {
-  accordionLabel?: string;
-  itemLabel?: string;
-  items: string[];
+  label: string;
+  items: string[] & AccordionItemProps[];
 };
 
 type AccordionProps = {
-  accordionLabel: string;
+  label: string;
   items: AccordionItemProps[];
   isExpanded: boolean;
   setExpanded: (param: string | null) => void;
 };
 
-type NestedAccordionProps = {
+type ResumeAccordionProps = {
   content: AccordionProps[];
 };

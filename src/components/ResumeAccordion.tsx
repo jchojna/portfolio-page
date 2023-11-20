@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 
-import classes from './NestedAccordion.module.scss';
+import classes from './ResumeAccordion.module.scss';
 
 const ItemProperties = ({ items }: ItemPropertiesProps) => {
   return (
@@ -18,17 +18,17 @@ const ItemProperties = ({ items }: ItemPropertiesProps) => {
   );
 };
 
-const AccordionItem = ({ itemLabel, items }: AccordionItemProps) => {
+const AccordionItem = ({ label, items }: AccordionItemProps) => {
   return (
     <div className={classes.item}>
-      <p className={classes.itemLabel}>{itemLabel}</p>
+      <p className={classes.label}>{label}</p>
       <ItemProperties items={items} />
     </div>
   );
 };
 
 const Accordion = ({
-  accordionLabel,
+  label,
   items,
   isExpanded,
   setExpanded,
@@ -63,26 +63,15 @@ const Accordion = ({
     <div ref={accordionRef} className={classes.accordion}>
       <button
         ref={accordionLabelRef}
-        className={classes.accordionLabel}
-        onClick={() => setExpanded(isExpanded ? null : accordionLabel)}
+        className={classes.label}
+        onClick={() => setExpanded(isExpanded ? null : label)}
       >
-        {accordionLabel}
+        {label}
       </button>
-      <div ref={accordionItemsRef} className={classes.accordionItems}>
+      <div ref={accordionItemsRef} className={classes.items}>
         {items.map((item, index) => {
-          // const { itemLabel, items } = item;
-          return item.accordionLabel ? (
-            <Accordion
-              key={index}
-              accordionLabel={item.accordionLabel}
-              items={item.items}
-            />
-          ) : item.itemLabel ? (
-            <AccordionItem
-              key={index}
-              itemLabel={item.itemLabel}
-              items={item.items}
-            />
+          return item.label ? (
+            <AccordionItem key={index} label={item.label} items={item.items} />
           ) : (
             <ItemProperties key={index} items={item.items} />
           );
@@ -92,32 +81,45 @@ const Accordion = ({
   );
 };
 
-const NestedAccordion = ({ content }: NestedAccordionProps) => {
-  const [expanded, setExpanded] = useState<string | null>(null);
+const ResumeAccordion = ({ content }: ResumeAccordionProps) => {
   const [experience, education, languages] = content;
+  const { label, items } = experience;
+
+  const [expanded, setExpanded] = useState<string | null>(null);
+  const [subExpanded, setSubExpanded] = useState<string | null>(null);
 
   return (
     <div className={classes.accordions}>
+      <div className={classes.accordion}>
+        <button className={clsx(classes.label, classes.fixed)}>{label}</button>
+        <div className={classes.items}>
+          {items.map((item, index) => {
+            return (
+              <Accordion
+                key={index}
+                label={item.label}
+                items={item.items}
+                isExpanded={subExpanded === item.label}
+                setExpanded={setSubExpanded}
+              />
+            );
+          })}
+        </div>
+      </div>
       <Accordion
-        accordionLabel={experience.accordionLabel}
-        items={experience.items}
-        isExpanded={expanded === experience.accordionLabel}
-        setExpanded={setExpanded}
-      />
-      <Accordion
-        accordionLabel={education.accordionLabel}
+        label={education.label}
         items={education.items}
-        isExpanded={expanded === education.accordionLabel}
+        isExpanded={expanded === education.label}
         setExpanded={setExpanded}
       />
       <Accordion
-        accordionLabel={languages.accordionLabel}
+        label={languages.label}
         items={languages.items}
-        isExpanded={expanded === languages.accordionLabel}
+        isExpanded={expanded === languages.label}
         setExpanded={setExpanded}
       />
     </div>
   );
 };
 
-export default NestedAccordion;
+export default ResumeAccordion;

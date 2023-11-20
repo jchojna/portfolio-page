@@ -4,4 +4,30 @@
 .section {
   @include section;
   background-color: $color-resume;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: $gridGap;
+
+    @media only screen and (min-width: $media-md) {
+      & {
+        max-width: $container-size;
+      }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+      & {
+        margin-left: 500px;
+      }
+    }
+  }
+
+  &.resume {
+    .container {
+      .heading {
+        @include sectionHeading($color-resume-diff, $color-resume-light);
+      }
+    }
+  }
 }

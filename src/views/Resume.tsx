@@ -2,15 +2,15 @@ import clsx from 'clsx';
 
 import resume from '../content/resume.json';
 
-import NestedAccordion from '../components/NestedAccordion';
+import ResumeAccordion from '../components/ResumeAccordion';
 
 import classes from './Resume.module.scss';
 
 const Resume = () => {
   return (
-    <div id="resume" className={classes.section}>
-      <div className={clsx(classes.container, classes.about)}>
-        {/* <h2 className={classes.heading}>{resume.title}</h2> */}
+    <div id="resume" className={clsx(classes.section, classes.resume)}>
+      <div className={clsx(classes.container, classes.resume)}>
+        <h2 className={classes.heading}>{resume.title}</h2>
 
         {/* <div className="logo logo--resume">
           <svg className="logo__base logo__base--resume" viewBox="0 0 512 512">
@@ -24,7 +24,7 @@ const Resume = () => {
           </svg>
         </div> */}
 
-        {/* <div className="tab tab--resume tab--info">
+        <div className="tab tab--resume tab--info">
           <h3 className="tab__heading tab__heading--resume">
             {resume.info.heading}
           </h3>
@@ -36,8 +36,8 @@ const Resume = () => {
           <button className="tab__readMore tab__readMore--resume tab__readMore--js">
             Read more
           </button>
-        </div> */}
-        <NestedAccordion content={resume.resume} />
+        </div>
+        <ResumeAccordion content={resume.resume} />
       </div>
     </div>
   );

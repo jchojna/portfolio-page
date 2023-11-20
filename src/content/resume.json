@@ -6,17 +6,17 @@
   },
   "resume": [
     {
-      "accordionLabel": "Experience",
+      "label": "Experience",
       "items": [
         {
-          "accordionLabel": "Architecture",
+          "label": "Architecture",
           "items": [
             {
-              "itemLabel": "2017 - present",
+              "label": "2017 - present",
               "items": ["Freelance Architect", "self-employed", "Remote"]
             },
             {
-              "itemLabel": "2018",
+              "label": "2018",
               "items": [
                 "Architect / 3d Visualizer",
                 "Svet Vmes",
@@ -24,7 +24,7 @@
               ]
             },
             {
-              "itemLabel": "2015 - 2017",
+              "label": "2015 - 2017",
               "items": [
                 "Architect / 3d Visualizer",
                 "Mofo Architekci",
@@ -34,14 +34,14 @@
           ]
         },
         {
-          "accordionLabel": "3d Graphics",
+          "label": "3d Graphics",
           "items": [
             {
-              "itemLabel": "2008 - present",
+              "label": "2008 - present",
               "items": ["Freelance 3d Visualizer", "self-employed", "Remote"]
             },
             {
-              "itemLabel": "2010 - 2013",
+              "label": "2010 - 2013",
               "items": [
                 "3d software tutor",
                 "Euro Info Group",
@@ -51,10 +51,10 @@
           ]
         },
         {
-          "accordionLabel": "Frontend Development",
+          "label": "Frontend Development",
           "items": [
             {
-              "itemLabel": "2020 - 2023",
+              "label": "2020 - 2023",
               "items": ["Frontend Developer", "Appsilon", "Remote"]
             }
           ]
@@ -62,10 +62,10 @@
       ]
     },
     {
-      "accordionLabel": "Education",
+      "label": "Education",
       "items": [
         {
-          "itemLabel": "2011 - 2014",
+          "label": "2011 - 2014",
           "items": [
             "Warsaw University of Technology",
             "Faculty of Architecture",
@@ -73,7 +73,7 @@
           ]
         },
         {
-          "itemLabel": "2006 - 2010",
+          "label": "2006 - 2010",
           "items": [
             "Warsaw University of Technology",
             "Faculty of Architecture",
@@ -81,7 +81,7 @@
           ]
         },
         {
-          "itemLabel": "2003 - 2006",
+          "label": "2003 - 2006",
           "items": [
             "Joachim Lelewel High School No. XLI",
             "Mathematics - Physics profile",
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "accordionLabel": "Languages",
+      "label": "Languages",
       "items": [
         {
           "items": ["English", "Proficient"]

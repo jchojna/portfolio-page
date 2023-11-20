@@ -5,13 +5,6 @@
   @include section;
   background-color: $color-about;
 
-  @media only screen and (min-width: $media-lg) {
-    & {
-      align-items: center;
-      justify-content: flex-start;
-    }
-  }
-
   .container {
     align-items: start;
     display: grid;
@@ -47,51 +40,6 @@
       & {
         //margin-left: calc((100vw - #{$container-size}) / 2);
         margin-left: 500px;
-      }
-    }
-
-    .heading {
-      border-left: $separator-width solid transparent;
-      color: #fff;
-      font-size: 60px;
-      grid-area: heading;
-      line-height: 1.2;
-      margin: 0 $offset-right-xs 0 0;
-      margin-top: -60px;
-      padding: 30px 10px 30px 20px;
-      position: relative;
-      width: 100%;
-      z-index: 2;
-
-      &.large {
-        font-size: 72px;
-        line-height: 1;
-      }
-
-      &.about {
-        border-color: $color-about-diff;
-        color: $color-about-light;
-      }
-
-      @media only screen and (min-width: $media-md) {
-        & {
-          border: none;
-          font-size: 72px;
-          margin: $menu-item-height + $offset-right-sm 0;
-          margin-bottom: 0;
-          max-width: 60%;
-          min-width: 380px;
-          padding: 0;
-          width: 100%;
-        }
-      }
-
-      @media only screen and (min-width: $media-lg) {
-        & {
-          margin: 0;
-          margin-bottom: 20px;
-          max-width: none;
-        }
       }
     }
 
@@ -170,6 +118,14 @@
       gap: 6px;
       grid-area: contact;
       list-style-type: none;
+    }
+  }
+
+  &.about {
+    .container {
+      .heading {
+        @include sectionHeading($color-about-diff, $color-about-light);
+      }
     }
   }
 }
