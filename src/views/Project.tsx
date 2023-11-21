@@ -2,18 +2,17 @@ import clsx from 'clsx';
 
 import classes from './Project.module.scss';
 import TextGroup from '../components/groups/TextGroup';
-import ListGroup from '../components/groups/ListGroup';
+// import ListGroup from '../components/groups/ListGroup';
 
-const Project = ({ content }) => {
-  const { name, heading, about } = content;
+const Project = ({ name, title, about, features }: ProjectProps) => {
   return (
     <div id={name} className={clsx(classes.section, classes[name])}>
       <div className={clsx(classes.container, classes[name])}>
-        <h2 className={clsx(classes.heading, classes.large, classes[name])}>
-          {heading}
+        <h2 className={clsx(classes.title, classes.large, classes[name])}>
+          {title}
         </h2>
         <TextGroup title="About Project" projectName={name} content={about} />
-        <ListGroup title="Features" projectName={name} content={about} />
+        {/* <ListGroup title="Features" projectName={name} content={features} /> */}
 
         {/* <div class="logo logo--tasktimer">
             <svg class="logo__base logo__base--tasktimer" viewBox="0 0 512 612">

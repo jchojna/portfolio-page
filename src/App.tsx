@@ -29,8 +29,14 @@ function App() {
       <div className={sectionsClass}>
         {/* <About /> */}
         {/* <Resume /> */}
-        {projects.map((data) => (
-          <Project content={data} />
+        {projects.map(({ name, title, about, features }) => (
+          <Project
+            key={name}
+            name={name}
+            title={title}
+            about={about}
+            features={features}
+          />
         ))}
         {/* <Contact /> */}
       </div>

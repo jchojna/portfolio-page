@@ -1,12 +1,19 @@
 import clsx from 'clsx';
+import { useState } from 'react';
 
 import resume from '../content/resume.json';
 
-import ResumeAccordion from '../components/resume/ResumeAccordion';
+import Accordion from '../components/Accordion';
+import AccordionsGroup from '../components/AccordionsGroup';
 
 import classes from './Resume.module.scss';
 
 const Resume = () => {
+  const [experience, education, languages] = resume.resume;
+  const { label, items } = experience;
+
+  const [expanded, setExpanded] = useState<string | null>(null);
+  console.log(items);
   return (
     <div id="resume" className={clsx(classes.section, classes.resume)}>
       <div className={clsx(classes.container, classes.resume)}>
@@ -37,7 +44,21 @@ const Resume = () => {
             Read more
           </button>
         </div>
-        <ResumeAccordion content={resume.resume} />
+        <div className={classes.accordions}>
+          <AccordionsGroup title={label} content={items} />
+          <Accordion
+            label={education.label}
+            items={education.items}
+            isExpanded={expanded === education.label}
+            setExpanded={setExpanded}
+          />
+          <Accordion
+            label={languages.label}
+            items={languages.items}
+            isExpanded={expanded === languages.label}
+            setExpanded={setExpanded}
+          />
+        </div>
       </div>
     </div>
   );
