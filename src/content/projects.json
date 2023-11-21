@@ -168,6 +168,7 @@
     ],
     "features": [
       {
+        "label": "Functionality",
         "items": [
           "Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighboring images located in a particular row and taking the whole width of the container",
           "Sprite map of SVG placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images",
@@ -177,8 +178,13 @@
           "Fully functional contact form with checkbox verification and backend validation",
           "Simple accordions in about section",
           "Page pre-loader",
-          "Improved content accessibility according to WCAG",
-          "TO BE IMPLEMENTED: More detailed and animated page pre-loader containing website's SVG logo"
+          "Improved content accessibility according to WCAG"
+        ]
+      },
+      {
+        "label": "To be implemented",
+        "items": [
+          "More detailed and animated page pre-loader containing website's SVG logo"
         ]
       }
     ]
@@ -191,6 +197,7 @@
     ],
     "features": [
       {
+        "label": "Functionality",
         "items": [
           "random quote functionality",
           "simple and basic PWA",
@@ -204,6 +211,10 @@
           "checkboxes validation and alerts",
           "TO BE IMPLEMENTED: contact form JS validation and functionality"
         ]
+      },
+      {
+        "label": "To be implemented",
+        "items": ["contact form JS validation and functionality"]
       }
     ]
   },

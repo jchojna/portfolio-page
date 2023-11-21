@@ -28,10 +28,10 @@ function App() {
       {/* <Animation /> */}
       <div className={sectionsClass}>
         {/* <About /> */}
-        <Resume />
-        {/* {projects.map((data) => (
+        {/* <Resume /> */}
+        {projects.map((data) => (
           <Project content={data} />
-        ))} */}
+        ))}
         {/* <Contact /> */}
       </div>
     </div>
