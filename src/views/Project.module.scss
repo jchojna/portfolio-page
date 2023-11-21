@@ -1,0 +1,12 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.section {
+  @include section;
+
+  .container {
+    .heading {
+      @include sectionHeading;
+    }
+  }
+}

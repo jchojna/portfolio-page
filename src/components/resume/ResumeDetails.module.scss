@@ -1,0 +1,42 @@
+@import '../../styles/variables.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .label {
+    color: $color-resume-dark;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .details {
+    display: flex;
+    gap: 20px;
+
+    .detail {
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin: 0;
+
+      &-2,
+      &-3 {
+        border-left: $separator-width solid $color-resume-dark;
+        padding-left: 20px;
+      }
+
+      &-3 {
+        color: $color-resume-dark;
+      }
+
+      @media only screen and (min-width: $media-sm) {
+      }
+
+      @media only screen and (min-width: $media-md) {
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import resume from '../content/resume.json';
 
-import ResumeAccordion from '../components/ResumeAccordion';
+import ResumeAccordion from '../components/resume/ResumeAccordion';
 
 import classes from './Resume.module.scss';
 

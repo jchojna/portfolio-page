@@ -2,8 +2,7 @@
 @import '../styles/mixins.scss';
 
 .section {
-  @include section;
-  background-color: $color-resume;
+  @include section();
 
   .container {
     display: flex;
@@ -26,7 +25,7 @@
   &.resume {
     .container {
       .heading {
-        @include sectionHeading($color-resume-diff, $color-resume-light);
+        @include sectionHeading;
       }
     }
   }

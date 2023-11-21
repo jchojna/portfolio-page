@@ -59,11 +59,34 @@
       justify-content: flex-start;
     }
   }
+
+  &.about {
+    background-color: $color-about;
+  }
+  &.resume {
+    background-color: $color-resume;
+  }
+  &.tasktimer {
+    background-color: $color-tasktimer;
+  }
+  &.hydrapp {
+    background-color: $color-hydrapp;
+  }
+  &.portfolio {
+    background-color: $color-portfolio;
+  }
+  &.archviz {
+    background-color: $color-archviz;
+  }
+  &.quotes {
+    background-color: $color-quotes;
+  }
+  &.other {
+    background-color: $color-other;
+  }
 }
 
-@mixin sectionHeading($border-color, $color) {
-  border-color: $border-color;
-  color: $color;
+@mixin sectionHeading {
   font-size: 60px;
   grid-area: heading;
   line-height: 1.2;
@@ -77,6 +100,39 @@
   &.large {
     font-size: 72px;
     line-height: 1;
+  }
+
+  &.about {
+    border-color: $color-about-diff;
+    color: $color-about-light;
+  }
+  &.resume {
+    border-color: $color-resume-diff;
+    color: $color-resume-light;
+  }
+  &.tasktimer {
+    border-color: $color-tasktimer-diff;
+    color: $color-tasktimer-light;
+  }
+  &.hydrapp {
+    border-color: $color-hydrapp-diff;
+    color: $color-hydrapp-light;
+  }
+  &.portfolio {
+    border-color: $color-portfolio-diff;
+    color: $color-portfolio-light;
+  }
+  &.archviz {
+    border-color: $color-archviz-diff;
+    color: $color-archviz-light;
+  }
+  &.quotes {
+    border-color: $color-quotes-diff;
+    color: $color-quotes-light;
+  }
+  &.other {
+    border-color: $color-other-diff;
+    color: $color-other-light;
   }
 
   @media only screen and (min-width: $media-md) {

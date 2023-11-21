@@ -2,8 +2,7 @@
 @import '../styles/mixins.scss';
 
 .section {
-  @include section;
-  background-color: $color-about;
+  @include section();
 
   .container {
     align-items: start;
@@ -124,7 +123,7 @@
   &.about {
     .container {
       .heading {
-        @include sectionHeading($color-about-diff, $color-about-light);
+        @include sectionHeading;
       }
     }
   }

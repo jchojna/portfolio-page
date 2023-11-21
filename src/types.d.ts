@@ -1,10 +1,6 @@
-type ItemPropertiesProps = {
+type ResumeDetailsProps = {
+  label?: string;
   items: string[];
-};
-
-type AccordionItemProps = {
-  label: string;
-  items: string[] & AccordionItemProps[];
 };
 
 type AccordionProps = {

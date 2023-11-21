@@ -1,31 +1,9 @@
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 
+import ResumeDetails from './ResumeDetails';
+
 import classes from './ResumeAccordion.module.scss';
-
-const ItemProperties = ({ items }: ItemPropertiesProps) => {
-  return (
-    <div className={classes.properties}>
-      {items.map((item, index: number) => (
-        <p
-          key={index}
-          className={clsx(classes.property, classes[`property-${index + 1}`])}
-        >
-          {item}
-        </p>
-      ))}
-    </div>
-  );
-};
-
-const AccordionItem = ({ label, items }: AccordionItemProps) => {
-  return (
-    <div className={classes.item}>
-      <p className={classes.label}>{label}</p>
-      <ItemProperties items={items} />
-    </div>
-  );
-};
 
 const Accordion = ({
   label,
@@ -70,10 +48,8 @@ const Accordion = ({
       </button>
       <div ref={accordionItemsRef} className={classes.items}>
         {items.map((item, index) => {
-          return item.label ? (
-            <AccordionItem key={index} label={item.label} items={item.items} />
-          ) : (
-            <ItemProperties key={index} items={item.items} />
+          return (
+            <ResumeDetails key={index} label={item.label} items={item.items} />
           );
         })}
       </div>

@@ -6,8 +6,10 @@ import Visuals from './components/Visuals';
 // import Animation from './views/Animation';
 import About from './views/About';
 import Resume from './views/Resume';
-// import Project from './views/Project';
+import Project from './views/Project';
 // import Contact from './views/Contact';
+
+import projects from './content/projects.json';
 
 import classes from './App.module.scss';
 
@@ -21,13 +23,15 @@ function App() {
 
   return (
     <div className={classes.app}>
-      <Header isIntro={isIntro} setIntro={setIntro} />
-      <Visuals isIntro={isIntro} />
+      {/* <Header isIntro={isIntro} setIntro={setIntro} /> */}
+      {/* <Visuals isIntro={isIntro} /> */}
       {/* <Animation /> */}
       <div className={sectionsClass}>
-        <About />
+        {/* <About /> */}
         <Resume />
-        {/* <Project /> */}
+        {/* {projects.map((data) => (
+          <Project content={data} />
+        ))} */}
         {/* <Contact /> */}
       </div>
     </div>

@@ -1,0 +1,37 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  transition: height $accordion-time, max-height $accordion-time;
+
+  > .label {
+    background: none;
+    border: none;
+    color: $color-resume-dark;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-transform: uppercase;
+
+    &:hover {
+      cursor: pointer;
+      color: $color-resume-diff;
+    }
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.rollable {
+  transition: height $accordion-time;
+}
