@@ -2,8 +2,9 @@ import clsx from 'clsx';
 import { useState } from 'react';
 
 import Accordion from './Accordion';
+import ResumeDetails from './resume/ResumeDetails';
 
-import classes from './Accordion.module.scss';
+import classes from './AccordionsGroup.module.scss';
 
 const AccordionsGroup = ({ title, content }: AccordionsGroupProps) => {
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -12,15 +13,26 @@ const AccordionsGroup = ({ title, content }: AccordionsGroupProps) => {
     <div className={classes.accordionsGroup}>
       <button className={clsx(classes.title, classes.fixed)}>{title}</button>
       <div className={classes.items}>
-        {content.map((item, index) => {
+        {content.map(({ label, items }, index) => {
           return (
             <Accordion
               key={index}
-              label={item.label}
-              items={item.items}
-              isExpanded={expanded === item.label}
+              label={label}
+              isExpanded={expanded === label}
               setExpanded={setExpanded}
-            />
+            >
+              {items.map((item, index) => {
+                return typeof item === 'string' ? (
+                  <li key={index}>{item}</li>
+                ) : (
+                  <ResumeDetails
+                    key={index}
+                    label={item.label}
+                    items={item.items}
+                  />
+                );
+              })}
+            </Accordion>
           );
         })}
       </div>

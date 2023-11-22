@@ -5,6 +5,7 @@ import resume from '../content/resume.json';
 
 import Accordion from '../components/Accordion';
 import AccordionsGroup from '../components/AccordionsGroup';
+import ResumeDetails from '../components/resume/ResumeDetails';
 
 import classes from './Resume.module.scss';
 
@@ -13,7 +14,7 @@ const Resume = () => {
   const { label, items } = experience;
 
   const [expanded, setExpanded] = useState<string | null>(null);
-  console.log(items);
+
   return (
     <div id="resume" className={clsx(classes.section, classes.resume)}>
       <div className={clsx(classes.container, classes.resume)}>
@@ -48,16 +49,22 @@ const Resume = () => {
           <AccordionsGroup title={label} content={items} />
           <Accordion
             label={education.label}
-            items={education.items}
             isExpanded={expanded === education.label}
             setExpanded={setExpanded}
-          />
+          >
+            {education.items.map(({ label, items }, index) => {
+              return <ResumeDetails key={index} label={label} items={items} />;
+            })}
+          </Accordion>
           <Accordion
             label={languages.label}
-            items={languages.items}
             isExpanded={expanded === languages.label}
             setExpanded={setExpanded}
-          />
+          >
+            {languages.items.map(({ label, items }, index) => {
+              return <ResumeDetails key={index} label={label} items={items} />;
+            })}
+          </Accordion>
         </div>
       </div>
     </div>

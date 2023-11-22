@@ -7,7 +7,7 @@ const ResumeDetails = ({ label, items }: ResumeDetailsProps) => {
     <div className={classes.container}>
       {label && <div className={classes.label}>{label}</div>}
       <div className={classes.details}>
-        {items.map((item, index: number) => (
+        {items.map((item: string, index: number) => (
           <p
             key={index}
             className={clsx(classes.detail, classes[`detail-${index + 1}`])}

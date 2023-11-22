@@ -41,7 +41,53 @@
         "label": "To be implemented",
         "items": ["full keyboard support for an entire app"]
       }
-    ]
+    ],
+    "icons": [
+      {
+        "name": "html",
+        "totalSVG": 3
+      },
+      {
+        "name": "css",
+        "totalSVG": 3
+      },
+      {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      },
+      {
+        "name": "bem",
+        "totalSVG": 1
+      },
+      {
+        "name": "react",
+        "totalSVG": 1
+      },
+      {
+        "name": "git",
+        "totalSVG": 1
+      },
+      {
+        "name": "vscode",
+        "totalSVG": 3
+      },
+      {
+        "name": "figma",
+        "totalSVG": 3
+      },
+      {
+        "name": "illustrator",
+        "totalSVG": 1
+      }
+    ],
+    "url": {
+      "repo": "https://github.com/jchojna/task-timer",
+      "demo": "https://jchojna.github.io/task-timer/"
+    }
   },
   {
     "name": "hydrapp",
@@ -82,7 +128,45 @@
           "fetching data about weather conditions in user's location from external API and recalculating minimum amount of water to be consumed"
         ]
       }
-    ]
+    ],
+    "icons": [
+      {
+        "name": "html",
+        "totalSVG": 3
+      },
+      {
+        "name": "css",
+        "totalSVG": 3
+      },
+      {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      },
+      {
+        "name": "bem",
+        "totalSVG": 1
+      },
+      {
+        "name": "git",
+        "totalSVG": 1
+      },
+      {
+        "name": "vscode",
+        "totalSVG": 3
+      },
+      {
+        "name": "illustrator",
+        "totalSVG": 1
+      }
+    ],
+    "url": {
+      "repo": "https://github.com/jchojna/hydrApp",
+      "demo": "https://jchojna.github.io/hydrApp/"
+    }
   },
   {
     "name": "portfolio",
@@ -157,7 +241,53 @@
           "Bonus functionality allowing to generate and display intro animation with content based on the string input provided by the user"
         ]
       }
-    ]
+    ],
+    "icons": [
+      {
+        "name": "html",
+        "totalSVG": 3
+      },
+      {
+        "name": "css",
+        "totalSVG": 3
+      },
+      {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      },
+      {
+        "name": "bem",
+        "totalSVG": 1
+      },
+      {
+        "name": "php",
+        "totalSVG": 1
+      },
+      {
+        "name": "git",
+        "totalSVG": 1
+      },
+      {
+        "name": "vscode",
+        "totalSVG": 3
+      },
+      {
+        "name": "figma",
+        "totalSVG": 3
+      },
+      {
+        "name": "illustrator",
+        "totalSVG": 1
+      }
+    ],
+    "url": {
+      "repo": "https://github.com/jchojna/portfolio-page",
+      "demo": "https://jchojna.github.io/portfolio-page/"
+    }
   },
   {
     "name": "archviz",
@@ -187,7 +317,49 @@
           "More detailed and animated page pre-loader containing website's SVG logo"
         ]
       }
-    ]
+    ],
+    "icons": [
+      {
+        "name": "html",
+        "totalSVG": 3
+      },
+      {
+        "name": "css",
+        "totalSVG": 3
+      },
+      {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      },
+      {
+        "name": "bem",
+        "totalSVG": 1
+      },
+      {
+        "name": "php",
+        "totalSVG": 1
+      },
+      {
+        "name": "git",
+        "totalSVG": 1
+      },
+      {
+        "name": "vscode",
+        "totalSVG": 3
+      },
+      {
+        "name": "photoshop",
+        "totalSVG": 1
+      }
+    ],
+    "url": {
+      "repo": "https://github.com/jchojna/archviz-website",
+      "demo": "https://jakubchojna.pl/"
+    }
   },
   {
     "name": "quotes",
@@ -216,6 +388,44 @@
         "label": "To be implemented",
         "items": ["contact form JS validation and functionality"]
       }
-    ]
+    ],
+    "icons": [
+      {
+        "name": "html",
+        "totalSVG": 3
+      },
+      {
+        "name": "css",
+        "totalSVG": 3
+      },
+      {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      },
+      {
+        "name": "bem",
+        "totalSVG": 1
+      },
+      {
+        "name": "git",
+        "totalSVG": 1
+      },
+      {
+        "name": "vscode",
+        "totalSVG": 3
+      },
+      {
+        "name": "photoshop",
+        "totalSVG": 1
+      }
+    ],
+    "url": {
+      "repo": "https://github.com/jchojna/homepage-gulp",
+      "demo": "https://jchojna.github.io/homepage-gulp/"
+    }
   }
 ]

@@ -1,12 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-import ResumeDetails from './resume/ResumeDetails';
-
 import classes from './Accordion.module.scss';
 
 const Accordion = ({
   label,
-  items,
+  children,
   isExpanded,
   setExpanded,
 }: AccordionProps) => {
@@ -46,11 +44,7 @@ const Accordion = ({
         {label}
       </button>
       <div ref={accordionItemsRef} className={classes.items}>
-        {items.map((item, index) => {
-          return (
-            <ResumeDetails key={index} label={item.label} items={item.items} />
-          );
-        })}
+        {children}
       </div>
     </div>
   );

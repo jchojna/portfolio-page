@@ -5,14 +5,19 @@ type ResumeDetailsProps = {
 
 type AccordionProps = {
   label: string;
-  items: AccordionItemProps[];
+  children: React.ReactNode;
   isExpanded: boolean;
   setExpanded: (param: string | null) => void;
 };
 
+type AccordionItemProps = {
+  label: string;
+  items: string[] | ResumeDetailsProps[];
+};
+
 type AccordionsGroupProps = {
   title: string;
-  content: AccordionProps[];
+  content: AccordionItemProps[];
 };
 
 type ProjectProps = {

@@ -2,9 +2,19 @@ import clsx from 'clsx';
 
 import classes from './Project.module.scss';
 import TextGroup from '../components/groups/TextGroup';
+import AccordionsGroup from '../components/AccordionsGroup';
+import Icon from '../components/Icon';
+import ProjectLinks from '../components/ProjectLinks';
 // import ListGroup from '../components/groups/ListGroup';
 
-const Project = ({ name, title, about, features }: ProjectProps) => {
+const Project = ({
+  name,
+  title,
+  about,
+  features,
+  icons,
+  url,
+}: ProjectProps) => {
   return (
     <div id={name} className={clsx(classes.section, classes[name])}>
       <div className={clsx(classes.container, classes[name])}>
@@ -12,6 +22,15 @@ const Project = ({ name, title, about, features }: ProjectProps) => {
           {title}
         </h2>
         <TextGroup title="About Project" projectName={name} content={about} />
+        <AccordionsGroup title="Features" content={features} />
+
+        <ul className={classes.icons}>
+          {icons.map((icon, index) => (
+            <Icon key={index} details={icon} view="about" />
+          ))}
+        </ul>
+
+        <ProjectLinks projectName={name} url={url} />
         {/* <ListGroup title="Features" projectName={name} content={features} /> */}
 
         {/* <div class="logo logo--tasktimer">

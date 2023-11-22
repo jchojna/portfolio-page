@@ -4,7 +4,15 @@ import icons from '../assets/svg/icons.svg';
 
 import classes from './Icon.module.scss';
 
-const Icon = ({ details, view }) => {
+type IconProps = {
+  details: {
+    name: string;
+    totalSVG: number;
+  };
+  view: string;
+};
+
+const Icon = ({ details, view }: IconProps) => {
   const { name, totalSVG } = details;
   const svgArray = Array.from({ length: totalSVG }, (_, index) => index + 1);
 
