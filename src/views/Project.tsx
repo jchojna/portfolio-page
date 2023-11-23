@@ -3,8 +3,9 @@ import clsx from 'clsx';
 import classes from './Project.module.scss';
 import TextGroup from '../components/groups/TextGroup';
 import AccordionsGroup from '../components/AccordionsGroup';
-import Icon from '../components/Icon';
+import Icon from '../components/icons/Icon';
 import ProjectLinks from '../components/ProjectLinks';
+import IconList from '../components/icons/IconList';
 // import ListGroup from '../components/groups/ListGroup';
 
 const Project = ({
@@ -24,11 +25,7 @@ const Project = ({
         <TextGroup title="About Project" projectName={name} content={about} />
         <AccordionsGroup title="Features" content={features} />
 
-        <ul className={classes.icons}>
-          {icons.map((icon, index) => (
-            <Icon key={index} details={icon} view="about" />
-          ))}
-        </ul>
+        <IconList view={name} icons={icons} />
 
         <ProjectLinks projectName={name} url={url} />
         {/* <ListGroup title="Features" projectName={name} content={features} /> */}

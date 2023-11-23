@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import classes from './IconLink.module.scss';
 
-import icons from '../assets/svg/icons.svg';
+import icons from '../../assets/svg/icons.svg';
 
 type IconLink = {
   details: {

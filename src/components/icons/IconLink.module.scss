@@ -1,5 +1,5 @@
-@import '../styles/variables.scss';
-@import '../styles/mixins.scss';
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .icon {
   @include flex-center;
@@ -78,10 +78,14 @@
       );
       fill: $color-about-light;
       &::before {
-        @include aboutShadow;
+        border-color: $color-about-shadow;
       }
       &:active {
-        @include aboutIcon;
+        fill: $color-about;
+        background-color: rgba(
+          $color: $color-about-shadow,
+          $alpha: $background-opacity
+        );
       }
     }
 
@@ -98,10 +102,14 @@
       );
       fill: $color-contact;
       &::before {
-        @include contactShadow;
+        border-color: $color-contact-shadow;
       }
       &:active {
-        @include contactIcon;
+        fill: $color-contact-light;
+        background-color: rgba(
+          $color: $color-contact-shadow,
+          $alpha: $background-opacity
+        );
       }
     }
 
@@ -114,11 +122,15 @@
     &.about {
       .link {
         &::before {
-          @include aboutShadow;
+          border-color: $color-about-shadow;
         }
         &:focus,
         &:hover {
-          @include aboutIcon;
+          fill: $color-about;
+          background-color: rgba(
+            $color: $color-about-shadow,
+            $alpha: $background-opacity
+          );
         }
       }
     }
@@ -126,11 +138,15 @@
     &.contact {
       .link {
         &::before {
-          @include contactShadow;
+          border-color: $color-contact-shadow;
         }
         &:focus,
         &:hover {
-          @include contactIcon;
+          fill: $color-contact-light;
+          background-color: rgba(
+            $color: $color-contact-shadow,
+            $alpha: $background-opacity
+          );
         }
       }
     }

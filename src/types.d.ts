@@ -41,3 +41,13 @@ type ListGroupProps = {
   projectName: string;
   content: string[];
 };
+
+type IconDetails = {
+  name: string;
+  totalSVG: number;
+};
+
+type IconProps = {
+  view: string;
+  details: IconDetails;
+};

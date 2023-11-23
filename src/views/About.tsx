@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 
-import Icon from '../components/Icon';
-import IconLink from '../components/IconLink';
+import Icon from '../components/icons/Icon';
+import IconLink from '../components/icons/IconLink';
+import IconList from '../components/icons/IconList';
 
 import about from '../content/about.json';
 import contactDetails from '../content/contactDetails.json';
@@ -34,11 +35,7 @@ const About = () => {
 
         <div className={clsx(classes.iconsGroup, classes.high)}>
           <h3 className={classes.title}>{about.highLevel.title}</h3>
-          <ul className={classes.icons}>
-            {about.highLevel.tech.map((details, index) => (
-              <Icon key={index} details={details} view="about" />
-            ))}
-          </ul>
+          <IconList view="about" icons={about.highLevel.tech} />
         </div>
 
         <div className={clsx(classes.iconsGroup, classes.medium)}>

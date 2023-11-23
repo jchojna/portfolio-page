@@ -1,45 +1,6 @@
 @import '../styles/variables.scss';
 @import '../styles/mixins.scss';
 
-$colors: (
-  // tasktimer
-  tasktimer: $color-tasktimer,
-  tasktimer-light: $color-tasktimer-light,
-  tasktimer-dark: $color-tasktimer-dark,
-  tasktimer-shadow: $color-tasktimer-shadow,
-  tasktimer-diff: $color-tasktimer-diff,
-  // portfolio
-  portfolio: $color-portfolio,
-  portfolio-light: $color-portfolio-light,
-  portfolio-dark: $color-portfolio-dark,
-  portfolio-shadow: $color-portfolio-shadow,
-  portfolio-diff: $color-portfolio-diff,
-  // hydrapp
-  hydrapp: $color-hydrapp,
-  hydrapp-light: $color-hydrapp-light,
-  hydrapp-dark: $color-hydrapp-dark,
-  hydrapp-shadow: $color-hydrapp-shadow,
-  hydrapp-diff: $color-hydrapp-diff,
-  // archviz
-  archviz: $color-archviz,
-  archviz-light: $color-archviz-light,
-  archviz-dark: $color-archviz-dark,
-  archviz-shadow: $color-archviz-shadow,
-  archviz-diff: $color-archviz-diff,
-  // quotes
-  quotes: $color-quotes,
-  quotes-light: $color-quotes-light,
-  quotes-dark: $color-quotes-dark,
-  quotes-shadow: $color-quotes-shadow,
-  quotes-diff: $color-quotes-diff,
-  // other
-  other: $color-other,
-  other-light: $color-other-light,
-  other-dark: $color-other-dark,
-  other-shadow: $color-other-shadow,
-  other-diff: $color-other-diff
-);
-
 @mixin projectLink($project) {
   border-color: map-get($colors, #{$project}-diff);
 

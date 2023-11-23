@@ -1,0 +1,100 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+$size-icon: 50px;
+
+@mixin icon($project) {
+  background-color: rgba(
+    $color: map-get($colors, #{$project}-dark),
+    $alpha: $background-opacity
+  );
+  fill: map-get($colors, #{$project}-light);
+
+  &::before {
+    border-color: map-get($colors, #{$project}-shadow);
+  }
+
+  &:active {
+    fill: map-get($colors, #{$project});
+    background-color: rgba(
+      $color: map-get($colors, #{$project}-shadow),
+      $alpha: $background-opacity
+    );
+  }
+}
+
+.item {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: $size-icon;
+  min-width: $size-icon;
+  width: $size-icon;
+
+  .icon {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    position: relative;
+
+    .svg {
+      height: 100%;
+      width: 100%;
+
+      &.faded1,
+      &.faded2 {
+        height: 100%;
+        left: 0;
+        opacity: 0.75;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
+      &.faded2 {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .name {
+    font-size: 10px;
+    margin: 2px 0 4px;
+    text-transform: uppercase;
+    word-break: break-all;
+
+    @media only screen and (min-width: $media-lg) {
+      & {
+        font-size: 0.75em;
+      }
+    }
+  }
+
+  &.about {
+    @include icon(about);
+  }
+  &.resume {
+    @include icon(resume);
+  }
+  &.tasktimer {
+    @include icon(tasktimer);
+  }
+  &.hydrapp {
+    @include icon(hydrapp);
+  }
+  &.portfolio {
+    @include icon(portfolio);
+  }
+  &.archviz {
+    @include icon(archviz);
+  }
+  &.quotes {
+    @include icon(quotes);
+  }
+  &.other {
+    @include icon(other);
+  }
+  &.contact {
+    @include icon(contact);
+  }
+}
