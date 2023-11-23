@@ -1,22 +1,32 @@
+import clsx from 'clsx';
+
 import classes from './ProjectLinks.module.scss';
 
-const ProjectLinks = ({ projectName, url }) => (
-  <div className="repoLinks repoLinks--tasktimer">
+type ProjectLinksProps = {
+  projectName: string;
+  url: {
+    repo: string;
+    demo: string;
+  };
+};
+
+const ProjectLinks = ({ projectName, url }: ProjectLinksProps) => (
+  <div className={clsx(classes.projectLinks, classes[projectName])}>
     <a
       href={url.repo}
-      className="repoLinks__link repoLinks__link--tasktimer"
+      className={classes.link}
       target="_blank"
       rel="nofollow noreferrer"
-      aria-label="TaskTimer app code"
+      aria-label={`${projectName} app code`}
     >
       Code
     </a>
     <a
       href={url.demo}
-      className="repoLinks__link repoLinks__link--tasktimer"
+      className={classes.link}
       target="_blank"
       rel="nofollow noreferrer"
-      aria-label="TaskTimer app demo"
+      aria-label={`${projectName} app demo`}
     >
       Demo
     </a>

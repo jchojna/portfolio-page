@@ -1,0 +1,156 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+$colors: (
+  // tasktimer
+  tasktimer: $color-tasktimer,
+  tasktimer-light: $color-tasktimer-light,
+  tasktimer-dark: $color-tasktimer-dark,
+  tasktimer-shadow: $color-tasktimer-shadow,
+  tasktimer-diff: $color-tasktimer-diff,
+  // portfolio
+  portfolio: $color-portfolio,
+  portfolio-light: $color-portfolio-light,
+  portfolio-dark: $color-portfolio-dark,
+  portfolio-shadow: $color-portfolio-shadow,
+  portfolio-diff: $color-portfolio-diff,
+  // hydrapp
+  hydrapp: $color-hydrapp,
+  hydrapp-light: $color-hydrapp-light,
+  hydrapp-dark: $color-hydrapp-dark,
+  hydrapp-shadow: $color-hydrapp-shadow,
+  hydrapp-diff: $color-hydrapp-diff,
+  // archviz
+  archviz: $color-archviz,
+  archviz-light: $color-archviz-light,
+  archviz-dark: $color-archviz-dark,
+  archviz-shadow: $color-archviz-shadow,
+  archviz-diff: $color-archviz-diff,
+  // quotes
+  quotes: $color-quotes,
+  quotes-light: $color-quotes-light,
+  quotes-dark: $color-quotes-dark,
+  quotes-shadow: $color-quotes-shadow,
+  quotes-diff: $color-quotes-diff,
+  // other
+  other: $color-other,
+  other-light: $color-other-light,
+  other-dark: $color-other-dark,
+  other-shadow: $color-other-shadow,
+  other-diff: $color-other-diff
+);
+
+@mixin projectLink($project) {
+  border-color: map-get($colors, #{$project}-diff);
+
+  .link {
+    background-color: rgba(
+      $color: map-get($colors, #{$project}-dark),
+      $alpha: $background-opacity
+    );
+    color: map-get($colors, #{$project}-light);
+
+    &::before {
+      border-color: map-get($colors, #{$project}-shadow);
+    }
+    &:active,
+    &:focus,
+    &:hover {
+      color: map-get($colors, #{$project});
+      background-color: rgba(
+        $color: map-get($colors, #{$project}-shadow),
+        $alpha: $background-opacity
+      );
+    }
+  }
+}
+
+.projectLinks {
+  align-self: end;
+  column-gap: 10px;
+  display: grid;
+  font-size: 2em;
+  grid-area: repoLinks;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0.5em $offset-right-xs 0 $offset-left-xs;
+
+  @media only screen and (min-width: $media-sm) {
+    & {
+      margin: 0.5em $offset-right-sm 0 $offset-left-sm;
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+      margin: 0;
+      margin-top: 15px;
+      width: 100%;
+    }
+  }
+
+  .link {
+    @include button;
+    @include flex-center;
+
+    min-width: 50px;
+    padding: 0.4em 0.5em;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color $button-hover, color $button-hover;
+
+    &::before {
+      border-style: solid;
+      border-width: 0;
+      bottom: 0;
+      content: '';
+      left: 0;
+      opacity: 0.6;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: border-width $button-hover;
+    }
+
+    &:active::before,
+    &:focus::before,
+    &:hover::before {
+      border-left-width: 10px;
+      border-top-width: 10px;
+    }
+  }
+
+  &.about {
+    border-color: $color-about-diff;
+
+    .link {
+      border-color: inherit;
+      color: $color-about-diff;
+      &:hover {
+        border-color: $color-about-shadow;
+        color: $color-about-shadow;
+      }
+    }
+  }
+  &.tasktimer {
+    @include projectLink('tasktimer');
+  }
+  &.portfolio {
+    @include projectLink('portfolio');
+  }
+  &.hydrapp {
+    @include projectLink('hydrapp');
+  }
+  &.archviz {
+    @include projectLink('archviz');
+  }
+  &.quotes {
+    @include projectLink('quotes');
+  }
+  &.other {
+    @include projectLink('other');
+
+    font-size: 1.5em;
+    margin: 0.5em $offset-right-xs 0 $offset-left-xs;
+  }
+}
