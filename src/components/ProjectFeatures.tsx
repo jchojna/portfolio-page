@@ -9,7 +9,7 @@ const ProjectFeatures = ({
   projectName,
   title,
   content,
-}: AccordionsGroupProps) => {
+}: ProjectFeaturesProps) => {
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (

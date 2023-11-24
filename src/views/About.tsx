@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 
-import Icon from '../components/icons/Icon';
 import IconLink from '../components/icons/IconLink';
 import IconsList from '../components/icons/IconsList';
 

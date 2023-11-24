@@ -12,7 +12,7 @@ type AccordionProps = {
 
 type AccordionItemProps = {
   label: string;
-  items: string[] | ResumeDetailsProps[];
+  items: AccordionItemProps[] & string[];
 };
 
 type AccordionsGroupProps = {
@@ -28,7 +28,7 @@ type ProjectProps = {
     label: string;
     items: string[];
   }[];
-  icons: IconsList;
+  icons: IconDetails[];
   url: ProjectUrls;
 };
 
@@ -67,4 +67,18 @@ type ProjectUrls = {
 type ProjectLinksProps = {
   projectName: string;
   url: ProjectUrls;
+};
+
+type ProjectFeaturesProps = {
+  projectName: string;
+  title: string;
+  content: {
+    label: string;
+    items: string[];
+  }[];
+};
+
+type BlockTitleProps = {
+  title: string;
+  view: string;
 };

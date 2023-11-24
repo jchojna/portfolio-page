@@ -5,8 +5,8 @@
   @include section;
 
   .container {
-    .heading {
-      @include sectionHeading;
+    .title {
+      @include sectionTitle;
     }
   }
 }

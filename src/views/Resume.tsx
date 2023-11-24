@@ -6,6 +6,7 @@ import resume from '../content/resume.json';
 import Accordion from '../components/Accordion';
 import AccordionsGroup from '../components/AccordionsGroup';
 import ResumeDetails from '../components/resume/ResumeDetails';
+import BlockTitle from '../components/BlockTitle';
 
 import classes from './Resume.module.scss';
 
@@ -33,9 +34,7 @@ const Resume = () => {
         </div> */}
 
         <div className="tab tab--resume tab--info">
-          <h3 className="tab__heading tab__heading--resume">
-            {resume.info.heading}
-          </h3>
+          <BlockTitle title={resume.info.heading} view="resume" />
           <div className="tab__wrapper js-expandable js-minHeight">
             <p className="tab__description tab__description--resume">
               {resume.info.description}
