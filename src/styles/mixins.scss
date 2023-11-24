@@ -62,9 +62,139 @@
   }
 }
 
+@mixin container {
+  align-items: start;
+  display: grid;
+  margin: 0 $offset-right-sm;
+  width: 100%;
+
+  &.about {
+    grid-template-areas:
+      'photography'
+      'title    '
+      'description'
+      'profiles   '
+      'working    '
+      'knowing    '
+      'learning   ';
+  }
+
+  &.resume {
+    grid-template-areas:
+      'logo      '
+      'title   '
+      'info      '
+      'experience'
+      'education '
+      'languages ';
+  }
+
+  &.tasktimer,
+  &.portfolio,
+  &.hydrapp,
+  &.archviz,
+  &.quotes {
+    grid-template-areas:
+      'logo        '
+      'title     '
+      'description '
+      'features    '
+      'icons'
+      'stats       '
+      'links   ';
+  }
+
+  &.other {
+    grid-template-areas:
+      'logo       '
+      'title    '
+      'description'
+      'otherRepos ';
+  }
+
+  &.contact {
+    grid-template-areas:
+      'logo   '
+      'title'
+      'form   '
+      'social '
+      'footer ';
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+      gap: $gridGap;
+      max-width: $container-size;
+      min-height: $container-size;
+
+      &.about {
+        grid-template-areas:
+          'title     photography'
+          'description photography'
+          'profiles    photography'
+          'working     working    '
+          'knowing     knowing    '
+          'learning    learning   ';
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr repeat(4, auto);
+      }
+
+      &.resume {
+        align-content: start;
+        grid-template-areas:
+          'title   '
+          'info      '
+          'experience'
+          'education '
+          'languages ';
+      }
+
+      &.tasktimer,
+      &.portfolio,
+      &.hydrapp,
+      &.archviz,
+      &.quotes {
+        grid-template-areas:
+          'title      title     '
+          'description  features    '
+          'icons icons'
+          'stats        links   ';
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr repeat(2, auto);
+      }
+
+      &.other {
+        grid-template-areas:
+          'title    '
+          'description'
+          'otherRepos ';
+        grid-template-rows: auto 1fr auto;
+      }
+
+      &.contact {
+        align-content: stretch;
+        align-items: center;
+        grid-template-areas:
+          'title'
+          'form   '
+          'social '
+          'footer ';
+        grid-template-rows: auto 1fr;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+    & {
+      //margin-left: calc((100vw - #{$container-size}) / 2);
+      margin-left: 500px;
+    }
+  }
+}
+
 @mixin sectionTitle {
   font-size: 60px;
-  grid-area: heading;
+  grid-area: title;
   line-height: 1.2;
   margin: 0 $offset-right-xs 0 0;
   margin-top: -60px;

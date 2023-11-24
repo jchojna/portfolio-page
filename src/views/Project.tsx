@@ -1,12 +1,13 @@
 import clsx from 'clsx';
 
-import classes from './Project.module.scss';
 import TextGroup from '../components/groups/TextGroup';
 import ProjectLinks from '../components/ProjectLinks';
 import IconsList from '../components/icons/IconsList';
 import ProjectStats from '../components/ProjectStats';
 import ProjectFeatures from '../components/ProjectFeatures';
 // import ListGroup from '../components/groups/ListGroup';
+
+import classes from './Project.module.scss';
 
 const Project = ({
   name,
