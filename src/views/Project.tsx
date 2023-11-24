@@ -2,10 +2,10 @@ import clsx from 'clsx';
 
 import classes from './Project.module.scss';
 import TextGroup from '../components/groups/TextGroup';
-import AccordionsGroup from '../components/AccordionsGroup';
 import ProjectLinks from '../components/ProjectLinks';
-import IconList from '../components/icons/IconList';
+import IconsList from '../components/icons/IconsList';
 import ProjectStats from '../components/ProjectStats';
+import ProjectFeatures from '../components/ProjectFeatures';
 // import ListGroup from '../components/groups/ListGroup';
 
 const Project = ({
@@ -23,9 +23,13 @@ const Project = ({
           {title}
         </h2>
         <TextGroup title="About Project" projectName={name} content={about} />
-        <AccordionsGroup title="Features" content={features} />
+        <ProjectFeatures
+          projectName={name}
+          title="Features"
+          content={features}
+        />
 
-        <IconList view={name} icons={icons} />
+        <IconsList view={name} icons={icons} />
 
         <ProjectLinks projectName={name} url={url} />
 

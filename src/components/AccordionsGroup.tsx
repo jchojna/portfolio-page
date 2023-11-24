@@ -22,9 +22,7 @@ const AccordionsGroup = ({ title, content }: AccordionsGroupProps) => {
               setExpanded={setExpanded}
             >
               {items.map((item, index) => {
-                return typeof item === 'string' ? (
-                  <li key={index}>{item}</li>
-                ) : (
+                return (
                   <ResumeDetails
                     key={index}
                     label={item.label}

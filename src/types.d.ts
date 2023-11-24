@@ -28,7 +28,7 @@ type ProjectProps = {
     label: string;
     items: string[];
   }[];
-  icons: IconList;
+  icons: IconsList;
   url: ProjectUrls;
 };
 
@@ -54,7 +54,7 @@ type IconProps = {
   details: IconDetails;
 };
 
-type IconList = {
+type IconsList = {
   view: string;
   icons: IconDetails[];
 };

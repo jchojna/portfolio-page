@@ -1,0 +1,68 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+@mixin blockTitle($color) {
+  color: map-get($colors, #{$color}-diff);
+  &::before {
+    background-color: map-get($colors, #{$color}-diff);
+  }
+}
+
+.blockTitle {
+  align-self: start;
+  font-size: $tabHeading-size-xs;
+  line-height: 1;
+  margin: 0;
+  padding-left: $tabHeading-size-xs;
+  position: relative;
+  text-transform: uppercase;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $separator-width;
+    height: 110px;
+  }
+
+  &.about {
+    @include blockTitle(about);
+  }
+  &.resume {
+    @include blockTitle(resume);
+  }
+  &.tasktimer {
+    @include blockTitle(tasktimer);
+  }
+  &.portfolio {
+    @include blockTitle(portfolio);
+  }
+  &.hydrapp {
+    @include blockTitle(hydrapp);
+  }
+  &.archviz {
+    @include blockTitle(archviz);
+  }
+  &.quotes {
+    @include blockTitle(quotes);
+  }
+  &.other {
+    @include blockTitle(other);
+  }
+
+  @media only screen and (min-width: $media-md) {
+    font-size: $tabHeading-size-lg;
+    padding: 0;
+
+    &.about {
+      margin-bottom: 20px;
+    }
+
+    &::before {
+      height: 70px;
+      left: -30px;
+      width: $separator-width;
+    }
+  }
+}

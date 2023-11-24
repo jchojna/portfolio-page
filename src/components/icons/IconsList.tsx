@@ -1,8 +1,8 @@
 import Icon from './Icon';
 
-import classes from './IconList.module.scss';
+import classes from './IconsList.module.scss';
 
-const IconList = ({ view, icons }: IconList) => {
+const IconsList = ({ view, icons }: IconsList) => {
   // const iconClass = clsx(classes.icon, classes[view]);
   return (
     <ul className={classes.icons}>
@@ -13,4 +13,4 @@ const IconList = ({ view, icons }: IconList) => {
   );
 };
 
-export default IconList;
+export default IconsList;

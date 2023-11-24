@@ -2,12 +2,13 @@ import clsx from 'clsx';
 
 import Icon from '../components/icons/Icon';
 import IconLink from '../components/icons/IconLink';
-import IconList from '../components/icons/IconList';
+import IconsList from '../components/icons/IconsList';
 
 import about from '../content/about.json';
 import contactDetails from '../content/contactDetails.json';
 
 import classes from './About.module.scss';
+import BlockTitle from '../components/BlockTitle';
 
 const About = () => {
   return (
@@ -34,26 +35,18 @@ const About = () => {
         </div>
 
         <div className={clsx(classes.iconsGroup, classes.high)}>
-          <h3 className={classes.title}>{about.highLevel.title}</h3>
-          <IconList view="about" icons={about.highLevel.tech} />
+          <BlockTitle title={about.highLevel.title} view="about" />
+          <IconsList view="about" icons={about.highLevel.tech} />
         </div>
 
         <div className={clsx(classes.iconsGroup, classes.medium)}>
-          <h3 className={classes.title}>{about.mediumLevel.title}</h3>
-          <ul className={classes.icons}>
-            {about.mediumLevel.tech.map((details, index) => (
-              <Icon key={index} details={details} view="about" />
-            ))}
-          </ul>
+          <BlockTitle title={about.mediumLevel.title} view="about" />
+          <IconsList view="about" icons={about.mediumLevel.tech} />
         </div>
 
         <div className={clsx(classes.iconsGroup, classes.low)}>
-          <h3 className={classes.title}>{about.lowLevel.title}</h3>
-          <ul className={classes.icons}>
-            {about.lowLevel.tech.map((details, index) => (
-              <Icon key={index} details={details} view="about" />
-            ))}
-          </ul>
+          <BlockTitle title={about.lowLevel.title} view="about" />
+          <IconsList view="about" icons={about.lowLevel.tech} />
         </div>
       </div>
     </div>

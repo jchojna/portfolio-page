@@ -1,11 +1,13 @@
 import clsx from 'clsx';
 
+import BlockTitle from '../BlockTitle';
+
 import classes from './Group.module.scss';
 
 const TextGroup = ({ title, projectName, content }: TextGroupProps) => {
   return (
     <div className={clsx(classes.group, classes[projectName])}>
-      <h3 className={classes.heading}>{title}</h3>
+      <BlockTitle title={title} view={projectName} />
       <ul className={classes.list}>
         {content.map((listItem, index) => (
           <li key={index} className={classes.listItem}>
