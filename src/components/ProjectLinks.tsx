@@ -2,14 +2,6 @@ import clsx from 'clsx';
 
 import classes from './ProjectLinks.module.scss';
 
-type ProjectLinksProps = {
-  projectName: string;
-  url: {
-    repo: string;
-    demo: string;
-  };
-};
-
 const ProjectLinks = ({ projectName, url }: ProjectLinksProps) => (
   <div className={clsx(classes.projectLinks, classes[projectName])}>
     <a

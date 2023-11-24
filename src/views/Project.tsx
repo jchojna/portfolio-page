@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import classes from './Project.module.scss';
 import TextGroup from '../components/groups/TextGroup';
 import AccordionsGroup from '../components/AccordionsGroup';
-import Icon from '../components/icons/Icon';
 import ProjectLinks from '../components/ProjectLinks';
 import IconList from '../components/icons/IconList';
+import ProjectStats from '../components/ProjectStats';
 // import ListGroup from '../components/groups/ListGroup';
 
 const Project = ({
@@ -28,6 +28,8 @@ const Project = ({
         <IconList view={name} icons={icons} />
 
         <ProjectLinks projectName={name} url={url} />
+
+        <ProjectStats projectName={name} />
         {/* <ListGroup title="Features" projectName={name} content={features} /> */}
 
         {/* <div class="logo logo--tasktimer">

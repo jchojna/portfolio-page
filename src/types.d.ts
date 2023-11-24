@@ -28,6 +28,8 @@ type ProjectProps = {
     label: string;
     items: string[];
   }[];
+  icons: IconList;
+  url: ProjectUrls;
 };
 
 type TextGroupProps = {
@@ -50,4 +52,19 @@ type IconDetails = {
 type IconProps = {
   view: string;
   details: IconDetails;
+};
+
+type IconList = {
+  view: string;
+  icons: IconDetails[];
+};
+
+type ProjectUrls = {
+  repo: string;
+  demo: string;
+};
+
+type ProjectLinksProps = {
+  projectName: string;
+  url: ProjectUrls;
 };
