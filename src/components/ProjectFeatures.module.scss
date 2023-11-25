@@ -1,8 +1,19 @@
 @import '../styles/variables.scss';
 @import '../styles/mixins.scss';
 
+@mixin projectFeature($project) {
+  .accordions {
+    .feature {
+      &::before {
+        background-color: map-get($colors, #{$project}-light);
+      }
+    }
+  }
+}
+
 .features {
   grid-area: features;
+
   // .title {
   //   background: none;
   //   border: none;
@@ -14,4 +25,46 @@
   //   text-align: left;
   //   text-transform: uppercase;
   // }
+
+  .accordions {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .feature {
+      padding-left: 20px;
+      position: relative;
+
+      &::before {
+        content: '';
+        background-color: $color-other-diff;
+        height: $separator-width;
+        left: 0;
+        margin-top: 8px;
+        position: absolute;
+        top: 0;
+        width: $separator-width;
+      }
+    }
+  }
+
+  &.tasktimer {
+    @include projectFeature(tasktimer);
+  }
+  &.hydrapp {
+    @include projectFeature(hydrapp);
+  }
+  &.portfolio {
+    @include projectFeature(portfolio);
+  }
+  &.archviz {
+    @include projectFeature(archviz);
+  }
+  &.quotes {
+    @include projectFeature(quotes);
+  }
+  &.other {
+    @include projectFeature(other);
+  }
 }

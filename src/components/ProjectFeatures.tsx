@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 
 import Accordion from './Accordion';
@@ -13,9 +14,9 @@ const ProjectFeatures = ({
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (
-    <div className={classes.features}>
+    <div className={clsx(classes.features, classes[projectName])}>
       <BlockTitle title={title} view={projectName} />
-      <div className={classes.categories}>
+      <div className={classes.accordions}>
         {content.map(({ label, items }, index) => {
           return (
             <Accordion
@@ -27,7 +28,11 @@ const ProjectFeatures = ({
               setExpanded={setExpanded}
             >
               {items.map((item, index) => {
-                return <li key={index}>{item}</li>;
+                return (
+                  <li className={classes.feature} key={index}>
+                    {item}
+                  </li>
+                );
               })}
             </Accordion>
           );
