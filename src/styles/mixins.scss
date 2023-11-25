@@ -70,7 +70,7 @@
 
   &.about {
     grid-template-areas:
-      'photography'
+      'photo'
       'title    '
       'description'
       'profiles   '
@@ -129,9 +129,9 @@
 
       &.about {
         grid-template-areas:
-          'title     photography'
-          'description photography'
-          'profiles    photography'
+          'title     photo'
+          'description photo'
+          'profiles    photo'
           'working     working    '
           'knowing     knowing    '
           'learning    learning   ';

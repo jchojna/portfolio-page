@@ -27,7 +27,7 @@ function App() {
       <Visuals isIntro={isIntro} />
       {/* <Animation /> */}
       <div className={sectionsClass}>
-        {/* <About /> */}
+        <About />
         <Resume />
         {projects.map(({ name, title, about, features, icons, url }) => (
           <Project

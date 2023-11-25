@@ -13,7 +13,7 @@ const About = () => {
   return (
     <div id="about" className={clsx(classes.section, classes.about)}>
       <div className={clsx(classes.container, classes.about)}>
-        <h2 className={clsx(classes.heading, classes.large, classes.about)}>
+        <h2 className={clsx(classes.title, classes.large, classes.about)}>
           {about.title}
         </h2>
 
