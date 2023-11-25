@@ -9,6 +9,12 @@
     flex-direction: column;
     gap: $gridGap;
 
+    .accordions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
     @media only screen and (min-width: $media-md) {
       & {
         max-width: $container-size;

@@ -2,6 +2,11 @@
 @import '../styles/mixins.scss';
 
 .accordionsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 25px;
+
   .title {
     background: none;
     border: none;
@@ -12,5 +17,11 @@
     padding: 0;
     text-align: left;
     text-transform: uppercase;
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 }

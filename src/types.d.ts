@@ -83,4 +83,5 @@ type ProjectFeaturesProps = {
 type BlockTitleProps = {
   title: string;
   view: string;
+  isLarge?: boolean;
 };

@@ -18,7 +18,8 @@ const Accordion = ({
   const accordionClass = clsx(
     classes.accordion,
     isSmall && classes.small,
-    classes[view]
+    classes[view],
+    !isExpanded && classes.collapsed
   );
 
   useEffect(() => {
@@ -45,13 +46,15 @@ const Accordion = ({
 
   return (
     <div ref={accordionRef} className={accordionClass}>
-      <button
-        ref={accordionLabelRef}
-        className={classes.label}
-        onClick={() => setExpanded(isExpanded ? null : label)}
-      >
-        {label}
-      </button>
+      <div className={classes.header}>
+        <button
+          ref={accordionLabelRef}
+          className={classes.label}
+          onClick={() => setExpanded(isExpanded ? null : label)}
+        >
+          {label}
+        </button>
+      </div>
       <div ref={accordionItemsRef} className={classes.items}>
         {children}
       </div>

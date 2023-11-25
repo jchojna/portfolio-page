@@ -40,9 +40,9 @@ const Resume = () => {
               {resume.info.description}
             </p>
           </div>
-          <button className="tab__readMore tab__readMore--resume tab__readMore--js">
+          {/* <button className="tab__readMore tab__readMore--resume tab__readMore--js">
             Read more
-          </button>
+          </button> */}
         </div>
         <div className={classes.accordions}>
           <AccordionsGroup title={label} content={items} />

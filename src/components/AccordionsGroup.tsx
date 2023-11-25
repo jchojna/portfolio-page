@@ -5,13 +5,14 @@ import Accordion from './Accordion';
 import ResumeDetails from './resume/ResumeDetails';
 
 import classes from './AccordionsGroup.module.scss';
+import BlockTitle from './BlockTitle';
 
 const AccordionsGroup = ({ title, content }: AccordionsGroupProps) => {
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (
     <div className={classes.accordionsGroup}>
-      <button className={clsx(classes.title, classes.fixed)}>{title}</button>
+      <BlockTitle title={title} view="resume" isLarge={true} />
       <div className={classes.items}>
         {content.map(({ label, items }, index) => {
           return (
