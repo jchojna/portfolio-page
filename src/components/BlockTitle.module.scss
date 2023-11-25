@@ -53,11 +53,8 @@
 
   @media only screen and (min-width: $media-md) {
     font-size: $tabHeading-size-lg;
+    margin-bottom: 20px;
     padding: 0;
-
-    &.about {
-      margin-bottom: 20px;
-    }
 
     &::before {
       height: 70px;

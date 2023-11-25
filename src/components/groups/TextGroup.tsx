@@ -6,11 +6,11 @@ import classes from './TextGroup.module.scss';
 
 const TextGroup = ({ title, projectName, content }: TextGroupProps) => {
   return (
-    <div className={clsx(classes.text, classes[projectName])}>
+    <div className={clsx(classes.textBlock, classes[projectName])}>
       <BlockTitle title={title} view={projectName} />
-      <ul className={classes.list}>
+      <ul className={classes.paragraphs}>
         {content.map((listItem, index) => (
-          <li key={index} className={classes.listItem}>
+          <li key={index} className={classes.paragraph}>
             {listItem}
           </li>
         ))}

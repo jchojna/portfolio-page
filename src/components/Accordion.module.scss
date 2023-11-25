@@ -1,6 +1,17 @@
 @import '../styles/variables.scss';
 @import '../styles/mixins.scss';
 
+@mixin accordionLabel($view) {
+  > .label {
+    color: map-get($colors, #{$view}-light);
+
+    &:hover {
+      cursor: pointer;
+      color: map-get($colors, #{$view}-white);
+    }
+  }
+}
+
 .accordion {
   display: flex;
   flex-direction: column;
@@ -18,17 +29,48 @@
     padding: 0;
     text-align: left;
     text-transform: uppercase;
-
-    &:hover {
-      cursor: pointer;
-      color: $color-resume-diff;
-    }
   }
 
   .items {
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+
+  &.small {
+    > .label {
+      font-size: $features-category-size-xs;
+    }
+  }
+
+  &.hydrapp {
+    @include accordionLabel(hydrapp);
+  }
+  &.tasktimer {
+    @include accordionLabel(tasktimer);
+  }
+  &.portfolio {
+    @include accordionLabel(portfolio);
+  }
+  &.archviz {
+    @include accordionLabel(archviz);
+  }
+  &.quotes {
+    @include accordionLabel(quotes);
+  }
+
+  &.other {
+    > .label {
+      font-size: $otherHeading-size-xs;
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
+    &.small {
+      > .label {
+        font-size: $features-category-size-lg;
+      }
+    }
   }
 }
 

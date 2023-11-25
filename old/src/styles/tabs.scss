@@ -135,30 +135,6 @@
     margin: 0;
     position: relative;
 
-    &--category {
-      font-size: $features-category-size-xs;
-    }
-
-    &--hydrapp {
-      color: $color-hydrapp-white;
-    }
-    &--tasktimer {
-      color: $color-tasktimer-white;
-    }
-    &--portfolio {
-      color: $color-portfolio-white;
-    }
-    &--archviz {
-      color: $color-archviz-white;
-    }
-    &--quotes {
-      color: $color-quotes-white;
-    }
-
-    &--other {
-      font-size: $otherHeading-size-xs;
-    }
-
     @media only screen and (min-width: $media-md) {
       & {
         font-size: $tabHeader-size-lg;

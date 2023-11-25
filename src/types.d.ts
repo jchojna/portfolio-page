@@ -6,6 +6,8 @@ type ResumeDetailsProps = {
 type AccordionProps = {
   label: string;
   children: React.ReactNode;
+  view: string;
+  isSmall: boolean;
   isExpanded: boolean;
   setExpanded: (param: string | null) => void;
 };

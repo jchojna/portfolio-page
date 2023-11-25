@@ -18,6 +18,8 @@ const AccordionsGroup = ({ title, content }: AccordionsGroupProps) => {
             <Accordion
               key={index}
               label={label}
+              view="resume"
+              isSmall={false}
               isExpanded={expanded === label}
               setExpanded={setExpanded}
             >

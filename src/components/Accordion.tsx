@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import { useEffect, useRef } from 'react';
 
 import classes from './Accordion.module.scss';
@@ -5,12 +7,19 @@ import classes from './Accordion.module.scss';
 const Accordion = ({
   label,
   children,
+  view,
+  isSmall,
   isExpanded,
   setExpanded,
 }: AccordionProps) => {
   const accordionRef = useRef<HTMLDivElement | null>(null);
   const accordionLabelRef = useRef<HTMLButtonElement | null>(null);
   const accordionItemsRef = useRef<HTMLDivElement | null>(null);
+  const accordionClass = clsx(
+    classes.accordion,
+    isSmall && classes.small,
+    classes[view]
+  );
 
   useEffect(() => {
     // collapse all accordions on start
@@ -35,7 +44,7 @@ const Accordion = ({
   }, [isExpanded]);
 
   return (
-    <div ref={accordionRef} className={classes.accordion}>
+    <div ref={accordionRef} className={accordionClass}>
       <button
         ref={accordionLabelRef}
         className={classes.label}

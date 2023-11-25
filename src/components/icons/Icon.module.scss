@@ -10,6 +10,10 @@ $size-icon: 50px;
   );
   fill: map-get($colors, #{$project}-light);
 
+  .name {
+    color: map-get($colors, #{$project}-light);
+  }
+
   &::before {
     border-color: map-get($colors, #{$project}-shadow);
   }
