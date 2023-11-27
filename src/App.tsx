@@ -9,7 +9,7 @@ import Visuals from './components/Visuals';
 import About from './views/About';
 import Resume from './views/Resume';
 import Project from './views/Project';
-// import Contact from './views/Contact';
+import Contact from './views/Contact';
 
 import projects from './content/projects.json';
 
@@ -79,7 +79,7 @@ function App() {
             url={url}
           />
         ))}
-        {/* <Contact /> */}
+        <Contact />
       </div>
     </div>
   );

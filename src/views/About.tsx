@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 
+import about from '../content/about.json';
+
+import contactDetails from '../content/contactDetails.json';
+import BlockTitle from '../components/BlockTitle';
 import IconLink from '../components/icons/IconLink';
 import IconsList from '../components/icons/IconsList';
 
-import about from '../content/about.json';
-import contactDetails from '../content/contactDetails.json';
-
 import classes from './About.module.scss';
-import BlockTitle from '../components/BlockTitle';
 
 const About = () => {
   return (

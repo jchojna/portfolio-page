@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 
-import { menuItems } from '../content/menu';
+import menuItems from '../content/menu.json';
 import MenuButton from './MenuButton';
 
 import classes from './Menu.module.scss';

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 
-import { menuItems } from '../content/menu';
+import menuItems from '../content/menu.json';
 import menuSvg from '../assets/svg/menu.svg';
 
 import classes from './MenuButton.module.scss';
