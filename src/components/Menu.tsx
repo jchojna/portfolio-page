@@ -9,21 +9,22 @@ import classes from './Menu.module.scss';
 type MenuProps = {
   isIntro: boolean;
   setIntro: (isIntro: boolean) => void;
+  currentSectionIndex: number;
+  relativeTopOffset: number;
 };
 
-const Menu = ({ isIntro, setIntro }: MenuProps) => {
+const Menu = ({
+  isIntro,
+  setIntro,
+  currentSectionIndex,
+  relativeTopOffset,
+}: MenuProps) => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(0);
-  const [activeItem, setActiveItem] = useState<number | null>(null);
 
   const menuClass = clsx({
     [classes.menu]: true,
     [classes.intro]: isIntro,
   });
-
-  const handleItemClick = (index: number) => {
-    setActiveItem(index);
-    setIntro(false);
-  };
 
   return (
     <nav className={menuClass}>
@@ -35,13 +36,16 @@ const Menu = ({ isIntro, setIntro }: MenuProps) => {
               className={classes.menuItem}
               onMouseEnter={() => setHoveredItem(index)}
               onMouseLeave={() => !isIntro && setHoveredItem(null)}
-              onClick={() => handleItemClick(index)}
+              onClick={() => setIntro(false)}
             >
               <MenuButton
                 label={label}
                 width={width}
+                isIntro={isIntro}
                 isHovered={hoveredItem === index}
-                isActive={activeItem === index}
+                isActive={currentSectionIndex === index}
+                currentSectionIndex={currentSectionIndex}
+                relativeTopOffset={relativeTopOffset}
               />
             </li>
           );

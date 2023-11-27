@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+
+import { getCurrentSectionIndex, getRelativeTopOffset } from './utils/utils';
 
 import Header from './components/Header';
 import Visuals from './components/Visuals';
@@ -15,18 +17,52 @@ import classes from './App.module.scss';
 
 function App() {
   const [isIntro, setIntro] = useState<boolean>(false);
+  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
+  const [relativeTopOffset, setRelativeTopOffset] = useState<number>(0);
+
+  const sectionsRef = useRef<HTMLDivElement | null>(null);
 
   const sectionsClass = clsx({
     [classes.sections]: true,
     [classes.visible]: !isIntro,
   });
 
+  useEffect(() => {
+    sectionsRef.current &&
+      sectionsRef.current.addEventListener('scroll', () => {
+        if (!sectionsRef.current) return;
+        const sectionsNodes = sectionsRef.current
+          .children as HTMLCollectionOf<HTMLElement>;
+        const sectionsScrolls = [...sectionsNodes].map(
+          (node) => node.offsetTop
+        );
+        const index = getCurrentSectionIndex(
+          Math.ceil(sectionsRef.current.scrollTop),
+          sectionsScrolls
+        );
+        const offset =
+          getRelativeTopOffset(
+            Math.ceil(sectionsRef.current.scrollTop),
+            sectionsScrolls
+          ) || window.innerHeight;
+        setCurrentSectionIndex((prevState) => {
+          return prevState === index ? prevState : index;
+        });
+        setRelativeTopOffset(offset);
+      });
+  }, []);
+
   return (
     <div className={classes.app}>
-      <Header isIntro={isIntro} setIntro={setIntro} />
+      <Header
+        isIntro={isIntro}
+        setIntro={setIntro}
+        currentSectionIndex={currentSectionIndex}
+        relativeTopOffset={relativeTopOffset}
+      />
       <Visuals isIntro={isIntro} />
       {/* <Animation /> */}
-      <div className={sectionsClass}>
+      <div ref={sectionsRef} className={sectionsClass}>
         <About />
         <Resume />
         {projects.map(({ name, title, about, features, icons, url }) => (

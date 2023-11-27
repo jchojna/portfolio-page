@@ -7,9 +7,16 @@ import classes from './Header.module.scss';
 type Header = {
   isIntro: boolean;
   setIntro: (isIntro: boolean) => void;
+  currentSectionIndex: number;
+  relativeTopOffset: number;
 };
 
-const Header = ({ isIntro, setIntro }: Header) => {
+const Header = ({
+  isIntro,
+  setIntro,
+  currentSectionIndex,
+  relativeTopOffset,
+}: Header) => {
   const headerClass = clsx({
     [classes.pageHeader]: true,
     [classes.visible]: true,
@@ -18,7 +25,12 @@ const Header = ({ isIntro, setIntro }: Header) => {
 
   return (
     <div className={headerClass}>
-      <Menu isIntro={isIntro} setIntro={setIntro} />
+      <Menu
+        isIntro={isIntro}
+        setIntro={setIntro}
+        currentSectionIndex={currentSectionIndex}
+        relativeTopOffset={relativeTopOffset}
+      />
     </div>
   );
 };
