@@ -27,29 +27,32 @@ function App() {
     [classes.visible]: !isIntro,
   });
 
+  const handleScroll = () => {
+    if (!sectionsRef.current) return;
+    const sectionsNodes = sectionsRef.current
+      .children as HTMLCollectionOf<HTMLElement>;
+    const sectionsScrolls = [...sectionsNodes].map((node) => node.offsetTop);
+    const index = getCurrentSectionIndex(
+      Math.ceil(sectionsRef.current.scrollTop),
+      sectionsScrolls
+    );
+    const offset =
+      getRelativeTopOffset(
+        Math.ceil(sectionsRef.current.scrollTop),
+        sectionsScrolls
+      ) || window.innerHeight;
+    setCurrentSectionIndex((prevState) => {
+      return prevState === index ? prevState : index;
+    });
+    setRelativeTopOffset(offset);
+  };
+
   useEffect(() => {
-    sectionsRef.current &&
-      sectionsRef.current.addEventListener('scroll', () => {
-        if (!sectionsRef.current) return;
-        const sectionsNodes = sectionsRef.current
-          .children as HTMLCollectionOf<HTMLElement>;
-        const sectionsScrolls = [...sectionsNodes].map(
-          (node) => node.offsetTop
-        );
-        const index = getCurrentSectionIndex(
-          Math.ceil(sectionsRef.current.scrollTop),
-          sectionsScrolls
-        );
-        const offset =
-          getRelativeTopOffset(
-            Math.ceil(sectionsRef.current.scrollTop),
-            sectionsScrolls
-          ) || window.innerHeight;
-        setCurrentSectionIndex((prevState) => {
-          return prevState === index ? prevState : index;
-        });
-        setRelativeTopOffset(offset);
-      });
+    const sectionsRefCopy = sectionsRef.current;
+    if (sectionsRefCopy) {
+      sectionsRefCopy.addEventListener('scroll', handleScroll);
+      return () => sectionsRefCopy.removeEventListener('scroll', handleScroll);
+    }
   }, []);
 
   return (
