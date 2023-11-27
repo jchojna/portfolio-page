@@ -14,6 +14,7 @@ type MenuButtonProps = {
   isActive?: boolean;
   currentSectionIndex: number;
   relativeTopOffset: number;
+  setIndicatorTopOffset: (offset: number) => void;
 };
 
 const MenuButton = ({
@@ -24,6 +25,7 @@ const MenuButton = ({
   isActive,
   currentSectionIndex,
   relativeTopOffset,
+  setIndicatorTopOffset,
 }: MenuButtonProps) => {
   const [backgroundSection, setBackgroundSection] = useState<string>('about');
 
@@ -51,6 +53,11 @@ const MenuButton = ({
       prevState === sections[index] ? prevState : sections[index]
     );
   }, [relativeTopOffset]);
+
+  useEffect(() => {
+    if (!buttonRef.current) return;
+    isActive && setIndicatorTopOffset(buttonRef.current.offsetTop);
+  }, [currentSectionIndex]);
 
   return (
     <a ref={buttonRef} href={`#${label}`} className={buttonClass}>

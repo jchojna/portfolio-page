@@ -20,6 +20,7 @@ const Menu = ({
   relativeTopOffset,
 }: MenuProps) => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(0);
+  const [indicatorTopOffset, setIndicatorTopOffset] = useState<number>(0);
 
   const menuClass = clsx({
     [classes.menu]: true,
@@ -28,6 +29,10 @@ const Menu = ({
 
   return (
     <nav className={menuClass}>
+      <div
+        className={classes.indicator}
+        style={{ top: `${indicatorTopOffset}px` }}
+      ></div>
       <ul className={classes.menuList}>
         {menuItems.map(({ label, width }, index) => {
           return (
@@ -46,6 +51,7 @@ const Menu = ({
                 isActive={currentSectionIndex === index}
                 currentSectionIndex={currentSectionIndex}
                 relativeTopOffset={relativeTopOffset}
+                setIndicatorTopOffset={setIndicatorTopOffset}
               />
             </li>
           );
