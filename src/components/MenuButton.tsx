@@ -24,6 +24,7 @@ const MenuButton = ({
   isHovered,
   isActive,
   currentSectionIndex,
+  offsetedSectionIndex,
   relativeTopOffset,
   setIndicatorTopOffset,
 }: MenuButtonProps) => {
@@ -47,7 +48,7 @@ const MenuButton = ({
     if (!buttonRef.current) return;
     const { top } = buttonRef.current.getBoundingClientRect();
     const offset = relativeTopOffset - top;
-    const index = offset >= 0 ? currentSectionIndex : currentSectionIndex + 1;
+    const index = offset >= 0 ? offsetedSectionIndex : offsetedSectionIndex + 1;
     const sections = menuItems.map(({ label }) => label);
     setBackgroundSection((prevState) =>
       prevState === sections[index] ? prevState : sections[index]

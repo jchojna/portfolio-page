@@ -5,9 +5,7 @@
   @include section;
 
   .container {
-    display: flex;
-    flex-direction: column;
-    gap: $gridGap;
+    @include container;
 
     @media only screen and (min-width: $media-md) {
       & {
@@ -27,6 +25,7 @@
 
     .contactDetails {
       display: flex;
+      gap: 10px;
     }
   }
 }

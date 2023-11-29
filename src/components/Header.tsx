@@ -8,6 +8,7 @@ type Header = {
   isIntro: boolean;
   setIntro: (isIntro: boolean) => void;
   currentSectionIndex: number;
+  offsetedSectionIndex: number;
   relativeTopOffset: number;
 };
 
@@ -15,6 +16,7 @@ const Header = ({
   isIntro,
   setIntro,
   currentSectionIndex,
+  offsetedSectionIndex,
   relativeTopOffset,
 }: Header) => {
   const headerClass = clsx({
@@ -29,6 +31,7 @@ const Header = ({
         isIntro={isIntro}
         setIntro={setIntro}
         currentSectionIndex={currentSectionIndex}
+        offsetedSectionIndex={offsetedSectionIndex}
         relativeTopOffset={relativeTopOffset}
       />
     </div>

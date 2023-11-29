@@ -60,12 +60,16 @@
   &.other {
     background-color: $color-other;
   }
+  &.contact {
+    background-color: $color-contact;
+  }
 }
 
 @mixin container {
   align-items: start;
   display: grid;
   margin: 0 $offset-right-sm;
+  min-height: 800px;
   width: 100%;
 
   &.about {
@@ -239,6 +243,10 @@
   &.other {
     border-color: $color-other-diff;
     color: $color-other-light;
+  }
+  &.contact {
+    border-color: $color-contact-diff;
+    color: $color-contact-light;
   }
 
   @media only screen and (min-width: $media-md) {

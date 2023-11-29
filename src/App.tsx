@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 
-import { getCurrentSectionIndex, getRelativeTopOffset } from './utils/utils';
+import {
+  getCurrentSectionIndex,
+  getOffsetedSectionIndex,
+  getRelativeTopOffset,
+} from './utils/utils';
 
 import Header from './components/Header';
 import Visuals from './components/Visuals';
@@ -18,6 +22,7 @@ import classes from './App.module.scss';
 function App() {
   const [isIntro, setIntro] = useState<boolean>(false);
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
+  const [offsetedSectionIndex, setOffsetedSectionIndex] = useState<number>(0);
   const [relativeTopOffset, setRelativeTopOffset] = useState<number>(0);
 
   const sectionsRef = useRef<HTMLDivElement | null>(null);
@@ -32,17 +37,25 @@ function App() {
     const sectionsNodes = sectionsRef.current
       .children as HTMLCollectionOf<HTMLElement>;
     const sectionsScrolls = [...sectionsNodes].map((node) => node.offsetTop);
-    const index = getCurrentSectionIndex(
+    const currentIndex = getCurrentSectionIndex(
       Math.ceil(sectionsRef.current.scrollTop),
       sectionsScrolls
     );
+    const offsetedIndex = getOffsetedSectionIndex(
+      Math.ceil(sectionsRef.current.scrollTop),
+      sectionsScrolls
+    );
+
     const offset =
       getRelativeTopOffset(
         Math.ceil(sectionsRef.current.scrollTop),
         sectionsScrolls
       ) || window.innerHeight;
     setCurrentSectionIndex((prevState) => {
-      return prevState === index ? prevState : index;
+      return prevState === currentIndex ? prevState : currentIndex;
+    });
+    setOffsetedSectionIndex((prevState) => {
+      return prevState === offsetedIndex ? prevState : offsetedIndex;
     });
     setRelativeTopOffset(offset);
   };
@@ -61,6 +74,7 @@ function App() {
         isIntro={isIntro}
         setIntro={setIntro}
         currentSectionIndex={currentSectionIndex}
+        offsetedSectionIndex={offsetedSectionIndex}
         relativeTopOffset={relativeTopOffset}
       />
       <Visuals isIntro={isIntro} />

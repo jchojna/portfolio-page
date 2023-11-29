@@ -12,15 +12,16 @@ type IconLink = {
     ariaLabel: string;
   };
   view: string;
+  large?: boolean;
 };
 
-const IconLink = ({ details, view }: IconLink): JSX.Element => {
+const IconLink = ({ details, view, large = false }: IconLink): JSX.Element => {
   const iconClass = clsx(classes.icon, classes[view]);
   return (
     <li className={iconClass}>
       <a
         href={details.url}
-        className={classes.link}
+        className={clsx(classes.link, large && classes.large)}
         target="_blank"
         rel="nofollow noreferrer"
         aria-label={details.ariaLabel}

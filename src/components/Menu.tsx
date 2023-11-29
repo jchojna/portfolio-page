@@ -10,6 +10,7 @@ type MenuProps = {
   isIntro: boolean;
   setIntro: (isIntro: boolean) => void;
   currentSectionIndex: number;
+  offsetedSectionIndex: number;
   relativeTopOffset: number;
 };
 
@@ -17,6 +18,7 @@ const Menu = ({
   isIntro,
   setIntro,
   currentSectionIndex,
+  offsetedSectionIndex,
   relativeTopOffset,
 }: MenuProps) => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(0);
@@ -50,6 +52,7 @@ const Menu = ({
                 isHovered={hoveredItem === index}
                 isActive={currentSectionIndex === index}
                 currentSectionIndex={currentSectionIndex}
+                offsetedSectionIndex={offsetedSectionIndex}
                 relativeTopOffset={relativeTopOffset}
                 setIndicatorTopOffset={setIndicatorTopOffset}
               />

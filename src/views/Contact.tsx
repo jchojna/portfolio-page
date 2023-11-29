@@ -12,10 +12,15 @@ const Contact = () => {
         <h2 className={clsx(classes.title, classes.large, classes.contact)}>
           Feel free to contact me! I'm open for new opportunities
         </h2>
-        <div></div>;
+        <p className={classes.email}>jakub.chojna@gmail.com</p>
         <div className={classes.contactDetails}>
           {contactDetails.map((details, index) => (
-            <IconLink key={index} details={details} view="about" />
+            <IconLink
+              key={index}
+              details={details}
+              view="contact"
+              large={true}
+            />
           ))}
         </div>
       </div>
