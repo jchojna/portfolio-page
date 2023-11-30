@@ -7,24 +7,28 @@ import menuSvg from '../assets/svg/menu.svg';
 import classes from './MenuButton.module.scss';
 
 type MenuButtonProps = {
+  index: number;
   label: string;
   width: number;
   isMenuMode: boolean;
   isHovered: boolean;
   isActive?: boolean;
   currentSectionIndex: number;
+  setCurrentSectionIndex: (currentSectionIndex: number) => void;
   offsetedSectionIndex: number;
   relativeTopOffset: number;
   setIndicatorTopOffset: (offset: number) => void;
 };
 
 const MenuButton = ({
+  index,
   label,
   width,
   isMenuMode,
   isHovered,
   isActive,
   currentSectionIndex,
+  setCurrentSectionIndex,
   offsetedSectionIndex,
   relativeTopOffset,
   setIndicatorTopOffset,
@@ -61,8 +65,17 @@ const MenuButton = ({
     isActive && setIndicatorTopOffset(buttonRef.current.offsetTop);
   }, [currentSectionIndex]);
 
+  const handleClick = (index: number) => {
+    setCurrentSectionIndex(index);
+  };
+
   return (
-    <a ref={buttonRef} href={`#${label}`} className={buttonClass}>
+    <a
+      ref={buttonRef}
+      href={`#${label}`}
+      className={buttonClass}
+      onClick={() => handleClick(index)}
+    >
       <div className={classes.menuSvg}>
         <svg className={classes.menuSvgText} viewBox={viewBox}>
           <use href={`${menuSvg}#${label}`}></use>

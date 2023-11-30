@@ -6,21 +6,13 @@ import Burger from './Burger';
 
 import classes from './Header.module.scss';
 
-type Header = {
+type HeaderProps = {
   isMenuMode: boolean;
   setMenuMode: (isMenuMode: boolean) => void;
-  currentSectionIndex: number;
-  offsetedSectionIndex: number;
-  relativeTopOffset: number;
+  sectionsRef: React.RefObject<HTMLDivElement>;
 };
 
-const Header = ({
-  isMenuMode,
-  setMenuMode,
-  currentSectionIndex,
-  offsetedSectionIndex,
-  relativeTopOffset,
-}: Header) => {
+const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
   const headerClass = clsx({
     [classes.pageHeader]: true,
     [classes.visible]: true,
@@ -33,9 +25,7 @@ const Header = ({
       <Menu
         isMenuMode={isMenuMode}
         setMenuMode={setMenuMode}
-        currentSectionIndex={currentSectionIndex}
-        offsetedSectionIndex={offsetedSectionIndex}
-        relativeTopOffset={relativeTopOffset}
+        sectionsRef={sectionsRef}
       />
       <Burger isMenuMode={isMenuMode} setMenuMode={setMenuMode} />
     </div>

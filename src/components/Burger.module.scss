@@ -51,4 +51,10 @@
   .svg {
     width: 100%;
   }
+
+  @media screen and (min-width: $media-md) {
+    &.visible {
+      visibility: hidden;
+    }
+  }
 }
