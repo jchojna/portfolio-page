@@ -1,73 +1,6 @@
 @import 'variables.scss';
 @import 'mixins.scss';
 
-.pageHeader {
-  align-items: flex-start;
-  display: flex;
-  height: 100%;
-  left: 0;
-  min-height: 100vh;
-  overflow: auto;
-  opacity: 0;
-  padding: $mobile-menu-offset-top 0;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  visibility: hidden;
-  width: 100%;
-  z-index: 4;
-
-  &--visible {
-    opacity: 1;
-    transition: opacity 1s;
-    visibility: visible;
-  }
-
-  &--intro {
-    pointer-events: all;
-  }
-
-  @media only screen and (min-width: $media-lg) {
-    & {
-      box-shadow: inset 0 0 150px rgba($color: #000000, $alpha: 0.2);
-
-      &__indicator {
-        background-color: #fff;
-        left: 0;
-        height: $menu-item-height-lg;
-        position: fixed;
-        right: calc(100vw - #{$menu-item-height-lg});
-        top: -$menu-item-height-lg;
-        visibility: hidden;
-        z-index: -1;
-
-        &--visible {
-          visibility: visible;
-        }
-
-        &--animated {
-          transition: left $menu-lg-second-timeout 0.3s,
-            right $menu-lg-second-timeout, top $time-switch;
-        }
-
-        &--narrowed {
-          right: calc(100vw - (#{$menu-item-height-lg} / 3));
-        }
-
-        &--centered {
-          background-color: $intro-link-color;
-          left: calc(50vw + 10px);
-          right: calc(50vw - 10px);
-        }
-
-        &--noTransition {
-          transition: none;
-        }
-      }
-    }
-  }
-}
-
 .menu {
   width: 100%;
   position: relative;
@@ -299,55 +232,6 @@
       padding: 0;
       width: 100%;
     }
-  }
-}
-
-.burgerButton {
-  @include button;
-  @include flex-center;
-  height: $menu-item-height;
-  left: 0;
-  pointer-events: all;
-  position: fixed;
-  top: 0;
-  transition: visibility 0s;
-  visibility: hidden;
-  width: $menu-item-height;
-
-  &--visible {
-    visibility: visible;
-  }
-
-  &--about {
-    fill: $color-about;
-  }
-  &--resume {
-    fill: $color-resume;
-  }
-  &--tasktimer {
-    fill: $color-tasktimer;
-  }
-  &--portfolio {
-    fill: $color-portfolio;
-  }
-  &--hydrapp {
-    fill: $color-hydrapp;
-  }
-  &--archviz {
-    fill: $color-archviz;
-  }
-  &--quotes {
-    fill: $color-quotes;
-  }
-  &--other {
-    fill: $color-other;
-  }
-  &--contact {
-    fill: $color-contact;
-  }
-
-  &__svg {
-    width: 100%;
   }
 }
 

@@ -7,16 +7,16 @@ import MenuButton from './MenuButton';
 import classes from './Menu.module.scss';
 
 type MenuProps = {
-  isIntro: boolean;
-  setIntro: (isIntro: boolean) => void;
+  isMenuMode: boolean;
+  setMenuMode: (isMenuMode: boolean) => void;
   currentSectionIndex: number;
   offsetedSectionIndex: number;
   relativeTopOffset: number;
 };
 
 const Menu = ({
-  isIntro,
-  setIntro,
+  isMenuMode,
+  setMenuMode,
   currentSectionIndex,
   offsetedSectionIndex,
   relativeTopOffset,
@@ -26,7 +26,7 @@ const Menu = ({
 
   const menuClass = clsx({
     [classes.menu]: true,
-    [classes.intro]: isIntro,
+    [classes.intro]: isMenuMode,
   });
 
   return (
@@ -42,13 +42,13 @@ const Menu = ({
               key={index}
               className={classes.menuItem}
               onMouseEnter={() => setHoveredItem(index)}
-              onMouseLeave={() => !isIntro && setHoveredItem(null)}
-              onClick={() => setIntro(false)}
+              onMouseLeave={() => !isMenuMode && setHoveredItem(null)}
+              onClick={() => setMenuMode(false)}
             >
               <MenuButton
                 label={label}
                 width={width}
-                isIntro={isIntro}
+                isMenuMode={isMenuMode}
                 isHovered={hoveredItem === index}
                 isActive={currentSectionIndex === index}
                 currentSectionIndex={currentSectionIndex}

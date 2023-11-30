@@ -9,10 +9,11 @@ import classes from './MenuButton.module.scss';
 type MenuButtonProps = {
   label: string;
   width: number;
-  isIntro: boolean;
+  isMenuMode: boolean;
   isHovered: boolean;
   isActive?: boolean;
   currentSectionIndex: number;
+  offsetedSectionIndex: number;
   relativeTopOffset: number;
   setIndicatorTopOffset: (offset: number) => void;
 };
@@ -20,7 +21,7 @@ type MenuButtonProps = {
 const MenuButton = ({
   label,
   width,
-  isIntro,
+  isMenuMode,
   isHovered,
   isActive,
   currentSectionIndex,
@@ -34,7 +35,7 @@ const MenuButton = ({
   const buttonClass = clsx({
     [classes.menuButton]: true,
     [classes[backgroundSection]]: true,
-    [classes.intro]: isIntro,
+    [classes.intro]: isMenuMode,
     [classes.hovered]: isHovered,
     [classes.active]: isActive,
   });

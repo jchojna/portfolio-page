@@ -5,16 +5,16 @@ import Menu from './Menu';
 import classes from './Header.module.scss';
 
 type Header = {
-  isIntro: boolean;
-  setIntro: (isIntro: boolean) => void;
+  isMenuMode: boolean;
+  setMenuMode: (isMenuMode: boolean) => void;
   currentSectionIndex: number;
   offsetedSectionIndex: number;
   relativeTopOffset: number;
 };
 
 const Header = ({
-  isIntro,
-  setIntro,
+  isMenuMode,
+  setMenuMode,
   currentSectionIndex,
   offsetedSectionIndex,
   relativeTopOffset,
@@ -22,18 +22,25 @@ const Header = ({
   const headerClass = clsx({
     [classes.pageHeader]: true,
     [classes.visible]: true,
-    [classes.intro]: isIntro,
+    [classes.intro]: isMenuMode,
   });
 
   return (
     <div className={headerClass}>
       <Menu
-        isIntro={isIntro}
-        setIntro={setIntro}
+        isMenuMode={isMenuMode}
+        setMenuMode={setMenuMode}
         currentSectionIndex={currentSectionIndex}
         offsetedSectionIndex={offsetedSectionIndex}
         relativeTopOffset={relativeTopOffset}
       />
+      <button className={classes.burger}>
+        <svg className="burgerButton__svg" viewBox="0 0 100 100">
+          <rect x="20" y="20" width="60" height="10"></rect>
+          <rect x="20" y="45" width="60" height="10"></rect>
+          <rect x="20" y="70" width="60" height="10"></rect>
+        </svg>
+      </button>
     </div>
   );
 };

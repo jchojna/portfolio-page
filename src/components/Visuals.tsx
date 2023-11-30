@@ -3,13 +3,13 @@ import clsx from 'clsx';
 import classes from './Visuals.module.scss';
 
 type Visuals = {
-  isIntro: boolean;
+  isMenuMode: boolean;
 };
 
-const Visuals = ({ isIntro }: Visuals) => {
+const Visuals = ({ isMenuMode }: Visuals) => {
   const visualsClass = clsx({
     [classes.visuals]: true,
-    [classes.visible]: isIntro,
+    [classes.visible]: isMenuMode,
   });
 
   return (

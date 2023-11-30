@@ -20,16 +20,16 @@ import projects from './content/projects.json';
 import classes from './App.module.scss';
 
 function App() {
-  const [isIntro, setIntro] = useState<boolean>(false);
+  const [isMenuMode, setMenuMode] = useState<boolean>(false);
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
-  const [offsetedSectionIndex, setOffsetedSectionIndex] = useState<number>(0);
+  const [offsetedSectionIndex, setOffsetedSectionIndex] = useState<number>(-1);
   const [relativeTopOffset, setRelativeTopOffset] = useState<number>(0);
 
   const sectionsRef = useRef<HTMLDivElement | null>(null);
 
   const sectionsClass = clsx({
     [classes.sections]: true,
-    [classes.visible]: !isIntro,
+    [classes.visible]: !isMenuMode,
   });
 
   const handleScroll = () => {
@@ -71,13 +71,13 @@ function App() {
   return (
     <div className={classes.app}>
       <Header
-        isIntro={isIntro}
-        setIntro={setIntro}
+        isMenuMode={isMenuMode}
+        setMenuMode={setMenuMode}
         currentSectionIndex={currentSectionIndex}
         offsetedSectionIndex={offsetedSectionIndex}
         relativeTopOffset={relativeTopOffset}
       />
-      <Visuals isIntro={isIntro} />
+      <Visuals isMenuMode={isMenuMode} />
       {/* <Animation /> */}
       <div ref={sectionsRef} className={sectionsClass}>
         <About />
