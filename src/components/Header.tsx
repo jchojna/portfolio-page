@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 
 import Menu from './Menu';
+import MenuBackground from './MenuBackground';
+import Burger from './Burger';
 
 import classes from './Header.module.scss';
 
@@ -27,6 +29,7 @@ const Header = ({
 
   return (
     <div className={headerClass}>
+      <MenuBackground isMenuMode={isMenuMode} />
       <Menu
         isMenuMode={isMenuMode}
         setMenuMode={setMenuMode}
@@ -34,13 +37,7 @@ const Header = ({
         offsetedSectionIndex={offsetedSectionIndex}
         relativeTopOffset={relativeTopOffset}
       />
-      <button className={classes.burger}>
-        <svg className="burgerButton__svg" viewBox="0 0 100 100">
-          <rect x="20" y="20" width="60" height="10"></rect>
-          <rect x="20" y="45" width="60" height="10"></rect>
-          <rect x="20" y="70" width="60" height="10"></rect>
-        </svg>
-      </button>
+      <Burger isMenuMode={isMenuMode} setMenuMode={setMenuMode} />
     </div>
   );
 };

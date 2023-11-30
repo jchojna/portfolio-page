@@ -8,7 +8,6 @@ import {
 } from './utils/utils';
 
 import Header from './components/Header';
-import Visuals from './components/Visuals';
 // import Animation from './views/Animation';
 import About from './views/About';
 import Resume from './views/Resume';
@@ -20,7 +19,7 @@ import projects from './content/projects.json';
 import classes from './App.module.scss';
 
 function App() {
-  const [isMenuMode, setMenuMode] = useState<boolean>(false);
+  const [isMenuMode, setMenuMode] = useState<boolean>(true);
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
   const [offsetedSectionIndex, setOffsetedSectionIndex] = useState<number>(-1);
   const [relativeTopOffset, setRelativeTopOffset] = useState<number>(0);
@@ -77,7 +76,6 @@ function App() {
         offsetedSectionIndex={offsetedSectionIndex}
         relativeTopOffset={relativeTopOffset}
       />
-      <Visuals isMenuMode={isMenuMode} />
       {/* <Animation /> */}
       <div ref={sectionsRef} className={sectionsClass}>
         <About />

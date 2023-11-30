@@ -1,7 +1,7 @@
 @import '../styles/variables.scss';
 @import '../styles/mixins.scss';
 
-.visuals {
+.container {
   height: 100%;
   left: 0;
   min-height: 100vh;
@@ -10,16 +10,9 @@
   top: 0;
   visibility: hidden;
   width: 100%;
-  z-index: 3;
 
   &.visible {
     visibility: visible;
-  }
-
-  @media only screen and (min-width: $media-lg) {
-    & {
-      // z-index: -1;
-    }
   }
 
   .background {
@@ -34,12 +27,12 @@
         height $menu-sm-second-timeout;
     }
 
-    &.backgroundUpper {
+    &.upper {
       left: 0;
       top: 0;
     }
 
-    &.backgroundBottom {
+    &.bottom {
       bottom: 0;
       left: 0;
     }

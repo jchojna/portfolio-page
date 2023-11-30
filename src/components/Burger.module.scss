@@ -1,0 +1,54 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+@import '../styles/animations.scss';
+
+.burger {
+  @include button;
+  @include flex-center;
+
+  height: $menu-item-height;
+  left: 0;
+  pointer-events: all;
+  position: fixed;
+  top: 0;
+  transition: visibility 0s;
+  visibility: hidden;
+  width: $menu-item-height;
+  z-index: 99999999;
+
+  &.visible {
+    visibility: visible;
+  }
+
+  &--about {
+    fill: $color-about;
+  }
+  &--resume {
+    fill: $color-resume;
+  }
+  &--tasktimer {
+    fill: $color-tasktimer;
+  }
+  &--portfolio {
+    fill: $color-portfolio;
+  }
+  &--hydrapp {
+    fill: $color-hydrapp;
+  }
+  &--archviz {
+    fill: $color-archviz;
+  }
+  &--quotes {
+    fill: $color-quotes;
+  }
+  &--other {
+    fill: $color-other;
+  }
+  &--contact {
+    fill: $color-contact;
+  }
+
+  .svg {
+    width: 100%;
+  }
+}
