@@ -1,0 +1,63 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.stats {
+  border-collapse: collapse;
+  border-bottom: 3px solid transparent;
+  display: flex;
+  grid-area: stats;
+  margin: 20px $offset-right-xs 0 $offset-left-xs;
+  padding-bottom: 10px;
+
+  &.tasktimer {
+    color: $color-tasktimer-shadow;
+    border-color: $color-tasktimer-shadow;
+  }
+  &.portfolio {
+    color: $color-portfolio-shadow;
+    border-color: $color-portfolio-shadow;
+  }
+  &.hydrapp {
+    color: $color-hydrapp-shadow;
+    border-color: $color-hydrapp-shadow;
+  }
+  &.archviz {
+    color: $color-archviz-shadow;
+    border-color: $color-archviz-shadow;
+  }
+  &.quotes {
+    color: $color-quotes-shadow;
+    border-color: $color-quotes-shadow;
+  }
+
+  .header {
+    display: none;
+  }
+
+  .body {
+    width: 100%;
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+
+      .category,
+      .value {
+        padding-top: 0.3em;
+      }
+
+      .value {
+        text-align: right;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-sm) {
+    margin: 20px $offset-right-sm 0 $offset-left-sm;
+  }
+
+  @media only screen and (min-width: $media-md) {
+    margin: 0;
+    margin-top: 10px;
+  }
+}

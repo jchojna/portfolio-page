@@ -1,0 +1,125 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.section {
+  @include section();
+
+  .container {
+    align-items: start;
+    display: grid;
+    grid-template-areas:
+      'photo'
+      'title    '
+      'description'
+      'profiles   '
+      'working    '
+      'knowing    '
+      'learning   ';
+    margin: 0 $offset-right-sm;
+    width: 100%;
+
+    @media only screen and (min-width: $media-md) {
+      & {
+        gap: $gridGap;
+        grid-template-areas:
+          'title     photo '
+          'description photo '
+          'contact     photo '
+          'high        high  '
+          'medium      medium'
+          'low         low   ';
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr repeat(4, auto);
+        max-width: $container-size;
+        min-height: $container-size;
+      }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+      & {
+        //margin-left: calc((100vw - #{$container-size}) / 2);
+        margin-left: 500px;
+      }
+    }
+
+    .title {
+      @include sectionTitle;
+      border: 1px solid #000;
+    }
+
+    .description {
+      color: $color-about-white;
+      font-size: 1.5em;
+      grid-area: description;
+      line-height: 1.4;
+      margin: 0 $offset-right-xs 20px $offset-left-xs;
+      padding-top: 20px;
+
+      @media only screen and (min-width: $media-sm) {
+        margin: 0 $offset-right-sm 20px $offset-left-sm;
+      }
+
+      @media only screen and (min-width: $media-md) {
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      @media only screen and (min-width: $media-lg) {
+        padding-top: 0;
+      }
+    }
+
+    .photo {
+      grid-area: photo;
+      justify-self: end;
+      margin-top: $menu-item-height;
+      margin-right: $offset-right-sm * -1;
+      max-width: 500px;
+      width: 100%;
+      z-index: 1;
+
+      @media only screen and (min-width: $media-md) {
+        & {
+          margin-right: 0;
+          margin-top: $menu-item-height + $offset-right-sm;
+        }
+      }
+
+      @media only screen and (min-width: $media-lg) {
+        & {
+          margin: 0;
+          max-width: 350px;
+        }
+      }
+    }
+
+    // .svg {
+    //   display: none;
+    // }
+
+    .iconsGroup {
+      &.high {
+        grid-area: high;
+      }
+      &.medium {
+        grid-area: medium;
+      }
+      &.low {
+        grid-area: low;
+      }
+
+      .icons {
+        display: flex;
+        gap: 6px;
+        list-style-type: none;
+      }
+    }
+
+    .contactDetails {
+      display: flex;
+      gap: 6px;
+      grid-area: contact;
+      list-style-type: none;
+    }
+  }
+}

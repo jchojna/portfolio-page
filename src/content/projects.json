@@ -1,0 +1,431 @@
+[
+  {
+    "name": "tasktimer",
+    "title": "get things done on time with taskTimer app",
+    "about": [
+      "You could say it's just another Pomodoro Clock react app, but this one is a little bit more complex and playful. I tried to make it look more like a board game with cards, interactive and entertaining. The app can handle multiple tasks going on at the same time, even though it may not be too practical to work on many tasks simultaneously, but it's nice to see them all in action anyway:)",
+      "For GIT training purposes, the app has started being developed in multiple phases: as a static page (static-page branch), as vanilla JS app using document.createElement (vanilla branch), as vanilla JS to react.js rewriting phase with use of React.createElement, but no JSX yet (react-no-jsx branch), previous and simpler version of the app created using create-react-app seed is located on react-simple branch app's version on master branch is still being developed as the main app"
+    ],
+    "features": [
+      {
+        "label": "Functionality",
+        "items": [
+          "adding / removing users with unique logins and secured by password",
+          "'remember me' functionality when user logs in / signs in",
+          "user editing section allowing to change user's login, password, log out or remove user's profile",
+          "creating / editing / removing tasks",
+          "user can specify a task name, time to finish the task and maximum break time",
+          "all inputs have validation rules applied to them",
+          "work and break time countdown available for multiple cards simultaneously",
+          "two display modes for work and break phases showing either elapsed or remaining time",
+          "progress bars with percentage values indicates elapsed or remaining time as well, depending on the current display mode",
+          "card's outro mode appears on task finish or when the maximum break time gets exceeded, summarizing that given task's stats",
+          "drag and drop functionality for task cards with transition effects",
+          "cards can be minimized to more concise form and display only the task name",
+          "stats section for all finished tasks",
+          "data stored in local storage as Json format"
+        ]
+      },
+      {
+        "label": "Visual Appearance",
+        "items": [
+          "intro animation is based on SVG logo with masking applied to casted shadow",
+          "shadow's spiral trajectory is calculated using trigonometric functions",
+          "all tasks form grid of elements resembling cards laid out on a game board rotating 180 degrees on every status change",
+          "app is fully responsive with grid of cards adjusting to viewport size",
+          "all cards are minimized by default on mobile devices due to accessibility reasons",
+          "project's mockup was created in Figma"
+        ]
+      },
+      {
+        "label": "To be implemented",
+        "items": ["full keyboard support for an entire app"]
+      }
+    ],
+    "icons": [
+      {
+        "name": "html",
+        "totalSVG": 3
+      },
+      {
+        "name": "css",
+        "totalSVG": 3
+      },
+      {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      },
+      {
+        "name": "bem",
+        "totalSVG": 1
+      },
+      {
+        "name": "react",
+        "totalSVG": 1
+      },
+      {
+        "name": "git",
+        "totalSVG": 1
+      },
+      {
+        "name": "vscode",
+        "totalSVG": 3
+      },
+      {
+        "name": "figma",
+        "totalSVG": 3
+      },
+      {
+        "name": "illustrator",
+        "totalSVG": 1
+      }
+    ],
+    "url": {
+      "repo": "https://github.com/jchojna/task-timer",
+      "demo": "https://jchojna.github.io/task-timer/"
+    }
+  },
+  {
+    "name": "hydrapp",
+    "title": "track water consumption with hydrApp",
+    "about": [
+      "Simple yet useful app for daily tracking of water consumption. User can quickly get to basic app's functionality and add (or remove) next glass of drank water what may help with not forgetting about this really important activity, especially during hot summer.. There's also an archive section with an editable history entries divided on weeks, to have an overall insight into water consumption tendency. On top of that, user is able to change his account settings and view his or other users stats. I added some level of gamification in form of points collected by every user for 'minimum water' streaks. There is also an overall ranking of users, dynamically reacting to any change in users stats."
+    ],
+    "features": [
+      {
+        "label": "Functionality",
+        "items": [
+          "editable archive section with a list of days divided on weeks",
+          "new archive's entry creator",
+          "weeks calendar is automatically updated after adding or removing an entry",
+          "burger button menu",
+          "stats section displaying results of each user",
+          "calculated current and longest user's streak",
+          "ranking of users based on highest point score",
+          "settings section allowing to log out, remove account or edit profile settings",
+          "data stored in local storage as Json format"
+        ]
+      },
+      {
+        "label": "Visual Appearance",
+        "items": [
+          "intro animation",
+          "animated graphical representation of water",
+          "animated counter displaying amount of consumed water",
+          "emoji icons indicating current level of consumed level of water on a given day",
+          "animated icons and buttons and smooth transitions between sections",
+          "responsiveness"
+        ]
+      },
+      {
+        "label": "To be implemented",
+        "items": [
+          "calculating optimal amount of water based on the user's weight",
+          "fetching data about weather conditions in user's location from external API and recalculating minimum amount of water to be consumed"
+        ]
+      }
+    ],
+    "icons": [
+      {
+        "name": "html",
+        "totalSVG": 3
+      },
+      {
+        "name": "css",
+        "totalSVG": 3
+      },
+      {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      },
+      {
+        "name": "bem",
+        "totalSVG": 1
+      },
+      {
+        "name": "git",
+        "totalSVG": 1
+      },
+      {
+        "name": "vscode",
+        "totalSVG": 3
+      },
+      {
+        "name": "illustrator",
+        "totalSVG": 1
+      }
+    ],
+    "url": {
+      "repo": "https://github.com/jchojna/hydrApp",
+      "demo": "https://jchojna.github.io/hydrApp/"
+    }
+  },
+  {
+    "name": "portfolio",
+    "title": "this portfolio website...",
+    "about": [
+      "This project you have already started exploring and it's what you are viewing right now. It presents five most representative frontend projects of mine (including itself) placed in separate sections, starting from the ones I am proud of the most. In addition, the other section contains a few more straightforward and exercise projects I created in the beginning of my frontend journey.",
+      "I tried to emphasize creative and dynamic character of this SPA website mostly by providing noticeable level of interaction with a visual output and quite many animated elements. At the same time, I tried not to cross the line of exaggeration regarding transforming elements and kept my eye on performance aspect so the transitions would appear relatively smooth.",
+      "In order to distinguish one section from another I assumed a design rule, that each section has its own independent color palette. Because of many color shades in every section, there is 68 colors in total on this page and it's one of those moments when SCSS comes in handy… In this project I decided not to use any javascript frameworks, just vanilla JS."
+    ],
+    "features": [
+      {
+        "label": "Functionality",
+        "items": [
+          "website fetches my github repositories data using github API and searches for total number of commits, date of creation and last modification of each repo",
+          "expandable content functionality implemented by using recursive functions and a global object. It is applicable for plain text and more complex, nested elements like lists of items or lists inside another ones",
+          "accordion elements handling nested content"
+        ]
+      },
+      {
+        "label": "Interaction",
+        "items": [
+          "menu links appearance depends on currently displayed section",
+          "smooth scroll to the next section when user scrolls down fast enough",
+          "animated graphic elements serve as additional visual indicator"
+        ]
+      },
+      {
+        "label": "Intro Animation",
+        "items": [
+          "created with extensive use of setTimeout callback functions (because of a little callback hell, I want to rewrite this part using Promises)",
+          "transitions are mainly controlled with JS because of dynamically changing elements in the viewport",
+          "animated text is composed of SVG letters, but the output is based on simple string input"
+        ]
+      },
+      {
+        "label": "Visual Appearance",
+        "items": [
+          "colors applied using SCSS variables",
+          "each section has its own dedicated logo, being an SVG graphic element",
+          "grids of multiple SVG icons",
+          "animated elements and transitions emphasizes creative and dynamic look of the website"
+        ]
+      },
+      {
+        "label": "Responsiveness",
+        "items": [
+          "website layout based on CSS Grid (grid-areas mostly)",
+          "different behavior of menu/content transition for mobile and tablet/desktop devices",
+          "animated navigation buttons on tablets and large screen devices and burger button on mobiles"
+        ]
+      },
+      {
+        "label": "Contact Form",
+        "items": [
+          "supported with frontend and backend validation",
+          "AJAX request written in vanilla JS",
+          "mail sending functionality based on phpmailer class",
+          "server responses and backend validation result displayed as animated alert boxes",
+          "Local storage support for contact form inputs"
+        ]
+      },
+      {
+        "label": "Overall",
+        "items": [
+          "project's precise mockup created in Figma",
+          "website seed by yeoman - generator webapp"
+        ]
+      },
+      {
+        "label": "To Be Implemented",
+        "items": [
+          "Bonus functionality allowing to generate and display intro animation with content based on the string input provided by the user"
+        ]
+      }
+    ],
+    "icons": [
+      {
+        "name": "html",
+        "totalSVG": 3
+      },
+      {
+        "name": "css",
+        "totalSVG": 3
+      },
+      {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      },
+      {
+        "name": "bem",
+        "totalSVG": 1
+      },
+      {
+        "name": "php",
+        "totalSVG": 1
+      },
+      {
+        "name": "git",
+        "totalSVG": 1
+      },
+      {
+        "name": "vscode",
+        "totalSVG": 3
+      },
+      {
+        "name": "figma",
+        "totalSVG": 3
+      },
+      {
+        "name": "illustrator",
+        "totalSVG": 1
+      }
+    ],
+    "url": {
+      "repo": "https://github.com/jchojna/portfolio-page",
+      "demo": "https://jchojna.github.io/portfolio-page/"
+    }
+  },
+  {
+    "name": "archviz",
+    "title": "personal portfolio with my architectural visulizations",
+    "about": [
+      "The main idea for this project was to compromise a large amount of high quality pictures with page load performance. Because of that I decided to create SVG placeholders for every image as a starting content and load the raster images progressively, taking into account their actual visibility on the screen and using lazy loading functionality.",
+      "I decided not to use any external libraries and write all the functions by myself (exception: throttle function from Underscore.js). All the visualizations used on this website were created by me, while I have been working as an architectural visualizer."
+    ],
+    "features": [
+      {
+        "label": "Functionality",
+        "items": [
+          "Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighboring images located in a particular row and taking the whole width of the container",
+          "Sprite map of SVG placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images",
+          "Lazy loading for grid images and gallery pictures (recursive function)",
+          "Responsive slider gallery of images",
+          "Two display modes in gallery view (image and SVG placeholder modes)",
+          "Fully functional contact form with checkbox verification and backend validation",
+          "Simple accordions in about section",
+          "Page pre-loader",
+          "Improved content accessibility according to WCAG"
+        ]
+      },
+      {
+        "label": "To be implemented",
+        "items": [
+          "More detailed and animated page pre-loader containing website's SVG logo"
+        ]
+      }
+    ],
+    "icons": [
+      {
+        "name": "html",
+        "totalSVG": 3
+      },
+      {
+        "name": "css",
+        "totalSVG": 3
+      },
+      {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      },
+      {
+        "name": "bem",
+        "totalSVG": 1
+      },
+      {
+        "name": "php",
+        "totalSVG": 1
+      },
+      {
+        "name": "git",
+        "totalSVG": 1
+      },
+      {
+        "name": "vscode",
+        "totalSVG": 3
+      },
+      {
+        "name": "photoshop",
+        "totalSVG": 1
+      }
+    ],
+    "url": {
+      "repo": "https://github.com/jchojna/archviz-website",
+      "demo": "https://jakubchojna.pl/"
+    }
+  },
+  {
+    "name": "quotes",
+    "title": "collection of useful and funny quotes",
+    "about": [
+      "Quotes collection containing nice pictures and many useful and funny quotes. In this is simple MPA website I wanted to keep perceived continuity, when user navigates between different pages and make it look more like a simple app. All the pictures used in this project has been taken and post-processed by myself during my one year stay in Slovenia."
+    ],
+    "features": [
+      {
+        "label": "Functionality",
+        "items": [
+          "random quote functionality",
+          "simple and basic PWA",
+          "keyboard support for navigating between pages",
+          "burger button menu",
+          "animated SVG icons",
+          "transition effect for grid of images with delays applied using SCSS loop",
+          "responsive layout and grid of images",
+          "local storage support for contact form's inputs",
+          "contact form's HTML validation",
+          "checkboxes validation and alerts",
+          "TO BE IMPLEMENTED: contact form JS validation and functionality"
+        ]
+      },
+      {
+        "label": "To be implemented",
+        "items": ["contact form JS validation and functionality"]
+      }
+    ],
+    "icons": [
+      {
+        "name": "html",
+        "totalSVG": 3
+      },
+      {
+        "name": "css",
+        "totalSVG": 3
+      },
+      {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      },
+      {
+        "name": "bem",
+        "totalSVG": 1
+      },
+      {
+        "name": "git",
+        "totalSVG": 1
+      },
+      {
+        "name": "vscode",
+        "totalSVG": 3
+      },
+      {
+        "name": "photoshop",
+        "totalSVG": 1
+      }
+    ],
+    "url": {
+      "repo": "https://github.com/jchojna/homepage-gulp",
+      "demo": "https://jchojna.github.io/homepage-gulp/"
+    }
+  }
+]

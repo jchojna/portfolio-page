@@ -1,0 +1,270 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.menu {
+  width: 100%;
+  position: relative;
+
+  @media only screen and (min-width: $media-lg) {
+    & {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      min-height: $container-size;
+      width: $menu-width;
+      transition: transform 0.5s;
+
+      &--intro {
+        $left-offset: calc(50vw - #{$menu-width});
+        transform: translateX($left-offset);
+      }
+    }
+  }
+
+  &__list {
+    display: grid;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    row-gap: 10px;
+    width: 100%;
+  }
+
+  &__item {
+    align-items: flex-start;
+    display: flex;
+    height: $menu-item-height;
+    overflow: hidden;
+    padding-right: 10px;
+    pointer-events: none;
+    visibility: hidden;
+    width: 100%;
+
+    &--active {
+      pointer-events: all;
+    }
+
+    &--mobileHeader {
+      left: 0;
+      margin: 0;
+      position: fixed;
+    }
+
+    &--animated {
+      transition: top $menu-sm-second-timeout;
+    }
+
+    &--visible {
+      visibility: inherit;
+    }
+
+    @media only screen and (min-width: $media-lg) {
+      height: $menu-item-height-lg;
+      justify-content: flex-end;
+      padding: 0;
+      width: 100%;
+    }
+  }
+
+  &__button {
+    @include button;
+    display: flex;
+    fill: $intro-link-color;
+    height: $menu-item-height;
+    justify-content: flex-end;
+    padding-left: 55px;
+    transition: fill $menu-sm-first-timeout, width $menu-sm-first-timeout;
+
+    &--intro-about {
+      fill: $color-about;
+    }
+    &--intro-resume {
+      fill: $color-resume;
+    }
+    &--intro-tasktimer {
+      fill: $color-tasktimer;
+    }
+    &--intro-portfolio {
+      fill: $color-portfolio;
+    }
+    &--intro-hydrapp {
+      fill: $color-hydrapp;
+    }
+    &--intro-archviz {
+      fill: $color-archviz;
+    }
+    &--intro-quotes {
+      fill: $color-quotes;
+    }
+    &--intro-other {
+      fill: $color-other;
+    }
+    &--intro-contact {
+      fill: $color-contact;
+    }
+
+    &--about {
+      fill: $color-about-diff;
+      &:active {
+        fill: $color-about-diff-dark;
+      }
+    }
+    &--resume {
+      fill: $color-resume-diff;
+      &:active {
+        fill: $color-resume-diff-dark;
+      }
+    }
+    &--tasktimer {
+      fill: $color-tasktimer-diff;
+      &:active {
+        fill: $color-tasktimer-diff-dark;
+      }
+    }
+    &--portfolio {
+      fill: $color-portfolio-diff;
+      &:active {
+        fill: $color-portfolio-diff-dark;
+      }
+    }
+    &--hydrapp {
+      fill: $color-hydrapp-diff;
+      &:active {
+        fill: $color-hydrapp-diff-dark;
+      }
+    }
+    &--archviz {
+      fill: $color-archviz-diff;
+      &:active {
+        fill: $color-archviz-diff-dark;
+      }
+    }
+    &--quotes {
+      fill: $color-quotes-diff;
+      &:active {
+        fill: $color-quotes-diff-dark;
+      }
+    }
+    &--other {
+      fill: $color-other-diff;
+      &:active {
+        fill: $color-other-diff-dark;
+      }
+    }
+    &--contact {
+      fill: $color-contact-diff;
+      &:active {
+        fill: $color-contact-diff-dark;
+      }
+    }
+    &--active {
+      fill: #fff;
+      &:active {
+        fill: #fff;
+      }
+    }
+
+    @media only screen and (min-width: $media-md) {
+      &--about {
+        &:focus,
+        &:hover {
+          fill: $color-about-diff-dark;
+        }
+      }
+      &--resume {
+        &:focus,
+        &:hover {
+          fill: $color-resume-diff-dark;
+        }
+      }
+      &--tasktimer {
+        &:focus,
+        &:hover {
+          fill: $color-tasktimer-diff-dark;
+        }
+      }
+      &--portfolio {
+        &:focus,
+        &:hover {
+          fill: $color-portfolio-diff-dark;
+        }
+      }
+      &--hydrapp {
+        &:focus,
+        &:hover {
+          fill: $color-hydrapp-diff-dark;
+        }
+      }
+      &--archviz {
+        &:focus,
+        &:hover {
+          fill: $color-archviz-diff-dark;
+        }
+      }
+      &--quotes {
+        &:focus,
+        &:hover {
+          fill: $color-quotes-diff-dark;
+        }
+      }
+      &--other {
+        &:focus,
+        &:hover {
+          fill: $color-other-diff-dark;
+        }
+      }
+      &--contact {
+        &:focus,
+        &:hover {
+          fill: $color-contact-diff-dark;
+        }
+      }
+      &--active {
+        &:focus,
+        &:hover {
+          fill: #fff;
+        }
+      }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+      height: $menu-item-height-lg;
+      padding: 0;
+      width: 100%;
+    }
+  }
+}
+
+.menuSvg {
+  @include flex-center;
+  pointer-events: none;
+  position: relative;
+
+  &__text {
+    height: $menu-item-height;
+  }
+
+  &__shadow {
+    fill: $intro-background-color;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.3s, visibility 0s 0.3s;
+    visibility: hidden;
+    width: 100%;
+
+    &--visible {
+      opacity: $svg-opacity;
+      transition: opacity 0.3s, visibility 0s;
+      visibility: visible;
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+    &__text {
+      height: $menu-item-height-lg;
+    }
+  }
+}

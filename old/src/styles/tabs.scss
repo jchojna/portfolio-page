@@ -1,0 +1,521 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.tab,
+.subtab {
+  position: relative;
+  margin-top: 30px;
+
+  &--profiles {
+    grid-area: profiles;
+  }
+  &--working {
+    grid-area: working;
+  }
+  &--knowing {
+    grid-area: knowing;
+  }
+  &--learning {
+    grid-area: learning;
+  }
+
+  &--resume {
+    color: $color-resume-diff;
+  }
+  &--info {
+    display: flex;
+    flex-direction: column;
+    grid-area: info;
+    height: 100%;
+    margin-top: 0;
+  }
+  &--experience {
+    grid-area: experience;
+  }
+  &--education {
+    grid-area: education;
+  }
+  &--languages {
+    grid-area: languages;
+  }
+
+  &--description,
+  &--features {
+    display: flex;
+    flex-direction: column;
+    grid-area: description;
+    height: 100%;
+    overflow: initial;
+  }
+  &--description {
+    margin-top: 0;
+  }
+  &--features {
+    grid-area: features;
+  }
+  &--category {
+    margin: 0 $offset-right-xs 0 $offset-left-xs;
+  }
+  &--technologies {
+    grid-area: technologies;
+  }
+  &--stats {
+    font-size: 1.3em;
+    grid-area: stats;
+    overflow: initial;
+    text-transform: lowercase;
+  }
+
+  &--other {
+    color: $color-other-diff;
+  }
+
+  &--social {
+    margin-top: 30px;
+    grid-area: social;
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+      margin-top: 0;
+
+      &--description {
+        padding-right: 20px;
+      }
+
+      &--features {
+        padding-right: 20px;
+      }
+
+      &--category {
+        margin: 0;
+      }
+
+      &--other {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &:hover {
+          & .mark {
+            background-color: $color-other-diff;
+            height: 100px;
+            transition: background-color $tabHeader-time,
+              height $tabHeader-time $tabHeader-time ease-out,
+              width $tabHeader-time ease-in;
+            width: $separator-width;
+          }
+
+          & .tab__button--other {
+            color: $color-other-diff;
+            padding-left: $otherHeading-size-lg;
+            transition: color $tabHeader-time, padding-left $tabHeader-time;
+          }
+
+          & .tab__description--other {
+            color: $color-other-white;
+            transition: color $tabHeader-time;
+          }
+        }
+      }
+
+      &--social {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  &__header {
+    align-items: flex-start;
+    display: flex;
+    font-family: 'Antonio Bold';
+    font-size: $tabHeader-size-xs;
+    line-height: 1;
+    margin: 0;
+    position: relative;
+
+    @media only screen and (min-width: $media-md) {
+      & {
+        font-size: $tabHeader-size-lg;
+
+        &--category {
+          font-size: $features-category-size-lg;
+        }
+
+        &--other {
+          font-size: $otherHeading-size-lg;
+        }
+      }
+    }
+  }
+
+  &__description {
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 0;
+    padding-top: 20px;
+
+    &--small {
+      font-size: 1em;
+    }
+
+    &--about {
+      font-size: 1.5em;
+      color: $color-about-white;
+      margin: 0 $offset-right-xs 20px $offset-left-xs;
+    }
+    &--resume {
+      color: $color-resume-white;
+      margin-top: 0;
+    }
+    &--tasktimer {
+      color: $color-tasktimer-white;
+    }
+    &--portfolio {
+      color: $color-portfolio-white;
+    }
+    &--hydrapp {
+      color: $color-hydrapp-white;
+    }
+    &--archviz {
+      color: $color-archviz-white;
+    }
+    &--quotes {
+      color: $color-quotes-white;
+    }
+    &--other {
+      font-size: 1.1em;
+      color: $color-other-white;
+
+      &.tab__description--small {
+        color: $color-other-shadow;
+        margin: 0 $offset-right-xs 10px $offset-left-xs;
+      }
+    }
+
+    @media only screen and (min-width: $media-sm) {
+      & {
+        &--about {
+          margin: 0 $offset-right-sm 20px $offset-left-sm;
+        }
+
+        &--other {
+          &.tab__description--small {
+            margin: 0 $offset-right-sm 10px $offset-left-sm;
+          }
+        }
+      }
+    }
+
+    @media only screen and (min-width: $media-md) {
+      & {
+        margin: 0;
+        line-height: 1.6;
+
+        &--other.tab__description--small {
+          margin: 0;
+        }
+      }
+    }
+
+    @media only screen and (min-width: $media-lg) {
+      &--about {
+        padding-top: 0;
+      }
+    }
+  }
+
+  &__button {
+    @include button;
+    align-items: center;
+    display: flex;
+    height: $tabHeader-size-xs;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    padding-left: $tabHeader-size-xs + $tabGap-xs;
+    position: relative;
+    text-align: left;
+    text-transform: uppercase;
+    transition: color $button-hover,
+      padding-left $button-hover $button-hover ease-out;
+    width: 100%;
+
+    &--resume {
+      color: $color-resume-dark;
+    }
+
+    &--category {
+      height: $features-category-size-xs;
+      margin-top: $features-category-size-xs;
+      padding-left: $features-category-size-xs + $tabGap-xs;
+    }
+
+    &--hydrapp {
+      color: $color-hydrapp-light;
+    }
+    &--tasktimer {
+      color: $color-tasktimer-light;
+    }
+    &--portfolio {
+      color: $color-portfolio-light;
+    }
+
+    &--other {
+      color: $color-other-shadow;
+      height: $otherHeading-size-xs;
+    }
+
+    &--unrolled {
+      color: inherit;
+      padding-left: $tabHeader-size-xs;
+      transition: color $button-hover, padding-left $button-hover ease-in;
+    }
+
+    @media only screen and (min-width: $media-md) {
+      & {
+        height: $tabHeader-size-lg;
+        margin-top: calc($tabHeader-size-lg / 2);
+        padding-left: $tabHeader-size-lg + $tabGap-xs;
+
+        &--resume:focus,
+        &--resume:hover {
+          color: $color-resume-diff;
+        }
+        &--resume:focus .mark--resume,
+        &--resume:hover .mark--resume {
+          background-color: $color-resume-diff;
+        }
+
+        &--hydrapp:focus,
+        &--hydrapp:hover {
+          color: $color-hydrapp-white;
+        }
+        &--hydrapp:focus .mark--hydrapp,
+        &--hydrapp:hover .mark--hydrapp {
+          background-color: $color-hydrapp-white;
+        }
+
+        &--tasktimer:focus,
+        &--tasktimer:hover {
+          color: $color-tasktimer-white;
+        }
+        &--tasktimer:focus .mark--tasktimer,
+        &--tasktimer:hover .mark--tasktimer {
+          background-color: $color-tasktimer-white;
+        }
+
+        &--portfolio:focus,
+        &--portfolio:hover {
+          color: $color-portfolio-white;
+        }
+        &--portfolio:focus .mark--portfolio,
+        &--portfolio:hover .mark--portfolio {
+          background-color: $color-portfolio-white;
+        }
+
+        &--category {
+          height: $features-category-size-lg;
+          margin-top: $features-category-size-xs;
+          padding-left: $features-category-size-lg + $tabGap-xs;
+        }
+
+        &--other {
+          height: $otherHeading-size-lg;
+          margin: 0;
+          padding-left: $otherHeading-size-lg + $tabGap-xs;
+        }
+
+        &--unrolled {
+          padding-left: $separator-width + $tabGap-xs;
+        }
+      }
+    }
+  }
+
+  &__readMore {
+    @include button;
+    align-self: flex-start;
+    border-bottom: 2px solid transparent;
+    display: none;
+    font-size: 1.1em;
+    grid-area: readMore;
+    margin: 10px $offset-right-xs 10px $offset-left-xs;
+    padding: 0.2em 0;
+    text-transform: uppercase;
+    transition: border-color $button-hover, color $button-hover;
+
+    &--visible {
+      display: block;
+    }
+
+    &--resume {
+      border-color: $color-resume-light;
+      color: $color-resume-light;
+    }
+    &--hydrapp {
+      border-color: $color-hydrapp-light;
+      color: $color-hydrapp-light;
+    }
+    &--tasktimer {
+      border-color: $color-tasktimer-light;
+      color: $color-tasktimer-light;
+    }
+    &--portfolio {
+      border-color: $color-portfolio-light;
+      color: $color-portfolio-light;
+    }
+    &--archviz {
+      border-color: $color-archviz-light;
+      color: $color-archviz-light;
+    }
+    &--quotes {
+      border-color: $color-quotes-light;
+      color: $color-quotes-light;
+    }
+    &--other {
+      border-color: $color-other-light;
+      color: $color-other-light;
+    }
+
+    @mixin resumeReadMore {
+      border-color: $color-resume-white;
+      color: $color-resume-white;
+    }
+    @mixin hydrappReadMore {
+      border-color: $color-hydrapp-white;
+      color: $color-hydrapp-white;
+    }
+    @mixin tasktimerReadMore {
+      border-color: $color-tasktimer-white;
+      color: $color-tasktimer-white;
+    }
+    @mixin portfolioReadMore {
+      border-color: $color-portfolio-white;
+      color: $color-portfolio-white;
+    }
+    @mixin archvizReadMore {
+      border-color: $color-archviz-white;
+      color: $color-archviz-white;
+    }
+    @mixin quotesReadMore {
+      border-color: $color-quotes-white;
+      color: $color-quotes-white;
+    }
+    @mixin otherReadMore {
+      border-color: $color-other-white;
+      color: $color-other-white;
+    }
+
+    &--resume:active {
+      @include resumeReadMore;
+    }
+    &--hydrapp:active {
+      @include hydrappReadMore;
+    }
+    &--tasktimer:active {
+      @include tasktimerReadMore;
+    }
+    &--portfolio:active {
+      @include portfolioReadMore;
+    }
+    &--archviz:active {
+      @include archvizReadMore;
+    }
+    &--quotes:active {
+      @include quotesReadMore;
+    }
+    &--other:active {
+      @include otherReadMore;
+    }
+
+    @media only screen and (min-width: $media-sm) {
+      & {
+        margin: 10px $offset-right-sm 10px $offset-left-sm;
+      }
+    }
+
+    @media only screen and (min-width: $media-md) {
+      & {
+        margin: 0;
+        margin-top: 10px;
+      }
+
+      &--resume:focus,
+      &--resume:hover {
+        @include resumeReadMore;
+      }
+      &--hydrapp:focus,
+      &--hydrapp:hover {
+        @include hydrappReadMore;
+      }
+      &--tasktimer:focus,
+      &--tasktimer:hover {
+        @include tasktimerReadMore;
+      }
+      &--portfolio:focus,
+      &--portfolio:hover {
+        @include portfolioReadMore;
+      }
+      &--archviz:focus,
+      &--archviz:hover {
+        @include archvizReadMore;
+      }
+      &--quotes:focus,
+      &--quotes:hover {
+        @include quotesReadMore;
+      }
+      &--other:focus,
+      &--other:hover {
+        @include otherReadMore;
+      }
+    }
+  }
+}
+
+.subtab {
+  &--resume {
+    margin-left: $separator-width + $tabGap-xs;
+    margin-top: 0;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    &--resume {
+      font-size: $tabHeader-size-xs;
+    }
+  }
+
+  &__button {
+    &--resume {
+      color: $color-resume-dark;
+      margin-top: 20px;
+    }
+
+    &--unrolled {
+      color: inherit;
+    }
+  }
+
+  @media only screen and (min-width: $media-sm) {
+    & {
+      &--resume {
+        margin-left: $separator-width + $tabGap-sm;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+      &__header {
+        &--resume {
+          font-size: $tabHeader-size-lg;
+        }
+      }
+    }
+  }
+}

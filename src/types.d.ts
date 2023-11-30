@@ -1,50 +1,87 @@
-type Flags = {
-  isIntroMode: boolean;
-  isMenuTransforming: boolean;
-  shouldSectionsBeUpdated: boolean;
-  isScrollEnabled: boolean;
-  isFastScroll: boolean;
-  isMobileHeader: boolean;
-  media: string | null;
-  menuLayout: string | null;
+type ResumeDetailsProps = {
+  label?: string;
+  items: string[];
 };
 
-type Item = {
-  index: number;
-  node: HTMLElement;
-  offset: number;
-  height: number;
-  currentSectionIndex: number;
-  width?: number;
+type AccordionProps = {
+  label: string;
+  children: React.ReactNode;
+  view: string;
+  isSmall: boolean;
+  isExpanded: boolean;
+  setExpanded: (param: string | null) => void;
 };
 
-type Media = {
-  sm: number;
-  md: number;
-  lg: number;
+type AccordionItemProps = {
+  label: string;
+  items: AccordionItemProps[] & string[];
 };
 
-type Section = {
-  index: number;
-  id: string;
-  node: HTMLElement;
-  offset: number;
+type AccordionsGroupProps = {
+  title: string;
+  content: AccordionItemProps[];
 };
 
-type TimeoutId = string | number | NodeJS.Timeout | undefined;
-
-type AlertButton = HTMLElement & { index: number; alertTimeoutId: NodeTimeout };
-
-type Alert = {
-  box: HTMLElement;
-  button: AlertButton;
+type ProjectProps = {
+  name: string;
+  title: string;
+  about: string[];
+  features: {
+    label: string;
+    items: string[];
+  }[];
+  icons: IconDetails[];
+  url: ProjectUrls;
 };
 
-type ReadMoreButton = HTMLElement & { index: number; innerHTML: string };
-
-type MenuObj = {
-  lastMenuItemIndex: number;
-  currentNavigationIndex: number;
+type TextGroupProps = {
+  title: string;
+  projectName: string;
+  content: string[];
 };
 
-type TargetWithIndex = EventTarget & { index: number };
+type ListGroupProps = {
+  title: string;
+  projectName: string;
+  content: string[];
+};
+
+type IconDetails = {
+  name: string;
+  totalSVG: number;
+};
+
+type IconProps = {
+  view: string;
+  details: IconDetails;
+};
+
+type IconsList = {
+  view: string;
+  icons: IconDetails[];
+};
+
+type ProjectUrls = {
+  repo: string;
+  demo: string;
+};
+
+type ProjectLinksProps = {
+  projectName: string;
+  url: ProjectUrls;
+};
+
+type ProjectFeaturesProps = {
+  projectName: string;
+  title: string;
+  content: {
+    label: string;
+    items: string[];
+  }[];
+};
+
+type BlockTitleProps = {
+  title: string;
+  view: string;
+  isLarge?: boolean;
+};

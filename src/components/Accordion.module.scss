@@ -1,0 +1,211 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+@mixin accordionLabel($view) {
+  &.collapsed {
+    > .header {
+      &::before {
+        background-color: map-get($colors, #{$view}-dark);
+      }
+      > .label {
+        color: map-get($colors, #{$view}-dark);
+      }
+    }
+  }
+
+  > .header {
+    &::before {
+      background-color: map-get($colors, #{$view}-diff);
+    }
+
+    > .label {
+      color: map-get($colors, #{$view}-diff);
+    }
+
+    &:focus,
+    &:hover {
+      > .label {
+        cursor: pointer;
+        color: map-get($colors, #{$view}-diff);
+      }
+
+      &::before {
+        background-color: map-get($colors, #{$view}-diff);
+      }
+    }
+  }
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  transition: height $accordion-time, max-height $accordion-time;
+
+  > .header {
+    align-items: flex-start;
+    display: flex;
+    position: relative;
+    padding-left: 25px;
+    transition: padding $accordion-time;
+
+    &::before {
+      content: '';
+      background-color: $color-other-diff;
+      height: 100px;
+      left: 0;
+      margin-top: 6px;
+      position: absolute;
+      top: 0;
+      transition: background-color $tabHeader-time,
+        height $tabHeader-time $tabHeader-time ease-out,
+        width $tabHeader-time ease-in;
+      width: $separator-width;
+    }
+
+    > .label {
+      background: none;
+      border: none;
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      text-align: left;
+      text-transform: uppercase;
+      transition: color $tabHeader-time;
+    }
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 25px;
+  }
+
+  &.resume {
+    @include accordionLabel(resume);
+  }
+  &.tasktimer {
+    @include accordionLabel(tasktimer);
+  }
+  &.hydrapp {
+    @include accordionLabel(hydrapp);
+  }
+  &.portfolio {
+    @include accordionLabel(portfolio);
+  }
+  &.archviz {
+    @include accordionLabel(archviz);
+  }
+  &.quotes {
+    @include accordionLabel(quotes);
+  }
+
+  &.other {
+    > .header > .label {
+      font-size: $otherHeading-size-xs;
+    }
+  }
+
+  &.small {
+    > .header {
+      &::before {
+        height: 60px;
+        margin: 2px;
+        width: $separator-width;
+      }
+      > .label {
+        font-size: $features-category-size-xs;
+      }
+    }
+
+    .items {
+      gap: 5px;
+      list-style-type: none;
+    }
+  }
+
+  &.collapsed {
+    > .header {
+      padding-left: 50px;
+      transition: padding $tabHeader-time $tabHeader-time ease-in;
+
+      &::before {
+        height: 34px;
+        transition: background-color $tabHeader-time,
+          height $tabHeader-time ease-out,
+          width $tabHeader-time $tabHeader-time ease-in;
+        width: 34px;
+      }
+    }
+
+    &.small {
+      > .header {
+        padding-left: 40px;
+
+        &::before {
+          height: 24px;
+          width: 24px;
+        }
+      }
+    }
+  }
+
+  // @media only screen and (min-width: $media-md) {
+  //   .label {
+  //     height: $tabHeader-size-lg;
+  //     margin-top: calc($tabHeader-size-lg / 2);
+  //     padding-left: $tabHeader-size-lg + $tabGap-xs;
+
+  //     &--resume:focus .mark--resume,
+  //     &--resume:hover .mark--resume {
+  //       background-color: $color-resume-diff;
+  //     }
+
+  //     &--hydrapp:focus .mark--hydrapp,
+  //     &--hydrapp:hover .mark--hydrapp {
+  //       background-color: $color-hydrapp-white;
+  //     }
+
+  //     &--tasktimer:focus .mark--tasktimer,
+  //     &--tasktimer:hover .mark--tasktimer {
+  //       background-color: $color-tasktimer-white;
+  //     }
+
+  //     &--portfolio:focus .mark--portfolio,
+  //     &--portfolio:hover .mark--portfolio {
+  //       background-color: $color-portfolio-white;
+  //     }
+
+  //     &--category {
+  //       height: $features-category-size-lg;
+  //       margin-top: $features-category-size-xs;
+  //       padding-left: $features-category-size-lg + $tabGap-xs;
+  //     }
+
+  //     &--other {
+  //       height: $otherHeading-size-lg;
+  //       margin: 0;
+  //       padding-left: $otherHeading-size-lg + $tabGap-xs;
+  //     }
+
+  //     &--unrolled {
+  //       padding-left: $separator-width + $tabGap-xs;
+  //     }
+  //   }
+
+  //   &.small {
+  //     > .label {
+  //       font-size: $features-category-size-lg;
+  //     }
+  //   }
+  // }
+}
+
+.rollable {
+  transition: height $accordion-time;
+}

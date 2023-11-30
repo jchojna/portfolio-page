@@ -3,9 +3,9 @@ $intro-background-color: rgb(30, 30, 30);
 $intro-link-color: rgb(60, 60, 60);
 
 // MEDIA
-$media-sm: 380px;
-$media-md: 768px;
-$media-lg: 1200px;
+$media-sm: 768px;
+$media-md: 1200px;
+$media-lg: 1440px;
 
 // MENU
 $time-switch: 0.4s;
@@ -22,7 +22,8 @@ $navigation-border-arrow: 10px;
 $navigation-offset: 70px;
 $navigation-padding: 20px;
 $navigation-size-arrows: 90px;
-$navigation-size-back: $navigation-size-arrows - ($navigation-border-arrow * 2) + 2px;
+$navigation-size-back: $navigation-size-arrows - ($navigation-border-arrow * 2) +
+  2px;
 $navigation-size-button: $navigation-size-arrows + ($navigation-padding * 2);
 $navigation-time: 0.3s;
 $navigation-time-delay: 1s;
@@ -65,84 +66,150 @@ $accordion-time: 0.5s;
 $button-hover: 0.3s;
 
 // ABOUT
-$color-about-white:     rgb(182, 212, 223);
-$color-about-light:     rgb(142, 192, 209);
-$color-about:           rgb(27, 129, 163);
-$color-about-dark:      rgb(21, 109, 138);
-$color-about-shadow:    rgb(12, 81, 104);
-$color-about-diff:      rgb(80, 76, 69);
+$color-about-white: rgb(182, 212, 223);
+$color-about-light: rgb(142, 192, 209);
+$color-about: rgb(27, 129, 163);
+$color-about-dark: rgb(21, 109, 138);
+$color-about-shadow: rgb(12, 81, 104);
+$color-about-diff: rgb(80, 76, 69);
 $color-about-diff-dark: rgb(65, 61, 57);
 
 // RESUME
-$color-resume-white:     #EED5DB;
-$color-resume-light:     #C993A0;
-$color-resume:           #A7586B;
-$color-resume-dark:      rgb(119, 56, 72);
-$color-resume-shadow:    rgb(66, 31, 40);
-$color-resume-diff:      #244E60;
+$color-resume-white: #eed5db;
+$color-resume-light: #c993a0;
+$color-resume: #a7586b;
+$color-resume-dark: rgb(119, 56, 72);
+$color-resume-shadow: rgb(66, 31, 40);
+$color-resume-diff: #244e60;
 $color-resume-diff-dark: rgb(26, 63, 78);
 
 // TASKTIMER
-$color-tasktimer-white:        #C5D8D9;
-$color-tasktimer-light:        #9AB5B6;
-$color-tasktimer:              #50787c;
-$color-tasktimer-dark:         #305B60;
-$color-tasktimer-letter:       #703035;
-$color-tasktimer-shadow:       rgb(35, 53, 54);
+$color-tasktimer-white: #c5d8d9;
+$color-tasktimer-light: #9ab5b6;
+$color-tasktimer: #50787c;
+$color-tasktimer-dark: #305b60;
+$color-tasktimer-letter: #703035;
+$color-tasktimer-shadow: rgb(35, 53, 54);
 $color-tasktimer-shadowLetter: #441c20;
-$color-tasktimer-diff:         #4F3D41;
-$color-tasktimer-diff-dark:    rgb(63, 47, 50);
+$color-tasktimer-diff: #4f3d41;
+$color-tasktimer-diff-dark: rgb(63, 47, 50);
 
 // HYDRAPP
-$color-hydrapp-white:     #d3f3ff;
-$color-hydrapp-light:     #88b2c9;
-$color-hydrapp:           #2E6484;
-$color-hydrapp-dark:      #164D6B;
-$color-hydrapp-shadow:    #12344C;
-$color-hydrapp-diff:      rgb(168, 148, 131);
+$color-hydrapp-white: #d3f3ff;
+$color-hydrapp-light: #88b2c9;
+$color-hydrapp: #2e6484;
+$color-hydrapp-dark: #164d6b;
+$color-hydrapp-shadow: #12344c;
+$color-hydrapp-diff: rgb(168, 148, 131);
 $color-hydrapp-diff-dark: rgb(82, 70, 62);
 
 // PORTFOLIO
-$color-portfolio-white:     rgb(235, 184, 177);
-$color-portfolio-light:     rgb(197, 106, 94);
-$color-portfolio:           rgb(163, 67, 55);
-$color-portfolio-dark:      rgb(129, 51, 41);
-$color-portfolio-shadow:    rgb(83, 36, 30);
-$color-portfolio-diff:      rgb(67, 76, 88);
+$color-portfolio-white: rgb(235, 184, 177);
+$color-portfolio-light: rgb(197, 106, 94);
+$color-portfolio: rgb(163, 67, 55);
+$color-portfolio-dark: rgb(129, 51, 41);
+$color-portfolio-shadow: rgb(83, 36, 30);
+$color-portfolio-diff: rgb(67, 76, 88);
 $color-portfolio-diff-dark: rgb(50, 59, 70);
 
 // ARCHVIZ
-$color-archviz-white:     #EEE7D6;
-$color-archviz-light:     #E5C887;
-$color-archviz:           #D2A239;
-$color-archviz-dark:      #B98922;
-$color-archviz-shadow:    #715822;
-$color-archviz-diff:      #4C4864;
+$color-archviz-white: #eee7d6;
+$color-archviz-light: #e5c887;
+$color-archviz: #d2a239;
+$color-archviz-dark: #b98922;
+$color-archviz-shadow: #715822;
+$color-archviz-diff: #4c4864;
 $color-archviz-diff-dark: rgb(62, 58, 85);
 
 // QUOTES
-$color-quotes-white:     #E7EBBF;
-$color-quotes-light:     rgb(217, 226, 118);
-$color-quotes:           #B9C52F;
-$color-quotes-dark:      #A4AE32;
-$color-quotes-shadow:    #5B620F;
-$color-quotes-diff:      #5C5663;
+$color-quotes-white: #e7ebbf;
+$color-quotes-light: rgb(217, 226, 118);
+$color-quotes: #b9c52f;
+$color-quotes-dark: #a4ae32;
+$color-quotes-shadow: #5b620f;
+$color-quotes-diff: #5c5663;
 $color-quotes-diff-dark: rgb(74, 68, 80);
 
 // OTHER
-$color-other-white:     #D8D2EA;
-$color-other-light:     #998BC0;
-$color-other:           #7868A6;
-$color-other-dark:      #6B5F8D;
-$color-other-shadow:    #4C4560;
-$color-other-diff:      #BBAA11;
+$color-other-white: #d8d2ea;
+$color-other-light: #998bc0;
+$color-other: #7868a6;
+$color-other-dark: #6b5f8d;
+$color-other-shadow: #4c4560;
+$color-other-diff: #bbaa11;
 $color-other-diff-dark: rgb(138, 125, 6);
 
 // CONTACT
-$color-contact-white:     #D7E8CD;
-$color-contact-light:     rgb(175, 201, 142);
-$color-contact:           rgb(108, 145, 60);
-$color-contact-dark:      rgb(88, 119, 47);
-$color-contact-shadow:    rgb(77, 105, 41);
-$color-contact-diff:      #5c4e4b;
+$color-contact-white: #d7e8cd;
+$color-contact-light: rgb(175, 201, 142);
+$color-contact: rgb(108, 145, 60);
+$color-contact-dark: rgb(88, 119, 47);
+$color-contact-shadow: rgb(77, 105, 41);
+$color-contact-diff: #5c4e4b;
 $color-contact-diff-dark: #493c3a;
+
+$colors: (
+  // about
+  about: $color-about,
+  about-white: $color-about-white,
+  about-light: $color-about-light,
+  about-dark: $color-about-dark,
+  about-shadow: $color-about-shadow,
+  about-diff: $color-about-diff,
+  // resume
+  resume: $color-resume,
+  resume-white: $color-resume-white,
+  resume-light: $color-resume-light,
+  resume-dark: $color-resume-dark,
+  resume-shadow: $color-resume-shadow,
+  resume-diff: $color-resume-diff,
+  // tasktimer
+  tasktimer: $color-tasktimer,
+  tasktimer-white: $color-tasktimer-white,
+  tasktimer-light: $color-tasktimer-light,
+  tasktimer-dark: $color-tasktimer-dark,
+  tasktimer-shadow: $color-tasktimer-shadow,
+  tasktimer-diff: $color-tasktimer-diff,
+  // hydrapp
+  hydrapp: $color-hydrapp,
+  hydrapp-white: $color-hydrapp-white,
+  hydrapp-light: $color-hydrapp-light,
+  hydrapp-dark: $color-hydrapp-dark,
+  hydrapp-shadow: $color-hydrapp-shadow,
+  hydrapp-diff: $color-hydrapp-diff,
+  // portfolio
+  portfolio: $color-portfolio,
+  portfolio-white: $color-portfolio-white,
+  portfolio-light: $color-portfolio-light,
+  portfolio-dark: $color-portfolio-dark,
+  portfolio-shadow: $color-portfolio-shadow,
+  portfolio-diff: $color-portfolio-diff,
+  // archviz
+  archviz: $color-archviz,
+  archviz-white: $color-archviz-white,
+  archviz-light: $color-archviz-light,
+  archviz-dark: $color-archviz-dark,
+  archviz-shadow: $color-archviz-shadow,
+  archviz-diff: $color-archviz-diff,
+  // quotes
+  quotes: $color-quotes,
+  quotes-white: $color-quotes-white,
+  quotes-light: $color-quotes-light,
+  quotes-dark: $color-quotes-dark,
+  quotes-shadow: $color-quotes-shadow,
+  quotes-diff: $color-quotes-diff,
+  // other
+  other: $color-other,
+  other-white: $color-other-white,
+  other-light: $color-other-light,
+  other-dark: $color-other-dark,
+  other-shadow: $color-other-shadow,
+  other-diff: $color-other-diff,
+  // contact
+  contact: $color-contact,
+  contact-white: $color-contact-white,
+  contact-light: $color-contact-light,
+  contact-dark: $color-contact-dark,
+  contact-shadow: $color-contact-shadow,
+  contact-diff: $color-contact-diff
+);

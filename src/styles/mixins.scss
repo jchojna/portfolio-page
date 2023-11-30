@@ -11,3 +11,264 @@
   outline: none;
   padding: 0;
 }
+
+@mixin shadow {
+  border-left-width: 8px;
+  border-top-width: 8px;
+}
+
+// sections
+
+@mixin section {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  // padding-bottom: 50px;
+  padding: 0 2fr 0 1fr;
+  position: relative;
+  scroll-snap-align: start;
+  width: 100%;
+
+  @media only screen and (min-width: $media-lg) {
+    & {
+      align-items: center;
+      justify-content: center;
+      padding-left: 500px;
+    }
+  }
+
+  &.about {
+    background-color: $color-about;
+  }
+  &.resume {
+    background-color: $color-resume;
+  }
+  &.tasktimer {
+    background-color: $color-tasktimer;
+  }
+  &.hydrapp {
+    background-color: $color-hydrapp;
+  }
+  &.portfolio {
+    background-color: $color-portfolio;
+  }
+  &.archviz {
+    background-color: $color-archviz;
+  }
+  &.quotes {
+    background-color: $color-quotes;
+  }
+  &.other {
+    background-color: $color-other;
+  }
+  &.contact {
+    background-color: $color-contact;
+  }
+}
+
+@mixin container {
+  align-items: start;
+  display: grid;
+  margin: 0 $offset-right-sm;
+  min-height: 800px;
+  width: 100%;
+
+  &.about {
+    grid-template-areas:
+      'photo'
+      'title    '
+      'description'
+      'profiles   '
+      'working    '
+      'knowing    '
+      'learning   ';
+  }
+
+  &.resume {
+    grid-template-areas:
+      'logo      '
+      'title   '
+      'info      '
+      'experience'
+      'education '
+      'languages ';
+  }
+
+  &.tasktimer,
+  &.portfolio,
+  &.hydrapp,
+  &.archviz,
+  &.quotes {
+    grid-template-areas:
+      'logo        '
+      'title     '
+      'description '
+      'features    '
+      'icons'
+      'stats       '
+      'links   ';
+  }
+
+  &.other {
+    grid-template-areas:
+      'logo       '
+      'title    '
+      'description'
+      'otherRepos ';
+  }
+
+  &.contact {
+    grid-template-areas:
+      'logo   '
+      'title'
+      'form   '
+      'social '
+      'footer ';
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+      gap: $gridGap;
+      max-width: $container-size;
+      min-height: $container-size;
+
+      &.about {
+        grid-template-areas:
+          'title     photo'
+          'description photo'
+          'profiles    photo'
+          'working     working    '
+          'knowing     knowing    '
+          'learning    learning   ';
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr repeat(4, auto);
+      }
+
+      &.resume {
+        align-content: start;
+        grid-template-areas:
+          'title   '
+          'info      '
+          'experience'
+          'education '
+          'languages ';
+      }
+
+      &.tasktimer,
+      &.portfolio,
+      &.hydrapp,
+      &.archviz,
+      &.quotes {
+        grid-template-areas:
+          'title      title     '
+          'description  features    '
+          'icons icons'
+          'stats        links   ';
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr repeat(2, auto);
+      }
+
+      &.other {
+        grid-template-areas:
+          'title    '
+          'description'
+          'otherRepos ';
+        grid-template-rows: auto 1fr auto;
+      }
+
+      &.contact {
+        align-content: stretch;
+        align-items: center;
+        grid-template-areas:
+          'title'
+          'form   '
+          'social '
+          'footer ';
+        grid-template-rows: auto 1fr;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+    & {
+      //margin-left: calc((100vw - #{$container-size}) / 2);
+      // margin-left: 500px;
+    }
+  }
+}
+
+@mixin sectionTitle {
+  font-size: 60px;
+  grid-area: title;
+  line-height: 1.2;
+  margin: 0 $offset-right-xs 0 0;
+  margin-top: -60px;
+  padding: 30px 10px 30px 20px;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+
+  &.large {
+    font-size: 72px;
+    line-height: 1;
+  }
+
+  &.about {
+    border-color: $color-about-diff;
+    color: $color-about-light;
+  }
+  &.resume {
+    border-color: $color-resume-diff;
+    color: $color-resume-light;
+  }
+  &.tasktimer {
+    border-color: $color-tasktimer-diff;
+    color: $color-tasktimer-light;
+  }
+  &.hydrapp {
+    border-color: $color-hydrapp-diff;
+    color: $color-hydrapp-light;
+  }
+  &.portfolio {
+    border-color: $color-portfolio-diff;
+    color: $color-portfolio-light;
+  }
+  &.archviz {
+    border-color: $color-archviz-diff;
+    color: $color-archviz-light;
+  }
+  &.quotes {
+    border-color: $color-quotes-diff;
+    color: $color-quotes-light;
+  }
+  &.other {
+    border-color: $color-other-diff;
+    color: $color-other-light;
+  }
+  &.contact {
+    border-color: $color-contact-diff;
+    color: $color-contact-light;
+  }
+
+  @media only screen and (min-width: $media-md) {
+    & {
+      border: none;
+      font-size: 72px;
+      margin: $menu-item-height + $offset-right-sm 0;
+      margin-bottom: 0;
+      max-width: 60%;
+      min-width: 380px;
+      padding: 0;
+      width: 100%;
+    }
+  }
+
+  @media only screen and (min-width: $media-lg) {
+    & {
+      margin: 0;
+      margin-bottom: 20px;
+      max-width: none;
+    }
+  }
+}

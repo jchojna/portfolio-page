@@ -1,0 +1,139 @@
+{
+  "title": "Hello there!",
+  "description": "My name is Jakub and I’m a Frontend Developer, a 3d Graphic Artist, an Architect and a keen road cycling fan.",
+  "highLevel": {
+    "title": "Working knowledge",
+    "tech": [
+      {
+        "name": "html",
+        "totalSVG": 3
+      },
+      {
+        "name": "css",
+        "totalSVG": 3
+      },
+      {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      },
+      {
+        "name": "bem",
+        "totalSVG": 1
+      },
+      {
+        "name": "react",
+        "totalSVG": 1
+      },
+      {
+        "name": "git",
+        "totalSVG": 1
+      },
+      {
+        "name": "vscode",
+        "totalSVG": 3
+      },
+      {
+        "name": "figma",
+        "totalSVG": 3
+      },
+      {
+        "name": "illustrator",
+        "totalSVG": 1
+      },
+      {
+        "name": "photoshop",
+        "totalSVG": 1
+      }
+    ]
+  },
+  "mediumLevel": {
+    "title": "Know something about",
+    "tech": [
+      {
+        "name": "redux",
+        "totalSVG": 1
+      },
+      {
+        "name": "npm",
+        "totalSVG": 1
+      },
+      {
+        "name": "api",
+        "totalSVG": 1
+      },
+      {
+        "name": "gulp",
+        "totalSVG": 1
+      },
+      {
+        "name": "jest",
+        "totalSVG": 1
+      },
+      {
+        "name": "bootstrap",
+        "totalSVG": 1
+      },
+      {
+        "name": "wordpress",
+        "totalSVG": 1
+      }
+    ]
+  },
+  "lowLevel": {
+    "title": "Want to learn",
+    "tech": [
+      {
+        "name": "nodejs",
+        "totalSVG": 1
+      },
+      {
+        "name": "emotion",
+        "totalSVG": 1
+      },
+      {
+        "name": "graphql",
+        "totalSVG": 1
+      },
+      {
+        "name": "d3js",
+        "totalSVG": 3
+      },
+      {
+        "name": "p5js",
+        "totalSVG": 1
+      },
+      {
+        "name": "threejs",
+        "totalSVG": 1
+      },
+      {
+        "name": "electron",
+        "totalSVG": 1
+      },
+      {
+        "name": "websocket",
+        "totalSVG": 1
+      },
+      {
+        "name": "typescript",
+        "totalSVG": 1
+      },
+      {
+        "name": "enzyme",
+        "totalSVG": 1
+      },
+      {
+        "name": "nextjs",
+        "totalSVG": 1
+      },
+      {
+        "name": "gatsby",
+        "totalSVG": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.section {
+  @include section;
+
+  .container {
+    @include container;
+
+    .title {
+      @include sectionTitle;
+    }
+  }
+}

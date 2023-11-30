@@ -1,0 +1,12 @@
+.textBlock {
+  grid-area: description;
+
+  .paragraphs {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &.tasktimer {
+  }
+}
