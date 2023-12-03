@@ -21,13 +21,14 @@
     position: fixed;
     transition: background-color $menu-sm-first-timeout;
     width: 100%;
+    // transition: visibility 0s $time-menu-indicator;
 
-    &--animated {
+    &.animated {
       transition: background-color $menu-sm-first-timeout,
-        height $menu-sm-second-timeout;
+        height $menu-sm-first-timeout, top $menu-sm-first-timeout;
     }
 
-    &.upper {
+    &.top {
       left: 0;
       top: 0;
     }
@@ -41,31 +42,31 @@
       display: none;
     }
 
-    &--about {
+    &.about {
       background-color: $color-about-diff;
     }
-    &--resume {
+    &.resume {
       background-color: $color-resume-diff;
     }
-    &--tasktimer {
+    &.tasktimer {
       background-color: $color-tasktimer-diff;
     }
-    &--portfolio {
+    &.portfolio {
       background-color: $color-portfolio-diff;
     }
-    &--hydrapp {
+    &.hydrapp {
       background-color: $color-hydrapp-diff;
     }
-    &--archviz {
+    &.archviz {
       background-color: $color-archviz-diff;
     }
-    &--quotes {
+    &.quotes {
       background-color: $color-quotes-diff;
     }
-    &--other {
+    &.other {
       background-color: $color-other-diff;
     }
-    &--contact {
+    &.contact {
       background-color: $color-contact-diff;
     }
   }

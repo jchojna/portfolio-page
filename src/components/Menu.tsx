@@ -16,9 +16,15 @@ type MenuProps = {
   isMenuMode: boolean;
   setMenuMode: (isMenuMode: boolean) => void;
   sectionsRef: React.RefObject<HTMLDivElement>;
+  setBackgroundSplit: (backgroundSplit: number) => void;
 };
 
-const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
+const Menu = ({
+  isMenuMode,
+  setMenuMode,
+  sectionsRef,
+  setBackgroundSplit,
+}: MenuProps) => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(0);
   const [indicatorTopOffset, setIndicatorTopOffset] = useState<number>(0);
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
@@ -93,6 +99,7 @@ const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
                 offsetedSectionIndex={offsetedSectionIndex}
                 relativeTopOffset={relativeTopOffset}
                 setIndicatorTopOffset={setIndicatorTopOffset}
+                setBackgroundSplit={setBackgroundSplit}
               />
             </li>
           );

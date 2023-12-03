@@ -10,10 +10,12 @@
   background-color: $intro-background-color;
   overflow: hidden;
   position: relative;
+  transition: visibility 0s 0.5s;
   visibility: hidden;
   width: 100%;
 
   &.visible {
+    transition: visibility 0s;
     visibility: visible;
   }
 

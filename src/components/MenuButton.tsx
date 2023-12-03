@@ -18,6 +18,7 @@ type MenuButtonProps = {
   offsetedSectionIndex: number;
   relativeTopOffset: number;
   setIndicatorTopOffset: (offset: number) => void;
+  setBackgroundSplit: (backgroundSplit: number) => void;
 };
 
 const MenuButton = ({
@@ -32,6 +33,7 @@ const MenuButton = ({
   offsetedSectionIndex,
   relativeTopOffset,
   setIndicatorTopOffset,
+  setBackgroundSplit,
 }: MenuButtonProps) => {
   const [backgroundSection, setBackgroundSection] = useState<string>('about');
 
@@ -63,6 +65,12 @@ const MenuButton = ({
   useEffect(() => {
     if (!buttonRef.current) return;
     isActive && setIndicatorTopOffset(buttonRef.current.offsetTop);
+    if (index === currentSectionIndex) {
+      setBackgroundSplit(
+        buttonRef.current.getBoundingClientRect().top +
+          buttonRef.current.clientHeight
+      );
+    }
   }, [currentSectionIndex]);
 
   const handleClick = (index: number) => {
