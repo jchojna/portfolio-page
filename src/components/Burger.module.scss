@@ -17,34 +17,35 @@
   z-index: 99999999;
 
   &.visible {
+    transition: visibility 0s 0.7s;
     visibility: visible;
   }
 
-  &--about {
+  &.about {
     fill: $color-about;
   }
-  &--resume {
+  &.resume {
     fill: $color-resume;
   }
-  &--tasktimer {
+  &.tasktimer {
     fill: $color-tasktimer;
   }
-  &--portfolio {
+  &.portfolio {
     fill: $color-portfolio;
   }
-  &--hydrapp {
+  &.hydrapp {
     fill: $color-hydrapp;
   }
-  &--archviz {
+  &.archviz {
     fill: $color-archviz;
   }
-  &--quotes {
+  &.quotes {
     fill: $color-quotes;
   }
-  &--other {
+  &.other {
     fill: $color-other;
   }
-  &--contact {
+  &.contact {
     fill: $color-contact;
   }
 

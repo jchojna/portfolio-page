@@ -21,11 +21,15 @@
     position: fixed;
     transition: background-color $menu-sm-first-timeout;
     width: 100%;
-    // transition: visibility 0s $time-menu-indicator;
 
     &.animated {
-      transition: background-color $menu-sm-first-timeout,
+      transition: background-color $menu-sm-first-timeout 0.5s,
         height $menu-sm-first-timeout, top $menu-sm-first-timeout;
+
+      &.menuMode {
+        transition: background-color $menu-sm-first-timeout,
+          height $menu-sm-first-timeout, top $menu-sm-first-timeout;
+      }
     }
 
     &.top {

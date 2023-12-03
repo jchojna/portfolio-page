@@ -6,11 +6,13 @@ import classes from './MenuBackground.module.scss';
 type MenuBackgroundProps = {
   isMenuMode: boolean;
   backgroundSplit: number;
+  activeView: string;
 };
 
 const MenuBackground = ({
   isMenuMode,
   backgroundSplit,
+  activeView,
 }: MenuBackgroundProps) => {
   const [isAnimated, setAnimated] = useState<boolean>(false);
   const backgroundTop = useRef<HTMLDivElement | null>(null);
@@ -30,11 +32,9 @@ const MenuBackground = ({
 
       setTimeout(() => {
         setAnimated(true);
-      }, 0);
-      setTimeout(() => {
         backgroundTop.current!.style.height = `${backgroundSplit + 1}px`;
         backgroundBottom.current!.style.top = `${backgroundSplit - 1}px`;
-      }, 500);
+      }, 0);
     } else {
       // opening
       setAnimated(false);
@@ -58,7 +58,9 @@ const MenuBackground = ({
         className={clsx(
           classes.background,
           classes.top,
-          isAnimated && classes.animated
+          isAnimated && classes.animated,
+          !isMenuMode && classes[activeView],
+          isMenuMode && classes.menuMode
         )}
       ></div>
       <div

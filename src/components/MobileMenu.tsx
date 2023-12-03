@@ -1,12 +1,12 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import menuItems from '../content/menu.json';
 import MobileMenuButton from './MobileMenuButton';
-
 import MenuBackground from './MenuBackground';
 
 import classes from './MobileMenu.module.scss';
+import Burger from './Burger';
 
 type MobileMenuProps = {
   isMenuMode: boolean;
@@ -15,35 +15,50 @@ type MobileMenuProps = {
 };
 
 const MobileMenu = ({ isMenuMode, setMenuMode }: MobileMenuProps) => {
-  const [hoveredItem, setHoveredItem] = useState<number | null>(0);
   const [indicatorTopOffset, setIndicatorTopOffset] = useState<number>(0);
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
   const [backgroundSplit, setBackgroundSplit] = useState<number>(0);
+  const indicatorRef = useRef<HTMLDivElement | null>(null);
+  const menuClass = clsx(classes.menu, isMenuMode && classes.intro);
+  const activeView = menuItems.map(({ label }) => label)[currentSectionIndex];
 
-  const menuClass = clsx({
-    [classes.menu]: true,
-    [classes.intro]: isMenuMode,
-  });
+  useEffect(() => {
+    if (!indicatorRef.current) return;
+    if (!isMenuMode) {
+      const indicatorRefElement = indicatorRef.current;
+      indicatorRefElement.style.top = `${indicatorTopOffset}px`;
+      setTimeout(() => {
+        indicatorRefElement.style.top = '0px';
+      }, 500);
+    } else {
+      indicatorRef.current.style.top = `${
+        backgroundSplit - indicatorRef.current?.clientHeight
+      }px`;
+    }
+  }, [indicatorTopOffset, isMenuMode]);
 
   return (
     <>
       <MenuBackground
         isMenuMode={isMenuMode}
         backgroundSplit={backgroundSplit}
+        activeView={activeView}
       />
+      <div
+        ref={indicatorRef}
+        className={clsx(
+          classes.indicator,
+          classes[activeView],
+          isMenuMode && classes.visible
+        )}
+      ></div>
       <nav className={menuClass}>
-        <div
-          className={classes.indicator}
-          style={{ top: `${indicatorTopOffset}px` }}
-        ></div>
         <ul className={classes.menuList}>
           {menuItems.map(({ label, width }, index) => {
             return (
               <li
                 key={index}
                 className={classes.menuItem}
-                onMouseEnter={() => setHoveredItem(index)}
-                onMouseLeave={() => !isMenuMode && setHoveredItem(null)}
                 onClick={() => setMenuMode(false)}
               >
                 <MobileMenuButton
@@ -51,11 +66,11 @@ const MobileMenu = ({ isMenuMode, setMenuMode }: MobileMenuProps) => {
                   label={label}
                   width={width}
                   isMenuMode={isMenuMode}
-                  isHovered={hoveredItem === index}
                   isActive={currentSectionIndex === index}
                   currentSectionIndex={currentSectionIndex}
                   setCurrentSectionIndex={setCurrentSectionIndex}
                   setIndicatorTopOffset={setIndicatorTopOffset}
+                  backgroundSplit={backgroundSplit}
                   setBackgroundSplit={setBackgroundSplit}
                 />
               </li>
@@ -63,6 +78,11 @@ const MobileMenu = ({ isMenuMode, setMenuMode }: MobileMenuProps) => {
           })}
         </ul>
       </nav>
+      <Burger
+        activeView={activeView}
+        isMenuMode={isMenuMode}
+        setMenuMode={setMenuMode}
+      />
     </>
   );
 };

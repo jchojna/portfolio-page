@@ -10,164 +10,32 @@
   height: $menu-item-height;
   justify-content: flex-end;
   padding-left: 55px;
-  transition: fill $menu-sm-first-timeout, width $menu-sm-first-timeout;
+  transition: fill $menu-sm-first-timeout, width $menu-sm-first-timeout,
+    transform $menu-sm-first-timeout;
 
-  &.active {
-    fill: #fff;
+  &.about.active {
+    fill: $color-about;
   }
-
-  &.intro:not(.active) {
-    &.about.hovered {
-      fill: $color-about;
-    }
-    &.resume.hovered {
-      fill: $color-resume;
-    }
-    &.tasktimer.hovered {
-      fill: $color-tasktimer;
-    }
-    &.portfolio.hovered {
-      fill: $color-portfolio;
-    }
-    &.hydrapp.hovered {
-      fill: $color-hydrapp;
-    }
-    &.archviz.hovered {
-      fill: $color-archviz;
-    }
-    &.quotes.hovered {
-      fill: $color-quotes;
-    }
-    &.other.hovered {
-      fill: $color-other;
-    }
-    &.contact.hovered {
-      fill: $color-contact;
-    }
+  &.resume.active {
+    fill: $color-resume;
   }
-
-  &.about:not(.active) {
-    fill: $color-about-diff;
-    &:active {
-      fill: $color-about-diff-dark;
-    }
+  &.tasktimer.active {
+    fill: $color-tasktimer;
   }
-  &.resume:not(.active) {
-    fill: $color-resume-diff;
-    &:active {
-      fill: $color-resume-diff-dark;
-    }
+  &.hydrapp.active {
+    fill: $color-hydrapp;
   }
-  &.tasktimer:not(.active) {
-    fill: $color-tasktimer-diff;
-    &:active {
-      fill: $color-tasktimer-diff-dark;
-    }
+  &.portfolio.active {
+    fill: $color-portfolio;
   }
-  &.portfolio:not(.active) {
-    fill: $color-portfolio-diff;
-    &:active {
-      fill: $color-portfolio-diff-dark;
-    }
+  &.archviz.active {
+    fill: $color-archviz;
   }
-  &.hydrapp:not(.active) {
-    fill: $color-hydrapp-diff;
-    &:active {
-      fill: $color-hydrapp-diff-dark;
-    }
+  &.quotes.active {
+    fill: $color-quotes;
   }
-  &.archviz:not(.active) {
-    fill: $color-archviz-diff;
-    &:active {
-      fill: $color-archviz-diff-dark;
-    }
-  }
-  &.quotes:not(.active) {
-    fill: $color-quotes-diff;
-    &:active {
-      fill: $color-quotes-diff-dark;
-    }
-  }
-  &.other:not(.active) {
-    fill: $color-other-diff;
-    &:active {
-      fill: $color-other-diff-dark;
-    }
-  }
-  &.contact:not(.active) {
-    fill: $color-contact-diff;
-    &:active {
-      fill: $color-contact-diff-dark;
-    }
-  }
-  &.active:not(.active) {
-    fill: #fff;
-    &:active {
-      fill: #fff;
-    }
-  }
-
-  @media only screen and (min-width: $media-md) {
-    &.about:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-about-diff-dark;
-      }
-    }
-    &.resume:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-resume-diff-dark;
-      }
-    }
-    &.tasktimer:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-tasktimer-diff-dark;
-      }
-    }
-    &.portfolio:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-portfolio-diff-dark;
-      }
-    }
-    &.hydrapp:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-hydrapp-diff-dark;
-      }
-    }
-    &.archviz:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-archviz-diff-dark;
-      }
-    }
-    &.quotes:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-quotes-diff-dark;
-      }
-    }
-    &.other:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-other-diff-dark;
-      }
-    }
-    &.contact:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-contact-diff-dark;
-      }
-    }
-  }
-
-  @media only screen and (min-width: $media-lg) {
-    height: $menu-item-height-lg;
-    padding: 0;
-    width: 100%;
+  &.contact.active {
+    fill: $color-contact;
   }
 }
 
@@ -197,12 +65,6 @@
       opacity: $svg-opacity;
       transition: opacity 0.3s, visibility 0s;
       visibility: visible;
-    }
-  }
-
-  @media only screen and (min-width: $media-lg) {
-    .menuSvgText {
-      height: $menu-item-height-lg;
     }
   }
 }

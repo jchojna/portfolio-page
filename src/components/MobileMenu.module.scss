@@ -4,8 +4,12 @@
 
 .menu {
   width: 100%;
-  pointer-events: all;
+  pointer-events: none;
   position: relative;
+
+  &.intro {
+    pointer-events: all;
+  }
 
   .menuList {
     display: grid;
@@ -20,7 +24,6 @@
     align-items: flex-start;
     display: flex;
     height: $menu-item-height;
-    overflow: hidden;
     padding-right: 10px;
     // pointer-events: none;
     width: 100%;
@@ -42,27 +45,47 @@
     &--visible {
       visibility: inherit;
     }
+  }
+}
 
-    @media only screen and (min-width: $media-lg) {
-      height: $menu-item-height-lg;
-      justify-content: flex-end;
-      padding: 0;
-      width: 100%;
-    }
+.indicator {
+  background-color: #fff;
+  height: $menu-item-height;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: top $time-menu-indicator, visibility 0s 0.5s;
+  visibility: hidden;
+  width: $menu-item-height;
+  z-index: 9999;
+
+  &.visible {
+    transition: top $time-menu-indicator, visibility 0s;
+    visibility: visible;
   }
 
-  .indicator {
-    background-color: #fff;
-    height: $menu-item-height;
-    left: 0;
-    position: absolute;
-    top: 0;
-    transition: top $time-menu-indicator;
-    width: 20px;
-    z-index: 9999;
-
-    @media only screen and (min-width: $media-lg) {
-      height: $menu-item-height-lg;
-    }
+  &.about {
+    background-color: $color-about;
+  }
+  &.resume {
+    background-color: $color-resume;
+  }
+  &.tasktimer {
+    background-color: $color-tasktimer;
+  }
+  &.hydrapp {
+    background-color: $color-hydrapp;
+  }
+  &.portfolio {
+    background-color: $color-portfolio;
+  }
+  &.archviz {
+    background-color: $color-archviz;
+  }
+  &.quotes {
+    background-color: $color-quotes;
+  }
+  &.contact {
+    background-color: $color-contact;
   }
 }

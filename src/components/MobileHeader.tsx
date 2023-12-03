@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 
 import MobileMenu from './MobileMenu';
-import Burger from './Burger';
 
 import classes from './MobileHeader.module.scss';
 
@@ -29,7 +28,6 @@ const MobileHeader = ({
         setMenuMode={setMenuMode}
         sectionsRef={sectionsRef}
       />
-      <Burger isMenuMode={isMenuMode} setMenuMode={setMenuMode} />
     </div>
   );
 };

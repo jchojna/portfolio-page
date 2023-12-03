@@ -1,16 +1,15 @@
 import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import menuSvg from '../assets/svg/menu.svg';
 
-import classes from './MenuButton.module.scss';
+import classes from './MobileMenuButton.module.scss';
 
-type MenuButtonProps = {
+type MobileMenuButtonProps = {
   index: number;
   label: string;
   width: number;
   isMenuMode: boolean;
-  isHovered: boolean;
   isActive?: boolean;
   currentSectionIndex: number;
   setCurrentSectionIndex: (currentSectionIndex: number) => void;
@@ -18,24 +17,39 @@ type MenuButtonProps = {
   setBackgroundSplit: (backgroundSplit: number) => void;
 };
 
-const MenuButton = ({
+const getMenuButtonTranslation = (
+  buttonIndex: number,
+  activeButtonIndex: number,
+  buttonElement: HTMLAnchorElement
+) => {
+  const GAP = 10;
+  const buttonHeight = buttonElement.clientHeight + GAP;
+  const buttonTopOffset = buttonElement.getBoundingClientRect().top;
+  const upwardTranslation =
+    -buttonTopOffset - (activeButtonIndex - buttonIndex) * buttonHeight;
+
+  return buttonIndex <= activeButtonIndex
+    ? upwardTranslation
+    : window.innerHeight + upwardTranslation - buttonHeight;
+};
+
+const MobileMenuButton = ({
   index,
   label,
   width,
   isMenuMode,
-  isHovered,
   isActive,
   currentSectionIndex,
   setCurrentSectionIndex,
   setIndicatorTopOffset,
   setBackgroundSplit,
-}: MenuButtonProps) => {
+}: MobileMenuButtonProps) => {
   const viewBox = `0 0 ${width} 100`;
   const buttonClass = clsx({
     [classes.menuButton]: true,
     [classes.intro]: isMenuMode,
-    [classes.hovered]: isHovered,
     [classes.active]: isActive,
+    [classes[label]]: true,
   });
   const shadowClass = clsx({
     [classes.menuSvgShadow]: true,
@@ -45,14 +59,33 @@ const MenuButton = ({
 
   useEffect(() => {
     if (!buttonRef.current) return;
-    const backgroundSplitOffset =
-      buttonRef.current.getBoundingClientRect().top +
-      buttonRef.current.clientHeight;
-    isActive && setIndicatorTopOffset(buttonRef.current.offsetTop);
-    if (index === currentSectionIndex) {
-      setBackgroundSplit(backgroundSplitOffset);
+    isActive &&
+      setIndicatorTopOffset(buttonRef.current.getBoundingClientRect().top);
+  }, []);
+
+  useEffect(() => {
+    if (!buttonRef.current) return;
+    if (!isMenuMode) {
+      isActive &&
+        setIndicatorTopOffset(buttonRef.current.getBoundingClientRect().top);
+      if (index === currentSectionIndex) {
+        const offset =
+          buttonRef.current.getBoundingClientRect().top +
+          buttonRef.current.clientHeight;
+        setBackgroundSplit(offset);
+      }
+      const buttonRefNode = buttonRef.current;
+      setTimeout(() => {
+        buttonRefNode.style.transform = `translateY(${getMenuButtonTranslation(
+          index,
+          currentSectionIndex,
+          buttonRefNode
+        )}px)`;
+      }, 500);
+    } else {
+      buttonRef.current.style.transform = 'translateY(0)';
     }
-  }, [currentSectionIndex]);
+  }, [currentSectionIndex, isMenuMode]);
 
   const handleClick = (index: number) => {
     setCurrentSectionIndex(index);
@@ -77,4 +110,4 @@ const MenuButton = ({
   );
 };
 
-export default MenuButton;
+export default MobileMenuButton;
