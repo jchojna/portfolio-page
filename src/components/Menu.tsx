@@ -19,14 +19,8 @@ type MenuProps = {
   setBackgroundSplit: (backgroundSplit: number) => void;
 };
 
-const Menu = ({
-  isMenuMode,
-  setMenuMode,
-  sectionsRef,
-  setBackgroundSplit,
-}: MenuProps) => {
+const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(0);
-  const [indicatorTopOffset, setIndicatorTopOffset] = useState<number>(0);
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
   const [offsetedSectionIndex, setOffsetedSectionIndex] = useState<number>(-1);
   const [relativeTopOffset, setRelativeTopOffset] = useState<number>(0);
@@ -73,10 +67,6 @@ const Menu = ({
 
   return (
     <nav className={menuClass}>
-      <div
-        className={classes.indicator}
-        style={{ top: `${indicatorTopOffset}px` }}
-      ></div>
       <ul className={classes.menuList}>
         {menuItems.map(({ label, width }, index) => {
           return (
@@ -94,12 +84,9 @@ const Menu = ({
                 isMenuMode={isMenuMode}
                 isHovered={hoveredItem === index}
                 isActive={currentSectionIndex === index}
-                currentSectionIndex={currentSectionIndex}
                 setCurrentSectionIndex={setCurrentSectionIndex}
                 offsetedSectionIndex={offsetedSectionIndex}
                 relativeTopOffset={relativeTopOffset}
-                setIndicatorTopOffset={setIndicatorTopOffset}
-                setBackgroundSplit={setBackgroundSplit}
               />
             </li>
           );

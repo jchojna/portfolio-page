@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import Menu from './Menu';
 import MenuBackground from './MenuBackground';
-import Burger from './Burger';
 
 import classes from './Header.module.scss';
 
@@ -34,7 +33,6 @@ const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
         sectionsRef={sectionsRef}
         setBackgroundSplit={setBackgroundSplit}
       />
-      <Burger isMenuMode={isMenuMode} setMenuMode={setMenuMode} />
     </div>
   );
 };

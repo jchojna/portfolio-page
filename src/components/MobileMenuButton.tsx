@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 
-import menuItems from '../content/menu.json';
 import menuSvg from '../assets/svg/menu.svg';
 
 import classes from './MenuButton.module.scss';
@@ -13,9 +12,10 @@ type MenuButtonProps = {
   isMenuMode: boolean;
   isHovered: boolean;
   isActive?: boolean;
+  currentSectionIndex: number;
   setCurrentSectionIndex: (currentSectionIndex: number) => void;
-  offsetedSectionIndex: number;
-  relativeTopOffset: number;
+  setIndicatorTopOffset: (offset: number) => void;
+  setBackgroundSplit: (backgroundSplit: number) => void;
 };
 
 const MenuButton = ({
@@ -25,16 +25,14 @@ const MenuButton = ({
   isMenuMode,
   isHovered,
   isActive,
+  currentSectionIndex,
   setCurrentSectionIndex,
-  offsetedSectionIndex,
-  relativeTopOffset,
+  setIndicatorTopOffset,
+  setBackgroundSplit,
 }: MenuButtonProps) => {
-  const [backgroundSection, setBackgroundSection] = useState<string>('about');
-
   const viewBox = `0 0 ${width} 100`;
   const buttonClass = clsx({
     [classes.menuButton]: true,
-    [classes[backgroundSection]]: true,
     [classes.intro]: isMenuMode,
     [classes.hovered]: isHovered,
     [classes.active]: isActive,
@@ -47,14 +45,14 @@ const MenuButton = ({
 
   useEffect(() => {
     if (!buttonRef.current) return;
-    const { top } = buttonRef.current.getBoundingClientRect();
-    const offset = relativeTopOffset - top;
-    const index = offset >= 0 ? offsetedSectionIndex : offsetedSectionIndex + 1;
-    const sections = menuItems.map(({ label }) => label);
-    setBackgroundSection((prevState) =>
-      prevState === sections[index] ? prevState : sections[index]
-    );
-  }, [relativeTopOffset]);
+    const backgroundSplitOffset =
+      buttonRef.current.getBoundingClientRect().top +
+      buttonRef.current.clientHeight;
+    isActive && setIndicatorTopOffset(buttonRef.current.offsetTop);
+    if (index === currentSectionIndex) {
+      setBackgroundSplit(backgroundSplitOffset);
+    }
+  }, [currentSectionIndex]);
 
   const handleClick = (index: number) => {
     setCurrentSectionIndex(index);

@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import clsx from 'clsx';
+import { useMediaQuery } from 'react-responsive';
 
 import Header from './components/Header';
 // import Animation from './views/Animation';
@@ -11,12 +12,13 @@ import Contact from './views/Contact';
 import projects from './content/projects.json';
 
 import classes from './App.module.scss';
+import MobileHeader from './components/MobileHeader';
 
 function App() {
   const [isMenuMode, setMenuMode] = useState<boolean>(true);
 
   const sectionsRef = useRef<HTMLDivElement | null>(null);
-
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const sectionsClass = clsx({
     [classes.sections]: true,
     [classes.visible]: !isMenuMode,
@@ -24,11 +26,19 @@ function App() {
 
   return (
     <div className={classes.app}>
-      <Header
-        isMenuMode={isMenuMode}
-        setMenuMode={setMenuMode}
-        sectionsRef={sectionsRef}
-      />
+      {isMobile ? (
+        <MobileHeader
+          isMenuMode={isMenuMode}
+          setMenuMode={setMenuMode}
+          sectionsRef={sectionsRef}
+        />
+      ) : (
+        <Header
+          isMenuMode={isMenuMode}
+          setMenuMode={setMenuMode}
+          sectionsRef={sectionsRef}
+        />
+      )}
       {/* <Animation /> */}
       <div ref={sectionsRef} className={sectionsClass}>
         <About />

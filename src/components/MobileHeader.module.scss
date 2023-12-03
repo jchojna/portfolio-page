@@ -1,0 +1,31 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+@import '../styles/animations.scss';
+
+.pageHeader {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  min-height: 100vh;
+  overflow: auto;
+  opacity: 0;
+  padding: $mobile-menu-offset-top 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  z-index: 4;
+
+  &.visible {
+    opacity: 1;
+    transition: opacity 1s;
+    visibility: visible;
+  }
+
+  &.intro {
+    pointer-events: all;
+  }
+}
