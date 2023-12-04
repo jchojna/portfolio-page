@@ -41,8 +41,8 @@ function App() {
       )} */}
       {/* <Animation /> */}
       <div ref={sectionsRef} className={sectionsClass}>
-        <About />
-        {/* <Resume /> */}
+        {/* <About /> */}
+        <Resume />
         {/* {projects.map(({ name, title, about, features, icons, url }) => (
           <Project
             key={name}

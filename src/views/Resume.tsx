@@ -19,7 +19,7 @@ const Resume = () => {
   return (
     <div id="resume" className={clsx(classes.section, classes.resume)}>
       <div className={clsx(classes.container, classes.resume)}>
-        <h2 className={classes.heading}>{resume.title}</h2>
+        <h2 className={classes.title}>{resume.title}</h2>
 
         {/* <div className="logo logo--resume">
           <svg className="logo__base logo__base--resume" viewBox="0 0 512 512">
@@ -33,16 +33,9 @@ const Resume = () => {
           </svg>
         </div> */}
 
-        <div className="tab tab--resume tab--info">
+        <div className={classes.info}>
           <BlockTitle title={resume.info.heading} view="resume" />
-          <div className="tab__wrapper js-expandable js-minHeight">
-            <p className="tab__description tab__description--resume">
-              {resume.info.description}
-            </p>
-          </div>
-          {/* <button className="tab__readMore tab__readMore--resume tab__readMore--js">
-            Read more
-          </button> */}
+          <p className={classes.description}>{resume.info.description}</p>
         </div>
         <div className={classes.accordions}>
           <AccordionsGroup title={label} content={items} />

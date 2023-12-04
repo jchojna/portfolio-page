@@ -7,7 +7,8 @@
   .container {
     display: flex;
     flex-direction: column;
-    gap: $gridGap;
+    gap: 1rem;
+    padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
 
     .accordions {
       display: flex;
@@ -15,24 +16,24 @@
       gap: 10px;
     }
 
+    .title {
+      @include sectionTitle;
+    }
+
+    .description {
+      color: $color-resume-white;
+      font-size: 1rem;
+      line-height: 1.4;
+      margin: 0;
+      padding: 10px 0 10px $offset-left-s;
+    }
+
     @media only screen and (min-width: $media-m) {
-      & {
-        max-width: $container-size;
-      }
+      max-width: $container-size;
     }
 
     @media only screen and (min-width: $media-l) {
-      & {
-        margin-left: 500px;
-      }
-    }
-  }
-
-  &.resume {
-    .container {
-      .heading {
-        @include sectionTitle;
-      }
+      margin-left: 500px;
     }
   }
 }
