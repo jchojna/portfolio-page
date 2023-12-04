@@ -15,7 +15,7 @@ import classes from './App.module.scss';
 import MobileHeader from './components/MobileHeader';
 
 function App() {
-  const [isMenuMode, setMenuMode] = useState<boolean>(true);
+  const [isMenuMode, setMenuMode] = useState<boolean>(false);
 
   const sectionsRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div className={classes.app}>
-      {isMobile ? (
+      {/* {isMobile ? (
         <MobileHeader
           isMenuMode={isMenuMode}
           setMenuMode={setMenuMode}
@@ -38,12 +38,12 @@ function App() {
           setMenuMode={setMenuMode}
           sectionsRef={sectionsRef}
         />
-      )}
+      )} */}
       {/* <Animation /> */}
       <div ref={sectionsRef} className={sectionsClass}>
         <About />
-        <Resume />
-        {projects.map(({ name, title, about, features, icons, url }) => (
+        {/* <Resume /> */}
+        {/* {projects.map(({ name, title, about, features, icons, url }) => (
           <Project
             key={name}
             name={name}
@@ -53,8 +53,8 @@ function App() {
             icons={icons}
             url={url}
           />
-        ))}
-        <Contact />
+        ))} */}
+        {/* <Contact /> */}
       </div>
     </div>
   );

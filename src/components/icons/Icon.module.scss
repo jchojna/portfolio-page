@@ -1,15 +1,17 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
-$size-icon: 50px;
+$size-icon-s: 40px;
+$size-icon-m: 50px;
 
 @mixin icon($project) {
-  background-color: rgba(
-    $color: map-get($colors, #{$project}-dark),
-    $alpha: $background-opacity
-  );
-  fill: map-get($colors, #{$project}-light);
-
+  .icon {
+    background-color: rgba(
+      $color: map-get($colors, #{$project}-dark),
+      $alpha: $background-opacity
+    );
+    fill: map-get($colors, #{$project}-light);
+  }
   .name {
     color: map-get($colors, #{$project}-light);
   }
@@ -31,15 +33,23 @@ $size-icon: 50px;
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: $size-icon;
-  min-width: $size-icon;
-  width: $size-icon;
+  min-width: $size-icon-s;
+  width: $size-icon-s;
+
+  @media only screen and (min-width: $media-m) {
+    min-width: $size-icon-m;
+    width: $size-icon-m;
+  }
 
   .icon {
-    height: 100%;
+    height: $size-icon-s;
     width: 100%;
     outline: none;
     position: relative;
+
+    @media only screen and (min-width: $media-m) {
+      height: $size-icon-m;
+    }
 
     .svg {
       height: 100%;
@@ -67,7 +77,7 @@ $size-icon: 50px;
     text-transform: uppercase;
     word-break: break-all;
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-l) {
       & {
         font-size: 0.75em;
       }

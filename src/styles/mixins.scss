@@ -30,7 +30,7 @@
   scroll-snap-align: start;
   width: 100%;
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-l) {
     & {
       align-items: center;
       justify-content: center;
@@ -70,20 +70,9 @@
 @mixin container {
   align-items: start;
   display: grid;
-  margin: 0 $offset-right-sm;
+  margin: 0 $offset-right-m;
   min-height: 800px;
   width: 100%;
-
-  &.about {
-    grid-template-areas:
-      'photo'
-      'title    '
-      'description'
-      'profiles   '
-      'working    '
-      'knowing    '
-      'learning   ';
-  }
 
   &.resume {
     grid-template-areas:
@@ -127,7 +116,7 @@
       'footer ';
   }
 
-  @media only screen and (min-width: $media-md) {
+  @media only screen and (min-width: $media-m) {
     & {
       gap: $gridGap;
       max-width: $container-size;
@@ -190,7 +179,7 @@
     }
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-l) {
     & {
       //margin-left: calc((100vw - #{$container-size}) / 2);
       // margin-left: 500px;
@@ -202,9 +191,7 @@
   font-size: 60px;
   grid-area: title;
   line-height: 1.2;
-  margin: 0 $offset-right-xs 0 0;
-  margin-top: -60px;
-  padding: 30px 10px 30px 20px;
+  // padding: 30px 10px 0 20px;
   position: relative;
   width: 100%;
   z-index: 2;
@@ -251,11 +238,11 @@
     color: $color-contact-light;
   }
 
-  @media only screen and (min-width: $media-md) {
+  @media only screen and (min-width: $media-m) {
     & {
       border: none;
       font-size: 72px;
-      margin: $menu-item-height + $offset-right-sm 0;
+      margin: $menu-item-height + $offset-right-m 0;
       margin-bottom: 0;
       max-width: 60%;
       min-width: 380px;
@@ -264,7 +251,7 @@
     }
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-l) {
     & {
       margin: 0;
       margin-bottom: 20px;

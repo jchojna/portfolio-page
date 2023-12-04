@@ -33,15 +33,15 @@
   font-size: 2em;
   grid-area: links;
   grid-template-columns: repeat(2, 1fr);
-  margin: 0.5em $offset-right-xs 0 $offset-left-xs;
+  margin: 0.5em $offset-right-s 0 $offset-left-s;
 
-  @media only screen and (min-width: $media-sm) {
+  @media only screen and (min-width: $media-s) {
     & {
-      margin: 0.5em $offset-right-sm 0 $offset-left-sm;
+      margin: 0.5em $offset-right-m 0 $offset-left-m;
     }
   }
 
-  @media only screen and (min-width: $media-md) {
+  @media only screen and (min-width: $media-m) {
     & {
       margin: 0;
       margin-top: 15px;
@@ -112,6 +112,6 @@
     @include projectLink('other');
 
     font-size: 1.5em;
-    margin: 0.5em $offset-right-xs 0 $offset-left-xs;
+    margin: 0.5em $offset-right-s 0 $offset-left-s;
   }
 }

@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import classes from './Burger.module.scss';
 
 type BurgerProps = {
+  activeView: string;
   isMenuMode: boolean;
   setMenuMode: (isMenuMode: boolean) => void;
 };

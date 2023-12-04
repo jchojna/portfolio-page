@@ -13,7 +13,7 @@
   font-size: $tabHeading-size-xs;
   line-height: 1;
   margin: 0;
-  padding-left: $tabHeading-size-xs;
+  padding: 0 0 1rem $offset-left-s;
   position: relative;
   text-transform: uppercase;
 
@@ -22,8 +22,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: $separator-width;
-    height: 110px;
+    width: 8px;
+    height: 60px;
   }
 
   &.about {
@@ -60,9 +60,8 @@
     }
   }
 
-  @media only screen and (min-width: $media-md) {
+  @media only screen and (min-width: $media-m) {
     font-size: $tabHeading-size-lg;
-    margin-bottom: 20px;
     padding: 0;
 
     &::before {

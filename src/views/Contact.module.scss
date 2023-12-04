@@ -7,13 +7,13 @@
   .container {
     @include container;
 
-    @media only screen and (min-width: $media-md) {
+    @media only screen and (min-width: $media-m) {
       & {
         max-width: $container-size;
       }
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-l) {
       & {
         margin-left: 500px;
       }

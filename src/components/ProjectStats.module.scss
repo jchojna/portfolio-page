@@ -6,7 +6,7 @@
   border-bottom: 3px solid transparent;
   display: flex;
   grid-area: stats;
-  margin: 20px $offset-right-xs 0 $offset-left-xs;
+  margin: 20px $offset-right-s 0 $offset-left-s;
   padding-bottom: 10px;
 
   &.tasktimer {
@@ -52,11 +52,11 @@
     }
   }
 
-  @media only screen and (min-width: $media-sm) {
-    margin: 20px $offset-right-sm 0 $offset-left-sm;
+  @media only screen and (min-width: $media-s) {
+    margin: 20px $offset-right-m 0 $offset-left-m;
   }
 
-  @media only screen and (min-width: $media-md) {
+  @media only screen and (min-width: $media-m) {
     margin: 0;
     margin-top: 10px;
   }

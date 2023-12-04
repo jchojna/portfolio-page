@@ -7,7 +7,7 @@
   pointer-events: all;
   position: relative;
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-l) {
     & {
       align-items: center;
       display: flex;
@@ -58,7 +58,7 @@
       visibility: inherit;
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-l) {
       height: $menu-item-height-lg;
       justify-content: flex-end;
       padding: 0;
@@ -76,7 +76,7 @@
     width: 20px;
     z-index: 9999;
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-l) {
       height: $menu-item-height-lg;
     }
   }

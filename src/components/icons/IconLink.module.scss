@@ -36,7 +36,7 @@
       @include shadow;
     }
 
-    @media only screen and (min-width: $media-md) {
+    @media only screen and (min-width: $media-m) {
       &:focus::before,
       &:hover::before {
         @include shadow;
@@ -50,7 +50,7 @@
     text-transform: uppercase;
     word-break: break-all;
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-l) {
       & {
         font-size: 0.75em;
       }
@@ -123,7 +123,7 @@
     }
   }
 
-  @media only screen and (min-width: $media-md) {
+  @media only screen and (min-width: $media-m) {
     &.about {
       .link {
         &::before {
