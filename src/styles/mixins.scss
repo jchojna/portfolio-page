@@ -70,8 +70,9 @@
 @mixin container {
   align-items: start;
   display: grid;
-  margin: 0 $offset-right-m;
+  gap: 2rem;
   min-height: 800px;
+  padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
   width: 100%;
 
   &.resume {

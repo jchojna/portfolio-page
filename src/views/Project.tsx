@@ -31,11 +31,8 @@ const Project = ({
           title="Features"
           content={features}
         />
-
         <IconsList view={name} icons={icons} />
-
         <ProjectLinks projectName={name} url={url} />
-
         <ProjectStats projectName={name} />
       </div>
     </div>

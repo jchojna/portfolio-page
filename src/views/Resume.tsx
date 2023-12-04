@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import resume from '../content/resume.json';
 
@@ -16,6 +17,7 @@ const Resume = () => {
   const { label, items } = experience;
 
   const [expanded, setExpanded] = useState<string | null>(null);
+  const isMobile = useMediaQuery({ query: '(max-width: 1200px)' });
 
   return (
     <div id="resume" className={clsx(classes.section, classes.resume)}>
@@ -28,11 +30,15 @@ const Resume = () => {
           <p className={classes.description}>{resume.info.description}</p>
         </div>
         <div className={classes.accordions}>
-          <AccordionsGroup title={label} content={items} />
+          <AccordionsGroup
+            title={label}
+            content={items}
+            isTitleLarge={!isMobile}
+          />
           <Accordion
             label={education.label}
             view="resume"
-            isSmall={false}
+            isSmall={isMobile}
             isExpanded={expanded === education.label}
             setExpanded={setExpanded}
           >
@@ -43,7 +49,7 @@ const Resume = () => {
           <Accordion
             label={languages.label}
             view="resume"
-            isSmall={false}
+            isSmall={isMobile}
             isExpanded={expanded === languages.label}
             setExpanded={setExpanded}
           >

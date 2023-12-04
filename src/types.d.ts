@@ -20,6 +20,7 @@ type AccordionItemProps = {
 type AccordionsGroupProps = {
   title: string;
   content: AccordionItemProps[];
+  isTitleLarge: boolean;
 };
 
 type ProjectProps = {
