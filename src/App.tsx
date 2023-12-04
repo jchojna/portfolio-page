@@ -41,9 +41,9 @@ function App() {
       )} */}
       {/* <Animation /> */}
       <div ref={sectionsRef} className={sectionsClass}>
-        {/* <About /> */}
+        <About />
         <Resume />
-        {/* {projects.map(({ name, title, about, features, icons, url }) => (
+        {projects.map(({ name, title, about, features, icons, url }) => (
           <Project
             key={name}
             name={name}
@@ -53,8 +53,8 @@ function App() {
             icons={icons}
             url={url}
           />
-        ))} */}
-        {/* <Contact /> */}
+        ))}
+        <Contact />
       </div>
     </div>
   );

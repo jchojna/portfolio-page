@@ -7,6 +7,7 @@ import Accordion from '../components/Accordion';
 import AccordionsGroup from '../components/AccordionsGroup';
 import ResumeDetails from '../components/resume/ResumeDetails';
 import BlockTitle from '../components/BlockTitle';
+import Graphic from '../components/Graphic';
 
 import classes from './Resume.module.scss';
 
@@ -19,19 +20,8 @@ const Resume = () => {
   return (
     <div id="resume" className={clsx(classes.section, classes.resume)}>
       <div className={clsx(classes.container, classes.resume)}>
+        <Graphic view="resume" />
         <h2 className={classes.title}>{resume.title}</h2>
-
-        {/* <div className="logo logo--resume">
-          <svg className="logo__base logo__base--resume" viewBox="0 0 512 512">
-            <use href="assets/svg/logos.svg#resume-base"></use>
-          </svg>
-          <svg
-            className="logo__shadow logo__shadow--resume"
-            viewBox="0 0 512 512"
-          >
-            <use href="assets/svg/logos.svg#resume-shadow"></use>
-          </svg>
-        </div> */}
 
         <div className={classes.info}>
           <BlockTitle title={resume.info.heading} view="resume" />

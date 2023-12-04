@@ -1,0 +1,107 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+@mixin graphic($view) {
+  .base {
+    fill: map-get($colors, #{$view}-dark);
+  }
+  .shadow {
+    fill: map-get($colors, #{$view}-shadow);
+  }
+}
+
+.graphic {
+  align-items: center;
+  display: flex;
+  grid-area: logo;
+  justify-content: center;
+  justify-self: end;
+  margin-top: $menu-item-height;
+  max-width: calc(100% - #{$offset-left-s});
+  position: relative;
+  transform-origin: bottom left;
+  width: 100%;
+
+  &.tasktimer {
+    margin-right: -50px;
+  }
+
+  &.portfolio,
+  &.quotes,
+  &.other,
+  &.contact {
+    margin-right: -25px;
+  }
+
+  &.about {
+    @include graphic(about);
+  }
+  &.resume {
+    @include graphic(resume);
+  }
+  &.tasktimer {
+    @include graphic(tasktimer); // tasktimerBase, tasktimerLetter
+  }
+  &.portfolio {
+    @include graphic(portfolio);
+  }
+  &.hydrapp {
+    @include graphic(hydrapp);
+  }
+  &.archviz {
+    @include graphic(archviz);
+  }
+  &.quotes {
+    @include graphic(quotes);
+  }
+  &.other {
+    @include graphic(other);
+  }
+  &.contact {
+    @include graphic(contact);
+  }
+
+  .base {
+    width: 100%;
+  }
+
+  .shadow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  &.letter {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+
+    &.tasktimer {
+      fill: $color-tasktimer-letter;
+    }
+  }
+
+  @media only screen and (min-width: $media-s) {
+    & {
+      margin-left: $offset-left-s;
+    }
+  }
+
+  @media only screen and (min-width: $media-m) {
+    & {
+      position: absolute;
+      margin: 0;
+      max-width: 400px;
+      right: 0;
+      top: 50px;
+    }
+  }
+
+  @media only screen and (min-width: $media-l) {
+    & {
+      max-width: 500px;
+    }
+  }
+}
