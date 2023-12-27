@@ -8,36 +8,36 @@ type GraphicProps = {
   view: string;
 };
 
+const svgObj = (
+  view: string,
+  className: string,
+  height: number = 512,
+  width: number = 512
+) => {
+  return (
+    <svg className={classes[className]} viewBox={`0 0 ${width} ${height}`}>
+      <use href={`${graphics}#${view}-${className}`}></use>
+    </svg>
+  );
+};
+
 const Graphic = ({ view }: GraphicProps) => {
   return (
     <div className={clsx(classes.graphic, classes[view])}>
-      <svg className={classes.base} viewBox="0 0 512 512">
-        <use href={`${graphics}#${view}-base`}></use>
-      </svg>
-      <svg className={classes.shadow} viewBox="0 0 512 512">
-        <use href={`${graphics}#${view}-shadow`}></use>
-      </svg>
+      {view === 'tasktimer' ? (
+        <>
+          {svgObj(view, 'base', 612)}
+          {svgObj(view, 'shadow', 612)}
+          {svgObj(view, 'letter', 612)}
+          {svgObj(view, 'letterShadow', 612)}
+        </>
+      ) : (
+        <>
+          {svgObj(view, 'base')}
+          {svgObj(view, 'shadow')}
+        </>
+      )}
     </div>
-    // <div className={clsx(classes.graphic, classes[view])}>
-    //   <svg className={classes.base} viewBox="0 0 512 612">
-    //     <use href={`${graphics}#${view}-base`}></use>
-    //   </svg>
-    //   <svg className={classes.letter} viewBox="0 0 512 612">
-    //     <use href={`${graphics}#${view}-letter`}></use>
-    //   </svg>
-    //   <svg
-    //     className={clsx(classes.shadow, classes.tasktimerBase)}
-    //     viewBox="0 0 512 612"
-    //   >
-    //     <use href={`${graphics}#${view}-shadow-base`}></use>
-    //   </svg>
-    //   <svg
-    //     className={clsx(classes.shadow, classes.tasktimerLetter)}
-    //     viewBox="0 0 512 612"
-    //   >
-    //     <use href={`${graphics}#${view}-shadow-letter`}></use>
-    //   </svg>
-    // </div>
   );
 };
 
