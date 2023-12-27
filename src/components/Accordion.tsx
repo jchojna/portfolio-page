@@ -23,14 +23,6 @@ const Accordion = ({
   );
 
   useEffect(() => {
-    // collapse all accordions on start
-    if (accordionLabelRef.current !== null && accordionRef.current !== null) {
-      const labelHeight = accordionLabelRef.current.clientHeight;
-      accordionRef.current.style.height = `${labelHeight}px`;
-    }
-  }, []);
-
-  useEffect(() => {
     if (
       accordionLabelRef.current === null ||
       accordionItemsRef.current === null ||
