@@ -8,29 +8,64 @@ import MenuBackground from './MenuBackground';
 import classes from './MobileMenu.module.scss';
 import Burger from './Burger';
 
+import { getCurrentSectionIndex } from '../utils/utils';
+
 type MobileMenuProps = {
   isMenuMode: boolean;
   setMenuMode: (isMenuMode: boolean) => void;
   sectionsRef: React.RefObject<HTMLDivElement>;
 };
 
-const MobileMenu = ({ isMenuMode, setMenuMode }: MobileMenuProps) => {
+const MobileMenu = ({
+  isMenuMode,
+  setMenuMode,
+  sectionsRef,
+}: MobileMenuProps) => {
   const [indicatorTopOffset, setIndicatorTopOffset] = useState<number>(0);
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
+  const [isMenuButtonClicked, setIsMenuButtonClicked] = useState<boolean>(true);
   const [backgroundSplit, setBackgroundSplit] = useState<number>(0);
   const indicatorRef = useRef<HTMLDivElement | null>(null);
   const menuClass = clsx(classes.menu, isMenuMode && classes.intro);
   const activeView = menuItems.map(({ label }) => label)[currentSectionIndex];
 
+  const handleScroll = () => {
+    if (!sectionsRef.current) return;
+    const sectionsNodes = sectionsRef.current
+      .children as HTMLCollectionOf<HTMLElement>;
+    const sectionsScrolls = [...sectionsNodes].map((node) => node.offsetTop);
+    const currentIndex = getCurrentSectionIndex(
+      Math.ceil(sectionsRef.current.scrollTop),
+      sectionsScrolls,
+      true
+    );
+    setCurrentSectionIndex((prevState) => {
+      return prevState === currentIndex ? prevState : currentIndex;
+    });
+    setIsMenuButtonClicked(false);
+  };
+
+  // handle scroll / mousewheel event
+  useEffect(() => {
+    const sectionsRefCopy = sectionsRef.current;
+    if (sectionsRefCopy) {
+      sectionsRefCopy.addEventListener('mousewheel', handleScroll);
+      return () =>
+        sectionsRefCopy.removeEventListener('mousewheel', handleScroll);
+    }
+  }, []);
+
   useEffect(() => {
     if (!indicatorRef.current) return;
     if (!isMenuMode) {
+      // update indicator position on mobile menu item click and scroll
       const indicatorRefElement = indicatorRef.current;
       indicatorRefElement.style.top = `${indicatorTopOffset}px`;
       setTimeout(() => {
         indicatorRefElement.style.top = '0px';
       }, 500);
     } else {
+      // update indicator position on burger button click
       indicatorRef.current.style.top = `${
         backgroundSplit - indicatorRef.current?.clientHeight
       }px`;
@@ -72,6 +107,8 @@ const MobileMenu = ({ isMenuMode, setMenuMode }: MobileMenuProps) => {
                   setIndicatorTopOffset={setIndicatorTopOffset}
                   backgroundSplit={backgroundSplit}
                   setBackgroundSplit={setBackgroundSplit}
+                  isMenuButtonClicked={isMenuButtonClicked}
+                  setIsMenuButtonClicked={setIsMenuButtonClicked}
                 />
               </li>
             );

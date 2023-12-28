@@ -8,7 +8,8 @@
 
 .sections {
   background-color: $intro-background-color;
-  overflow: hidden;
+  height: 100%;
+  overflow: auto;
   position: relative;
   transition: visibility 0s 0.5s;
   visibility: hidden;
@@ -25,12 +26,10 @@
 
   @media only screen and (min-width: $media-l) {
     & {
-      overflow: auto;
       position: fixed;
       top: 0;
       left: 100vw;
       width: 100%;
-      height: 100%;
       transition: left $menu-lg-second-timeout,
         visibility 0s $menu-lg-second-timeout;
       scroll-snap-type: y mandatory;

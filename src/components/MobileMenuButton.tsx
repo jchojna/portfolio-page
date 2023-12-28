@@ -43,6 +43,8 @@ const MobileMenuButton = ({
   setCurrentSectionIndex,
   setIndicatorTopOffset,
   setBackgroundSplit,
+  isMenuButtonClicked,
+  setIsMenuButtonClicked,
 }: MobileMenuButtonProps) => {
   const viewBox = `0 0 ${width} 100`;
   const buttonClass = clsx({
@@ -66,8 +68,11 @@ const MobileMenuButton = ({
   useEffect(() => {
     if (!buttonRef.current) return;
     if (!isMenuMode) {
+      // if (!isMenuButtonClicked) return;
+      // update indicator's position
       isActive &&
         setIndicatorTopOffset(buttonRef.current.getBoundingClientRect().top);
+      // update menu button's position
       if (index === currentSectionIndex) {
         const offset =
           buttonRef.current.getBoundingClientRect().top +
@@ -81,6 +86,9 @@ const MobileMenuButton = ({
           currentSectionIndex,
           buttonRefNode
         )}px)`;
+        console.log(
+          getMenuButtonTranslation(index, currentSectionIndex, buttonRefNode)
+        );
       }, 500);
     } else {
       buttonRef.current.style.transform = 'translateY(0)';
@@ -89,6 +97,7 @@ const MobileMenuButton = ({
 
   const handleClick = (index: number) => {
     setCurrentSectionIndex(index);
+    setIsMenuButtonClicked(true);
   };
 
   return (

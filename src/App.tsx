@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div className={classes.app}>
-      {/* {isMobile ? (
+      {isMobile ? (
         <MobileHeader
           isMenuMode={isMenuMode}
           setMenuMode={setMenuMode}
@@ -38,7 +38,7 @@ function App() {
           setMenuMode={setMenuMode}
           sectionsRef={sectionsRef}
         />
-      )} */}
+      )}
       {/* <Animation /> */}
       <div ref={sectionsRef} className={sectionsClass}>
         <About />

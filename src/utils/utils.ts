@@ -1,9 +1,11 @@
 export const getCurrentSectionIndex = (
   totalOffset: number,
-  sectionsOffsets: number[]
+  sectionsOffsets: number[],
+  isMobile: boolean = false
 ) => {
+  const desktopMargin = isMobile ? 0 : window.innerHeight / 2;
   const currentSectionIndex = sectionsOffsets.findIndex(
-    (offset) => totalOffset < offset - window.innerHeight / 2
+    (offset) => totalOffset < offset - desktopMargin
   );
   return currentSectionIndex === -1
     ? sectionsOffsets.length - 1
