@@ -17,22 +17,6 @@ type MobileMenuButtonProps = {
   setBackgroundSplit: (backgroundSplit: number) => void;
 };
 
-const getMenuButtonTranslation = (
-  buttonIndex: number,
-  activeButtonIndex: number,
-  buttonElement: HTMLAnchorElement
-) => {
-  const GAP = 10;
-  const buttonHeight = buttonElement.clientHeight + GAP;
-  const buttonTopOffset = buttonElement.getBoundingClientRect().top;
-  const upwardTranslation =
-    -buttonTopOffset - (activeButtonIndex - buttonIndex) * buttonHeight;
-
-  return buttonIndex <= activeButtonIndex
-    ? upwardTranslation
-    : window.innerHeight + upwardTranslation - buttonHeight;
-};
-
 const MobileMenuButton = ({
   index,
   label,
@@ -43,8 +27,6 @@ const MobileMenuButton = ({
   setCurrentSectionIndex,
   setIndicatorTopOffset,
   setBackgroundSplit,
-  isMenuButtonClicked,
-  setIsMenuButtonClicked,
 }: MobileMenuButtonProps) => {
   const viewBox = `0 0 ${width} 100`;
   const buttonClass = clsx({
@@ -66,38 +48,36 @@ const MobileMenuButton = ({
   }, []);
 
   useEffect(() => {
-    if (!buttonRef.current) return;
-    if (!isMenuMode) {
-      // if (!isMenuButtonClicked) return;
-      // update indicator's position
-      isActive &&
-        setIndicatorTopOffset(buttonRef.current.getBoundingClientRect().top);
-      // update menu button's position
-      if (index === currentSectionIndex) {
-        const offset =
-          buttonRef.current.getBoundingClientRect().top +
-          buttonRef.current.clientHeight;
-        setBackgroundSplit(offset);
-      }
-      const buttonRefNode = buttonRef.current;
-      setTimeout(() => {
-        buttonRefNode.style.transform = `translateY(${getMenuButtonTranslation(
-          index,
-          currentSectionIndex,
-          buttonRefNode
-        )}px)`;
-        console.log(
-          getMenuButtonTranslation(index, currentSectionIndex, buttonRefNode)
-        );
-      }, 500);
-    } else {
-      buttonRef.current.style.transform = 'translateY(0)';
-    }
-  }, [currentSectionIndex, isMenuMode]);
+    if (buttonRef.current) moveMenuButtonsToTop(buttonRef);
+  }, []);
 
-  const handleClick = (index: number) => {
+  // reset menu button's position on burger button click
+  useEffect(() => {
+    if (!buttonRef.current) return;
+    if (isMenuMode) {
+      buttonRef.current.style.transform = 'translateY(0)';
+    } else {
+      const buttonRefNode = buttonRef.current;
+      // update menu button's position
+      setTimeout(() => {
+        buttonRefNode.style.transform = `translateY(
+          ${-buttonRefNode.getBoundingClientRect().top}px
+        )`;
+      }, 500);
+    }
+  }, [isMenuMode]);
+
+  const moveMenuButtonsToTop = (btnRef) => {
+    // update indicator's position
+    setIndicatorTopOffset(btnRef.current.getBoundingClientRect().top);
+    const offset =
+      btnRef.current.getBoundingClientRect().top + btnRef.current.clientHeight;
+    setBackgroundSplit(offset);
+  };
+
+  const handleButtonClick = (index: number) => {
     setCurrentSectionIndex(index);
-    setIsMenuButtonClicked(true);
+    // if (buttonRef.current) moveMenuButtonsToTop(buttonRef);
   };
 
   return (
@@ -105,7 +85,7 @@ const MobileMenuButton = ({
       ref={buttonRef}
       href={`#${label}`}
       className={buttonClass}
-      onClick={() => handleClick(index)}
+      onClick={() => handleButtonClick(index)}
     >
       <div className={classes.menuSvg}>
         <svg className={classes.menuSvgText} viewBox={viewBox}>

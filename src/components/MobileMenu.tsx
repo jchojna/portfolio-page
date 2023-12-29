@@ -23,7 +23,6 @@ const MobileMenu = ({
 }: MobileMenuProps) => {
   const [indicatorTopOffset, setIndicatorTopOffset] = useState<number>(0);
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
-  const [isMenuButtonClicked, setIsMenuButtonClicked] = useState<boolean>(true);
   const [backgroundSplit, setBackgroundSplit] = useState<number>(0);
   const indicatorRef = useRef<HTMLDivElement | null>(null);
   const menuClass = clsx(classes.menu, isMenuMode && classes.intro);
@@ -42,7 +41,6 @@ const MobileMenu = ({
     setCurrentSectionIndex((prevState) => {
       return prevState === currentIndex ? prevState : currentIndex;
     });
-    setIsMenuButtonClicked(false);
   };
 
   // handle scroll / mousewheel event
@@ -107,8 +105,6 @@ const MobileMenu = ({
                   setIndicatorTopOffset={setIndicatorTopOffset}
                   backgroundSplit={backgroundSplit}
                   setBackgroundSplit={setBackgroundSplit}
-                  isMenuButtonClicked={isMenuButtonClicked}
-                  setIsMenuButtonClicked={setIsMenuButtonClicked}
                 />
               </li>
             );
