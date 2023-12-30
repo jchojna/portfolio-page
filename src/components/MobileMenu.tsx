@@ -51,7 +51,7 @@ const MobileMenu = ({
       return () =>
         sectionsRefCopy.removeEventListener('mousewheel', handleScroll);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!indicatorRef.current) return;
@@ -68,7 +68,7 @@ const MobileMenu = ({
         backgroundSplit - indicatorRef.current?.clientHeight
       }px`;
     }
-  }, [indicatorTopOffset, isMenuMode]);
+  }, [indicatorTopOffset, isMenuMode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -100,10 +100,8 @@ const MobileMenu = ({
                   width={width}
                   isMenuMode={isMenuMode}
                   isActive={currentSectionIndex === index}
-                  currentSectionIndex={currentSectionIndex}
                   setCurrentSectionIndex={setCurrentSectionIndex}
                   setIndicatorTopOffset={setIndicatorTopOffset}
-                  backgroundSplit={backgroundSplit}
                   setBackgroundSplit={setBackgroundSplit}
                 />
               </li>

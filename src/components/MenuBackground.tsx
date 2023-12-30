@@ -6,7 +6,7 @@ import classes from './MenuBackground.module.scss';
 type MenuBackgroundProps = {
   isMenuMode: boolean;
   backgroundSplit: number;
-  activeView: string;
+  activeView?: string;
 };
 
 const MenuBackground = ({
@@ -62,7 +62,7 @@ const MenuBackground = ({
           classes.background,
           classes.top,
           isAnimated && classes.animated,
-          !isMenuMode && classes[activeView],
+          !isMenuMode && activeView && classes[activeView],
           isMenuMode && classes.menuMode
         )}
       ></div>

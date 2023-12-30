@@ -11,7 +11,6 @@ type MobileMenuButtonProps = {
   width: number;
   isMenuMode: boolean;
   isActive?: boolean;
-  currentSectionIndex: number;
   setCurrentSectionIndex: (currentSectionIndex: number) => void;
   setIndicatorTopOffset: (offset: number) => void;
   setBackgroundSplit: (backgroundSplit: number) => void;
@@ -23,7 +22,6 @@ const MobileMenuButton = ({
   width,
   isMenuMode,
   isActive,
-  currentSectionIndex,
   setCurrentSectionIndex,
   setIndicatorTopOffset,
   setBackgroundSplit,
@@ -54,7 +52,7 @@ const MobileMenuButton = ({
       setIndicatorTopOffset(offset);
       setBackgroundSplit(offset);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // reset menu button's position on burger button click
   useEffect(() => {
@@ -80,7 +78,7 @@ const MobileMenuButton = ({
         )`;
       }, 500);
     }
-  }, [isMenuMode]);
+  }, [isMenuMode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleButtonClick = (index: number) => {
     setCurrentSectionIndex(index);
