@@ -15,7 +15,7 @@ import classes from './App.module.scss';
 import MobileHeader from './components/MobileHeader';
 
 function App() {
-  const [isMenuMode, setMenuMode] = useState<boolean>(false);
+  const [isMenuMode, setMenuMode] = useState<boolean>(true);
 
   const sectionsRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });

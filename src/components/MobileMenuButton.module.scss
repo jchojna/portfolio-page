@@ -9,16 +9,26 @@
   fill: $intro-link-color;
   height: $menu-item-height;
   justify-content: flex-end;
+  opacity: 0;
   padding-left: 55px;
-  transition: fill $menu-sm-first-timeout, width $menu-sm-first-timeout,
-    transform $menu-sm-first-timeout;
+  transition: fill $menu-sm-first-timeout, opacity $menu-sm-first-timeout,
+    transform $menu-sm-first-timeout, visibility 0s $menu-sm-first-timeout,
+    width $menu-sm-first-timeout;
   visibility: hidden;
 
   &.intro {
+    opacity: 1;
+    transition: fill $menu-sm-first-timeout, opacity $menu-sm-first-timeout,
+      transform $menu-sm-first-timeout, visibility 0s,
+      width $menu-sm-first-timeout;
     visibility: visible;
   }
 
   &.active {
+    opacity: 1;
+    transition: fill $menu-sm-first-timeout, opacity $menu-sm-first-timeout,
+      transform $menu-sm-first-timeout, visibility 0s,
+      width $menu-sm-first-timeout;
     visibility: visible;
   }
 

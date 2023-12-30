@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import menuSvg from '../assets/svg/menu.svg';
 
@@ -40,25 +40,40 @@ const MobileMenuButton = ({
     [classes.visible]: !isActive,
   });
   const buttonRef = useRef<HTMLAnchorElement | null>(null);
+  const [yPositionMenuMode, setYPositionMenuMode] = useState<number | null>(
+    null
+  );
 
   useEffect(() => {
     if (!buttonRef.current) return;
-    isActive &&
-      setIndicatorTopOffset(buttonRef.current.getBoundingClientRect().top);
-  }, []);
-
-  useEffect(() => {
-    if (buttonRef.current) moveMenuButtonsToTop(buttonRef);
+    const offset =
+      buttonRef.current.getBoundingClientRect().top +
+      buttonRef.current.clientHeight;
+    setYPositionMenuMode(offset);
+    if (isActive) {
+      setIndicatorTopOffset(offset);
+      setBackgroundSplit(offset);
+    }
   }, []);
 
   // reset menu button's position on burger button click
   useEffect(() => {
     if (!buttonRef.current) return;
+
+    if (yPositionMenuMode !== null && isActive) {
+      // set offset of the background split based on active menu button position
+      setBackgroundSplit(yPositionMenuMode);
+      // update indicator's position
+      setIndicatorTopOffset(yPositionMenuMode - buttonRef.current.clientHeight);
+    }
+
+    // update translation value of the menu buttons
     if (isMenuMode) {
+      // move menu buttons to their initial positions
       buttonRef.current.style.transform = 'translateY(0)';
     } else {
       const buttonRefNode = buttonRef.current;
-      // update menu button's position
+      // move menu buttons to the top
       setTimeout(() => {
         buttonRefNode.style.transform = `translateY(
           ${-buttonRefNode.getBoundingClientRect().top}px
@@ -67,17 +82,8 @@ const MobileMenuButton = ({
     }
   }, [isMenuMode]);
 
-  const moveMenuButtonsToTop = (btnRef) => {
-    // update indicator's position
-    setIndicatorTopOffset(btnRef.current.getBoundingClientRect().top);
-    const offset =
-      btnRef.current.getBoundingClientRect().top + btnRef.current.clientHeight;
-    setBackgroundSplit(offset);
-  };
-
   const handleButtonClick = (index: number) => {
     setCurrentSectionIndex(index);
-    // if (buttonRef.current) moveMenuButtonsToTop(buttonRef);
   };
 
   return (
