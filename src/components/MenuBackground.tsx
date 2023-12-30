@@ -26,12 +26,11 @@ const MenuBackground = ({
   useEffect(() => {
     if (isMenuMode) {
       // closing
-      setAnimated(false);
+      setAnimated(true);
       backgroundTop.current!.style.height = '50px';
       backgroundBottom.current!.style.top = `${window.innerHeight}px`;
 
       setTimeout(() => {
-        setAnimated(true);
         backgroundTop.current!.style.height = `${backgroundSplit + 1}px`;
         backgroundBottom.current!.style.top = `${backgroundSplit - 1}px`;
       }, 0);
@@ -41,6 +40,7 @@ const MenuBackground = ({
       backgroundTop.current!.style.height = `${backgroundSplit + 1}px`;
       backgroundBottom.current!.style.top = `${backgroundSplit - 1}px`;
 
+      // TODO: refactor
       setTimeout(() => {
         setAnimated(true);
       }, 0);
@@ -48,6 +48,9 @@ const MenuBackground = ({
         backgroundTop.current!.style.height = '50px';
         backgroundBottom.current!.style.top = `${window.innerHeight}px`;
       }, 500);
+      setTimeout(() => {
+        setAnimated(false);
+      }, 800);
     }
   }, [isMenuMode, backgroundSplit]);
 
