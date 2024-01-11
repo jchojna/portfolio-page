@@ -23,10 +23,6 @@ const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
 
   return (
     <div className={headerClass}>
-      <MenuBackground
-        isMenuMode={isMenuMode}
-        backgroundSplit={backgroundSplit}
-      />
       <Menu
         isMenuMode={isMenuMode}
         setMenuMode={setMenuMode}

@@ -33,7 +33,7 @@
   @media only screen and (min-width: $media-l) {
     & {
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       padding-left: 500px;
     }
   }
@@ -177,13 +177,6 @@
           'footer ';
         grid-template-rows: auto 1fr;
       }
-    }
-  }
-
-  @media only screen and (min-width: $media-l) {
-    & {
-      //margin-left: calc((100vw - #{$container-size}) / 2);
-      // margin-left: 500px;
     }
   }
 }
