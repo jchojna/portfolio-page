@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { useMediaQuery } from 'react-responsive';
 
@@ -16,13 +16,20 @@ import MobileHeader from './components/MobileHeader';
 
 function App() {
   const [isMenuMode, setMenuMode] = useState<boolean>(true);
+  const [isSmoothScroll, setSmoothScroll] = useState<boolean>(false);
 
   const sectionsRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const sectionsClass = clsx({
     [classes.sections]: true,
     [classes.visible]: !isMenuMode,
+    [classes.smooth]: isSmoothScroll && !isMobile,
   });
+
+  // set smooth scroll after some delay
+  useEffect(() => {
+    !isMenuMode && setTimeout(() => setSmoothScroll(true), 500);
+  }, [isMenuMode]);
 
   return (
     <div className={classes.app}>

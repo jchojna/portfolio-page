@@ -1,8 +1,6 @@
 import clsx from 'clsx';
-import { useState } from 'react';
 
 import Menu from './Menu';
-import MenuBackground from './MenuBackground';
 
 import classes from './Header.module.scss';
 
@@ -13,8 +11,6 @@ type HeaderProps = {
 };
 
 const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
-  const [backgroundSplit, setBackgroundSplit] = useState<number>(0);
-
   const headerClass = clsx({
     [classes.pageHeader]: true,
     [classes.visible]: true,
@@ -27,7 +23,6 @@ const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
         isMenuMode={isMenuMode}
         setMenuMode={setMenuMode}
         sectionsRef={sectionsRef}
-        setBackgroundSplit={setBackgroundSplit}
       />
     </div>
   );

@@ -37,6 +37,7 @@ const MenuButton = ({
     [classes[backgroundSection]]: true,
     [classes.intro]: isMenuMode,
     [classes.hovered]: isHovered,
+    [classes[label]]: isHovered,
     [classes.active]: isActive,
   });
   const shadowClass = clsx({
