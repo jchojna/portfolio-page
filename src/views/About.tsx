@@ -23,9 +23,7 @@ const About = () => {
           alt="My photo"
         />
 
-        <section className={classes.description}>
-          <p className="tab__description about">{about.description}</p>
-        </section>
+        <p className={classes.description}>{about.description}</p>
 
         <div className={classes.contactDetails}>
           {contactDetails.map((details, index) => (

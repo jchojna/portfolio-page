@@ -7,27 +7,29 @@ import menuSvg from '../assets/svg/menu.svg';
 import classes from './MenuButton.module.scss';
 
 type MenuButtonProps = {
+  index: number;
   label: string;
   width: number;
   isMenuMode: boolean;
   isHovered: boolean;
   isActive?: boolean;
-  currentSectionIndex: number;
   offsetedSectionIndex: number;
   relativeTopOffset: number;
-  setIndicatorTopOffset: (offset: number) => void;
+  setCurrentSectionIndex: (currentSectionIndex: number) => void;
+  setMenuMode: (isMenuMode: boolean) => void;
 };
 
 const MenuButton = ({
+  index,
   label,
   width,
   isMenuMode,
   isHovered,
   isActive,
-  currentSectionIndex,
   offsetedSectionIndex,
   relativeTopOffset,
-  setIndicatorTopOffset,
+  setCurrentSectionIndex,
+  setMenuMode,
 }: MenuButtonProps) => {
   const [backgroundSection, setBackgroundSection] = useState<string>('about');
 
@@ -37,6 +39,7 @@ const MenuButton = ({
     [classes[backgroundSection]]: true,
     [classes.intro]: isMenuMode,
     [classes.hovered]: isHovered,
+    [classes[label]]: isHovered && isMenuMode,
     [classes.active]: isActive,
   });
   const shadowClass = clsx({
@@ -56,13 +59,18 @@ const MenuButton = ({
     );
   }, [relativeTopOffset]);
 
-  useEffect(() => {
-    if (!buttonRef.current) return;
-    isActive && setIndicatorTopOffset(buttonRef.current.offsetTop);
-  }, [currentSectionIndex]);
+  const handleClick = (index: number) => {
+    setCurrentSectionIndex(index);
+    setMenuMode(false);
+  };
 
   return (
-    <a ref={buttonRef} href={`#${label}`} className={buttonClass}>
+    <a
+      ref={buttonRef}
+      href={`#${label}`}
+      className={buttonClass}
+      onClick={() => handleClick(index)}
+    >
       <div className={classes.menuSvg}>
         <svg className={classes.menuSvgText} viewBox={viewBox}>
           <use href={`${menuSvg}#${label}`}></use>

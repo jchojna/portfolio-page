@@ -7,7 +7,7 @@
   pointer-events: all;
   position: relative;
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-l) {
     & {
       align-items: center;
       display: flex;
@@ -58,26 +58,92 @@
       visibility: inherit;
     }
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-l) {
       height: $menu-item-height-lg;
       justify-content: flex-end;
       padding: 0;
       width: 100%;
     }
   }
+}
 
-  .indicator {
+.indicator {
+  background-color: #fff;
+  height: $menu-item-height;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: background-color $time-menu-indicator, left $time-menu-indicator,
+    top $time-menu-indicator 0.2s, width $time-menu-indicator 0.4s ease-out;
+  width: 20px;
+  z-index: 9999;
+
+  &.intro.about {
+    background-color: $color-about;
+  }
+  &.intro.resume {
+    background-color: $color-resume;
+  }
+  &.intro.tasktimer {
+    background-color: $color-tasktimer;
+  }
+  &.intro.hydrapp {
+    background-color: $color-hydrapp;
+  }
+  &.intro.portfolio {
+    background-color: $color-portfolio;
+  }
+  &.intro.archviz {
+    background-color: $color-archviz;
+  }
+  &.intro.quotes {
+    background-color: $color-quotes;
+  }
+  &.intro.contact {
+    background-color: $color-contact;
+  }
+
+  &.intro {
     background-color: #fff;
-    height: $menu-item-height;
-    left: 0;
-    position: absolute;
-    top: 0;
-    transition: top 0.6s;
-    width: 20px;
-    z-index: 9999;
+  }
 
-    @media only screen and (min-width: $media-lg) {
-      height: $menu-item-height-lg;
-    }
+  @media only screen and (min-width: $media-l) {
+    height: $menu-item-height-lg;
+  }
+}
+
+@media only screen and (min-width: $media-l) {
+  .indicator {
+    // background-color: #fff;
+    // left: 0;
+    // height: $menu-item-height-lg;
+    // position: fixed;
+    // right: calc(100vw - #{$menu-item-height-lg});
+    // top: -$menu-item-height-lg;
+    // visibility: hidden;
+    // z-index: -1;
+
+    // &--visible {
+    //   visibility: visible;
+    // }
+
+    // &--animated {
+    //   transition: left $menu-lg-second-timeout 0.3s,
+    //     right $menu-lg-second-timeout, top $time-switch;
+    // }
+
+    // &--narrowed {
+    //   right: calc(100vw - (#{$menu-item-height-lg} / 3));
+    // }
+
+    // &--centered {
+    //   background-color: $intro-link-color;
+    //   left: calc(50vw + 10px);
+    //   right: calc(50vw - 10px);
+    // }
+
+    // &--noTransition {
+    //   transition: none;
+    // }
   }
 }

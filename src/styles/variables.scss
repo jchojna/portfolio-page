@@ -3,14 +3,14 @@ $intro-background-color: rgb(30, 30, 30);
 $intro-link-color: rgb(60, 60, 60);
 
 // MEDIA
-$media-sm: 768px;
-$media-md: 1200px;
-$media-lg: 1440px;
+$media-s: 768px;
+$media-m: 1200px;
+$media-l: 1440px;
 
 // MENU
 $time-switch: 0.4s;
 $menu-sm-first-timeout: 0.3s;
-$menu-sm-second-timeout: 0.6s;
+$menu-sm-second-timeout: 0.5s;
 $menu-lg-first-timeout: 0.5s;
 $menu-lg-second-timeout: 0.5s;
 
@@ -30,10 +30,10 @@ $navigation-time-delay: 1s;
 $navigation-time-rotate: 0.2s;
 
 // LAYOUT
-$offset-left-xs: 50px;
-$offset-left-sm: 50px;
-$offset-right-xs: 10px;
-$offset-right-sm: 20px;
+$offset-left-s: 25px;
+$offset-right-s: 25px;
+$offset-left-m: 50px;
+$offset-right-m: 20px;
 
 $offset-alert: 5px;
 
@@ -65,6 +65,8 @@ $expandable-time: 0.5s;
 $accordion-time: 0.5s;
 $button-hover: 0.3s;
 
+$time-menu-indicator: 0.6s;
+
 // ABOUT
 $color-about-white: rgb(182, 212, 223);
 $color-about-light: rgb(142, 192, 209);
@@ -89,8 +91,8 @@ $color-tasktimer-light: #9ab5b6;
 $color-tasktimer: #50787c;
 $color-tasktimer-dark: #305b60;
 $color-tasktimer-letter: #703035;
+$color-tasktimer-letterShadow: #441c20;
 $color-tasktimer-shadow: rgb(35, 53, 54);
-$color-tasktimer-shadowLetter: #441c20;
 $color-tasktimer-diff: #4f3d41;
 $color-tasktimer-diff-dark: rgb(63, 47, 50);
 

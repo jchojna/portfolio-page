@@ -107,7 +107,7 @@
     }
   }
 
-  @media only screen and (min-width: $media-md) {
+  @media only screen and (min-width: $media-m) {
     &.about:not(.active) {
       &:focus,
       &:hover {
@@ -164,7 +164,7 @@
     }
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-l) {
     height: $menu-item-height-lg;
     padding: 0;
     width: 100%;
@@ -200,7 +200,7 @@
     }
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-l) {
     .menuSvgText {
       height: $menu-item-height-lg;
     }

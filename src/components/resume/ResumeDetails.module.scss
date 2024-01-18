@@ -14,6 +14,7 @@
 
   .details {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 
     .detail {
@@ -30,12 +31,6 @@
 
       &-3 {
         color: $color-resume-dark;
-      }
-
-      @media only screen and (min-width: $media-sm) {
-      }
-
-      @media only screen and (min-width: $media-md) {
       }
     }
   }

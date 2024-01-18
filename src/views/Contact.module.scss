@@ -5,26 +5,37 @@
   @include section;
 
   .container {
-    @include container;
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: 800px;
+    padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
+    width: 100%;
 
-    @media only screen and (min-width: $media-md) {
-      & {
-        max-width: $container-size;
-      }
-    }
-
-    @media only screen and (min-width: $media-lg) {
-      & {
-        margin-left: 500px;
-      }
+    @media only screen and (min-width: $media-m) {
+      max-width: $container-size;
     }
 
     .title {
       @include sectionTitle;
+
+      margin: 0;
+    }
+
+    .email {
+      color: $color-contact-shadow;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 2rem 0;
+      text-align: center;
+      width: 100%;
     }
 
     .contactDetails {
+      justify-content: center;
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
     }
   }

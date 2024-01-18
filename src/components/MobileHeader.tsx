@@ -1,16 +1,20 @@
 import clsx from 'clsx';
 
-import Menu from './Menu';
+import MobileMenu from './MobileMenu';
 
-import classes from './Header.module.scss';
+import classes from './MobileHeader.module.scss';
 
-type HeaderProps = {
+type MobileHeaderProps = {
   isMenuMode: boolean;
   setMenuMode: (isMenuMode: boolean) => void;
   sectionsRef: React.RefObject<HTMLDivElement>;
 };
 
-const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
+const MobileHeader = ({
+  isMenuMode,
+  setMenuMode,
+  sectionsRef,
+}: MobileHeaderProps) => {
   const headerClass = clsx({
     [classes.pageHeader]: true,
     [classes.visible]: true,
@@ -19,7 +23,7 @@ const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
 
   return (
     <div className={headerClass}>
-      <Menu
+      <MobileMenu
         isMenuMode={isMenuMode}
         setMenuMode={setMenuMode}
         sectionsRef={sectionsRef}
@@ -28,4 +32,4 @@ const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
   );
 };
 
-export default Header;
+export default MobileHeader;

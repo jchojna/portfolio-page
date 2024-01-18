@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
-
-import {
-  getCurrentSectionIndex,
-  getOffsetedSectionIndex,
-  getRelativeTopOffset,
-} from './utils/utils';
+import { useMediaQuery } from 'react-responsive';
 
 import Header from './components/Header';
 // import Animation from './views/Animation';
@@ -17,65 +12,40 @@ import Contact from './views/Contact';
 import projects from './content/projects.json';
 
 import classes from './App.module.scss';
+import MobileHeader from './components/MobileHeader';
 
 function App() {
   const [isMenuMode, setMenuMode] = useState<boolean>(true);
-  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
-  const [offsetedSectionIndex, setOffsetedSectionIndex] = useState<number>(-1);
-  const [relativeTopOffset, setRelativeTopOffset] = useState<number>(0);
+  const [isSmoothScroll, setSmoothScroll] = useState<boolean>(false);
 
   const sectionsRef = useRef<HTMLDivElement | null>(null);
-
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const sectionsClass = clsx({
     [classes.sections]: true,
     [classes.visible]: !isMenuMode,
+    [classes.smooth]: isSmoothScroll && !isMobile,
   });
 
-  const handleScroll = () => {
-    if (!sectionsRef.current) return;
-    const sectionsNodes = sectionsRef.current
-      .children as HTMLCollectionOf<HTMLElement>;
-    const sectionsScrolls = [...sectionsNodes].map((node) => node.offsetTop);
-    const currentIndex = getCurrentSectionIndex(
-      Math.ceil(sectionsRef.current.scrollTop),
-      sectionsScrolls
-    );
-    const offsetedIndex = getOffsetedSectionIndex(
-      Math.ceil(sectionsRef.current.scrollTop),
-      sectionsScrolls
-    );
-
-    const offset =
-      getRelativeTopOffset(
-        Math.ceil(sectionsRef.current.scrollTop),
-        sectionsScrolls
-      ) || window.innerHeight;
-    setCurrentSectionIndex((prevState) => {
-      return prevState === currentIndex ? prevState : currentIndex;
-    });
-    setOffsetedSectionIndex((prevState) => {
-      return prevState === offsetedIndex ? prevState : offsetedIndex;
-    });
-    setRelativeTopOffset(offset);
-  };
-
+  // set smooth scroll after some delay
   useEffect(() => {
-    const sectionsRefCopy = sectionsRef.current;
-    if (sectionsRefCopy) {
-      sectionsRefCopy.addEventListener('scroll', handleScroll);
-      return () => sectionsRefCopy.removeEventListener('scroll', handleScroll);
-    }
-  }, []);
+    !isMenuMode && setTimeout(() => setSmoothScroll(true), 500);
+  }, [isMenuMode]);
 
   return (
     <div className={classes.app}>
-      <Header
-        isMenuMode={isMenuMode}
-        setMenuMode={setMenuMode}
-        currentSectionIndex={currentSectionIndex}
-        offsetedSectionIndex={offsetedSectionIndex}
-        relativeTopOffset={relativeTopOffset}
-      />
+      {isMobile ? (
+        <MobileHeader
+          isMenuMode={isMenuMode}
+          setMenuMode={setMenuMode}
+          sectionsRef={sectionsRef}
+        />
+      ) : (
+        <Header
+          isMenuMode={isMenuMode}
+          setMenuMode={setMenuMode}
+          sectionsRef={sectionsRef}
+        />
+      )}
       {/* <Animation /> */}
       <div ref={sectionsRef} className={sectionsClass}>
         <About />

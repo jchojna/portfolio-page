@@ -6,12 +6,16 @@ import ResumeDetails from './resume/ResumeDetails';
 import classes from './AccordionsGroup.module.scss';
 import BlockTitle from './BlockTitle';
 
-const AccordionsGroup = ({ title, content }: AccordionsGroupProps) => {
+const AccordionsGroup = ({
+  title,
+  content,
+  isTitleLarge,
+}: AccordionsGroupProps) => {
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (
     <div className={classes.accordionsGroup}>
-      <BlockTitle title={title} view="resume" isLarge={true} />
+      <BlockTitle title={title} view="resume" isLarge={isTitleLarge} />
       <div className={classes.items}>
         {content.map(({ label, items }, index) => {
           return (
@@ -19,7 +23,7 @@ const AccordionsGroup = ({ title, content }: AccordionsGroupProps) => {
               key={index}
               label={label}
               view="resume"
-              isSmall={false}
+              isSmall={!isTitleLarge}
               isExpanded={expanded === label}
               setExpanded={setExpanded}
             >

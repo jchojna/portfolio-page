@@ -76,6 +76,7 @@
       text-align: left;
       text-transform: uppercase;
       transition: color $tabHeader-time;
+      white-space: nowrap;
     }
   }
 
@@ -155,7 +156,7 @@
     }
   }
 
-  // @media only screen and (min-width: $media-md) {
+  // @media only screen and (min-width: $media-m) {
   //   .label {
   //     height: $tabHeader-size-lg;
   //     margin-top: calc($tabHeader-size-lg / 2);

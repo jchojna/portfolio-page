@@ -1,9 +1,12 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
 .textBlock {
   grid-area: description;
 
   .paragraphs {
     list-style-type: none;
-    padding: 0;
+    padding-left: $offset-left-s;
     margin: 0;
   }
 

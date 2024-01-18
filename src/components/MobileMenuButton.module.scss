@@ -1,0 +1,92 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+@import '../styles/animations.scss';
+
+.menuButton {
+  @include button;
+
+  display: flex;
+  fill: $intro-link-color;
+  height: $menu-item-height;
+  justify-content: flex-end;
+  opacity: 0;
+  padding-left: 55px;
+  transition: fill $menu-sm-first-timeout, opacity $menu-sm-first-timeout,
+    transform $menu-sm-first-timeout, visibility 0s $menu-sm-first-timeout,
+    width $menu-sm-first-timeout;
+  visibility: hidden;
+
+  &.intro {
+    opacity: 1;
+    transition: fill $menu-sm-first-timeout,
+      opacity $menu-sm-first-timeout $menu-sm-first-timeout,
+      transform $menu-sm-first-timeout, visibility 0s,
+      width $menu-sm-first-timeout;
+    visibility: visible;
+  }
+
+  &.active {
+    opacity: 1;
+    transition: fill $menu-sm-first-timeout,
+      opacity $menu-sm-first-timeout $menu-sm-first-timeout,
+      transform $menu-sm-first-timeout, visibility 0s,
+      width $menu-sm-first-timeout;
+    visibility: visible;
+  }
+
+  &.about.active {
+    fill: $color-about;
+  }
+  &.resume.active {
+    fill: $color-resume;
+  }
+  &.tasktimer.active {
+    fill: $color-tasktimer;
+  }
+  &.hydrapp.active {
+    fill: $color-hydrapp;
+  }
+  &.portfolio.active {
+    fill: $color-portfolio;
+  }
+  &.archviz.active {
+    fill: $color-archviz;
+  }
+  &.quotes.active {
+    fill: $color-quotes;
+  }
+  &.contact.active {
+    fill: $color-contact;
+  }
+}
+
+.menuSvg {
+  @include flex-center;
+
+  height: 100%;
+  pointer-events: none;
+  position: relative;
+  visibility: inherit;
+
+  .menuSvgText {
+    height: 100%;
+  }
+
+  .menuSvgShadow {
+    fill: $intro-background-color;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.3s, visibility 0s 0.3s;
+    visibility: hidden;
+    width: 100%;
+
+    &.visible {
+      opacity: $svg-opacity;
+      transition: opacity 0.3s, visibility 0s;
+      visibility: inherit;
+    }
+  }
+}

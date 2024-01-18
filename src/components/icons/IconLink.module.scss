@@ -14,11 +14,6 @@
     transition: background-color $button-hover, fill $button-hover;
     width: 50px;
 
-    &.large {
-      width: 100px;
-      height: 100px;
-    }
-
     &::before {
       border-style: solid;
       border-width: 0;
@@ -36,7 +31,7 @@
       @include shadow;
     }
 
-    @media only screen and (min-width: $media-md) {
+    @media only screen and (min-width: $media-m) {
       &:focus::before,
       &:hover::before {
         @include shadow;
@@ -50,7 +45,7 @@
     text-transform: uppercase;
     word-break: break-all;
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-l) {
       & {
         font-size: 0.75em;
       }
@@ -72,6 +67,18 @@
 
     &--faded2 {
       opacity: 0.5;
+    }
+  }
+
+  &.large {
+    .link {
+      width: 80px;
+      height: 80px;
+    }
+
+    .name {
+      font-size: 1rem;
+      font-weight: 700;
     }
   }
 
@@ -123,7 +130,7 @@
     }
   }
 
-  @media only screen and (min-width: $media-md) {
+  @media only screen and (min-width: $media-m) {
     &.about {
       .link {
         &::before {
