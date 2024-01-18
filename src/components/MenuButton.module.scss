@@ -2,6 +2,15 @@
 @import '../styles/mixins.scss';
 @import '../styles/animations.scss';
 
+@mixin menuButton($color) {
+  fill: map-get($colors, #{$color}-diff);
+  &:active,
+  &:focus,
+  &:hover {
+    fill: map-get($colors, #{$color}-diff-dark);
+  }
+}
+
 .menuButton {
   @include button;
 
@@ -11,10 +20,6 @@
   justify-content: flex-end;
   padding-left: 55px;
   transition: fill $menu-sm-first-timeout, width $menu-sm-first-timeout;
-
-  &.active {
-    fill: #fff;
-  }
 
   &.intro:not(.active) {
     &.about.hovered {
@@ -46,121 +51,39 @@
     }
   }
 
-  &.about:not(.active) {
-    fill: $color-about-diff;
-    &:active {
-      fill: $color-about-diff-dark;
-    }
+  &.about {
+    @include menuButton(about);
   }
-  &.resume:not(.active) {
-    fill: $color-resume-diff;
-    &:active {
-      fill: $color-resume-diff-dark;
-    }
+  &.resume {
+    @include menuButton(resume);
   }
-  &.tasktimer:not(.active) {
-    fill: $color-tasktimer-diff;
-    &:active {
-      fill: $color-tasktimer-diff-dark;
-    }
+  &.tasktimer {
+    @include menuButton(tasktimer);
   }
-  &.portfolio:not(.active) {
-    fill: $color-portfolio-diff;
-    &:active {
-      fill: $color-portfolio-diff-dark;
-    }
+  &.portfolio {
+    @include menuButton(portfolio);
   }
-  &.hydrapp:not(.active) {
-    fill: $color-hydrapp-diff;
-    &:active {
-      fill: $color-hydrapp-diff-dark;
-    }
+  &.hydrapp {
+    @include menuButton(hydrapp);
   }
-  &.archviz:not(.active) {
-    fill: $color-archviz-diff;
-    &:active {
-      fill: $color-archviz-diff-dark;
-    }
+  &.archviz {
+    @include menuButton(archviz);
   }
-  &.quotes:not(.active) {
-    fill: $color-quotes-diff;
-    &:active {
-      fill: $color-quotes-diff-dark;
-    }
+  &.quotes {
+    @include menuButton(quotes);
   }
-  &.other:not(.active) {
-    fill: $color-other-diff;
-    &:active {
-      fill: $color-other-diff-dark;
-    }
+  &.other {
+    @include menuButton(other);
   }
-  &.contact:not(.active) {
-    fill: $color-contact-diff;
-    &:active {
-      fill: $color-contact-diff-dark;
-    }
+  &.contact {
+    @include menuButton(contact);
   }
-  &.active:not(.active) {
+  &.active {
     fill: #fff;
-    &:active {
+    &:active,
+    &:focus,
+    &:hover {
       fill: #fff;
-    }
-  }
-
-  @media only screen and (min-width: $media-m) {
-    &.about:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-about-diff-dark;
-      }
-    }
-    &.resume:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-resume-diff-dark;
-      }
-    }
-    &.tasktimer:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-tasktimer-diff-dark;
-      }
-    }
-    &.portfolio:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-portfolio-diff-dark;
-      }
-    }
-    &.hydrapp:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-hydrapp-diff-dark;
-      }
-    }
-    &.archviz:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-archviz-diff-dark;
-      }
-    }
-    &.quotes:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-quotes-diff-dark;
-      }
-    }
-    &.other:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-other-diff-dark;
-      }
-    }
-    &.contact:not(.active) {
-      &:focus,
-      &:hover {
-        fill: $color-contact-diff-dark;
-      }
     }
   }
 
