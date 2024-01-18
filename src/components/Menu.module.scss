@@ -74,45 +74,42 @@
   position: absolute;
   top: 0;
   transition: background-color $time-menu-indicator, left $time-menu-indicator,
-    top $time-menu-indicator;
+    top $time-menu-indicator 0.2s, width $time-menu-indicator 0.4s ease-out;
   width: 20px;
   z-index: 9999;
 
-  &.about {
+  &.intro.about {
     background-color: $color-about;
   }
-  &.resume {
+  &.intro.resume {
     background-color: $color-resume;
   }
-  &.tasktimer {
+  &.intro.tasktimer {
     background-color: $color-tasktimer;
   }
-  &.hydrapp {
+  &.intro.hydrapp {
     background-color: $color-hydrapp;
   }
-  &.portfolio {
+  &.intro.portfolio {
     background-color: $color-portfolio;
   }
-  &.archviz {
+  &.intro.archviz {
     background-color: $color-archviz;
   }
-  &.quotes {
+  &.intro.quotes {
     background-color: $color-quotes;
   }
-  &.contact {
+  &.intro.contact {
     background-color: $color-contact;
+  }
+
+  &.intro {
+    background-color: #fff;
   }
 
   @media only screen and (min-width: $media-l) {
     height: $menu-item-height-lg;
   }
-}
-
-.indicator {
-  width: 50px;
-  height: 50px;
-  background-color: blue;
-  position: fixed;
 }
 
 @media only screen and (min-width: $media-l) {

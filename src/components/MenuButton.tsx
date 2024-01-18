@@ -13,9 +13,10 @@ type MenuButtonProps = {
   isMenuMode: boolean;
   isHovered: boolean;
   isActive?: boolean;
-  setCurrentSectionIndex: (currentSectionIndex: number) => void;
   offsetedSectionIndex: number;
   relativeTopOffset: number;
+  setCurrentSectionIndex: (currentSectionIndex: number) => void;
+  setMenuMode: (isMenuMode: boolean) => void;
 };
 
 const MenuButton = ({
@@ -25,9 +26,10 @@ const MenuButton = ({
   isMenuMode,
   isHovered,
   isActive,
-  setCurrentSectionIndex,
   offsetedSectionIndex,
   relativeTopOffset,
+  setCurrentSectionIndex,
+  setMenuMode,
 }: MenuButtonProps) => {
   const [backgroundSection, setBackgroundSection] = useState<string>('about');
 
@@ -37,7 +39,7 @@ const MenuButton = ({
     [classes[backgroundSection]]: true,
     [classes.intro]: isMenuMode,
     [classes.hovered]: isHovered,
-    [classes[label]]: isHovered,
+    [classes[label]]: isHovered && isMenuMode,
     [classes.active]: isActive,
   });
   const shadowClass = clsx({
@@ -59,6 +61,7 @@ const MenuButton = ({
 
   const handleClick = (index: number) => {
     setCurrentSectionIndex(index);
+    setMenuMode(false);
   };
 
   return (

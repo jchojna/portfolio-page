@@ -67,15 +67,25 @@ const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
     if (!indicatorRef.current) return;
     if (!menuListRef.current) return;
     const indicator = indicatorRef.current;
-    const { top, width, height, left } =
-      menuListRef.current.children[
-        hoveredItem && isMenuMode ? hoveredItem : currentSectionIndex
-      ].getBoundingClientRect();
-    indicator.style.top = `${top}px`;
-    indicator.style.left = `${left + width + 20}px`;
-    indicator.style.height = `${height}px`;
-    indicator.style.width = `${height}px`;
-  }, [hoveredItem, currentSectionIndex]);
+    if (isMenuMode) {
+      const { top, width, height, left } =
+        menuListRef.current.children[
+          hoveredItem ? hoveredItem : currentSectionIndex
+        ].getBoundingClientRect();
+      indicator.style.top = `${top}px`;
+      indicator.style.left = `${left + width + 20}px`;
+      indicator.style.height = `${height}px`;
+      indicator.style.width = `${height}px`;
+    } else {
+      const { top } =
+        menuListRef.current.children[
+          currentSectionIndex
+        ].getBoundingClientRect();
+      indicator.style.top = `${top}px`;
+      indicator.style.left = '0px';
+      indicator.style.width = '20px';
+    }
+  }, [hoveredItem, currentSectionIndex, isMenuMode]);
 
   const menuClass = clsx({
     [classes.menu]: true,
@@ -88,7 +98,8 @@ const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
         ref={indicatorRef}
         className={clsx(
           classes.indicator,
-          classes[hoveredItemName]
+          classes[hoveredItemName],
+          isMenuMode && classes.intro
           // isMenuMode && classes.visible
         )}
       ></div>
@@ -101,7 +112,6 @@ const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
                 className={classes.menuItem}
                 onMouseEnter={() => setHoveredItem(index)}
                 onMouseLeave={() => !isMenuMode && setHoveredItem(null)}
-                onClick={() => setMenuMode(false)}
               >
                 <MenuButton
                   index={index}
@@ -110,6 +120,7 @@ const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
                   isMenuMode={isMenuMode}
                   isHovered={hoveredItem === index}
                   isActive={currentSectionIndex === index}
+                  setMenuMode={setMenuMode}
                   setCurrentSectionIndex={setCurrentSectionIndex}
                   offsetedSectionIndex={offsetedSectionIndex}
                   relativeTopOffset={relativeTopOffset}
