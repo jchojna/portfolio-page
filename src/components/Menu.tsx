@@ -16,11 +16,18 @@ type MenuProps = {
   isMenuMode: boolean;
   setMenuMode: (isMenuMode: boolean) => void;
   sectionsRef: React.RefObject<HTMLDivElement>;
+  currentSectionIndex: number;
+  setCurrentSectionIndex: (index: number) => void;
 };
 
-const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
+const Menu = ({
+  isMenuMode,
+  setMenuMode,
+  sectionsRef,
+  currentSectionIndex,
+  setCurrentSectionIndex,
+}: MenuProps) => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(0);
-  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
   const [offsetedSectionIndex, setOffsetedSectionIndex] = useState<number>(-1);
   const [relativeTopOffset, setRelativeTopOffset] = useState<number>(0);
   const indicatorRef = useRef<HTMLDivElement>(null);
@@ -45,12 +52,8 @@ const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
         Math.ceil(sectionsRef.current.scrollTop),
         sectionsScrolls
       ) || window.innerHeight;
-    setCurrentSectionIndex((prevState) => {
-      return prevState === currentIndex ? prevState : currentIndex;
-    });
-    setOffsetedSectionIndex((prevState) => {
-      return prevState === offsetedIndex ? prevState : offsetedIndex;
-    });
+    setCurrentSectionIndex(currentIndex);
+    setOffsetedSectionIndex(offsetedIndex);
     setRelativeTopOffset(offset);
   };
 

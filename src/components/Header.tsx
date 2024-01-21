@@ -1,6 +1,8 @@
 import clsx from 'clsx';
+import { useState } from 'react';
 
 import Menu from './Menu';
+import Navigator from './Navigator';
 
 import classes from './Header.module.scss';
 
@@ -11,6 +13,8 @@ type HeaderProps = {
 };
 
 const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
+  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
+
   const headerClass = clsx({
     [classes.pageHeader]: true,
     [classes.visible]: true,
@@ -23,6 +27,14 @@ const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
         isMenuMode={isMenuMode}
         setMenuMode={setMenuMode}
         sectionsRef={sectionsRef}
+        currentSectionIndex={currentSectionIndex}
+        setCurrentSectionIndex={setCurrentSectionIndex}
+      />
+      <Navigator
+        isMenuMode={isMenuMode}
+        setMenuMode={setMenuMode}
+        currentSectionIndex={currentSectionIndex}
+        setCurrentSectionIndex={setCurrentSectionIndex}
       />
     </div>
   );
