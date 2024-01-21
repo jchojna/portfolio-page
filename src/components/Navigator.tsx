@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 
+import menuItems from '../content/menu.json';
 import classes from './Navigator.module.scss';
 
 type NavigatorButtonProps = {
@@ -33,7 +34,8 @@ const Navigator = ({
 }: NavigatorProps) => {
   const navigatorClass = clsx(
     classes.navigator,
-    !isMenuMode && classes.visible
+    !isMenuMode && classes.visible,
+    classes[menuItems[currentSectionIndex].label]
   );
 
   const handlePrevClick = () => {

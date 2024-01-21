@@ -1,6 +1,13 @@
 @import '../styles/variables.scss';
 @import '../styles/mixins.scss';
 
+@mixin navigatorButton($color) {
+  border-color: map-get($colors, #{$color}-diff);
+  &:hover {
+    border-color: map-get($colors, #{$color}-diff-dark);
+  }
+}
+
 .navigator {
   bottom: 100px;
   display: block;
@@ -15,6 +22,34 @@
     opacity: 1;
     visibility: visible;
     transition: opacity 0.5s, visibility 0s;
+  }
+
+  &.about .button {
+    @include navigatorButton(about);
+  }
+  &.resume .button {
+    @include navigatorButton(resume);
+  }
+  &.tasktimer .button {
+    @include navigatorButton(tasktimer);
+  }
+  &.portfolio .button {
+    @include navigatorButton(portfolio);
+  }
+  &.hydrapp .button {
+    @include navigatorButton(hydrapp);
+  }
+  &.archviz .button {
+    @include navigatorButton(archviz);
+  }
+  &.quotes .button {
+    @include navigatorButton(quotes);
+  }
+  &.other .button {
+    @include navigatorButton(other);
+  }
+  &.contact .button {
+    @include navigatorButton(contact);
   }
 
   .button {
@@ -39,61 +74,6 @@
 
     &.hidden {
       visibility: hidden;
-    }
-
-    &.about {
-      border-color: $color-about-diff;
-      &:hover {
-        border-color: $color-about-diff-dark;
-      }
-    }
-    &.resume {
-      border-color: $color-resume-diff;
-      &:hover {
-        border-color: $color-resume-diff-dark;
-      }
-    }
-    &.tasktimer {
-      border-color: $color-tasktimer-diff;
-      &:hover {
-        border-color: $color-tasktimer-diff-dark;
-      }
-    }
-    &.portfolio {
-      border-color: $color-portfolio-diff;
-      &:hover {
-        border-color: $color-portfolio-diff-dark;
-      }
-    }
-    &.hydrapp {
-      border-color: $color-hydrapp-diff;
-      &:hover {
-        border-color: $color-hydrapp-diff-dark;
-      }
-    }
-    &.archviz {
-      border-color: $color-archviz-diff;
-      &:hover {
-        border-color: $color-archviz-diff-dark;
-      }
-    }
-    &.quotes {
-      border-color: $color-quotes-diff;
-      &:hover {
-        border-color: $color-quotes-diff-dark;
-      }
-    }
-    &.other {
-      border-color: $color-other-diff;
-      &:hover {
-        border-color: $color-other-diff-dark;
-      }
-    }
-    &.contact {
-      border-color: $color-contact-diff;
-      &:hover {
-        border-color: $color-contact-diff-dark;
-      }
     }
   }
 
