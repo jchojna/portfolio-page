@@ -32,9 +32,9 @@ const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
       />
       <Navigator
         isMenuMode={isMenuMode}
-        setMenuMode={setMenuMode}
         currentSectionIndex={currentSectionIndex}
-        setCurrentSectionIndex={setCurrentSectionIndex}
+        sectionsRef={sectionsRef}
+        setMenuMode={setMenuMode}
       />
     </div>
   );

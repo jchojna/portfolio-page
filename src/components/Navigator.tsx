@@ -11,8 +11,8 @@ type NavigatorButtonProps = {
 type NavigatorProps = {
   isMenuMode: boolean;
   currentSectionIndex: number;
+  sectionsRef: React.RefObject<HTMLDivElement>;
   setMenuMode: (isMenuMode: boolean) => void;
-  setCurrentSectionIndex: (currentSectionIndex: number) => void;
 };
 
 const NavigatorButton = ({ type, handleClick }: NavigatorButtonProps) => {
@@ -26,11 +26,21 @@ const NavigatorButton = ({ type, handleClick }: NavigatorButtonProps) => {
   );
 };
 
+const scrollToSection = (
+  sectionsRef: React.RefObject<HTMLDivElement>,
+  targetSectionIndex: number
+) => {
+  if (!sectionsRef.current) return;
+  const targetSection = sectionsRef.current.children[targetSectionIndex];
+  if (!(targetSection instanceof HTMLElement)) return;
+  sectionsRef.current.scrollTo(0, targetSection.offsetTop);
+};
+
 const Navigator = ({
   isMenuMode,
   currentSectionIndex,
+  sectionsRef,
   setMenuMode,
-  setCurrentSectionIndex,
 }: NavigatorProps) => {
   const navigatorClass = clsx(
     classes.navigator,
@@ -39,22 +49,26 @@ const Navigator = ({
   );
 
   const handlePrevClick = () => {
-    setCurrentSectionIndex(currentSectionIndex - 1);
+    const targetSectionIndex = Math.max(0, currentSectionIndex - 1);
+    scrollToSection(sectionsRef, targetSectionIndex);
   };
 
   const handleNextClick = () => {
-    setCurrentSectionIndex(currentSectionIndex + 1);
+    const targetSectionIndex = Math.min(
+      menuItems.length - 1,
+      currentSectionIndex + 1
+    );
+    scrollToSection(sectionsRef, targetSectionIndex);
   };
 
   const handleBackClick = () => {
-    setCurrentSectionIndex(0);
     setMenuMode(true);
   };
 
   return (
     <nav className={navigatorClass}>
-      <NavigatorButton type="prev" />
-      <NavigatorButton type="next" />
+      <NavigatorButton type="prev" handleClick={handlePrevClick} />
+      <NavigatorButton type="next" handleClick={handleNextClick} />
       <NavigatorButton type="back" handleClick={handleBackClick} />
     </nav>
   );
