@@ -2,6 +2,7 @@ import clsx from 'clsx';
 
 import menuItems from '../content/menu.json';
 import classes from './Navigator.module.scss';
+import { scrollToSection } from '../utils/utils';
 
 type NavigatorButtonProps = {
   type: string;
@@ -13,6 +14,8 @@ type NavigatorProps = {
   currentSectionIndex: number;
   sectionsRef: React.RefObject<HTMLDivElement>;
   setMenuMode: (isMenuMode: boolean) => void;
+  backgroundSection: string;
+  setBackgroundSection: (backgroundSection: string) => void;
 };
 
 const NavigatorButton = ({ type, handleClick }: NavigatorButtonProps) => {
@@ -26,21 +29,12 @@ const NavigatorButton = ({ type, handleClick }: NavigatorButtonProps) => {
   );
 };
 
-const scrollToSection = (
-  sectionsRef: React.RefObject<HTMLDivElement>,
-  targetSectionIndex: number
-) => {
-  if (!sectionsRef.current) return;
-  const targetSection = sectionsRef.current.children[targetSectionIndex];
-  if (!(targetSection instanceof HTMLElement)) return;
-  sectionsRef.current.scrollTo(0, targetSection.offsetTop);
-};
-
 const Navigator = ({
   isMenuMode,
   currentSectionIndex,
   sectionsRef,
   setMenuMode,
+  setBackgroundSection,
 }: NavigatorProps) => {
   const navigatorClass = clsx(
     classes.navigator,
@@ -51,6 +45,7 @@ const Navigator = ({
   const handlePrevClick = () => {
     const targetSectionIndex = Math.max(0, currentSectionIndex - 1);
     scrollToSection(sectionsRef, targetSectionIndex);
+    setBackgroundSection(menuItems[targetSectionIndex].label);
   };
 
   const handleNextClick = () => {
@@ -59,6 +54,7 @@ const Navigator = ({
       currentSectionIndex + 1
     );
     scrollToSection(sectionsRef, targetSectionIndex);
+    setBackgroundSection(menuItems[targetSectionIndex].label);
   };
 
   const handleBackClick = () => {

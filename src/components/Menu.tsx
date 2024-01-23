@@ -18,6 +18,8 @@ type MenuProps = {
   sectionsRef: React.RefObject<HTMLDivElement>;
   currentSectionIndex: number;
   setCurrentSectionIndex: (index: number) => void;
+  backgroundSection: string;
+  setBackgroundSection: (backgroundSection: string) => void;
 };
 
 const Menu = ({
@@ -26,10 +28,13 @@ const Menu = ({
   sectionsRef,
   currentSectionIndex,
   setCurrentSectionIndex,
+  backgroundSection,
+  setBackgroundSection,
 }: MenuProps) => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(0);
   const [offsetedSectionIndex, setOffsetedSectionIndex] = useState<number>(-1);
   const [relativeTopOffset, setRelativeTopOffset] = useState<number>(0);
+
   const indicatorRef = useRef<HTMLDivElement>(null);
   const menuListRef = useRef<HTMLUListElement>(null);
   const hoveredItemName = menuItems.map(({ label }) => label)[hoveredItem || 0];
@@ -123,7 +128,10 @@ const Menu = ({
                   isMenuMode={isMenuMode}
                   isHovered={hoveredItem === index}
                   isActive={currentSectionIndex === index}
+                  sectionsRef={sectionsRef}
                   setMenuMode={setMenuMode}
+                  backgroundSection={backgroundSection}
+                  setBackgroundSection={setBackgroundSection}
                   setCurrentSectionIndex={setCurrentSectionIndex}
                   offsetedSectionIndex={offsetedSectionIndex}
                   relativeTopOffset={relativeTopOffset}

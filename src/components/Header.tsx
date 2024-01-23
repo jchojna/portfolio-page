@@ -14,6 +14,7 @@ type HeaderProps = {
 
 const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
+  const [backgroundSection, setBackgroundSection] = useState<string>('about');
 
   const headerClass = clsx({
     [classes.pageHeader]: true,
@@ -27,6 +28,8 @@ const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
         isMenuMode={isMenuMode}
         setMenuMode={setMenuMode}
         sectionsRef={sectionsRef}
+        backgroundSection={backgroundSection}
+        setBackgroundSection={setBackgroundSection}
         currentSectionIndex={currentSectionIndex}
         setCurrentSectionIndex={setCurrentSectionIndex}
       />
@@ -35,6 +38,8 @@ const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
         currentSectionIndex={currentSectionIndex}
         sectionsRef={sectionsRef}
         setMenuMode={setMenuMode}
+        backgroundSection={backgroundSection}
+        setBackgroundSection={setBackgroundSection}
       />
     </div>
   );

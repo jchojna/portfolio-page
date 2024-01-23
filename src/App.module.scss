@@ -22,9 +22,5 @@
 
   @media only screen and (min-width: $media-l) {
     scroll-snap-type: y mandatory;
-
-    &.smooth {
-      scroll-behavior: smooth;
-    }
   }
 }
