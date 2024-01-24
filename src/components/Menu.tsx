@@ -76,12 +76,12 @@ const Menu = ({
     if (!menuListRef.current) return;
     const indicator = indicatorRef.current;
     if (isMenuMode) {
-      const { top, width, height, left } =
+      const { top, height } =
         menuListRef.current.children[
           hoveredItem ? hoveredItem : currentSectionIndex
         ].getBoundingClientRect();
       indicator.style.top = `${top}px`;
-      indicator.style.left = `${left + width + 20}px`;
+      indicator.style.left = `${window.innerWidth / 2 + 20}px`;
       indicator.style.height = `${height}px`;
       indicator.style.width = `${height}px`;
     } else {

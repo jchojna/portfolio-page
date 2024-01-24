@@ -75,6 +75,20 @@
   padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
   width: 100%;
 
+  &.about {
+    gap: 1rem;
+    grid-template-areas:
+      'photo'
+      'title'
+      'description'
+      'contact'
+      'high'
+      'medium'
+      'low';
+    padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
+    width: 100%;
+  }
+
   &.resume {
     grid-template-areas:
       'logo      '
@@ -125,14 +139,16 @@
 
       &.about {
         grid-template-areas:
-          'title     photo'
+          'title       photo'
           'description photo'
-          'profiles    photo'
-          'working     working    '
-          'knowing     knowing    '
-          'learning    learning   ';
+          'contact     photo'
+          'high        high'
+          'medium      medium'
+          'low         low';
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto 1fr repeat(4, auto);
+        max-width: $container-size;
+        min-height: $container-size;
       }
 
       &.resume {
