@@ -9,4 +9,8 @@
   margin: 0;
   padding: 0;
   padding-left: $offset-left-s;
+
+  @media screen and (min-width: $media-m) {
+    padding-left: 0;
+  }
 }

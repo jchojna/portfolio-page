@@ -15,7 +15,7 @@ const AccordionsGroup = ({
 
   return (
     <div className={classes.accordionsGroup}>
-      <BlockTitle title={title} view="resume" isLarge={isTitleLarge} />
+      <BlockTitle title={title} view="resume" />
       <div className={classes.items}>
         {content.map(({ label, items }, index) => {
           return (
@@ -23,7 +23,6 @@ const AccordionsGroup = ({
               key={index}
               label={label}
               view="resume"
-              isSmall={!isTitleLarge}
               isExpanded={expanded === label}
               setExpanded={setExpanded}
             >

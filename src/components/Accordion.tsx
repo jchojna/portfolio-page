@@ -8,7 +8,6 @@ const Accordion = ({
   label,
   children,
   view,
-  isSmall,
   isExpanded,
   setExpanded,
 }: AccordionProps) => {
@@ -17,7 +16,6 @@ const Accordion = ({
   const accordionItemsRef = useRef<HTMLDivElement | null>(null);
   const accordionClass = clsx(
     classes.accordion,
-    isSmall && classes.small,
     classes[view],
     !isExpanded && classes.collapsed
   );

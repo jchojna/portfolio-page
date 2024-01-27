@@ -21,7 +21,15 @@
   .items {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     padding-left: $offset-left-s;
+  }
+
+  @media screen and (min-width: $media-m) {
+    padding-left: $offset-left-s;
+
+    .items {
+      padding-left: 0;
+    }
   }
 }

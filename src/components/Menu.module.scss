@@ -7,18 +7,16 @@
   pointer-events: all;
   position: relative;
 
-  @media only screen and (min-width: $media-l) {
-    & {
-      align-items: center;
-      display: flex;
-      min-height: $container-size;
-      width: $menu-width;
-      transition: transform 0.5s;
+  @media only screen and (min-width: $media-m) {
+    align-items: center;
+    display: flex;
+    min-height: $container-size;
+    width: $menu-width;
+    transition: transform 0.5s;
 
-      &.intro {
-        $left-offset: calc(50vw - #{$menu-width});
-        transform: translateX($left-offset);
-      }
+    &.intro {
+      $left-offset: calc(50vw - #{$menu-width});
+      transform: translateX($left-offset);
     }
   }
 

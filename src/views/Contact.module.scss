@@ -9,13 +9,8 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    min-height: 800px;
     padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
     width: 100%;
-
-    @media only screen and (min-width: $media-m) {
-      max-width: $container-size;
-    }
 
     .title {
       @include sectionTitle;

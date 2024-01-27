@@ -20,7 +20,7 @@
     visibility: visible;
   }
 
-  @media only screen and (min-width: $media-l) {
+  @media only screen and (min-width: $media-m) {
     scroll-snap-type: y mandatory;
   }
 }

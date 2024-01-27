@@ -43,12 +43,6 @@
       &.low {
         grid-area: low;
       }
-
-      .icons {
-        display: flex;
-        gap: 5px;
-        list-style-type: none;
-      }
     }
 
     .contactDetails {
@@ -57,6 +51,10 @@
       grid-area: contact;
       list-style-type: none;
       padding-left: $offset-left-s;
+
+      @media screen and (min-width: $media-m) {
+        padding-left: 0;
+      }
     }
   }
 }

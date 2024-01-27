@@ -88,9 +88,5 @@
     fill: $color-tasktimer-letterShadow;
   }
 
-  @media only screen and (min-width: $media-s) {
-    margin-left: $offset-left-s;
-  }
-
   @include graphicInCorner;
 }

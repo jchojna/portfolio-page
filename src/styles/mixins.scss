@@ -23,14 +23,19 @@
   display: flex;
   justify-content: center;
   min-height: 100vh;
+  max-height: none;
   padding: 0 2fr 0 1fr;
   position: relative;
   scroll-snap-align: start;
   width: 100%;
 
-  @media only screen and (min-width: $media-l) {
+  @media only screen and (min-width: $media-m) {
     align-items: center;
     justify-content: flex-start;
+    padding: 0 350px;
+  }
+
+  @media only screen and (min-width: $media-l) {
     padding: 0 500px;
   }
 
@@ -68,7 +73,8 @@
   align-items: start;
   align-content: stretch;
   display: grid;
-  gap: 2rem;
+  gap: $gridGap;
+  column-gap: 60px;
   padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
   width: 100%;
 
@@ -86,12 +92,10 @@
 
   &.resume {
     grid-template-areas:
-      'logo      '
-      'title   '
-      'info      '
-      'experience'
-      'education '
-      'languages ';
+      'logo'
+      'title'
+      'info'
+      'accordions';
   }
 
   &.tasktimer,
@@ -127,8 +131,7 @@
   }
 
   @media only screen and (min-width: $media-m) {
-    gap: $gridGap;
-    padding: 0;
+    padding: 60px 0;
 
     &.about {
       grid-template-areas:
@@ -146,11 +149,9 @@
     &.resume {
       align-content: start;
       grid-template-areas:
-        'title   '
-        'info      '
-        'experience'
-        'education '
-        'languages ';
+        'title title'
+        'info accordions';
+      grid-template-columns: 1fr 2fr;
     }
 
     &.tasktimer,
@@ -278,7 +279,12 @@
 @mixin normalText($color) {
   color: map-get($colors, #{$color}-white);
   font-size: 1.1rem;
-  line-height: 1.4;
+  line-height: 1.5;
   margin: 0;
-  padding: 10px 0 10px $offset-left-s;
+  padding: 0;
+  padding-left: $offset-left-s;
+
+  @media screen and (min-width: $media-m) {
+    padding-left: 0;
+  }
 }

@@ -38,7 +38,6 @@ const Resume = () => {
           <Accordion
             label={education.label}
             view="resume"
-            isSmall={isMobile}
             isExpanded={expanded === education.label}
             setExpanded={setExpanded}
           >
@@ -49,7 +48,6 @@ const Resume = () => {
           <Accordion
             label={languages.label}
             view="resume"
-            isSmall={isMobile}
             isExpanded={expanded === languages.label}
             setExpanded={setExpanded}
           >
