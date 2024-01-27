@@ -92,15 +92,5 @@
     margin-left: $offset-left-s;
   }
 
-  @media only screen and (min-width: $media-m) {
-    position: absolute;
-    margin: 0;
-    max-width: 400px;
-    right: 0;
-    top: 50px;
-  }
-
-  @media only screen and (min-width: $media-l) {
-    max-width: 500px;
-  }
+  @include graphicInCorner;
 }

@@ -15,18 +15,19 @@
     }
 
     .description {
-      color: $color-about-white;
-      font-size: 1.1rem;
+      @include normalText(about);
+
       grid-area: description;
-      line-height: 1.4;
-      margin: 0;
-      padding: 10px 0 10px $offset-left-s;
     }
 
     .photo {
+      @include graphicInCorner;
+
+      filter: sepia(0.7) hue-rotate(140deg) brightness(0.9);
       grid-area: photo;
       justify-self: end;
       max-width: 500px;
+      opacity: 0.9;
       margin-right: -$offset-right-s;
       width: 100%;
       z-index: 1;

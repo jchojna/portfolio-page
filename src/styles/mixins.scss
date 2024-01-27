@@ -17,25 +17,21 @@
   border-top-width: 8px;
 }
 
-// sections
-
+// each view of the app
 @mixin section {
   align-items: center;
   display: flex;
   justify-content: center;
   min-height: 100vh;
-  // padding-bottom: 50px;
   padding: 0 2fr 0 1fr;
   position: relative;
   scroll-snap-align: start;
   width: 100%;
 
   @media only screen and (min-width: $media-l) {
-    & {
-      align-items: center;
-      justify-content: flex-start;
-      padding-left: 500px;
-    }
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 500px;
   }
 
   &.about {
@@ -67,16 +63,16 @@
   }
 }
 
+// each section's container
 @mixin container {
   align-items: start;
+  align-content: stretch;
   display: grid;
   gap: 2rem;
-  min-height: 800px;
   padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
   width: 100%;
 
   &.about {
-    gap: 1rem;
     grid-template-areas:
       'photo'
       'title'
@@ -85,7 +81,6 @@
       'high'
       'medium'
       'low';
-    padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
     width: 100%;
   }
 
@@ -132,67 +127,63 @@
   }
 
   @media only screen and (min-width: $media-m) {
-    & {
-      gap: $gridGap;
-      max-width: $container-size;
-      min-height: $container-size;
+    gap: $gridGap;
+    padding: 0;
 
-      &.about {
-        grid-template-areas:
-          'title       photo'
-          'description photo'
-          'contact     photo'
-          'high        high'
-          'medium      medium'
-          'low         low';
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto 1fr repeat(4, auto);
-        max-width: $container-size;
-        min-height: $container-size;
-      }
+    &.about {
+      grid-template-areas:
+        'title'
+        'description'
+        'contact'
+        'high'
+        'medium'
+        'low';
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr repeat(4, auto);
+      // min-height: $container-size;
+    }
 
-      &.resume {
-        align-content: start;
-        grid-template-areas:
-          'title   '
-          'info      '
-          'experience'
-          'education '
-          'languages ';
-      }
+    &.resume {
+      align-content: start;
+      grid-template-areas:
+        'title   '
+        'info      '
+        'experience'
+        'education '
+        'languages ';
+    }
 
-      &.tasktimer,
-      &.portfolio,
-      &.hydrapp,
-      &.archviz,
-      &.quotes {
-        grid-template-areas:
-          'title      title     '
-          'description  features    '
-          'icons icons'
-          'stats        links   ';
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto 1fr repeat(2, auto);
-      }
+    &.tasktimer,
+    &.portfolio,
+    &.hydrapp,
+    &.archviz,
+    &.quotes {
+      grid-template-areas:
+        'title      title     '
+        'description  features    '
+        'icons icons'
+        'stats        links   ';
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr repeat(2, auto);
+    }
 
-      &.other {
-        grid-template-areas:
-          'title    '
-          'description'
-          'otherRepos ';
-        grid-template-rows: auto 1fr auto;
-      }
+    &.other {
+      grid-template-areas:
+        'title    '
+        'description'
+        'otherRepos ';
+      grid-template-rows: auto 1fr auto;
+    }
 
-      &.contact {
-        align-content: stretch;
-        align-items: center;
-        grid-template-areas:
-          'title'
-          'form   '
-          'social '
-          'footer ';
-        grid-template-rows: auto 1fr;
-      }
+    &.contact {
+      align-content: stretch;
+      align-items: center;
+      grid-template-areas:
+        'title'
+        'form   '
+        'social '
+        'footer ';
+      grid-template-rows: auto 1fr;
     }
   }
 }
@@ -268,4 +259,26 @@
       max-width: none;
     }
   }
+}
+
+@mixin graphicInCorner {
+  @media only screen and (min-width: $media-m) {
+    position: absolute;
+    margin: 0;
+    max-width: 400px;
+    right: 0;
+    top: 50px;
+  }
+
+  @media only screen and (min-width: $media-l) {
+    max-width: 500px;
+  }
+}
+
+@mixin normalText($color) {
+  color: map-get($colors, #{$color}-white);
+  font-size: 1.1rem;
+  line-height: 1.4;
+  margin: 0;
+  padding: 10px 0 10px $offset-left-s;
 }
