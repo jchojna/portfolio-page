@@ -1,8 +1,9 @@
 import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import menuItems from '../content/menu.json';
 import menuSvg from '../assets/svg/menu.svg';
+import { scrollToSection } from '../utils/utils';
 
 import classes from './MenuButton.module.scss';
 
@@ -15,6 +16,9 @@ type MenuButtonProps = {
   isActive?: boolean;
   offsetedSectionIndex: number;
   relativeTopOffset: number;
+  sectionsRef: React.RefObject<HTMLDivElement>;
+  backgroundSection: string;
+  setBackgroundSection: (backgroundSection: string) => void;
   setCurrentSectionIndex: (currentSectionIndex: number) => void;
   setMenuMode: (isMenuMode: boolean) => void;
 };
@@ -30,13 +34,14 @@ const MenuButton = ({
   relativeTopOffset,
   setCurrentSectionIndex,
   setMenuMode,
+  sectionsRef,
+  backgroundSection,
+  setBackgroundSection,
 }: MenuButtonProps) => {
-  const [backgroundSection, setBackgroundSection] = useState<string>('about');
-
   const viewBox = `0 0 ${width} 100`;
   const buttonClass = clsx({
     [classes.menuButton]: true,
-    [classes[backgroundSection]]: true,
+    [classes[backgroundSection]]: !isMenuMode,
     [classes.intro]: isMenuMode,
     [classes.hovered]: isHovered,
     [classes[label]]: isHovered && isMenuMode,
@@ -54,20 +59,19 @@ const MenuButton = ({
     const offset = relativeTopOffset - top;
     const index = offset >= 0 ? offsetedSectionIndex : offsetedSectionIndex + 1;
     const sections = menuItems.map(({ label }) => label);
-    setBackgroundSection((prevState) =>
-      prevState === sections[index] ? prevState : sections[index]
-    );
+    setBackgroundSection(sections[index]);
   }, [relativeTopOffset]);
 
   const handleClick = (index: number) => {
+    scrollToSection(sectionsRef, index, !isMenuMode);
     setCurrentSectionIndex(index);
+    setBackgroundSection(menuItems[index].label);
     setMenuMode(false);
   };
 
   return (
     <a
       ref={buttonRef}
-      href={`#${label}`}
       className={buttonClass}
       onClick={() => handleClick(index)}
     >

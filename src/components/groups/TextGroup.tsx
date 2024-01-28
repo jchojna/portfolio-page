@@ -8,7 +8,7 @@ const TextGroup = ({ title, projectName, content }: TextGroupProps) => {
   return (
     <div className={clsx(classes.textBlock, classes[projectName])}>
       <BlockTitle title={title} view={projectName} />
-      <ul className={classes.paragraphs}>
+      <ul className={clsx(classes.paragraphs, classes[projectName])}>
         {content.map((listItem, index) => (
           <li key={index} className={classes.paragraph}>
             {listItem}

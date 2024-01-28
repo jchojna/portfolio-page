@@ -1,0 +1,141 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+@mixin navigatorButton($color) {
+  border-color: map-get($colors, #{$color}-diff);
+  &:hover {
+    border-color: map-get($colors, #{$color}-diff-dark);
+  }
+}
+
+.navigator {
+  bottom: 100px;
+  display: block;
+  opacity: 0;
+  pointer-events: all;
+  position: fixed;
+  right: 100px;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0s 0.5s;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s, visibility 0s;
+  }
+
+  &.about .button {
+    @include navigatorButton(about);
+  }
+  &.resume .button {
+    @include navigatorButton(resume);
+  }
+  &.tasktimer .button {
+    @include navigatorButton(tasktimer);
+  }
+  &.portfolio .button {
+    @include navigatorButton(portfolio);
+  }
+  &.hydrapp .button {
+    @include navigatorButton(hydrapp);
+  }
+  &.archviz .button {
+    @include navigatorButton(archviz);
+  }
+  &.quotes .button {
+    @include navigatorButton(quotes);
+  }
+  &.other .button {
+    @include navigatorButton(other);
+  }
+  &.contact .button {
+    @include navigatorButton(contact);
+  }
+
+  .button {
+    @include button;
+    @include flex-center;
+
+    border-color: #fff;
+    height: $navigation-size-button;
+    padding: $navigation-padding;
+    width: $navigation-size-button;
+    transition: border-color $navigation-time,
+      transform $navigation-time $navigation-time-delay;
+
+    &.prev,
+    &.next {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    &.hidden {
+      visibility: hidden;
+    }
+  }
+
+  .icon {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    pointer-events: none;
+    transition: border-color $navigation-time,
+      transform $navigation-time $navigation-time-delay +
+        $navigation-time-rotate;
+    height: $navigation-size-arrows;
+    width: $navigation-size-arrows;
+
+    &.prev {
+      border-left-width: $navigation-border-arrow;
+      border-top-width: $navigation-border-arrow;
+    }
+
+    &.next {
+      border-bottom-width: $navigation-border-arrow;
+      border-right-width: $navigation-border-arrow;
+    }
+
+    &.back {
+      border-width: calc($navigation-size-arrows / 2);
+      transition: border-color $navigation-time,
+        border-width $navigation-time $navigation-time-delay,
+        height $navigation-time $navigation-time-delay,
+        transform $navigation-time $navigation-time-delay +
+          $navigation-time-rotate,
+        width $navigation-time $navigation-time-delay;
+    }
+  }
+
+  &:hover {
+    .button {
+      transition: transform $navigation-time $navigation-time-rotate;
+
+      &.prev {
+        transform: translateY($navigation-offset * -2);
+      }
+
+      &.back {
+        transform: translateY($navigation-offset * -1);
+      }
+
+      .icon {
+        transform: rotate(45deg) translate3d(0, 0, 1px);
+        transition: border-color $navigation-time, transform $navigation-time;
+
+        &.back {
+          border-width: calc($navigation-size-back / 2);
+          height: $navigation-size-back;
+          width: $navigation-size-back;
+          transition: border-color $navigation-time,
+            border-width $navigation-time $navigation-time-rotate,
+            height $navigation-time $navigation-time-rotate,
+            transform $navigation-time,
+            width $navigation-time $navigation-time-rotate;
+        }
+      }
+    }
+  }
+}

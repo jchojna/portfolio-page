@@ -3,9 +3,9 @@ $intro-background-color: rgb(30, 30, 30);
 $intro-link-color: rgb(60, 60, 60);
 
 // MEDIA
-$media-s: 768px;
-$media-m: 1200px;
-$media-l: 1440px;
+$media-s: 769px;
+$media-m: 1201px;
+$media-l: 1681px;
 
 // MENU
 $time-switch: 0.4s;
@@ -41,20 +41,16 @@ $container-size: 800px;
 $menu-width: 420px;
 $mobile-menu-offset-top: 100px;
 
-$tabHeader-size-xs: 30px;
-$tabHeader-size-lg: 40px;
 $tabHeading-size-xs: 30px;
 $tabHeading-size-lg: 30px;
-$otherHeading-size-xs: 30px;
-$otherHeading-size-lg: 30px;
-$features-category-size-xs: 25px;
-$features-category-size-lg: 20px;
 
 $tabGap-xs: 20px;
 $tabGap-sm: 20px;
-$gridGap: 20px;
+$gridGap: 25px;
 $rowGap: 30px;
+
 $separator-width: 10px;
+$separator-height: 60px;
 
 $svg-opacity: 0.3;
 $background-opacity: 0.7;
@@ -77,7 +73,6 @@ $color-about-diff: rgb(80, 76, 69);
 $color-about-diff-dark: rgb(65, 61, 57);
 
 // RESUME
-$color-resume-white: #eed5db;
 $color-resume-light: #c993a0;
 $color-resume: #a7586b;
 $color-resume-dark: rgb(119, 56, 72);
@@ -158,13 +153,15 @@ $colors: (
   about-dark: $color-about-dark,
   about-shadow: $color-about-shadow,
   about-diff: $color-about-diff,
+  about-diff-dark: $color-about-diff-dark,
   // resume
   resume: $color-resume,
-  resume-white: $color-resume-white,
+  resume-white: #eed5db,
   resume-light: $color-resume-light,
   resume-dark: $color-resume-dark,
   resume-shadow: $color-resume-shadow,
   resume-diff: $color-resume-diff,
+  resume-diff-dark: $color-resume-diff-dark,
   // tasktimer
   tasktimer: $color-tasktimer,
   tasktimer-white: $color-tasktimer-white,
@@ -172,6 +169,7 @@ $colors: (
   tasktimer-dark: $color-tasktimer-dark,
   tasktimer-shadow: $color-tasktimer-shadow,
   tasktimer-diff: $color-tasktimer-diff,
+  tasktimer-diff-dark: $color-tasktimer-diff-dark,
   // hydrapp
   hydrapp: $color-hydrapp,
   hydrapp-white: $color-hydrapp-white,
@@ -179,6 +177,7 @@ $colors: (
   hydrapp-dark: $color-hydrapp-dark,
   hydrapp-shadow: $color-hydrapp-shadow,
   hydrapp-diff: $color-hydrapp-diff,
+  hydrapp-diff-dark: $color-hydrapp-diff-dark,
   // portfolio
   portfolio: $color-portfolio,
   portfolio-white: $color-portfolio-white,
@@ -186,6 +185,7 @@ $colors: (
   portfolio-dark: $color-portfolio-dark,
   portfolio-shadow: $color-portfolio-shadow,
   portfolio-diff: $color-portfolio-diff,
+  portfolio-diff-dark: $color-portfolio-diff-dark,
   // archviz
   archviz: $color-archviz,
   archviz-white: $color-archviz-white,
@@ -193,6 +193,7 @@ $colors: (
   archviz-dark: $color-archviz-dark,
   archviz-shadow: $color-archviz-shadow,
   archviz-diff: $color-archviz-diff,
+  archviz-diff-dark: $color-archviz-diff-dark,
   // quotes
   quotes: $color-quotes,
   quotes-white: $color-quotes-white,
@@ -200,6 +201,7 @@ $colors: (
   quotes-dark: $color-quotes-dark,
   quotes-shadow: $color-quotes-shadow,
   quotes-diff: $color-quotes-diff,
+  quotes-diff-dark: $color-quotes-diff-dark,
   // other
   other: $color-other,
   other-white: $color-other-white,
@@ -207,11 +209,13 @@ $colors: (
   other-dark: $color-other-dark,
   other-shadow: $color-other-shadow,
   other-diff: $color-other-diff,
+  other-diff-dark: $color-other-diff-dark,
   // contact
   contact: $color-contact,
   contact-white: $color-contact-white,
   contact-light: $color-contact-light,
   contact-dark: $color-contact-dark,
   contact-shadow: $color-contact-shadow,
-  contact-diff: $color-contact-diff
+  contact-diff: $color-contact-diff,
+  contact-diff-dark: $color-contact-diff-dark
 );

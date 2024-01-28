@@ -46,9 +46,7 @@
     word-break: break-all;
 
     @media only screen and (min-width: $media-l) {
-      & {
-        font-size: 0.75em;
-      }
+      font-size: 0.75em;
     }
   }
 
@@ -72,8 +70,8 @@
 
   &.large {
     .link {
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
     }
 
     .name {
@@ -109,17 +107,17 @@
   &.contact {
     .link {
       background-color: rgba(
-        $color: $color-contact-dark,
+        $color: $color-contact-diff,
         $alpha: $background-opacity
       );
-      fill: $color-contact;
+      fill: $color-contact-light;
       &::before {
-        border-color: $color-contact-shadow;
+        border-color: $color-contact-diff-dark;
       }
       &:active {
         fill: $color-contact-light;
         background-color: rgba(
-          $color: $color-contact-shadow,
+          $color: $color-contact-diff-dark,
           $alpha: $background-opacity
         );
       }
@@ -150,13 +148,12 @@
     &.contact {
       .link {
         &::before {
-          border-color: $color-contact-shadow;
+          border-color: $color-contact-diff-dark;
         }
         &:focus,
         &:hover {
-          fill: $color-contact-light;
           background-color: rgba(
-            $color: $color-contact-shadow,
+            $color: $color-contact-diff-dark,
             $alpha: $background-opacity
           );
         }

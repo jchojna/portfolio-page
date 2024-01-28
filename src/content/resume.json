@@ -94,13 +94,16 @@
       "label": "Languages",
       "items": [
         {
+          "items": ["Polish", "Native"]
+        },
+        {
           "items": ["English", "Proficient"]
         },
         {
           "items": ["German", "Elementary"]
         },
         {
-          "items": ["Polish", "Native"]
+          "items": ["Spanish", "Elementary"]
         }
       ]
     }

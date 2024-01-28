@@ -33,3 +33,18 @@ export const getRelativeTopOffset = (
     .filter((offset) => offset > 0 && offset <= window.innerHeight);
   return relativeTopOffset.length >= 0 ? relativeTopOffset[0] : 0;
 };
+
+export const scrollToSection = (
+  sectionsRef: React.RefObject<HTMLDivElement>,
+  targetSectionIndex: number,
+  isSmooth: boolean = true
+) => {
+  if (!sectionsRef.current) return;
+  const targetSection = sectionsRef.current.children[targetSectionIndex];
+  if (!(targetSection instanceof HTMLElement)) return;
+  sectionsRef.current.scrollTo({
+    top: targetSection.offsetTop,
+    left: 0,
+    behavior: isSmooth ? 'smooth' : 'instant',
+  });
+};

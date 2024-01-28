@@ -5,36 +5,7 @@
   @include section();
 
   .container {
-    align-items: start;
-    display: grid;
-    gap: 1rem;
-    grid-template-areas:
-      'photo'
-      'title'
-      'description'
-      'contact'
-      'high'
-      'medium'
-      'low';
-    padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
-    width: 100%;
-
-    @media only screen and (min-width: $media-m) {
-      & {
-        gap: $gridGap;
-        grid-template-areas:
-          'title       photo'
-          'description photo'
-          'contact     photo'
-          'high        high'
-          'medium      medium'
-          'low         low';
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto 1fr repeat(4, auto);
-        max-width: $container-size;
-        min-height: $container-size;
-      }
-    }
+    @include container;
 
     .title {
       @include sectionTitle;
@@ -44,44 +15,32 @@
     }
 
     .description {
-      color: $color-about-white;
-      font-size: 1.1rem;
+      @include normalText(about);
+
       grid-area: description;
-      line-height: 1.4;
-      margin: 0;
-      padding: 10px 0 10px $offset-left-s;
-
-      // @media only screen and (min-width: $media-m) {
-      //   margin: 0;
-      //   line-height: 1.6;
-      // }
-
-      // @media only screen and (min-width: $media-l) {
-      //   padding-top: 0;
-      // }
     }
 
     .photo {
+      filter: sepia(0.7) hue-rotate(140deg) brightness(0.9);
       grid-area: photo;
       justify-self: end;
       max-width: 500px;
+      opacity: 0.9;
       margin-right: -$offset-right-s;
       width: 100%;
       z-index: 1;
 
-      // @media only screen and (min-width: $media-m) {
-      //   & {
-      //     margin-right: 0;
-      //     margin-top: $menu-item-height + $offset-right-m;
-      //   }
-      // }
+      @media only screen and (min-width: $media-m) {
+        position: absolute;
+        margin: 0;
+        max-width: 400px;
+        right: 0;
+        top: 50px;
+      }
 
-      // @media only screen and (min-width: $media-l) {
-      //   & {
-      //     margin: 0;
-      //     max-width: 350px;
-      //   }
-      // }
+      @media only screen and (min-width: $media-l) {
+        max-width: 500px;
+      }
     }
 
     .iconsGroup {
@@ -94,12 +53,6 @@
       &.low {
         grid-area: low;
       }
-
-      .icons {
-        display: flex;
-        gap: 5px;
-        list-style-type: none;
-      }
     }
 
     .contactDetails {
@@ -108,6 +61,10 @@
       grid-area: contact;
       list-style-type: none;
       padding-left: $offset-left-s;
+
+      @media screen and (min-width: $media-m) {
+        padding-left: 0;
+      }
     }
   }
 }

@@ -6,10 +6,31 @@
 
   .paragraphs {
     list-style-type: none;
-    padding-left: $offset-left-s;
+    padding-left: 0;
     margin: 0;
-  }
 
-  &.tasktimer {
+    &.tasktimer {
+      @include normalText(tasktimer);
+    }
+
+    &.hydrapp {
+      @include normalText(hydrapp);
+    }
+
+    &.portfolio {
+      @include normalText(portfolio);
+    }
+
+    &.archviz {
+      @include normalText(archviz);
+    }
+
+    &.quotes {
+      @include normalText(quotes);
+    }
+
+    &.contact {
+      @include normalText(contact);
+    }
   }
 }

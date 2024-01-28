@@ -8,16 +8,14 @@ const Accordion = ({
   label,
   children,
   view,
-  isSmall,
   isExpanded,
   setExpanded,
 }: AccordionProps) => {
   const accordionRef = useRef<HTMLDivElement | null>(null);
   const accordionLabelRef = useRef<HTMLButtonElement | null>(null);
-  const accordionItemsRef = useRef<HTMLDivElement | null>(null);
+  const accordionItemsRef = useRef<HTMLUListElement | null>(null);
   const accordionClass = clsx(
     classes.accordion,
-    isSmall && classes.small,
     classes[view],
     !isExpanded && classes.collapsed
   );
@@ -47,9 +45,9 @@ const Accordion = ({
           {label}
         </button>
       </div>
-      <div ref={accordionItemsRef} className={classes.items}>
+      <ul ref={accordionItemsRef} className={classes.items}>
         {children}
-      </div>
+      </ul>
     </div>
   );
 };

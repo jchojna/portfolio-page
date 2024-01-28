@@ -5,31 +5,18 @@
   @include section;
 
   .container {
-    align-items: start;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    min-height: 800px;
+    gap: 60px;
     padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
     width: 100%;
-
-    @media only screen and (min-width: $media-m) {
-      max-width: $container-size;
-    }
 
     .title {
       @include sectionTitle;
 
       margin: 0;
-    }
-
-    .email {
-      color: $color-contact-shadow;
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin: 2rem 0;
       text-align: center;
-      width: 100%;
     }
 
     .contactDetails {

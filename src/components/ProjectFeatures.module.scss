@@ -4,8 +4,14 @@
 @mixin projectFeature($project) {
   .accordions {
     .feature {
+      @include normalText($project);
+
       &::before {
         background-color: map-get($colors, #{$project}-light);
+      }
+
+      @media screen and (min-width: $media-m) {
+        padding-left: 20px;
       }
     }
   }
@@ -14,27 +20,14 @@
 .features {
   grid-area: features;
 
-  // .title {
-  //   background: none;
-  //   border: none;
-  //   color: $color-resume-dark;
-  //   font-size: 2.5rem;
-  //   font-weight: 700;
-  //   margin: 0;
-  //   padding: 0;
-  //   text-align: left;
-  //   text-transform: uppercase;
-  // }
-
   .accordions {
     align-self: center;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-left: $offset-left-s;
+    padding-left: 25px;
 
     .feature {
-      padding-left: 20px;
       position: relative;
 
       &::before {
@@ -47,6 +40,10 @@
         top: 0;
         width: $separator-width;
       }
+    }
+
+    @media screen and (min-width: $media-m) {
+      padding-left: 0;
     }
   }
 

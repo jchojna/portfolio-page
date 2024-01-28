@@ -16,13 +16,25 @@ type MenuProps = {
   isMenuMode: boolean;
   setMenuMode: (isMenuMode: boolean) => void;
   sectionsRef: React.RefObject<HTMLDivElement>;
+  currentSectionIndex: number;
+  setCurrentSectionIndex: (index: number) => void;
+  backgroundSection: string;
+  setBackgroundSection: (backgroundSection: string) => void;
 };
 
-const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
+const Menu = ({
+  isMenuMode,
+  setMenuMode,
+  sectionsRef,
+  currentSectionIndex,
+  setCurrentSectionIndex,
+  backgroundSection,
+  setBackgroundSection,
+}: MenuProps) => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(0);
-  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
   const [offsetedSectionIndex, setOffsetedSectionIndex] = useState<number>(-1);
   const [relativeTopOffset, setRelativeTopOffset] = useState<number>(0);
+
   const indicatorRef = useRef<HTMLDivElement>(null);
   const menuListRef = useRef<HTMLUListElement>(null);
   const hoveredItemName = menuItems.map(({ label }) => label)[hoveredItem || 0];
@@ -45,12 +57,8 @@ const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
         Math.ceil(sectionsRef.current.scrollTop),
         sectionsScrolls
       ) || window.innerHeight;
-    setCurrentSectionIndex((prevState) => {
-      return prevState === currentIndex ? prevState : currentIndex;
-    });
-    setOffsetedSectionIndex((prevState) => {
-      return prevState === offsetedIndex ? prevState : offsetedIndex;
-    });
+    setCurrentSectionIndex(currentIndex);
+    setOffsetedSectionIndex(offsetedIndex);
     setRelativeTopOffset(offset);
   };
 
@@ -68,12 +76,12 @@ const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
     if (!menuListRef.current) return;
     const indicator = indicatorRef.current;
     if (isMenuMode) {
-      const { top, width, height, left } =
+      const { top, height } =
         menuListRef.current.children[
           hoveredItem ? hoveredItem : currentSectionIndex
         ].getBoundingClientRect();
       indicator.style.top = `${top}px`;
-      indicator.style.left = `${left + width + 20}px`;
+      indicator.style.left = `${window.innerWidth / 2 + 20}px`;
       indicator.style.height = `${height}px`;
       indicator.style.width = `${height}px`;
     } else {
@@ -120,7 +128,10 @@ const Menu = ({ isMenuMode, setMenuMode, sectionsRef }: MenuProps) => {
                   isMenuMode={isMenuMode}
                   isHovered={hoveredItem === index}
                   isActive={currentSectionIndex === index}
+                  sectionsRef={sectionsRef}
                   setMenuMode={setMenuMode}
+                  backgroundSection={backgroundSection}
+                  setBackgroundSection={setBackgroundSection}
                   setCurrentSectionIndex={setCurrentSectionIndex}
                   offsetedSectionIndex={offsetedSectionIndex}
                   relativeTopOffset={relativeTopOffset}

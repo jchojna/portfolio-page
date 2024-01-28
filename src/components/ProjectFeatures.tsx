@@ -23,7 +23,6 @@ const ProjectFeatures = ({
               key={index}
               label={label}
               view={projectName}
-              isSmall={true}
               isExpanded={expanded === label}
               setExpanded={setExpanded}
             >

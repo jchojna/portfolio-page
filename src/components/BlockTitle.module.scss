@@ -22,8 +22,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 8px;
-    height: 60px;
+    width: $separator-width;
+    height: $separator-height;
   }
 
   &.about {
@@ -51,18 +51,9 @@
     @include blockTitle(other);
   }
 
-  &.large {
-    font-size: 2.5rem;
-    margin: 0;
-
-    &::before {
-      height: 100px;
-    }
-  }
-
   @media only screen and (min-width: $media-m) {
     font-size: $tabHeading-size-lg;
-    padding: 0;
+    padding-left: 0;
 
     &::before {
       height: 70px;
