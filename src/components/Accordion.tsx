@@ -13,7 +13,7 @@ const Accordion = ({
 }: AccordionProps) => {
   const accordionRef = useRef<HTMLDivElement | null>(null);
   const accordionLabelRef = useRef<HTMLButtonElement | null>(null);
-  const accordionItemsRef = useRef<HTMLDivElement | null>(null);
+  const accordionItemsRef = useRef<HTMLUListElement | null>(null);
   const accordionClass = clsx(
     classes.accordion,
     classes[view],
@@ -45,9 +45,9 @@ const Accordion = ({
           {label}
         </button>
       </div>
-      <div ref={accordionItemsRef} className={classes.items}>
+      <ul ref={accordionItemsRef} className={classes.items}>
         {children}
-      </div>
+      </ul>
     </div>
   );
 };

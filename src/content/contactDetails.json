@@ -12,12 +12,6 @@
     "ariaLabel": "LinkedIn profile"
   },
   {
-    "id": "codewars",
-    "name": "Codewars",
-    "url": "https://codewars.com/users/jchojna",
-    "ariaLabel": "CodeWars profile"
-  },
-  {
     "id": "email",
     "name": "E-mail",
     "url": "mailto:jakub.chojna@gmail.com",

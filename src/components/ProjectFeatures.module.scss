@@ -4,8 +4,14 @@
 @mixin projectFeature($project) {
   .accordions {
     .feature {
+      @include normalText($project);
+
       &::before {
         background-color: map-get($colors, #{$project}-light);
+      }
+
+      @media screen and (min-width: $media-m) {
+        padding-left: 20px;
       }
     }
   }
@@ -21,7 +27,6 @@
     gap: 10px;
 
     .feature {
-      padding-left: 20px;
       position: relative;
 
       &::before {

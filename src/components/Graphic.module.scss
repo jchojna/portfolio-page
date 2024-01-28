@@ -18,6 +18,7 @@
   justify-self: end;
   margin-top: $menu-item-height;
   max-width: calc(100% - #{$offset-left-s});
+  opacity: 0.3;
   position: relative;
   transform-origin: bottom left;
   width: 100%;

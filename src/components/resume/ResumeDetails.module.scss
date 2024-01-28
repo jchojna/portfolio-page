@@ -1,5 +1,7 @@
 @import '../../styles/variables.scss';
 
+$gap: 10px;
+
 .container {
   display: flex;
   flex-direction: column;
@@ -7,7 +9,7 @@
 
   .label {
     color: $color-resume-dark;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 700;
     margin: 0;
   }
@@ -15,18 +17,18 @@
   .details {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: $gap;
 
     .detail {
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: 700;
-      line-height: 1.4;
+      line-height: 1.5;
       margin: 0;
 
       &-2,
       &-3 {
         border-left: $separator-width solid $color-resume-dark;
-        padding-left: 20px;
+        padding-left: $gap;
       }
 
       &-3 {
