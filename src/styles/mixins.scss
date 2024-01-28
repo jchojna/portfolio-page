@@ -75,7 +75,8 @@
   display: grid;
   gap: $gridGap;
   column-gap: 60px;
-  padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
+  padding: $menu-item-height $offset-right-s $menu-item-height * 2
+    $offset-left-s;
   width: 100%;
 
   &.about {
@@ -131,8 +132,6 @@
   }
 
   @media only screen and (min-width: $media-m) {
-    padding: 60px 0;
-
     &.about {
       grid-template-areas:
         'title'
@@ -196,7 +195,8 @@
   font-size: 60px;
   grid-area: title;
   line-height: 1.2;
-  // padding: 30px 10px 0 20px;
+  margin: 0;
+  margin-bottom: 30px;
   position: relative;
   width: 100%;
   z-index: 2;
@@ -257,20 +257,6 @@
       margin-bottom: 20px;
       max-width: none;
     }
-  }
-}
-
-@mixin graphicInCorner {
-  @media only screen and (min-width: $media-m) {
-    position: absolute;
-    margin: 0;
-    max-width: 400px;
-    right: 0;
-    top: 50px;
-  }
-
-  @media only screen and (min-width: $media-l) {
-    max-width: 500px;
   }
 }
 

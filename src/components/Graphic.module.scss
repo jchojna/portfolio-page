@@ -15,13 +15,11 @@
   display: flex;
   grid-area: logo;
   justify-content: center;
-  justify-self: end;
-  margin-top: $menu-item-height;
+  justify-self: start;
   max-width: calc(100% - #{$offset-left-s});
-  opacity: 0.3;
   position: relative;
   transform-origin: bottom left;
-  width: 100%;
+  width: 50%;
 
   &.tasktimer {
     margin-right: -50px;
@@ -89,5 +87,16 @@
     fill: $color-tasktimer-letterShadow;
   }
 
-  @include graphicInCorner;
+  @media only screen and (min-width: $media-m) {
+    position: absolute;
+    margin: 0;
+    max-width: 400px;
+    opacity: 0.3;
+    right: 0;
+    top: 50px;
+  }
+
+  @media only screen and (min-width: $media-l) {
+    max-width: 500px;
+  }
 }

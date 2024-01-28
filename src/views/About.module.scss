@@ -21,8 +21,6 @@
     }
 
     .photo {
-      @include graphicInCorner;
-
       filter: sepia(0.7) hue-rotate(140deg) brightness(0.9);
       grid-area: photo;
       justify-self: end;
@@ -31,6 +29,18 @@
       margin-right: -$offset-right-s;
       width: 100%;
       z-index: 1;
+
+      @media only screen and (min-width: $media-m) {
+        position: absolute;
+        margin: 0;
+        max-width: 400px;
+        right: 0;
+        top: 50px;
+      }
+
+      @media only screen and (min-width: $media-l) {
+        max-width: 500px;
+      }
     }
 
     .iconsGroup {
