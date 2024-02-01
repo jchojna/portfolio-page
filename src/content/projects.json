@@ -1,6 +1,7 @@
 [
   {
     "name": "tasktimer",
+    "repoName": "task-timer",
     "title": "get things done on time with taskTimer app",
     "about": [
       "You could say it's just another Pomodoro Clock react app, but this one is a little bit more complex and playful. I tried to make it look more like a board game with cards, interactive and entertaining. The app can handle multiple tasks going on at the same time, even though it may not be too practical to work on many tasks simultaneously, but it's nice to see them all in action anyway:)",
@@ -83,14 +84,11 @@
         "name": "illustrator",
         "totalSVG": 1
       }
-    ],
-    "url": {
-      "repo": "https://github.com/jchojna/task-timer",
-      "demo": "https://jchojna.github.io/task-timer/"
-    }
+    ]
   },
   {
     "name": "hydrapp",
+    "repoName": "hydrApp",
     "title": "track water consumption with hydrApp",
     "about": [
       "Simple yet useful app for daily tracking of water consumption. User can quickly get to basic app's functionality and add (or remove) next glass of drank water what may help with not forgetting about this really important activity, especially during hot summer.. There's also an archive section with an editable history entries divided on weeks, to have an overall insight into water consumption tendency. On top of that, user is able to change his account settings and view his or other users stats. I added some level of gamification in form of points collected by every user for 'minimum water' streaks. There is also an overall ranking of users, dynamically reacting to any change in users stats."
@@ -162,14 +160,11 @@
         "name": "illustrator",
         "totalSVG": 1
       }
-    ],
-    "url": {
-      "repo": "https://github.com/jchojna/hydrApp",
-      "demo": "https://jchojna.github.io/hydrApp/"
-    }
+    ]
   },
   {
     "name": "portfolio",
+    "repoName": "portfolio-page",
     "title": "this portfolio website...",
     "about": [
       "This project you have already started exploring and it's what you are viewing right now. It presents five most representative frontend projects of mine (including itself) placed in separate sections, starting from the ones I am proud of the most. In addition, the other section contains a few more straightforward and exercise projects I created in the beginning of my frontend journey.",
@@ -283,14 +278,11 @@
         "name": "illustrator",
         "totalSVG": 1
       }
-    ],
-    "url": {
-      "repo": "https://github.com/jchojna/portfolio-page",
-      "demo": "https://jchojna.github.io/portfolio-page/"
-    }
+    ]
   },
   {
     "name": "archviz",
+    "repoName": "archviz-website",
     "title": "personal portfolio with my architectural visulizations",
     "about": [
       "The main idea for this project was to compromise a large amount of high quality pictures with page load performance. Because of that I decided to create SVG placeholders for every image as a starting content and load the raster images progressively, taking into account their actual visibility on the screen and using lazy loading functionality.",
@@ -355,14 +347,11 @@
         "name": "photoshop",
         "totalSVG": 1
       }
-    ],
-    "url": {
-      "repo": "https://github.com/jchojna/archviz-website",
-      "demo": "https://jakubchojna.pl/"
-    }
+    ]
   },
   {
     "name": "quotes",
+    "repoName": "homepage-gulp",
     "title": "collection of useful and funny quotes",
     "about": [
       "Quotes collection containing nice pictures and many useful and funny quotes. In this is simple MPA website I wanted to keep perceived continuity, when user navigates between different pages and make it look more like a simple app. All the pictures used in this project has been taken and post-processed by myself during my one year stay in Slovenia."
@@ -422,10 +411,6 @@
         "name": "photoshop",
         "totalSVG": 1
       }
-    ],
-    "url": {
-      "repo": "https://github.com/jchojna/homepage-gulp",
-      "demo": "https://jchojna.github.io/homepage-gulp/"
-    }
+    ]
   }
 ]

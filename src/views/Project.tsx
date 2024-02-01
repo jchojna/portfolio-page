@@ -16,8 +16,9 @@ const Project = ({
   about,
   features,
   icons,
-  url,
+  fetchedData,
 }: ProjectProps) => {
+  const { created_at, updated_at, homepage, html_url } = fetchedData;
   return (
     <div id={name} className={clsx(classes.section, classes[name])}>
       <div className={clsx(classes.container, classes[name])}>
@@ -32,8 +33,16 @@ const Project = ({
           content={features}
         />
         <IconsList view={name} icons={icons} />
-        <ProjectLinks projectName={name} url={url} />
-        <ProjectStats projectName={name} />
+        <ProjectLinks
+          projectName={name}
+          repoUrl={html_url}
+          demoUrl={homepage}
+        />
+        <ProjectStats
+          projectName={name}
+          createdAt={created_at}
+          updatedAt={updated_at}
+        />
       </div>
     </div>
   );

@@ -2,10 +2,10 @@ import clsx from 'clsx';
 
 import classes from './ProjectLinks.module.scss';
 
-const ProjectLinks = ({ projectName, url }: ProjectLinksProps) => (
+const ProjectLinks = ({ projectName, repoUrl, demoUrl }: ProjectLinksProps) => (
   <div className={clsx(classes.projectLinks, classes[projectName])}>
     <a
-      href={url.repo}
+      href={repoUrl}
       className={classes.link}
       target="_blank"
       rel="nofollow noreferrer"
@@ -14,7 +14,7 @@ const ProjectLinks = ({ projectName, url }: ProjectLinksProps) => (
       Code
     </a>
     <a
-      href={url.demo}
+      href={demoUrl}
       className={classes.link}
       target="_blank"
       rel="nofollow noreferrer"

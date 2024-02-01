@@ -22,6 +22,14 @@ type AccordionsGroupProps = {
   isTitleLarge: boolean;
 };
 
+type RepoObj = {
+  name: string;
+  created_at: string;
+  updated_at: string;
+  homepage: string;
+  html_url: string;
+};
+
 type ProjectProps = {
   name: string;
   title: string;
@@ -31,7 +39,7 @@ type ProjectProps = {
     items: string[];
   }[];
   icons: IconDetails[];
-  url: ProjectUrls;
+  fetchedData: RepoObj;
 };
 
 type TextGroupProps = {
@@ -61,14 +69,10 @@ type IconsList = {
   icons: IconDetails[];
 };
 
-type ProjectUrls = {
-  repo: string;
-  demo: string;
-};
-
 type ProjectLinksProps = {
   projectName: string;
-  url: ProjectUrls;
+  repoUrl: string;
+  demoUrl: string;
 };
 
 type ProjectFeaturesProps = {
