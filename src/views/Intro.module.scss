@@ -41,9 +41,8 @@
   }
 
   .grid {
-    border: 1px solid blue;
     gap: 3px;
-    display: none; // none
+    display: none;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -51,30 +50,22 @@
     .gridItem {
       @include flex-center;
 
+      fill: $color-about;
       position: relative;
       visibility: hidden;
-      border: 1px solid red;
-    }
 
-    .char {
-      @include flex-center;
+      .char {
+        @include flex-center;
 
-      fill: $intro-link-color;
-      position: relative;
-      width: 100%;
-      transition: left 0.5s, top 0.5s;
+        fill: $intro-link-color;
+        position: relative;
+        width: 100%;
+        transition: left 0.5s, top 0.5s;
 
-      &.separator {
-        background-color: $intro-link-color;
-        height: 100%;
-      }
-
-      &.color {
-        fill: $color-about;
-      }
-
-      &.color.separator {
-        background-color: $color-about;
+        &.separator {
+          background-color: $intro-link-color;
+          height: 100%;
+        }
       }
     }
 
