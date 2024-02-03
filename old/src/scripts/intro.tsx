@@ -1,6 +1,5 @@
-import { media, introBox, menuItems, pageHeader } from './variables';
+import { introBox, media, menuItems, pageHeader } from './variables';
 
-let introText = 'jakub chojna frontend projects';
 const intro = document.querySelector('.intro--js')!;
 const introLoader = document.getElementById('intro_loader')!;
 const introItemWidth =
@@ -23,44 +22,6 @@ let introThirdTimeoutId: TimeoutId = undefined;
 let introForthTimeoutId: TimeoutId = undefined;
 let introCharIntervalId: TimeoutId = undefined;
 const introFirstTimeoutInterval = 600;
-
-export const setIntroLoaderPosition = () => {
-  introLoader.style.top = `${introLoader.offsetTop}px`;
-  introLoader.style.left = `${introLoader.offsetLeft}px`;
-};
-
-export const loadIntroContent = () => {
-  [...introText].forEach((char) => {
-    const gridItem =
-      char !== ' '
-        ? `<li
-        class="grid__item grid__item--js"
-        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
-      >
-        <div class="grid__char grid__char--js">
-          <svg
-            class="grid__svg grid__svg--js-char"
-            viewBox="0 0 50 100"
-          >
-            <use href="assets/svg/letters.svg#${char}"></use>
-          </svg>
-          <svg
-            class="grid__svg grid__svg--shadow"
-            viewBox="0 0 50 100"
-          >
-            <use href="assets/svg/letters.svg#${char}-shadow"></use>
-          </svg>
-        </div>
-      </li>`
-        : `<li
-        class="grid__item grid__item--js"
-        style="width: ${introItemWidth}px; height: ${introItemHeight}px;"
-      >
-        <div class="grid__char grid__char--separator grid__char--js"></div>
-      </li>`;
-    introGrid.insertAdjacentHTML('beforeend', gridItem);
-  });
-};
 
 // assign size and position of one element to another
 const setSizeAndPosition = (
