@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import classes from './Intro.module.scss';
 
 const introText = 'jakub chojna frontend projects';
@@ -14,13 +14,48 @@ const introItemWidth =
 const introItemHeight = 2 * introItemWidth;
 
 const Intro = () => {
+  const [isIntroVisible, setIntroVisible] = useState<boolean>(true);
+
   const loaderRef = useRef<HTMLDivElement>(null);
+  const endingBeforeRef = useRef<HTMLDivElement>(null);
+  const endingAfterRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLUListElement>(null);
+  const skipButtonRef = useRef<HTMLButtonElement>(null);
+
+  type TimeoutId = NodeJS.Timeout | undefined;
+  let introFirstTimeoutId: TimeoutId = undefined;
+  let introSecondTimeoutId: TimeoutId = undefined;
+  let introThirdTimeoutId: TimeoutId = undefined;
+  let introForthTimeoutId: TimeoutId = undefined;
+  let introCharIntervalId: TimeoutId = undefined;
+  const introFirstTimeoutInterval = 600;
 
   const setIntroLoaderPosition = () => {
     if (!loaderRef.current) return;
     loaderRef.current.style.top = `${loaderRef.current.offsetTop}px`;
     loaderRef.current.style.left = `${loaderRef.current.offsetLeft}px`;
+  };
+
+  // assign size and position of one element to another
+  const setSizeAndPosition = (
+    element: HTMLElement,
+    target: HTMLElement,
+    size?: number
+  ) => {
+    element.style.top = `${target.offsetTop}px`;
+    element.style.left = `${target.offsetLeft}px`;
+    element.style.width = size ? `${size}px` : `${target.clientWidth}px`;
+    element.style.height = size ? `${size}px` : `${target.clientHeight}px`;
+  };
+
+  const handleIntroLoader = () => {
+    // introLoader.classList.add('intro__loader--transition');
+    loaderRef.current.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
+    setSizeAndPosition(
+      loaderRef.current,
+      endingBeforeRef.current,
+      introItemHeight
+    );
   };
 
   const handleIntroAnimation = () => {
@@ -70,21 +105,21 @@ const Intro = () => {
         endingAfterLeft = prevAfterChildOffset + introItemWidth;
       }
 
-      endingBefore.style.top = `${endingBeforeTop}px`;
-      endingBefore.style.left = `${endingBeforeLeft}px`;
-      endingAfter.style.top = `${endingAfterTop}px`;
-      endingAfter.style.left = `${endingAfterLeft}px`;
+      endingBeforeRef.current.style.top = `${endingBeforeTop}px`;
+      endingBeforeRef.current.style.left = `${endingBeforeLeft}px`;
+      endingAfterRef.current.style.top = `${endingAfterTop}px`;
+      endingAfterRef.current.style.left = `${endingAfterLeft}px`;
     };
 
     // show consecutive characters of intro text
     const loadChar = () => {
       if (charIndex < charTotal) {
         const currentItem = gridRef.current.children[charIndex];
+        currentItem.style.visibility = 'inherit';
         if (currentItem instanceof HTMLElement) {
           currentItem.style.width = `${introItemWidth}px`;
           currentItem.style.height = `${introItemHeight}px`;
         }
-        currentItem.classList.add('grid__item--visible');
         setEndings(charIndex);
         charIndex++;
       } else {
@@ -107,7 +142,9 @@ const Intro = () => {
           char.style.left = `${offsetLeft}px`;
           char.style.width = `${introItemWidth}px`;
           char.style.height = `${introItemHeight}px`;
-          char.classList.add('grid__char--transition');
+          char.style.position = 'fixed';
+
+          // char.classList.add('grid__char--transition');
         });
       } else {
         [...chars].forEach((char, index) => {
@@ -122,10 +159,12 @@ const Intro = () => {
             ] as HTMLElement;
             char.style.top = `${offsetTop}px`;
             char.style.left = `${offsetLeft}px`;
+            // char.style.top = 0;
+            // char.style.left = 0;
 
-            if (!char.classList.contains('grid__char--color')) {
-              char.classList.add('grid__char--color');
-            }
+            // if (!char.classList.contains('grid__char--color')) {
+            //   char.classList.add('grid__char--color');
+            // }
           }
         });
       }
@@ -149,15 +188,15 @@ const Intro = () => {
     };
 
     // configure introGrid on start
-    gridRef.current.classList.add('grid--visible');
+    gridRef.current.style.display = 'grid';
     gridRef.current.style.gridTemplateColumns = `repeat(${maxColNum}, 1fr)`;
     updateTopMargin();
 
     // set sizes and position of ending elements
-    endingBefore.style.width = `${introItemWidth}px`;
-    endingBefore.style.height = `${introItemHeight}px`;
-    endingAfter.style.width = `${introItemWidth}px`;
-    endingAfter.style.height = `${introItemHeight}px`;
+    endingBeforeRef.current.style.width = `${introItemWidth}px`;
+    endingBeforeRef.current.style.height = `${introItemHeight}px`;
+    endingAfterRef.current.style.width = `${introItemWidth}px`;
+    endingAfterRef.current.style.height = `${introItemHeight}px`;
     setEndings(charIndex);
 
     // FIRST TIMEOUT
@@ -165,14 +204,24 @@ const Intro = () => {
     clearTimeout(introSecondTimeoutId);
     clearTimeout(introThirdTimeoutId);
     clearTimeout(introForthTimeoutId);
+
     introFirstTimeoutId = setTimeout(() => {
-      introSkip.classList.add('intro__skip--visible');
+      skipButtonRef.current.style.opacity = '1';
+      skipButtonRef.current.style.visibility = 'visible';
+      skipButtonRef.current.style.transition =
+        'color 0.2s, opacity 0.3s, visibility 0s';
 
       // show ending elements
-      endingBefore.classList.add('intro__ending--visible');
-      endingAfter.classList.add('intro__ending--visible');
-      introLoader.classList.add('intro__loader--hidden');
-      introLoader.classList.remove('intro__loader--transition');
+      endingBeforeRef.current.style.opacity = 1;
+      endingBeforeRef.current.style.visibility = 'inherit';
+      endingBeforeRef.current.style.transition = 'opacity 0s, visibility 0s';
+      endingAfterRef.current.style.opacity = 1;
+      endingAfterRef.current.style.visibility = 'inherit';
+      endingAfterRef.current.style.transition = 'opacity 0s, visibility 0s';
+
+      loaderRef.current.style.opacity = 0;
+      loaderRef.current.style.visibility = 'hidden';
+      loaderRef.current.style.transition = 'opacity 0.5s, visibility 0s';
 
       // remove temporary child
       introCharIntervalId = setInterval(() => {
@@ -183,12 +232,18 @@ const Intro = () => {
       // SECOND TIMEOUT
       introSecondTimeoutId = setTimeout(() => {
         // assign fixed positioning to svg elements
-        const gridChars = document.querySelectorAll(
-          '.grid__char--js'
-        ) as NodeListOf<HTMLElement>;
-        endingAfter.classList.remove('intro__ending--visible');
-        endingBefore.classList.remove('intro__ending--visible');
+        const gridChars = [...gridRef.current.children].map(
+          (child) => child.firstElementChild
+        );
+
+        endingBeforeRef.current.style.opacity = null;
+        endingBeforeRef.current.style.visibility = null;
+        endingBeforeRef.current.style.transition = null;
+        endingAfterRef.current.style.opacity = null;
+        endingAfterRef.current.style.visibility = null;
+        endingAfterRef.current.style.transition = null;
         handleChars(gridChars, true);
+        // return;
 
         // set introGrid's column and row gaps to make introGrid a square
         const columnGap = getColGap();
@@ -201,43 +256,42 @@ const Intro = () => {
             gridRef.current.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
             handleChars(gridChars, false);
             updateTopMargin();
+            // debugger;
           } else {
             // when interval ends
             clearInterval(introCharIntervalId);
-            setSizeAndPosition(introLoader, gridRef.current);
+            setSizeAndPosition(loaderRef.current, gridRef.current);
 
             // show intro loader
-            introLoader.classList.remove('intro__loader--hidden');
+            loaderRef.current.style.opacity = 1;
+            loaderRef.current.style.visibility = 'inherit';
             const delay = introGridViewInterval - inBetweenTransition;
-            introLoader.style.transition = `
+            loaderRef.current.style.transition = `
               opacity ${inBetweenTransition}ms ${delay}ms,
               visibility 0s ${delay}ms
             `;
 
             // THIRD TIMEOUT
             introThirdTimeoutId = setTimeout(() => {
-              introSkip.classList.remove('intro__skip--visible');
-              introLoader.classList.add('intro__loader--transition');
-              introLoader.style.transition = '';
-              introLoader.style.transitionDuration = `${inBetweenTransition}ms`;
-              gridRef.current.classList.remove('grid--visible');
-              setSizeAndPosition(introLoader, introBox);
+              skipButtonRef.current.style = null;
+
+              loaderRef.current.style.transition = null;
+              loaderRef.current.style.transitionDuration = `${inBetweenTransition}ms`;
+              gridRef.current.classList.remove('visible');
+              // setSizeAndPosition(loaderRef.current, introBox);
 
               // FORTH TIMEOUT
               introForthTimeoutId = setTimeout(() => {
                 // activeate menu items
-                [...menuItems].forEach((item) => {
-                  item.classList.add('menu__item--active');
-                });
-
+                // [...menuItems].forEach((item) => {
+                //   item.classList.add('menu__item--active');
+                // });
                 // show introBox
-                visuals.classList.add('visuals--visible');
-
+                // visuals.classList.add('visuals--visible');
                 // hide intro
-                intro.classList.add('intro--hidden');
-
+                // setIntroVisible(false);
                 // show page header
-                pageHeader.classList.add('pageHeader--visible');
+                // pageHeader.classList.add('pageHeader--visible');
               }, inBetweenTransition);
             }, introGridViewInterval);
           }
@@ -248,15 +302,21 @@ const Intro = () => {
 
   useEffect(() => {
     setIntroLoaderPosition();
+    handleIntroLoader();
     handleIntroAnimation();
-    // handleIntroLoader();
   }, []);
 
   return (
-    <div className={classes.intro}>
+    <div className={clsx(classes.intro, isIntroVisible && classes.visible)}>
       <div ref={loaderRef} className={classes.loader}></div>
-      <div className={clsx(classes.ending, classes.before)}></div>
-      <div className={clsx(classes.ending, classes.after)}></div>
+      <div
+        ref={endingBeforeRef}
+        className={clsx(classes.ending, classes.before)}
+      ></div>
+      <div
+        ref={endingAfterRef}
+        className={clsx(classes.ending, classes.after)}
+      ></div>
       <ul ref={gridRef} className={classes.grid}>
         {[...introText].map((char, index) => {
           return char !== ' ' ? (
@@ -294,7 +354,9 @@ const Intro = () => {
           );
         })}
       </ul>
-      <button className={classes.skipIntro}>Skip Intro</button>
+      <button ref={skipButtonRef} className={classes.skipButton}>
+        Skip Intro
+      </button>
     </div>
   );
 };

@@ -15,7 +15,7 @@ const endingAfter = document.querySelector(
   '.intro__ending--js-after'
 )! as HTMLElement;
 
-// intro
+type TimeoutId = NodeJS.Timeout | undefined;
 let introFirstTimeoutId: TimeoutId = undefined;
 let introSecondTimeoutId: TimeoutId = undefined;
 let introThirdTimeoutId: TimeoutId = undefined;

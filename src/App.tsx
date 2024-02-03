@@ -56,12 +56,12 @@ function App() {
           />
         )}
         {/* <Animation /> */}
-        <div ref={sectionsRef} className={sectionsClass}>
+        {/* <div ref={sectionsRef} className={sectionsClass}>
           <About />
           <Resume />
           <Projects />
           <Contact />
-        </div>
+        </div> */}
       </div>
     </QueryClientProvider>
   );

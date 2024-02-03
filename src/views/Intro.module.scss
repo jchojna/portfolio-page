@@ -6,6 +6,7 @@
 
   align-items: flex-start;
   background-color: $intro-background-color;
+  display: none;
   height: 100%;
   left: 0;
   min-height: 100vh;
@@ -14,8 +15,8 @@
   width: 100%;
   z-index: 5;
 
-  &--hidden {
-    display: none;
+  &.visible {
+    display: flex;
   }
 
   .loader {
@@ -25,19 +26,10 @@
     height: 200px;
     opacity: 1;
     position: fixed;
-    transition: opacity 0.5s, visibility 0s;
+    transition-property: height, left, top, width;
     visibility: inherit;
     width: 200px;
     z-index: 1;
-
-    &--transition {
-      transition-property: height, left, top, width;
-    }
-
-    &--hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
   }
 
   .ending {
@@ -46,15 +38,61 @@
     position: absolute;
     visibility: hidden;
     transition: opacity 0.3s, visibility 0s 0.3s;
+  }
 
-    &--visible {
-      opacity: 1;
-      transition: opacity 0s, visibility 0s;
-      visibility: inherit;
+  .grid {
+    border: 1px solid blue;
+    gap: 3px;
+    display: none; // none
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    .gridItem {
+      @include flex-center;
+
+      position: relative;
+      visibility: hidden;
+      border: 1px solid red;
+    }
+
+    .char {
+      @include flex-center;
+
+      fill: $intro-link-color;
+      position: relative;
+      width: 100%;
+      transition: left 0.5s, top 0.5s;
+
+      &.separator {
+        background-color: $intro-link-color;
+        height: 100%;
+      }
+
+      &.color {
+        fill: $color-about;
+      }
+
+      &.color.separator {
+        background-color: $color-about;
+      }
+    }
+
+    .svg {
+      fill: inherit;
+      width: 100%;
+
+      &.shadow {
+        fill: $intro-background-color;
+        left: 0;
+        opacity: $svg-opacity;
+        position: absolute;
+        top: 0;
+      }
     }
   }
 
-  .skipIntro {
+  .skipButton {
     @include button;
     bottom: 50px;
     color: $intro-link-color;
@@ -68,12 +106,6 @@
     transition: color 0.2s, opacity 0.3s, visibility 0s 0.3s;
     visibility: hidden;
 
-    &--visible {
-      opacity: 1;
-      transition: color 0.2s, opacity 0.3s, visibility 0s;
-      visibility: visible;
-    }
-
     &:hover {
       color: $color-about;
     }
@@ -84,61 +116,6 @@
 
     @media only screen and (min-width: $media-l) {
       font-size: 3em;
-    }
-  }
-}
-
-.grid {
-  gap: 3px;
-  display: grid;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-
-  .gridItem {
-    @include flex-center;
-
-    position: relative;
-    visibility: inherit;
-  }
-
-  .char {
-    @include flex-center;
-    fill: $intro-link-color;
-    position: relative;
-    width: 100%;
-
-    &.separator {
-      background-color: $intro-link-color;
-      height: 100%;
-    }
-
-    $time: 0.5s;
-
-    &.transition {
-      position: fixed;
-      transition: top $time, left $time;
-    }
-
-    &.color {
-      fill: $color-about;
-    }
-
-    // &--color.grid__char--separator {
-    //   background-color: $color-about;
-    // }
-  }
-
-  .svg {
-    fill: inherit;
-    width: 100%;
-
-    &.shadow {
-      fill: $intro-background-color;
-      left: 0;
-      opacity: $svg-opacity;
-      position: absolute;
-      top: 0;
     }
   }
 }
