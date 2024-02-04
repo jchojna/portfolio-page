@@ -1,5 +1,9 @@
 type TimeoutId = NodeJS.Timeout | undefined;
 
+type Classes = {
+  [key: string]: string;
+};
+
 const introText = 'jakub chojna frontend projects';
 export const media = {
   sm: 380,
@@ -23,10 +27,10 @@ const rowGap = 2;
 let gridTopMargin: number | null = null;
 
 // intro
-let introFirstTimeoutId: TimeoutId = undefined;
-let introSecondTimeoutId: TimeoutId = undefined;
-let introThirdTimeoutId: TimeoutId = undefined;
-let introForthTimeoutId: TimeoutId = undefined;
+const introFirstTimeoutId: TimeoutId = undefined;
+const introSecondTimeoutId: TimeoutId = undefined;
+const introThirdTimeoutId: TimeoutId = undefined;
+const introForthTimeoutId: TimeoutId = undefined;
 let introCharIntervalId: TimeoutId = undefined;
 const introFirstTimeoutInterval = 600;
 
@@ -37,20 +41,22 @@ const introSecondTimeoutInterval = loadCharInterval * charTotal + 1000;
 const introGridViewInterval = 2000;
 const inBetweenTransition = 500;
 
-const setIntroLoaderPosition = (loader: HTMLElement | null) => {
-  if (!loader) return;
+const timeout = (delay: number) => {
+  return new Promise((resolve) => setTimeout(resolve, delay));
+};
+
+const setIntroLoaderPosition = (loader: HTMLElement) => {
   loader.style.top = `${loader.offsetTop}px`;
   loader.style.left = `${loader.offsetLeft}px`;
 };
 
 const createGridItems = (
-  classes,
-  container: HTMLElement | null,
+  classes: Classes,
+  container: HTMLElement,
   introText: string,
   introItemWidth: number,
   introItemHeight: number
 ) => {
-  if (!container) return;
   const intro = [...introText]
     .map((char) => {
       return char !== ' '
@@ -97,11 +103,10 @@ const setSizeAndPosition = (
 };
 
 const handleIntroLoader = (
-  loader: HTMLElement | null,
-  endingBefore: HTMLElement | null,
+  loader: HTMLElement,
+  endingBefore: HTMLElement,
   transitionClass: string
 ) => {
-  if (!loader || !endingBefore) return;
   loader.classList.add(transitionClass);
   loader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
   setSizeAndPosition(loader, endingBefore, introItemHeight);
@@ -110,12 +115,10 @@ const handleIntroLoader = (
 // set position of ending elements
 const setEndings = (
   index: number,
-  grid: HTMLElement | null,
-  endingBefore: HTMLElement | null,
-  endingAfter: HTMLElement | null
+  grid: HTMLElement,
+  endingBefore: HTMLElement,
+  endingAfter: HTMLElement
 ) => {
-  if (!grid || !endingBefore || !endingAfter) return;
-
   let endingBeforeTop: number | undefined = undefined;
   let endingBeforeLeft: number | undefined = undefined;
   let endingAfterTop: number | undefined = undefined;
@@ -149,12 +152,11 @@ const setEndings = (
 
 // show consecutive characters of intro text
 const loadChar = (
-  grid: HTMLElement | null,
-  endingBefore: HTMLElement | null,
-  endingAfter: HTMLElement | null,
+  grid: HTMLElement,
+  endingBefore: HTMLElement,
+  endingAfter: HTMLElement,
   visibleClass: string
 ) => {
-  if (!grid || !endingBefore || !endingAfter) return;
   if (charIndex < charTotal) {
     const currentItem = grid.children[charIndex];
     if (currentItem instanceof HTMLElement) {
@@ -172,12 +174,11 @@ const loadChar = (
 
 // animate characters position on grid change
 const handleChars = (
-  grid: HTMLElement | null,
+  grid: HTMLElement,
   chars: NodeListOf<HTMLElement>,
   isInitial: boolean,
-  classes
+  classes: Classes
 ) => {
-  if (!grid) return;
   if (isInitial) {
     [...chars].forEach((char, index) => {
       const gridItem = grid.children[index];
@@ -216,7 +217,7 @@ const getColGap = () => {
 };
 
 // set grid's top margin
-const updateTopMargin = (grid: HTMLElement | null) => {
+const updateTopMargin = (grid: HTMLElement) => {
   if (!grid) return;
 
   const topMargin = (window.innerHeight - grid.clientHeight) / 2;
@@ -226,8 +227,111 @@ const updateTopMargin = (grid: HTMLElement | null) => {
   }
 };
 
-const handleIntroAnimation = (
-  classes,
+const animateHorizontalText = async (
+  loader: HTMLElement,
+  grid: HTMLElement,
+  endingBefore: HTMLElement,
+  endingAfter: HTMLElement,
+  skipButton: HTMLElement,
+  classes: Classes
+) => {
+  await timeout(introFirstTimeoutInterval);
+  skipButton.classList.add(classes.visible);
+
+  // show ending elements
+  endingBefore.classList.add(classes.visible);
+  endingAfter.classList.add(classes.visible);
+  loader.classList.add(classes.hidden);
+  loader.classList.remove(classes.transition);
+
+  // remove temporary child
+  introCharIntervalId = setInterval(() => {
+    loadChar(grid, endingBefore, endingAfter, classes.visible);
+    updateTopMargin(grid);
+  }, loadCharInterval);
+};
+
+const relocateCharactersToGrid = async (
+  loader: HTMLElement,
+  grid: HTMLElement,
+  endingBefore: HTMLElement,
+  endingAfter: HTMLElement,
+  skipButton: HTMLElement,
+  classes: Classes
+) => {
+  await animateHorizontalText(
+    loader,
+    grid,
+    endingBefore,
+    endingAfter,
+    skipButton,
+    classes
+  );
+  await timeout(introSecondTimeoutInterval);
+
+  // assign fixed positioning to svg elements
+  const gridChars = grid.querySelectorAll(
+    '.gridCharacter'
+  ) as NodeListOf<HTMLElement>;
+  endingAfter.classList.remove(classes.visible);
+  endingBefore.classList.remove(classes.visible);
+  handleChars(grid, gridChars, true, classes);
+
+  // set grid's column and row gaps to make grid a square
+  const columnGap = getColGap();
+  grid.style.columnGap = `${columnGap}px`;
+  grid.style.rowGap = `${rowGap}px`;
+
+  // decrease number of grid columns
+  introCharIntervalId = setInterval(() => {
+    if (maxColNum >= minColNum) {
+      grid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
+      handleChars(grid, gridChars, false, classes);
+      updateTopMargin(grid);
+    } else {
+      // when interval ends
+      clearInterval(introCharIntervalId);
+      setSizeAndPosition(loader, grid);
+    }
+  }, translateCharInterval);
+
+  // show intro loader
+  loader.classList.remove(classes.hidden);
+  const delay = introGridViewInterval - inBetweenTransition;
+  loader.style.transition = `
+    opacity ${inBetweenTransition}ms ${delay}ms,
+    visibility 0s ${delay}ms
+  `;
+};
+
+const runAnimation = async (
+  loader: HTMLElement,
+  grid: HTMLElement,
+  endingBefore: HTMLElement,
+  endingAfter: HTMLElement,
+  skipButton: HTMLElement,
+  classes: Classes
+) => {
+  await relocateCharactersToGrid(
+    loader,
+    grid,
+    endingBefore,
+    endingAfter,
+    skipButton,
+    classes
+  );
+  await timeout(introGridViewInterval);
+
+  skipButton.classList.remove(classes.visible);
+  loader.classList.add(classes.transition);
+  loader.style.transition = '';
+  loader.style.transitionDuration = `${inBetweenTransition}ms`;
+  grid.classList.remove(classes.visible);
+  // setSizeAndPosition(loader, introBox);
+};
+
+export const createIntro = async (
+  classes: Classes,
   loader: HTMLElement | null,
   grid: HTMLElement | null,
   endingBefore: HTMLElement | null,
@@ -235,6 +339,10 @@ const handleIntroAnimation = (
   skipButton: HTMLElement | null
 ) => {
   if (!loader || !grid || !endingBefore || !endingAfter || !skipButton) return;
+
+  createGridItems(classes, grid, introText, introItemWidth, introItemHeight);
+  setIntroLoaderPosition(loader);
+  handleIntroLoader(loader, endingBefore, classes.transition);
 
   // configure grid on start
   grid.classList.add(classes.visible);
@@ -253,104 +361,14 @@ const handleIntroAnimation = (
   clearTimeout(introThirdTimeoutId);
   clearTimeout(introForthTimeoutId);
 
-  // FIRST TIMEOUT
-  introFirstTimeoutId = setTimeout(() => {
-    skipButton.classList.add(classes.visible);
-
-    // show ending elements
-    endingBefore.classList.add(classes.visible);
-    endingAfter.classList.add(classes.visible);
-    loader.classList.add(classes.hidden);
-    loader.classList.remove(classes.transition);
-
-    // remove temporary child
-    introCharIntervalId = setInterval(() => {
-      loadChar(grid, endingBefore, endingAfter, classes.visible);
-      updateTopMargin(grid);
-    }, loadCharInterval);
-
-    // SECOND TIMEOUT
-    introSecondTimeoutId = setTimeout(() => {
-      // assign fixed positioning to svg elements
-      const gridChars = grid.querySelectorAll(
-        '.gridCharacter'
-      ) as NodeListOf<HTMLElement>;
-      endingAfter.classList.remove(classes.visible);
-      endingBefore.classList.remove(classes.visible);
-      handleChars(grid, gridChars, true, classes);
-
-      // set grid's column and row gaps to make grid a square
-      const columnGap = getColGap();
-      grid.style.columnGap = `${columnGap}px`;
-      grid.style.rowGap = `${rowGap}px`;
-
-      // decrease number of grid columns
-      introCharIntervalId = setInterval(() => {
-        if (maxColNum >= minColNum) {
-          grid.style.gridTemplateColumns = `repeat(${maxColNum--}, 1fr)`;
-          handleChars(grid, gridChars, false, classes);
-          updateTopMargin(grid);
-        } else {
-          // when interval ends
-          clearInterval(introCharIntervalId);
-          setSizeAndPosition(loader, grid);
-
-          // show intro loader
-          loader.classList.remove(classes.hidden);
-          const delay = introGridViewInterval - inBetweenTransition;
-          loader.style.transition = `
-            opacity ${inBetweenTransition}ms ${delay}ms,
-            visibility 0s ${delay}ms
-          `;
-
-          // THIRD TIMEOUT
-          introThirdTimeoutId = setTimeout(() => {
-            skipButton.classList.remove(classes.visible);
-            loader.classList.add(classes.transition);
-            loader.style.transition = '';
-            loader.style.transitionDuration = `${inBetweenTransition}ms`;
-            grid.classList.remove(classes.visible);
-            // setSizeAndPosition(loader, introBox);
-
-            // FORTH TIMEOUT
-            introForthTimeoutId = setTimeout(() => {
-              // activeate menu items
-              // [...menuItems].forEach((item) => {
-              //   item.classList.add('menu__item--active');
-              // });
-              // show introBox
-              // visuals.classList.add('visuals--visible');
-              // hide intro
-              // intro.classList.add('intro--hidden');
-              // show page header
-              // pageHeader.classList.add('pageHeader--visible');
-            }, inBetweenTransition);
-          }, introGridViewInterval);
-        }
-      }, translateCharInterval);
-    }, introSecondTimeoutInterval);
-  }, introFirstTimeoutInterval);
-};
-
-export const createIntro = (
-  classes,
-  intro: HTMLElement | null,
-  loader: HTMLElement | null,
-  grid: HTMLElement | null,
-  endingBefore: HTMLElement | null,
-  endingAfter: HTMLElement | null,
-  skipButton: HTMLElement | null
-) => {
-  createGridItems(classes, grid, introText, introItemWidth, introItemHeight);
-  setIntroLoaderPosition(loader);
-  handleIntroLoader(loader, endingBefore, classes.transition);
-  handleIntroAnimation(
-    classes,
+  // trigger async functions
+  await runAnimation(
     loader,
     grid,
     endingBefore,
     endingAfter,
-    skipButton
+    skipButton,
+    classes
   );
 };
 

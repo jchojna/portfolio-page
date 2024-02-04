@@ -16,16 +16,18 @@ const Intro = () => {
   const skipButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    createIntro(
-      classes,
-      introRef.current,
-      loaderRef.current,
-      gridRef.current,
-      endingBeforeRef.current,
-      endingAfterRef.current,
-      skipButtonRef.current
-    );
-    // setIntroVisible(false);
+    const runIntro = async () => {
+      await createIntro(
+        classes,
+        loaderRef.current,
+        gridRef.current,
+        endingBeforeRef.current,
+        endingAfterRef.current,
+        skipButtonRef.current
+      );
+      setIntroVisible(false);
+    };
+    runIntro();
   }, []);
 
   return (
