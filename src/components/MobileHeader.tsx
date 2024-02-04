@@ -8,12 +8,14 @@ type MobileHeaderProps = {
   isMenuMode: boolean;
   setMenuMode: (isMenuMode: boolean) => void;
   sectionsRef: React.RefObject<HTMLDivElement>;
+  setIndicatorRef: (indicatorRef: HTMLDivElement | null) => void;
 };
 
 const MobileHeader = ({
   isMenuMode,
   setMenuMode,
   sectionsRef,
+  setIndicatorRef,
 }: MobileHeaderProps) => {
   const headerClass = clsx({
     [classes.pageHeader]: true,
@@ -27,6 +29,7 @@ const MobileHeader = ({
         isMenuMode={isMenuMode}
         setMenuMode={setMenuMode}
         sectionsRef={sectionsRef}
+        setIndicatorRef={setIndicatorRef}
       />
     </div>
   );

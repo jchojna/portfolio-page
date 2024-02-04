@@ -24,6 +24,7 @@ const queryClient = new QueryClient({
 function App() {
   const [isMenuMode, setMenuMode] = useState<boolean>(true);
   const [isSmoothScroll, setSmoothScroll] = useState<boolean>(false);
+  const [indicatorRef, setIndicatorRef] = useState<HTMLDivElement | null>(null);
 
   const sectionsRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -41,27 +42,28 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className={classes.app}>
-        <Intro />
+        <Intro indicator={indicatorRef} />
         {isMobile ? (
           <MobileHeader
             isMenuMode={isMenuMode}
             setMenuMode={setMenuMode}
             sectionsRef={sectionsRef}
+            setIndicatorRef={setIndicatorRef}
           />
         ) : (
           <Header
             isMenuMode={isMenuMode}
             setMenuMode={setMenuMode}
             sectionsRef={sectionsRef}
+            setIndicatorRef={setIndicatorRef}
           />
         )}
-        {/* <Animation /> */}
-        {/* <div ref={sectionsRef} className={sectionsClass}>
+        <div ref={sectionsRef} className={sectionsClass}>
           <About />
           <Resume />
           <Projects />
           <Contact />
-        </div> */}
+        </div>
       </div>
     </QueryClientProvider>
   );

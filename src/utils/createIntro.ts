@@ -32,9 +32,9 @@ const introSecondTimeoutId: TimeoutId = undefined;
 const introThirdTimeoutId: TimeoutId = undefined;
 const introForthTimeoutId: TimeoutId = undefined;
 let introCharIntervalId: TimeoutId = undefined;
-const introFirstTimeoutInterval = 600;
 
 // intervals
+const introFirstTimeoutInterval = 0;
 const loadCharInterval = 25;
 const translateCharInterval = 0;
 const introSecondTimeoutInterval = loadCharInterval * charTotal + 1000;
@@ -236,6 +236,7 @@ const animateHorizontalText = async (
   classes: Classes
 ) => {
   await timeout(introFirstTimeoutInterval);
+
   skipButton.classList.add(classes.visible);
 
   // show ending elements
@@ -310,6 +311,7 @@ const runAnimation = async (
   endingBefore: HTMLElement,
   endingAfter: HTMLElement,
   skipButton: HTMLElement,
+  indicator: HTMLElement,
   classes: Classes
 ) => {
   await relocateCharactersToGrid(
@@ -327,7 +329,7 @@ const runAnimation = async (
   loader.style.transition = '';
   loader.style.transitionDuration = `${inBetweenTransition}ms`;
   grid.classList.remove(classes.visible);
-  // setSizeAndPosition(loader, introBox);
+  setSizeAndPosition(loader, indicator);
 };
 
 export const createIntro = async (
@@ -336,7 +338,8 @@ export const createIntro = async (
   grid: HTMLElement | null,
   endingBefore: HTMLElement | null,
   endingAfter: HTMLElement | null,
-  skipButton: HTMLElement | null
+  skipButton: HTMLElement | null,
+  indicator: HTMLElement
 ) => {
   if (!loader || !grid || !endingBefore || !endingAfter || !skipButton) return;
 
@@ -368,8 +371,10 @@ export const createIntro = async (
     endingBefore,
     endingAfter,
     skipButton,
+    indicator,
     classes
   );
+  await timeout(500);
 };
 
 export default createIntro;

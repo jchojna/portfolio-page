@@ -20,6 +20,7 @@ type MenuProps = {
   setCurrentSectionIndex: (index: number) => void;
   backgroundSection: string;
   setBackgroundSection: (backgroundSection: string) => void;
+  setIndicatorRef: (indicatorRef: HTMLDivElement | null) => void;
 };
 
 const Menu = ({
@@ -30,6 +31,7 @@ const Menu = ({
   setCurrentSectionIndex,
   backgroundSection,
   setBackgroundSection,
+  setIndicatorRef,
 }: MenuProps) => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(0);
   const [offsetedSectionIndex, setOffsetedSectionIndex] = useState<number>(-1);
@@ -63,6 +65,7 @@ const Menu = ({
   };
 
   useEffect(() => {
+    setIndicatorRef(indicatorRef.current);
     const sectionsRefCopy = sectionsRef.current;
     if (sectionsRefCopy) {
       sectionsRefCopy.addEventListener('scroll', handleScroll);

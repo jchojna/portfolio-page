@@ -10,9 +10,15 @@ type HeaderProps = {
   isMenuMode: boolean;
   setMenuMode: (isMenuMode: boolean) => void;
   sectionsRef: React.RefObject<HTMLDivElement>;
+  setIndicatorRef: (indicatorRef: HTMLDivElement | null) => void;
 };
 
-const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
+const Header = ({
+  isMenuMode,
+  setMenuMode,
+  sectionsRef,
+  setIndicatorRef,
+}: HeaderProps) => {
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
   const [backgroundSection, setBackgroundSection] = useState<string>('about');
 
@@ -32,6 +38,7 @@ const Header = ({ isMenuMode, setMenuMode, sectionsRef }: HeaderProps) => {
         setBackgroundSection={setBackgroundSection}
         currentSectionIndex={currentSectionIndex}
         setCurrentSectionIndex={setCurrentSectionIndex}
+        setIndicatorRef={setIndicatorRef}
       />
       <Navigator
         isMenuMode={isMenuMode}

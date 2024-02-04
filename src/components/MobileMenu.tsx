@@ -2,11 +2,11 @@ import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 
 import menuItems from '../content/menu.json';
-import MobileMenuButton from './MobileMenuButton';
 import MenuBackground from './MenuBackground';
+import MobileMenuButton from './MobileMenuButton';
 
-import classes from './MobileMenu.module.scss';
 import Burger from './Burger';
+import classes from './MobileMenu.module.scss';
 
 import { getCurrentSectionIndex } from '../utils/utils';
 
@@ -14,12 +14,14 @@ type MobileMenuProps = {
   isMenuMode: boolean;
   setMenuMode: (isMenuMode: boolean) => void;
   sectionsRef: React.RefObject<HTMLDivElement>;
+  setIndicatorRef: (indicatorRef: HTMLDivElement | null) => void;
 };
 
 const MobileMenu = ({
   isMenuMode,
   setMenuMode,
   sectionsRef,
+  setIndicatorRef,
 }: MobileMenuProps) => {
   const [indicatorTopOffset, setIndicatorTopOffset] = useState<number>(0);
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
@@ -45,6 +47,7 @@ const MobileMenu = ({
 
   // handle scroll / mousewheel event
   useEffect(() => {
+    setIndicatorRef(indicatorRef.current);
     const sectionsRefCopy = sectionsRef.current;
     if (sectionsRefCopy) {
       sectionsRefCopy.addEventListener('mousewheel', handleScroll);
