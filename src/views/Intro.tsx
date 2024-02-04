@@ -8,12 +8,12 @@ import classes from './Intro.module.scss';
 const Intro = () => {
   const [isIntroVisible, setIntroVisible] = useState<boolean>(true);
 
-  const introRef = useRef<HTMLDivElement>(null);
-  const loaderRef = useRef<HTMLDivElement>(null);
-  const endingBeforeRef = useRef<HTMLDivElement>(null);
-  const endingAfterRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLUListElement>(null);
-  const skipButtonRef = useRef<HTMLButtonElement>(null);
+  const introRef = useRef<HTMLDivElement | null>(null);
+  const loaderRef = useRef<HTMLDivElement | null>(null);
+  const endingBeforeRef = useRef<HTMLDivElement | null>(null);
+  const endingAfterRef = useRef<HTMLDivElement | null>(null);
+  const gridRef = useRef<HTMLUListElement | null>(null);
+  const skipButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     createIntro(
@@ -25,6 +25,7 @@ const Intro = () => {
       endingAfterRef.current,
       skipButtonRef.current
     );
+    // setIntroVisible(false);
   }, []);
 
   return (

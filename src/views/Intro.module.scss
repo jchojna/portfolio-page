@@ -6,6 +6,7 @@
   @include flex-center;
   align-items: flex-start;
   background-color: $intro-background-color;
+  display: none;
   height: 100%;
   left: 0;
   min-height: 100vh;
@@ -14,8 +15,8 @@
   width: 100%;
   z-index: 999;
 
-  &.hidden {
-    display: none;
+  &.visible {
+    display: flex;
   }
 
   .loader {

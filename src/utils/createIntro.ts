@@ -19,18 +19,20 @@ let introForthTimeoutId: TimeoutId = undefined;
 let introCharIntervalId: TimeoutId = undefined;
 const introFirstTimeoutInterval = 600;
 
-const setIntroLoaderPosition = (loader: HTMLElement) => {
+const setIntroLoaderPosition = (loader: HTMLElement | null) => {
+  if (!loader) return;
   loader.style.top = `${loader.offsetTop}px`;
   loader.style.left = `${loader.offsetLeft}px`;
 };
 
 const createGridItems = (
   classes,
-  container: HTMLElement,
+  container: HTMLElement | null,
   introText: string,
   introItemWidth: number,
   introItemHeight: number
 ) => {
+  if (!container) return;
   const intro = [...introText]
     .map((char) => {
       return char !== ' '
@@ -77,10 +79,11 @@ const setSizeAndPosition = (
 };
 
 const handleIntroLoader = (
-  loader: HTMLElement,
-  endingBefore: HTMLElement,
+  loader: HTMLElement | null,
+  endingBefore: HTMLElement | null,
   transitionClass: string
 ) => {
+  if (!loader || !endingBefore) return;
   loader.classList.add(transitionClass);
   loader.style.transitionDuration = `${introFirstTimeoutInterval}ms`;
   setSizeAndPosition(loader, endingBefore, introItemHeight);
@@ -88,13 +91,13 @@ const handleIntroLoader = (
 
 const handleIntroAnimation = (
   classes,
-  intro,
-  loader,
-  grid,
-  endingBefore,
-  endingAfter,
-  skipButton
+  loader: HTMLElement | null,
+  grid: HTMLElement | null,
+  endingBefore: HTMLElement | null,
+  endingAfter: HTMLElement | null,
+  skipButton: HTMLElement | null
 ) => {
+  if (!loader || !grid || !endingBefore || !endingAfter || !skipButton) return;
   let charIndex = 0;
   const charTotal = introText.length;
   let maxColNum =
@@ -168,7 +171,9 @@ const handleIntroAnimation = (
   const handleChars = (chars: NodeListOf<HTMLElement>, isInitial: boolean) => {
     if (isInitial) {
       [...chars].forEach((char, index) => {
-        const { offsetTop, offsetLeft } = grid.children[index];
+        const gridItem = grid.children[index];
+        if (!(gridItem instanceof HTMLElement)) return;
+        const { offsetTop, offsetLeft } = gridItem;
         char.style.top = `${offsetTop}px`;
         char.style.left = `${offsetLeft}px`;
         char.style.width = `${introItemWidth}px`;
@@ -183,7 +188,9 @@ const handleIntroAnimation = (
             : 0;
 
         if (index >= maxColNum - bias) {
-          const { offsetTop, offsetLeft } = grid.children[index];
+          const gridItem = grid.children[index];
+          if (!(gridItem instanceof HTMLElement)) return;
+          const { offsetTop, offsetLeft } = gridItem;
           char.style.top = `${offsetTop}px`;
           char.style.left = `${offsetLeft}px`;
           char.classList.add(classes.color);
@@ -245,7 +252,9 @@ const handleIntroAnimation = (
     // SECOND TIMEOUT
     introSecondTimeoutId = setTimeout(() => {
       // assign fixed positioning to svg elements
-      const gridChars = grid.querySelectorAll('.gridCharacter');
+      const gridChars = grid.querySelectorAll(
+        '.gridCharacter'
+      ) as NodeListOf<HTMLElement>;
       endingAfter.classList.remove(classes.visible);
       endingBefore.classList.remove(classes.visible);
       handleChars(gridChars, true);
@@ -305,19 +314,18 @@ const handleIntroAnimation = (
 
 export const createIntro = (
   classes,
-  intro: HTMLElement,
-  loader: HTMLElement,
-  grid: HTMLElement,
-  endingBefore: HTMLElement,
-  endingAfter: HTMLElement,
-  skipButton: HTMLElement
+  intro: HTMLElement | null,
+  loader: HTMLElement | null,
+  grid: HTMLElement | null,
+  endingBefore: HTMLElement | null,
+  endingAfter: HTMLElement | null,
+  skipButton: HTMLElement | null
 ) => {
   createGridItems(classes, grid, introText, introItemWidth, introItemHeight);
   setIntroLoaderPosition(loader);
   handleIntroLoader(loader, endingBefore, classes.transition);
   handleIntroAnimation(
     classes,
-    intro,
     loader,
     grid,
     endingBefore,
