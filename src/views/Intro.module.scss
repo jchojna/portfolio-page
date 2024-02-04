@@ -1,22 +1,21 @@
 @import '../styles/variables.scss';
 @import '../styles/mixins.scss';
+@import '../styles/animations.scss';
 
 .intro {
   @include flex-center;
-
   align-items: flex-start;
   background-color: $intro-background-color;
-  display: none;
   height: 100%;
   left: 0;
   min-height: 100vh;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 5;
+  z-index: 999;
 
-  &.visible {
-    display: flex;
+  &.hidden {
+    display: none;
   }
 
   .loader {
@@ -26,10 +25,19 @@
     height: 200px;
     opacity: 1;
     position: fixed;
-    transition-property: height, left, top, width;
+    transition: opacity 0.5s, visibility 0s;
     visibility: inherit;
     width: 200px;
     z-index: 1;
+
+    &.transition {
+      transition-property: height, left, top, width;
+    }
+
+    &.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 
   .ending {
@@ -38,6 +46,12 @@
     position: absolute;
     visibility: hidden;
     transition: opacity 0.3s, visibility 0s 0.3s;
+
+    &.visible {
+      opacity: 1;
+      transition: opacity 0s, visibility 0s;
+      visibility: inherit;
+    }
   }
 
   .grid {
@@ -47,44 +61,68 @@
     margin: 0;
     padding: 0;
 
+    &.visible {
+      display: grid;
+    }
+
     .gridItem {
       @include flex-center;
 
-      fill: $color-about;
       position: relative;
       visibility: hidden;
 
-      .char {
-        @include flex-center;
-
-        fill: $intro-link-color;
-        position: relative;
-        width: 100%;
-        transition: left 0.5s, top 0.5s;
-
-        &.separator {
-          background-color: $intro-link-color;
-          height: 100%;
-        }
+      &.visible {
+        visibility: inherit;
       }
     }
 
-    .svg {
-      fill: inherit;
+    .gridCharacter {
+      @include flex-center;
+
+      fill: $intro-link-color;
+      position: relative;
       width: 100%;
 
-      &.shadow {
-        fill: $intro-background-color;
-        left: 0;
-        opacity: $svg-opacity;
-        position: absolute;
-        top: 0;
+      $time: 0.5s;
+
+      &.transition {
+        position: fixed;
+        transition: top $time, left $time;
       }
+
+      &.color {
+        fill: $color-about;
+      }
+    }
+
+    .gridSeparator {
+      @extend .gridCharacter;
+
+      background-color: $intro-link-color;
+      height: 100%;
+
+      &.color {
+        background-color: $color-about;
+      }
+    }
+
+    .svgCharacter {
+      fill: inherit;
+      width: 100%;
+    }
+
+    .svgShadow {
+      fill: $intro-background-color;
+      left: 0;
+      opacity: $svg-opacity;
+      position: absolute;
+      top: 0;
     }
   }
 
   .skipButton {
     @include button;
+
     bottom: 50px;
     color: $intro-link-color;
     font-family: 'Antonio Bold';
@@ -96,6 +134,12 @@
     transform: translateX(-50%);
     transition: color 0.2s, opacity 0.3s, visibility 0s 0.3s;
     visibility: hidden;
+
+    &.visible {
+      opacity: 1;
+      transition: color 0.2s, opacity 0.3s, visibility 0s;
+      visibility: visible;
+    }
 
     &:hover {
       color: $color-about;
