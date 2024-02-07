@@ -105,42 +105,42 @@
   &.archviz,
   &.quotes {
     grid-template-areas:
-      'logo        '
-      'title     '
-      'description '
-      'features    '
+      'logo'
+      'title'
+      'description'
+      'features'
       'icons'
-      'stats       '
-      'links   ';
+      'stats'
+      'links';
   }
 
   &.other {
     grid-template-areas:
-      'logo       '
-      'title    '
+      'logo'
+      'title'
       'description'
-      'otherRepos ';
+      'otherRepos';
   }
 
   &.contact {
     grid-template-areas:
-      'logo   '
+      'logo'
       'title'
-      'form   '
-      'social '
-      'footer ';
+      'form'
+      'social'
+      'footer';
   }
 
   @media only screen and (min-width: $media-m) {
     &.about {
       grid-template-areas:
-        'title'
-        'description'
-        'contact'
-        'high'
-        'medium'
-        'low';
-      grid-template-columns: 1fr;
+        'title photo'
+        'description photo'
+        'contact photo'
+        'high high'
+        'medium medium'
+        'low low';
+      grid-template-columns: repeat(2, 1fr);
       grid-template-rows: auto 1fr repeat(4, auto);
     }
 
@@ -239,24 +239,17 @@
   }
 
   @media only screen and (min-width: $media-m) {
-    & {
-      border: none;
-      font-size: 72px;
-      margin: $menu-item-height + $offset-right-m 0;
-      margin-bottom: 0;
-      max-width: 60%;
-      min-width: 380px;
-      padding: 0;
-      width: 100%;
-    }
+    border: none;
+    font-size: 72px;
+    margin: 0;
+    max-width: 60%;
+    min-width: 380px;
+    padding: 0;
+    width: 100%;
   }
 
   @media only screen and (min-width: $media-l) {
-    & {
-      margin: 0;
-      margin-bottom: 20px;
-      max-width: none;
-    }
+    max-width: none;
   }
 }
 

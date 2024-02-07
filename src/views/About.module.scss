@@ -11,35 +11,29 @@
       @include sectionTitle;
 
       margin: 0;
-      margin-top: -3rem;
+      // margin-top: -3rem;
     }
 
     .description {
       @include normalText(about);
 
       grid-area: description;
+      max-width: 700px;
     }
 
     .photo {
-      filter: sepia(0.7) hue-rotate(140deg) brightness(0.9);
+      box-shadow: 20px 20px 0 0 $color-about-dark;
       grid-area: photo;
       justify-self: end;
       max-width: 500px;
       opacity: 0.9;
+      position: relative;
       margin-right: -$offset-right-s;
       width: 100%;
       z-index: 1;
 
       @media only screen and (min-width: $media-m) {
-        position: absolute;
         margin: 0;
-        max-width: 400px;
-        right: 0;
-        top: 50px;
-      }
-
-      @media only screen and (min-width: $media-l) {
-        max-width: 500px;
       }
     }
 

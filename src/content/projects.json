@@ -61,27 +61,7 @@
         "totalSVG": 1
       },
       {
-        "name": "bem",
-        "totalSVG": 1
-      },
-      {
         "name": "react",
-        "totalSVG": 1
-      },
-      {
-        "name": "git",
-        "totalSVG": 1
-      },
-      {
-        "name": "vscode",
-        "totalSVG": 3
-      },
-      {
-        "name": "figma",
-        "totalSVG": 3
-      },
-      {
-        "name": "illustrator",
         "totalSVG": 1
       }
     ]
@@ -142,22 +122,6 @@
       },
       {
         "name": "sass",
-        "totalSVG": 1
-      },
-      {
-        "name": "bem",
-        "totalSVG": 1
-      },
-      {
-        "name": "git",
-        "totalSVG": 1
-      },
-      {
-        "name": "vscode",
-        "totalSVG": 3
-      },
-      {
-        "name": "illustrator",
         "totalSVG": 1
       }
     ]
@@ -251,31 +215,15 @@
         "totalSVG": 3
       },
       {
+        "name": "react",
+        "totalSVG": 1
+      },
+      {
+        "name": "typescript",
+        "totalSVG": 1
+      },
+      {
         "name": "sass",
-        "totalSVG": 1
-      },
-      {
-        "name": "bem",
-        "totalSVG": 1
-      },
-      {
-        "name": "php",
-        "totalSVG": 1
-      },
-      {
-        "name": "git",
-        "totalSVG": 1
-      },
-      {
-        "name": "vscode",
-        "totalSVG": 3
-      },
-      {
-        "name": "figma",
-        "totalSVG": 3
-      },
-      {
-        "name": "illustrator",
         "totalSVG": 1
       }
     ]
@@ -328,23 +276,7 @@
         "totalSVG": 1
       },
       {
-        "name": "bem",
-        "totalSVG": 1
-      },
-      {
         "name": "php",
-        "totalSVG": 1
-      },
-      {
-        "name": "git",
-        "totalSVG": 1
-      },
-      {
-        "name": "vscode",
-        "totalSVG": 3
-      },
-      {
-        "name": "photoshop",
         "totalSVG": 1
       }
     ]
@@ -393,22 +325,6 @@
       },
       {
         "name": "sass",
-        "totalSVG": 1
-      },
-      {
-        "name": "bem",
-        "totalSVG": 1
-      },
-      {
-        "name": "git",
-        "totalSVG": 1
-      },
-      {
-        "name": "vscode",
-        "totalSVG": 3
-      },
-      {
-        "name": "photoshop",
         "totalSVG": 1
       }
     ]

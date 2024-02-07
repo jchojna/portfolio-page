@@ -1,6 +1,6 @@
 {
   "title": "Hello there!",
-  "description": "I'm a Frontend Developer with 4 years of commercial experience. I have a background in Architecture and 3d Graphic",
+  "description": "Combining my past experience as an architect and 3D graphic artist with my current role as a frontend developer, I specialize in crafting visually stunning UI and highly interactive digital experiences.",
   "highLevel": {
     "title": "Working knowledge",
     "tech": [
@@ -21,31 +21,11 @@
         "totalSVG": 1
       },
       {
-        "name": "bem",
-        "totalSVG": 1
-      },
-      {
         "name": "react",
         "totalSVG": 1
       },
       {
         "name": "git",
-        "totalSVG": 1
-      },
-      {
-        "name": "vscode",
-        "totalSVG": 3
-      },
-      {
-        "name": "figma",
-        "totalSVG": 3
-      },
-      {
-        "name": "illustrator",
-        "totalSVG": 1
-      },
-      {
-        "name": "photoshop",
         "totalSVG": 1
       }
     ]

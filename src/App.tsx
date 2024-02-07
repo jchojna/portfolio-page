@@ -27,7 +27,7 @@ function App() {
   const [indicatorRef, setIndicatorRef] = useState<HTMLDivElement | null>(null);
 
   const sectionsRef = useRef<HTMLDivElement | null>(null);
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 1200px)' });
   const sectionsClass = clsx({
     [classes.sections]: true,
     [classes.visible]: !isMenuMode,
