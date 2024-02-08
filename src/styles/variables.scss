@@ -65,20 +65,21 @@ $button-hover: 0.3s;
 $time-menu-indicator: 0.6s;
 
 // ABOUT
-$color-about-white: rgb(182, 212, 223);
-$color-about-light: rgb(142, 192, 209);
-$color-about: rgb(27, 129, 163);
-$color-about-dark: rgb(21, 109, 138);
-$color-about-shadow: rgb(12, 81, 104);
-$color-about-diff: rgb(80, 76, 69);
-$color-about-diff-dark: rgb(65, 61, 57);
+$color-about: #2899b0;
+$color-about-white: lighten($color-about, 50%);
+$color-about-light: lighten($color-about, 40%);
+$color-about-dark: darken($color-about, 14%);
+$color-about-shadow: darken($color-about, 20%);
+$color-about-diff: #44423e;
+$color-about-diff-dark: darken($color-about-diff, 5%);
 
 // RESUME
-$color-resume-light: #c993a0;
-$color-resume: #a7586b;
-$color-resume-dark: rgb(119, 56, 72);
-$color-resume-shadow: rgb(66, 31, 40);
-$color-resume-diff: #244e60;
+$color-resume: #ac5760;
+$color-resume-white: lighten($color-resume, 20%);
+$color-resume-light: lighten($color-resume, 0%);
+$color-resume-dark: darken($color-resume, 16%);
+$color-resume-shadow: darken($color-resume, 24%);
+$color-resume-diff: #1c4658;
 $color-resume-diff-dark: rgb(26, 63, 78);
 
 // TASKTIMER

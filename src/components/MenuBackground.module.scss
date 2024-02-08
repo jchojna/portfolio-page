@@ -42,10 +42,6 @@
       left: 0;
     }
 
-    &--hidden {
-      display: none;
-    }
-
     &.about {
       background-color: $color-about-diff;
     }
@@ -72,80 +68,6 @@
     }
     &.contact {
       background-color: $color-contact-diff;
-    }
-  }
-
-  &__introBox {
-    height: $menu-item-height;
-    left: 0;
-    opacity: 0;
-    pointer-events: none;
-    position: fixed;
-    transition: opacity $menu-sm-first-timeout, top $menu-sm-first-timeout;
-    width: $menu-item-height;
-
-    &--content {
-      transition: opacity $menu-sm-first-timeout, top $menu-sm-second-timeout;
-    }
-
-    &--noTransition {
-      transition: none;
-    }
-
-    &--visible {
-      opacity: 1;
-    }
-
-    &--about {
-      background-color: $color-about;
-    }
-    &--resume {
-      background-color: $color-resume;
-    }
-    &--tasktimer {
-      background-color: $color-tasktimer;
-    }
-    &--portfolio {
-      background-color: $color-portfolio;
-    }
-    &--hydrapp {
-      background-color: $color-hydrapp;
-    }
-    &--archviz {
-      background-color: $color-archviz;
-    }
-    &--quotes {
-      background-color: $color-quotes;
-    }
-    &--other {
-      background-color: $color-other;
-    }
-    &--contact {
-      background-color: $color-contact;
-    }
-
-    @media only screen and (min-width: $media-l) {
-      width: $menu-item-height-lg;
-      height: $menu-item-height-lg;
-
-      &--centered {
-        left: calc(50vw + 10px);
-      }
-
-      &--halfWindow {
-        height: 100%;
-        top: 0;
-        width: calc(50vw - 10px);
-      }
-
-      &--fullWindow {
-        width: 100%;
-      }
-
-      &--content {
-        transition: height $menu-lg-first-timeout, left $menu-lg-first-timeout,
-          top $menu-lg-first-timeout, width $menu-lg-first-timeout;
-      }
     }
   }
 }

@@ -2,10 +2,10 @@ import clsx from 'clsx';
 
 import about from '../content/about.json';
 
-import contactDetails from '../content/contactDetails.json';
 import BlockTitle from '../components/BlockTitle';
 import IconLink from '../components/icons/IconLink';
 import IconsList from '../components/icons/IconsList';
+import contactDetails from '../content/contactDetails.json';
 
 import classes from './About.module.scss';
 
@@ -39,11 +39,6 @@ const About = () => {
         <div className={clsx(classes.iconsGroup, classes.medium)}>
           <BlockTitle title={about.mediumLevel.title} view="about" />
           <IconsList view="about" icons={about.mediumLevel.tech} />
-        </div>
-
-        <div className={clsx(classes.iconsGroup, classes.low)}>
-          <BlockTitle title={about.lowLevel.title} view="about" />
-          <IconsList view="about" icons={about.lowLevel.tech} />
         </div>
       </div>
     </div>
