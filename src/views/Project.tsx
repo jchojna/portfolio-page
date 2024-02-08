@@ -1,18 +1,17 @@
 import clsx from 'clsx';
 
-import TextGroup from '../components/groups/TextGroup';
-import ProjectLinks from '../components/ProjectLinks';
-import IconsList from '../components/icons/IconsList';
-import ProjectStats from '../components/ProjectStats';
-import ProjectFeatures from '../components/ProjectFeatures';
 import Graphic from '../components/Graphic';
+import ProjectFeatures from '../components/ProjectFeatures';
+import ProjectLinks from '../components/ProjectLinks';
+import ProjectStats from '../components/ProjectStats';
+import TextGroup from '../components/groups/TextGroup';
+import IconsList from '../components/icons/IconsList';
 // import ListGroup from '../components/groups/ListGroup';
 
 import classes from './Project.module.scss';
 
 const Project = ({
   name,
-  title,
   about,
   features,
   icons,
@@ -23,9 +22,6 @@ const Project = ({
     <div id={name} className={clsx(classes.section, classes[name])}>
       <div className={clsx(classes.container, classes[name])}>
         <Graphic view={name} />
-        <h2 className={clsx(classes.title, classes.large, classes[name])}>
-          {title}
-        </h2>
         <TextGroup title="About Project" projectName={name} content={about} />
         <ProjectFeatures
           projectName={name}

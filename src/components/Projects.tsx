@@ -15,11 +15,10 @@ const Projects = () => {
   if (error) return <div>{`An error occured: ${error.message}`}</div>;
   return (
     <>
-      {projects.map(({ name, repoName, title, about, features, icons }) => (
+      {projects.map(({ name, repoName, about, features, icons }) => (
         <Project
           key={name}
           name={name}
-          title={title}
           about={about}
           features={features}
           icons={icons}

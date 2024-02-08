@@ -32,7 +32,6 @@ type RepoObj = {
 
 type ProjectProps = {
   name: string;
-  title: string;
   about: string[];
   features: {
     label: string;

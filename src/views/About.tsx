@@ -34,6 +34,7 @@ const About = () => {
         <div className={clsx(classes.iconsGroup, classes.high)}>
           <BlockTitle title={about.highLevel.title} view="about" />
           <IconsList view="about" icons={about.highLevel.tech} />
+          {/* R Shiny echarts  */}
         </div>
 
         <div className={clsx(classes.iconsGroup, classes.medium)}>
