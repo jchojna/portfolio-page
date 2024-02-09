@@ -89,7 +89,23 @@
   column-gap: 60px;
   padding: $menu-item-height $offset-right-s $menu-item-height * 2
     $offset-left-s;
+  transition: opacity 1s, transform 1s cubic-bezier(0, 0.5, 0, 1);
   width: 100%;
+
+  &.prev {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  &.current {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.next {
+    opacity: 0;
+    transform: translateY(100%);
+  }
 
   &.about {
     grid-template-areas:

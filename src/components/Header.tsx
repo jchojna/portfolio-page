@@ -1,6 +1,7 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
+import CurrentViewContext from '../views/CurrentViewContext';
 import Menu from './Menu';
 import Navigator from './Navigator';
 
@@ -19,7 +20,6 @@ const Header = ({
   sectionsRef,
   setIndicatorRef,
 }: HeaderProps) => {
-  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
   const [backgroundSection, setBackgroundSection] = useState<string>('about');
 
   const headerClass = clsx({
@@ -36,13 +36,10 @@ const Header = ({
         sectionsRef={sectionsRef}
         backgroundSection={backgroundSection}
         setBackgroundSection={setBackgroundSection}
-        currentSectionIndex={currentSectionIndex}
-        setCurrentSectionIndex={setCurrentSectionIndex}
         setIndicatorRef={setIndicatorRef}
       />
       <Navigator
         isMenuMode={isMenuMode}
-        currentSectionIndex={currentSectionIndex}
         sectionsRef={sectionsRef}
         setMenuMode={setMenuMode}
         backgroundSection={backgroundSection}

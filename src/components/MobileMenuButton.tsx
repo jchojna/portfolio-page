@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import menuSvg from '../assets/svg/menu.svg';
+import CurrentViewContext from '../views/CurrentViewContext';
 
 import classes from './MobileMenuButton.module.scss';
 
@@ -11,7 +12,6 @@ type MobileMenuButtonProps = {
   width: number;
   isMenuMode: boolean;
   isActive?: boolean;
-  setCurrentSectionIndex: (currentSectionIndex: number) => void;
   setIndicatorTopOffset: (offset: number) => void;
   setBackgroundSplit: (backgroundSplit: number) => void;
 };
@@ -22,7 +22,6 @@ const MobileMenuButton = ({
   width,
   isMenuMode,
   isActive,
-  setCurrentSectionIndex,
   setIndicatorTopOffset,
   setBackgroundSplit,
 }: MobileMenuButtonProps) => {
@@ -41,6 +40,7 @@ const MobileMenuButton = ({
   const [yPositionMenuMode, setYPositionMenuMode] = useState<number | null>(
     null
   );
+  const [_, setCurrentSectionIndex] = useContext(CurrentViewContext);
 
   useEffect(() => {
     if (!buttonRef.current) return;

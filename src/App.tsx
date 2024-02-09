@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Projects from './components/Projects';
 import About from './views/About';
 import Contact from './views/Contact';
+import CurrentViewContext from './views/CurrentViewContext';
 import Intro from './views/Intro';
 import Resume from './views/Resume';
 
@@ -25,6 +26,7 @@ function App() {
   const [isMenuMode, setMenuMode] = useState<boolean>(true);
   const [isSmoothScroll, setSmoothScroll] = useState<boolean>(false);
   const [indicatorRef, setIndicatorRef] = useState<HTMLDivElement | null>(null);
+  const currentViewHook = useState<number>(0);
 
   const sectionsRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useMediaQuery({ query: '(max-width: 1200px)' });
@@ -41,30 +43,32 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={classes.app}>
-        <Intro indicator={indicatorRef} />
-        {isMobile ? (
-          <MobileHeader
-            isMenuMode={isMenuMode}
-            setMenuMode={setMenuMode}
-            sectionsRef={sectionsRef}
-            setIndicatorRef={setIndicatorRef}
-          />
-        ) : (
-          <Header
-            isMenuMode={isMenuMode}
-            setMenuMode={setMenuMode}
-            sectionsRef={sectionsRef}
-            setIndicatorRef={setIndicatorRef}
-          />
-        )}
-        <div ref={sectionsRef} className={sectionsClass}>
-          <About />
-          <Resume />
-          <Projects />
-          <Contact />
+      <CurrentViewContext.Provider value={currentViewHook}>
+        <div className={classes.app}>
+          <Intro indicator={indicatorRef} />
+          {isMobile ? (
+            <MobileHeader
+              isMenuMode={isMenuMode}
+              setMenuMode={setMenuMode}
+              sectionsRef={sectionsRef}
+              setIndicatorRef={setIndicatorRef}
+            />
+          ) : (
+            <Header
+              isMenuMode={isMenuMode}
+              setMenuMode={setMenuMode}
+              sectionsRef={sectionsRef}
+              setIndicatorRef={setIndicatorRef}
+            />
+          )}
+          <div ref={sectionsRef} className={sectionsClass}>
+            <About />
+            <Resume />
+            <Projects />
+            <Contact />
+          </div>
         </div>
-      </div>
+      </CurrentViewContext.Provider>
     </QueryClientProvider>
   );
 }

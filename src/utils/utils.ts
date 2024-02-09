@@ -48,3 +48,16 @@ export const scrollToSection = (
     behavior: isSmooth ? 'smooth' : 'instant',
   });
 };
+
+export const getViewLocation = (
+  currentViewIndex: number,
+  view: string,
+  views: string[]
+) => {
+  const viewIndex = views.indexOf(view);
+  return currentViewIndex === viewIndex
+    ? 'current'
+    : viewIndex > currentViewIndex
+    ? 'next'
+    : 'prev';
+};

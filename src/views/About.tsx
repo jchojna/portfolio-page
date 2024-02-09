@@ -1,18 +1,35 @@
 import clsx from 'clsx';
-
-import about from '../content/about.json';
+import { useContext } from 'react';
 
 import BlockTitle from '../components/BlockTitle';
 import IconLink from '../components/icons/IconLink';
 import IconsList from '../components/icons/IconsList';
+import about from '../content/about.json';
 import contactDetails from '../content/contactDetails.json';
+import menuItems from '../content/menu.json';
+import { getViewLocation } from '../utils/utils';
+import CurrentViewContext from './CurrentViewContext';
 
 import classes from './About.module.scss';
 
 const About = () => {
+  const [currentView] = useContext(CurrentViewContext);
+
+  const viewLocation = getViewLocation(
+    currentView,
+    'about',
+    menuItems.map((item) => item.label)
+  );
+
   return (
     <div id="about" className={clsx(classes.section, classes.about)}>
-      <div className={clsx(classes.container, classes.about)}>
+      <div
+        className={clsx(
+          classes.container,
+          classes.about,
+          classes[viewLocation]
+        )}
+      >
         <h2 className={clsx(classes.title, classes.large, classes.about)}>
           {about.title}
         </h2>

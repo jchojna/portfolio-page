@@ -1,14 +1,14 @@
 import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import menuItems from '../content/menu.json';
+import { getCurrentSectionIndex } from '../utils/utils';
+import CurrentViewContext from '../views/CurrentViewContext';
+import Burger from './Burger';
 import MenuBackground from './MenuBackground';
 import MobileMenuButton from './MobileMenuButton';
 
-import Burger from './Burger';
 import classes from './MobileMenu.module.scss';
-
-import { getCurrentSectionIndex } from '../utils/utils';
 
 type MobileMenuProps = {
   isMenuMode: boolean;
@@ -23,10 +23,15 @@ const MobileMenu = ({
   sectionsRef,
   setIndicatorRef,
 }: MobileMenuProps) => {
+  // state
   const [indicatorTopOffset, setIndicatorTopOffset] = useState<number>(0);
-  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
   const [backgroundSplit, setBackgroundSplit] = useState<number>(0);
+  // context
+  const [currentSectionIndex, setCurrentSectionIndex] =
+    useContext(CurrentViewContext);
+  // refs
   const indicatorRef = useRef<HTMLDivElement | null>(null);
+
   const menuClass = clsx(classes.menu, isMenuMode && classes.intro);
   const activeView = menuItems.map(({ label }) => label)[currentSectionIndex];
 
@@ -103,7 +108,6 @@ const MobileMenu = ({
                   width={width}
                   isMenuMode={isMenuMode}
                   isActive={currentSectionIndex === index}
-                  setCurrentSectionIndex={setCurrentSectionIndex}
                   setIndicatorTopOffset={setIndicatorTopOffset}
                   setBackgroundSplit={setBackgroundSplit}
                 />
