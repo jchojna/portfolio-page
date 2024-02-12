@@ -1,10 +1,40 @@
 @import '../styles/variables.scss';
 @import '../styles/mixins.scss';
 
+$icon-size: 1.3rem;
+
 .section {
   @include section;
 
   .container {
     @include container;
+
+    .carousel {
+      box-shadow: 20px 20px 0 0 $color-tasktimer-dark;
+      grid-area: carousel;
+
+      .arrow {
+        border: 0 solid #fff;
+        border-width: 3px 3px 0 0;
+        height: $icon-size;
+        width: $icon-size;
+
+        &.left {
+          transform: rotateZ(-135deg) translate(-20%, 20%);
+        }
+
+        &.right {
+          transform: rotateZ(45deg) translate(-20%, 20%);
+        }
+      }
+
+      :global(.slide) {
+        display: flex;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
   }
 }
