@@ -27,30 +27,17 @@
 }
 
 .projectLinks {
-  align-self: end;
-  column-gap: 10px;
-  display: grid;
-  font-size: 2em;
+  display: flex;
+  font-size: 1.6rem;
+  gap: 10px;
   grid-area: links;
-  grid-template-columns: repeat(2, 1fr);
-  margin: 0.5em $offset-right-s 0 $offset-left-s;
-
-  @media only screen and (min-width: $media-s) {
-    margin: 0.5em $offset-right-m 0 $offset-left-m;
-  }
-
-  @media only screen and (min-width: $media-m) {
-    margin: 0;
-    margin-top: 15px;
-    width: 100%;
-  }
 
   .link {
     @include button;
     @include flex-center;
 
     min-width: 50px;
-    padding: 0.4em 0.5em;
+    padding: 0.3em 1em;
     position: relative;
     text-decoration: none;
     text-transform: uppercase;

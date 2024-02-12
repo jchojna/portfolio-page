@@ -31,7 +31,7 @@
   @media only screen and (min-width: $media-m) {
     align-items: center;
     justify-content: flex-start;
-    padding: 0 250px 0 350px;
+    padding: 0 80px 0 350px;
   }
 
   @media only screen and (min-width: $media-l) {
@@ -89,7 +89,7 @@
   column-gap: 60px;
   padding: $menu-item-height $offset-right-s $menu-item-height * 2
     $offset-left-s;
-  transition: opacity 1s, transform 1s cubic-bezier(0, 0.5, 0, 1);
+  transition: opacity 1s, transform 0.8s cubic-bezier(0, 0.5, 0, 1) 0.2s;
   width: 100%;
 
   &.prev {
@@ -133,9 +133,9 @@
   &.quotes {
     grid-template-areas:
       'logo'
-      'title'
       'description'
       'features'
+      'carousel'
       'icons'
       'stats'
       'links';
@@ -185,11 +185,11 @@
     &.archviz,
     &.quotes {
       grid-template-areas:
-        'title      title     '
-        'description  features    '
-        'icons icons'
-        'stats        links   ';
-      grid-template-columns: 1fr 1fr;
+        'description carousel'
+        'features carousel'
+        'features icons'
+        'stats links';
+      grid-template-columns: 2fr 3fr;
       grid-template-rows: auto 1fr repeat(2, auto);
     }
 

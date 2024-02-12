@@ -76,7 +76,6 @@ type ProjectLinksProps = {
 
 type ProjectFeaturesProps = {
   projectName: string;
-  title: string;
   content: {
     label: string;
     items: string[];
