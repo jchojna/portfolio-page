@@ -1,20 +1,15 @@
 import clsx from 'clsx';
-import Carousel from 'nuka-carousel';
 import { useContext } from 'react';
-import img1 from '../assets/img/img1.png';
-import img2 from '../assets/img/img2.png';
-import img3 from '../assets/img/img3.png';
 
+import Demo from '../components/Demo';
 import Graphic from '../components/Graphic';
 import ProjectFeatures from '../components/ProjectFeatures';
-import ProjectLinks from '../components/ProjectLinks';
 import ProjectStats from '../components/ProjectStats';
 import TextGroup from '../components/groups/TextGroup';
 import IconsList from '../components/icons/IconsList';
 import menuItems from '../content/menu.json';
 import { getViewLocation } from '../utils/utils';
 import CurrentViewContext from './CurrentViewContext';
-// import ListGroup from '../components/groups/ListGroup';
 
 import classes from './Project.module.scss';
 
@@ -45,29 +40,9 @@ const Project = ({
         )}
       >
         <TextGroup title="About Project" projectName={name} content={about} />
+        <Demo projectName={name} demoUrl={homepage} repoUrl={html_url} />
         <ProjectFeatures projectName={name} content={features} />
         <IconsList view={name} icons={icons} />
-        <div className={classes.carousel}>
-          <Carousel
-            defaultControlsConfig={{
-              prevButtonText: (
-                <div className={clsx(classes.arrow, classes.left)}></div>
-              ),
-              nextButtonText: (
-                <div className={clsx(classes.arrow, classes.right)}></div>
-              ),
-            }}
-          >
-            <img src={img1} />
-            <img src={img2} />
-            <img src={img3} />
-          </Carousel>
-        </div>
-        <ProjectLinks
-          projectName={name}
-          repoUrl={html_url}
-          demoUrl={homepage}
-        />
         <ProjectStats
           projectName={name}
           createdAt={created_at}

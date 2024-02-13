@@ -31,12 +31,12 @@
   @media only screen and (min-width: $media-m) {
     align-items: center;
     justify-content: flex-start;
-    padding: 0 80px 0 350px;
+    padding: 0 50px 0 350px;
   }
 
   @media only screen and (min-width: $media-l) {
     justify-content: center;
-    padding: 0 300px 0 500px;
+    padding: 0 80px 0 500px;
   }
 
   &.about {
@@ -185,10 +185,10 @@
     &.archviz,
     &.quotes {
       grid-template-areas:
-        'description carousel'
-        'features carousel'
-        'features icons'
-        'stats links';
+        'description demo'
+        'icons demo'
+        'features demo'
+        'stats demo';
       grid-template-columns: 2fr 3fr;
       grid-template-rows: auto 1fr repeat(2, auto);
     }
@@ -214,7 +214,7 @@
   }
 
   @media screen and (min-width: $media-l) {
-    max-width: 1200px;
+    max-width: 1800px;
   }
 }
 
