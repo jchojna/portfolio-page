@@ -1,8 +1,11 @@
 import clsx from 'clsx';
+import { useContext } from 'react';
 
 import menuItems from '../content/menu.json';
-import classes from './Navigator.module.scss';
 import { scrollToSection } from '../utils/utils';
+import CurrentViewContext from '../views/CurrentViewContext';
+
+import classes from './Navigator.module.scss';
 
 type NavigatorButtonProps = {
   type: string;
@@ -11,7 +14,6 @@ type NavigatorButtonProps = {
 
 type NavigatorProps = {
   isMenuMode: boolean;
-  currentSectionIndex: number;
   sectionsRef: React.RefObject<HTMLDivElement>;
   setMenuMode: (isMenuMode: boolean) => void;
   backgroundSection: string;
@@ -31,11 +33,11 @@ const NavigatorButton = ({ type, handleClick }: NavigatorButtonProps) => {
 
 const Navigator = ({
   isMenuMode,
-  currentSectionIndex,
   sectionsRef,
   setMenuMode,
   setBackgroundSection,
 }: NavigatorProps) => {
+  const [currentSectionIndex] = useContext(CurrentViewContext);
   const navigatorClass = clsx(
     classes.navigator,
     !isMenuMode && classes.visible,

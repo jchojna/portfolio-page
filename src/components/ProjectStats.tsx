@@ -4,9 +4,17 @@ import classes from './ProjectStats.module.scss';
 
 type ProjectStatsProps = {
   projectName: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
-const ProjectStats = ({ projectName }: ProjectStatsProps) => {
+const getFormattedDate = (date: string) => new Date(date).toLocaleDateString();
+
+const ProjectStats = ({
+  projectName,
+  createdAt,
+  updatedAt,
+}: ProjectStatsProps) => {
   return (
     <table className={clsx(classes.stats, classes[projectName])}>
       <thead className={classes.header}>
@@ -18,15 +26,11 @@ const ProjectStats = ({ projectName }: ProjectStatsProps) => {
       <tbody className={classes.body}>
         <tr className={classes.row}>
           <td className={classes.category}>Created:</td>
-          <td className={classes.value}></td>
+          <td className={classes.value}>{getFormattedDate(createdAt)}</td>
         </tr>
         <tr className={classes.row}>
           <td className={classes.category}>Last update:</td>
-          <td className={classes.value}></td>
-        </tr>
-        <tr className={classes.row}>
-          <td className={classes.category}>Total commits:</td>
-          <td className={classes.value}></td>
+          <td className={classes.value}>{getFormattedDate(updatedAt)}</td>
         </tr>
       </tbody>
     </table>

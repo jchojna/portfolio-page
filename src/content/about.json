@@ -1,6 +1,6 @@
 {
   "title": "Hello there!",
-  "description": "My name is Jakub and I’m a Frontend Developer, a 3d Graphic Artist, an Architect and a keen road cycling fan.",
+  "description": "Combining my past experience as an architect and 3D graphic artist with my current role as a frontend developer, I specialize in crafting visually stunning UI and highly interactive digital experiences.",
   "highLevel": {
     "title": "Working knowledge",
     "tech": [
@@ -21,10 +21,6 @@
         "totalSVG": 1
       },
       {
-        "name": "bem",
-        "totalSVG": 1
-      },
-      {
         "name": "react",
         "totalSVG": 1
       },
@@ -33,19 +29,27 @@
         "totalSVG": 1
       },
       {
-        "name": "vscode",
-        "totalSVG": 3
-      },
-      {
-        "name": "figma",
-        "totalSVG": 3
-      },
-      {
-        "name": "illustrator",
+        "name": "npm",
         "totalSVG": 1
       },
       {
-        "name": "photoshop",
+        "name": "bootstrap",
+        "totalSVG": 1
+      },
+      {
+        "name": "threejs",
+        "totalSVG": 1
+      },
+      {
+        "name": "typescript",
+        "totalSVG": 1
+      },
+      {
+        "name": "nextjs",
+        "totalSVG": 1
+      },
+      {
+        "name": "gatsby",
         "totalSVG": 1
       }
     ]
@@ -58,34 +62,13 @@
         "totalSVG": 1
       },
       {
-        "name": "npm",
-        "totalSVG": 1
-      },
-      {
-        "name": "api",
-        "totalSVG": 1
-      },
-      {
-        "name": "gulp",
-        "totalSVG": 1
-      },
-      {
         "name": "jest",
-        "totalSVG": 1
-      },
-      {
-        "name": "bootstrap",
         "totalSVG": 1
       },
       {
         "name": "wordpress",
         "totalSVG": 1
-      }
-    ]
-  },
-  "lowLevel": {
-    "title": "Want to learn",
-    "tech": [
+      },
       {
         "name": "nodejs",
         "totalSVG": 1
@@ -107,10 +90,6 @@
         "totalSVG": 1
       },
       {
-        "name": "threejs",
-        "totalSVG": 1
-      },
-      {
         "name": "electron",
         "totalSVG": 1
       },
@@ -119,19 +98,7 @@
         "totalSVG": 1
       },
       {
-        "name": "typescript",
-        "totalSVG": 1
-      },
-      {
         "name": "enzyme",
-        "totalSVG": 1
-      },
-      {
-        "name": "nextjs",
-        "totalSVG": 1
-      },
-      {
-        "name": "gatsby",
         "totalSVG": 1
       }
     ]

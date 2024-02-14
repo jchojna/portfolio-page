@@ -2,7 +2,7 @@
   "title": "Jakub Chojna",
   "info": {
     "heading": "Personal Info",
-    "description": "As an architect I have a background in programming parametric architecture using tools like Grasshopper and Kangaroo. Long experience in 3d graphic and architectural visualization industry ad a strong impact on my sense of aesthetics and visual composition. I also had an encounter with motion design and compositing. During my one year stay in Slovenia, I had an opportunity to work in English-speaking environment. As an individual, I think I would describe myself as a self-taught, multipotentialite person with a certain dose of perfectionism. After I had created my first personal portfolio website in Wordpress, I decided to take my chances in frontend development about one year ago and learn it after hours. I have taken some online courses, but first of all I focused on writing my own projects and learning by practice. I tried to avoid using external libraries where I possibly could while writing the code, to get better understanding of HTML, CSS and JS basics. What I like about frontend web development is an endless process of learning, logical and analytical thinking and that it enables me to connect my previous experience backgrounds at some level."
+    "description": "As a Frontend Developer, I merge my past as an Architect and 3D Graphic Artist with my present, creating visually compelling, immersive and interactive digital experiences. My four years of commercial experience in software development, enriched by a strong background in parametric architecture programming and 3D visualization, fuels my passion for crafting aesthetically pleasing interfaces. With a keen eye for design and a deep understanding of visual composition, I focus on delivering exceptional multi-dimensional user experiences that seamlessly blend form and function."
   },
   "resume": [
     {
@@ -54,7 +54,7 @@
           "label": "Frontend Development",
           "items": [
             {
-              "label": "2020 - 2023",
+              "label": "2020 - 2024",
               "items": ["Frontend Developer", "Appsilon", "Remote"]
             }
           ]

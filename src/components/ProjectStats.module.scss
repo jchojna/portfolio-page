@@ -2,6 +2,7 @@
 @import '../styles/mixins.scss';
 
 .stats {
+  align-self: end;
   border-collapse: collapse;
   border-bottom: 3px solid transparent;
   display: flex;
@@ -10,22 +11,32 @@
   padding-bottom: 10px;
 
   &.tasktimer {
+    @include normalText(tasktimer);
+
     color: $color-tasktimer-shadow;
     border-color: $color-tasktimer-shadow;
   }
   &.portfolio {
+    @include normalText(portfolio);
+
     color: $color-portfolio-shadow;
     border-color: $color-portfolio-shadow;
   }
   &.hydrapp {
+    @include normalText(hydrapp);
+
     color: $color-hydrapp-shadow;
     border-color: $color-hydrapp-shadow;
   }
   &.archviz {
+    @include normalText(archviz);
+
     color: $color-archviz-shadow;
     border-color: $color-archviz-shadow;
   }
   &.quotes {
+    @include normalText(quotes);
+
     color: $color-quotes-shadow;
     border-color: $color-quotes-shadow;
   }

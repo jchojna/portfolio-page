@@ -1,39 +1,40 @@
 import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import menuItems from '../content/menu.json';
-import MenuButton from './MenuButton';
-
-import classes from './Menu.module.scss';
-
 import {
   getCurrentSectionIndex,
   getOffsetedSectionIndex,
   getRelativeTopOffset,
 } from '../utils/utils';
+import CurrentViewContext from '../views/CurrentViewContext';
+import MenuButton from './MenuButton';
+
+import classes from './Menu.module.scss';
 
 type MenuProps = {
   isMenuMode: boolean;
   setMenuMode: (isMenuMode: boolean) => void;
   sectionsRef: React.RefObject<HTMLDivElement>;
-  currentSectionIndex: number;
-  setCurrentSectionIndex: (index: number) => void;
   backgroundSection: string;
   setBackgroundSection: (backgroundSection: string) => void;
+  setIndicatorRef: (indicatorRef: HTMLDivElement | null) => void;
 };
 
 const Menu = ({
   isMenuMode,
   setMenuMode,
   sectionsRef,
-  currentSectionIndex,
-  setCurrentSectionIndex,
   backgroundSection,
   setBackgroundSection,
+  setIndicatorRef,
 }: MenuProps) => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(0);
   const [offsetedSectionIndex, setOffsetedSectionIndex] = useState<number>(-1);
   const [relativeTopOffset, setRelativeTopOffset] = useState<number>(0);
+
+  const [currentSectionIndex, setCurrentSectionIndex] =
+    useContext(CurrentViewContext);
 
   const indicatorRef = useRef<HTMLDivElement>(null);
   const menuListRef = useRef<HTMLUListElement>(null);
@@ -63,6 +64,7 @@ const Menu = ({
   };
 
   useEffect(() => {
+    setIndicatorRef(indicatorRef.current);
     const sectionsRefCopy = sectionsRef.current;
     if (sectionsRefCopy) {
       sectionsRefCopy.addEventListener('scroll', handleScroll);
@@ -132,7 +134,6 @@ const Menu = ({
                   setMenuMode={setMenuMode}
                   backgroundSection={backgroundSection}
                   setBackgroundSection={setBackgroundSection}
-                  setCurrentSectionIndex={setCurrentSectionIndex}
                   offsetedSectionIndex={offsetedSectionIndex}
                   relativeTopOffset={relativeTopOffset}
                 />

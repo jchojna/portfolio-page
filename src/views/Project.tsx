@@ -1,39 +1,53 @@
 import clsx from 'clsx';
+import { useContext } from 'react';
 
-import TextGroup from '../components/groups/TextGroup';
-import ProjectLinks from '../components/ProjectLinks';
-import IconsList from '../components/icons/IconsList';
-import ProjectStats from '../components/ProjectStats';
-import ProjectFeatures from '../components/ProjectFeatures';
+import Demo from '../components/Demo';
 import Graphic from '../components/Graphic';
-// import ListGroup from '../components/groups/ListGroup';
+import ProjectFeatures from '../components/ProjectFeatures';
+import ProjectStats from '../components/ProjectStats';
+import TextGroup from '../components/groups/TextGroup';
+import IconsList from '../components/icons/IconsList';
+import menuItems from '../content/menu.json';
+import { getViewLocation } from '../utils/utils';
+import CurrentViewContext from './CurrentViewContext';
 
 import classes from './Project.module.scss';
 
 const Project = ({
   name,
-  title,
   about,
   features,
   icons,
-  url,
+  fetchedData,
 }: ProjectProps) => {
+  const [currentView] = useContext(CurrentViewContext);
+  const { created_at, updated_at, homepage, html_url } = fetchedData;
+
+  const viewLocation = getViewLocation(
+    currentView,
+    name,
+    menuItems.map((item) => item.label)
+  );
+
   return (
     <div id={name} className={clsx(classes.section, classes[name])}>
-      <div className={clsx(classes.container, classes[name])}>
-        <Graphic view={name} />
-        <h2 className={clsx(classes.title, classes.large, classes[name])}>
-          {title}
-        </h2>
+      <Graphic view={name} />
+      <div
+        className={clsx(
+          classes.container,
+          classes[name],
+          classes[viewLocation]
+        )}
+      >
         <TextGroup title="About Project" projectName={name} content={about} />
-        <ProjectFeatures
-          projectName={name}
-          title="Features"
-          content={features}
-        />
+        <Demo projectName={name} demoUrl={homepage} repoUrl={html_url} />
+        <ProjectFeatures projectName={name} content={features} />
         <IconsList view={name} icons={icons} />
-        <ProjectLinks projectName={name} url={url} />
-        <ProjectStats projectName={name} />
+        <ProjectStats
+          projectName={name}
+          createdAt={created_at}
+          updatedAt={updated_at}
+        />
       </div>
     </div>
   );

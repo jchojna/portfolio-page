@@ -7,8 +7,6 @@
   .container {
     @include container;
 
-    .title {
-      @include sectionTitle;
-    }
+    align-items: center;
   }
 }

@@ -2,20 +2,14 @@ import clsx from 'clsx';
 import { useState } from 'react';
 
 import Accordion from './Accordion';
-import BlockTitle from './BlockTitle';
 
 import classes from './ProjectFeatures.module.scss';
 
-const ProjectFeatures = ({
-  projectName,
-  title,
-  content,
-}: ProjectFeaturesProps) => {
+const ProjectFeatures = ({ projectName, content }: ProjectFeaturesProps) => {
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (
     <div className={clsx(classes.features, classes[projectName])}>
-      <BlockTitle title={title} view={projectName} />
       <div className={classes.accordions}>
         {content.map(({ label, items }, index) => {
           return (

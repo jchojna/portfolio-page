@@ -1,9 +1,10 @@
 import clsx from 'clsx';
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
-import menuItems from '../content/menu.json';
 import menuSvg from '../assets/svg/menu.svg';
+import menuItems from '../content/menu.json';
 import { scrollToSection } from '../utils/utils';
+import CurrentViewContext from '../views/CurrentViewContext';
 
 import classes from './MenuButton.module.scss';
 
@@ -19,7 +20,6 @@ type MenuButtonProps = {
   sectionsRef: React.RefObject<HTMLDivElement>;
   backgroundSection: string;
   setBackgroundSection: (backgroundSection: string) => void;
-  setCurrentSectionIndex: (currentSectionIndex: number) => void;
   setMenuMode: (isMenuMode: boolean) => void;
 };
 
@@ -32,7 +32,6 @@ const MenuButton = ({
   isActive,
   offsetedSectionIndex,
   relativeTopOffset,
-  setCurrentSectionIndex,
   setMenuMode,
   sectionsRef,
   backgroundSection,
@@ -52,6 +51,7 @@ const MenuButton = ({
     [classes.visible]: !isActive,
   });
   const buttonRef = useRef<HTMLAnchorElement | null>(null);
+  const [_, setCurrentSectionIndex] = useContext(CurrentViewContext);
 
   useEffect(() => {
     if (!buttonRef.current) return;

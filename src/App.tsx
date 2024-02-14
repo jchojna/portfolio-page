@@ -1,25 +1,35 @@
-import { useEffect, useRef, useState } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import clsx from 'clsx';
+import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import Header from './components/Header';
-// import Animation from './views/Animation';
+import Projects from './components/Projects';
 import About from './views/About';
-import Resume from './views/Resume';
-import Project from './views/Project';
 import Contact from './views/Contact';
-
-import projects from './content/projects.json';
+import CurrentViewContext from './views/CurrentViewContext';
+import Intro from './views/Intro';
+import Resume from './views/Resume';
 
 import classes from './App.module.scss';
 import MobileHeader from './components/MobileHeader';
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+    },
+  },
+});
+
 function App() {
   const [isMenuMode, setMenuMode] = useState<boolean>(true);
   const [isSmoothScroll, setSmoothScroll] = useState<boolean>(false);
+  const [indicatorRef, setIndicatorRef] = useState<HTMLDivElement | null>(null);
+  const currentViewHook = useState<number>(0);
 
   const sectionsRef = useRef<HTMLDivElement | null>(null);
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 1200px)' });
   const sectionsClass = clsx({
     [classes.sections]: true,
     [classes.visible]: !isMenuMode,
@@ -32,38 +42,34 @@ function App() {
   }, [isMenuMode]);
 
   return (
-    <div className={classes.app}>
-      {isMobile ? (
-        <MobileHeader
-          isMenuMode={isMenuMode}
-          setMenuMode={setMenuMode}
-          sectionsRef={sectionsRef}
-        />
-      ) : (
-        <Header
-          isMenuMode={isMenuMode}
-          setMenuMode={setMenuMode}
-          sectionsRef={sectionsRef}
-        />
-      )}
-      {/* <Animation /> */}
-      <div ref={sectionsRef} className={sectionsClass}>
-        <About />
-        <Resume />
-        {projects.map(({ name, title, about, features, icons, url }) => (
-          <Project
-            key={name}
-            name={name}
-            title={title}
-            about={about}
-            features={features}
-            icons={icons}
-            url={url}
-          />
-        ))}
-        <Contact />
-      </div>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <CurrentViewContext.Provider value={currentViewHook}>
+        <div className={classes.app}>
+          <Intro indicator={indicatorRef} />
+          {isMobile ? (
+            <MobileHeader
+              isMenuMode={isMenuMode}
+              setMenuMode={setMenuMode}
+              sectionsRef={sectionsRef}
+              setIndicatorRef={setIndicatorRef}
+            />
+          ) : (
+            <Header
+              isMenuMode={isMenuMode}
+              setMenuMode={setMenuMode}
+              sectionsRef={sectionsRef}
+              setIndicatorRef={setIndicatorRef}
+            />
+          )}
+          <div ref={sectionsRef} className={sectionsClass}>
+            <About />
+            <Resume />
+            <Projects />
+            <Contact />
+          </div>
+        </div>
+      </CurrentViewContext.Provider>
+    </QueryClientProvider>
   );
 }
 

@@ -31,19 +31,31 @@
   @media only screen and (min-width: $media-m) {
     align-items: center;
     justify-content: flex-start;
-    padding: 0 100px 0 350px;
+    padding: 0 50px 0 350px;
   }
 
   @media only screen and (min-width: $media-l) {
     justify-content: center;
-    padding: 0 300px 0 500px;
+    padding: 0 80px 0 500px;
   }
 
   &.about {
     background-color: $color-about;
+    background: radial-gradient(
+      circle,
+      $color-about 0%,
+      $color-about 40%,
+      $color-about-dark 100%
+    );
   }
   &.resume {
     background-color: $color-resume;
+    background: radial-gradient(
+      circle,
+      $color-resume 0%,
+      $color-resume 40%,
+      $color-resume-dark 100%
+    );
   }
   &.tasktimer {
     background-color: $color-tasktimer;
@@ -77,7 +89,23 @@
   column-gap: 60px;
   padding: $menu-item-height $offset-right-s $menu-item-height * 2
     $offset-left-s;
+  transition: opacity 1s, transform 0.8s cubic-bezier(0, 0.5, 0, 1) 0.2s;
   width: 100%;
+
+  &.prev {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  &.current {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.next {
+    opacity: 0;
+    transform: translateY(100%);
+  }
 
   &.about {
     grid-template-areas:
@@ -86,8 +114,7 @@
       'description'
       'contact'
       'high'
-      'medium'
-      'low';
+      'medium';
     width: 100%;
   }
 
@@ -105,42 +132,42 @@
   &.archviz,
   &.quotes {
     grid-template-areas:
-      'logo        '
-      'title     '
-      'description '
-      'features    '
+      'logo'
+      'description'
+      'features'
+      'carousel'
       'icons'
-      'stats       '
-      'links   ';
+      'stats'
+      'links';
   }
 
   &.other {
     grid-template-areas:
-      'logo       '
-      'title    '
+      'logo'
+      'title'
       'description'
-      'otherRepos ';
+      'otherRepos';
   }
 
   &.contact {
     grid-template-areas:
-      'logo   '
+      'logo'
       'title'
-      'form   '
-      'social '
-      'footer ';
+      'form'
+      'social'
+      'footer';
   }
 
   @media only screen and (min-width: $media-m) {
     &.about {
       grid-template-areas:
-        'title'
-        'description'
-        'contact'
-        'high'
-        'medium'
-        'low';
-      grid-template-columns: 1fr;
+        'title photo'
+        'description photo'
+        'contact photo'
+        'high photo'
+        'medium photo'
+        'low photo';
+      grid-template-columns: 1fr auto;
       grid-template-rows: auto 1fr repeat(4, auto);
     }
 
@@ -158,11 +185,11 @@
     &.archviz,
     &.quotes {
       grid-template-areas:
-        'title      title     '
-        'description  features    '
-        'icons icons'
-        'stats        links   ';
-      grid-template-columns: 1fr 1fr;
+        'description demo'
+        'icons demo'
+        'features demo'
+        'stats demo';
+      grid-template-columns: 2fr 3fr;
       grid-template-rows: auto 1fr repeat(2, auto);
     }
 
@@ -187,7 +214,7 @@
   }
 
   @media screen and (min-width: $media-l) {
-    max-width: 1200px;
+    max-width: 1800px;
   }
 }
 
@@ -239,24 +266,17 @@
   }
 
   @media only screen and (min-width: $media-m) {
-    & {
-      border: none;
-      font-size: 72px;
-      margin: $menu-item-height + $offset-right-m 0;
-      margin-bottom: 0;
-      max-width: 60%;
-      min-width: 380px;
-      padding: 0;
-      width: 100%;
-    }
+    border: none;
+    font-size: 72px;
+    margin: 0;
+    max-width: 60%;
+    min-width: 380px;
+    padding: 0;
+    width: 100%;
   }
 
   @media only screen and (min-width: $media-l) {
-    & {
-      margin: 0;
-      margin-bottom: 20px;
-      max-width: none;
-    }
+    max-width: none;
   }
 }
 
