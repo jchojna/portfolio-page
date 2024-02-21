@@ -134,11 +134,10 @@
     grid-template-areas:
       'logo'
       'description'
+      'demo'
+      'tags'
       'features'
-      'carousel'
-      'icons'
-      'stats'
-      'links';
+      'icons';
   }
 
   &.other {
@@ -186,9 +185,9 @@
     &.quotes {
       grid-template-areas:
         'description demo'
-        'icons demo'
+        'tags demo'
         'features demo'
-        'stats demo';
+        'icons demo';
       grid-template-columns: 2fr 3fr;
       grid-template-rows: auto 1fr repeat(2, auto);
     }

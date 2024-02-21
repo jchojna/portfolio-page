@@ -1,0 +1,37 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+@mixin tag($project) {
+  background-color: map-get($colors, #{$project}-dark);
+  color: map-get($colors, #{$project}-white);
+}
+
+.tag {
+  display: flex;
+  gap: 0.6em;
+  padding: 0.4em 0.8em;
+
+  &.tasktimer {
+    @include tag(tasktimer);
+  }
+  &.portfolio {
+    @include tag(portfolio);
+  }
+  &.hydrapp {
+    @include tag(hydrapp);
+  }
+  &.archviz {
+    @include tag(archviz);
+  }
+  &.quotes {
+    @include tag(quotes);
+  }
+
+  .label::after {
+    content: ':';
+  }
+
+  .date {
+    font-weight: 600;
+  }
+}

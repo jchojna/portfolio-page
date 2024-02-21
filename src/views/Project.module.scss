@@ -8,5 +8,11 @@
     @include container;
 
     align-items: center;
+
+    .tags {
+      display: flex;
+      gap: 15px;
+      grid-area: tags;
+    }
   }
 }
