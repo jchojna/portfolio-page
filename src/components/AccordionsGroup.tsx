@@ -6,11 +6,7 @@ import ResumeDetails from './resume/ResumeDetails';
 import classes from './AccordionsGroup.module.scss';
 import BlockTitle from './BlockTitle';
 
-const AccordionsGroup = ({
-  title,
-  content,
-  isTitleLarge,
-}: AccordionsGroupProps) => {
+const AccordionsGroup = ({ title, content }: AccordionsGroupProps) => {
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (

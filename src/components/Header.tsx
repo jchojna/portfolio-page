@@ -1,7 +1,6 @@
 import clsx from 'clsx';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
-import CurrentViewContext from '../views/CurrentViewContext';
 import Menu from './Menu';
 import Navigator from './Navigator';
 
