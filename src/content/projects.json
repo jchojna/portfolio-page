@@ -3,8 +3,7 @@
     "name": "tasktimer",
     "repoName": "task-timer",
     "about": [
-      "You could say it's just another Pomodoro Clock react app, but this one is a little bit more complex and playful. I tried to make it look more like a board game with cards, interactive and entertaining. The app can handle multiple tasks going on at the same time, even though it may not be too practical to work on many tasks simultaneously, but it's nice to see them all in action anyway:)",
-      "For GIT training purposes, the app has started being developed in multiple phases: as a static page (static-page branch), as vanilla JS app using document.createElement (vanilla branch), as vanilla JS to react.js rewriting phase with use of React.createElement, but no JSX yet (react-no-jsx branch), previous and simpler version of the app created using create-react-app seed is located on react-simple branch app's version on master branch is still being developed as the main app"
+      "This application is an advanced Pomodoro Clock built with React, featuring a playful, interactive board game-like interface. It supports concurrent multi-tasking, allowing multiple tasks to run simultaneously."
     ],
     "features": [
       {
@@ -36,31 +35,15 @@
           "all cards are minimized by default on mobile devices due to accessibility reasons",
           "project's mockup was created in Figma"
         ]
-      },
-      {
-        "label": "To be implemented",
-        "items": ["full keyboard support for an entire app"]
       }
     ],
     "icons": [
       {
-        "name": "html",
-        "totalSVG": 3
-      },
-      {
-        "name": "css",
-        "totalSVG": 3
-      },
-      {
-        "name": "javascript",
-        "totalSVG": 3
-      },
-      {
-        "name": "sass",
+        "name": "react",
         "totalSVG": 1
       },
       {
-        "name": "react",
+        "name": "sass",
         "totalSVG": 1
       }
     ]
@@ -69,7 +52,7 @@
     "name": "hydrapp",
     "repoName": "hydrApp",
     "about": [
-      "Simple yet useful app for daily tracking of water consumption. User can quickly get to basic app's functionality and add (or remove) next glass of drank water what may help with not forgetting about this really important activity, especially during hot summer.. There's also an archive section with an editable history entries divided on weeks, to have an overall insight into water consumption tendency. On top of that, user is able to change his account settings and view his or other users stats. I added some level of gamification in form of points collected by every user for 'minimum water' streaks. There is also an overall ranking of users, dynamically reacting to any change in users stats."
+      "This application is a water consumption tracker that allows users to easily log their daily water intake. It features an archive section for viewing weekly consumption trends and an account settings section for personalization. Users can view their own and others' statistics. The app incorporates gamification elements, rewarding users with points for maintaining consistent water intake, and features a dynamic user ranking system."
     ],
     "features": [
       {
@@ -128,9 +111,8 @@
     "name": "portfolio",
     "repoName": "portfolio-page",
     "about": [
-      "This project you have already started exploring and it's what you are viewing right now. It presents five most representative frontend projects of mine (including itself) placed in separate sections, starting from the ones I am proud of the most. In addition, the other section contains a few more straightforward and exercise projects I created in the beginning of my frontend journey.",
-      "I tried to emphasize creative and dynamic character of this SPA website mostly by providing noticeable level of interaction with a visual output and quite many animated elements. At the same time, I tried not to cross the line of exaggeration regarding transforming elements and kept my eye on performance aspect so the transitions would appear relatively smooth.",
-      "In order to distinguish one section from another I assumed a design rule, that each section has its own independent color palette. Because of many color shades in every section, there is 68 colors in total on this page and it's one of those moments when SCSS comes in handy… In this project I decided not to use any javascript frameworks, just vanilla JS."
+      "This project is a showcase of my top five frontend projects, including this one, each presented in its own section. Additional sections feature simpler, early-stage projects. The site is a Single Page Application (SPA) with a focus on interactivity and animation, balanced with performance considerations to ensure smooth transitions.",
+      "Each section features a unique color palette, resulting in a total of 68 different colors across the site, managed effectively using SCSS. The project was initially built with vanilla JavaScript and later rewritten using React."
     ],
     "features": [
       {
@@ -229,8 +211,7 @@
     "name": "archviz",
     "repoName": "archviz-website",
     "about": [
-      "The main idea for this project was to compromise a large amount of high quality pictures with page load performance. Because of that I decided to create SVG placeholders for every image as a starting content and load the raster images progressively, taking into account their actual visibility on the screen and using lazy loading functionality.",
-      "I decided not to use any external libraries and write all the functions by myself (exception: throttle function from Underscore.js). All the visualizations used on this website were created by me, while I have been working as an architectural visualizer."
+      "This project balances the use of high-quality images with page load performance by implementing SVG placeholders for each image. Raster images are loaded progressively based on their visibility on the screen, utilizing lazy loading. The project is built primarily with custom functions, with few exceptions. All visualizations on the site were created by me when I used to work as an architectural visualizer."
     ],
     "features": [
       {
@@ -281,7 +262,7 @@
     "name": "quotes",
     "repoName": "homepage-gulp",
     "about": [
-      "Quotes collection containing nice pictures and many useful and funny quotes. In this is simple MPA website I wanted to keep perceived continuity, when user navigates between different pages and make it look more like a simple app. All the pictures used in this project has been taken and post-processed by myself during my one year stay in Slovenia."
+      "This project is a Multi-Page Application (MPA) featuring a collection of quotes accompanied by visually appealing images. The design emphasizes continuity during navigation to mimic the feel of a simple app. All images were personally captured and post-processed during my year-long stay in Slovenia."
     ],
     "features": [
       {
@@ -299,10 +280,6 @@
           "checkboxes validation and alerts",
           "TO BE IMPLEMENTED: contact form JS validation and functionality"
         ]
-      },
-      {
-        "label": "To be implemented",
-        "items": ["contact form JS validation and functionality"]
       }
     ],
     "icons": [
