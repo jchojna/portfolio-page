@@ -25,6 +25,7 @@
 
     &.intro {
       $left-offset: calc(50vw - #{$menu-width-l});
+      transform: translateX($left-offset);
     }
   }
 
@@ -45,10 +46,6 @@
     padding-right: 10px;
     // pointer-events: none;
     width: 100%;
-
-    &--active {
-      // pointer-events: all;
-    }
 
     &--mobileHeader {
       left: 0;
@@ -71,7 +68,7 @@
     }
 
     @media only screen and (min-width: $media-l) {
-      height: $menu-item-height-lg;
+      height: $menu-item-height-l;
     }
   }
 }
@@ -117,6 +114,6 @@
   }
 
   @media only screen and (min-width: $media-l) {
-    height: $menu-item-height-lg;
+    height: $menu-item-height-l;
   }
 }

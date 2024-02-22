@@ -88,7 +88,7 @@
   }
 
   @media only screen and (min-width: $media-l) {
-    height: $menu-item-height-lg;
+    height: $menu-item-height-l;
     padding: 0;
     width: 100%;
   }
@@ -125,7 +125,7 @@
 
   @media only screen and (min-width: $media-l) {
     .menuSvgText {
-      height: $menu-item-height-lg;
+      height: $menu-item-height-l;
     }
   }
 }
