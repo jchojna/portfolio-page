@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 
 import Accordion from './Accordion';
@@ -6,14 +7,18 @@ import ResumeDetails from './resume/ResumeDetails';
 import classes from './AccordionsGroup.module.scss';
 import BlockTitle from './BlockTitle';
 
-const AccordionsGroup = ({ title, content }: AccordionsGroupProps) => {
-  const [expanded, setExpanded] = useState<string | null>(null);
+const AccordionsGroup = ({
+  accordions,
+  title = null,
+  defaultExpanded = null,
+}: AccordionsGroupProps) => {
+  const [expanded, setExpanded] = useState<string | null>(defaultExpanded);
 
   return (
-    <div className={classes.accordionsGroup}>
-      <BlockTitle title={title} view="resume" />
+    <div className={clsx(classes.accordionsGroup, title && classes.titled)}>
+      {title && <BlockTitle title={title} view="resume" />}
       <div className={classes.items}>
-        {content.map(({ label, items }, index) => {
+        {accordions.map(({ label, items }, index) => {
           return (
             <Accordion
               key={index}
