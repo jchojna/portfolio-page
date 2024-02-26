@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import Demo from '../components/Demo';
 import Graphic from '../components/Graphic';
 import ProjectFeatures from '../components/ProjectFeatures';
-import ProjectStats from '../components/ProjectStats';
+import Tag from '../components/Tag';
 import TextGroup from '../components/groups/TextGroup';
 import IconsList from '../components/icons/IconsList';
 import menuItems from '../content/menu.json';
@@ -40,14 +40,13 @@ const Project = ({
         )}
       >
         <TextGroup title="About Project" projectName={name} content={about} />
+        <div className={classes.tags}>
+          <Tag projectName={name} label="Created" date={created_at} />
+          <Tag projectName={name} label="Last update" date={updated_at} />
+        </div>
         <Demo projectName={name} demoUrl={homepage} repoUrl={html_url} />
         <ProjectFeatures projectName={name} content={features} />
         <IconsList view={name} icons={icons} />
-        <ProjectStats
-          projectName={name}
-          createdAt={created_at}
-          updatedAt={updated_at}
-        />
       </div>
     </div>
   );

@@ -11,15 +11,18 @@ type AccordionProps = {
   setExpanded: (param: string | null) => void;
 };
 
-type AccordionItemProps = {
+type AccordionsProps = {
   label: string;
-  items: AccordionItemProps[] & string[];
+  items: {
+    label?: string;
+    items: string[];
+  }[];
 };
 
 type AccordionsGroupProps = {
-  title: string;
-  content: AccordionItemProps[];
-  isTitleLarge: boolean;
+  title?: string | null;
+  accordions: AccordionsProps[];
+  defaultExpanded?: string | null;
 };
 
 type RepoObj = {

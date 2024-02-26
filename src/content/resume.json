@@ -4,108 +4,102 @@
     "heading": "Personal Info",
     "description": "As a Frontend Developer, I merge my past as an Architect and 3D Graphic Artist with my present, creating visually compelling, immersive and interactive digital experiences. My four years of commercial experience in software development, enriched by a strong background in parametric architecture programming and 3D visualization, fuels my passion for crafting aesthetically pleasing interfaces. With a keen eye for design and a deep understanding of visual composition, I focus on delivering exceptional multi-dimensional user experiences that seamlessly blend form and function."
   },
-  "resume": [
-    {
-      "label": "Experience",
-      "items": [
-        {
-          "label": "Architecture",
-          "items": [
-            {
-              "label": "2017 - present",
-              "items": ["Freelance Architect", "self-employed", "Remote"]
-            },
-            {
-              "label": "2018",
-              "items": [
-                "Architect / 3d Visualizer",
-                "Svet Vmes",
-                "Ljubljana, Slovenia"
-              ]
-            },
-            {
-              "label": "2015 - 2017",
-              "items": [
-                "Architect / 3d Visualizer",
-                "Mofo Architekci",
-                "Warsaw, Poland"
-              ]
-            }
-          ]
-        },
-        {
-          "label": "3d Graphics",
-          "items": [
-            {
-              "label": "2008 - present",
-              "items": ["Freelance 3d Visualizer", "self-employed", "Remote"]
-            },
-            {
-              "label": "2010 - 2013",
-              "items": [
-                "3d software tutor",
-                "Euro Info Group",
-                "Warsaw, Poland"
-              ]
-            }
-          ]
-        },
-        {
-          "label": "Frontend Development",
-          "items": [
-            {
-              "label": "2020 - 2024",
-              "items": ["Frontend Developer", "Appsilon", "Remote"]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Education",
-      "items": [
-        {
-          "label": "2011 - 2014",
-          "items": [
-            "Warsaw University of Technology",
-            "Faculty of Architecture",
-            "Master's Degree"
-          ]
-        },
-        {
-          "label": "2006 - 2010",
-          "items": [
-            "Warsaw University of Technology",
-            "Faculty of Architecture",
-            "Bachelor's Degree"
-          ]
-        },
-        {
-          "label": "2003 - 2006",
-          "items": [
-            "Joachim Lelewel High School No. XLI",
-            "Mathematics - Physics profile",
-            "Warsaw, Poland"
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Languages",
-      "items": [
-        {
-          "items": ["Polish", "Native"]
-        },
-        {
-          "items": ["English", "Proficient"]
-        },
-        {
-          "items": ["German", "Elementary"]
-        },
-        {
-          "items": ["Spanish", "Elementary"]
-        }
-      ]
-    }
-  ]
+  "experience": {
+    "label": "Experience",
+    "items": [
+      {
+        "label": "Architecture",
+        "items": [
+          {
+            "label": "2017 - present",
+            "items": ["Freelance Architect", "self-employed", "Remote"]
+          },
+          {
+            "label": "2018",
+            "items": [
+              "Architect / 3d Visualizer",
+              "Svet Vmes",
+              "Ljubljana, Slovenia"
+            ]
+          },
+          {
+            "label": "2015 - 2017",
+            "items": [
+              "Architect / 3d Visualizer",
+              "Mofo Architekci",
+              "Warsaw, Poland"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "3d Graphics",
+        "items": [
+          {
+            "label": "2008 - present",
+            "items": ["Freelance 3d Visualizer", "self-employed", "Remote"]
+          },
+          {
+            "label": "2010 - 2013",
+            "items": ["3d software tutor", "Euro Info Group", "Warsaw, Poland"]
+          }
+        ]
+      },
+      {
+        "label": "Frontend Development",
+        "items": [
+          {
+            "label": "2020 - 2024",
+            "items": ["Frontend Developer", "Appsilon", "Remote"]
+          }
+        ]
+      }
+    ]
+  },
+  "education": {
+    "label": "Education",
+    "items": [
+      {
+        "label": "2011 - 2014",
+        "items": [
+          "Warsaw University of Technology",
+          "Faculty of Architecture",
+          "Master's Degree"
+        ]
+      },
+      {
+        "label": "2006 - 2010",
+        "items": [
+          "Warsaw University of Technology",
+          "Faculty of Architecture",
+          "Bachelor's Degree"
+        ]
+      },
+      {
+        "label": "2003 - 2006",
+        "items": [
+          "Joachim Lelewel High School No. XLI",
+          "Mathematics - Physics profile",
+          "Warsaw, Poland"
+        ]
+      }
+    ]
+  },
+  "languages": {
+    "label": "Languages",
+    "items": [
+      {
+        "items": ["Polish", "Native"]
+      },
+      {
+        "items": ["English", "Proficient"]
+      },
+      {
+        "items": ["German", "Elementary"]
+      },
+      {
+        "items": ["Spanish", "Elementary"]
+      }
+    ]
+  }
 }
