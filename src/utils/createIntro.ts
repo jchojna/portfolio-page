@@ -1,4 +1,4 @@
-type TimeoutId = NodeJS.Timeout | undefined;
+type TimeoutId = ReturnType<typeof setInterval> | undefined;
 
 type Classes = {
   [key: string]: string;
@@ -26,11 +26,6 @@ const minColNum = 6;
 const rowGap = 2;
 let gridTopMargin: number | null = null;
 
-// intro
-const introFirstTimeoutId: TimeoutId = undefined;
-const introSecondTimeoutId: TimeoutId = undefined;
-const introThirdTimeoutId: TimeoutId = undefined;
-const introForthTimeoutId: TimeoutId = undefined;
 let introCharIntervalId: TimeoutId = undefined;
 
 // intervals
@@ -358,11 +353,6 @@ export const createIntro = async (
   endingAfter.style.width = `${introItemWidth}px`;
   endingAfter.style.height = `${introItemHeight}px`;
   setEndings(charIndex, grid, endingBefore, endingAfter);
-
-  clearTimeout(introFirstTimeoutId);
-  clearTimeout(introSecondTimeoutId);
-  clearTimeout(introThirdTimeoutId);
-  clearTimeout(introForthTimeoutId);
 
   // trigger async functions
   await runAnimation(
