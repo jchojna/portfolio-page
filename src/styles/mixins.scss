@@ -59,24 +59,60 @@
   }
   &.tasktimer {
     background-color: $color-tasktimer;
+    background: radial-gradient(
+      circle,
+      $color-tasktimer 0%,
+      $color-tasktimer 40%,
+      $color-tasktimer-dark 100%
+    );
   }
   &.hydrapp {
     background-color: $color-hydrapp;
+    background: radial-gradient(
+      circle,
+      $color-hydrapp 0%,
+      $color-hydrapp 40%,
+      $color-hydrapp-dark 100%
+    );
   }
   &.portfolio {
     background-color: $color-portfolio;
+    background: radial-gradient(
+      circle,
+      $color-portfolio 0%,
+      $color-portfolio 40%,
+      $color-portfolio-dark 100%
+    );
   }
   &.archviz {
     background-color: $color-archviz;
+    background: radial-gradient(
+      circle,
+      $color-archviz 0%,
+      $color-archviz 40%,
+      $color-archviz-dark 100%
+    );
   }
   &.quotes {
     background-color: $color-quotes;
+    background: radial-gradient(
+      circle,
+      $color-quotes 0%,
+      $color-quotes 40%,
+      $color-quotes-dark 100%
+    );
   }
   &.other {
     background-color: $color-other;
   }
   &.contact {
     background-color: $color-contact;
+    background: radial-gradient(
+      circle,
+      $color-contact 0%,
+      $color-contact 40%,
+      $color-contact-dark 100%
+    );
   }
 }
 

@@ -83,15 +83,15 @@ $color-resume-diff: #1c4658;
 $color-resume-diff-dark: rgb(26, 63, 78);
 
 // TASKTIMER
-$color-tasktimer-white: #c5d8d9;
-$color-tasktimer-light: #9ab5b6;
-$color-tasktimer: #50787c;
-$color-tasktimer-dark: #305b60;
+$color-tasktimer: #4c787c;
+$color-tasktimer-white: lighten($color-tasktimer, 50%);
+$color-tasktimer-light: lighten($color-tasktimer, 30%);
+$color-tasktimer-dark: darken($color-tasktimer, 12%);
+$color-tasktimer-shadow: darken($color-tasktimer, 20%);
 $color-tasktimer-letter: #703035;
 $color-tasktimer-letterShadow: #441c20;
-$color-tasktimer-shadow: rgb(35, 53, 54);
-$color-tasktimer-diff: #4f3d41;
-$color-tasktimer-diff-dark: rgb(63, 47, 50);
+$color-tasktimer-diff: #643438;
+$color-tasktimer-diff-dark: darken($color-tasktimer-diff, 5%);
 
 // HYDRAPP
 $color-hydrapp-white: #d3f3ff;
@@ -103,13 +103,13 @@ $color-hydrapp-diff: rgb(168, 148, 131);
 $color-hydrapp-diff-dark: rgb(82, 70, 62);
 
 // PORTFOLIO
-$color-portfolio-white: rgb(235, 184, 177);
-$color-portfolio-light: rgb(197, 106, 94);
-$color-portfolio: rgb(163, 67, 55);
-$color-portfolio-dark: rgb(129, 51, 41);
-$color-portfolio-shadow: rgb(83, 36, 30);
-$color-portfolio-diff: rgb(67, 76, 88);
-$color-portfolio-diff-dark: rgb(50, 59, 70);
+$color-portfolio: rgb(67, 32, 171);
+$color-portfolio-white: lighten($color-portfolio, 60%);
+$color-portfolio-light: lighten($color-portfolio, 30%);
+$color-portfolio-dark: darken($color-portfolio, 12%);
+$color-portfolio-shadow: darken($color-portfolio, 25%);
+$color-portfolio-diff: rgb(205, 152, 28);
+$color-portfolio-diff-dark: darken($color-portfolio-diff, 5%);
 
 // ARCHVIZ
 $color-archviz-white: #eee7d6;
@@ -117,8 +117,8 @@ $color-archviz-light: #e5c887;
 $color-archviz: #d2a239;
 $color-archviz-dark: #b98922;
 $color-archviz-shadow: #715822;
-$color-archviz-diff: #4c4864;
-$color-archviz-diff-dark: rgb(62, 58, 85);
+$color-archviz-diff: #3e3281;
+$color-archviz-diff-dark: darken($color-archviz-diff, 5%);
 
 // QUOTES
 $color-quotes-white: #e7ebbf;
