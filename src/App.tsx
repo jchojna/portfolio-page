@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import Header from './components/Header';
-import Projects from './components/Projects';
 import About from './views/About';
 import Contact from './views/Contact';
 import CurrentViewContext from './views/CurrentViewContext';
 import Intro from './views/Intro';
+import Projects from './views/Projects';
 import Resume from './views/Resume';
 
 import classes from './App.module.scss';

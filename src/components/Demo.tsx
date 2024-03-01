@@ -1,18 +1,17 @@
 import clsx from 'clsx';
 
 import Carousel from 'nuka-carousel';
-import img1 from '../assets/img/img1.png';
-import img2 from '../assets/img/img2.png';
-import img3 from '../assets/img/img3.png';
 import classes from './Demo.module.scss';
 
 type DemoProps = {
   projectName: string;
   demoUrl: string;
   repoUrl: string;
+  snapshots: string[];
 };
 
-const Demo = ({ projectName, demoUrl, repoUrl }: DemoProps) => {
+const Demo = ({ projectName, demoUrl, repoUrl, snapshots }: DemoProps) => {
+  if (!snapshots.length) return null;
   return (
     <div className={classes.demo}>
       <Carousel
@@ -25,9 +24,9 @@ const Demo = ({ projectName, demoUrl, repoUrl }: DemoProps) => {
           ),
         }}
       >
-        <img src={img1} />
-        <img src={img2} />
-        <img src={img3} />
+        {snapshots.map((img, index) => (
+          <img key={index} src={img} />
+        ))}
       </Carousel>
       <div className={clsx(classes.links, classes[projectName])}>
         <a

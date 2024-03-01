@@ -8,20 +8,20 @@ $icon-size: 1.3rem;
 
   .link {
     background-color: rgba(
-      $color: map-get(var.$colors, #{$project}-dark),
+      $color: map-get(var.$colors, #{$project}-diff),
       $alpha: var.$background-opacity
     );
-    color: map-get(var.$colors, #{$project}-light);
+    color: map-get(var.$colors, #{$project}-white);
 
     &::before {
-      border-color: map-get(var.$colors, #{$project}-shadow);
+      border-color: map-get(var.$colors, #{$project}-diff-dark);
     }
     &:active,
     &:focus,
     &:hover {
-      color: map-get(var.$colors, #{$project});
+      color: map-get(var.$colors, #{$project}-white);
       background-color: rgba(
-        $color: map-get(var.$colors, #{$project}-shadow),
+        $color: map-get(var.$colors, #{$project}-diff-dark),
         $alpha: var.$background-opacity
       );
     }
@@ -36,7 +36,6 @@ $icon-size: 1.3rem;
   grid-area: demo;
 
   :global(.slider-container) {
-    box-shadow: 20px 20px 0 0 var.$color-tasktimer-dark;
     width: 99%;
   }
 

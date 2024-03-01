@@ -33,17 +33,6 @@ type RepoObj = {
   html_url: string;
 };
 
-type ProjectProps = {
-  name: string;
-  about: string[];
-  features: {
-    label: string;
-    items: string[];
-  }[];
-  icons: IconDetails[];
-  fetchedData: RepoObj;
-};
-
 type TextGroupProps = {
   title: string;
   projectName: string;
