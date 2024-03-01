@@ -214,6 +214,14 @@
 
   @media screen and (min-width: $media-l) {
     max-width: 1800px;
+
+    &.tasktimer,
+    &.portfolio,
+    &.hydrapp,
+    &.archviz,
+    &.quotes {
+      grid-template-rows: repeat(4, auto);
+    }
   }
 }
 
