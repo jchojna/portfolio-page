@@ -60,7 +60,7 @@ const MenuButton = ({
     const index = offset >= 0 ? offsetedSectionIndex : offsetedSectionIndex + 1;
     const sections = menuItems.map(({ label }) => label);
     setBackgroundSection(sections[index]);
-  }, [relativeTopOffset]);
+  }, [relativeTopOffset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleClick = (index: number) => {
     scrollToSection(sectionsRef, index, !isMenuMode);

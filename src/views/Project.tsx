@@ -13,12 +13,25 @@ import CurrentViewContext from './CurrentViewContext';
 
 import classes from './Project.module.scss';
 
+type ProjectProps = {
+  name: string;
+  about: string[];
+  features: {
+    label: string;
+    items: string[];
+  }[];
+  icons: IconDetails[];
+  fetchedData: RepoObj;
+  snapshots: string[];
+};
+
 const Project = ({
   name,
   about,
   features,
   icons,
   fetchedData,
+  snapshots,
 }: ProjectProps) => {
   const [currentView] = useContext(CurrentViewContext);
   const { created_at, updated_at, homepage, html_url } = fetchedData;
@@ -44,7 +57,12 @@ const Project = ({
           <Tag projectName={name} label="Created" date={created_at} />
           <Tag projectName={name} label="Last update" date={updated_at} />
         </div>
-        <Demo projectName={name} demoUrl={homepage} repoUrl={html_url} />
+        <Demo
+          projectName={name}
+          demoUrl={homepage}
+          repoUrl={html_url}
+          snapshots={snapshots}
+        />
         <ProjectFeatures projectName={name} content={features} />
         <IconsList view={name} icons={icons} />
       </div>

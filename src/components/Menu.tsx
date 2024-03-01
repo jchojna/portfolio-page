@@ -70,7 +70,7 @@ const Menu = ({
       sectionsRefCopy.addEventListener('scroll', handleScroll);
       return () => sectionsRefCopy.removeEventListener('scroll', handleScroll);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // handle indicator position
   useEffect(() => {
