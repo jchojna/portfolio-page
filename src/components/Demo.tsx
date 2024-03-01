@@ -11,6 +11,7 @@ type DemoProps = {
 };
 
 const Demo = ({ projectName, demoUrl, repoUrl, snapshots }: DemoProps) => {
+  if (!snapshots.length) return null;
   return (
     <div className={classes.demo}>
       <Carousel
