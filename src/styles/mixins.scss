@@ -21,6 +21,7 @@
 @mixin section {
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   min-height: 100vh;
   max-height: none;
@@ -30,7 +31,7 @@
 
   @media only screen and (min-width: $media-m) {
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 0 50px 0 350px;
   }
 
@@ -128,21 +129,6 @@
   transition: opacity 1s, transform 0.8s cubic-bezier(0, 0.5, 0, 1) 0.2s;
   width: 100%;
 
-  &.prev {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-
-  &.current {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  &.next {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-
   &.about {
     grid-template-areas:
       'photo'
@@ -156,7 +142,6 @@
 
   &.resume {
     grid-template-areas:
-      'logo'
       'title'
       'info'
       'accordions';
@@ -168,7 +153,6 @@
   &.archviz,
   &.quotes {
     grid-template-areas:
-      'logo'
       'description'
       'demo'
       'tags'
@@ -176,17 +160,8 @@
       'icons';
   }
 
-  &.other {
-    grid-template-areas:
-      'logo'
-      'title'
-      'description'
-      'otherRepos';
-  }
-
   &.contact {
     grid-template-areas:
-      'logo'
       'title'
       'form'
       'social'
@@ -194,6 +169,21 @@
   }
 
   @media only screen and (min-width: $media-m) {
+    &.prev {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+
+    &.current {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &.next {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
     &.about {
       grid-template-areas:
         'title photo'
@@ -226,14 +216,6 @@
         'tags demo';
       grid-template-columns: 2fr 3fr;
       grid-template-rows: auto 1fr repeat(2, auto);
-    }
-
-    &.other {
-      grid-template-areas:
-        'title    '
-        'description'
-        'otherRepos ';
-      grid-template-rows: auto 1fr auto;
     }
 
     &.contact {
