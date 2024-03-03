@@ -12,25 +12,15 @@
 
 .graphic {
   align-items: center;
+  align-self: center;
   display: flex;
-  grid-area: logo;
   justify-content: center;
   justify-self: start;
+  margin-top: 50px;
   max-width: calc(100% - #{$offset-left-s});
   position: relative;
   transform-origin: bottom left;
-  width: 50%;
-
-  &.tasktimer {
-    margin-right: -50px;
-  }
-
-  &.portfolio,
-  &.quotes,
-  &.other,
-  &.contact {
-    margin-right: -25px;
-  }
+  width: 60%;
 
   &.about {
     @include graphic(about);

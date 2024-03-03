@@ -55,9 +55,8 @@ const MobileMenu = ({
     setIndicatorRef(indicatorRef.current);
     const sectionsRefCopy = sectionsRef.current;
     if (sectionsRefCopy) {
-      sectionsRefCopy.addEventListener('mousewheel', handleScroll);
-      return () =>
-        sectionsRefCopy.removeEventListener('mousewheel', handleScroll);
+      sectionsRefCopy.addEventListener('scroll', handleScroll);
+      return () => sectionsRefCopy.removeEventListener('scroll', handleScroll);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
