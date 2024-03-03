@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
+import ReactGA from 'react-ga4';
 import { useMediaQuery } from 'react-responsive';
 
 import Header from './components/Header';
@@ -35,6 +36,9 @@ function App() {
     [classes.visible]: !isMenuMode,
     [classes.smooth]: isSmoothScroll && !isMobile,
   });
+
+  ReactGA.initialize('G-BV85T412FD');
+  ReactGA.send({ hitType: 'pageview', page: '/' });
 
   // set smooth scroll after some delay
   useEffect(() => {
