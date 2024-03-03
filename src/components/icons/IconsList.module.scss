@@ -8,7 +8,7 @@
   grid-area: icons;
   margin: 0;
   padding: 0;
-  padding-left: $offset-left-s;
+  padding-left: $text-indent;
 
   @media screen and (min-width: $media-m) {
     padding-left: 0;

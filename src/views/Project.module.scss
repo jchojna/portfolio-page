@@ -1,18 +1,19 @@
-@import '../styles/variables.scss';
-@import '../styles/mixins.scss';
+@use '../styles/variables.scss' as var;
+@use '../styles/mixins.scss' as mix;
 
 .section {
-  @include section;
+  @include mix.section;
 
   .container {
-    @include container;
+    @include mix.container;
 
     align-items: center;
 
     .tags {
       display: flex;
-      gap: 15px;
+      gap: 10px;
       grid-area: tags;
+      padding-left: var.$text-indent;
     }
   }
 }

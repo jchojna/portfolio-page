@@ -13,31 +13,15 @@
         "totalSVG": 3
       },
       {
-        "name": "javascript",
-        "totalSVG": 3
-      },
-      {
         "name": "sass",
         "totalSVG": 1
       },
       {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
         "name": "react",
-        "totalSVG": 1
-      },
-      {
-        "name": "git",
-        "totalSVG": 1
-      },
-      {
-        "name": "npm",
-        "totalSVG": 1
-      },
-      {
-        "name": "bootstrap",
-        "totalSVG": 1
-      },
-      {
-        "name": "threejs",
         "totalSVG": 1
       },
       {
@@ -49,8 +33,24 @@
         "totalSVG": 1
       },
       {
+        "name": "threejs",
+        "totalSVG": 1
+      },
+      {
         "name": "gatsby",
         "totalSVG": 1
+      },
+      {
+        "name": "bootstrap",
+        "totalSVG": 1
+      },
+      {
+        "name": "jest",
+        "totalSVG": 1
+      },
+      {
+        "name": "d3js",
+        "totalSVG": 3
       }
     ]
   },
@@ -59,10 +59,6 @@
     "tech": [
       {
         "name": "redux",
-        "totalSVG": 1
-      },
-      {
-        "name": "jest",
         "totalSVG": 1
       },
       {
@@ -80,10 +76,6 @@
       {
         "name": "graphql",
         "totalSVG": 1
-      },
-      {
-        "name": "d3js",
-        "totalSVG": 3
       },
       {
         "name": "p5js",

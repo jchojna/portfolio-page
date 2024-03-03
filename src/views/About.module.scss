@@ -52,7 +52,7 @@
       gap: 6px;
       grid-area: contact;
       list-style-type: none;
-      padding-left: $offset-left-s;
+      padding-left: $text-indent;
 
       @media screen and (min-width: $media-m) {
         padding-left: 0;

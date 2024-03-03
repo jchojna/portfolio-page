@@ -7,10 +7,7 @@ $icon-size: 1.3rem;
   border-color: map-get(var.$colors, #{$project}-diff);
 
   .link {
-    background-color: rgba(
-      $color: map-get(var.$colors, #{$project}-diff),
-      $alpha: var.$background-opacity
-    );
+    background-color: map-get(var.$colors, #{$project}-diff);
     color: map-get(var.$colors, #{$project}-white);
 
     &::before {
@@ -34,6 +31,11 @@ $icon-size: 1.3rem;
   flex-direction: column;
   gap: 50px;
   grid-area: demo;
+  margin: 20px -1.2 * var.$offset-right-s 0 -1.2 * var.$offset-left-s;
+
+  @media screen and (min-width: var.$media-m) {
+    margin: 0;
+  }
 
   :global(.slider-container) {
     width: 99%;
@@ -126,12 +128,6 @@ $icon-size: 1.3rem;
     }
     &.quotes {
       @include projectLink('quotes');
-    }
-    &.other {
-      @include projectLink('other');
-
-      font-size: 1.5em;
-      margin: 0.5em var.$offset-right-s 0 var.$offset-left-s;
     }
   }
 }

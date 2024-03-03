@@ -11,11 +11,11 @@
     align-items: center;
     display: flex;
     min-height: $container-size;
-    width: $menu-width;
+    width: $menu-width-m;
     transition: transform 0.5s;
 
     &.intro {
-      $left-offset: calc(50vw - #{$menu-width});
+      $left-offset: calc(50vw - #{$menu-width-m});
       transform: translateX($left-offset);
     }
   }

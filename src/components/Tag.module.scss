@@ -4,12 +4,22 @@
 @mixin tag($project) {
   background-color: map-get($colors, #{$project}-dark);
   color: map-get($colors, #{$project}-white);
+
+  .label {
+    color: map-get($colors, #{$project}-light);
+    font-size: 0.8rem;
+
+    &::after {
+      content: ':';
+    }
+  }
 }
 
 .tag {
   display: flex;
-  gap: 0.6em;
-  padding: 0.4em 0.8em;
+  flex-direction: column;
+  font-size: 0.9rem;
+  padding: 5px 10px;
 
   &.tasktimer {
     @include tag(tasktimer);
@@ -25,10 +35,6 @@
   }
   &.quotes {
     @include tag(quotes);
-  }
-
-  .label::after {
-    content: ':';
   }
 
   .date {

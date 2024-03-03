@@ -8,11 +8,8 @@ $media-m: 1201px;
 $media-l: 1681px;
 
 // MENU
-$time-switch: 0.4s;
 $menu-sm-first-timeout: 0.3s;
 $menu-sm-second-timeout: 0.5s;
-$menu-lg-first-timeout: 0.5s;
-$menu-lg-second-timeout: 0.5s;
 
 $menu-item-height: 50px;
 $menu-item-height-l: 65px;
@@ -30,25 +27,18 @@ $navigation-time-delay: 1s;
 $navigation-time-rotate: 0.2s;
 
 // LAYOUT
-$offset-left-s: 25px;
-$offset-right-s: 25px;
-$offset-left-m: 50px;
-$offset-right-m: 20px;
-
-$offset-alert: 5px;
+$offset-left-s: 15px;
+$offset-right-s: 15px;
 
 $container-size: 800px;
-$menu-width: 300px;
+$menu-width-m: 300px;
 $menu-width-l: 400px;
 $mobile-menu-offset-top: 100px;
 
+$text-indent: 25px;
+
 $tabHeading-size-xs: 30px;
 $tabHeading-size-lg: 30px;
-
-$tabGap-xs: 20px;
-$tabGap-sm: 20px;
-$gridGap: 25px;
-$rowGap: 30px;
 
 $separator-width: 10px;
 $separator-height: 60px;
@@ -58,7 +48,6 @@ $background-opacity: 0.7;
 
 // TIME
 $tabHeader-time: 0.2s;
-$expandable-time: 0.5s;
 $accordion-time: 0.5s;
 $button-hover: 0.3s;
 
@@ -103,12 +92,12 @@ $color-hydrapp-diff: rgb(168, 148, 131);
 $color-hydrapp-diff-dark: rgb(82, 70, 62);
 
 // PORTFOLIO
-$color-portfolio: rgb(67, 32, 171);
+$color-portfolio: rgb(70, 48, 137);
 $color-portfolio-white: lighten($color-portfolio, 60%);
 $color-portfolio-light: lighten($color-portfolio, 30%);
 $color-portfolio-dark: darken($color-portfolio, 12%);
 $color-portfolio-shadow: darken($color-portfolio, 25%);
-$color-portfolio-diff: rgb(205, 152, 28);
+$color-portfolio-diff: #d2a239;
 $color-portfolio-diff-dark: darken($color-portfolio-diff, 5%);
 
 // ARCHVIZ

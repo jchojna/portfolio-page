@@ -1,3 +1,5 @@
+@import '../styles/variables.scss';
+
 @mixin flex-center {
   align-items: center;
   display: flex;
@@ -29,91 +31,120 @@
   scroll-snap-align: start;
   width: 100%;
 
+  &.about {
+    background-color: $color-about;
+  }
+
+  &.resume {
+    background-color: $color-resume;
+  }
+
+  &.tasktimer {
+    background-color: $color-tasktimer;
+  }
+
+  &.hydrapp {
+    background-color: $color-hydrapp;
+  }
+
+  &.portfolio {
+    background-color: $color-portfolio;
+  }
+
+  &.archviz {
+    background-color: $color-archviz;
+  }
+
+  &.quotes {
+    background-color: $color-quotes;
+  }
+
+  &.contact {
+    background-color: $color-contact;
+  }
+
   @media only screen and (min-width: $media-m) {
     align-items: center;
     justify-content: center;
-    padding: 0 50px 0 350px;
+    padding: 0 50px 0 $menu-width-m + 100px;
+
+    &.about {
+      background-color: $color-about;
+      background: radial-gradient(
+        circle,
+        $color-about 0%,
+        $color-about 60%,
+        $color-about-dark 100%
+      );
+    }
+    &.resume {
+      background-color: $color-resume;
+      background: radial-gradient(
+        circle,
+        $color-resume 0%,
+        $color-resume 60%,
+        $color-resume-dark 100%
+      );
+    }
+    &.tasktimer {
+      background-color: $color-tasktimer;
+      background: radial-gradient(
+        circle,
+        $color-tasktimer 0%,
+        $color-tasktimer 70%,
+        $color-tasktimer-dark 100%
+      );
+    }
+    &.hydrapp {
+      background-color: $color-hydrapp;
+      background: radial-gradient(
+        circle,
+        $color-hydrapp 0%,
+        $color-hydrapp 40%,
+        $color-hydrapp-dark 100%
+      );
+    }
+    &.portfolio {
+      background-color: $color-portfolio;
+      background: radial-gradient(
+        circle,
+        $color-portfolio 0%,
+        $color-portfolio 40%,
+        $color-portfolio-dark 100%
+      );
+    }
+    &.archviz {
+      background-color: $color-archviz;
+      background: radial-gradient(
+        circle,
+        $color-archviz 0%,
+        $color-archviz 40%,
+        $color-archviz-dark 100%
+      );
+    }
+    &.quotes {
+      background-color: $color-quotes;
+      background: radial-gradient(
+        circle,
+        $color-quotes 0%,
+        $color-quotes 40%,
+        $color-quotes-dark 100%
+      );
+    }
+    &.contact {
+      background-color: $color-contact;
+      background: radial-gradient(
+        circle,
+        $color-contact 0%,
+        $color-contact 40%,
+        $color-contact-dark 100%
+      );
+    }
   }
 
   @media only screen and (min-width: $media-l) {
     justify-content: center;
-    padding: 0 80px 0 500px;
-  }
-
-  &.about {
-    background-color: $color-about;
-    background: radial-gradient(
-      circle,
-      $color-about 0%,
-      $color-about 40%,
-      $color-about-dark 100%
-    );
-  }
-  &.resume {
-    background-color: $color-resume;
-    background: radial-gradient(
-      circle,
-      $color-resume 0%,
-      $color-resume 40%,
-      $color-resume-dark 100%
-    );
-  }
-  &.tasktimer {
-    background-color: $color-tasktimer;
-    background: radial-gradient(
-      circle,
-      $color-tasktimer 0%,
-      $color-tasktimer 40%,
-      $color-tasktimer-dark 100%
-    );
-  }
-  &.hydrapp {
-    background-color: $color-hydrapp;
-    background: radial-gradient(
-      circle,
-      $color-hydrapp 0%,
-      $color-hydrapp 40%,
-      $color-hydrapp-dark 100%
-    );
-  }
-  &.portfolio {
-    background-color: $color-portfolio;
-    background: radial-gradient(
-      circle,
-      $color-portfolio 0%,
-      $color-portfolio 40%,
-      $color-portfolio-dark 100%
-    );
-  }
-  &.archviz {
-    background-color: $color-archviz;
-    background: radial-gradient(
-      circle,
-      $color-archviz 0%,
-      $color-archviz 40%,
-      $color-archviz-dark 100%
-    );
-  }
-  &.quotes {
-    background-color: $color-quotes;
-    background: radial-gradient(
-      circle,
-      $color-quotes 0%,
-      $color-quotes 40%,
-      $color-quotes-dark 100%
-    );
-  }
-  &.other {
-    background-color: $color-other;
-  }
-  &.contact {
-    background-color: $color-contact;
-    background: radial-gradient(
-      circle,
-      $color-contact 0%,
-      $color-contact 40%,
-      $color-contact-dark 100%
-    );
+    padding: 0 80px 0 $menu-width-l + 100px;
   }
 }
 
@@ -122,10 +153,9 @@
   align-items: start;
   align-content: stretch;
   display: grid;
-  gap: $gridGap;
+  gap: 25px;
   column-gap: 60px;
-  padding: $menu-item-height $offset-right-s $menu-item-height * 2
-    $offset-left-s;
+  padding: 0 $offset-right-s $menu-item-height $offset-left-s;
   transition: opacity 1s, transform 0.8s cubic-bezier(0, 0.5, 0, 1) 0.2s;
   width: 100%;
 
@@ -154,10 +184,10 @@
   &.quotes {
     grid-template-areas:
       'description'
-      'demo'
       'tags'
+      'icons'
       'features'
-      'icons';
+      'demo';
   }
 
   &.contact {
@@ -169,6 +199,8 @@
   }
 
   @media only screen and (min-width: $media-m) {
+    padding: 0;
+
     &.prev {
       opacity: 0;
       transform: translateY(-100%);
@@ -312,7 +344,7 @@
   line-height: 1.7;
   margin: 0;
   padding: 0;
-  padding-left: $offset-left-s;
+  padding-left: $text-indent;
 
   @media screen and (min-width: $media-m) {
     padding-left: 0;
