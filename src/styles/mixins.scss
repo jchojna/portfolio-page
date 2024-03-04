@@ -243,9 +243,9 @@
     &.quotes {
       grid-template-areas:
         'description demo'
-        'features demo'
+        'tags demo'
         'icons demo'
-        'tags demo';
+        'features demo';
       grid-template-columns: 2fr 3fr;
       grid-template-rows: auto 1fr repeat(2, auto);
     }

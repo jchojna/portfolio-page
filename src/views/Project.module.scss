@@ -14,6 +14,10 @@
       gap: 10px;
       grid-area: tags;
       padding-left: var.$text-indent;
+
+      @media screen and (min-width: var.$media-m) {
+        padding: 0;
+      }
     }
   }
 }

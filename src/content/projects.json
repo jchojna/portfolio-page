@@ -39,6 +39,10 @@
     ],
     "icons": [
       {
+        "name": "typescript",
+        "totalSVG": 1
+      },
+      {
         "name": "react",
         "totalSVG": 1
       },

@@ -11,7 +11,7 @@
         "label": "Architecture",
         "items": [
           {
-            "label": "2017 - present",
+            "label": "2017 - 2019",
             "items": ["Freelance Architect", "self-employed", "Remote"]
           },
           {
@@ -36,7 +36,7 @@
         "label": "3d Graphics",
         "items": [
           {
-            "label": "2008 - present",
+            "label": "2008 - 2020",
             "items": ["Freelance 3d Visualizer", "self-employed", "Remote"]
           },
           {
@@ -49,8 +49,16 @@
         "label": "Frontend Development",
         "items": [
           {
-            "label": "2020 - 2024",
+            "label": "12 2022 - Present",
+            "items": ["Frontend Developer / Tech Lead", "Appsilon", "Remote"]
+          },
+          {
+            "label": "07 2021 - 11 2022",
             "items": ["Frontend Developer", "Appsilon", "Remote"]
+          },
+          {
+            "label": "06 2020 - 06 2021",
+            "items": ["Junior Frontend Developer", "Appsilon", "Remote"]
           }
         ]
       }
