@@ -198,11 +198,11 @@
         "totalSVG": 3
       },
       {
-        "name": "react",
+        "name": "typescript",
         "totalSVG": 1
       },
       {
-        "name": "typescript",
+        "name": "react",
         "totalSVG": 1
       },
       {
@@ -254,10 +254,6 @@
       },
       {
         "name": "sass",
-        "totalSVG": 1
-      },
-      {
-        "name": "php",
         "totalSVG": 1
       }
     ]
