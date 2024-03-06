@@ -16,11 +16,5 @@
     "name": "E-mail",
     "url": "mailto:jakub.chojna@gmail.com",
     "ariaLabel": "E-mail"
-  },
-  {
-    "id": "resume",
-    "name": "Resume",
-    "url": "assets/pdf/resume.pdf",
-    "ariaLabel": "Resume pdf file"
   }
 ]
