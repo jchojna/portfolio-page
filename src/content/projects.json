@@ -3,37 +3,29 @@
     "name": "tasktimer",
     "repoName": "task-timer",
     "about": [
-      "This application is an advanced Pomodoro Clock built with React, featuring a playful, interactive board game-like interface. It supports concurrent multi-tasking, allowing multiple tasks to run simultaneously."
+      "This excercise application is quite advanced Pomodoro Clock built with React, featuring a playful, interactive board game-like interface. It supports concurrent multi-tasking, allowing multiple tasks to run simultaneously."
     ],
     "features": [
       {
         "label": "Functionality",
         "items": [
-          "adding / removing users with unique logins and secured by password",
-          "'remember me' functionality when user logs in / signs in",
-          "user editing section allowing to change user's login, password, log out or remove user's profile",
-          "creating / editing / removing tasks",
-          "user can specify a task name, time to finish the task and maximum break time",
-          "all inputs have validation rules applied to them",
-          "work and break time countdown available for multiple cards simultaneously",
-          "two display modes for work and break phases showing either elapsed or remaining time",
-          "progress bars with percentage values indicates elapsed or remaining time as well, depending on the current display mode",
-          "card's outro mode appears on task finish or when the maximum break time gets exceeded, summarizing that given task's stats",
-          "drag and drop functionality for task cards with transition effects",
-          "cards can be minimized to more concise form and display only the task name",
+          "simplistic client-side user authentication",
+          "user's profile edition",
+          "creating, editing and removing tasks by specifying a task name, time and maximum break time",
+          "validation rules applied to inputs",
+          "progress bars for both elapsed and remaining time modes",
           "stats section for all finished tasks",
-          "data stored in local storage as Json format"
+          "local storage support for saving the data"
         ]
       },
       {
-        "label": "Visual Appearance",
+        "label": "User Interface",
         "items": [
           "intro animation is based on SVG logo with masking applied to casted shadow",
-          "shadow's spiral trajectory is calculated using trigonometric functions",
-          "all tasks form grid of elements resembling cards laid out on a game board rotating 180 degrees on every status change",
+          "minimizable cards",
+          "drag and drop functionality without third-party libraries",
           "app is fully responsive with grid of cards adjusting to viewport size",
-          "all cards are minimized by default on mobile devices due to accessibility reasons",
-          "project's mockup was created in Figma"
+          "implemented based on the Figma mockup"
         ]
       }
     ],
@@ -56,39 +48,26 @@
     "name": "hydrapp",
     "repoName": "hydrApp",
     "about": [
-      "This application is a water consumption tracker that allows users to easily log their daily water intake. It features an archive section for viewing weekly consumption trends and an account settings section for personalization. Users can view their own and others' statistics. The app incorporates gamification elements, rewarding users with points for maintaining consistent water intake, and features a dynamic user ranking system."
+      "This playful app is a water consumption tracker that allows users to easily log their daily water intake. It features an archive section for viewing weekly consumption trends and an account settings section for personalization. Users can view their own and others' statistics. The app incorporates gamification elements, rewarding users with points for maintaining consistent water intake, and features a dynamic user ranking system."
     ],
     "features": [
       {
         "label": "Functionality",
         "items": [
-          "editable archive section with a list of days divided on weeks",
-          "new archive's entry creator",
-          "weeks calendar is automatically updated after adding or removing an entry",
-          "burger button menu",
-          "stats section displaying results of each user",
-          "calculated current and longest user's streak",
+          "archive section for viewing weekly consumption trends",
+          "stats section displaying each user's daily water intake",
+          "calculating user's current and longest streak",
           "ranking of users based on highest point score",
-          "settings section allowing to log out, remove account or edit profile settings",
-          "data stored in local storage as Json format"
+          "profile settings edition",
+          "local storage support for saving the data"
         ]
       },
       {
-        "label": "Visual Appearance",
+        "label": "Animations",
         "items": [
           "intro animation",
-          "animated graphical representation of water",
-          "animated counter displaying amount of consumed water",
-          "emoji icons indicating current level of consumed level of water on a given day",
-          "animated icons and buttons and smooth transitions between sections",
-          "responsiveness"
-        ]
-      },
-      {
-        "label": "To be implemented",
-        "items": [
-          "calculating optimal amount of water based on the user's weight",
-          "fetching data about weather conditions in user's location from external API and recalculating minimum amount of water to be consumed"
+          "animated water level and counter",
+          "emojis indicating consumed amount of water"
         ]
       }
     ],
@@ -122,65 +101,11 @@
       {
         "label": "Functionality",
         "items": [
-          "website fetches my github repositories data using github API and searches for total number of commits, date of creation and last modification of each repo",
-          "expandable content functionality implemented by using recursive functions and a global object. It is applicable for plain text and more complex, nested elements like lists of items or lists inside another ones",
-          "accordion elements handling nested content"
-        ]
-      },
-      {
-        "label": "Interaction",
-        "items": [
-          "menu links appearance depends on currently displayed section",
-          "smooth scroll to the next section when user scrolls down fast enough",
-          "animated graphic elements serve as additional visual indicator"
-        ]
-      },
-      {
-        "label": "Intro Animation",
-        "items": [
-          "created with extensive use of setTimeout callback functions (because of a little callback hell, I want to rewrite this part using Promises)",
-          "transitions are mainly controlled with JS because of dynamically changing elements in the viewport",
-          "animated text is composed of SVG letters, but the output is based on simple string input"
-        ]
-      },
-      {
-        "label": "Visual Appearance",
-        "items": [
-          "colors applied using SCSS variables",
-          "each section has its own dedicated logo, being an SVG graphic element",
-          "grids of multiple SVG icons",
-          "animated elements and transitions emphasizes creative and dynamic look of the website"
-        ]
-      },
-      {
-        "label": "Responsiveness",
-        "items": [
-          "website layout based on CSS Grid (grid-areas mostly)",
-          "different behavior of menu/content transition for mobile and tablet/desktop devices",
-          "animated navigation buttons on tablets and large screen devices and burger button on mobiles"
-        ]
-      },
-      {
-        "label": "Contact Form",
-        "items": [
-          "supported with frontend and backend validation",
-          "AJAX request written in vanilla JS",
-          "mail sending functionality based on phpmailer class",
-          "server responses and backend validation result displayed as animated alert boxes",
-          "Local storage support for contact form inputs"
-        ]
-      },
-      {
-        "label": "Overall",
-        "items": [
-          "project's precise mockup created in Figma",
-          "website seed by yeoman - generator webapp"
-        ]
-      },
-      {
-        "label": "To Be Implemented",
-        "items": [
-          "Bonus functionality allowing to generate and display intro animation with content based on the string input provided by the user"
+          "async/await code for executing intro animations in a sequence",
+          "using github API to fetch project details data",
+          "custom accordions without use of third-party libraries",
+          "extensive use of SVG elements - logos, graphics, menu items",
+          "different menu components for mobile and desktop devices"
         ]
       }
     ],
@@ -198,11 +123,11 @@
         "totalSVG": 3
       },
       {
-        "name": "react",
+        "name": "typescript",
         "totalSVG": 1
       },
       {
-        "name": "typescript",
+        "name": "react",
         "totalSVG": 1
       },
       {
@@ -221,21 +146,11 @@
       {
         "label": "Functionality",
         "items": [
-          "Responsive grid of images written in JS. Each row's height depends on an aspect ratios of the neighboring images located in a particular row and taking the whole width of the container",
-          "Sprite map of SVG placeholders for every visualization loaded up as starting content to improve perceived performance of the page load and set grid layout for images",
-          "Lazy loading for grid images and gallery pictures (recursive function)",
-          "Responsive slider gallery of images",
-          "Two display modes in gallery view (image and SVG placeholder modes)",
-          "Fully functional contact form with checkbox verification and backend validation",
-          "Simple accordions in about section",
-          "Page pre-loader",
-          "Improved content accessibility according to WCAG"
-        ]
-      },
-      {
-        "label": "To be implemented",
-        "items": [
-          "More detailed and animated page pre-loader containing website's SVG logo"
+          "custom responsive grid of images written in JS. Each row's height depends on an aspect ratios of the images on the same row",
+          "SVG placeholders for loading visualizations",
+          "custom lazy loading for grid images and gallery pictures",
+          "responsive carousel of images with two display modes",
+          "page pre-loader"
         ]
       }
     ],
@@ -255,10 +170,6 @@
       {
         "name": "sass",
         "totalSVG": 1
-      },
-      {
-        "name": "php",
-        "totalSVG": 1
       }
     ]
   },
@@ -272,17 +183,12 @@
       {
         "label": "Functionality",
         "items": [
-          "random quote functionality",
-          "simple and basic PWA",
+          "simple and basic PWA app",
           "keyboard support for navigating between pages",
-          "burger button menu",
           "animated SVG icons",
-          "transition effect for grid of images with delays applied using SCSS loop",
-          "responsive layout and grid of images",
           "local storage support for contact form's inputs",
           "contact form's HTML validation",
-          "checkboxes validation and alerts",
-          "TO BE IMPLEMENTED: contact form JS validation and functionality"
+          "checkboxes validation and alerts"
         ]
       }
     ],

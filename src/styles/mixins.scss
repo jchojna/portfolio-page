@@ -241,13 +241,14 @@
     &.hydrapp,
     &.archviz,
     &.quotes {
+      align-items: start;
       grid-template-areas:
         'description demo'
         'tags demo'
         'icons demo'
         'features demo';
       grid-template-columns: 2fr 3fr;
-      grid-template-rows: auto 1fr repeat(2, auto);
+      grid-template-rows: repeat(3, auto) 1fr;
     }
 
     &.contact {
@@ -264,15 +265,6 @@
 
   @media screen and (min-width: $media-l) {
     max-width: 1800px;
-
-    &.tasktimer,
-    &.portfolio,
-    &.hydrapp,
-    &.archviz,
-    &.quotes {
-      align-items: start;
-      grid-template-rows: repeat(3, auto) 1fr;
-    }
   }
 }
 

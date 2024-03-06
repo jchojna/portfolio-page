@@ -41,16 +41,40 @@
         "totalSVG": 1
       },
       {
-        "name": "bootstrap",
-        "totalSVG": 1
-      },
-      {
         "name": "jest",
         "totalSVG": 1
       },
       {
         "name": "d3js",
         "totalSVG": 3
+      },
+      {
+        "name": "echarts",
+        "totalSVG": 1
+      },
+      {
+        "name": "R",
+        "totalSVG": 2
+      },
+      {
+        "name": "shiny",
+        "totalSVG": 1
+      },
+      {
+        "name": "bootstrap",
+        "totalSVG": 1
+      },
+      {
+        "name": "tailwind",
+        "totalSVG": 1
+      },
+      {
+        "name": "chakra-ui",
+        "totalSVG": 1
+      },
+      {
+        "name": "docker",
+        "totalSVG": 1
       }
     ]
   },
@@ -59,10 +83,6 @@
     "tech": [
       {
         "name": "redux",
-        "totalSVG": 1
-      },
-      {
-        "name": "wordpress",
         "totalSVG": 1
       },
       {
@@ -91,6 +111,10 @@
       },
       {
         "name": "enzyme",
+        "totalSVG": 1
+      },
+      {
+        "name": "wordpress",
         "totalSVG": 1
       }
     ]
