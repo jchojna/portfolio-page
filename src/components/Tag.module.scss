@@ -21,6 +21,9 @@
   font-size: 0.9rem;
   padding: 5px 10px;
 
+  &.glob3d {
+    @include tag(glob3d);
+  }
   &.tasktimer {
     @include tag(tasktimer);
   }

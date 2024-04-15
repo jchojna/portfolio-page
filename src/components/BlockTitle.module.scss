@@ -32,6 +32,9 @@
   &.resume {
     @include blockTitle(resume);
   }
+  &.glob3d {
+    @include blockTitle(glob3d);
+  }
   &.tasktimer {
     @include blockTitle(tasktimer);
   }

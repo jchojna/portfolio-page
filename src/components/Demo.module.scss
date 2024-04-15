@@ -114,6 +114,9 @@ $icon-size: 1.3rem;
         }
       }
     }
+    &.glob3d {
+      @include projectLink('glob3d');
+    }
     &.tasktimer {
       @include projectLink('tasktimer');
     }

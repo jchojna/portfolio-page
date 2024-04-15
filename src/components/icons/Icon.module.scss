@@ -90,6 +90,9 @@ $size-icon-m: 50px;
   &.resume {
     @include icon(resume);
   }
+  &.glob3d {
+    @include icon(glob3d);
+  }
   &.tasktimer {
     @include icon(tasktimer);
   }

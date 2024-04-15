@@ -1,5 +1,30 @@
 [
   {
+    "name": "glob3d",
+    "repoName": "glob3d",
+    "about": ["test"],
+    "features": [
+      {
+        "label": "Functionality",
+        "items": [""]
+      }
+    ],
+    "icons": [
+      {
+        "name": "typescript",
+        "totalSVG": 1
+      },
+      {
+        "name": "react",
+        "totalSVG": 1
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      }
+    ]
+  },
+  {
     "name": "tasktimer",
     "repoName": "task-timer",
     "about": [
@@ -151,44 +176,6 @@
           "custom lazy loading for grid images and gallery pictures",
           "responsive carousel of images with two display modes",
           "page pre-loader"
-        ]
-      }
-    ],
-    "icons": [
-      {
-        "name": "html",
-        "totalSVG": 3
-      },
-      {
-        "name": "css",
-        "totalSVG": 3
-      },
-      {
-        "name": "javascript",
-        "totalSVG": 3
-      },
-      {
-        "name": "sass",
-        "totalSVG": 1
-      }
-    ]
-  },
-  {
-    "name": "quotes",
-    "repoName": "homepage-gulp",
-    "about": [
-      "This project is a Multi-Page Application (MPA) featuring a collection of quotes accompanied by visually appealing images. The design emphasizes continuity during navigation to mimic the feel of a simple app. All images were personally captured and post-processed during my year-long stay in Slovenia."
-    ],
-    "features": [
-      {
-        "label": "Functionality",
-        "items": [
-          "simple and basic PWA app",
-          "keyboard support for navigating between pages",
-          "animated SVG icons",
-          "local storage support for contact form's inputs",
-          "contact form's HTML validation",
-          "checkboxes validation and alerts"
         ]
       }
     ],

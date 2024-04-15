@@ -92,6 +92,9 @@
   &.resume {
     @include accordionLabel(resume);
   }
+  &.glob3d {
+    @include accordionLabel(glob3d);
+  }
   &.tasktimer {
     @include accordionLabel(tasktimer);
   }

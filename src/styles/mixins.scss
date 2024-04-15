@@ -39,8 +39,8 @@
     background-color: $color-resume;
   }
 
-  &.tasktimer {
-    background-color: $color-tasktimer;
+  &.glob3d {
+    background-color: $color-glob3d;
   }
 
   &.hydrapp {
@@ -84,6 +84,15 @@
         $color-resume 0%,
         $color-resume 60%,
         $color-resume-dark 100%
+      );
+    }
+    &.glob3d {
+      background-color: $color-glob3d;
+      background: radial-gradient(
+        circle,
+        $color-glob3d 0%,
+        $color-glob3d 70%,
+        $color-glob3d-dark 100%
       );
     }
     &.tasktimer {
@@ -177,6 +186,7 @@
       'accordions';
   }
 
+  &.glob3d,
   &.tasktimer,
   &.portfolio,
   &.hydrapp,
@@ -236,6 +246,7 @@
       grid-template-columns: 1fr 2fr;
     }
 
+    &.glob3d,
     &.tasktimer,
     &.portfolio,
     &.hydrapp,
@@ -285,6 +296,10 @@
   &.resume {
     border-color: $color-resume-diff;
     color: $color-resume-light;
+  }
+  &.glob3d {
+    border-color: $color-glob3d-diff;
+    color: $color-glob3d-light;
   }
   &.tasktimer {
     border-color: $color-tasktimer-diff;

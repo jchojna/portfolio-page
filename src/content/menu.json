@@ -8,6 +8,10 @@
     "width": 317
   },
   {
+    "label": "glob3d",
+    "width": 303
+  },
+  {
     "label": "tasktimer",
     "width": 433
   },
@@ -22,10 +26,6 @@
   {
     "label": "archviz",
     "width": 338
-  },
-  {
-    "label": "quotes",
-    "width": 299
   },
   {
     "label": "contact",
