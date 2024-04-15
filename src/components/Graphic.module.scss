@@ -42,12 +42,6 @@
   &.archviz {
     @include graphic(archviz);
   }
-  &.quotes {
-    @include graphic(quotes);
-  }
-  &.other {
-    @include graphic(other);
-  }
   &.contact {
     @include graphic(contact);
   }

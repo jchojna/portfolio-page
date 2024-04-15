@@ -43,12 +43,6 @@
     &.archviz.hovered {
       fill: $color-archviz;
     }
-    &.quotes.hovered {
-      fill: $color-quotes;
-    }
-    &.other.hovered {
-      fill: $color-other;
-    }
     &.contact.hovered {
       fill: $color-contact;
     }
@@ -74,12 +68,6 @@
   }
   &.archviz {
     @include menuButton(archviz);
-  }
-  &.quotes {
-    @include menuButton(quotes);
-  }
-  &.other {
-    @include menuButton(other);
   }
   &.contact {
     @include menuButton(contact);

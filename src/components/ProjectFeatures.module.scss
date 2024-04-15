@@ -62,10 +62,4 @@
   &.archviz {
     @include projectFeature(archviz);
   }
-  &.quotes {
-    @include projectFeature(quotes);
-  }
-  &.other {
-    @include projectFeature(other);
-  }
 }

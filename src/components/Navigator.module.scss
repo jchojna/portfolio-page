@@ -45,12 +45,6 @@
   &.archviz .button {
     @include navigatorButton(archviz);
   }
-  &.quotes .button {
-    @include navigatorButton(quotes);
-  }
-  &.other .button {
-    @include navigatorButton(other);
-  }
   &.contact .button {
     @include navigatorButton(contact);
   }

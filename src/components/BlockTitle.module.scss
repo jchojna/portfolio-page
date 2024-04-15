@@ -47,12 +47,6 @@
   &.archviz {
     @include blockTitle(archviz);
   }
-  &.quotes {
-    @include blockTitle(quotes);
-  }
-  &.other {
-    @include blockTitle(other);
-  }
 
   @media only screen and (min-width: $media-m) {
     font-size: $tabHeading-size-lg;
