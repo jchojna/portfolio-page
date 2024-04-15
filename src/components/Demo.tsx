@@ -11,23 +11,24 @@ type DemoProps = {
 };
 
 const Demo = ({ projectName, demoUrl, repoUrl, snapshots }: DemoProps) => {
-  if (!snapshots.length) return null;
   return (
     <div className={classes.demo}>
-      <Carousel
-        defaultControlsConfig={{
-          prevButtonText: (
-            <div className={clsx(classes.arrow, classes.left)}></div>
-          ),
-          nextButtonText: (
-            <div className={clsx(classes.arrow, classes.right)}></div>
-          ),
-        }}
-      >
-        {snapshots.map((img, index) => (
-          <img key={index} src={img} />
-        ))}
-      </Carousel>
+      {snapshots.length > 0 && (
+        <Carousel
+          defaultControlsConfig={{
+            prevButtonText: (
+              <div className={clsx(classes.arrow, classes.left)}></div>
+            ),
+            nextButtonText: (
+              <div className={clsx(classes.arrow, classes.right)}></div>
+            ),
+          }}
+        >
+          {snapshots.map((img, index) => (
+            <img key={index} src={img} />
+          ))}
+        </Carousel>
+      )}
       <div className={clsx(classes.links, classes[projectName])}>
         <a
           href={repoUrl}

@@ -72,12 +72,12 @@ $color-resume-diff: #1c4658;
 $color-resume-diff-dark: rgb(26, 63, 78);
 
 // GLOB3D
-$color-glob3d: #15aba1;
+$color-glob3d: #23aca3;
 $color-glob3d-white: lighten($color-glob3d, 60%);
 $color-glob3d-light: lighten($color-glob3d, 30%);
-$color-glob3d-dark: darken($color-glob3d, 12%);
+$color-glob3d-dark: darken($color-glob3d, 10%);
 $color-glob3d-shadow: darken($color-glob3d, 25%);
-$color-glob3d-diff: #d2a239;
+$color-glob3d-diff: #d29a21;
 $color-glob3d-diff-dark: darken($color-glob3d-diff, 5%);
 
 // TASKTIMER
