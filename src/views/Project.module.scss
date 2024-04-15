@@ -4,25 +4,38 @@
 .section {
   @include mix.section;
 
-  .container {
+  display: flex;
+  gap: 100px;
+
+  .content {
     display: flex;
     flex-direction: column;
     gap: 20px;
 
-    .tags {
+    .footer {
       display: flex;
-      gap: 10px;
-      grid-area: tags;
-      padding-left: var.$text-indent;
+      flex-direction: column;
+      gap: 20px;
 
       @media screen and (min-width: var.$media-m) {
-        padding: 0;
+        flex-direction: row;
       }
-    }
 
-    .links {
-      display: flex;
-      gap: 10px;
+      .tags {
+        display: flex;
+        gap: 10px;
+        grid-area: tags;
+        padding-left: var.$text-indent;
+
+        @media screen and (min-width: var.$media-m) {
+          padding: 0;
+        }
+      }
+
+      .links {
+        display: flex;
+        gap: 10px;
+      }
     }
   }
 }
