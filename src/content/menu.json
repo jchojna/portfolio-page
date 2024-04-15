@@ -1,27 +1,27 @@
 [
   {
     "label": "about",
-    "width": 263
+    "width": 255
   },
   {
     "label": "resume",
-    "width": 328
+    "width": 317
   },
   {
     "label": "tasktimer",
-    "width": 450
+    "width": 433
   },
   {
     "label": "hydrapp",
-    "width": 375
+    "width": 372
   },
   {
     "label": "portfolio",
-    "width": 428
+    "width": 416
   },
   {
     "label": "archviz",
-    "width": 352
+    "width": 338
   },
   {
     "label": "quotes",
@@ -29,6 +29,6 @@
   },
   {
     "label": "contact",
-    "width": 355
+    "width": 343
   }
 ]
