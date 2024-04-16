@@ -3,8 +3,12 @@
 $icon-size: 1.3rem;
 
 .demo {
+  align-items: center;
   display: flex;
   justify-content: flex-end;
+  height: 100vh;
+  width: 100%;
+
   :global(.slider-container) {
     width: 99%;
   }
@@ -30,5 +34,13 @@ $icon-size: 1.3rem;
     img {
       width: 100%;
     }
+  }
+
+  .globe {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
   }
 }

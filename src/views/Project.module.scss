@@ -5,14 +5,17 @@
   @include mix.section;
 
   display: flex;
-  gap: 100px;
+  gap: 150px;
 
   .content {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 350px;
+    z-index: 1;
 
-    .footer {
+    .summary {
+      align-items: flex-start;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -24,18 +27,17 @@
       .tags {
         display: flex;
         gap: 10px;
-        grid-area: tags;
         padding-left: var.$text-indent;
 
         @media screen and (min-width: var.$media-m) {
           padding: 0;
         }
       }
+    }
 
-      .links {
-        display: flex;
-        gap: 10px;
-      }
+    .links {
+      display: flex;
+      gap: 10px;
     }
   }
 }

@@ -2,11 +2,11 @@
   {
     "name": "glob3d",
     "repoName": "glob3d",
-    "about": ["test"],
+    "about": ["description to be added"],
     "features": [
       {
         "label": "Functionality",
-        "items": [""]
+        "items": ["description to be added"]
       }
     ],
     "icons": [
@@ -15,7 +15,11 @@
         "totalSVG": 1
       },
       {
-        "name": "react",
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "threejs",
         "totalSVG": 1
       },
       {

@@ -6,10 +6,7 @@ $size-icon-m: 50px;
 
 @mixin icon($project) {
   .icon {
-    background-color: rgba(
-      $color: map-get($colors, #{$project}-dark),
-      $alpha: $background-opacity
-    );
+    background-color: map-get($colors, #{$project}-dark);
     fill: map-get($colors, #{$project}-light);
   }
   .name {
