@@ -27,6 +27,9 @@
   &.resume {
     fill: $color-resume;
   }
+  &.glob3d {
+    fill: $color-glob3d;
+  }
   &.tasktimer {
     fill: $color-tasktimer;
   }
@@ -38,12 +41,6 @@
   }
   &.archviz {
     fill: $color-archviz;
-  }
-  &.quotes {
-    fill: $color-quotes;
-  }
-  &.other {
-    fill: $color-other;
   }
   &.contact {
     fill: $color-contact;

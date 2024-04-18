@@ -1,44 +1,17 @@
 @use '../styles/variables.scss' as var;
-@use '../styles/mixins.scss' as mix;
 
 $icon-size: 1.3rem;
-
-@mixin projectLink($project) {
-  border-color: map-get(var.$colors, #{$project}-diff);
-
-  .link {
-    background-color: map-get(var.$colors, #{$project}-diff);
-    color: map-get(var.$colors, #{$project}-white);
-
-    &::before {
-      border-color: map-get(var.$colors, #{$project}-diff-dark);
-    }
-    &:active,
-    &:focus,
-    &:hover {
-      color: map-get(var.$colors, #{$project}-white);
-      background-color: rgba(
-        $color: map-get(var.$colors, #{$project}-diff-dark),
-        $alpha: var.$background-opacity
-      );
-    }
-  }
-}
 
 .demo {
   align-items: center;
   display: flex;
-  flex-direction: column;
-  gap: 50px;
-  grid-area: demo;
-  margin: 20px -1.2 * var.$offset-right-s 0 -1.2 * var.$offset-left-s;
+  justify-content: flex-end;
+  max-width: 1200px;
+  overflow: hidden;
+  width: 100%;
 
   @media screen and (min-width: var.$media-m) {
-    margin: 0;
-  }
-
-  :global(.slider-container) {
-    width: 99%;
+    height: 100vh;
   }
 
   .arrow {
@@ -64,70 +37,12 @@ $icon-size: 1.3rem;
     }
   }
 
-  .links {
-    display: flex;
-    font-size: 1.6rem;
-    gap: 10px;
-    grid-area: links;
+  .globe {
+    height: 500px;
+    width: 100%;
 
-    .link {
-      @include mix.button;
-      @include mix.flex-center;
-
-      min-width: 50px;
-      padding: 0.3em 1em;
-      position: relative;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: background-color var.$button-hover, color var.$button-hover;
-
-      &::before {
-        border-style: solid;
-        border-width: 0;
-        bottom: 0;
-        content: '';
-        left: 0;
-        opacity: 0.6;
-        position: absolute;
-        right: 0;
-        top: 0;
-        transition: border-width var.$button-hover;
-      }
-
-      &:active::before,
-      &:focus::before,
-      &:hover::before {
-        border-left-width: 10px;
-        border-top-width: 10px;
-      }
-    }
-
-    &.about {
-      border-color: var.$color-about-diff;
-
-      .link {
-        border-color: inherit;
-        color: var.$color-about-diff;
-        &:hover {
-          border-color: var.$color-about-shadow;
-          color: var.$color-about-shadow;
-        }
-      }
-    }
-    &.tasktimer {
-      @include projectLink('tasktimer');
-    }
-    &.portfolio {
-      @include projectLink('portfolio');
-    }
-    &.hydrapp {
-      @include projectLink('hydrapp');
-    }
-    &.archviz {
-      @include projectLink('archviz');
-    }
-    &.quotes {
-      @include projectLink('quotes');
+    @media screen and (min-width: var.$media-m) {
+      height: 100%;
     }
   }
 }

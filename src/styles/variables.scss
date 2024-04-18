@@ -71,6 +71,15 @@ $color-resume-shadow: darken($color-resume, 24%);
 $color-resume-diff: #1c4658;
 $color-resume-diff-dark: rgb(26, 63, 78);
 
+// GLOB3D
+$color-glob3d: #23aca3;
+$color-glob3d-white: lighten($color-glob3d, 60%);
+$color-glob3d-light: lighten($color-glob3d, 30%);
+$color-glob3d-dark: darken($color-glob3d, 10%);
+$color-glob3d-shadow: darken($color-glob3d, 25%);
+$color-glob3d-diff: #d29a21;
+$color-glob3d-diff-dark: darken($color-glob3d-diff, 5%);
+
 // TASKTIMER
 $color-tasktimer: #4c787c;
 $color-tasktimer-white: lighten($color-tasktimer, 50%);
@@ -153,6 +162,14 @@ $colors: (
   resume-shadow: $color-resume-shadow,
   resume-diff: $color-resume-diff,
   resume-diff-dark: $color-resume-diff-dark,
+  // glob3d
+  glob3d: $color-glob3d,
+  glob3d-white: $color-glob3d-white,
+  glob3d-light: $color-glob3d-light,
+  glob3d-dark: $color-glob3d-dark,
+  glob3d-shadow: $color-glob3d-shadow,
+  glob3d-diff: $color-glob3d-diff,
+  glob3d-diff-dark: $color-glob3d-diff-dark,
   // tasktimer
   tasktimer: $color-tasktimer,
   tasktimer-white: $color-tasktimer-white,

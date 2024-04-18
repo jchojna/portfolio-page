@@ -19,8 +19,12 @@
   display: flex;
   flex-direction: column;
   font-size: 0.9rem;
+  height: 100%;
   padding: 5px 10px;
 
+  &.glob3d {
+    @include tag(glob3d);
+  }
   &.tasktimer {
     @include tag(tasktimer);
   }

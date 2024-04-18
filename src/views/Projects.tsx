@@ -29,6 +29,7 @@ import projects from '../content/projects.json';
 import Project from './Project';
 
 const snapshots: { [key: string]: string[] } = {
+  glob3d: [],
   tasktimer: [tasktimerSnap1, tasktimerSnap2, tasktimerSnap3, tasktimerSnap4],
   hydrapp: [
     hydrappSnap1,

@@ -4,19 +4,52 @@
 .section {
   @include mix.section;
 
-  .container {
-    @include mix.container;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 
-    align-items: center;
+  @media screen and (min-width: var.$media-m) {
+    flex-direction: row;
+  }
 
-    .tags {
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 var.$offset-right-s 0 var.$offset-left-s;
+    width: 100%;
+    z-index: 1;
+
+    @media screen and (min-width: var.$media-m) {
+      min-width: 400px;
+      padding: 0;
+      width: 400px;
+    }
+
+    .footer {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
-      grid-area: tags;
+      height: auto;
       padding-left: var.$text-indent;
 
       @media screen and (min-width: var.$media-m) {
+        height: 60px;
         padding: 0;
+      }
+
+      .links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .tags {
+        display: flex;
+        height: 100%;
+
+        @media screen and (min-width: var.$media-m) {
+          padding: 0;
+        }
       }
     }
   }

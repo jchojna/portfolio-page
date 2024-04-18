@@ -28,6 +28,9 @@
     &.resume.hovered {
       fill: $color-resume;
     }
+    &.glob3d.hovered {
+      fill: $color-glob3d;
+    }
     &.tasktimer.hovered {
       fill: $color-tasktimer;
     }
@@ -39,12 +42,6 @@
     }
     &.archviz.hovered {
       fill: $color-archviz;
-    }
-    &.quotes.hovered {
-      fill: $color-quotes;
-    }
-    &.other.hovered {
-      fill: $color-other;
     }
     &.contact.hovered {
       fill: $color-contact;
@@ -60,6 +57,9 @@
   &.tasktimer {
     @include menuButton(tasktimer);
   }
+  &.glob3d {
+    @include menuButton(glob3d);
+  }
   &.portfolio {
     @include menuButton(portfolio);
   }
@@ -68,12 +68,6 @@
   }
   &.archviz {
     @include menuButton(archviz);
-  }
-  &.quotes {
-    @include menuButton(quotes);
-  }
-  &.other {
-    @include menuButton(other);
   }
   &.contact {
     @include menuButton(contact);

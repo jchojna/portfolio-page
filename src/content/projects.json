@@ -1,5 +1,40 @@
 [
   {
+    "name": "glob3d",
+    "repoName": "glob3d",
+    "about": [
+      "My first npm package built using vanilla JS, Three.js and TypeScript. It is a 3D globe with a customizable set of markers, each with a tooltip. The globe can be rotated and zoomed in and out. The package is published on npm and can be easily installed and used in any project."
+    ],
+    "features": [
+      {
+        "label": "Functionality",
+        "items": [
+          "the package allows to visualize bar markers on the globe or just bare globe",
+          "there is many options to customize the globe, markers and tooltips",
+          "highlighting markers on hover and click events"
+        ]
+      }
+    ],
+    "icons": [
+      {
+        "name": "typescript",
+        "totalSVG": 1
+      },
+      {
+        "name": "javascript",
+        "totalSVG": 3
+      },
+      {
+        "name": "threejs",
+        "totalSVG": 1
+      },
+      {
+        "name": "sass",
+        "totalSVG": 1
+      }
+    ]
+  },
+  {
     "name": "tasktimer",
     "repoName": "task-timer",
     "about": [
@@ -151,44 +186,6 @@
           "custom lazy loading for grid images and gallery pictures",
           "responsive carousel of images with two display modes",
           "page pre-loader"
-        ]
-      }
-    ],
-    "icons": [
-      {
-        "name": "html",
-        "totalSVG": 3
-      },
-      {
-        "name": "css",
-        "totalSVG": 3
-      },
-      {
-        "name": "javascript",
-        "totalSVG": 3
-      },
-      {
-        "name": "sass",
-        "totalSVG": 1
-      }
-    ]
-  },
-  {
-    "name": "quotes",
-    "repoName": "homepage-gulp",
-    "about": [
-      "This project is a Multi-Page Application (MPA) featuring a collection of quotes accompanied by visually appealing images. The design emphasizes continuity during navigation to mimic the feel of a simple app. All images were personally captured and post-processed during my year-long stay in Slovenia."
-    ],
-    "features": [
-      {
-        "label": "Functionality",
-        "items": [
-          "simple and basic PWA app",
-          "keyboard support for navigating between pages",
-          "animated SVG icons",
-          "local storage support for contact form's inputs",
-          "contact form's HTML validation",
-          "checkboxes validation and alerts"
         ]
       }
     ],

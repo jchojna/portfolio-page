@@ -33,6 +33,9 @@
   &.tasktimer .button {
     @include navigatorButton(tasktimer);
   }
+  &.glob3d .button {
+    @include navigatorButton(glob3d);
+  }
   &.portfolio .button {
     @include navigatorButton(portfolio);
   }
@@ -41,12 +44,6 @@
   }
   &.archviz .button {
     @include navigatorButton(archviz);
-  }
-  &.quotes .button {
-    @include navigatorButton(quotes);
-  }
-  &.other .button {
-    @include navigatorButton(other);
   }
   &.contact .button {
     @include navigatorButton(contact);

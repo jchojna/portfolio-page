@@ -27,6 +27,9 @@
   &.resume {
     @include graphic(resume);
   }
+  &.glob3d {
+    @include graphic(glob3d);
+  }
   &.tasktimer {
     @include graphic(tasktimer); // tasktimerBase, tasktimerLetter
   }
@@ -38,12 +41,6 @@
   }
   &.archviz {
     @include graphic(archviz);
-  }
-  &.quotes {
-    @include graphic(quotes);
-  }
-  &.other {
-    @include graphic(other);
   }
   &.contact {
     @include graphic(contact);

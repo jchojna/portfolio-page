@@ -50,6 +50,9 @@
   &.tasktimer {
     @include projectFeature(tasktimer);
   }
+  &.glob3d {
+    @include projectFeature(glob3d);
+  }
   &.hydrapp {
     @include projectFeature(hydrapp);
   }
@@ -58,11 +61,5 @@
   }
   &.archviz {
     @include projectFeature(archviz);
-  }
-  &.quotes {
-    @include projectFeature(quotes);
-  }
-  &.other {
-    @include projectFeature(other);
   }
 }

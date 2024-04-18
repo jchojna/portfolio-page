@@ -6,10 +6,7 @@ $size-icon-m: 50px;
 
 @mixin icon($project) {
   .icon {
-    background-color: rgba(
-      $color: map-get($colors, #{$project}-dark),
-      $alpha: $background-opacity
-    );
+    background-color: map-get($colors, #{$project}-dark);
     fill: map-get($colors, #{$project}-light);
   }
   .name {
@@ -90,6 +87,9 @@ $size-icon-m: 50px;
   &.resume {
     @include icon(resume);
   }
+  &.glob3d {
+    @include icon(glob3d);
+  }
   &.tasktimer {
     @include icon(tasktimer);
   }
@@ -101,12 +101,6 @@ $size-icon-m: 50px;
   }
   &.archviz {
     @include icon(archviz);
-  }
-  &.quotes {
-    @include icon(quotes);
-  }
-  &.other {
-    @include icon(other);
   }
   &.contact {
     @include icon(contact);

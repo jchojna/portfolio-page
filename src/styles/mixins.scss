@@ -23,7 +23,6 @@
 @mixin section {
   align-items: center;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   min-height: 100vh;
   max-height: none;
@@ -34,31 +33,27 @@
   &.about {
     background-color: $color-about;
   }
-
   &.resume {
     background-color: $color-resume;
   }
-
+  &.glob3d {
+    background-color: $color-glob3d;
+  }
   &.tasktimer {
     background-color: $color-tasktimer;
   }
-
   &.hydrapp {
     background-color: $color-hydrapp;
   }
-
   &.portfolio {
     background-color: $color-portfolio;
   }
-
   &.archviz {
     background-color: $color-archviz;
   }
-
   &.quotes {
     background-color: $color-quotes;
   }
-
   &.contact {
     background-color: $color-contact;
   }
@@ -66,7 +61,8 @@
   @media only screen and (min-width: $media-m) {
     align-items: center;
     justify-content: center;
-    padding: 0 50px 0 $menu-width-m + 100px;
+    padding: 0;
+    padding-left: $menu-width-m + 100px;
 
     &.about {
       background-color: $color-about;
@@ -84,6 +80,15 @@
         $color-resume 0%,
         $color-resume 60%,
         $color-resume-dark 100%
+      );
+    }
+    &.glob3d {
+      background-color: $color-glob3d;
+      background: radial-gradient(
+        circle,
+        $color-glob3d 0%,
+        $color-glob3d 70%,
+        $color-glob3d-dark 100%
       );
     }
     &.tasktimer {
@@ -144,7 +149,7 @@
 
   @media only screen and (min-width: $media-l) {
     justify-content: center;
-    padding: 0 80px 0 $menu-width-l + 100px;
+    padding-left: $menu-width-l + 100px;
   }
 }
 
@@ -175,19 +180,7 @@
       'title'
       'info'
       'accordions';
-  }
-
-  &.tasktimer,
-  &.portfolio,
-  &.hydrapp,
-  &.archviz,
-  &.quotes {
-    grid-template-areas:
-      'description'
-      'tags'
-      'icons'
-      'features'
-      'demo';
+    padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
   }
 
   &.contact {
@@ -236,21 +229,6 @@
       grid-template-columns: 1fr 2fr;
     }
 
-    &.tasktimer,
-    &.portfolio,
-    &.hydrapp,
-    &.archviz,
-    &.quotes {
-      align-items: start;
-      grid-template-areas:
-        'description demo'
-        'tags demo'
-        'icons demo'
-        'features demo';
-      grid-template-columns: 2fr 3fr;
-      grid-template-rows: repeat(3, auto) 1fr;
-    }
-
     &.contact {
       align-content: stretch;
       align-items: center;
@@ -285,30 +263,6 @@
   &.resume {
     border-color: $color-resume-diff;
     color: $color-resume-light;
-  }
-  &.tasktimer {
-    border-color: $color-tasktimer-diff;
-    color: $color-tasktimer-light;
-  }
-  &.hydrapp {
-    border-color: $color-hydrapp-diff;
-    color: $color-hydrapp-light;
-  }
-  &.portfolio {
-    border-color: $color-portfolio-diff;
-    color: $color-portfolio-light;
-  }
-  &.archviz {
-    border-color: $color-archviz-diff;
-    color: $color-archviz-light;
-  }
-  &.quotes {
-    border-color: $color-quotes-diff;
-    color: $color-quotes-light;
-  }
-  &.other {
-    border-color: $color-other-diff;
-    color: $color-other-light;
   }
   &.contact {
     border-color: $color-contact-diff;

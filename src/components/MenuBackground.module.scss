@@ -48,6 +48,9 @@
     &.resume {
       background-color: $color-resume-diff;
     }
+    &.glob3d {
+      background-color: $color-glob3d-diff;
+    }
     &.tasktimer {
       background-color: $color-tasktimer-diff;
     }
@@ -59,12 +62,6 @@
     }
     &.archviz {
       background-color: $color-archviz-diff;
-    }
-    &.quotes {
-      background-color: $color-quotes-diff;
-    }
-    &.other {
-      background-color: $color-other-diff;
     }
     &.contact {
       background-color: $color-contact-diff;

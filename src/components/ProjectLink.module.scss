@@ -1,0 +1,76 @@
+@use '../styles/variables.scss' as var;
+@use '../styles/mixins.scss' as mix;
+
+@mixin projectLink($project) {
+  border-color: map-get(var.$colors, #{$project}-diff);
+
+  &.link {
+    background-color: map-get(var.$colors, #{$project}-diff);
+    color: map-get(var.$colors, #{$project}-white);
+
+    &::before {
+      border-color: map-get(var.$colors, #{$project}-diff-dark);
+    }
+    &:active,
+    &:focus,
+    &:hover {
+      color: map-get(var.$colors, #{$project}-white);
+      background-color: rgba(
+        $color: map-get(var.$colors, #{$project}-diff-dark),
+        $alpha: var.$background-opacity
+      );
+    }
+  }
+}
+
+.link {
+  @include mix.button;
+  @include mix.flex-center;
+
+  font-size: 1.6rem;
+  min-width: 50px;
+  padding: 0.3em 1em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color var.$button-hover, color var.$button-hover;
+
+  &::before {
+    border-style: solid;
+    border-width: 0;
+    bottom: 0;
+    content: '';
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: border-width var.$button-hover;
+  }
+
+  &:active::before,
+  &:focus::before,
+  &:hover::before {
+    border-left-width: 10px;
+    border-top-width: 10px;
+  }
+
+  &.glob3d {
+    @include projectLink('glob3d');
+  }
+  &.tasktimer {
+    @include projectLink('tasktimer');
+  }
+  &.portfolio {
+    @include projectLink('portfolio');
+  }
+  &.hydrapp {
+    @include projectLink('hydrapp');
+  }
+  &.archviz {
+    @include projectLink('archviz');
+  }
+  &.quotes {
+    @include projectLink('quotes');
+  }
+}
