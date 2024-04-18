@@ -27,6 +27,7 @@ const Demo = ({ projectName, snapshots }: DemoProps) => {
         new BarGlob3d(globeRef.current, data, {
           tooltipValueSuffix: 'people',
           globeColor: '#048279',
+          barColor: '#c2f3ef',
           barActiveColor: '#d29a21',
           tooltipActiveBackgroundColor: '#d29a21',
         })

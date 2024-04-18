@@ -2,11 +2,17 @@
   {
     "name": "glob3d",
     "repoName": "glob3d",
-    "about": ["description to be added"],
+    "about": [
+      "My first npm package built using vanilla JS, Three.js and TypeScript. It is a 3D globe with a customizable set of markers, each with a tooltip. The globe can be rotated and zoomed in and out. The package is published on npm and can be easily installed and used in any project."
+    ],
     "features": [
       {
         "label": "Functionality",
-        "items": ["description to be added"]
+        "items": [
+          "the package allows to visualize bar markers on the globe or just bare globe",
+          "there is many options to customize the globe, markers and tooltips",
+          "highlighting markers on hover and click events"
+        ]
       }
     ],
     "icons": [
