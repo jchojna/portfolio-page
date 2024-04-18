@@ -6,12 +6,11 @@ $icon-size: 1.3rem;
   align-items: center;
   display: flex;
   justify-content: flex-end;
-  height: 100vh;
   overflow: hidden;
   width: 100%;
 
-  :global(.slider-container) {
-    width: 99%;
+  @media screen and (min-width: var.$media-m) {
+    height: 100vh;
   }
 
   .arrow {
@@ -38,7 +37,11 @@ $icon-size: 1.3rem;
   }
 
   .globe {
-    height: 100vh;
+    height: 500px;
     width: 100%;
+
+    @media screen and (min-width: var.$media-m) {
+      height: 100%;
+    }
   }
 }

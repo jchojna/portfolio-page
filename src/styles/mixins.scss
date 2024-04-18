@@ -39,6 +39,9 @@
   &.glob3d {
     background-color: $color-glob3d;
   }
+  &.tasktimer {
+    background-color: $color-tasktimer;
+  }
   &.hydrapp {
     background-color: $color-hydrapp;
   }
@@ -177,6 +180,7 @@
       'title'
       'info'
       'accordions';
+    padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
   }
 
   &.contact {

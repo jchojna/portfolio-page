@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { useContext } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import AccordionsGroup from '../components/AccordionsGroup';
 import BlockTitle from '../components/BlockTitle';
@@ -12,6 +13,8 @@ import classes from './Resume.module.scss';
 
 const Resume = () => {
   const [currentView] = useContext(CurrentViewContext);
+  const isMobile = useMediaQuery({ query: '(max-width: 1200px)' });
+
   const { experience, education, languages } = resume;
   const { label, items } = experience;
 
@@ -23,7 +26,7 @@ const Resume = () => {
 
   return (
     <div id="resume" className={clsx(classes.section, classes.resume)}>
-      <Graphic view="resume" />
+      {!isMobile && <Graphic view="resume" />}
       <div
         className={clsx(
           classes.container,

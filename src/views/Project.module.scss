@@ -5,24 +5,37 @@
   @include mix.section;
 
   display: flex;
+  flex-direction: column;
   gap: 50px;
+
+  @media screen and (min-width: var.$media-m) {
+    flex-direction: row;
+  }
 
   .content {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    min-width: 400px;
-    width: 400px;
+    padding: 0 var.$offset-right-s 0 var.$offset-left-s;
+    width: 100%;
     z-index: 1;
+
+    @media screen and (min-width: var.$media-m) {
+      min-width: 400px;
+      padding: 0;
+      width: 400px;
+    }
 
     .footer {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       height: auto;
+      padding-left: var.$text-indent;
 
       @media screen and (min-width: var.$media-m) {
         height: 60px;
+        padding: 0;
       }
 
       .links {
