@@ -37,16 +37,16 @@ const Project = ({
       <div className={clsx(classes.content)}>
         <TextGroup title="About Project" projectName={name} content={about} />
         <ProjectFeatures projectName={name} content={features} />
-        <div className={classes.summary}>
-          <IconsList view={name} icons={icons} />
+        <IconsList view={name} icons={icons} />
+        <div className={classes.footer}>
+          <div className={classes.links}>
+            <ProjectLink projectName={name} url={html_url} label="Code" />
+            <ProjectLink projectName={name} url={homepage} label="Demo" />
+          </div>
           <div className={classes.tags}>
             <Tag projectName={name} label="Created" date={created_at} />
             <Tag projectName={name} label="Last update" date={updated_at} />
           </div>
-        </div>
-        <div className={classes.links}>
-          <ProjectLink projectName={name} url={html_url} label="Code" />
-          <ProjectLink projectName={name} url={homepage} label="Demo" />
         </div>
       </div>
       <Demo projectName={name} snapshots={snapshots} />

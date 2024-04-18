@@ -3,6 +3,7 @@
 
 .icons {
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   grid-area: icons;
   margin: 0;

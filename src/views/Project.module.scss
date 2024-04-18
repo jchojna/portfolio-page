@@ -5,39 +5,39 @@
   @include mix.section;
 
   display: flex;
-  gap: 150px;
+  gap: 50px;
 
   .content {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 350px;
+    min-width: 400px;
+    width: 400px;
     z-index: 1;
 
-    .summary {
-      align-items: flex-start;
+    .footer {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+      height: auto;
 
       @media screen and (min-width: var.$media-m) {
-        flex-direction: row;
+        height: 60px;
+      }
+
+      .links {
+        display: flex;
+        gap: 10px;
       }
 
       .tags {
         display: flex;
-        gap: 10px;
-        padding-left: var.$text-indent;
+        height: 100%;
 
         @media screen and (min-width: var.$media-m) {
           padding: 0;
         }
       }
-    }
-
-    .links {
-      display: flex;
-      gap: 10px;
     }
   }
 }
