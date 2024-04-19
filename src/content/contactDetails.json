@@ -1,5 +1,11 @@
 [
   {
+    "id": "resume",
+    "name": "Resume",
+    "url": "assets/resume.pdf",
+    "ariaLabel": "Resume"
+  },
+  {
     "id": "github",
     "name": "Github",
     "url": "https://github.com/jchojna",
