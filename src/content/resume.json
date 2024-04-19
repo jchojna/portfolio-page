@@ -11,22 +11,30 @@
         "label": "Architecture",
         "items": [
           {
-            "label": "2017 - 2019",
-            "items": ["Freelance Architect", "self-employed", "Remote"]
-          },
-          {
-            "label": "2018",
+            "label": "Jan 2018 - Jun 2018",
             "items": [
-              "Architect / 3d Visualizer",
+              "Architect | 3d Visualizer",
               "Svet Vmes",
               "Ljubljana, Slovenia"
             ]
           },
           {
+            "label": "2017 - 2018",
+            "items": ["Freelance Architect", "self-employed", "Remote"]
+          },
+          {
             "label": "2015 - 2017",
             "items": [
-              "Architect / 3d Visualizer",
+              "Architect | 3d Visualizer",
               "Mofo Architekci",
+              "Warsaw, Poland"
+            ]
+          },
+          {
+            "label": "2011 - 2013",
+            "items": [
+              "Architect | Intern",
+              "Activum Projektowanie",
               "Warsaw, Poland"
             ]
           }
@@ -37,7 +45,7 @@
         "items": [
           {
             "label": "2008 - 2020",
-            "items": ["Freelance 3d Visualizer", "self-employed", "Remote"]
+            "items": ["Freelance 3d Graphic Artist", "self-employed", "Remote"]
           },
           {
             "label": "2010 - 2013",
@@ -49,16 +57,21 @@
         "label": "Frontend Development",
         "items": [
           {
-            "label": "12 2022 - Present",
-            "items": ["Frontend Developer / Tech Lead", "Appsilon", "Remote"]
+            "label": "Jun 2021 - Present",
+            "items": ["Frontend Developer", "Appsilon", "Remote"],
+            "description": [
+              "collaborating in a multinational team within a rapidly growing company, providing consultancy services to a diverse range of clients, including Fortune 500 companies from Pharma, Biodiversity, Energy, and Sport industries",
+              "contributed to the development of complex dashboard applications, with a primary focus on frontend development and occasional contributions to backend development in R. Projects examples: Mbaza - a biodiversity project [TypeScript | React | Electron], Supply Chain application [TypeScript | Next.js | ReactFlow], dashboard applications [VanillaJS | Sass | R]",
+              "tech leader in a few small-scale projects since Q4 2022"
+            ]
           },
           {
-            "label": "07 2021 - 11 2022",
-            "items": ["Frontend Developer", "Appsilon", "Remote"]
-          },
-          {
-            "label": "06 2020 - 06 2021",
-            "items": ["Junior Frontend Developer", "Appsilon", "Remote"]
+            "label": "Jun 2020 - Jun 2021",
+            "items": ["Junior Frontend Developer", "Appsilon", "Remote"],
+            "description": [
+              "focused on frontend development for commercial dashboard applications, involving UI/UX design preparation in Figma",
+              "undertook internal tasks such as website maintenance (e.g., appsilon.com [Typescript | Gatsby | GraphQL]), creation of landing pages (e.g., shiny.tools, shinymanifesto.com [Vanilla JS]), and maintenance of open-source projects"
+            ]
           }
         ]
       }
@@ -68,7 +81,7 @@
     "label": "Education",
     "items": [
       {
-        "label": "2011 - 2014",
+        "label": "2010 - 2014",
         "items": [
           "Warsaw University of Technology",
           "Faculty of Architecture",
@@ -97,16 +110,16 @@
     "label": "Languages",
     "items": [
       {
-        "items": ["Polish", "Native"]
+        "items": ["Polish", "native"]
       },
       {
-        "items": ["English", "Proficient"]
+        "items": ["English", "proficient"]
       },
       {
-        "items": ["German", "Elementary"]
+        "items": ["German", "elementary"]
       },
       {
-        "items": ["Spanish", "Elementary"]
+        "items": ["Spanish", "elementary"]
       }
     ]
   }
