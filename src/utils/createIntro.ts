@@ -1,3 +1,5 @@
+import letters from '../assets/svg/letters.svg';
+
 type TimeoutId = ReturnType<typeof setInterval> | undefined;
 
 type Classes = {
@@ -64,13 +66,13 @@ const createGridItems = (
                   class="${classes.svgCharacter}"
                   viewBox="0 0 50 100"
                 >
-                  <use href="assets/svg/letters.svg#${char}"></use>
+                  <use href="${letters}#${char}"></use>
                 </svg>
                 <svg
                   class="${classes.svgShadow}"
                   viewBox="0 0 50 100"
                 >
-                  <use href="assets/svg/letters.svg#${char}-shadow"></use>
+                  <use href="${letters}#${char}-shadow"></use>
                 </svg>
               </div>
             </li>`

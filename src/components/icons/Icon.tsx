@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 
 import icons from '../../assets/svg/icons.svg';
-
 import classes from './Icon.module.scss';
 
 const Icon = ({ view, details }: IconProps) => {
