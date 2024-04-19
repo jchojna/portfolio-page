@@ -35,7 +35,7 @@ const About = () => {
         </h2>
 
         <img
-          src="assets/img/photo.jpg"
+          src="assets/img/photo.jpeg"
           className={classes.photo}
           alt="My photo"
         />
