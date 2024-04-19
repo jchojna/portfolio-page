@@ -2,7 +2,13 @@ import clsx from 'clsx';
 
 import classes from './ResumeDetails.module.scss';
 
-const ResumeDetails = ({ label, items }: ResumeDetailsProps) => {
+type ResumeDetailsProps = {
+  label?: string;
+  items: string[];
+  description: string[] | undefined;
+};
+
+const ResumeDetails = ({ label, items, description }: ResumeDetailsProps) => {
   return (
     <div className={classes.container}>
       {label && <div className={classes.label}>{label}</div>}
@@ -16,6 +22,15 @@ const ResumeDetails = ({ label, items }: ResumeDetailsProps) => {
           </p>
         ))}
       </div>
+      {description && (
+        <div className={classes.description}>
+          {description.map((responsibility) => {
+            return (
+              <span className={classes.responsibility}>{responsibility}</span>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

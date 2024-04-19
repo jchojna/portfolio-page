@@ -33,6 +33,7 @@ const AccordionsGroup = ({
                     key={index}
                     label={item.label}
                     items={item.items}
+                    description={item.description}
                   />
                 );
               })}

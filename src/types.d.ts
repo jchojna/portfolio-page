@@ -1,8 +1,3 @@
-type ResumeDetailsProps = {
-  label?: string;
-  items: string[];
-};
-
 type AccordionProps = {
   label: string;
   children: React.ReactNode;
@@ -16,6 +11,7 @@ type AccordionsProps = {
   items: {
     label?: string;
     items: string[];
+    description?: string[] | undefined;
   }[];
 };
 
