@@ -2,8 +2,20 @@
   "title": "Hello there!",
   "description": "Combining my past experience as an architect and 3D graphic artist with my current role as a frontend developer, I specialize in crafting visually stunning UI and highly interactive digital experiences.",
   "highLevel": {
-    "title": "Working knowledge",
+    "title": "Tech Stack",
     "tech": [
+      {
+        "name": "js",
+        "totalSVG": 1
+      },
+      {
+        "name": "typescript",
+        "totalSVG": 1
+      },
+      {
+        "name": "react",
+        "totalSVG": 1
+      },
       {
         "name": "html",
         "totalSVG": 3
@@ -17,19 +29,7 @@
         "totalSVG": 1
       },
       {
-        "name": "javascript",
-        "totalSVG": 3
-      },
-      {
-        "name": "react",
-        "totalSVG": 1
-      },
-      {
-        "name": "typescript",
-        "totalSVG": 1
-      },
-      {
-        "name": "nextjs",
+        "name": "git",
         "totalSVG": 1
       },
       {
@@ -37,7 +37,31 @@
         "totalSVG": 1
       },
       {
+        "name": "nextjs",
+        "totalSVG": 1
+      },
+      {
+        "name": "cypress",
+        "totalSVG": 1
+      },
+      {
         "name": "gatsby",
+        "totalSVG": 1
+      },
+      {
+        "name": "figma",
+        "totalSVG": 3
+      },
+      {
+        "name": "R",
+        "totalSVG": 2
+      },
+      {
+        "name": "shiny",
+        "totalSVG": 1
+      },
+      {
+        "name": "echarts",
         "totalSVG": 1
       },
       {
@@ -49,15 +73,23 @@
         "totalSVG": 3
       },
       {
-        "name": "echarts",
+        "name": "nodejs",
         "totalSVG": 1
       },
       {
-        "name": "R",
-        "totalSVG": 2
+        "name": "npm",
+        "totalSVG": 1
       },
       {
-        "name": "shiny",
+        "name": "graphql",
+        "totalSVG": 1
+      },
+      {
+        "name": "docker",
+        "totalSVG": 1
+      },
+      {
+        "name": "electron",
         "totalSVG": 1
       },
       {
@@ -70,47 +102,6 @@
       },
       {
         "name": "chakra-ui",
-        "totalSVG": 1
-      },
-      {
-        "name": "docker",
-        "totalSVG": 1
-      }
-    ]
-  },
-  "mediumLevel": {
-    "title": "Know something about",
-    "tech": [
-      {
-        "name": "redux",
-        "totalSVG": 1
-      },
-      {
-        "name": "nodejs",
-        "totalSVG": 1
-      },
-      {
-        "name": "emotion",
-        "totalSVG": 1
-      },
-      {
-        "name": "graphql",
-        "totalSVG": 1
-      },
-      {
-        "name": "p5js",
-        "totalSVG": 1
-      },
-      {
-        "name": "electron",
-        "totalSVG": 1
-      },
-      {
-        "name": "websocket",
-        "totalSVG": 1
-      },
-      {
-        "name": "enzyme",
         "totalSVG": 1
       },
       {

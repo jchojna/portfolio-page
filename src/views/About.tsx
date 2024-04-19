@@ -52,11 +52,6 @@ const About = () => {
           <BlockTitle title={about.highLevel.title} view="about" />
           <IconsList view="about" icons={about.highLevel.tech} />
         </div>
-
-        <div className={clsx(classes.iconsGroup, classes.medium)}>
-          <BlockTitle title={about.mediumLevel.title} view="about" />
-          <IconsList view="about" icons={about.mediumLevel.tech} />
-        </div>
       </div>
     </div>
   );
