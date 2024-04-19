@@ -36,4 +36,27 @@ $gap: 10px;
       }
     }
   }
+
+  .description {
+    color: $color-resume-white;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 0 10px 30px;
+
+    .responsibility {
+      position: relative;
+
+      &::before {
+        background-color: $color-resume-dark;
+        content: '';
+        height: 1rem;
+        margin-right: 0.5rem;
+        position: absolute;
+        right: 100%;
+        top: 0.4rem;
+        width: 1rem;
+      }
+    }
+  }
 }

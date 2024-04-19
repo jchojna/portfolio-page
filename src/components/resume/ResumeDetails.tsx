@@ -22,7 +22,15 @@ const ResumeDetails = ({ label, items, description }: ResumeDetailsProps) => {
           </p>
         ))}
       </div>
-      {description && <p className={classes.description}>{description}</p>}
+      {description && (
+        <div className={classes.description}>
+          {description.map((responsibility) => {
+            return (
+              <span className={classes.responsibility}>{responsibility}</span>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
