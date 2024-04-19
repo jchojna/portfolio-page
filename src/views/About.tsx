@@ -35,7 +35,7 @@ const About = () => {
         </h2>
 
         <img
-          src="assets/img/photo.jpg"
+          src="assets/img/photo.jpeg"
           className={classes.photo}
           alt="My photo"
         />
@@ -51,11 +51,6 @@ const About = () => {
         <div className={clsx(classes.iconsGroup, classes.high)}>
           <BlockTitle title={about.highLevel.title} view="about" />
           <IconsList view="about" icons={about.highLevel.tech} />
-        </div>
-
-        <div className={clsx(classes.iconsGroup, classes.medium)}>
-          <BlockTitle title={about.mediumLevel.title} view="about" />
-          <IconsList view="about" icons={about.mediumLevel.tech} />
         </div>
       </div>
     </div>
