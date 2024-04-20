@@ -89,12 +89,12 @@
       );
       fill: $color-about-light;
       &::before {
-        border-color: $color-about-shadow;
+        border-color: $color-about-black;
       }
       &:active {
         fill: $color-about;
         background-color: rgba(
-          $color: $color-about-shadow,
+          $color: $color-about-black,
           $alpha: $background-opacity
         );
       }
@@ -108,24 +108,20 @@
   &.contact {
     .link {
       background-color: rgba(
-        $color: $color-contact-diff,
+        $color: $color-contact-accent,
         $alpha: $background-opacity
       );
       fill: $color-contact-light;
       &::before {
-        border-color: $color-contact-diff-dark;
+        border-color: $color-contact-accent;
       }
       &:active {
         fill: $color-contact-light;
         background-color: rgba(
-          $color: $color-contact-diff-dark,
+          $color: $color-contact-accent,
           $alpha: $background-opacity
         );
       }
-    }
-
-    .name {
-      color: $color-quotes-shadow;
     }
   }
 
@@ -133,13 +129,13 @@
     &.about {
       .link {
         &::before {
-          border-color: $color-about-shadow;
+          border-color: $color-about-black;
         }
         &:focus,
         &:hover {
           fill: $color-about;
           background-color: rgba(
-            $color: $color-about-shadow,
+            $color: $color-about-black,
             $alpha: $background-opacity
           );
         }
@@ -149,12 +145,12 @@
     &.contact {
       .link {
         &::before {
-          border-color: $color-contact-diff-dark;
+          border-color: $color-contact-accent;
         }
         &:focus,
         &:hover {
           background-color: rgba(
-            $color: $color-contact-diff-dark,
+            $color: $color-contact-accent,
             $alpha: $background-opacity
           );
         }

@@ -69,13 +69,14 @@
     );
   }
   &.archviz {
-    @include sectionBackground($color-portfolio, $color-archviz, $color-quotes);
-  }
-  &.quotes {
-    @include sectionBackground($color-archviz, $color-quotes, $color-contact);
+    @include sectionBackground(
+      $color-portfolio,
+      $color-archviz,
+      $color-contact
+    );
   }
   &.contact {
-    @include sectionBackground($color-quotes, $color-contact, $color-about);
+    @include sectionBackground($color-archviz, $color-contact, $color-contact);
   }
 
   @media only screen and (min-width: $media-m) {
@@ -138,15 +139,15 @@
   z-index: 2;
 
   &.about {
-    border-color: $color-about-diff;
+    border-color: $color-about-accent;
     color: $color-about-light;
   }
   &.resume {
-    border-color: $color-resume-diff;
+    border-color: $color-resume-accent;
     color: $color-resume-light;
   }
   &.contact {
-    border-color: $color-contact-diff;
+    border-color: $color-contact-accent;
     color: $color-contact-light;
   }
 

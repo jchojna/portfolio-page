@@ -3,11 +3,12 @@
 @import '../styles/animations.scss';
 
 @mixin menuButton($color) {
-  fill: map-get($colors, #{$color}-diff);
+  fill: map-get($colors, #{$color}-dark);
+
   &:active,
   &:focus,
   &:hover {
-    fill: map-get($colors, #{$color}-diff-dark);
+    fill: map-get($colors, #{$color}-black);
   }
 }
 
@@ -100,7 +101,7 @@
   }
 
   .menuSvgShadow {
-    fill: $intro-background-color;
+    fill: #000;
     height: 100%;
     left: 0;
     opacity: 0;

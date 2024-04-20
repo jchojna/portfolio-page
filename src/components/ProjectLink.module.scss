@@ -3,22 +3,22 @@
 @use '../styles/mixins.scss' as mix;
 
 @mixin projectLink($project) {
-  border-color: map-get(col.$colors, #{$project}-diff);
+  border-color: map-get(col.$colors, #{$project}-dark);
 
   &.link {
-    background-color: map-get(col.$colors, #{$project}-diff);
-    color: map-get(col.$colors, #{$project}-white);
+    background-color: map-get(col.$colors, #{$project}-accent);
+    color: map-get(col.$colors, #{$project}-black);
 
     &::before {
-      border-color: map-get(col.$colors, #{$project}-diff-dark);
+      border-color: map-get(col.$colors, #{$project}-black);
     }
     &:active,
     &:focus,
     &:hover {
       color: map-get(col.$colors, #{$project}-white);
-      background-color: rgba(
-        $color: map-get(col.$colors, #{$project}-diff-dark),
-        $alpha: var.$background-opacity
+      background-color: mix(
+        map-get(col.$colors, #{$project}-accent),
+        map-get(col.$colors, #{$project}-dark)
       );
     }
   }
@@ -70,8 +70,5 @@
   }
   &.archviz {
     @include projectLink('archviz');
-  }
-  &.quotes {
-    @include projectLink('quotes');
   }
 }

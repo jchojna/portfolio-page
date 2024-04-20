@@ -2,9 +2,9 @@
 @import '../styles/mixins.scss';
 
 @mixin navigatorButton($color) {
-  border-color: map-get($colors, #{$color}-diff);
+  border-color: map-get($colors, #{$color}-accent);
   &:hover {
-    border-color: map-get($colors, #{$color}-diff-dark);
+    border-color: map-get($colors, #{$color}-accent);
   }
 }
 

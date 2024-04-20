@@ -16,22 +16,22 @@
 
   > .header {
     &::before {
-      background-color: map-get($colors, #{$view}-diff);
+      background-color: map-get($colors, #{$view}-accent);
     }
 
     > .label {
-      color: map-get($colors, #{$view}-diff);
+      color: map-get($colors, #{$view}-accent);
     }
 
     &:focus,
     &:hover {
       > .label {
         cursor: pointer;
-        color: map-get($colors, #{$view}-diff);
+        color: map-get($colors, #{$view}-accent);
       }
 
       &::before {
-        background-color: map-get($colors, #{$view}-diff);
+        background-color: map-get($colors, #{$view}-accent);
       }
     }
   }
@@ -53,7 +53,6 @@
 
     &::before {
       content: '';
-      background-color: $color-other-diff;
       height: $separator-height;
       left: 0;
       position: absolute;

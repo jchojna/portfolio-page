@@ -14,13 +14,13 @@ $size-icon-m: 50px;
   }
 
   &::before {
-    border-color: map-get($colors, #{$project}-shadow);
+    border-color: map-get($colors, #{$project}-black);
   }
 
   &:active {
     fill: map-get($colors, #{$project});
     background-color: rgba(
-      $color: map-get($colors, #{$project}-shadow),
+      $color: map-get($colors, #{$project}-black),
       $alpha: $background-opacity
     );
   }

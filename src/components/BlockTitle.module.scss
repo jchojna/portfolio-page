@@ -3,9 +3,9 @@
 @import '../styles/mixins.scss';
 
 @mixin blockTitle($color) {
-  color: map-get($colors, #{$color}-diff);
+  color: map-get($colors, #{$color}-accent);
   &::before {
-    background-color: map-get($colors, #{$color}-diff);
+    background-color: map-get($colors, #{$color}-accent);
   }
 }
 

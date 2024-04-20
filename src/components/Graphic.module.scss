@@ -7,7 +7,7 @@
     fill: map-get($colors, #{$view}-dark);
   }
   .shadow {
-    fill: map-get($colors, #{$view}-shadow);
+    fill: map-get($colors, #{$view}-black);
   }
 }
 
