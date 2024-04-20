@@ -19,8 +19,4 @@
     transition: visibility 0s;
     visibility: visible;
   }
-
-  @media only screen and (min-width: $media-m) {
-    scroll-snap-type: y mandatory;
-  }
 }

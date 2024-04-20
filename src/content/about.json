@@ -91,22 +91,6 @@
       {
         "name": "electron",
         "totalSVG": 1
-      },
-      {
-        "name": "bootstrap",
-        "totalSVG": 1
-      },
-      {
-        "name": "tailwind",
-        "totalSVG": 1
-      },
-      {
-        "name": "chakra-ui",
-        "totalSVG": 1
-      },
-      {
-        "name": "wordpress",
-        "totalSVG": 1
       }
     ]
   }

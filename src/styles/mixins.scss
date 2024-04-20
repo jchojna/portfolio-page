@@ -161,7 +161,7 @@
   gap: 25px;
   column-gap: 60px;
   padding: 0 $offset-right-s $menu-item-height $offset-left-s;
-  transition: opacity 1s, transform 0.8s cubic-bezier(0, 0.5, 0, 1) 0.2s;
+  transition: opacity 1s, transform 0.3s ease-out;
   width: 100%;
 
   &.about {
@@ -173,6 +173,7 @@
       'high'
       'medium';
     width: 100%;
+    max-width: 1200px;
   }
 
   &.resume {
@@ -197,7 +198,7 @@
 
     &.prev {
       opacity: 0;
-      transform: translateY(-100%);
+      transform: translateY(-20%);
     }
 
     &.current {
@@ -207,7 +208,7 @@
 
     &.next {
       opacity: 0;
-      transform: translateY(100%);
+      transform: translateY(20%);
     }
 
     &.about {
