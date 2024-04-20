@@ -1,22 +1,23 @@
+@use '../styles/colors.scss' as col;
 @use '../styles/variables.scss' as var;
 @use '../styles/mixins.scss' as mix;
 
 @mixin projectLink($project) {
-  border-color: map-get(var.$colors, #{$project}-diff);
+  border-color: map-get(col.$colors, #{$project}-diff);
 
   &.link {
-    background-color: map-get(var.$colors, #{$project}-diff);
-    color: map-get(var.$colors, #{$project}-white);
+    background-color: map-get(col.$colors, #{$project}-diff);
+    color: map-get(col.$colors, #{$project}-white);
 
     &::before {
-      border-color: map-get(var.$colors, #{$project}-diff-dark);
+      border-color: map-get(col.$colors, #{$project}-diff-dark);
     }
     &:active,
     &:focus,
     &:hover {
-      color: map-get(var.$colors, #{$project}-white);
+      color: map-get(col.$colors, #{$project}-white);
       background-color: rgba(
-        $color: map-get(var.$colors, #{$project}-diff-dark),
+        $color: map-get(col.$colors, #{$project}-diff-dark),
         $alpha: var.$background-opacity
       );
     }

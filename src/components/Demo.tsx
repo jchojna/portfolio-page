@@ -53,9 +53,9 @@ const Demo = ({ projectName, snapshots }: DemoProps) => {
           ))}
         </Carousel>
       )}
-      {projectName === 'glob3d' && (
+      {/* {projectName === 'glob3d' && (
         <div className={classes.globe} ref={globeRef}></div>
-      )}
+      )} */}
     </div>
   );
 };

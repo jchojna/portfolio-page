@@ -1,3 +1,4 @@
+@import '../styles/colors.scss';
 @import '../styles/variables.scss';
 
 @mixin flex-center {
@@ -19,6 +20,17 @@
   border-top-width: 8px;
 }
 
+@mixin sectionBackground($color1, $color2, $color3) {
+  $opacity: 0.3;
+  background-color: $color1;
+  background: linear-gradient(
+    180deg,
+    rgba(mix($color1, $color2), $opacity) 0%,
+    rgba($color2, $opacity) 50%,
+    rgba(mix($color2, $color3), $opacity) 100%
+  );
+}
+
 // each view of the app
 @mixin section {
   align-items: center;
@@ -31,31 +43,39 @@
   width: 100%;
 
   &.about {
-    background-color: $color-about;
+    @include sectionBackground(#303030, $color-about, $color-resume);
   }
   &.resume {
-    background-color: $color-resume;
+    @include sectionBackground($color-about, $color-resume, $color-glob3d);
   }
   &.glob3d {
-    background-color: $color-glob3d;
+    @include sectionBackground($color-resume, $color-glob3d, $color-tasktimer);
   }
   &.tasktimer {
-    background-color: $color-tasktimer;
+    @include sectionBackground($color-glob3d, $color-tasktimer, $color-hydrapp);
   }
   &.hydrapp {
-    background-color: $color-hydrapp;
+    @include sectionBackground(
+      $color-tasktimer,
+      $color-hydrapp,
+      $color-portfolio
+    );
   }
   &.portfolio {
-    background-color: $color-portfolio;
+    @include sectionBackground(
+      $color-hydrapp,
+      $color-portfolio,
+      $color-archviz
+    );
   }
   &.archviz {
-    background-color: $color-archviz;
+    @include sectionBackground($color-portfolio, $color-archviz, $color-quotes);
   }
   &.quotes {
-    background-color: $color-quotes;
+    @include sectionBackground($color-archviz, $color-quotes, $color-contact);
   }
   &.contact {
-    background-color: $color-contact;
+    @include sectionBackground($color-quotes, $color-contact, $color-about);
   }
 
   @media only screen and (min-width: $media-m) {
@@ -63,88 +83,6 @@
     justify-content: center;
     padding: 0;
     padding-left: $menu-width-m + 100px;
-
-    &.about {
-      background-color: $color-about;
-      background: radial-gradient(
-        circle,
-        $color-about 0%,
-        $color-about 60%,
-        $color-about-dark 100%
-      );
-    }
-    &.resume {
-      background-color: $color-resume;
-      background: radial-gradient(
-        circle,
-        $color-resume 0%,
-        $color-resume 60%,
-        $color-resume-dark 100%
-      );
-    }
-    &.glob3d {
-      background-color: $color-glob3d;
-      background: radial-gradient(
-        circle,
-        $color-glob3d 0%,
-        $color-glob3d 70%,
-        $color-glob3d-dark 100%
-      );
-    }
-    &.tasktimer {
-      background-color: $color-tasktimer;
-      background: radial-gradient(
-        circle,
-        $color-tasktimer 0%,
-        $color-tasktimer 70%,
-        $color-tasktimer-dark 100%
-      );
-    }
-    &.hydrapp {
-      background-color: $color-hydrapp;
-      background: radial-gradient(
-        circle,
-        $color-hydrapp 0%,
-        $color-hydrapp 40%,
-        $color-hydrapp-dark 100%
-      );
-    }
-    &.portfolio {
-      background-color: $color-portfolio;
-      background: radial-gradient(
-        circle,
-        $color-portfolio 0%,
-        $color-portfolio 40%,
-        $color-portfolio-dark 100%
-      );
-    }
-    &.archviz {
-      background-color: $color-archviz;
-      background: radial-gradient(
-        circle,
-        $color-archviz 0%,
-        $color-archviz 40%,
-        $color-archviz-dark 100%
-      );
-    }
-    &.quotes {
-      background-color: $color-quotes;
-      background: radial-gradient(
-        circle,
-        $color-quotes 0%,
-        $color-quotes 40%,
-        $color-quotes-dark 100%
-      );
-    }
-    &.contact {
-      background-color: $color-contact;
-      background: radial-gradient(
-        circle,
-        $color-contact 0%,
-        $color-contact 40%,
-        $color-contact-dark 100%
-      );
-    }
   }
 
   @media only screen and (min-width: $media-l) {
