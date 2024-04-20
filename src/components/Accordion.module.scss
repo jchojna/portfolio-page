@@ -1,3 +1,4 @@
+@import '../styles/colors.scss';
 @import '../styles/variables.scss';
 @import '../styles/mixins.scss';
 
@@ -5,32 +6,32 @@
   &.collapsed {
     > .header {
       &::before {
-        background-color: map-get($colors, #{$view}-dark);
+        background-color: map-get($colors, #{$view}-light);
       }
       > .label {
-        color: map-get($colors, #{$view}-dark);
+        color: map-get($colors, #{$view}-light);
       }
     }
   }
 
   > .header {
     &::before {
-      background-color: map-get($colors, #{$view}-diff);
+      background-color: map-get($colors, #{$view}-accent);
     }
 
     > .label {
-      color: map-get($colors, #{$view}-diff);
+      color: map-get($colors, #{$view}-accent);
     }
 
     &:focus,
     &:hover {
       > .label {
         cursor: pointer;
-        color: map-get($colors, #{$view}-diff);
+        color: map-get($colors, #{$view}-accent);
       }
 
       &::before {
-        background-color: map-get($colors, #{$view}-diff);
+        background-color: map-get($colors, #{$view}-accent);
       }
     }
   }
@@ -51,8 +52,8 @@
     transition: padding $accordion-time;
 
     &::before {
+      border-radius: $border-radius / 2;
       content: '';
-      background-color: $color-other-diff;
       height: $separator-height;
       left: 0;
       position: absolute;
@@ -125,8 +126,4 @@
       }
     }
   }
-}
-
-.rollable {
-  transition: height $accordion-time;
 }

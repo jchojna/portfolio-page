@@ -8,12 +8,34 @@
     @include container;
 
     align-items: center;
+    grid-template-areas:
+      'photo'
+      'title'
+      'description'
+      'contact'
+      'high'
+      'medium';
+    width: 100%;
+    max-width: 1200px;
+
+    @media only screen and (min-width: $media-m) {
+      grid-template-areas:
+        'title photo'
+        'description photo'
+        'contact photo'
+        'high photo'
+        'medium photo'
+        'low photo';
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto 1fr repeat(4, auto);
+    }
 
     .title {
       @include sectionTitle;
 
+      border-color: $color-about-accent;
+      color: $color-about-light;
       margin: 0;
-      // margin-top: -3rem;
     }
 
     .description {
@@ -24,9 +46,16 @@
     }
 
     .photo {
+      border-radius: $border-radius * 2;
       grid-area: photo;
       max-width: 500px;
+      opacity: 0.6;
+      transition: opacity 0.2s;
       width: 100%;
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
     .iconsGroup {

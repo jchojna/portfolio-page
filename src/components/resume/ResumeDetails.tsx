@@ -24,9 +24,11 @@ const ResumeDetails = ({ label, items, description }: ResumeDetailsProps) => {
       </div>
       {description && (
         <div className={classes.description}>
-          {description.map((responsibility) => {
+          {description.map((responsibility, index) => {
             return (
-              <span className={classes.responsibility}>{responsibility}</span>
+              <span key={index} className={classes.responsibility}>
+                {responsibility}
+              </span>
             );
           })}
         </div>

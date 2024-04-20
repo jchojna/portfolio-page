@@ -1,3 +1,4 @@
+@import '../styles/colors.scss';
 @import '../styles/variables.scss';
 @import '../styles/mixins.scss';
 @import '../styles/animations.scss';
@@ -50,6 +51,7 @@
 
 .indicator {
   background-color: #fff;
+  border-radius: 0 $border-radius / 2 $border-radius / 2 0;
   height: $menu-item-height;
   left: 0;
   position: absolute;
@@ -65,30 +67,27 @@
   }
 
   &.about {
-    background-color: $color-about;
+    background-color: $color-about-accent;
   }
   &.resume {
-    background-color: $color-resume;
+    background-color: $color-resume-accent;
   }
   &.glob3d {
-    background-color: $color-glob3d;
+    background-color: $color-glob3d-accent;
   }
   &.tasktimer {
-    background-color: $color-tasktimer;
+    background-color: $color-tasktimer-accent;
   }
   &.hydrapp {
-    background-color: $color-hydrapp;
+    background-color: $color-hydrapp-accent;
   }
   &.portfolio {
-    background-color: $color-portfolio;
+    background-color: $color-portfolio-accent;
   }
   &.archviz {
-    background-color: $color-archviz;
-  }
-  &.quotes {
-    background-color: $color-quotes;
+    background-color: $color-archviz-accent;
   }
   &.contact {
-    background-color: $color-contact;
+    background-color: $color-contact-accent;
   }
 }

@@ -2,9 +2,9 @@
 @import '../styles/mixins.scss';
 
 @mixin navigatorButton($color) {
-  border-color: map-get($colors, #{$color}-diff);
+  border-color: map-get($colors, #{$color}-accent);
   &:hover {
-    border-color: map-get($colors, #{$color}-diff-dark);
+    border-color: map-get($colors, #{$color}-accent);
   }
 }
 
@@ -77,6 +77,7 @@
   .icon {
     border-color: inherit;
     border-style: solid;
+    border-radius: $border-radius;
     border-width: 0;
     pointer-events: none;
     transition: border-color $navigation-time,

@@ -8,6 +8,7 @@
 
 .sections {
   background-color: $intro-background-color;
+  background-color: #000;
   height: 100%;
   overflow: auto;
   position: relative;
@@ -18,9 +19,5 @@
   &.visible {
     transition: visibility 0s;
     visibility: visible;
-  }
-
-  @media only screen and (min-width: $media-m) {
-    scroll-snap-type: y mandatory;
   }
 }

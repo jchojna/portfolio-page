@@ -2,7 +2,7 @@
   "title": "Hello there!",
   "description": "Combining my past experience as an architect and 3D graphic artist with my current role as a frontend developer, I specialize in crafting visually stunning UI and highly interactive digital experiences.",
   "highLevel": {
-    "title": "Tech Stack",
+    "title": "Technologies & Tools",
     "tech": [
       {
         "name": "js",
@@ -90,22 +90,6 @@
       },
       {
         "name": "electron",
-        "totalSVG": 1
-      },
-      {
-        "name": "bootstrap",
-        "totalSVG": 1
-      },
-      {
-        "name": "tailwind",
-        "totalSVG": 1
-      },
-      {
-        "name": "chakra-ui",
-        "totalSVG": 1
-      },
-      {
-        "name": "wordpress",
         "totalSVG": 1
       }
     ]

@@ -1,3 +1,4 @@
+@import '../styles/colors.scss';
 @import '../styles/variables.scss';
 @import '../styles/mixins.scss';
 @import '../styles/animations.scss';
@@ -75,45 +76,44 @@
 
 .indicator {
   background-color: #fff;
+  border-radius: 0 $border-radius / 2 $border-radius / 2 0;
   height: $menu-item-height;
   left: 0;
   position: absolute;
   top: 0;
   transition: background-color $time-menu-indicator, left $time-menu-indicator,
-    top $time-menu-indicator 0.2s, width $time-menu-indicator 0.4s ease-out;
+    top $time-menu-indicator $menu-button-time,
+    width $time-menu-indicator 0.4s ease-out;
   width: 20px;
   z-index: 9999;
 
-  &.intro.about {
-    background-color: $color-about;
-  }
-  &.intro.resume {
-    background-color: $color-resume;
-  }
-  &.intro.glob3d {
-    background-color: $color-glob3d;
-  }
-  &.intro.tasktimer {
-    background-color: $color-tasktimer;
-  }
-  &.intro.hydrapp {
-    background-color: $color-hydrapp;
-  }
-  &.intro.portfolio {
-    background-color: $color-portfolio;
-  }
-  &.intro.archviz {
-    background-color: $color-archviz;
-  }
-  &.intro.quotes {
-    background-color: $color-quotes;
-  }
-  &.intro.contact {
-    background-color: $color-contact;
+  &.intro {
+    border-radius: $border-radius / 2;
   }
 
-  &.intro {
-    background-color: #fff;
+  &.about {
+    background-color: $color-about-accent;
+  }
+  &.resume {
+    background-color: $color-resume-accent;
+  }
+  &.glob3d {
+    background-color: $color-glob3d-accent;
+  }
+  &.tasktimer {
+    background-color: $color-tasktimer-accent;
+  }
+  &.hydrapp {
+    background-color: $color-hydrapp-accent;
+  }
+  &.portfolio {
+    background-color: $color-portfolio-accent;
+  }
+  &.archviz {
+    background-color: $color-archviz-accent;
+  }
+  &.contact {
+    background-color: $color-contact-accent;
   }
 
   @media only screen and (min-width: $media-l) {

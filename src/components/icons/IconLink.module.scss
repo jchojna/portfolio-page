@@ -1,3 +1,4 @@
+@import '../../styles/colors.scss';
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
@@ -9,7 +10,9 @@
   .link {
     @include flex-center;
 
+    border-radius: $border-radius;
     outline: none;
+    overflow: hidden;
     position: relative;
     transition: background-color $button-hover, fill $button-hover;
     width: 50px;
@@ -87,13 +90,17 @@
         $alpha: $background-opacity
       );
       fill: $color-about-light;
+
       &::before {
-        border-color: $color-about-shadow;
+        border-color: $color-about-black;
       }
+
+      &:hover,
       &:active {
-        fill: $color-about;
+        fill: $color-about-accent;
+
         background-color: rgba(
-          $color: $color-about-shadow,
+          $color: $color-about-black,
           $alpha: $background-opacity
         );
       }
@@ -106,57 +113,19 @@
 
   &.contact {
     .link {
-      background-color: rgba(
-        $color: $color-contact-diff,
-        $alpha: $background-opacity
-      );
+      background-color: $color-contact-dark;
       fill: $color-contact-light;
+
       &::before {
-        border-color: $color-contact-diff-dark;
+        border-color: $color-contact-black;
       }
+
+      &:hover {
+        fill: $color-contact-white;
+      }
+
       &:active {
-        fill: $color-contact-light;
-        background-color: rgba(
-          $color: $color-contact-diff-dark,
-          $alpha: $background-opacity
-        );
-      }
-    }
-
-    .name {
-      color: $color-quotes-shadow;
-    }
-  }
-
-  @media only screen and (min-width: $media-m) {
-    &.about {
-      .link {
-        &::before {
-          border-color: $color-about-shadow;
-        }
-        &:focus,
-        &:hover {
-          fill: $color-about;
-          background-color: rgba(
-            $color: $color-about-shadow,
-            $alpha: $background-opacity
-          );
-        }
-      }
-    }
-
-    &.contact {
-      .link {
-        &::before {
-          border-color: $color-contact-diff-dark;
-        }
-        &:focus,
-        &:hover {
-          background-color: rgba(
-            $color: $color-contact-diff-dark,
-            $alpha: $background-opacity
-          );
-        }
+        background-color: $color-contact-black;
       }
     }
   }

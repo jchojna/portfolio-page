@@ -6,49 +6,59 @@
 
   display: flex;
   flex-direction: column;
-  gap: 50px;
 
-  @media screen and (min-width: var.$media-m) {
-    flex-direction: row;
-  }
+  .container {
+    @include mix.animated-container;
 
-  .content {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 0 var.$offset-right-s 0 var.$offset-left-s;
+    gap: 50px;
     width: 100%;
-    z-index: 1;
 
     @media screen and (min-width: var.$media-m) {
-      min-width: 400px;
-      padding: 0;
-      width: 400px;
+      flex-direction: row;
     }
 
-    .footer {
+    .content {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      height: auto;
-      padding-left: var.$text-indent;
+      flex-direction: column;
+      gap: 20px;
+      padding: 0 var.$offset-right-s 0 var.$offset-left-s;
+      width: 100%;
+      z-index: 1;
 
       @media screen and (min-width: var.$media-m) {
-        height: 60px;
+        min-width: 400px;
         padding: 0;
+        width: 400px;
       }
 
-      .links {
+      .footer {
         display: flex;
+        flex-wrap: wrap;
         gap: 10px;
-      }
-
-      .tags {
-        display: flex;
-        height: 100%;
+        height: auto;
+        padding-left: var.$text-indent;
 
         @media screen and (min-width: var.$media-m) {
+          height: 60px;
           padding: 0;
+        }
+
+        .links {
+          display: flex;
+          gap: 10px;
+        }
+
+        .tags {
+          display: flex;
+          gap: 5px;
+          height: 100%;
+
+          @media screen and (min-width: var.$media-m) {
+            padding: 0;
+          }
         }
       }
     }
