@@ -2,11 +2,7 @@ import clsx from 'clsx';
 import { useContext, useEffect, useRef, useState } from 'react';
 
 import menuItems from '../content/menu.json';
-import {
-  getCurrentSectionIndex,
-  getOffsetedSectionIndex,
-  getRelativeTopOffset,
-} from '../utils/utils';
+import { getCurrentSectionIndex } from '../utils/utils';
 import CurrentViewContext from '../views/CurrentViewContext';
 import MenuButton from './MenuButton';
 
@@ -25,13 +21,9 @@ const Menu = ({
   isMenuMode,
   setMenuMode,
   sectionsRef,
-  backgroundSection,
-  setBackgroundSection,
   setIndicatorRef,
 }: MenuProps) => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(0);
-  const [offsetedSectionIndex, setOffsetedSectionIndex] = useState<number>(-1);
-  const [relativeTopOffset, setRelativeTopOffset] = useState<number>(0);
 
   const [currentSectionIndex, setCurrentSectionIndex] =
     useContext(CurrentViewContext);
@@ -49,18 +41,7 @@ const Menu = ({
       Math.ceil(sectionsRef.current.scrollTop),
       sectionsScrolls
     );
-    const offsetedIndex = getOffsetedSectionIndex(
-      Math.ceil(sectionsRef.current.scrollTop),
-      sectionsScrolls
-    );
-    const offset =
-      getRelativeTopOffset(
-        Math.ceil(sectionsRef.current.scrollTop),
-        sectionsScrolls
-      ) || window.innerHeight;
     setCurrentSectionIndex(currentIndex);
-    setOffsetedSectionIndex(offsetedIndex);
-    setRelativeTopOffset(offset);
   };
 
   useEffect(() => {
@@ -108,9 +89,9 @@ const Menu = ({
         ref={indicatorRef}
         className={clsx(
           classes.indicator,
-          classes[hoveredItemName],
-          isMenuMode && classes.intro
-          // isMenuMode && classes.visible
+          isMenuMode && classes[hoveredItemName],
+          isMenuMode && classes.intro,
+          classes[menuItems[currentSectionIndex].label]
         )}
       ></div>
       <nav className={menuClass}>

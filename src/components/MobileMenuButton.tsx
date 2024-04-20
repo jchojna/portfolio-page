@@ -74,7 +74,7 @@ const MobileMenuButton = ({
       // move menu buttons to the top
       setTimeout(() => {
         buttonRefNode.style.transform = `translateY(
-          ${-buttonRefNode.getBoundingClientRect().top}px
+          ${-buttonRefNode.getBoundingClientRect().top + 5}px
         )`;
       }, 500);
     }

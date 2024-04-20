@@ -7,10 +7,10 @@
   @include flex-center;
 
   height: $menu-item-height;
-  left: 0;
+  left: 5px;
   pointer-events: all;
   position: fixed;
-  top: 0;
+  top: 5px;
   transition: visibility 0s;
   visibility: hidden;
   width: $menu-item-height;
@@ -22,28 +22,28 @@
   }
 
   &.about {
-    fill: $color-about;
+    fill: $color-about-accent;
   }
   &.resume {
-    fill: $color-resume;
+    fill: $color-resume-accent;
   }
   &.glob3d {
-    fill: $color-glob3d;
+    fill: $color-glob3d-accent;
   }
   &.tasktimer {
-    fill: $color-tasktimer;
+    fill: $color-tasktimer-accent;
   }
   &.portfolio {
-    fill: $color-portfolio;
+    fill: $color-portfolio-accent;
   }
   &.hydrapp {
-    fill: $color-hydrapp;
+    fill: $color-hydrapp-accent;
   }
   &.archviz {
-    fill: $color-archviz;
+    fill: $color-archviz-accent;
   }
   &.contact {
-    fill: $color-contact;
+    fill: $color-contact-accent;
   }
 
   .svg {

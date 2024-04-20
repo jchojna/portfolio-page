@@ -35,28 +35,28 @@
   }
 
   &.about.active {
-    fill: $color-about;
+    fill: $color-about-accent;
   }
   &.resume.active {
-    fill: $color-resume;
+    fill: $color-resume-accent;
   }
   &.tasktimer.active {
-    fill: $color-tasktimer;
+    fill: $color-tasktimer-accent;
   }
   &.glob3d.active {
-    fill: $color-glob3d;
+    fill: $color-glob3d-accent;
   }
   &.hydrapp.active {
-    fill: $color-hydrapp;
+    fill: $color-hydrapp-accent;
   }
   &.portfolio.active {
-    fill: $color-portfolio;
+    fill: $color-portfolio-accent;
   }
   &.archviz.active {
-    fill: $color-archviz;
+    fill: $color-archviz-accent;
   }
   &.contact.active {
-    fill: $color-contact;
+    fill: $color-contact-accent;
   }
 }
 
@@ -84,7 +84,7 @@
     width: 100%;
 
     &.visible {
-      opacity: $svg-opacity;
+      opacity: 0.3;
       transition: opacity 0.3s, visibility 0s;
       visibility: inherit;
     }

@@ -3,15 +3,12 @@
 @import '../styles/animations.scss';
 
 @mixin menuButton($color) {
-  fill: map-get($colors, #{$color}-dark);
-
-  opacity: 0.6;
   fill: #111;
+  opacity: 0.6;
 
   &:active,
   &:focus,
   &:hover {
-    // fill: map-get($colors, #{$color}-light);
     opacity: 0.9;
   }
 
@@ -35,34 +32,8 @@
   height: $menu-item-height;
   justify-content: flex-end;
   padding-left: 55px;
-  transition: fill $menu-sm-first-timeout, width $menu-sm-first-timeout;
-
-  &.intro:not(.active) {
-    &.about.hovered {
-      fill: $color-about;
-    }
-    &.resume.hovered {
-      fill: $color-resume;
-    }
-    &.glob3d.hovered {
-      fill: $color-glob3d;
-    }
-    &.tasktimer.hovered {
-      fill: $color-tasktimer;
-    }
-    &.portfolio.hovered {
-      fill: $color-portfolio;
-    }
-    &.hydrapp.hovered {
-      fill: $color-hydrapp;
-    }
-    &.archviz.hovered {
-      fill: $color-archviz;
-    }
-    &.contact.hovered {
-      fill: $color-contact;
-    }
-  }
+  transition: opacity $menu-sm-first-timeout,
+    fill $menu-sm-first-timeout $menu-button-time, width $menu-sm-first-timeout;
 
   &.about {
     @include menuButton(about);
@@ -94,40 +65,41 @@
     padding: 0;
     width: 100%;
   }
-}
 
-.menuSvg {
-  @include flex-center;
+  .menuSvg {
+    @include flex-center;
 
-  height: 100%;
-  pointer-events: none;
-  position: relative;
-
-  .menuSvgText {
     height: 100%;
-  }
+    pointer-events: none;
+    position: relative;
 
-  .menuSvgShadow {
-    fill: #000;
-    height: 100%;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    transition: opacity 0.2s, visibility 0s 0.2s;
-    visibility: hidden;
-    width: 100%;
-
-    &.visible {
-      opacity: $svg-opacity;
-      transition: opacity 0.2s, visibility 0s;
-      visibility: visible;
-    }
-  }
-
-  @media only screen and (min-width: $media-l) {
     .menuSvgText {
-      height: $menu-item-height-l;
+      height: 100%;
+    }
+
+    .menuSvgShadow {
+      fill: #000;
+      height: 100%;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      transition: opacity $menu-button-time $menu-button-time,
+        visibility 0s $menu-button-time;
+      visibility: hidden;
+      width: 100%;
+
+      &.visible {
+        opacity: $svg-opacity;
+        transition: opacity $menu-button-time $menu-button-time, visibility 0s;
+        visibility: visible;
+      }
+    }
+
+    @media only screen and (min-width: $media-l) {
+      .menuSvgText {
+        height: $menu-item-height-l;
+      }
     }
   }
 }
