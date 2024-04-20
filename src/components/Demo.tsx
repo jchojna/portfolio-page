@@ -26,10 +26,10 @@ const Demo = ({ projectName, snapshots }: DemoProps) => {
       setGlobeInstance(
         new BarGlob3d(globeRef.current, data, {
           tooltipValueSuffix: 'people',
-          globeColor: '#048279',
-          barColor: '#c2f3ef',
-          barActiveColor: '#d29a21',
-          tooltipActiveBackgroundColor: '#d29a21',
+          globeColor: '#120e36',
+          barColor: '#b4afe8',
+          barActiveColor: '#e5a110',
+          tooltipActiveBackgroundColor: '#e5a110',
         })
       );
     }
@@ -53,9 +53,9 @@ const Demo = ({ projectName, snapshots }: DemoProps) => {
           ))}
         </Carousel>
       )}
-      {/* {projectName === 'glob3d' && (
+      {projectName === 'glob3d' && (
         <div className={classes.globe} ref={globeRef}></div>
-      )} */}
+      )}
     </div>
   );
 };
