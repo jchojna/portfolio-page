@@ -5,10 +5,25 @@
 @mixin menuButton($color) {
   fill: map-get($colors, #{$color}-dark);
 
+  opacity: 0.6;
+  fill: #111;
+
   &:active,
   &:focus,
   &:hover {
-    fill: map-get($colors, #{$color}-black);
+    // fill: map-get($colors, #{$color}-light);
+    opacity: 0.9;
+  }
+
+  &.active {
+    fill: map-get($colors, #{$color}-accent);
+    opacity: 1;
+
+    &:active,
+    &:focus,
+    &:hover {
+      fill: map-get($colors, #{$color}-accent);
+    }
   }
 }
 
@@ -73,14 +88,6 @@
   &.contact {
     @include menuButton(contact);
   }
-  &.active {
-    fill: #fff;
-    &:active,
-    &:focus,
-    &:hover {
-      fill: #fff;
-    }
-  }
 
   @media only screen and (min-width: $media-l) {
     height: $menu-item-height-l;
@@ -107,13 +114,13 @@
     opacity: 0;
     position: absolute;
     top: 0;
-    transition: opacity 0.3s, visibility 0s 0.3s;
+    transition: opacity 0.2s, visibility 0s 0.2s;
     visibility: hidden;
     width: 100%;
 
     &.visible {
       opacity: $svg-opacity;
-      transition: opacity 0.3s, visibility 0s;
+      transition: opacity 0.2s, visibility 0s;
       visibility: visible;
     }
   }

@@ -132,10 +132,6 @@ const Menu = ({
                   isActive={currentSectionIndex === index}
                   sectionsRef={sectionsRef}
                   setMenuMode={setMenuMode}
-                  backgroundSection={backgroundSection}
-                  setBackgroundSection={setBackgroundSection}
-                  offsetedSectionIndex={offsetedSectionIndex}
-                  relativeTopOffset={relativeTopOffset}
                 />
               </li>
             );
