@@ -51,6 +51,7 @@
 
 .indicator {
   background-color: #fff;
+  border-radius: 0 $border-radius / 2 $border-radius / 2 0;
   height: $menu-item-height;
   left: 0;
   position: absolute;

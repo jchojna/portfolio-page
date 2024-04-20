@@ -67,11 +67,11 @@
   }
 
   .letter {
-    fill: $color-tasktimer-letter;
+    fill: $color-tasktimer-accent;
   }
 
   .letterShadow {
-    fill: $color-tasktimer-letterShadow;
+    fill: mix($color-tasktimer-accent, $color-tasktimer-black);
   }
 
   @media only screen and (min-width: $media-m) {

@@ -39,6 +39,7 @@ $size-icon-m: 50px;
   }
 
   .icon {
+    border-radius: $border-radius;
     height: $size-icon-s;
     width: 100%;
     outline: none;

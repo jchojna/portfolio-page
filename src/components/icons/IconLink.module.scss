@@ -10,7 +10,9 @@
   .link {
     @include flex-center;
 
+    border-radius: $border-radius;
     outline: none;
+    overflow: hidden;
     position: relative;
     transition: background-color $button-hover, fill $button-hover;
     width: 50px;
@@ -88,11 +90,15 @@
         $alpha: $background-opacity
       );
       fill: $color-about-light;
+
       &::before {
         border-color: $color-about-black;
       }
+
+      &:hover,
       &:active {
-        fill: $color-about;
+        fill: $color-about-accent;
+
         background-color: rgba(
           $color: $color-about-black,
           $alpha: $background-opacity
@@ -120,24 +126,6 @@
 
       &:active {
         background-color: $color-contact-black;
-      }
-    }
-  }
-
-  @media only screen and (min-width: $media-m) {
-    &.about {
-      .link {
-        &::before {
-          border-color: $color-about-black;
-        }
-        &:focus,
-        &:hover {
-          fill: $color-about;
-          background-color: rgba(
-            $color: $color-about-black,
-            $alpha: $background-opacity
-          );
-        }
       }
     }
   }

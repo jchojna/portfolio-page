@@ -6,10 +6,10 @@
   &.collapsed {
     > .header {
       &::before {
-        background-color: map-get($colors, #{$view}-dark);
+        background-color: map-get($colors, #{$view}-light);
       }
       > .label {
-        color: map-get($colors, #{$view}-dark);
+        color: map-get($colors, #{$view}-light);
       }
     }
   }
@@ -52,6 +52,7 @@
     transition: padding $accordion-time;
 
     &::before {
+      border-radius: $border-radius / 2;
       content: '';
       height: $separator-height;
       left: 0;
@@ -125,8 +126,4 @@
       }
     }
   }
-}
-
-.rollable {
-  transition: height $accordion-time;
 }

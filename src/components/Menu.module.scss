@@ -76,6 +76,7 @@
 
 .indicator {
   background-color: #fff;
+  border-radius: 0 $border-radius / 2 $border-radius / 2 0;
   height: $menu-item-height;
   left: 0;
   position: absolute;
@@ -85,6 +86,10 @@
     width $time-menu-indicator 0.4s ease-out;
   width: 20px;
   z-index: 9999;
+
+  &.intro {
+    border-radius: $border-radius / 2;
+  }
 
   &.about {
     background-color: $color-about-accent;

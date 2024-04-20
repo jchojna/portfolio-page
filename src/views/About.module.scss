@@ -46,10 +46,16 @@
     }
 
     .photo {
+      border-radius: $border-radius * 2;
       grid-area: photo;
       max-width: 500px;
-      opacity: 0.5;
+      opacity: 0.6;
+      transition: opacity 0.2s;
       width: 100%;
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
     .iconsGroup {

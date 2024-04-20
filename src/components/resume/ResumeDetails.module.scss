@@ -9,7 +9,7 @@ $gap: 10px;
   gap: 5px;
 
   .label {
-    color: $color-resume-dark;
+    color: $color-resume-light;
     font-size: 1.3rem;
     font-weight: 700;
     margin: 0;
@@ -21,19 +21,20 @@ $gap: 10px;
     gap: $gap;
 
     .detail {
-      font-size: 1rem;
+      color: $color-resume-accent;
+      font-size: 1.1rem;
       font-weight: 700;
       line-height: 1.5;
       margin: 0;
 
       &-2,
       &-3 {
-        border-left: $separator-width solid $color-resume-dark;
+        border-left: $separator-width solid $color-resume-black;
         padding-left: $gap;
       }
 
       &-3 {
-        color: $color-resume-dark;
+        color: $color-resume-light;
       }
     }
   }
@@ -49,7 +50,8 @@ $gap: 10px;
       position: relative;
 
       &::before {
-        background-color: $color-resume-dark;
+        background-color: $color-resume-black;
+        border-radius: $border-radius / 2;
         content: '';
         height: 1rem;
         margin-right: 0.5rem;

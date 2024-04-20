@@ -61,7 +61,7 @@ const Menu = ({
     if (isMenuMode) {
       const { top, height } =
         menuListRef.current.children[
-          hoveredItem ? hoveredItem : currentSectionIndex
+          hoveredItem !== null ? hoveredItem : currentSectionIndex
         ].getBoundingClientRect();
       indicator.style.top = `${top}px`;
       indicator.style.left = `${window.innerWidth / 2 + 20}px`;
@@ -75,6 +75,7 @@ const Menu = ({
       indicator.style.top = `${top}px`;
       indicator.style.left = '0px';
       indicator.style.width = '20px';
+      setHoveredItem(currentSectionIndex);
     }
   }, [hoveredItem, currentSectionIndex, isMenuMode]);
 
@@ -91,7 +92,7 @@ const Menu = ({
           classes.indicator,
           isMenuMode && classes[hoveredItemName],
           isMenuMode && classes.intro,
-          classes[menuItems[currentSectionIndex].label]
+          !isMenuMode && classes[menuItems[currentSectionIndex].label]
         )}
       ></div>
       <nav className={menuClass}>

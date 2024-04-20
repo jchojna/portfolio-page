@@ -30,7 +30,9 @@ $icon-size: 1.3rem;
   }
 
   :global(.slider-container) {
+    border-radius: var.$border-radius * 2;
     opacity: 0.7;
+    overflow: hidden;
     transition: opacity 0.2s;
 
     &:hover {
