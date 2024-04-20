@@ -7,6 +7,20 @@
   .container {
     @include container;
 
+    grid-template-areas:
+      'title'
+      'info'
+      'accordions';
+    padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
+
+    @media only screen and (min-width: $media-m) {
+      align-content: start;
+      grid-template-areas:
+        'title title'
+        'info accordions';
+      grid-template-columns: 1fr 2fr;
+    }
+
     .title {
       @include sectionTitle;
     }

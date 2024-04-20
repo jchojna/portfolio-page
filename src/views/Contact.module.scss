@@ -11,7 +11,23 @@
     display: flex;
     flex-direction: column;
     gap: 60px;
+    grid-template-areas:
+      'title'
+      'form'
+      'social'
+      'footer';
     width: 100%;
+
+    @media only screen and (min-width: $media-m) {
+      align-content: stretch;
+      align-items: center;
+      grid-template-areas:
+        'title'
+        'form   '
+        'social '
+        'footer ';
+      grid-template-rows: auto 1fr;
+    }
 
     .title {
       @include sectionTitle;

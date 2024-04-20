@@ -164,34 +164,6 @@
   transition: opacity 1s, transform 0.3s ease-out;
   width: 100%;
 
-  &.about {
-    grid-template-areas:
-      'photo'
-      'title'
-      'description'
-      'contact'
-      'high'
-      'medium';
-    width: 100%;
-    max-width: 1200px;
-  }
-
-  &.resume {
-    grid-template-areas:
-      'title'
-      'info'
-      'accordions';
-    padding: $menu-item-height $offset-right-s $menu-item-height $offset-left-s;
-  }
-
-  &.contact {
-    grid-template-areas:
-      'title'
-      'form'
-      'social'
-      'footer';
-  }
-
   @media only screen and (min-width: $media-m) {
     padding: 0;
     margin-right: 100px;
@@ -209,37 +181,6 @@
     &.next {
       opacity: 0;
       transform: translateY(20%);
-    }
-
-    &.about {
-      grid-template-areas:
-        'title photo'
-        'description photo'
-        'contact photo'
-        'high photo'
-        'medium photo'
-        'low photo';
-      grid-template-columns: 1fr auto;
-      grid-template-rows: auto 1fr repeat(4, auto);
-    }
-
-    &.resume {
-      align-content: start;
-      grid-template-areas:
-        'title title'
-        'info accordions';
-      grid-template-columns: 1fr 2fr;
-    }
-
-    &.contact {
-      align-content: stretch;
-      align-items: center;
-      grid-template-areas:
-        'title'
-        'form   '
-        'social '
-        'footer ';
-      grid-template-rows: auto 1fr;
     }
   }
 
