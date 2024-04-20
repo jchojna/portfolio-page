@@ -32,6 +32,8 @@
     .title {
       @include sectionTitle;
 
+      border-color: $color-contact-accent;
+      color: $color-contact-accent;
       font-size: 3rem;
       margin: 0;
       text-align: center;

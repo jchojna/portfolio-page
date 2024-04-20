@@ -23,6 +23,9 @@
 
     .title {
       @include sectionTitle;
+
+      border-color: $color-resume-accent;
+      color: $color-resume-light;
     }
 
     .description {

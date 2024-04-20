@@ -107,20 +107,19 @@
 
   &.contact {
     .link {
-      background-color: rgba(
-        $color: $color-contact-accent,
-        $alpha: $background-opacity
-      );
+      background-color: $color-contact-dark;
       fill: $color-contact-light;
+
       &::before {
-        border-color: $color-contact-accent;
+        border-color: $color-contact-black;
       }
+
+      &:hover {
+        fill: $color-contact-white;
+      }
+
       &:active {
-        fill: $color-contact-light;
-        background-color: rgba(
-          $color: $color-contact-accent,
-          $alpha: $background-opacity
-        );
+        background-color: $color-contact-black;
       }
     }
   }
@@ -136,21 +135,6 @@
           fill: $color-about;
           background-color: rgba(
             $color: $color-about-black,
-            $alpha: $background-opacity
-          );
-        }
-      }
-    }
-
-    &.contact {
-      .link {
-        &::before {
-          border-color: $color-contact-accent;
-        }
-        &:focus,
-        &:hover {
-          background-color: rgba(
-            $color: $color-contact-accent,
             $alpha: $background-opacity
           );
         }

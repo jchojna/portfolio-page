@@ -138,19 +138,6 @@
   width: 100%;
   z-index: 2;
 
-  &.about {
-    border-color: $color-about-accent;
-    color: $color-about-light;
-  }
-  &.resume {
-    border-color: $color-resume-accent;
-    color: $color-resume-light;
-  }
-  &.contact {
-    border-color: $color-contact-accent;
-    color: $color-contact-light;
-  }
-
   @media only screen and (min-width: $media-m) {
     border: none;
     font-size: 72px;

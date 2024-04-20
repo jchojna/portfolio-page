@@ -29,6 +29,15 @@ $icon-size: 1.3rem;
     }
   }
 
+  :global(.slider-container) {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
   :global(.slide) {
     display: flex;
 
