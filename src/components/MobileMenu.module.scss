@@ -26,12 +26,7 @@
     display: flex;
     height: $menu-item-height;
     padding-right: 10px;
-    // pointer-events: none;
     width: 100%;
-
-    &--active {
-      // pointer-events: all;
-    }
 
     &--mobileHeader {
       left: 0;
@@ -51,7 +46,7 @@
 
 .indicator {
   background-color: #fff;
-  border-radius: 0 $border-radius / 2 $border-radius / 2 0;
+  border-radius: 0 calc($border-radius / 2) calc($border-radius / 2) 0;
   height: $menu-item-height;
   left: 0;
   position: absolute;

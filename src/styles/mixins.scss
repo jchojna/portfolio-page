@@ -129,10 +129,6 @@
     padding: 0;
     margin-right: 100px;
   }
-
-  @media screen and (min-width: $media-l) {
-    max-width: 1800px;
-  }
 }
 
 @mixin sectionTitle {
@@ -147,7 +143,7 @@
 
   @media only screen and (min-width: $media-m) {
     border: none;
-    font-size: 72px;
+    font-size: 60px;
     margin: 0;
     max-width: 60%;
     min-width: 380px;

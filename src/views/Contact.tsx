@@ -27,7 +27,7 @@ const Contact = () => {
         )}
       >
         <h2 className={clsx(classes.title, classes.large, classes.contact)}>
-          Feel free to contact me! I'm open for new opportunities
+          Looking to bring my talents to an innovative team. Let's chat!
         </h2>
         <div className={classes.contactDetails}>
           {contactDetails.map((details, index) => (

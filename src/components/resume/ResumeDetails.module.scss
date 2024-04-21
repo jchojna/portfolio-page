@@ -22,14 +22,14 @@ $gap: 10px;
 
     .detail {
       color: $color-resume-accent;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
       line-height: 1.5;
       margin: 0;
 
       &-2,
       &-3 {
-        border-left: $separator-width solid $color-resume-black;
+        border-left: $separator-width solid $color-resume-dark;
         padding-left: $gap;
       }
 
@@ -50,8 +50,8 @@ $gap: 10px;
       position: relative;
 
       &::before {
-        background-color: $color-resume-black;
-        border-radius: $border-radius / 2;
+        background-color: $color-resume-dark;
+        border-radius: calc($border-radius / 2);
         content: '';
         height: 1rem;
         margin-right: 0.5rem;
