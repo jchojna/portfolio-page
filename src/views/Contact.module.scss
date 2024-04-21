@@ -16,6 +16,7 @@
       'form'
       'social'
       'footer';
+    max-width: 1000px;
     width: 100%;
 
     @media only screen and (min-width: $media-m) {
@@ -34,7 +35,6 @@
 
       border-color: $color-contact-accent;
       color: $color-contact-light;
-      font-size: 3rem;
       margin: 0;
       text-align: center;
     }
