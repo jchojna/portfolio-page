@@ -85,10 +85,7 @@
 
   &.about {
     .link {
-      background-color: rgba(
-        $color: $color-about-dark,
-        $alpha: $background-opacity
-      );
+      background-color: $color-about-dark;
       fill: $color-about-light;
 
       &::before {
@@ -107,7 +104,7 @@
     }
 
     .name {
-      color: $color-about-white;
+      color: $color-about-light;
     }
   }
 
@@ -127,6 +124,10 @@
       &:active {
         background-color: $color-contact-black;
       }
+    }
+
+    .name {
+      color: $color-contact-light;
     }
   }
 }

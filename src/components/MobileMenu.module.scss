@@ -26,12 +26,7 @@
     display: flex;
     height: $menu-item-height;
     padding-right: 10px;
-    // pointer-events: none;
     width: 100%;
-
-    &--active {
-      // pointer-events: all;
-    }
 
     &--mobileHeader {
       left: 0;

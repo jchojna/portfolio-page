@@ -8,6 +8,28 @@
     "label": "Experience",
     "items": [
       {
+        "label": "Frontend Development",
+        "items": [
+          {
+            "label": "Jun 2021 - Present",
+            "items": ["Frontend Developer", "Appsilon", "Remote"],
+            "description": [
+              "collaborating in a multinational team within a rapidly growing company, providing consultancy services to a diverse range of clients, including Fortune 500 companies from Pharma, Biodiversity, Energy, and Sport industries",
+              "contributed to the development of complex dashboard applications, with a primary focus on frontend development and occasional contributions to backend development in R. Projects examples: Mbaza - a biodiversity project [TypeScript | React | Electron], Supply Chain application [TypeScript | Next.js | ReactFlow], dashboard applications [VanillaJS | Sass | R]",
+              "tech leader in a few small-scale projects since Q4 2022"
+            ]
+          },
+          {
+            "label": "Jun 2020 - Jun 2021",
+            "items": ["Junior Frontend Developer", "Appsilon", "Remote"],
+            "description": [
+              "focused on frontend development for commercial dashboard applications, involving UI/UX design preparation in Figma",
+              "undertook internal tasks such as website maintenance (e.g., appsilon.com [Typescript | Gatsby | GraphQL]), creation of landing pages (e.g., shiny.tools, shinymanifesto.com [Vanilla JS]), and maintenance of open-source projects"
+            ]
+          }
+        ]
+      },
+      {
         "label": "Architecture",
         "items": [
           {
@@ -50,28 +72,6 @@
           {
             "label": "2010 - 2013",
             "items": ["3d software tutor", "Euro Info Group", "Warsaw, Poland"]
-          }
-        ]
-      },
-      {
-        "label": "Frontend Development",
-        "items": [
-          {
-            "label": "Jun 2021 - Present",
-            "items": ["Frontend Developer", "Appsilon", "Remote"],
-            "description": [
-              "collaborating in a multinational team within a rapidly growing company, providing consultancy services to a diverse range of clients, including Fortune 500 companies from Pharma, Biodiversity, Energy, and Sport industries",
-              "contributed to the development of complex dashboard applications, with a primary focus on frontend development and occasional contributions to backend development in R. Projects examples: Mbaza - a biodiversity project [TypeScript | React | Electron], Supply Chain application [TypeScript | Next.js | ReactFlow], dashboard applications [VanillaJS | Sass | R]",
-              "tech leader in a few small-scale projects since Q4 2022"
-            ]
-          },
-          {
-            "label": "Jun 2020 - Jun 2021",
-            "items": ["Junior Frontend Developer", "Appsilon", "Remote"],
-            "description": [
-              "focused on frontend development for commercial dashboard applications, involving UI/UX design preparation in Figma",
-              "undertook internal tasks such as website maintenance (e.g., appsilon.com [Typescript | Gatsby | GraphQL]), creation of landing pages (e.g., shiny.tools, shinymanifesto.com [Vanilla JS]), and maintenance of open-source projects"
-            ]
           }
         ]
       }
