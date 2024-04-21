@@ -51,7 +51,7 @@ $gap: 10px;
 
       &::before {
         background-color: $color-resume-black;
-        border-radius: $border-radius / 2;
+        border-radius: calc($border-radius / 2);
         content: '';
         height: 1rem;
         margin-right: 0.5rem;

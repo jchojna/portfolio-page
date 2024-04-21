@@ -52,7 +52,7 @@
     transition: padding $accordion-time;
 
     &::before {
-      border-radius: $border-radius / 2;
+      border-radius: calc($border-radius / 2);
       content: '';
       height: $separator-height;
       left: 0;

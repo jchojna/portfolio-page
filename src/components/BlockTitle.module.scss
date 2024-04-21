@@ -19,7 +19,7 @@
   text-transform: uppercase;
 
   &::before {
-    border-radius: $border-radius / 2;
+    border-radius: calc($border-radius / 2);
     content: '';
     position: absolute;
     top: 0;
