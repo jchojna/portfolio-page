@@ -54,6 +54,7 @@ const Menu = ({
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    handleIndicator();
     window.addEventListener('resize', handleIndicator);
     return () => window.removeEventListener('resize', handleIndicator);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
