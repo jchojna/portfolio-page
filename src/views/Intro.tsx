@@ -7,11 +7,11 @@ import classes from './Intro.module.scss';
 
 type IntroProps = {
   indicator: HTMLDivElement | null;
+  isIntroDone: boolean;
+  setIntroDone: () => void;
 };
 
-const Intro = ({ indicator }: IntroProps) => {
-  const [isIntroVisible, setIntroVisible] = useState<boolean>(true);
-
+const Intro = ({ indicator, isIntroDone, setIntroDone }: IntroProps) => {
   const introRef = useRef<HTMLDivElement | null>(null);
   const loaderRef = useRef<HTMLDivElement | null>(null);
   const endingBeforeRef = useRef<HTMLDivElement | null>(null);
@@ -31,15 +31,15 @@ const Intro = ({ indicator }: IntroProps) => {
         skipButtonRef.current,
         indicator
       );
-      setIntroVisible(false);
+      setIntroDone();
     };
     runIntro();
-  }, [indicator]);
+  }, [indicator, setIntroDone]);
 
   return (
     <div
       ref={introRef}
-      className={clsx(classes.intro, isIntroVisible && classes.visible)}
+      className={clsx(classes.intro, !isIntroDone && classes.visible)}
     >
       <div
         ref={loaderRef}
@@ -57,7 +57,7 @@ const Intro = ({ indicator }: IntroProps) => {
       <button
         ref={skipButtonRef}
         className={classes.skipButton}
-        onClick={() => setIntroVisible(false)}
+        onClick={setIntroDone}
       >
         Skip Intro
       </button>

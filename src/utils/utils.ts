@@ -61,3 +61,41 @@ export const getViewLocation = (
     ? 'next'
     : 'prev';
 };
+
+export const updateIndicatorStyle = (
+  indicator: HTMLElement,
+  isMenuMode: boolean,
+  top: number,
+  height: number
+) => {
+  if (isMenuMode) {
+    indicator.style.top = `${top}px`;
+    indicator.style.left = `${window.innerWidth / 2 + 20}px`;
+    indicator.style.height = `${height}px`;
+    indicator.style.width = `${height}px`;
+  } else {
+    indicator.style.top = `${top}px`;
+    indicator.style.left = '0px';
+    indicator.style.width = '20px';
+  }
+};
+
+export const handleIndicator = () => {
+  const indicator = document.querySelector('[data-id="indicator"]');
+  const activeMenuItem = document.querySelector('[data-button-active="true"]');
+  if (!indicator || !(indicator instanceof HTMLElement)) return;
+  if (!activeMenuItem) return;
+  const isMenuMode = activeMenuItem.getAttribute('data-menu-mode') === 'true';
+  const { top, height } = activeMenuItem.getBoundingClientRect();
+
+  indicator.style.transition = 'none';
+  updateIndicatorStyle(indicator, isMenuMode, top, height);
+  setTimeout(() => {
+    indicator.style.transition = `
+      background-color 0.6s,
+      left 0.6s,
+      top 0.6s 0.2s,
+      width 0.6s 0.4s ease-out
+    `;
+  }, 0);
+};

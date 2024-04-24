@@ -27,8 +27,8 @@ function App() {
   const [isMenuMode, setMenuMode] = useState<boolean>(true);
   const [isSmoothScroll, setSmoothScroll] = useState<boolean>(false);
   const [indicatorRef, setIndicatorRef] = useState<HTMLDivElement | null>(null);
+  const [isIntroDone, setIntroDone] = useState<boolean>(false);
   const currentViewHook = useState<number>(0);
-
   const sectionsRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useMediaQuery({ query: '(max-width: 1200px)' });
   const sectionsClass = clsx({
@@ -49,7 +49,11 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <CurrentViewContext.Provider value={currentViewHook}>
         <div className={classes.app}>
-          <Intro indicator={indicatorRef} />
+          <Intro
+            indicator={indicatorRef}
+            isIntroDone={isIntroDone}
+            setIntroDone={() => setIntroDone(true)}
+          />
           {isMobile ? (
             <MobileHeader
               isMenuMode={isMenuMode}
@@ -68,7 +72,7 @@ function App() {
           <div ref={sectionsRef} className={sectionsClass}>
             <About />
             <Resume />
-            <Projects />
+            {isIntroDone && <Projects />}
             <Contact />
           </div>
         </div>

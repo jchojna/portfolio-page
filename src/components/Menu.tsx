@@ -1,8 +1,12 @@
 import clsx from 'clsx';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
 import menuItems from '../content/menu.json';
-import { getCurrentSectionIndex } from '../utils/utils';
+import {
+  getCurrentSectionIndex,
+  handleIndicator,
+  updateIndicatorStyle,
+} from '../utils/utils';
 import CurrentViewContext from '../views/CurrentViewContext';
 import MenuButton from './MenuButton';
 
@@ -23,14 +27,10 @@ const Menu = ({
   sectionsRef,
   setIndicatorRef,
 }: MenuProps) => {
-  const [hoveredItem, setHoveredItem] = useState<number | null>(0);
-
   const [currentSectionIndex, setCurrentSectionIndex] =
     useContext(CurrentViewContext);
-
   const indicatorRef = useRef<HTMLDivElement>(null);
   const menuListRef = useRef<HTMLUListElement>(null);
-  const hoveredItemName = menuItems.map(({ label }) => label)[hoveredItem || 0];
 
   const handleScroll = () => {
     if (!sectionsRef.current) return;
@@ -53,31 +53,21 @@ const Menu = ({
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    handleIndicator();
+    window.addEventListener('resize', handleIndicator);
+    return () => window.removeEventListener('resize', handleIndicator);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   // handle indicator position
   useEffect(() => {
     if (!indicatorRef.current) return;
     if (!menuListRef.current) return;
     const indicator = indicatorRef.current;
-    if (isMenuMode) {
-      const { top, height } =
-        menuListRef.current.children[
-          hoveredItem !== null ? hoveredItem : currentSectionIndex
-        ].getBoundingClientRect();
-      indicator.style.top = `${top}px`;
-      indicator.style.left = `${window.innerWidth / 2 + 20}px`;
-      indicator.style.height = `${height}px`;
-      indicator.style.width = `${height}px`;
-    } else {
-      const { top } =
-        menuListRef.current.children[
-          currentSectionIndex
-        ].getBoundingClientRect();
-      indicator.style.top = `${top}px`;
-      indicator.style.left = '0px';
-      indicator.style.width = '20px';
-      setHoveredItem(currentSectionIndex);
-    }
-  }, [hoveredItem, currentSectionIndex, isMenuMode]);
+    const { top, height } =
+      menuListRef.current.children[currentSectionIndex].getBoundingClientRect();
+    updateIndicatorStyle(indicator, isMenuMode, top, height);
+  }, [currentSectionIndex, isMenuMode]);
 
   const menuClass = clsx({
     [classes.menu]: true,
@@ -88,11 +78,11 @@ const Menu = ({
     <>
       <div
         ref={indicatorRef}
+        data-id="indicator"
         className={clsx(
           classes.indicator,
-          isMenuMode && classes[hoveredItemName],
           isMenuMode && classes.intro,
-          !isMenuMode && classes[menuItems[currentSectionIndex].label]
+          classes[menuItems[currentSectionIndex].label]
         )}
       ></div>
       <nav className={menuClass}>
@@ -102,15 +92,15 @@ const Menu = ({
               <li
                 key={index}
                 className={classes.menuItem}
-                onMouseEnter={() => setHoveredItem(index)}
-                onMouseLeave={() => !isMenuMode && setHoveredItem(null)}
+                onMouseEnter={() => {
+                  isMenuMode && setCurrentSectionIndex(index);
+                }}
               >
                 <MenuButton
                   index={index}
                   label={label}
                   width={width}
                   isMenuMode={isMenuMode}
-                  isHovered={hoveredItem === index}
                   isActive={currentSectionIndex === index}
                   sectionsRef={sectionsRef}
                   setMenuMode={setMenuMode}
