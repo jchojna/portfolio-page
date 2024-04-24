@@ -81,9 +81,6 @@
   left: 0;
   position: absolute;
   top: 0;
-  transition: background-color $time-menu-indicator, left $time-menu-indicator,
-    top $time-menu-indicator $menu-button-time,
-    width $time-menu-indicator 0.4s ease-out;
   width: 20px;
   z-index: 9999;
 

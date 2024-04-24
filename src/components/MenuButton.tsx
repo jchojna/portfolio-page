@@ -12,7 +12,6 @@ type MenuButtonProps = {
   label: string;
   width: number;
   isMenuMode: boolean;
-  isHovered: boolean;
   isActive?: boolean;
   sectionsRef: React.RefObject<HTMLDivElement>;
   setMenuMode: (isMenuMode: boolean) => void;
@@ -23,7 +22,6 @@ const MenuButton = ({
   label,
   width,
   isMenuMode,
-  isHovered,
   isActive,
   setMenuMode,
   sectionsRef,
@@ -32,7 +30,6 @@ const MenuButton = ({
   const buttonClass = clsx({
     [classes.menuButton]: true,
     [classes.intro]: isMenuMode,
-    [classes.hovered]: isHovered,
     [classes[label]]: true,
     [classes.active]: isActive,
   });
@@ -53,6 +50,8 @@ const MenuButton = ({
     <a
       ref={buttonRef}
       className={buttonClass}
+      data-button-active={isActive}
+      data-menu-mode={isMenuMode}
       onClick={() => handleClick(index)}
     >
       <div className={classes.menuSvg}>
