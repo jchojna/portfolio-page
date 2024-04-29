@@ -129,13 +129,14 @@
     "name": "portfolio",
     "repoName": "portfolio-page",
     "about": [
-      "This project is a showcase of my top five frontend projects, including this one, each presented in its own section. Additional sections feature simpler, early-stage projects. The site is a Single Page Application (SPA) with a focus on interactivity and animation, balanced with performance considerations to ensure smooth transitions.",
-      "Each section features a unique color palette, resulting in a total of 68 different colors across the site, managed effectively using SCSS. The project was initially built with vanilla JavaScript and later rewritten using React."
+      "This project is a showcase of my pet projects, each presented in its own section. The site is a Single Page Application (SPA) with a focus on interactivity and animation, balanced with performance considerations to ensure smooth transitions.",
+      "The project was initially built with vanilla JavaScript and later rewritten to Typescript and React."
     ],
     "features": [
       {
         "label": "Functionality",
         "items": [
+          "code splitting using Suspense and lazy functions",
           "async/await code for executing intro animations in a sequence",
           "using github API to fetch project details data",
           "custom accordions without use of third-party libraries",
