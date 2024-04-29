@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { Suspense, lazy, useContext } from 'react';
 
 import Graphic from '../components/Graphic';
+import Loader from '../components/Loader';
 import ProjectFeatures from '../components/ProjectFeatures';
 import ProjectLink from '../components/ProjectLink';
 import Tag from '../components/Tag';
@@ -65,12 +66,12 @@ const Project = ({
             </div>
           </div>
         </div>
-        <Suspense fallback={<div>Loading carousel...</div>}>
+        <Suspense fallback={<Loader />}>
           {isIntroDone && name !== 'glob3d' && (
             <ProjectCarousel snapshots={snapshots} />
           )}
         </Suspense>
-        <Suspense fallback={<div>Loading 3d globe...</div>}>
+        <Suspense fallback={<Loader />}>
           {isIntroDone && name === 'glob3d' && <Globe />}
         </Suspense>
       </div>
