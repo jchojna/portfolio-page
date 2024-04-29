@@ -1,33 +1,38 @@
-![website screenshot](app/assets/markdown/markdown_1.jpg)
+# Portfolio Project
 
-# My Frontend Portfolio
-
-## Project info
-This project you have already started exploring and it’s what you are viewing right now. It presents five most representative frontend projects of mine (including itself) placed in separate sections, starting from the ones I am proud of the most. In addition, the other section contains a few more straightforward and exercise projects I created in the beginning of my frontend journey.
-
-![website screenshot](app/assets/markdown/markdown_2.jpg)
-
-I tried to emphasize creative and dynamic character of this SPA website mostly by providing noticeable level of interaction with a visual output and quite many animated elements. At the same time, I tried not to cross the line of exaggeration regarding transforming elements and kept my eye on performance aspect so the transitions would appear relatively smooth.
-
-In order to distinguish one section from another I assumed a design rule, that each section has its own independent color palette. Because of many color shades in every section, there is 68 colors in total on this page and it’s one of those moments when SCSS comes in handy… In this project I decided not to use any javascript frameworks, just vanilla JS.
-
-[Demo](http://frontend.jakubchojna.pl/)
-
-![website screenshot](app/assets/markdown/markdown_3.jpg)
-
+This repository contains my portfolio project, showcasing various pet projects I've worked on and some information about me and my professional experience and education. The site is a Single Page Application (SPA) with a focus on interactivity and animation, balanced with performance considerations to ensure smooth transitions. The project was initially built with vanilla JS and later rewritten to Typescript and React."
 
 ## Features
 
-* intro animation
-* responsiveness
-* extensive use of SVG
-* expandable content functionality using recursive function
-* menu items corresponds to currently displayed content
-* fetching API from Github
-* different behavior of menu/content transition for mobile and tablet/desktop devices
-* contact form with frontend / backend validation
-* mail sending functionality based on phpmailer
-* local storage support for contact form inputs
-* website project created in Figma
+- code splitting using Suspense and lazy functions
+- async/await code for executing intro animations in a sequence
+- using github API to fetch project details data
+- custom accordions without use of third-party libraries
+- extensive use of SVG elements - logos, graphics, menu items
+- different menu components for mobile and desktop devices
 
-![website screenshot](app/assets/markdown/markdown_4.jpg)
+## Projects
+
+Here are some of the projects included in this portfolio:
+
+1. **Glob3d**: my NPM package allowing to visualize geographical data on 3d globe created using Three.js and Typescript
+2. **Tasktimer**: playful pomodoro app
+3. **Hydrapp**: animated water consumption tracker app
+4. **Archviz**: portfolio page showcasing my architectural visualizations
+
+## Tech Stack
+
+- typescript
+- react
+- react-query
+- sass
+- glob3d (my own npm package)
+
+## Installation and Setup
+
+To install and run the app locally, enter:
+
+```
+npm i
+npm run dev
+```
