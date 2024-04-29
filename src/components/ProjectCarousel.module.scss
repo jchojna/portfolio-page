@@ -2,7 +2,7 @@
 
 $icon-size: 1.3rem;
 
-.demo {
+.projectCarousel {
   align-items: center;
   display: flex;
   justify-content: flex-end;
@@ -45,15 +45,6 @@ $icon-size: 1.3rem;
 
     img {
       width: 100%;
-    }
-  }
-
-  .globe {
-    height: 500px;
-    width: 100%;
-
-    @media screen and (min-width: var.$media-m) {
-      height: 100%;
     }
   }
 }

@@ -4,16 +4,15 @@ import { useEffect, useRef, useState } from 'react';
 import ReactGA from 'react-ga4';
 import { useMediaQuery } from 'react-responsive';
 
+import classes from './App.module.scss';
 import Header from './components/Header';
+import MobileHeader from './components/MobileHeader';
 import About from './views/About';
 import Contact from './views/Contact';
 import CurrentViewContext from './views/CurrentViewContext';
 import Intro from './views/Intro';
 import Projects from './views/Projects';
 import Resume from './views/Resume';
-
-import classes from './App.module.scss';
-import MobileHeader from './components/MobileHeader';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -72,7 +71,7 @@ function App() {
           <div ref={sectionsRef} className={sectionsClass}>
             <About />
             <Resume />
-            {isIntroDone && <Projects />}
+            <Projects isIntroDone={isIntroDone} />
             <Contact />
           </div>
         </div>

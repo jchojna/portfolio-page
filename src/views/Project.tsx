@@ -1,8 +1,8 @@
 import clsx from 'clsx';
+import { Suspense, lazy, useContext } from 'react';
 
-import { useContext } from 'react';
-import Demo from '../components/Demo';
 import Graphic from '../components/Graphic';
+import Loader from '../components/Loader';
 import ProjectFeatures from '../components/ProjectFeatures';
 import ProjectLink from '../components/ProjectLink';
 import Tag from '../components/Tag';
@@ -12,6 +12,9 @@ import menuItems from '../content/menu.json';
 import { getViewLocation } from '../utils/utils';
 import CurrentViewContext from './CurrentViewContext';
 import classes from './Project.module.scss';
+
+const Globe = lazy(() => import('../components/Globe'));
+const ProjectCarousel = lazy(() => import('../components/ProjectCarousel'));
 
 type ProjectProps = {
   name: string;
@@ -23,6 +26,7 @@ type ProjectProps = {
   icons: IconDetails[];
   fetchedData: RepoObj;
   snapshots: string[];
+  isIntroDone: boolean;
 };
 
 const Project = ({
@@ -32,6 +36,7 @@ const Project = ({
   icons,
   fetchedData,
   snapshots,
+  isIntroDone,
 }: ProjectProps) => {
   const { created_at, updated_at, homepage, html_url } = fetchedData;
   const [currentView] = useContext(CurrentViewContext);
@@ -61,7 +66,14 @@ const Project = ({
             </div>
           </div>
         </div>
-        <Demo projectName={name} snapshots={snapshots} />
+        <Suspense fallback={<Loader />}>
+          {isIntroDone && name !== 'glob3d' && (
+            <ProjectCarousel snapshots={snapshots} />
+          )}
+        </Suspense>
+        <Suspense fallback={<Loader />}>
+          {isIntroDone && name === 'glob3d' && <Globe />}
+        </Suspense>
       </div>
     </div>
   );
