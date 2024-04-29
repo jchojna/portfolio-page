@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import clsx from 'clsx';
-import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ReactGA from 'react-ga4';
 import { useMediaQuery } from 'react-responsive';
 
@@ -11,9 +11,8 @@ import About from './views/About';
 import Contact from './views/Contact';
 import CurrentViewContext from './views/CurrentViewContext';
 import Intro from './views/Intro';
+import Projects from './views/Projects';
 import Resume from './views/Resume';
-
-const Projects = lazy(() => import('./views/Projects'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -72,9 +71,7 @@ function App() {
           <div ref={sectionsRef} className={sectionsClass}>
             <About />
             <Resume />
-            <Suspense fallback={<div>Loading Projects...</div>}>
-              {isIntroDone && <Projects />}
-            </Suspense>
+            <Projects isIntroDone={isIntroDone} />
             <Contact />
           </div>
         </div>
