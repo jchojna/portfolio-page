@@ -31,7 +31,7 @@ const Resume = () => {
         className={clsx(
           classes.container,
           classes.resume,
-          classes[viewLocation]
+          viewLocation && classes[viewLocation]
         )}
       >
         <h2 className={classes.title}>{resume.title}</h2>

@@ -27,7 +27,7 @@ const About = () => {
         className={clsx(
           classes.container,
           classes.about,
-          classes[viewLocation]
+          viewLocation && classes[viewLocation]
         )}
       >
         <h2 className={clsx(classes.title, classes.large, classes.about)}>
