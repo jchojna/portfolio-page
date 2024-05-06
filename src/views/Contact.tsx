@@ -23,7 +23,7 @@ const Contact = () => {
         className={clsx(
           classes.container,
           classes.contact,
-          classes[viewLocation]
+          viewLocation && classes[viewLocation]
         )}
       >
         <h2 className={clsx(classes.title, classes.large, classes.contact)}>
