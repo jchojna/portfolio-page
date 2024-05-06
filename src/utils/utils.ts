@@ -55,11 +55,8 @@ export const getViewLocation = (
   views: string[]
 ) => {
   const viewIndex = views.indexOf(view);
-  return currentViewIndex === viewIndex
-    ? 'current'
-    : viewIndex > currentViewIndex
-    ? 'next'
-    : 'prev';
+  if (viewIndex === currentViewIndex) return null;
+  return viewIndex > currentViewIndex ? 'next' : 'prev';
 };
 
 export const updateIndicatorStyle = (
