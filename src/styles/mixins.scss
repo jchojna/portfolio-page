@@ -94,16 +94,13 @@
 
 @mixin animated-container {
   @media only screen and (min-width: $media-m) {
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 1s, transform 0.3s ease-out;
 
     &.prev {
       opacity: 0;
       transform: translateY(-20%);
-    }
-
-    &.current {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     &.next {

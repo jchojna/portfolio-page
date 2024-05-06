@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { Suspense, lazy, useContext } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import Graphic from '../components/Graphic';
 import Loader from '../components/Loader';
@@ -40,6 +41,7 @@ const Project = ({
 }: ProjectProps) => {
   const { created_at, updated_at, homepage, html_url } = fetchedData;
   const [currentView] = useContext(CurrentViewContext);
+  const isMobile = useMediaQuery({ query: '(max-width: 1200px)' });
 
   const viewLocation = getViewLocation(
     currentView,
@@ -50,7 +52,12 @@ const Project = ({
   return (
     <div id={name} className={clsx(classes.section, classes[name])}>
       <Graphic view={name} />
-      <div className={clsx(classes.container, classes[viewLocation])}>
+      <div
+        className={clsx(
+          classes.container,
+          viewLocation && !isMobile && classes[viewLocation]
+        )}
+      >
         <div className={clsx(classes.content)}>
           <TextGroup title="About Project" projectName={name} content={about} />
           <ProjectFeatures projectName={name} content={features} />
